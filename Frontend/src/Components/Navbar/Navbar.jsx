@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Navbar.css";
-import logo from "../../assets/IIIT LOGO (2).png";
+import logo from "../../assets/Logo.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,18 +40,17 @@ const Navbar = () => {
     setMobileDropdownOpen(mobileDropdownOpen === index ? null : index);
   };
 
+  // ✅ Updated Menu Items
   const menuItems = [
     { name: "Home" },
-    { name: "About Us", sub: ["Organization History", "Vision & Mission", "Team Members", "What is Internship"] },
-    { name: "Notice" },
-    { name: "Internships Program", sub: ["On Campus Internships", "Virtual Internships"] },
-    { name: "Our Partners", sub: ["Educational Institutes", "Job Placement Companies", "Training & Technical Support"] },
-    { name: "Media", sub: ["Video", "Photo", "Online Media", "News Paper"] },
-    { name: "Success Story" },
-    { name: "Recruitment" },
-    { name: "Faq" },
+    { name: "About Us", sub: ["About Us", "Services 1", "Services 2", "Our Team"] },
+    { name: "Visa", sub: ["Job Visa", "Business Visa", "Worker Visa", "Student Visa", "Free Visa Enquery"] },
+    { name: "Country", sub: ["France", "Australia", "India"] },
+    { name: "Our Partners" },
+    { name: "Program Type", sub: ["Study Abroad", "Teach Abroad", "Intern Abroad"] },
+    { name: "Blog" },
     { name: "Contact Us" },
-    { name: "Donate" },
+    { name: "Get a Quote" }, // Replaced Donate
   ];
 
   return (
@@ -84,7 +83,7 @@ const Navbar = () => {
             <ul className="Nav-menu">
               {menuItems.map((item, i) => (
                 <li className="Nav-item dropdown" key={i}>
-                  {item.name === "Donate" ? (
+                  {item.name === "Get a Quote" ? (
                     <a className="Nav-donate-btn" href="#">{item.name}</a>
                   ) : (
                     <>
@@ -114,7 +113,7 @@ const Navbar = () => {
             <ul className="Nav-mobile-list">
               {menuItems.map((item, i) => (
                 <li key={i}>
-                  {item.name === "Donate" ? (
+                  {item.name === "Get a Quote" ? (
                     <a
                       href="#"
                       className="Nav-mobile-donate-btn"
