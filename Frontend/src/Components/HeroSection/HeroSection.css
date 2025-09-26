@@ -1,0 +1,337 @@
+/* === Hero Section Container === */
+.herosection {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* full viewport height */
+  overflow: hidden;
+}
+
+/* === Slider Slide Common === */
+.herosection-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  z-index: 1;
+  
+}
+
+.herosection-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* === Slider 1 Background (Static) === */
+.styled-bg {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Overlay (static) */
+.styled-bg .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* Hero content (static, no animations) */
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  transform: translateY(-50%);
+  color: #fff;
+  max-width: 650px;
+}
+
+/* Text styles */
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.hero-subtitle .highlight {
+  color: #e53935;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  text-transform: capitalize;
+  color: #ffffff; /* main words white */
+}
+
+.hero-title .red-text {
+  color: #e53935;
+  font-style: italic;
+}
+
+.hero-bullets {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+}
+
+.hero-bullets li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 500;
+}
+
+.hero-bullets .dot {
+  width: 10px;
+  height: 10px;
+  background: #e53935;
+  border-radius: 50%;
+}
+
+/* Hero actions container */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  
+}
+
+/* CTA Button (animated) */
+.cta-btn {
+  padding: 14px 32px;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.cta-btn:hover {
+  background: #e53935;
+  border-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Shine effect */
+.cta-btn.shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  transform: skewX(-25deg);
+  animation: shine 5s infinite;
+}
+
+@keyframes shine {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+/* Call info box */
+.call-box p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.85;
+  color: #ffffff; /* main words white */
+}
+
+.call-box h4 {
+  font-size: 1.4rem;
+  margin: 5px 0 0;
+  font-weight: 700;
+  color: #ffffff; /* main words white */
+}
+
+/* === Slider 2 (Split Layout) === */
+.herosection-split {
+  display: flex;
+  width: 100%;
+  height: 100%; /* Keep full height */
+}
+
+.split-left {
+  flex: 1;
+  overflow: hidden;
+  display: flex;          /* center child image */
+  align-items: center;    /* vertically center */
+  justify-content: flex-start; /* align image to left */
+}
+
+.split-left img {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;      /* cover container */
+  object-position: left center; /* show left half */
+  animation: fadeInLeft 1.2s ease forwards;
+}
+
+.split-right {
+  flex: 1;
+  background: rgba(0, 47, 108, 0.92);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  animation: fadeInRight 1.2s ease forwards;
+}
+
+
+.subline {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #ddd;
+  font-weight: 400;
+}
+
+.subline .highlight {
+  color: #e53935;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.heading {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 35px;
+  color: #ffffff; /* main words white */
+}
+
+.heading .red-text {
+  color: #e53935;
+  font-style: italic;
+}
+
+.call-action {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.call-info p {
+  font-size: 0.95rem;
+  margin: 0;
+  opacity: 0.8;
+  color: #ffffff; /* main words white */
+}
+
+.call-info h4 {
+  font-size: 1.3rem;
+  margin: 5px 0 0;
+  font-weight: 600;
+  color: #ffffff; /* main words white */
+}
+
+/* === Slider Controls === */
+/* === Slider Controls - Transparent Arrows === */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  cursor: pointer;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.2); /* transparent background */
+  border-radius: 50%;
+  transition: all 0.3s ease;
+
+}
+
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.5); /* more visible on hover */
+  color: #e53935; /* optional: change arrow color on hover */
+}
+
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.dot-btn {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px;
+  background: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot-btn.active,
+.dot-btn:hover {
+  background: #e53935;
+  transform: scale(1.2);
+}
+
+/* === Animations for Slider 2 only === */
+@keyframes fadeInLeft {
+  0% { transform: translateX(-50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeInRight {
+  0% { transform: translateX(50px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .herosection-split {
+    flex-direction: column;
+  }
+  .split-left, .split-right {
+    width: 100%;
+    height: 50%;
+  }
+  .split-right {
+    padding: 30px;
+    text-align: center;
+  }
+  .call-action {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .hero-title, .heading {
+    font-size: 2.5rem;
+  }
+  .hero-content {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+}

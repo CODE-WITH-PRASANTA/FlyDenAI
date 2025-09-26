@@ -1,0 +1,282 @@
+.whatwedo {
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  padding: 24px;
+}
+
+.whatwedo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.whatwedo-left {
+  flex: 0 0 60%;
+  min-height: 500px;
+  position: relative;
+}
+
+.whatwedo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 500px;
+  animation: zoomIn 10s infinite;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.whatwedo-stats {
+  position: absolute;
+  bottom: 30px;
+  right: 0;
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 260px;
+  animation: slideIn 1s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.whatwedo-stats .stat {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+  transition: transform var(--transition);
+}
+
+.whatwedo-stats .stat:nth-child(1) {
+  background-color: #3498db;
+}
+
+.whatwedo-stats .stat:nth-child(2) {
+  background-color: #f1c40f;
+}
+
+.whatwedo-stats .stat:nth-child(3) {
+  background-color: #2ecc71;
+}
+
+.whatwedo-stats .stat:nth-child(1) .stat-number {
+  color: #fff;
+}
+
+.whatwedo-stats .stat:nth-child(2) .stat-number {
+  color: #333;
+}
+
+.whatwedo-stats .stat:nth-child(3) .stat-number {
+  color: #fff;
+}
+
+.whatwedo-stats .stat:nth-child(1) .stat-label {
+  color: #fff;
+}
+
+.whatwedo-stats .stat:nth-child(2) .stat-label {
+  color: #333;
+}
+
+.whatwedo-stats .stat:nth-child(3) .stat-label {
+  color: #fff;
+}
+
+.whatwedo-stats:hover .stat {
+  transform: translateY(-6px);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-weight: 800;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.whatwedo-right {
+  flex: 0 0 40%;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 64px 48px;
+  min-height: 500px;
+  animation: slideInRight 1s;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.sub-title {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  border-left: 4px solid #3498db;
+  animation: fadeIn 1s;
+  color: #3498db;
+}
+
+.title {
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin: 0 0 22px 0;
+  font-weight: 800;
+  animation: fadeIn 1s;
+  color: #2c3e50;
+}
+
+.title span {
+  color: #e74c3c;
+  font-style: italic;
+}
+
+.content-block {
+  margin-bottom: 18px;
+  animation: slideInUp 1s;
+}
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.content-block h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2980b9;
+}
+
+.content-block p {
+  margin: 0;
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.96rem;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.14);
+  margin: 14px 0 18px;
+  animation: fadeIn 1s;
+}
+
+@media (max-width: 900px) {
+  .whatwedo-container {
+    flex-direction: column;
+  }
+
+  .whatwedo-left {
+    flex-basis: auto;
+    min-height: 360px;
+  }
+
+  .whatwedo-img {
+    min-height: 320px;
+  }
+
+  .whatwedo-stats {
+    position: static;
+    margin: -36px auto 0;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 90%;
+  }
+
+  .whatwedo-stats .stat {
+    margin: 10px;
+  }
+
+  .whatwedo-right {
+    padding: 28px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}
+
+.whatwedo-right:hover {
+  background-color: #f7f7f7;
+  transition: background-color 0.5s;
+}
+
+.whatwedo-stats .stat:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+.whatwedo-stats .stat:hover .stat-number {
+  color: #fff;
+  transition: color 0.5s;
+}
+
+.whatwedo-stats .stat:hover .stat-label {
+  color: #fff;
+  transition: color 0.5s;
+}
