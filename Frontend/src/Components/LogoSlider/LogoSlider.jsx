@@ -7,7 +7,6 @@ import c4 from "../../assets/c4.webp";
 import c5 from "../../assets/c5.webp";
 import c6 from "../../assets/c6.webp";
 
-
 const logos = [c1, c2, c3, c4, c5, c6];
 
 const LogoSlider = () => {
@@ -19,7 +18,7 @@ const LogoSlider = () => {
       <div className="logo-slider">
         <div className="logo-track">
           {logos.concat(logos).map((logo, index) => (
-            <div className="logo-item" key={index}>
+            <div className={`logo-item logoslider-${index + 1}`} key={index}>
               <img src={logo} alt={`logo-${index}`} />
             </div>
           ))}

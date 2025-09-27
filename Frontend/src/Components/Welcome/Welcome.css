@@ -1,186 +1,236 @@
-/* Container */
+/* === Container === */
 .welcome-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 80px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 20px 30px;
+  max-width: 1100px;
+  margin: 40px auto;
   gap: 40px;
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Left Side (Passport background + traveler) */
-.left-side {
-  flex: 1 1 500px;
+/* === Left Side (Passport + Traveler) === */
+.welcome-left-side {
+  flex: 1 1 450px;
   position: relative;
-  min-height: 450px;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
-.bg-passport {
+.welcome-passport-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 14px;
+  filter: brightness(0.95);
 }
 
+/* Traveler Animation */
 @keyframes moveAcross {
   0% {
-    transform: translateX(70px) translateY(0) scale(1);
-    opacity: 1;
+    transform: translateX(30px) translateY(0) scale(1);
   }
-
+  100% {
+    transform: translateX(-30px) translateY(-8px) scale(1.05);
+  }
 }
 
-.traveler-move {
+.welcome-traveler-move {
   position: absolute;
   bottom: 0;
-  right: 20px;
-  width: 160px;
+  right: 15px;
+  width: 140px;
   height: auto;
   z-index: 3;
-  animation: moveAcross 6s ease-in-out infinite alternate;
+  animation: moveAcross 5s ease-in-out infinite alternate;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.25));
 }
 
-/* Right Side Content */
-.right-side {
-  flex: 1 1 400px;
+/* === Right Side Content === */
+.welcome-right-side {
+  flex: 1 1 350px;
   padding: 20px;
-  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.welcome-title {
-  font-size: 38px;
+.welcome-right-side:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+.welcome-heading {
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  color: #0a0a23;
-  line-height: 1.2;
+  margin-bottom: 16px;
+  line-height: 1.3;
+  background: linear-gradient(90deg, #0a0a23, #e63946);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.welcome-title span {
-  color: #e63946; /* Highlight "Advisory" */
+.welcome-highlight {
+  color: #e63946;
   font-style: italic;
+  font-weight: 700;
 }
 
-.welcome-description {
-  font-size: 18px;
-  margin-bottom: 25px;
-  color: #333;
+.welcome-description-text {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #444;
   line-height: 1.6;
 }
 
-.welcome-points {
+/* === Benefits List === */
+.welcome-benefits-list {
   list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
-.welcome-points li {
-  margin-bottom: 15px;
-  font-size: 17px;
+.welcome-benefit-item {
+  margin-bottom: 12px;
+  font-size: 15px;
   color: #333;
   display: flex;
   align-items: center;
+  background: #fff7f8;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.check-icon {
+.welcome-benefit-item:hover {
+  background: #ffe6e9;
+  transform: translateX(5px);
+}
+
+.welcome-check-icon {
   color: #e63946;
-  margin-right: 12px;
-  font-size: 20px;
+  margin-right: 10px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
-/* Button */
-.watch-video-btn {
-  background-color: #0a0a23;
+/* === Button (Clickbait Look) === */
+.welcome-watch-video-btn {
+  background: linear-gradient(135deg, #ff3e55, #e63946);
   color: #fff;
   border: none;
-  padding: 14px 32px;
-  font-size: 18px;
-  font-weight: 600;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 20px rgba(255, 62, 85, 0.45);
+  text-transform: uppercase;
 }
 
-.watch-video-btn:hover {
-  background-color: #1d1d4a;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+.welcome-watch-video-btn:hover {
+  background: linear-gradient(135deg, #e63946, #ff6f61);
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(230, 57, 70, 0.6);
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 1024px) {
-  .left-side {
-    min-height: 350px;
-  }
-  .traveler-move {
-    width: 130px;
-  }
-  .welcome-title {
-    font-size: 32px;
-  }
-  .welcome-description {
-    font-size: 16px;
-  }
-}
+/* Media Queries */
 
-@media screen and (max-width: 768px) {
+@media (max-width: 992px) {
   .welcome-container {
-    flex-direction: column-reverse;
-    text-align: center;
+    flex-direction: column;
+    padding: 20px;
   }
-  .left-side {
-    width: 100%;
-    min-height: 300px;
+  .welcome-left-side {
+    flex: 1 1 100%;
+    min-height: 350px;
+    margin-bottom: 20px;
   }
-  .traveler-move {
-    width: 120px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: none; /* Stop animation for small screens */
+  .welcome-right-side {
+    flex: 1 1 100%;
   }
-  .right-side {
-    padding: 20px 10px;
-  }
-  .welcome-title {
+}
+
+@media (max-width: 768px) {
+  .welcome-heading {
     font-size: 28px;
   }
-  .welcome-description {
+  .welcome-description-text {
     font-size: 15px;
   }
-  .welcome-points li {
-    justify-content: center;
+  .welcome-benefit-item {
+    font-size: 14px;
   }
-  .watch-video-btn {
-    margin: 0 auto;
+  .welcome-watch-video-btn {
+    padding: 12px 24px;
+    font-size: 15px;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .left-side {
-    min-height: 220px;
+@media (max-width: 576px) {
+  .welcome-container {
+    margin-top: 0px;
+    padding: 10px;
   }
-  .traveler-move {
-    width: 90px;
+  .welcome-left-side {
+    min-height: 250px;
   }
-  .welcome-title {
+  .welcome-right-side {
+    padding: 15px;
+  }
+  .welcome-heading {
     font-size: 24px;
   }
-  .welcome-description {
+  .welcome-description-text {
     font-size: 14px;
   }
-  .welcome-points li {
-    font-size: 15px;
+  .welcome-benefit-item {
+    font-size: 13px;
   }
-  .watch-video-btn {
-    font-size: 16px;
-    padding: 12px 24px;
+  .welcome-watch-video-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+  .welcome-traveler-move {
+    width: 100px;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome-left-side {
+    min-height: 200px;
+  }
+  .welcome-right-side {
+    padding: 10px;
+  }
+  .welcome-heading {
+    font-size: 20px;
+  }
+  .welcome-description-text {
+    font-size: 13px;
+  }
+  .welcome-benefit-item {
+    font-size: 12px;
+  }
+  .welcome-watch-video-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .welcome-traveler-move {
+    width: 80px;
   }
 }

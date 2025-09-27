@@ -56,40 +56,46 @@ const HeroSection = () => {
                 </ul>
 
                 <div className="hero-actions">
-                  <button className="cta-btn shine">Pay Fee After Visa</button>
-                  <div className="call-box">
-                    <p>Call us</p>
-                    <h4>+000 723 123 21</h4>
+                    <button className="cta-btn shine">Pay Fee After Visa</button>
+                    <button className="call-btn shine">
+                      📞 <span>+000 723 123 21</span>
+                    </button>
                   </div>
-                </div>
+
               </div>
             </div>
           )}
 
           {/* === Slider 2 (Split layout) === */}
-          {slide.type === "split" && (
-            <div className="herosection-split">
-              <div className="split-left">
-                <img src={slide.img} alt="Visa Info" className="split-image" />
-              </div>
-              <div className="split-right">
-                <p className="subline">
-                  Simple steps to your <span className="highlight">Dream Destination!</span>
-                </p>
-                <h1 className="heading">
-                  Start Planning <br /> Your <span className="red-text">#NextTrip!</span>
-                </h1>
+       {slide.type === "split" && (
+          <div
+            className="herosection-bg styled-bg"
+            style={{ backgroundImage: `url(${slide.img})` }}
+          >
+            <div className="overlay"></div>
+            <div className="hero-content right-align">
+              <p className="hero-subtitle animate-right">
+                Simple steps to your <span className="highlight">Dream Destination!</span>
+              </p>
+              <h1 className="hero-title animate-right">
+                Start Planning <br /> Your <span className="red-text">#NextTrip!</span>
+              </h1>
 
-                <div className="call-action">
-                  <div className="call-info">
-                    <p>Call us</p>
-                    <h4>+000 723 123 21</h4>
-                  </div>
-                  <button className="cta-btn">Apply Visa Today!</button>
-                </div>
+              <ul className="hero-bullets animate-right">
+                <li><span className="dot"></span> Quick & Easy Process</li>
+                <li><span className="dot"></span> Expert Guidance</li>
+                <li><span className="dot"></span> Apply With Confidence</li>
+              </ul>
+
+              <div className="hero-actions animate-right">
+                <button className="call-btn shine">
+                  📞 <span>+000 723 123 21</span>
+                </button>
+                <button className="cta-btn shine">Apply Visa Today!</button>
               </div>
             </div>
-          )}
+          </div>
+        )}
         </div>
       ))}
 

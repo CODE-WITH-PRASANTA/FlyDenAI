@@ -1,87 +1,73 @@
 import React from "react";
 import "./News.css";
-import test from "../../assets/test.webp"
+import { Calendar, MessageCircle, ArrowRight } from "lucide-react";
+
+import BlogImg1 from "../../assets/02.webp";
+import BlogImg2 from "../../assets/03.webp";
+import BlogImg3 from "../../assets/04.webp";
+
+const articles = [
+  {
+    category: "SCIENCE",
+    title: "Crafting Effective Learning Guidelines",
+    date: "15 Nov, 2023",
+    comments: 0,
+    image: BlogImg1,
+  },
+  {
+    category: "TECHNOLOGY",
+    title: "Exploring Learning Landscapes in Academics",
+    date: "14 Nov, 2023",
+    comments: 3,
+    image: BlogImg2,
+  },
+  {
+    category: "LEARNING",
+    title: "Voices from the Learning Education Hub",
+    date: "13 Nov, 2023",
+    comments: 2,
+    image: BlogImg3,
+  },
+];
 
 const News = () => {
-  const posts = [
-    {
-      id: 1,
-      img: test,
-      author: "ALEX",
-      comments: "0 COMMENTS",
-      title: "Employment Insurance For Foreign Nationals",
-      desc: "Nunc mi ipsum faucibus vitae. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Non blandit massa enim nec dui turpis nunc eget nunc.",
-      featured: true,
-    },
-    {
-      id: 2,
-      img: test,
-      author: "ALEX",
-      comments: "0 COMMENTS",
-      title: "Employment Insurance For Foreign Nationals",
-    },
-    {
-      id: 3,
-      img: test,
-      author: "ALEX",
-      comments: "0 COMMENTS",
-      title: "Covid-19 And Its Impact On UK Immigration",
-    },
-    {
-      id: 4,
-      img: test,
-      author: "ALEX",
-      comments: "0 COMMENTS",
-      title: "How To Beat These Visa Application Tip!",
-    },
-    {
-      id: 5,
-      img: test,
-      author: "ALEX",
-      comments: "0 COMMENTS",
-      title: "UK To Offers Point Based Immigration System",
-    },
-  ];
-
   return (
-    <section className="news">
-      {/* Header */}
-      <div className="news-header">
-        <h5 className="section-subtitle">LATEST NEWS</h5>
-        <h2 className="section-title">
-          Truvik get more articles from our <span>Recources</span> news
-        </h2>
-      </div>
+    <section className="news-section-dark">
+      <div className="news-wrapper-dark">
+        <p className="section-subtitle-dark">LATEST ARTICLES</p>
+        <h2 className="section-title-dark">Stay Updated with EduBlink</h2>
+        <div className="section-underline-dark"></div>
 
-      {/* Featured Post */}
-      <div className="featured-post fade-in">
-        <div className="featured-img">
-          <img src={posts[0].img} alt="featured" />
-        </div>
-        <div className="featured-text">
-          <div className="meta">
-            <span>{posts[0].author}</span> | <span>{posts[0].comments}</span>
-          </div>
-          <h3 className="post-title">{posts[0].title}</h3>
-          <p className="post-desc">{posts[0].desc}</p>
-        </div>
-      </div>
-
-      {/* Grid posts */}
-      <div className="post-grid fade-up">
-        {posts.slice(1).map((post) => (
-          <div className="post-card" key={post.id}>
-            <div className="post-img">
-              <img src={post.img} alt={post.title} />
-            </div>
-            <div className="post-info">
-              <div className="meta">
-                <span>{post.author}</span> | <span>{post.comments}</span>
+        <div className="news-grid-dark">
+          {articles.map((item, index) => (
+            <div className="news-card-dark" key={index}>
+              <div className="news-image-wrapper-dark">
+                <img src={item.image} alt={item.title} className="news-image-dark" />
+                <div className="circle-btn-dark">
+                  <ArrowRight size={20} strokeWidth={2} />
+                </div>
               </div>
-              <h4 className="post-title">{post.title}</h4>
+
+              <div className="news-content-dark">
+                <p className="news-category-dark">{item.category}</p>
+                <h3 className="news-heading-dark">{item.title}</h3>
+
+                <div className="news-meta-dark">
+                  <span>
+                    <Calendar size={16} strokeWidth={1.5} /> {item.date}
+                  </span>
+                  <span>
+                    <MessageCircle size={16} strokeWidth={1.5} /> {item.comments} Comments
+                  </span>
+                </div>
+
+                <p className="news-description-dark">
+                  Discover insights and updates from the world of education, science, and technology to stay ahead in your learning journey.
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

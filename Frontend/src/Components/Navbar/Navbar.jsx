@@ -127,7 +127,7 @@ const Navbar = () => {
                         className="mobile-link"
                         onClick={() => toggleDropdown(i)}
                       >
-                        {item.name} {item.sub && <span className="arrow">{mobileDropdownOpen === i ? "▲" : "▼"}</span>}
+                        {item.name} {item.sub && <span className="nav-arrow">{mobileDropdownOpen === i ? "▲" : "▼"}</span>}
                       </div>
                       {item.sub && (
                         <ul className={`mobile-dropdown ${mobileDropdownOpen === i ? "open" : ""}`}>

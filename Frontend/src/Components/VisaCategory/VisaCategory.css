@@ -1,27 +1,16 @@
-/* === Container === */
-.visa-category-container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  font-family: "Segoe UI", sans-serif;
-  animation: fadeUp 1s ease-in-out;
-}
+
 
 /* === Header === */
 .visa-category-header {
-  color: #fff;
-  padding: 40px 20px;
   text-align: center;
   margin-bottom: 60px;
-  border-radius: 20px;
 }
 
 .visa-category-header h1 {
-  font-size: 42px;
-  margin: 0;
+  font-size: 44px;
   font-weight: 800;
   letter-spacing: 0.5px;
-  background: linear-gradient(90deg, #38bdf8, #6366f1, #facc15);
+  background: linear-gradient(90deg, #38bdf8, #6366f1, #facc15, #f43f5e);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -30,37 +19,145 @@
   color: #facc15;
 }
 
-/* === Cards Grid === */
+/* === Grid Layout === */
 .visa-category-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
-  perspective: 1500px; /* for 3D tilt effect */
+  perspective: 1500px;
 }
 
-/* === Card === */
+
+/* === Gradient Backgrounds by Visa Type === */
+.job-visa {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb, #3b82f6);
+}
+
+.business-visa {
+  background: linear-gradient(135deg, #f59e0b, #facc15, #f97316);
+}
+
+.diplomatic-visa {
+  background: linear-gradient(135deg, #6d28d9, #7c3aed, #8b5cf6);
+}
+
+.tourist-visa {
+  background: linear-gradient(135deg, #0f766e, #14b8a6, #2dd4bf);
+}
+
+.student-visa {
+  background: linear-gradient(135deg, #059669, #10b981, #34d399);
+}
+
+.transit-visa {
+  background: linear-gradient(135deg, #0284c7, #06b6d4, #38bdf8);
+}
+
+.immigrant-visa {
+  background: linear-gradient(135deg, #b91c1c, #dc2626, #ef4444);
+}
+
+.medical-visa {
+  background: linear-gradient(135deg, #be123c, #e11d48, #f43f5e);
+}
+
+/* === Image Section === */
+.visa-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+}
+
+.visa-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.5s ease;
+  filter: brightness(0.9);
+}
+
+.visa-category-card:hover .visa-image {
+  transform: scale(1.2) rotate(3deg);
+  filter: brightness(1.1);
+}
+
+/* Overlay on image hover */
+.visa-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 11, 23, 0.45);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.visa-category-card:hover .visa-image-wrapper::after {
+  opacity: 1;
+}
+
+.visa-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #d1d5db;
+  margin-bottom: 18px;
+}
+
+/* === Animations === */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === Container Enhancements === */
+.visa-category-container {
+  margin: 0 auto;
+  padding: 60px 20px;
+  animation: fadeUp 1s ease-in-out;
+  background: linear-gradient(145deg, #020b17, #0a1a2b); /* Dark gradient */
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.7), 
+              0 0 40px rgba(56, 189, 248, 0.3);
+  backdrop-filter: blur(12px);
+  color: #e5e7eb;
+}
+
+/* Subtle hover glow for container */
+.visa-category-container:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,0.8),
+              0 0 50px rgba(56,189,248,0.5),
+              0 0 60px rgba(250,204,21,0.3);
+}
+
+/* === Card Enhancements === */
 .visa-category-card {
-  width: calc(33.33% - 22px);
   border-radius: 20px;
   overflow: hidden;
-  color: #fff;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-  transition: transform 0.6s ease, box-shadow 0.6s ease;
   position: relative;
-  background: #111;
   transform-style: preserve-3d;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Hover tilt + glow effect */
 .visa-category-card:hover {
-  transform: rotateY(10deg) rotateX(8deg) scale(1.07);
-  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.5);
+  transform: translateY(-15px) rotateY(4deg) rotateX(3deg) scale(1.06);
+  box-shadow: 0 35px 60px rgba(0,0,0,0.65), 
+              0 0 25px rgba(56,189,248,0.6), 
+              0 0 35px rgba(250,204,21,0.3);
 }
 
-/* Animated Glow Border */
+/* Neon border animation */
 .visa-category-card::before {
   content: "";
   position: absolute;
@@ -76,82 +173,40 @@
   pointer-events: none;
 }
 
-/* === Image Wrapper with Parallax === */
-.visa-image-wrapper {
-  position: relative;
-  overflow: hidden;
-  height: 220px;
-}
-
-.visa-image-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.8s ease;
-}
-
-.visa-category-card:hover .visa-image-wrapper img {
-  transform: scale(1.25) rotate(3deg);
-}
-
-/* Overlay on image hover */
-.visa-image-wrapper::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.visa-category-card:hover .visa-image-wrapper::after {
-  opacity: 1;
-}
-
-/* === Card Content with Glass & Slide Effect === */
+/* Card Content Glass Effect */
 .visa-category-card-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 60%); /* slide up on hover */
-  width: 90%;
+  padding: 26px;
   text-align: center;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  color: #f9fafb;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 22px 24px;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+  border: 1px solid rgba(255,255,255,0.12);
   box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: all 0.5s ease;
 }
 
-.visa-category-card:hover .visa-category-card-content {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-
-/* Title & Description */
-.visa-category-card-content h2 {
-  font-size: 24px;
+/* Title text glow */
+.visa-title {
+  font-size: 22px;
   font-weight: 800;
   margin-bottom: 12px;
-  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 10px rgba(56,189,248,0.6);
+  background: linear-gradient(90deg, #38bdf8, #f43f5e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.visa-category-card-content p {
-  font-size: 15px;
-  line-height: 1.6;
-  color: #e0e7ff;
-  margin-bottom: 18px;
-  letter-spacing: 0.3px;
+/* Description hover color effect */
+.visa-category-card:hover .visa-description {
+  color: #fff;
+  text-shadow: 0 1px 5px rgba(0,0,0,0.6);
+  transition: all 0.4s ease;
 }
 
-/* === Button with Glow & Shine === */
+/* Buttons enhancements */
 .explore-more-btn {
   background: linear-gradient(135deg, #facc15, #f59e0b, #f43f5e);
   color: #fff;
@@ -161,29 +216,22 @@
   cursor: pointer;
   border-radius: 35px;
   font-weight: 700;
-  position: relative;
-  overflow: hidden;
-  transform: scale(0.9);
-  opacity: 0;
-  transition: all 0.4s ease, box-shadow 0.6s ease;
-}
-
-.visa-category-card:hover .explore-more-btn {
-  opacity: 1;
-  transform: scale(1);
-  transition-delay: 0.6s;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .explore-more-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px rgba(250,204,21,0.9);
+  transform: scale(1.12);
+  box-shadow: 0 0 35px rgba(250,204,21,0.9),
+              0 0 50px rgba(244,63,94,0.6),
+              0 0 25px rgba(56,189,248,0.6);
   animation: pulseGlow 1.6s infinite;
 }
 
-/* === Animations === */
+/* Animations */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
 @keyframes glowingBorder {
@@ -199,14 +247,101 @@
 }
 
 /* === Responsive === */
-@media (max-width: 1024px) {
-  .visa-category-card {
-    width: calc(50% - 20px);
+
+/* Large screens: 4 cards per row (default already set) */
+@media (max-width: 1400px) {
+  .visa-category-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
   }
 }
 
-@media (max-width: 768px) {
-  .visa-category-card {
-    width: 100%;
+/* Medium screens: 2 cards per row */
+@media (max-width: 992px) {
+  .visa-category-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .visa-category-container {
+    padding: 50px 20px;
+  }
+
+  .visa-category-header h1 {
+    font-size: 36px;
+  }
+
+  .visa-title {
+    font-size: 20px;
+  }
+
+  .visa-description {
+    font-size: 14px;
+  }
+
+  .explore-more-btn {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .visa-image-wrapper {
+    height: 200px;
+  }
+}
+
+/* Small screens: 1 card per row */
+@media (max-width: 600px) {
+  .visa-category-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .visa-category-container {
+    padding: 40px 15px;
+  }
+
+  .visa-category-header h1 {
+    font-size: 28px;
+  }
+
+  .visa-title {
+    font-size: 18px;
+  }
+
+  .visa-description {
+    font-size: 13px;
+  }
+
+  .explore-more-btn {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .visa-image-wrapper {
+    height: 180px;
+  }
+}
+
+/* Extra small screens: mobile portrait */
+@media (max-width: 400px) {
+  .visa-category-header h1 {
+    font-size: 24px;
+  }
+
+  .visa-title {
+    font-size: 16px;
+  }
+
+  .visa-description {
+    font-size: 12px;
+  }
+
+  .explore-more-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+
+  .visa-image-wrapper {
+    height: 150px;
   }
 }

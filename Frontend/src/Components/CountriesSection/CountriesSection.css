@@ -1,163 +1,141 @@
+/* === General Section Styles === */
 .countries-section {
-  padding: 60px 20px;
+  padding: 50px 20px;
   font-family: "Poppins", sans-serif;
   text-align: center;
   max-width: 1200px;
-  margin: 0 auto;
-  animation: fadeIn 1s;
+  margin: 10px auto;
+  background: linear-gradient(135deg, #f0f4ff 0%, #e0ecff 100%);
+  border-radius: 20px;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
+/* Sub-title with Neon/Glitch effect */
 .countries-subtitle {
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  color: #718096;
+  font-size: 0.95rem;
+  letter-spacing: 1.5px;
+  color: #555;
   text-transform: uppercase;
   margin-bottom: 10px;
   position: relative;
   display: inline-block;
-  animation: textGlitch 2s infinite;
+  animation: textGlitch 2.5s infinite;
 }
 
-@keyframes textGlitch {
-  0% {
-    text-shadow: 1px 0 0 #00ffff, -1px 0 0 #ff00ff;
-  }
-  25% {
-    text-shadow: 2px 0 0 #00ffff, -2px 0 0 #ff00ff;
-  }
-  50% {
-    text-shadow: 1px 0 0 #00ffff, -1px 0 0 #ff00ff;
-  }
-  75% {
-    text-shadow: 0px 0 0 #00ffff, 0px 0 0 #ff00ff;
-  }
-  100% {
-    text-shadow: 1px 0 0 #00ffff, -1px 0 0 #ff00ff;
-  }
-}
-
+/* Title with gradient & glow */
 .countries-title {
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   color: #0c3c60;
-  animation: titleGlow 2s infinite;
+  line-height: 1.2;
 }
 
-@keyframes titleGlow {
-  0% {
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-  100% {
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
+.countries-title span {
+  background: linear-gradient(90deg, #ff758c, #ff7eb3, #6a11cb, #2575fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textGradient 5s infinite linear;
 }
 
+/* Grid Layout */
 .countries-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
 }
 
+/* Country Card */
 .country-card {
   position: relative;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 15px;
   cursor: pointer;
-  animation: cardFlip 1s;
+  transition: all 0.5s ease;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
 }
 
-@keyframes cardFlip {
-  from {
-    transform: rotateY(90deg);
-  }
-  to {
-    transform: rotateY(0);
-  }
+.country-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
+/* Image with overlay & hover zoom */
 .country-image {
   width: 100%;
   padding-top: 60%;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.7);
-  transition: filter 0.3s ease;
+  transition: all 0.5s ease;
+  filter: brightness(0.75);
 }
 
 .country-card:hover .country-image {
-  filter: brightness(0.5);
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
+  transform: scale(1.12);
+  filter: brightness(0.6);
 }
 
+/* Country Name with glow */
 .country-name {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  font-weight: 600;
-  font-size: 1.3rem;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  font-weight: 700;
+  font-size: 1.4rem;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
   animation: namePulse 2s infinite;
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes textGlitch {
+  0%, 20%, 40%, 60%, 80%, 100% {
+    text-shadow: 1px 0 2px #ff00ff, -1px 0 2px #00ffff;
+  }
+}
+
+@keyframes textGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @keyframes namePulse {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
+  0% { transform: translate(-50%, -50%) scale(1);}
+  50% { transform: translate(-50%, -50%) scale(1.1);}
+  100% { transform: translate(-50%, -50%) scale(1);}
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .countries-title { font-size: 2.2rem; }
+  .country-name { font-size: 1.2rem; }
 }
 
 @media (max-width: 768px) {
-  .countries-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  .countries-title {
-    font-size: 2rem;
-  }
+  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .countries-title { font-size: 2rem; }
+  .country-name { font-size: 1.1rem; }
 }
 
 @media (max-width: 480px) {
-  .countries-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  }
-  .countries-title {
-    font-size: 1.8rem;
-  }
-  .country-name {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 320px) {
-  .countries-grid {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  }
-     .countries-title {
-    font-size: 1.5rem;
-  }
-  .country-name {
-    font-size: 0.8rem;
+  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .countries-title { font-size: 1.8rem; }
+  .country-name { font-size: 1rem; }
+  .countries-section{
+    padding: 0px 10px;
   }
 }

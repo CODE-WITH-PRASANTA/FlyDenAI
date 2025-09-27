@@ -8,7 +8,6 @@ import CountriesSection from '../../Components/CountriesSection/CountriesSection
 import Testimonials from '../../Components/Testimonials/Testimonials'
 import Stats from '../../Components/Stats/Stats'
 import News from '../../Components/News/News'
-import Footer from '../../Components/Footer/Footer'
 import LogoSlider from '../../Components/LogoSlider/LogoSlider'
 
 const Home = () => {
@@ -18,13 +17,12 @@ const Home = () => {
         <Welcome/>
         <VisaCategory/>
         <WhatWeDo/>
-        <CountriesSection/>
         <Testimonials/>
+        <CountriesSection/>
         <Stats/>
-        <News/>
         <LogoSlider/>
-        <Footer/>
-        
+        <News/>
+
     </div>
   )
 }
