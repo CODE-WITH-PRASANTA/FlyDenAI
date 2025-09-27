@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom"; // ✅ React Router
 import "./Navbar.css";
 import logo from "../../assets/Logo.png";
 
@@ -19,7 +20,6 @@ const Navbar = () => {
       }
       lastScrollY.current = window.scrollY;
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -40,22 +40,41 @@ const Navbar = () => {
     setMobileDropdownOpen(mobileDropdownOpen === index ? null : index);
   };
 
-  // ✅ Updated Menu Items
+  // ✅ Updated Menu Items with proper routing
   const menuItems = [
-    { name: "Home" },
-    { name: "About Us", sub: ["About Us", "Services 1", "Services 2", "Our Team"] },
-    { name: "Visa", sub: ["Job Visa", "Business Visa", "Worker Visa", "Student Visa", "Free Visa Enquery"] },
-    { name: "Country", sub: ["France", "Australia", "India"] },
-    { name: "Our Partners" },
-    { name: "Program Type", sub: ["Study Abroad", "Teach Abroad", "Intern Abroad"] },
-    { name: "Blog" },
-    { name: "Contact Us" },
-    { name: "Get a Quote" }, // Replaced Donate
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about", sub: [
+      { name: "About Us", path: "/about" },
+      { name: "Services 1", path: "/services/1" },
+      { name: "Services 2", path: "/services/2" },
+      { name: "Our Team", path: "/team" },
+    ]},
+    { name: "Visa", path: "/visa", sub: [
+      { name: "Job Visa", path: "/visa/job" },
+      { name: "Business Visa", path: "/visa/business" },
+      { name: "Worker Visa", path: "/visa/worker" },
+      { name: "Student Visa", path: "/visa/student" },
+      { name: "Free Visa Enquiry", path: "/visa/enquiry" },
+    ]},
+    { name: "Country", path: "/country", sub: [
+      { name: "France", path: "/country/france" },
+      { name: "Australia", path: "/country/australia" },
+      { name: "India", path: "/country/india" },
+    ]},
+    { name: "Our Partners", path: "/partners" },
+    { name: "Program Type", path: "/programs", sub: [
+      { name: "Study Abroad", path: "/programs/study" },
+      { name: "Teach Abroad", path: "/programs/teach" },
+      { name: "Intern Abroad", path: "/programs/intern" },
+    ]},
+    { name: "Blog", path: "/blog" },
+    { name: "Contact Us", path: "/contact" },
+    { name: "Get a Quote", path: "/quote" },
   ];
 
   return (
     <>
-      {/* ===== Top Bar (Always Visible) ===== */}
+      {/* ===== Top Bar ===== */}
       <div className="topbar">
         <div className="topbar-container">
           <div className="topbar-content">
@@ -64,19 +83,19 @@ const Navbar = () => {
               <a href="mailto:info@IIInternship.co" className="topbar-item">✉ <span>info@IIInternship.co</span></a>
             </div>
             <div className="topbar-right">
-              <a href="#" className="topbar-login">🔑 Login / Register</a>
-              <a href="#" className="topbar-cta">🚀 Apply Now</a>
+              <Link to="/login" className="topbar-login">🔑 Login / Register</Link>
+              <Link to="/apply" className="topbar-cta">🚀 Apply Now</Link>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ===== Navbar (Hide/Show on Scroll) ===== */}
+      {/* ===== Navbar ===== */}
       <header className={`Nav-navbar-wrapper ${showNavbar ? "show" : "hide"}`}>
         <nav className="Nav-navbar">
           <div className="Nav-container Nav-navbar-inner">
             <div className="Nav-logo-wrapper">
-              <a href="#" className="Nav-logo"><img src={logo} alt="EduBlink" /></a>
+              <Link to="/" className="Nav-logo"><img src={logo} alt="EduBlink" /></Link>
             </div>
             <button className="Nav-toggler" onClick={() => setMobileMenuOpen(true)}>☰</button>
 
@@ -84,14 +103,14 @@ const Navbar = () => {
               {menuItems.map((item, i) => (
                 <li className="Nav-item dropdown" key={i}>
                   {item.name === "Get a Quote" ? (
-                    <a className="Nav-donate-btn" href="#">{item.name}</a>
+                    <Link className="Nav-donate-btn" to={item.path}>{item.name}</Link>
                   ) : (
                     <>
-                      <a className="Nav-link" href="#">{item.name}</a>
+                      <Link className="Nav-link" to={item.path}>{item.name}</Link>
                       {item.sub && (
                         <ul className="Nav-dropdown">
                           {item.sub.map((sub, idx) => (
-                            <li key={idx}><a href="#">{sub}</a></li>
+                            <li key={idx}><Link to={sub.path}>{sub.name}</Link></li>
                           ))}
                         </ul>
                       )}
@@ -114,13 +133,13 @@ const Navbar = () => {
               {menuItems.map((item, i) => (
                 <li key={i}>
                   {item.name === "Get a Quote" ? (
-                    <a
-                      href="#"
+                    <Link
+                      to={item.path}
                       className="Nav-mobile-donate-btn"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ) : (
                     <>
                       <div
@@ -132,7 +151,11 @@ const Navbar = () => {
                       {item.sub && (
                         <ul className={`mobile-dropdown ${mobileDropdownOpen === i ? "open" : ""}`}>
                           {item.sub.map((sub, idx) => (
-                            <li key={idx}><a href="#" onClick={() => setMobileMenuOpen(false)}>{sub}</a></li>
+                            <li key={idx}>
+                              <Link to={sub.path} onClick={() => setMobileMenuOpen(false)}>
+                                {sub.name}
+                              </Link>
+                            </li>
                           ))}
                         </ul>
                       )}
