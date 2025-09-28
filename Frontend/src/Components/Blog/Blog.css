@@ -1,0 +1,198 @@
+/* =========================
+   Blog Section
+========================= */
+.blog-section {
+  padding: 80px 20px;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #0c2340;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.blog-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.blog-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0c2340;
+}
+
+.blog-title span {
+  color: #e63975;
+  font-style: italic;
+}
+
+/* =========================
+   Blog Grid & Cards
+========================= */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+}
+
+.blog-card {
+  display: flex;
+  background: #f9f9f9;
+  border-radius: 12px;
+  gap: 30px;
+  padding: 25px;
+  align-items: flex-start;
+  position: relative; /* needed for calendar positioning */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Image */
+.blog-img {
+  flex: 0 0 260px; /* bigger image */
+  border-radius: 10px;
+  position: relative; /* for calendar */
+}
+
+.blog-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Calendar badge */
+.blog-date {
+  position: absolute;
+  bottom: -35px; /* partially outside the image */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #e63975, #f1c40f);
+  color: #fff;
+  padding: 20px 36px;
+  border-radius: 12px;
+  font-weight: 600;
+  min-width: 120px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover .blog-date {
+  transform: translateX(-50%) translateY(-5px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(230, 57, 117,0.5);
+}
+
+.blog-date h4 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.blog-date p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Text Info */
+.blog-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-meta {
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.blog-info h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #0c2340;
+}
+
+.blog-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+.blog-link {
+  color: #e63975;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.3s ease, text-decoration 0.3s ease;
+}
+
+.blog-link:hover {
+  text-decoration: underline;
+  transform: translateX(4px);
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .blog-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 60px; /* extra space for calendar */
+  }
+
+  .blog-img {
+    width: 100%;
+    flex: none;
+  }
+
+  .blog-date {
+    left: 50%;
+    bottom: -35px;
+  }
+
+  .blog-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .blog-title {
+    font-size: 1.8rem;
+  }
+
+  .blog-date {
+    min-width: 140px;
+    padding: 15px 28px;
+  }
+
+  .blog-info h3 {
+    font-size: 1.2rem;
+  }
+
+  .blog-desc {
+    font-size: 0.9rem;
+  }
+}

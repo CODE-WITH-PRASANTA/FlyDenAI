@@ -1,0 +1,163 @@
+.immigration-section {
+  padding: 60px 20px;
+}
+
+.immigration-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.immigration-left {
+  flex: 1;
+  min-width: 320px;
+}
+
+.tagline {
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #555;
+  font-weight: 500;
+  border-left: 2px solid #153d77;
+  padding-left: 8px;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #153d77;
+  margin-bottom: 16px;
+}
+
+.title .italic-red {
+  font-style: italic;
+  color: #d12b5c;
+}
+
+.desc {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.info-box img {
+  width: 80px;
+  border-radius: 8px;
+}
+
+.info-box h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #153d77;
+  margin-bottom: 8px;
+}
+
+.info-box p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-explore {
+  background: #d12b5c;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-explore:hover {
+  background: #b11f4a;
+}
+
+.avatars {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.avatars img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  margin-left: -10px;
+}
+
+.avatars img:first-child {
+  margin-left: 0;
+}
+
+.agents {
+  font-size: 15px;
+  color: #153d77;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.immigration-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+.main-img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .immigration-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .immigration-left {
+    text-align: center;
+  }
+
+  .info-box {
+    justify-content: center;
+  }
+
+  .action-row {
+    justify-content: center;
+  }
+
+  .avatars {
+    justify-content: center;
+  }
+}

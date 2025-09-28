@@ -1,0 +1,150 @@
+.about-banner {
+  position: relative;
+  width: 100%;
+  height: 350px; /* increased for large screens */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.about-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.about-content {
+  text-align: left;
+  color: #fff;
+  animation: fadeInUp 1.2s ease-in-out;
+  padding: 0 40px;
+  max-width: 1200px;
+}
+
+.about-title {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(14px, 2vw, 16px);
+  flex-wrap: wrap;
+}
+
+.breadcrumb .home-icon {
+  color: #e74c3c;
+  font-size: clamp(16px, 2vw, 18px);
+  flex-shrink: 0;
+}
+
+.breadcrumb .crumb {
+  color: #fff;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.breadcrumb .crumb:hover {
+  color: #e74c3c;
+}
+
+.breadcrumb .separator {
+  color: #fff;
+  font-weight: 500;
+}
+
+.breadcrumb .active {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .about-banner {
+    height: 300px;
+  }
+
+  .about-content {
+    padding: 0 30px;
+  }
+
+  .about-title {
+    font-size: clamp(24px, 6vw, 40px);
+  }
+
+  .breadcrumb {
+    gap: 6px;
+  }
+
+  .breadcrumb .home-icon {
+    font-size: clamp(14px, 2.5vw, 16px);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-banner {
+    height: 250px;
+  }
+
+  .about-content {
+    padding: 0 20px;
+  }
+
+  .about-title {
+    font-size: clamp(22px, 6vw, 36px);
+  }
+
+  .breadcrumb {
+    gap: 5px;
+    font-size: 0.9rem;
+  }
+
+  .breadcrumb .home-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-banner {
+    height: 180px;
+  }
+
+  .about-content {
+    padding: 0 15px;
+  }
+
+  .about-title {
+    font-size: clamp(18px, 5vw, 28px);
+    margin-bottom: 6px;
+  }
+
+  .breadcrumb {
+    gap: 4px;
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb .home-icon {
+    font-size: 0.9rem;
+  }
+}
