@@ -69,32 +69,6 @@ section {
   }
 }
 
-/* ===== Responsive Text ===== */
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
-
-@media (max-width: 992px) {
-  h1 { font-size: 2.2rem; }
-  h2 { font-size: 1.8rem; }
-  h3 { font-size: 1.6rem; }
-}
-
-@media (max-width: 768px) {
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.6rem; }
-  h3 { font-size: 1.4rem; }
-}
-
-@media (max-width: 576px) {
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.4rem; }
-  h3 { font-size: 1.2rem; }
-}
-
 /* ===== Links for Buttons / CTA ===== */
 a.button {
   display: inline-block;
@@ -125,23 +99,6 @@ a.button:hover {
 body, .App-container, .container {
   overflow-x: hidden;
 }
-
-/* ===== Responsive Tables ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-th {
-  background-color: #f1f1f1;
-  font-weight: 600;
-}
-
 
 /* ===== Media Queries for All Devices ===== */
 @media (max-width: 1366px) {

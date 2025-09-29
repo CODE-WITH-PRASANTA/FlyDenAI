@@ -102,7 +102,7 @@
   opacity: 0.6;
 }
 
-.overlay {
+.immigration-overlay {
   position: absolute;
   bottom: 20%;
   left: 50%;
@@ -112,7 +112,7 @@
   padding: 20px;
 }
 
-.overlay h2 {
+.immigration-overlay h2 {
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -166,7 +166,7 @@
   .immigration-right {
     height: 50vh;
   }
-  .overlay h2 {
+  .immigration-overlay h2 {
     font-size: 22px;
   }
 }
@@ -184,7 +184,7 @@
   .immigration-left h2 {
     font-size: 20px;
   }
-  .overlay h2 {
+  .immigration-overlay h2 {
     font-size: 18px;
   }
   .service {
