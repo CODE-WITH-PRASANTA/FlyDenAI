@@ -2,36 +2,46 @@ import React from "react";
 import "./VisaServices.css";
 import { FaCheck } from "react-icons/fa";
 
-import i1 from "../../assets/col-bgimage-12.jpg";
+import Jobvisa from '../../assets/job-visa.webp'
+import BusinessVisa from '../../assets/business visa.webp'
+import StudentVisa from '../../assets/student-visa.webp'
+import Freevisa from '../../assets/free-visa.webp'
 
 const visaServices = [
   {
     title: "Job Visa",
-    description: "Visa that grants the holder authorization to work abroad.",
-    image: i1,
+    description:
+      "Secure employment opportunities abroad with a Job Visa. This visa allows skilled professionals to legally work, earn, and build their careers in international companies with ease.",
+    image: Jobvisa,
   },
   {
     title: "Business Visa",
-    description: "Intended for individuals entering a country for business.",
-    image: i1,
+    description:
+      "Expand your horizons with a Business Visa. Perfect for entrepreneurs, investors, and professionals attending meetings, conferences, or exploring trade opportunities overseas.",
+    image: BusinessVisa,
   },
   {
     title: "Student Visa",
-    description: "For students entering a country for higher education.",
-    image: i1,
+    description:
+      "Shape your future with a Student Visa. Designed for learners pursuing higher education in top global universities, ensuring access to world-class education and career opportunities.",
+    image: StudentVisa,
   },
   {
     title: "Free Visa Enquiry",
-    description: "Quick assessment and guidance for your visa questions.",
-    image: i1,
+    description:
+      "Not sure where to start? Get a Free Visa Enquiry to assess your eligibility, understand the process, and receive expert guidance tailored to your study, work, or travel needs.",
+    image: Freevisa,
   },
 ];
 
 const needs = [
-  "Resident visa to a new passport",
-  "Variation of your resident visa",
-  "Transfer permanent resident visa",
+  "Resident visa transfer to a new passport",
+  "Variation or renewal of your existing resident visa",
+  "Transfer of permanent residency visa to a new passport",
+  "Guidance for dependent visas (spouse/children)",
+  "Fast-track solutions for urgent travel & work permits",
 ];
+
 
 const VisaServices = () => {
   return (
@@ -73,17 +83,23 @@ const VisaServices = () => {
             </article>
           ))}
 
-          <div className="vs-info">
-            <h3 className="vs-infotitle">What you need?</h3>
-            <ul className="vs-list">
-              {needs.map((need, index) => (
-                <li key={index}>
-                  <FaCheck /> {need}
-                </li>
-              ))}
-            </ul>
-            <button className="vs-btn">Explore More</button>
-          </div>
+        <div className="vs-info">
+          <h3 className="vs-infotitle">What Do You Need?</h3>
+          <ul className="vs-list">
+            {needs.map((need, index) => (
+              <li key={index}>
+                <FaCheck /> {need}
+              </li>
+            ))}
+          </ul>
+          <p className="vs-desc">
+            Every immigration case is unique. Whether you’re applying for the first time or 
+            renewing your visa, our expert team ensures personalized support and guidance 
+            tailored to your needs.
+          </p>
+          <button className="vs-btn">Explore More</button>
+        </div>
+
         </div>
 
       </div>

@@ -1,163 +1,308 @@
-.immigration-section {
-  padding: 60px 20px;
+
+.immigrationsec-section {
+  padding: 90px 20px;
+  background: linear-gradient(135deg, #f9fbff 0%, #eef3ff 100%);
+  position: relative;
+  overflow: hidden;
+
+  /* 🔹 New border and shadow */
+  border: 1px solid rgba(21, 61, 119, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-.immigration-container {
+.immigrationsec-section::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(21,61,119,0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.immigrationsec-container {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
+  gap: 50px;
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
 }
 
-.immigration-left {
+.immigrationsec-left {
   flex: 1;
   min-width: 320px;
+  animation: fadeInLeft 1s ease;
 }
 
-.tagline {
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #555;
-  font-weight: 500;
-  border-left: 2px solid #153d77;
-  padding-left: 8px;
-  margin-bottom: 10px;
-}
-
-.title {
-  font-size: clamp(28px, 4vw, 42px);
+.immigrationsec-tagline {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #153d77;
   font-weight: 700;
+  border-left: 4px solid #d12b5c;
+  padding-left: 12px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.immigrationsec-title {
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 800;
   line-height: 1.3;
   color: #153d77;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
-.title .italic-red {
+.immigrationsec-italic-red {
   font-style: italic;
   color: #d12b5c;
 }
 
-.desc {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 25px;
+.immigrationsec-desc {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 32px;
+  line-height: 1.7;
+  max-width: 540px;
+}
+
+.immigrationsec-info-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #fff;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+  margin-bottom: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.immigrationsec-info-box:hover {
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+.immigrationsec-info-img {
+  width: 85px;
+  border-radius: 10px;
+}
+
+.immigrationsec-info-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #153d77;
+  margin-bottom: 10px;
+}
+
+.immigrationsec-info-text {
+  font-size: 15px;
+  color: #555;
   line-height: 1.6;
 }
 
-.info-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 25px;
-}
-
-.info-box img {
-  width: 80px;
-  border-radius: 8px;
-}
-
-.info-box h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #153d77;
-  margin-bottom: 8px;
-}
-
-.info-box p {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.5;
-}
-
-.action-row {
+.immigrationsec-action-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
-.btn-explore {
-  background: #d12b5c;
+.immigrationsec-btn-explore {
+  background: linear-gradient(135deg, #d12b5c, #b11f4a);
   color: #fff;
   border: none;
-  padding: 12px 22px;
-  border-radius: 30px;
-  font-size: 15px;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(209, 43, 92, 0.35);
 }
 
-.btn-explore:hover {
-  background: #b11f4a;
+.immigrationsec-btn-explore:hover {
+  background: linear-gradient(135deg, #b11f4a, #92163b);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(209, 43, 92, 0.4);
 }
 
-.avatars {
+.immigrationsec-avatars {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
 }
 
-.avatars img {
-  width: 40px;
-  height: 40px;
+.immigrationsec-avatar {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  margin-left: -10px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.2);
+  margin-left: -12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.avatars img:first-child {
+.immigrationsec-avatar:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+.immigrationsec-avatars img:first-child {
   margin-left: 0;
 }
 
-.agents {
-  font-size: 15px;
+.immigrationsec-agents {
+  font-size: 16px;
   color: #153d77;
   font-weight: 600;
-  margin-left: 8px;
+  margin-left: 12px;
 }
 
-.immigration-right {
+.immigrationsec-right {
   flex: 1;
   min-width: 320px;
+  animation: fadeInRight 1s ease;
 }
 
-.main-img {
+.immigrationsec-main-img {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 16px;
   object-fit: cover;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  transition: transform 0.5s ease;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .immigration-container {
+/* Keyframes */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------------- RESPONSIVE MEDIA QUERIES ---------------- */
+
+/* Large Tablets / Small Laptops */
+@media (max-width: 1024px) {
+  .immigrationsec-container {
+    gap: 30px;
+  }
+
+  .immigrationsec-title {
+    font-size: clamp(26px, 3.5vw, 38px);
+  }
+
+  .immigrationsec-desc {
+    font-size: 16px;
+  }
+
+  .immigrationsec-info-title {
+    font-size: 18px;
+  }
+
+  .immigrationsec-btn-explore {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .immigrationsec-container {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .immigrationsec-left {
+    animation: fadeInUp 1s ease;
+  }
+
+  .immigrationsec-right {
+    animation: fadeInUp 1s ease;
+  }
+
+  .immigrationsec-tagline {
+    margin: 0 auto 14px auto;
+    display: inline-block;
+  }
+
+  .immigrationsec-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .immigrationsec-info-box {
     flex-direction: column;
+    align-items: center;
     text-align: center;
   }
 
-  .immigration-left {
-    text-align: center;
+  .immigrationsec-info-img {
+    width: 70px;
   }
 
-  .info-box {
+  .immigrationsec-action-row {
     justify-content: center;
   }
 
-  .action-row {
+  .immigrationsec-avatars {
     justify-content: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .immigrationsec-section {
+    padding: 60px 16px;
   }
 
-  .avatars {
-    justify-content: center;
+  .immigrationsec-title {
+    font-size: 24px;
+    line-height: 1.4;
   }
+
+  .immigrationsec-desc {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .immigrationsec-info-title {
+    font-size: 16px;
+  }
+
+  .immigrationsec-btn-explore {
+    padding: 10px 22px;
+    font-size: 14px;
+  }
+
+  .immigrationsec-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .immigrationsec-agents {
+    font-size: 14px;
+  }
+}
+
+/* Keyframe for tablet/mobile animation */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
 }

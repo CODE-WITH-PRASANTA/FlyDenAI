@@ -46,30 +46,30 @@ const Navbar = () => {
     { name: "About Us", path: "/about", sub: [
       { name: "About Us", path: "/about" },
       { name: "Services", path: "/services" },
-      { name: "Our Team", path: "/team" },
-      { name: "Team Details", path: "/team/details" },
+      { name: "Our Team", path: "/ComingSoon" },
+      { name: "Team Details", path: "/ComingSoon" },
     ]},
     { name: "Visa", path: "/visa", sub: [
-      { name: "Job Visa", path: "/visa/job" },
-      { name: "Business Visa", path: "/visa/business" },
-      { name: "Worker Visa", path: "/visa/worker" },
-      { name: "Student Visa", path: "/visa/student" },
-      { name: "Free Visa Enquiry", path: "/visa/enquiry" },
+      { name: "Job Visa", path: "/ComingSoon" },
+      { name: "Business Visa", path: "/ComingSoon" },
+      { name: "Worker Visa", path: "/ComingSoon" },
+      { name: "Student Visa", path: "/ComingSoon" },
+      { name: "Free Visa Enquiry", path: "/ComingSoon" },
     ]},
-    { name: "Country", path: "/country", sub: [
-      { name: "France", path: "/country/france" },
-      { name: "Australia", path: "/country/australia" },
-      { name: "India", path: "/country/india" },
+    { name: "Country", path: "/ComingSoon", sub: [
+      { name: "France", path: "/ComingSoon" },
+      { name: "Australia", path: "/ComingSoon" },
+      { name: "India", path: "/ComingSoon" },
     ]},
-    { name: "Our Partners", path: "/partners" },
-    { name: "Program Type", path: "/programs", sub: [
-      { name: "Study Abroad", path: "/programs/study" },
-      { name: "Teach Abroad", path: "/programs/teach" },
-      { name: "Intern Abroad", path: "/programs/intern" },
+    { name: "Our Partners", path: "/ComingSoon" },
+    { name: "Program Type", path: "/ComingSoon", sub: [
+      { name: "Study Abroad", path: "/ComingSoon" },
+      { name: "Teach Abroad", path: "/ComingSoon" },
+      { name: "Intern Abroad", path: "/ComingSoon" },
     ]},
-    { name: "Blog", path: "/blog" },
-    { name: "Contact Us", path: "/contact" },
-    { name: "Get a Quote", path: "/quote" },
+    { name: "Blog", path: "/ComingSoon" },
+    { name: "Contact Us", path: "/ComingSoon" },
+    { name: "Get a Quote", path: "/ComingSoon" },
   ];
 
   return (

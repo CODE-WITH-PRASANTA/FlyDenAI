@@ -26,68 +26,55 @@ export default function ServiceLatestNews() {
       title: "Employment Insurance For Foreign Nationals",
       meta: "ALEX | 0 COMMENTS",
       img: i1,
+      description: "Learn the key details about employment insurance for foreign nationals and how it impacts your work abroad."
     },
     {
       title: "Covid-19 And Its Impact On UK Immigration",
       meta: "ALEX | 0 COMMENTS",
       img: i1,
+      description: "Discover how the pandemic has reshaped UK immigration policies and what applicants need to know."
     },
     {
       title: "How To Beat These Visa Application Tips!",
       meta: "ALEX | 0 COMMENTS",
       img: i1,
+      description: "Top tips and tricks to ensure your visa application is smooth and successful."
     },
     {
-      title: "UK To Offers Point Based Immigration",
+      title: "UK To Offer Point-Based Immigration",
       meta: "ALEX | 0 COMMENTS",
       img: i1,
+      description: "Everything you need to know about the new UK point-based immigration system."
     },
   ];
 
   return (
+    <div className="full-servicelatest-news">
     <section className="servicelatestnews-container">
       {/* Header */}
       <div className="servicelatestnews-header">
         <h2 className="servicelatestnews-heading">LATEST NEWS</h2>
         <p className="servicelatestnews-subheading">
-          Truvik gets more articles from our resources and news
+          Stay updated with our latest articles and insights
         </p>
       </div>
 
-      {/* Main Content */}
-      <div className="servicelatestnews-content">
-        {/* Left Image */}
-        <div className="servicelatestnews-image">
-          <img src={i1} alt="Family at airport" />
-        </div>
-
-        {/* Right News */}
-        <div className="servicelatestnews-news">
-          <h3 className="servicelatestnews-news-heading">
-            Employment Insurance For Foreign Nationals
-          </h3>
-          <p className="servicelatestnews-news-text">
-            Nunc mi ipsum faucibus vitae. Mauris vitae ultricies leo integer
-            malesuada nunc vel risus commodo. Non blandit massa enim nec dui
-            turpis nunc eget nunc.
-          </p>
-
-          {/* Related Articles */}
-          <div className="servicelatestnews-related-articles">
-            {relatedArticles.map((article, idx) => (
-              <div className="servicelatestnews-article hidden" key={idx}>
-                <div className="article-image">
-                  <img src={article.img} alt={article.title} />
-                </div>
-                <span className="article-meta">{article.meta}</span>
-                <a href="#" className="article-title">
-                  {article.title}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Articles Grid */}
+      <div className="servicelatestnews-articles-grid">
+        {relatedArticles.map((article, idx) => (
+          <a href="#" className="servicelatestnews-article hidden" key={idx}>
+            <div className="article-image">
+              <img src={article.img} alt={article.title} />
+            </div>
+            <div className="service-news-content">
+            <span className="article-meta">{article.meta}</span>
+            <h3 className="article-title">{article.title}</h3>
+            <p className="article-description">{article.description}</p>
+            </div>
+          </a>
+        ))}
       </div>
     </section>
+    </div>
   );
 }

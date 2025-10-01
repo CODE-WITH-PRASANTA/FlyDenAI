@@ -1,108 +1,195 @@
 :root {
-  --card-radius: 15px;
-  --card-shadow: rgba(0, 0, 0, 0.2);
+  --card-radius: 22px;
+  --card-shadow: rgba(0, 0, 0, 0.25);
+  --font-primary: 'Poppins', sans-serif;
 }
 
 .find-agents-container {
   display: flex;
-  gap: 25px;
-  padding: 40px 20px;
+  gap: 30px;
+  padding: 60px 20px;
   justify-content: center;
   flex-wrap: wrap;
+  background: #f0f4f8;
 }
 
 .find-agents-card {
   display: flex;
-  align-items: center;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 30px 25px;
   border-radius: var(--card-radius);
   color: white;
-  box-shadow: 0 8px 20px var(--card-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-width: 300px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 40px var(--card-shadow);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+  min-width: 320px;
   max-width: 500px;
   flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.find-agents-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent);
+  transform: rotate(25deg);
+  pointer-events: none;
 }
 
 .find-agents-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px var(--card-shadow);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px var(--card-shadow);
 }
 
 .icon-box {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 15px;
+  background: rgba(255, 255, 255, 0.25);
+  padding: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 20px;
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: transform 0.5s ease, background 0.5s ease;
+  animation: iconPulse 2s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
 .find-agents-card:hover .icon-box {
-  background: rgba(255, 255, 255, 0.4);
-  transform: scale(1.1);
-  animation: iconPulse 2s infinite ease-in-out;
-}
-
-.icon-box svg {
-  color: white;
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(1.25);
 }
 
 .content-box h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 8px;
+  font-size: 23px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  font-family: var(--font-primary);
+  letter-spacing: 0.5px;
 }
 
 .content-box p {
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-bottom: 15px;
 }
 
-/* Animation for icons */
+.call-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  font-weight: 700;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.call-button:hover {
+  background: rgba(255, 255, 255, 0.45);
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
 @keyframes iconPulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
+/* =========================
+   Responsive Design
+========================= */
+
+/* Small tablets and landscape phones */
+@media (max-width: 1024px) {
   .find-agents-container {
-    gap: 20px;
-    padding: 30px 15px;
+    gap: 25px;
+    padding: 50px 15px;
+  }
+
+  .find-agents-card {
+    min-width: 280px;
+    max-width: 450px;
+    padding: 25px 20px;
+  }
+
+  .content-box h3 {
+    font-size: 21px;
+  }
+
+  .content-box p {
+    font-size: 14px;
+  }
+
+  .call-button {
+    padding: 9px 18px;
+    font-size: 14px;
   }
 }
 
-@media (max-width: 992px) {
+/* Mobile devices */
+@media (max-width: 768px) {
   .find-agents-container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 15px;
+  }
+
+  .find-agents-card {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: auto;
+    max-width: 100%;
+  }
+
+  .icon-box {
+    margin-right: 15px;
+    padding: 16px;
+  }
+
+  .content-box h3 {
+    font-size: 20px;
+  }
+
+  .content-box p {
+    font-size: 14px;
+  }
+
+  .call-button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .find-agents-card {
     flex-direction: column;
     align-items: center;
-  }
-  .find-agents-card {
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 768px) {
-  .find-agents-card {
-    flex-direction: column;
     text-align: center;
-    padding: 20px;
+    padding: 20px 15px;
   }
-  .icon-box {
-    margin-right: 0;
-    margin-bottom: 15px;
-  }
-}
 
-@media (max-width: 480px) {
+  .icon-box {
+    margin: 0 0 15px 0;
+  }
+
   .content-box h3 {
     font-size: 18px;
   }
+
   .content-box p {
-    font-size: 14px;
+    font-size: 13px;
+  }
+
+  .call-button {
+    padding: 7px 14px;
+    font-size: 12px;
   }
 }

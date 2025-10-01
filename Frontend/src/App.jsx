@@ -8,21 +8,23 @@ import OurTeam from "./Pages/OurTeam/OurTeam";
 import TeamDetails from "./Pages/TeamDetails/TeamDetails";
 import "./App.css";
 import PageWrapper from "./Components/PageWrapper";
+import ComingSoon from "./Components/ComingSoon/ComingSoon";
 
 function App() {
   return (
     <>
-      <Navbar />
       <PageWrapper>
+      <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<OurTeam />} />
           <Route path="/team/details" element={<TeamDetails />} />
+          <Route path="/ComingSoon" element={<ComingSoon />} />
         </Routes>
-      </PageWrapper>
       <Footer />
+      </PageWrapper>
     </>
   );
 }

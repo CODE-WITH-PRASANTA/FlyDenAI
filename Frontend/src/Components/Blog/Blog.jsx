@@ -1,9 +1,9 @@
 import React from "react";
 import "./Blog.css";
 import b1 from "../../assets/b1.jpg"; 
-import b3 from "../../assets/b3.jpg"
-import b4 from "../../assets/b4.jpg"
-import b5 from "../../assets/DI.jpg"
+import b3 from "../../assets/b3.jpg";
+import b4 from "../../assets/b4.jpg";
+import b5 from "../../assets/DI.jpg";
 
 const posts = [
   {
@@ -50,33 +50,31 @@ const posts = [
 
 const Blog = () => {
   return (
-    <section className="blog-section">
-      <div className="blog-header">
-        <div>
-          <p className="blog-subtitle">OUR NEWS</p>
-          <h2 className="blog-title">
-            Read inspirational story our <span>Blog</span>
-          </h2>
-        </div>
+    <section className="blogsec-section">
+      <div className="blogsec-header">
+        <p className="blogsec-subtitle">OUR NEWS</p>
+        <h2 className="blogsec-title">
+          Read inspirational story on our <span>Blog</span>
+        </h2>
       </div>
 
-      <div className="blog-grid">
+      <div className="blogsec-grid">
         {posts.map((post) => (
-          <div key={post.id} className="blog-card">
-            <div className="blog-img">
+          <div key={post.id} className="blogsec-card">
+            <div className="blogsec-img">
               <img src={post.img} alt={post.title} />
-              <div className="blog-date">
+              <div className="blogsec-date">
                 <h4>{post.date}</h4>
                 <p>{post.month}</p>
               </div>
             </div>
-            <div className="blog-info">
-              <p className="blog-meta">
+            <div className="blogsec-info">
+              <p className="blogsec-meta">
                 {post.author} | {post.comments} COMMENTS
               </p>
-              <h3>{post.title}</h3>
-              <p className="blog-desc">{post.desc}</p>
-              <a href="#" className="blog-link">
+              <h3 className="blogsec-post-title">{post.title}</h3>
+              <p className="blogsec-desc">{post.desc}</p>
+              <a href="#" className="blogsec-link">
                 View More &rarr;
               </a>
             </div>

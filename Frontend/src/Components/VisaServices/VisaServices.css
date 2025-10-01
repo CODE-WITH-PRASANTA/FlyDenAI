@@ -1,7 +1,39 @@
+/* =========================
+   Visa Services Section
+========================= */
 .vs-section {
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #eef2f3, #dfe9f3, #fdfbfb);
   font-family: "Poppins", sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative Background Gradient Blobs */
+.vs-section::before,
+.vs-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.vs-section::before {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #e94e77 0%, transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+.vs-section::after {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #6a11cb 0%, transparent 70%);
+  bottom: -120px;
+  right: -120px;
 }
 
 .vs-container {
@@ -9,81 +41,113 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 70px;
+  position: relative;
+  z-index: 2;
 }
 
+/* =========================
+   Layout Rows
+========================= */
 .vs-row {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
 }
 
+/* =========================
+   Header
+========================= */
 .vs-header {
   font-size: 16px;
-  font-weight: 600;
-  color: #e74c3c;
-  margin-bottom: 8px;
+  font-weight: 700;
+  color: #e94e77;
+  margin-bottom: 12px;
   text-transform: uppercase;
+  letter-spacing: 3px;
   position: relative;
-  display: inline-block;
 }
 
-/* Underline directly under vs-header */
 .vs-header::after {
   content: "";
   display: block;
-  width: 40px;
+  width: 60px;
   height: 3px;
-  background: #e74c3c;
-  margin-top: 6px;
+  background: linear-gradient(90deg, #e94e77, #6a11cb);
+  margin-top: 8px;
   border-radius: 2px;
 }
 
-.vs-bigtitle span {
-  color: #e74c3c;
-}
-
+/* =========================
+   Big Box
+========================= */
 .vs-bigbox,
 .vs-card,
 .vs-info {
   flex: 1;
-  min-width: 300px;
+  min-width: 320px;
   position: relative;
-  border-radius: 12px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease-in-out;
-  min-height: 350px;
+  background: #fff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-in-out;
+  min-height: 380px;
 }
 
 .vs-bigbox:hover,
 .vs-card:hover,
 .vs-info:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
 }
 
-.vs-bigbox,
-.vs-info {
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+/* =========================
+   Big Title Box
+========================= */
+.vs-bigbox {
+  background: linear-gradient(135deg, #fdfbfb, #ebedee, #f7f8fa);
   color: #2c3e50;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px;
+  justify-content: center;
+  text-align: left;
 }
 
+.vs-bigtitle {
+  font-size: 36px;
+  margin: 0 0 20px;
+  color: #1b2b57;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.vs-bigtitle span {
+  color: #e94e77;
+  font-style: italic;
+}
+
+.vs-bigdesc {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* =========================
+   Cards
+========================= */
 .vs-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 12px;
-  transition: transform 0.3s ease-in-out;
+  border-radius: 18px;
+  transition: transform 0.6s ease-in-out;
 }
 
 .vs-card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.15) rotate(2deg);
 }
 
 .vs-overlay {
@@ -91,75 +155,198 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 20px;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
   color: #fff;
+  border-radius: 0 0 18px 18px;
+  transition: all 0.4s ease-in-out;
 }
 
-.vs-bigtitle {
-  font-size: 28px;
-  margin: 0 0 10px;
-  color: #2c3e50;
+.vs-card:hover .vs-overlay {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.vs-bigdesc {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
+.vs-overlay h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.vs-overlay p {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #f1f1f1;
+}
+
+/* =========================
+   Info Box
+========================= */
+.vs-info {
+  background: linear-gradient(135deg, #ffffff, #f5f7fa);
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .vs-infotitle {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 20px;
-  color: #2c3e50;
+  color: #1b2b57;
+  font-weight: 700;
 }
 
 .vs-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 25px;
 }
 
 .vs-list li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-  font-size: 15px;
-  color: #555;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
 }
 
+.vs-list li svg {
+  color: #27ae60;
+  font-size: 16px;
+}
+
+.vs-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+/* =========================
+   Button
+========================= */
 .vs-btn {
-  background: #e74c3c;
+  background: linear-gradient(135deg, #e94e77, #6a11cb);
   border: none;
   color: #fff;
-  padding: 14px 30px;
-  border-radius: 25px;
+  padding: 15px 34px;
+  border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
   width: fit-content;
   margin-top: auto;
-  transition: background 0.3s ease-in-out;
+  transition: all 0.4s ease;
+  box-shadow: 0px 8px 25px rgba(233, 78, 119, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .vs-btn:hover {
-  background: #c0392b;
+  transform: translateY(-4px) scale(1.05);
+  background: linear-gradient(135deg, #6a11cb, #e94e77);
+  box-shadow: 0px 12px 35px rgba(233, 78, 119, 0.55);
 }
 
-.vs-overlay h3 {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 600;
+/* =========================
+   Responsive Design
+========================= */
+
+/* Large Tablets / Small Laptops (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .vs-bigtitle {
+    font-size: 32px;
+  }
+  .vs-container {
+    gap: 50px;
+  }
+  .vs-row {
+    gap: 25px;
+  }
 }
 
-.vs-overlay p {
-  margin-top: 5px;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
+/* Tablets (max-width: 992px) */
 @media (max-width: 992px) {
   .vs-row {
     flex-direction: column;
+  }
+  .vs-bigbox,
+  .vs-card,
+  .vs-info {
+    min-width: 100%;
+    min-height: auto;
+  }
+  .vs-bigtitle {
+    font-size: 28px;
+  }
+  .vs-bigdesc,
+  .vs-overlay p,
+  .vs-desc {
+    font-size: 15px;
+  }
+  .vs-infotitle {
+    font-size: 24px;
+  }
+}
+
+/* Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+  .vs-section {
+    padding: 70px 15px;
+  }
+  .vs-info {
+    padding: 25px;
+  }
+  .vs-infotitle {
+    text-align: center;
+  }
+  .vs-list li {
+    font-size: 14px;
+  }
+  .vs-btn {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile Portrait (max-width: 576px) */
+@media (max-width: 576px) {
+  .vs-bigtitle {
+    font-size: 22px;
+  }
+  .vs-bigdesc {
+    font-size: 14px;
+  }
+  .vs-overlay h3 {
+    font-size: 18px;
+  }
+  .vs-overlay p {
+    font-size: 13px;
+  }
+  .vs-infotitle {
+    font-size: 20px;
+  }
+  .vs-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+/* Extra Small Devices (max-width: 400px) */
+@media (max-width: 400px) {
+  .vs-bigtitle {
+    font-size: 20px;
+  }
+  .vs-overlay p,
+  .vs-desc {
+    font-size: 12px;
+  }
+  .vs-btn {
+    padding: 10px 24px;
+    font-size: 13px;
   }
 }

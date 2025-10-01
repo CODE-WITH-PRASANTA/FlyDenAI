@@ -1,131 +1,159 @@
 :root {
   --primary-color: #0077b6;
+  --secondary-color: #00b4d8;
   --accent-color: #e63946;
-  --bg-gradient: linear-gradient(135deg, rgba(0, 119, 182, 0.8), rgba(26, 58, 95, 0.8));
-  --card-radius: 12px;
+  --text-color: #1a1a1a;
+  --meta-color: #888;
+  --card-radius: 16px;
   --card-shadow: rgba(0, 0, 0, 0.15);
+  --font-primary: 'Poppins', sans-serif;
+  --transition-speed: 0.4s;
 }
 
+/* =========================
+   Container & Header
+========================= */
 .servicelatestnews-container {
   max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
-  font-family: "Poppins", sans-serif;
+  margin: 10px auto;
+  padding: 0 10px;
+  font-family: var(--font-primary);
 }
 
 .servicelatestnews-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .servicelatestnews-heading {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--primary-color);
-  animation: fadeInUp 1s ease forwards;
+  font-size: 38px;
+  font-weight: 900;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
 
 .servicelatestnews-subheading {
   font-size: 16px;
   color: #555;
-  margin-top: 10px;
-  animation: fadeInUp 1.2s ease forwards;
+  letter-spacing: 0.5px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Main content layout */
-.servicelatestnews-content {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-/* Image section */
-.servicelatestnews-image {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  min-width: 300px;
-}
-
-.servicelatestnews-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--card-radius);
-  animation: zoomInOut 8s ease-in-out infinite;
-}
-
-/* News section */
-.servicelatestnews-news {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 300px;
-}
-
-.servicelatestnews-news-heading {
-  font-size: 22px;
-  font-weight: bold;
-  color: var(--accent-color);
-}
-
-.servicelatestnews-news-text {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* Related articles grid */
-.servicelatestnews-related-articles {
+/* =========================
+   Articles Grid
+========================= */
+.servicelatestnews-articles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
+/* =========================
+   Article Card
+========================= */
 .servicelatestnews-article {
   background: #fff;
   border-radius: var(--card-radius);
-  box-shadow: 0 4px 12px var(--card-shadow);
-  padding: 15px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 12px 28px var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: all var(--transition-speed) ease;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #f0f0f0;
+}
+
+.servicelatestnews-article::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(230, 57, 70, 0.12), transparent 70%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: all var(--transition-speed) ease;
+}
+
+.servicelatestnews-article:hover::after {
+  opacity: 1;
 }
 
 .servicelatestnews-article:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.2);
+  border-color: #e0e0e0;
+}
+
+/* =========================
+   Article Image
+========================= */
+.article-image {
+  overflow: hidden;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .article-image img {
   width: 100%;
-  height: 120px;
+  height: 180px;
   object-fit: cover;
-  border-radius: var(--card-radius);
+  transition: transform var(--transition-speed) ease, filter var(--transition-speed) ease;
+  border-top-left-radius: var(--card-radius);
+  border-top-right-radius: var(--card-radius);
 }
 
+.servicelatestnews-article:hover .article-image img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* =========================
+   Meta & Title
+========================= */
 .article-meta {
   font-size: 12px;
-  color: #999;
-  margin-top: 8px;
-  display: block;
+  color: var(--meta-color);
+  margin: 12px 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .article-title {
-  font-size: 16px;
-  font-weight: bold;
-  color: var(--primary-color);
-  text-decoration: none;
-  margin-top: 5px;
-  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 8px;
+  transition: color var(--transition-speed) ease, letter-spacing var(--transition-speed) ease;
 }
 
-/* Hidden state animation */
+.servicelatestnews-article:hover .article-title {
+  color: var(--accent-color);
+  letter-spacing: 1px;
+}
+
+/* =========================
+   Description
+========================= */
+.article-description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   Animations (Scroll)
+========================= */
 .hidden {
   opacity: 0;
   transform: translateY(30px);
-  transition: all 0.6s ease-out;
+  transition: all 0.7s ease-out;
 }
 
 .animate-visible {
@@ -133,51 +161,44 @@
   transform: translateY(0);
 }
 
-/* Keyframe animations */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.service-news-content{
+  padding: 10px 20px;
 }
-
-@keyframes zoomInOut {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Responsive design */
-@media (max-width: 992px) {
-  .servicelatestnews-content {
-    flex-direction: column;
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 1024px) {
+  .servicelatestnews-articles-grid {
+    gap: 25px;
   }
 }
 
 @media (max-width: 768px) {
-  .servicelatestnews-heading {
-    font-size: 24px;
+  .servicelatestnews-articles-grid {
+    grid-template-columns: 1fr;
   }
-  .servicelatestnews-news-heading {
-    font-size: 20px;
+  .article-image img {
+    height: 200px;
   }
 }
 
 @media (max-width: 480px) {
   .servicelatestnews-heading {
-    font-size: 20px;
+    font-size: 28px;
   }
-  .servicelatestnews-news-heading {
+  .article-title {
     font-size: 18px;
   }
+  .article-description {
+    font-size: 13px;
+  }
+}
+.full-servicelatest-news {
+  background: linear-gradient(135deg, #e0f7fa, #ffffff); /* soft gradient for modern look */
+  border: 2px solid #00b4d8; /* vibrant accent border */
+  border-radius: var(--card-radius);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12); /* soft depth shadow */
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
 }

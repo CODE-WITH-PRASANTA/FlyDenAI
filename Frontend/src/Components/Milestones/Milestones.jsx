@@ -8,61 +8,62 @@ import b5 from "../../assets/agent4.jpg"
 
 const milestones = [
   {
-    year: "2010",
-    title: "Get a skilled job abroad taking our technical courses",
-    desc: `To obtain higher performance, Our leaders first identify the critical obstacles to forward change to overcoming them. We define your company mission and prioritize company objectives.`,
-    img: b5,
+    year: "2021",
+    title: "Launched Online Visa Consultation Services",
+    desc: `Introduced virtual consultations for visa applications, making our services accessible during global restrictions.`,
+    img: b1,
     extra: [
-      "The desire to blur global boundaries to fulfil passion",
-      "Certified legal advisors to serve you better",
-      "Easy approval choosing top visa consultant",
-    ],
-  },
-  {
-    year: "2012",
-    title: "We’re Global Partner of 580+ Universities",
-    desc: `To obtain higher performance, Our leaders first identify the critical obstacles to forward change to overcoming them.`,
-    img: b4,
-    extra: [
-      "The desire to blur global boundaries to fulfil passion",
-      "Certified legal advisors to serve you better",
-      "Easy approval choosing top visa consultant",
-    ],
-  },
-  {
-    year: "2016",
-    title: "Recent Updates of Visa And Immigration",
-    desc: `To obtain higher performance, Our leaders first identify the critical obstacles to forward change to overcoming them.`,
-    img: b3,
-    extra: [
-      "The desire to blur global boundaries to fulfil passion",
-      "Certified legal advisors to serve you better",
-      "Easy approval choosing top visa consultant",
-    ],
-  },
-  {
-    year: "2020",
-    title: "A Guide To Attracting Clients To Your Agency",
-    desc: `To obtain higher performance, Our leaders first identify the critical obstacles to forward change to overcoming them.`,
-    img: mile2,
-    extra: [
-      "The desire to blur global boundaries to fulfil passion",
-      "Certified legal advisors to serve you better",
-      "Easy approval choosing top visa consultant",
+      "Guided students for multiple country visa applications",
+      "Provided online document verification services",
+      "Introduced step-by-step visa processing assistance",
     ],
   },
   {
     year: "2022",
-    title: "Designing Better Links For Websites And Emails",
-    desc: `To obtain higher performance, Our leaders first identify the critical obstacles to forward change to overcoming them.`,
-    img: b1,
+    title: "Expanded Study Abroad Programs",
+    desc: `Partnered with top universities to offer specialized courses in technology, business, and healthcare for international students.`,
+    img: b5,
     extra: [
-      "The desire to blur global boundaries to fulfil passion",
-      "Certified legal advisors to serve you better",
-      "Easy approval choosing top visa consultant",
+      "Introduced scholarship and funding guidance",
+      "Implemented career path counseling services",
+      "Streamlined admission and pre-departure support",
+    ],
+  },
+  {
+    year: "2023",
+    title: "Digital Transformation & Mobile App Launch",
+    desc: `Launched our official mobile application to provide clients with visa updates, course search, and appointment scheduling at their fingertips.`,
+    img: b4,
+    extra: [
+      "Real-time visa status tracking",
+      "Easy online application submission",
+      "Push notifications for deadlines and reminders",
+    ],
+  },
+  {
+    year: "2024",
+    title: "Recognized as Top Overseas Education Consultancy",
+    desc: `Received industry awards for excellence in student services, visa assistance, and professional guidance in international education.`,
+    img: b3,
+    extra: [
+      "Awarded Best Overseas Education Consultancy 2024",
+      "Expanded our partner network to 750+ universities",
+      "Introduced new services for work-study programs",
+    ],
+  },
+  {
+    year: "2025",
+    title: "Pioneering AI-Powered Visa Solutions",
+    desc: `Introduced AI-based tools for personalized course recommendations, visa document verification, and faster processing.`,
+    img: mile2,
+    extra: [
+      "AI-driven application evaluation for faster approval",
+      "Customized study abroad plans for each student",
+      "24/7 digital support for students worldwide",
     ],
   },
 ];
+
 
 const Milestones = () => {
   const [activeIndex, setActiveIndex] = useState(0);

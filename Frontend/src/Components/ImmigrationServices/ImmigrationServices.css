@@ -1,142 +1,244 @@
-:root {
-  --primary-color: #0077b6;
-  --accent-color: #e63946;
-  --bg-gradient: linear-gradient(135deg, rgba(0, 119, 182, 0.8), rgba(26, 58, 95, 0.8));
-  --card-radius: 20px;
-  --card-shadow: rgba(0, 0, 0, 0.15);
-}
-
+/* =========================
+   Container & Layout
+========================= */
 .immigration-container {
   display: flex;
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: 90vh;
   font-family: "Poppins", sans-serif;
+  background: #f0f4f8; /* subtle professional background */
+  padding: 50px 20px;
+  gap: 30px;
+  border-radius: 14px;
+
+  /* Added border */
+  border: 1.5px solid rgba(0, 119, 182, 0.3); /* soft blue semi-transparent */
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.03); /* subtle inner shadow for depth */
 }
 
+
+/* =========================
+   Left Content
+========================= */
 .immigration-left {
   flex: 1;
-  padding: 60px 50px;
-  background: #f9fafd;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  animation: slideInLeft 1s ease forwards;
+  animation: slideInLeft 0.8s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.immigration-left h4 {
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  color: var(--primary-color);
-  margin-bottom: 15px;
+.immigration-left:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+}
+
+.immigration-left header h4 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #0077b6; /* professional blue */
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
 
-.immigration-left h2 {
-  font-size: 32px;
+.immigration-left header h2 {
+  font-size: 28px;
   color: #1a3a5f;
-  margin-bottom: 30px;
-  line-height: 1.4;
+  margin-bottom: 25px;
+  line-height: 1.3;
 }
 
-.immigration-left h2 span {
-  color: var(--accent-color);
+.immigration-left header h2 span {
+  color: #e63946; /* accent red */
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff758c, #e63946);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Services Cards */
 .services {
   display: grid;
   gap: 20px;
 }
 
 .service {
-  padding: 25px;
-  background: #fff;
-  border-radius: var(--card-radius);
-  box-shadow: 0 8px 25px var(--card-shadow);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  animation: fadeInUp 1.5s ease forwards;
+  padding: 20px;
+  background: linear-gradient(145deg, #ffffff, #f0f4f9);
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.service::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.08), transparent 70%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.service:hover::before {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .service:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 15px 30px var(--card-shadow);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 18px 38px rgba(0,0,0,0.15);
+  background: linear-gradient(145deg, #e3f2fd, #fce4ec);
 }
 
 .service h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: var(--primary-color);
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #0077b6;
+  transition: color 0.3s ease;
+}
+
+.service:hover h3 {
+  color: #e63946;
 }
 
 .service p {
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.5;
 }
-
-/* Right section style */
+/* =========================
+   Right Image Section
+========================= */
 .immigration-right {
   flex: 1;
   position: relative;
+  border-radius: 14px;
   overflow: hidden;
-  animation: slideInRight 1s ease forwards;
+  animation: slideInRight 0.8s ease forwards;
+  transition: transform 0.4s ease;
+  min-height: 450px; /* ensures the image has enough height */
 }
 
 .immigration-right img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s ease;
-  animation: floatImage 6s ease-in-out infinite alternate;
-}
-
-.immigration-right:hover img {
-  transform: scale(1.05);
+  border-radius: 14px;
+  transition: transform 0.8s ease;
 }
 
 .immigration-right::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--bg-gradient);
-  opacity: 0.6;
-}
-
-.immigration-overlay {
-  position: absolute;
-  bottom: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #fff;
-  text-align: center;
-  padding: 20px;
-}
-
-.immigration-overlay h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 15px;
-  animation: fadeInUp 1.2s ease forwards;
-}
-
-.consult-btn {
-  background: var(--accent-color);
-  border: none;
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
+  background: linear-gradient(135deg, rgba(0, 119, 182, 0.5), rgba(230, 57, 70, 0.4));
+  opacity: 0.7;
   transition: all 0.3s ease;
 }
 
-.consult-btn:hover {
-  background: var(--primary-color);
-  transform: translateY(-3px);
+/* Overlay Content */
+.immigration-overlay {
+  position: absolute;
+  top: 50%;  /* center vertically */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  padding: 25px 20px;
+  max-width: 90%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25); /* subtle dark background for readability */
 }
 
-/* Animations */
+.immigration-overlay h2 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.4;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.consult-btn {
+  background: #e63946;
+  border: none;
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.consult-btn:hover {
+  background: #0077b6;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+}
+
+/* =========================
+   Responsive Adjustments
+========================= */
+@media (max-width: 1024px) {
+  .immigration-overlay {
+    top: 55%;
+    padding: 20px 15px;
+  }
+  .immigration-overlay h2 { font-size: 22px; }
+  .consult-btn { font-size: 15px; padding: 12px 25px; }
+}
+
+@media (max-width: 768px) {
+  .immigration-overlay {
+    top: 50%;
+    padding: 18px 15px;
+  }
+  .immigration-overlay h2 { font-size: 20px; }
+  .consult-btn { font-size: 14px; padding: 10px 22px; }
+}
+
+@media (max-width: 480px) {
+  .immigration-overlay {
+    top: 50%;
+    padding: 15px 12px;
+  }
+  .immigration-overlay h2 { font-size: 18px; }
+  .consult-btn { font-size: 13px; padding: 10px 20px; }
+}
+
+
+.consult-btn {
+  background: #e63946;
+  border: none;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.consult-btn:hover {
+  background: #0077b6;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+/* =========================
+   Animations
+========================= */
 @keyframes slideInLeft {
   0% { opacity: 0; transform: translateX(-50px); }
   100% { opacity: 1; transform: translateX(0); }
@@ -147,47 +249,23 @@
   100% { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes floatImage {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-  .immigration-container {
-    flex-direction: column;
-  }
-  .immigration-right {
-    height: 50vh;
-  }
-  .immigration-overlay h2 {
-    font-size: 22px;
-  }
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 1024px) {
+  .immigration-container { flex-direction: column; gap: 25px; }
+  .immigration-left, .immigration-right { padding: 30px 20px; }
+  .immigration-overlay h2 { font-size: 20px; }
 }
 
 @media (max-width: 768px) {
-  .immigration-left {
-    padding: 40px 20px;
-  }
-  .immigration-left h2 {
-    font-size: 26px;
-  }
+  .immigration-left h2 { font-size: 22px; }
+  .service h3 { font-size: 16px; }
+  .service p { font-size: 13px; }
 }
 
 @media (max-width: 480px) {
-  .immigration-left h2 {
-    font-size: 20px;
-  }
-  .immigration-overlay h2 {
-    font-size: 18px;
-  }
-  .service {
-    padding: 15px;
-  }
+  .immigration-left h2 { font-size: 20px; }
+  .immigration-overlay h2 { font-size: 18px; }
+  .consult-btn { font-size: 13px; padding: 10px 22px; }
 }

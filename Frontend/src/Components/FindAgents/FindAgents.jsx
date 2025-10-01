@@ -7,14 +7,15 @@ export default function FindAgents() {
     {
       icon: <FaUserTie size={28} />,
       title: "Find An Agent",
-      text: "We have helped students, business persons, tourists, and clients with medical needs acquire U.S. visas.",
-      gradient: "linear-gradient(135deg, #ff5f6d, #ffc371)",
+      text: "We have helped students, business persons, tourists, and clients with medical needs acquire U.S. visas. Our agents guide you professionally through the process.",
+      gradient: "linear-gradient(135deg, #ff758c, #ff7eb3)",
     },
     {
       icon: <FaPhoneAlt size={28} />,
       title: "Call Us Anytime",
-      text: "We also help with family immigration and provide expert counseling services for visa processes.",
+      text: "For fast support, call us anytime for family immigration, visa advice, and expert counseling services.",
       gradient: "linear-gradient(135deg, #36d1dc, #5b86e5)",
+      phone: "+1-234-567-890",
     },
   ];
 
@@ -30,6 +31,11 @@ export default function FindAgents() {
           <div className="content-box">
             <h3>{agent.title}</h3>
             <p>{agent.text}</p>
+            {agent.phone && (
+              <a href={`tel:${agent.phone}`} className="call-button">
+                📞 {agent.phone}
+              </a>
+            )}
           </div>
         </div>
       ))}

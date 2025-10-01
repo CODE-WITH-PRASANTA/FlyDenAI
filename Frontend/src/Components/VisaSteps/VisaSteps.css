@@ -1,178 +1,176 @@
-/* =========================
+/* =============================
    Visa Steps Section
-========================= */
+============================= */
 .visa-steps {
-  background: #f6f9fc;
-  text-align: center;
-  padding: 70px 20px;
+  background: linear-gradient(135deg, #0a3a63 0%, #144b7c 100%);
+  padding: 30px 20px;
   font-family: "Poppins", sans-serif;
-}
-
-.visa-title {
-  font-size: 2.2rem;
-  font-weight: 600;
-  color: #0c2340;
-  margin-bottom: 60px;
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  position: relative;
+}
+
+/* Decorative gradient bubbles in background */
+.visa-steps::before,
+.visa-steps::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255, 105, 180, 0.35), transparent 70%);
+  z-index: 0;
+}
+.visa-steps::before {
+  width: 400px;
+  height: 400px;
+  top: -150px;
+  left: -120px;
+}
+.visa-steps::after {
+  width: 300px;
+  height: 300px;
+  bottom: -100px;
+  right: -80px;
+}
+
+/* -----------------------------
+   Title
+----------------------------- */
+.visa-steps__title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 40px;
   line-height: 1.3;
-}
-
-.visa-title::after {
-  content: '';
-  width: 60px;
-  height: 3px;
-  background: #e63975;
-  display: block;
-  margin: 10px auto 0;
-  border-radius: 2px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Steps Grid */
-.steps-container {
+.visa-steps__title::after {
+  content: "";
+  width: 90px;
+  height: 5px;
+  background: linear-gradient(90deg, #ff6fa3, #ffd36f);
+  display: block;
+  margin: 15px auto 0;
+  border-radius: 3px;
+}
+
+/* -----------------------------
+   Grid Layout
+----------------------------- */
+.visa-steps__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 45px;
   justify-content: center;
   align-items: start;
+  z-index: 2;
+  position: relative;
 }
 
-/* Step Card */
-.step-card {
-  background: transparent;
-  text-align: center;
-  padding: 10px;
+/* -----------------------------
+   Step Card
+----------------------------- */
+.visa-steps__card {
+  background: linear-gradient(145deg, #ffffff, #f9f9f9);
+  border-radius: 18px;
+  padding: 35px 25px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   animation: fadeUp 0.9s ease both;
-  transition: transform 0.3s ease;
   position: relative;
+  z-index: 2;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
 
-/* Floating Animation */
-.step-card {
-  animation: floatAnim 6s ease-in-out infinite;
+.visa-steps__card:hover {
+  transform: translateY(-14px) scale(1.05);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+  border-image: linear-gradient(135deg, #ff6fa3, #6fc3ff) 1;
 }
 
-.step-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  animation-play-state: paused; /* pause floating on hover */
-}
-
-/* Circle with Image */
-.step-circle {
+/* -----------------------------
+   Circle with Image
+----------------------------- */
+.visa-steps__circle {
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   margin: 0 auto 20px;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: #fff;
-  border: 4px solid #fff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  border: 5px solid #e63975;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
   cursor: pointer;
-  animation: glowCircle 2s infinite;
+  animation: floatAnim 5s ease-in-out infinite;
 }
 
-/* Glow animation for circle */
-@keyframes glowCircle {
-  0% {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 0 10px rgba(255, 105, 135, 0.2);
-  }
-  50% {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 0 20px rgba(255, 105, 135, 0.4);
-  }
-  100% {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 0 10px rgba(255, 105, 135, 0.2);
-  }
+.visa-steps__card:hover .visa-steps__circle {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 111, 163, 0.8), 0 0 60px rgba(111, 195, 255, 0.8);
 }
 
-/* Add glow effect on hover */
-.step-card:hover .step-circle {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 0 30px rgba(255, 105, 135, 0.6);
-  animation: none;
-}
-
-/* Circle Image */
-.step-circle img {
+.visa-steps__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
   border-radius: 50%;
-  transition: transform 0.5s ease;
-  z-index: 1;
+  transition: transform 0.6s ease;
 }
 
-.step-card:hover .step-circle img {
-  transform: scale(1.08);
+.visa-steps__card:hover .visa-steps__image {
+  transform: scale(1.15);
 }
 
-/* Step Number (Outlined) */
-.step-number {
+/* -----------------------------
+   Step Number
+----------------------------- */
+.visa-steps__number {
   position: absolute;
   font-size: 3rem;
-  font-weight: 700;
-  color: transparent;
-  -webkit-text-stroke: 2px #fff;
-  text-stroke: 2px #fff;
-  z-index: 2;
+  font-weight: 800;
+  color: #fff;
+  -webkit-text-stroke: 2px #ff6fa3;
+  text-shadow: 0 0 18px rgba(255, 111, 163, 0.8), 0 0 28px rgba(111, 195, 255, 0.6);
   pointer-events: none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-  animation: glowNumber 2s infinite;
+  transition: text-shadow 0.4s ease;
 }
 
-/* Glow animation for number */
-@keyframes glowNumber {
-  0% {
-    text-shadow: 0 0 10px rgba(255, 105, 135, 0.2);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(255, 105, 135, 0.4);
-  }
-  100% {
-    text-shadow: 0 0 10px rgba(255, 105, 135, 0.2);
-  }
+.visa-steps__card:hover .visa-steps__number {
+  text-shadow: 0 0 35px rgba(255, 111, 163, 1), 0 0 45px rgba(111, 195, 255, 0.9);
 }
 
-/* Add glow effect on hover */
-.step-card:hover .step-number {
-  text-shadow: 0 0 30px rgba(255, 105, 135, 0.6);
-  animation: none;
-}
-
-/* Step Title & Description */
-.step-title {
-  font-size: 1.2rem;
+/* -----------------------------
+   Title & Description
+----------------------------- */
+.visa-steps__card-title {
+  font-size: 1.35rem;
   font-weight: 600;
-  color: #0c2340;
-  margin-bottom: 8px;
-  position: relative;
-  z-index: 2;
+  color: #0a3a63;
+  margin-bottom: 12px;
 }
 
-.step-desc {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
-  max-width: 250px;
+.visa-steps__card-desc {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  max-width: 280px;
   margin: 0 auto;
-  position: relative;
-  z-index: 2;
 }
 
-/* Animations */
+/* -----------------------------
+   Animations
+----------------------------- */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -180,56 +178,114 @@
   }
 }
 
-/* Floating Animation for Card */
 @keyframes floatAnim {
   0%, 100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px) rotate(1deg);
+    transform: translateY(-8px);
   }
 }
 
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 1024px) {
-  .steps-container {
-    grid-template-columns: repeat(2, 1fr);
+/* =============================
+   Responsive Design
+============================= */
+
+/* Tablets (max-width: 992px) */
+@media (max-width: 992px) {
+  .visa-steps {
+    padding: 50px 15px;
+  }
+
+  .visa-steps__title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .visa-steps__grid {
     gap: 30px;
   }
 
-  .step-circle {
-    width: 140px;
-    height: 140px;
+  .visa-steps__circle {
+    width: 150px;
+    height: 150px;
   }
 
-  .step-number {
+  .visa-steps__number {
     font-size: 2.5rem;
   }
 }
 
-@media (max-width: 640px) {
-  .steps-container {
-    grid-template-columns: 1fr;
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .visa-steps {
+    padding: 40px 12px;
+  }
+
+  .visa-steps__title {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .visa-steps__card {
+    padding: 25px 18px;
+  }
+
+  .visa-steps__circle {
+    width: 130px;
+    height: 130px;
+  }
+
+  .visa-steps__number {
+    font-size: 2.2rem;
+  }
+
+  .visa-steps__card-title {
+    font-size: 1.2rem;
+  }
+
+  .visa-steps__card-desc {
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .visa-steps {
+    padding: 30px 10px;
+  }
+
+  .visa-steps__title {
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+  }
+
+  .visa-steps__grid {
     gap: 25px;
   }
 
-  .visa-title {
-    font-size: 1.7rem;
+  .visa-steps__circle {
+    width: 110px;
+    height: 110px;
+    border-width: 4px;
   }
 
-  .step-circle {
-    width: 120px;
-    height: 120px;
+  .visa-steps__number {
+    font-size: 1.8rem;
+    -webkit-text-stroke: 1px #ff6fa3;
   }
 
-  .step-number {
-    font-size: 2rem;
+  .visa-steps__card {
+    padding: 20px 15px;
+    border-radius: 14px;
   }
 
-  .step-desc {
-    max-width: 100%;
+  .visa-steps__card-title {
+    font-size: 1.05rem;
+  }
+
+  .visa-steps__card-desc {
     font-size: 0.9rem;
+    line-height: 1.5;
   }
 }

@@ -70,7 +70,7 @@ export default function TeamSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     key={idx}
-                    className="icon-box"
+                    className="teamsec-icon-box"
                   >
                     {icon}
                   </a>

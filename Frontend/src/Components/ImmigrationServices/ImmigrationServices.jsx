@@ -36,7 +36,7 @@ export default function ImmigrationServices() {
       {/* Right Image Section */}
       <div className="immigration-right">
         <img src={i1} alt="Immigration consulting" />
-        <div className="overlay">
+        <div className="immigration-overlay">
           <h2>Step into your future with expert consulting.</h2>
           <button className="consult-btn">Book a Consultation</button>
         </div>
