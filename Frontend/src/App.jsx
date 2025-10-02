@@ -9,6 +9,8 @@ import TeamDetails from "./Pages/TeamDetails/TeamDetails";
 import "./App.css";
 import PageWrapper from "./Components/PageWrapper";
 import ComingSoon from "./Components/ComingSoon/ComingSoon";
+import TeamMembers from "./Pages/TeamMembers/TeamMembers";
+import ContactPage from "./Pages/ContactPage/ContactPage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<OurTeam />} />
           <Route path="/team/details" element={<TeamDetails />} />
+          <Route path="/team/member" element={<TeamMembers />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
         </Routes>
       <Footer />

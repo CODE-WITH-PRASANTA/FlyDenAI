@@ -46,10 +46,10 @@ const Navbar = () => {
     { name: "About Us", path: "/about", sub: [
       { name: "About Us", path: "/about" },
       { name: "Services", path: "/services" },
-      { name: "Our Team", path: "/ComingSoon" },
-      { name: "Team Details", path: "/ComingSoon" },
+      { name: "Our Team", path: "/team/member" },
+      { name: "Team Details", path: "/team/details" },
     ]},
-    { name: "Visa", path: "/visa", sub: [
+    { name: "Visa", path: "/ComingSoon", sub: [
       { name: "Job Visa", path: "/ComingSoon" },
       { name: "Business Visa", path: "/ComingSoon" },
       { name: "Worker Visa", path: "/ComingSoon" },
@@ -68,7 +68,7 @@ const Navbar = () => {
       { name: "Intern Abroad", path: "/ComingSoon" },
     ]},
     { name: "Blog", path: "/ComingSoon" },
-    { name: "Contact Us", path: "/ComingSoon" },
+    { name: "Contact Us", path: "/contact" },
     { name: "Get a Quote", path: "/ComingSoon" },
   ];
 
