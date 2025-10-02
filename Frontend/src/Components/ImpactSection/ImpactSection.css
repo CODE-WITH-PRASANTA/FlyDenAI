@@ -1,0 +1,139 @@
+:root {
+  --primary-color: #0d2f5d;
+  --highlight-color: #e63946;
+  --text-color: #555;
+  --progress-bg: #f1f5f9;
+  --progress-fill: #0d2f5d;
+}
+
+.impact-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 4rem 8%;
+  flex-wrap: wrap;
+}
+
+.impact-content {
+  flex: 1 1 500px;
+}
+
+.impact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.impact-title span {
+  color: var(--highlight-color);
+  font-style: italic;
+}
+
+.impact-text {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.progress-box {
+  background: var(--progress-bg);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: 4px;
+  width: 0;
+  animation: fillAnimation 1.5s ease forwards;
+}
+
+@keyframes fillAnimation {
+  from {
+    width: 0;
+  }
+}
+
+.impact-image {
+  flex: 1 1 500px;
+  text-align: center;
+}
+
+.impact-image img {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.impact-image img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .impact-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .impact-content {
+    order: 2;
+  }
+
+  .impact-image {
+    order: 1;
+  }
+
+  .impact-title {
+    font-size: 2rem;
+  }
+
+  .impact-text {
+    margin: 1rem auto 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .impact-section {
+    padding: 3rem 5%;
+  }
+
+  .impact-title {
+    font-size: 1.6rem;
+  }
+
+  .progress-box {
+    padding: 0.6rem 0.8rem;
+  }
+}

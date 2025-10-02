@@ -1,0 +1,117 @@
+/* Wrapper to add space from left and right */
+.honors-wrapper {
+  width: 100%;
+  padding-left: 100px;   /* space from left */
+  padding-right: 100px;  /* space from right */
+  box-sizing: border-box;
+}
+
+/* Main container */
+.honors-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 0; /* vertical padding */
+  background-color: #fff;
+  margin: 0 auto;
+  max-width: 1200px; /* optional max width */
+}
+
+/* Image styling */
+.honors-image img {
+  width: 500px;
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  transition: transform 0.5s;
+}
+
+.honors-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Details section */
+.honors-details {
+  max-width: 650px;
+}
+
+/* Title styling */
+.honors-title {
+  font-size: 36px;
+  color: #0b3d5d;
+  margin-bottom: 20px;
+}
+
+.honors-title span {
+  color: #e91e63;
+  font-style: italic;
+}
+
+/* Description */
+.honors-description {
+  color: #6b7c93;
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+/* Certificates */
+.certificates {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.certificates img {
+  width: 180px;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+.certificates img:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .honors-wrapper {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  .honors-image img {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .honors-wrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .honors-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .certificates {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .honors-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .honors-title {
+    font-size: 28px;
+  }
+  .honors-description {
+    font-size: 14px;
+  }
+  .certificates img {
+    width: 120px;
+  }
+}
