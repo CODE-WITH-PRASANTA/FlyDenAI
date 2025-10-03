@@ -10,9 +10,6 @@ import c6 from "../../assets/06.webp";
 import c7 from "../../assets/07.webp";
 import c8 from "../../assets/08.webp";
 
-
-
-
 const countries = [
   { name: "France", image: c1 },
   { name: "England", image: c2 },

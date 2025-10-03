@@ -10,9 +10,8 @@ const TeamDetails = () => {
     <div>
       <TeamDetailsBanner/>
       <DirectorProfile/>
-      <ImpactSection/>
       <HonorsAwards/>
-        
+      <ImpactSection/>
     </div>
   )
 }

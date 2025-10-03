@@ -140,30 +140,48 @@ const Navbar = () => {
                     >
                       {item.name}
                     </Link>
-                  ) : (
+                  ) : item.sub ? (
                     <>
                       <div
                         className="mobile-link"
                         onClick={() => toggleDropdown(i)}
                       >
-                        {item.name} {item.sub && <span className="nav-arrow">{mobileDropdownOpen === i ? "▲" : "▼"}</span>}
+                        {item.name}{" "}
+                        <span className="nav-arrow">
+                          {mobileDropdownOpen === i ? "▲" : "▼"}
+                        </span>
                       </div>
-                      {item.sub && (
-                        <ul className={`mobile-dropdown ${mobileDropdownOpen === i ? "open" : ""}`}>
-                          {item.sub.map((sub, idx) => (
-                            <li key={idx}>
-                              <Link to={sub.path} onClick={() => setMobileMenuOpen(false)}>
-                                {sub.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                      <ul
+                        className={`mobile-dropdown ${
+                          mobileDropdownOpen === i ? "open" : ""
+                        }`}
+                      >
+                        {item.sub.map((sub, idx) => (
+                          <li key={idx}>
+                            <Link
+                              to={sub.path}
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {sub.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
                     </>
+                  ) : (
+                    // ✅ Fix: Direct route for normal links (like Contact Us, Blog, Home, etc.)
+                    <Link
+                      to={item.path}
+                      className="mobile-link"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
                   )}
                 </li>
               ))}
             </ul>
+
           </div>
         </div>
       </header>

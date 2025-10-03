@@ -2,13 +2,16 @@ import React from "react";
 import "./ContactSection.css";
 import { FaPhoneAlt, FaEnvelope, FaClock, FaShareAlt } from "react-icons/fa";
 
+// Asserts
+import contactbg from '../../assets/Contact-bg.webp'
+
 const ContactSection = () => {
   return (
     <>
       {/* ====== Contact Form Section ====== */}
       <section className="contact-section">
         <div className="contact-image">
-          <img src="" alt="Office building" />
+          <img src={contactbg} alt="Office building" />
         </div>
 
         <div className="contact-form-wrapper">

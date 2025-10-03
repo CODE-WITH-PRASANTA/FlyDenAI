@@ -5,15 +5,15 @@ import director from "../../assets/director.webp"; // Replace with actual image 
 
 const DirectorProfile = () => {
   return (
-    <div className="profile-container">
-      <div className="profile-image">
+     <div className="DirectorProfile-container">
+      <div className="DirectorProfile-image">
         <img src={director} alt="Director" />
       </div>
 
-      <div className="profile-details">
-        <span className="profile-role">Director</span>
-        <h2 className="profile-name">Alex Sam Martin</h2>
-        <p className="profile-description">
+      <div className="DirectorProfile-details">
+        <span className="DirectorProfile-role">Director</span>
+        <h2 className="DirectorProfile-name">Alex Sam Martin</h2>
+        <p className="DirectorProfile-description">
           Foundation was established with a small idea that was incepted in the
           minds of its promoters in the year 1987! We skillfully guide the
           applicants for their immigration process to any country they aspire to
@@ -22,7 +22,7 @@ const DirectorProfile = () => {
           guide the applicant.
         </p>
 
-        <div className="profile-contact">
+        <div className="DirectorProfile-contact">
           <div className="contact-item">
             <FaMapMarkerAlt className="contact-icon"  />
             <div>
