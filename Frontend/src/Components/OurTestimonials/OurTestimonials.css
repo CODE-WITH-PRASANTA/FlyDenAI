@@ -1,0 +1,236 @@
+/* OUR TESTIMONIALS SECTION */
+.ourtestimonials {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+/* Subtitle (OUR TESTIMONIALS) */
+.ourtestimonials .subtitle {
+  color: #ef476f; /* a softer but vibrant red */
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Segoe UI Black", sans-serif;
+  user-select: none;
+}
+
+/* Title (Heading) */
+.ourtestimonials .title {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 50px;
+  color: #222;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+/* ====== CONTAINER ====== */
+.testimonials-container {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+/* ====== CARD ====== */
+.testimonials-card {
+  background: #fff;
+  padding: 28px 30px 36px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  flex: 1 1 320px;
+  max-width: 360px;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.35s ease;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease forwards;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonials-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.testimonials-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.testimonials-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.testimonials-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(145deg, #fff, #fef7f9);
+}
+
+/* ====== PROFILE SECTION ====== */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ddd;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(239, 71, 111, 0.35);
+  transition: box-shadow 0.3s ease;
+}
+
+.testimonials-card:hover .profile-img {
+  box-shadow: 0 0 14px rgba(239, 71, 111, 0.6);
+}
+
+.profile h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.2;
+  user-select: text;
+}
+
+.profile p {
+  margin: 0;
+  font-size: 14px;
+  color: #888;
+  user-select: text;
+}
+
+/* Quote icon */
+.quote-icon {
+  color: #ef476f;
+  font-size: 24px;
+  user-select: none;
+}
+
+/* ====== TESTIMONIAL TEXT ====== */
+.testimonials-text {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  text-align: left;
+  flex-grow: 1;
+  user-select: text;
+  font-style: italic;
+}
+
+/* Date badge (only for last card) */
+.testimonials-date {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+  background: #ef476f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(239, 71, 111, 0.25);
+  z-index: 1;
+  user-select: none;
+}
+
+/* ====== ANIMATIONS ====== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1200px) {
+  .testimonials-container {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 992px) {
+  .ourtestimonials .title {
+    font-size: 30px;
+  }
+  .testimonials-container {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .testimonials-card {
+    max-width: 90%;
+  }
+  .ourtestimonials .title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 600px) {
+  .ourtestimonials {
+    padding: 50px 15px;
+  }
+  .ourtestimonials .title {
+    font-size: 24px;
+  }
+  .testimonials-text {
+    font-size: 14px;
+  }
+  .profile-img {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ourtestimonials .title {
+    font-size: 22px;
+  }
+  .testimonials-card {
+    padding: 20px 20px 28px 20px;
+  }
+  .profile {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  .ourtestimonials .title {
+    font-size: 20px;
+  }
+  .testimonials-text {
+    font-size: 13px;
+  }
+  .profile h3 {
+    font-size: 16px;
+  }
+  .profile p {
+    font-size: 12px;
+  }
+}

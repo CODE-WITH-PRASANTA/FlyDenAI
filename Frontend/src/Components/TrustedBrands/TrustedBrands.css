@@ -1,0 +1,153 @@
+/* ==============================
+   TRUSTED BRANDS SECTION
+============================== */
+.trusted-brands {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Centered Section Title */
+.trusted-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d32f2f;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Logos Slider Container */
+.logos-slider {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Track for infinite scrolling */
+.logos-track {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  animation: scrollLogos 30s linear infinite;
+  /* Make sure it wraps nicely on smaller screens */
+  flex-wrap: nowrap;
+}
+
+/* Scroll animation */
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Logo Card */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  flex-shrink: 0; /* Prevent shrinking in flex container */
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: grayscale(100%) brightness(50%) contrast(100%) sepia(0%) hue-rotate(0deg);
+  /* Keep images sharp on retina */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.logo:hover img {
+  filter: grayscale(0%) brightness(100%) contrast(100%) sepia(100%) hue-rotate(-10deg)
+    saturate(500%);
+  transform: scale(1.1);
+}
+
+.logo span {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .logo img {
+    width: 90px;
+    height: 90px;
+  }
+  .logo {
+    padding: 20px;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 992px) {
+  .logo img {
+    width: 80px;
+    height: 80px;
+  }
+  .logo {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .trusted-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  .logos-track {
+    gap: 40px;
+  }
+  .logo img {
+    width: 70px;
+    height: 70px;
+  }
+  .logo {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .trusted-brands {
+    padding: 40px 15px;
+  }
+  .trusted-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .logos-track {
+    gap: 30px;
+  }
+  .logo {
+    padding: 14px;
+  }
+  .logo img {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 320px) {
+  .logo img {
+    width: 45px;
+    height: 45px;
+  }
+  .logo {
+    padding: 12px;
+  }
+}

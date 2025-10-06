@@ -1,0 +1,168 @@
+/* WORKING PROCESS SECTION */
+.workingprocess {
+  text-align: center;
+  padding: 80px 20px;
+  background: #fff;
+  font-family: "Arial", sans-serif;
+}
+
+.workingprocess-subtitle {
+  color: #e63946;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.workingprocess-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 80px;
+  line-height: 1.4;
+}
+
+.workingprocess-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 50px;
+}
+
+.step-card {
+  position: relative;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.icon-wrapper {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  margin: 0 auto 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-icon {
+  font-size: 36px;
+  color: #e63946;
+  z-index: 2;
+}
+
+.step-number {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  background: #e63946;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  z-index: 3;
+}
+
+.step-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0 8px;
+  color: #111;
+}
+
+.step-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+/* Dotted Connector Lines */
+.step-1::after,
+.step-2::after,
+.step-3::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  right: -60px;
+  width: 120px;
+  height: 2px;
+  border-top: 2px dashed #e63946;
+  z-index: 1;
+}
+
+.step-2::after {
+  top: 130px;
+  transform: rotate(-10deg);
+}
+.step-3::after {
+  top: 60px;
+  transform: rotate(10deg);
+}
+.step-4::after {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .workingprocess-steps {
+    max-width: 1000px;
+  }
+}
+
+@media (max-width: 992px) {
+  .workingprocess-title {
+    font-size: 28px;
+  }
+
+  .workingprocess-steps {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 30px;
+  }
+
+  .step-card::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .workingprocess-title {
+    font-size: 24px;
+  }
+  .workingprocess-steps {
+    gap: 40px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .workingprocess-steps {
+    grid-template-columns: 1fr;
+  }
+  .workingprocess-title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .workingprocess-title {
+    font-size: 18px;
+  }
+  .step-card h3 {
+    font-size: 16px;
+  }
+  .step-card p {
+    font-size: 13px;
+  }
+}

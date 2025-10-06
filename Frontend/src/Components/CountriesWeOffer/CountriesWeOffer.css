@@ -1,0 +1,149 @@
+/* ==============================
+   COUNTRIES WE OFFER SECTION
+============================== */
+.countriesweoffer {
+  padding: 60px 40px; /* Added space from left & right */
+  background: linear-gradient(135deg, #fdfdfd, #f7f7f7);
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+.countriesweoffer-main-header {
+  font-size: 36px;
+  font-weight: bold;
+  color: #d32f2f;
+  margin-bottom: 10px;
+}
+
+.countriesweoffer-header {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 50px;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+.countriesweoffer-header::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background: #d32f2f;
+  display: block;
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Grid Layout — 3 Cards per Row */
+.countriesweoffer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Card Design — Bigger with animation */
+.countriesweoffer-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.countriesweoffer-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Flag container with glowing animation */
+.flag-container {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);
+  margin-right: 20px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+.flag-container img {
+  width: 45px;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.countriesweoffer-card:hover .flag-container {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.5);
+}
+
+/* Fade-in Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info section */
+.countriesweoffer-info h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #333;
+  font-weight: 600;
+}
+
+.countriesweoffer-info p {
+  margin: 5px 0 0;
+  font-size: 15px;
+  color: #555;
+}
+
+.countriesweoffer-info span {
+  font-weight: bold;
+  color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .countriesweoffer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .countriesweoffer {
+    padding: 40px 20px;
+  }
+  .countriesweoffer-header {
+    font-size: 22px;
+  }
+  .countriesweoffer-grid {
+    grid-template-columns: 1fr;
+  }
+  .countriesweoffer-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  .flag-container {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}

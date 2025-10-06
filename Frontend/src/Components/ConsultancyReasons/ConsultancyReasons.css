@@ -1,0 +1,250 @@
+/* ===== Consultancy Reasons Section ===== */
+.consultancy-reasons {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Container for left & right content */
+.reasons-content {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+/* ===== Left Section ===== */
+.reasons-left {
+  flex: 1;
+  min-width: 320px;
+}
+
+.choose-header {
+  color: #d32f2f;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.reasons-left h2 {
+  font-size: 32px;
+  color: #222;
+  margin-bottom: 16px;
+}
+
+.reasons-left p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 32px;
+  max-width: 500px;
+}
+
+/* List of reasons */
+.reason-items {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Individual reason box */
+.reason-box {
+  display: flex;
+  gap: 16px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.reason-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* Icon in reason box */
+.reason-box .icon {
+  font-size: 24px;
+  color: #d32f2f;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Titles and descriptions */
+.reason-box h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.reason-box p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #666;
+}
+
+/* ===== Right Section ===== */
+.reasons-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+.image-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.main-image-wrapper {
+  position: relative;
+  flex: 1 1 60%;
+  min-width: 280px;
+}
+
+.main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.trusted-box {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  background: #d32f2f;
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 10;
+}
+
+/* Avatar group inside trusted box */
+.avatars {
+  display: flex;
+}
+
+.avatars img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+/* Side images on right */
+.side-images {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-basis: 35%;
+  min-width: 150px;
+}
+
+.side-images img {
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.3s ease;
+  object-fit: cover;
+}
+
+.side-images img:hover {
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+/* ===== Responsive ===== */
+
+/* Below 992px: Stack columns vertically */
+@media (max-width: 992px) {
+  .reasons-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .main-image-wrapper,
+  .side-images {
+    flex-basis: auto;
+    min-width: 100%;
+  }
+
+  .side-images {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* Below 768px: Smaller text & adjust layout */
+@media (max-width: 768px) {
+  .choose-header {
+    font-size: 20px;
+  }
+
+  .reasons-left h2 {
+    font-size: 26px;
+  }
+
+  .reasons-left p {
+    max-width: 100%;
+    font-size: 15px;
+  }
+
+  .reason-box h3 {
+    font-size: 16px;
+  }
+
+  .reason-box p {
+    font-size: 13px;
+  }
+
+  .side-images {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+/* Below 480px: Single column for side images, reduce padding */
+@media (max-width: 480px) {
+  .consultancy-reasons {
+    padding: 40px 15px;
+  }
+
+  .choose-header {
+    font-size: 18px;
+  }
+
+  .reasons-left h2 {
+    font-size: 22px;
+  }
+
+  .reason-box {
+    flex-direction: column;
+  }
+
+  .reason-box .icon {
+    margin-top: 0;
+  }
+
+  .side-images {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

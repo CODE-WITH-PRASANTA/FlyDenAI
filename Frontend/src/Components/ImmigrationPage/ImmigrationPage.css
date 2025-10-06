@@ -1,0 +1,165 @@
+.immigrationpage-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  overflow: hidden;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.tagline {
+  background: #e63946;
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.headline {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #f1f1f1;
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #e63946;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.cta-btn:hover {
+  background: #d62839;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .icon {
+  transform: translateX(5px);
+}
+
+/* ====================== RESPONSIVE STYLES ====================== */
+@media (max-width: 1200px) {
+  .headline {
+    font-size: 40px;
+  }
+  .content {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 992px) {
+  .immigrationpage-container {
+    justify-content: center;
+    padding: 0 15px;
+  }
+  .content {
+    max-width: 450px;
+    padding: 30px 15px;
+  }
+  .headline {
+    font-size: 36px;
+    text-align: center;
+  }
+  .description {
+    font-size: 15px;
+    text-align: center;
+  }
+  .tagline {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+  .cta-btn {
+    font-size: 15px;
+    padding: 12px 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headline {
+    font-size: 32px;
+  }
+  .content {
+    max-width: 100%;
+    padding: 25px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .headline {
+    font-size: 26px;
+    margin-bottom: 15px;
+  }
+  .description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .tagline {
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-bottom: 12px;
+  }
+  .cta-btn {
+    font-size: 14px;
+    padding: 12px 20px;
+    gap: 8px;
+  }
+  .icon {
+    font-size: 16px;
+  }
+}
+
+@media (max-height: 600px) {
+  .immigrationpage-container {
+    height: auto;
+    padding: 40px 20px;
+  }
+}
