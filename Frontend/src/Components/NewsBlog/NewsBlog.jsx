@@ -1,9 +1,13 @@
 import React from "react";
 import "./NewsBlog.css";
 import { FaUserAlt, FaComments } from "react-icons/fa";
-import i1 from "../../assets/nb.webp";
+import i1 from "../../assets/nb1.webp";
 import i2 from "../../assets/nb2.webp";
 import i3 from "../../assets/nb3.webp";
+import mind1 from "../../assets/mind1.webp";
+
+
+
 
 
 const blogs = [
