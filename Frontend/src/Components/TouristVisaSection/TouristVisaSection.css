@@ -1,0 +1,647 @@
+/* 🌿 TouristVisaSection.css — Modernized & Polished Version */
+
+/* ===== Base & Container ===== */
+.TouristVisaSection {
+  padding: 60px 8%;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1b2b40;
+  background: #fff;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Visa Selector Section ===== */
+.visa-selector {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+}
+
+.visa-left-sidebar {
+  flex: 1 1 260px;
+  border-right: 2px solid #e5e8ec;
+}
+
+.visa-item {
+  cursor: pointer;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #445a76;
+  border-left: 4px solid transparent;
+  transition: all 0.35s ease;
+  user-select: none;
+}
+
+.visa-item:hover {
+  background: #fafafa;
+  color: #e34244;
+}
+
+.visa-item.active {
+  background: #e34244;
+  color: #fff;
+  border-left-color: #fff;
+}
+
+.arrow-icon {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.visa-item.active .arrow-icon {
+  transform: translateX(6px);
+}
+
+/* Right Visa Image */
+.visa-right-image {
+  flex: 3 1 600px;
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.6s ease;
+}
+
+.visa-right-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.visa-right-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+.visa-right-image img:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* ===== Visa Details Layout ===== */
+.visa-details-layout {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Downloads Sidebar */
+.downloads-sidebar {
+  flex: 1 1 280px;
+  background: #f9fafc;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+.downloads-sidebar h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1b2b40;
+}
+
+.download-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 10px 8px;
+  border-radius: 10px;
+}
+
+.download-card:hover {
+  background: #e34244;
+  color: #fff;
+  transform: translateX(6px);
+}
+
+.file-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 15px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.download-card:hover .file-icon {
+  filter: none;
+  transform: scale(1.15);
+}
+
+.file-title {
+  font-weight: 600;
+  font-size: 14px;
+  color: #2c3f57;
+}
+
+.file-size {
+  font-size: 12px;
+  color: #7e8a99;
+}
+
+/* ===== Visa Overview ===== */
+.visa-main-content {
+  flex: 3 1 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.visa-overview h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #243a52;
+}
+
+.visa-overview p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #59667a;
+  animation: fadeInText 1s ease-in-out;
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Visa Cards ===== */
+.visa-type-cards {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.visa-card.modern {
+  position: relative;
+  flex: 1 1 calc(33.333% - 20px);
+  min-height: 320px;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+.visa-card.modern:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.visa-card .card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.75) 90%);
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+
+.visa-card.modern:hover .card-overlay {
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.9) 100%);
+}
+
+.card-content {
+  position: relative;
+  padding: 25px 30px;
+  z-index: 2;
+}
+
+.card-content h4 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.card-content p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #ddd;
+}
+
+.card-number {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  font-size: 70px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.12);
+  user-select: none;
+}
+
+/* ===== Consultation Section ===== */
+.consultation-section {
+  display: flex;
+  background: #f7f8fa;
+  border-radius: 14px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  overflow: hidden;
+  min-height: 260px;
+  margin-top: 60px;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.consultation-left {
+  flex: 0 0 240px;
+  background: #fff;
+  border-right: 3px solid #e34244;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.consultation-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  color: #7e8a99;
+  transition: all 0.3s ease;
+}
+
+.consultation-item:hover,
+.consultation-item.active {
+  color: #e34244;
+}
+
+.consultation-icon {
+  font-size: 26px;
+  color: #a1a9b8;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.consultation-item.active .consultation-icon,
+.consultation-item:hover .consultation-icon {
+  color: #e34244;
+  transform: scale(1.15);
+}
+
+.consultation-item h5 {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.consultation-item p {
+  font-size: 14px;
+}
+
+/* ===== Right Consultation Content ===== */
+.consultation-right {
+  flex: 1;
+  padding: 40px;
+}
+
+.consultation-right h3 {
+  font-size: 28px;
+  color: #0c1e35;
+  margin-bottom: 12px;
+}
+
+.consultation-right p {
+  font-size: 16px;
+  color: #5c5c5c;
+  max-width: 720px;
+  margin-bottom: 30px;
+}
+
+.consultation-right img {
+  width: 100%;
+  max-height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+
+.reason-section {
+  padding: 80px 8%;
+  background: linear-gradient(180deg, #f8f9fb, #ffffff);
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Section Header ===== */
+.reason-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0c1e35;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.reason-section p.section-subtitle {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* ===== Reason Grid Section ===== */
+.reason-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+/* ===== Reason Card ===== */
+.reason-card {
+  flex: 1 1 calc(50% - 15px); /* Two cards per row */
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, #ffffff, #f7f9fc);
+  border: 1px solid #eaeaea;
+  border-radius: 14px;
+  padding: 24px 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.35s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.7s ease forwards;
+}
+
+.reason-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.reason-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.reason-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.reason-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.reason-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #f9fafc, #ffffff);
+}
+
+/* ===== Icon Styles ===== */
+.reason-icon {
+  font-size: 38px;
+  color: #e94e1b;
+  margin-right: 20px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+/* ===== Text Content ===== */
+.reason-content h4 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0c1e35;
+  margin-bottom: 6px;
+}
+
+.reason-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ===== Hover Glow Effect ===== */
+.reason-card:hover .reason-icon {
+  color: #fff;
+  background: #e94e1b;
+  transform: rotate(10deg);
+  box-shadow: 0 4px 12px rgba(233, 78, 27, 0.4);
+  transition: all 0.3s ease;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  .reason-section {
+    padding: 60px 6%;
+  }
+
+  .reason-card {
+    flex: 1 1 100%;
+  }
+
+  .reason-section h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 600px) {
+  .reason-section {
+    padding: 50px 5%;
+  }
+
+  .reason-grid {
+    gap: 20px;
+  }
+
+  .reason-card {
+    padding: 20px 18px;
+  }
+
+  .reason-icon {
+    font-size: 32px;
+    padding: 10px;
+  }
+
+  .reason-content h4 {
+    font-size: 16px;
+  }
+
+  .reason-content p {
+    font-size: 13px;
+  }
+}
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .visa-details-layout {
+    flex-direction: column;
+  }
+
+  .downloads-sidebar {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .visa-card.modern {
+    flex: 1 1 100%;
+    min-height: 280px;
+  }
+
+  .consultation-section {
+    flex-direction: column;
+  }
+
+  .consultation-left {
+    flex-direction: row;
+    justify-content: space-around;
+    border-right: none;
+    border-bottom: 3px solid #e34244;
+    padding: 15px;
+  }
+
+  .consultation-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .TouristVisaSection {
+    padding: 40px 20px;
+  }
+
+  .visa-selector {
+    flex-direction: column;
+  }
+
+  .visa-right-image {
+    height: 240px;
+  }
+
+  .reason-card {
+    flex: 1 1 100%;
+  }
+}
+
+
+
+
+
+
+/* ========== Study Card Section ========== */
+.study-card-section {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.study-card {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 1000px;
+  width: 100%;
+}
+
+.study-card-content {
+  flex: 1;
+  padding: 30px;
+  background: rgba(212, 76, 76, 0.85); /* Red overlay behind text */
+  color: white;
+}
+
+.study-card-subtitle {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.study-card-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 10px 0 20px;
+}
+
+.study-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.study-card-list li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.study-card-note {
+  font-size: 12px;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.study-card-btn {
+  background: white;
+  color: #d44c4c;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.study-card-btn:hover {
+  background: #f2f2f2;
+}
+
+/* Right side image inside same container */
+.study-card-image {
+  flex: 1;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.study-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .study-card {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+
+
