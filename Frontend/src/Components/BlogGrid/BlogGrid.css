@@ -1,161 +1,263 @@
-/* ===== Grid Container ===== */
-.blockgrid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 5rem 5rem; 
-  background: #f8f8f8;
-}
-
-/* ===== Card Styles ===== */
-.blockgrid-card {
-  background: #ffffff;
-  border-radius: 12px;
+/* ===== Blog Section ===== */
+.bloggrid-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f9f9fb 100%);
+  padding: 5rem 4rem;
   overflow: hidden;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  perspective: 1000px;
-  will-change: transform;
-  transform-style: preserve-3d;
+  font-family: "Poppins", sans-serif;
 }
 
-.blockgrid-card:hover {
-  transform: rotateX(2deg) rotateY(2deg) scale(1.01);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+.bloggrid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.8rem;
 }
 
-/* ===== Card Image with 3D and Zoom Effects ===== */
-.blockgrid-image {
-  height: 200px;
-  background-color: #ddd;
+/* ===== Blog Card ===== */
+.bloggrid-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.bloggrid-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(233, 78, 119, 0.25);
+}
+
+/* ===== Blog Image ===== */
+.bloggrid-image {
+  height: 250px;
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease, filter 0.3s ease;
-  backface-visibility: hidden;
+  transition: transform 0.6s ease;
 }
 
-.blockgrid-card:hover .blockgrid-image {
-  transform: scale(1.1) rotateX(3deg) rotateY(-3deg);
-  filter: brightness(1.1);
+.bloggrid-card:hover .bloggrid-image {
+  transform: scale(1.08);
 }
 
-/* Optional: light reflection layer */
-.blockgrid-image::before {
-  content: "";
+.bloggrid-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.15));
-  pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.4s;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.blockgrid-card:hover .blockgrid-image::before {
-  opacity: 0.6;
+.bloggrid-card:hover .bloggrid-overlay {
+  opacity: 1;
 }
 
-/* ===== Date Badge ===== */
-.blockgrid-date {
+/* ===== Date Tag ===== */
+.bloggrid-date {
   position: absolute;
   top: 15px;
   left: 15px;
-  width: 50px;
-  background-color: #c70101; /* Red */
-  color: #ffffff;
+  background: #e94e77;
+  color: #fff;
   text-align: center;
-  border-radius: 4px;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-  padding: 5px 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 700;
   z-index: 2;
+  box-shadow: 0 4px 15px rgba(233, 78, 119, 0.4);
 }
 
-.blockgrid-day {
-  font-size: 18px;
-  display: block;
+.bloggrid-day {
+  font-size: 22px;
   line-height: 1;
 }
 
-.blockgrid-month {
+.bloggrid-month {
   font-size: 12px;
   text-transform: uppercase;
-  display: block;
-  margin-top: 2px;
 }
 
-/* ===== Card Content ===== */
-.blockgrid-content {
-  padding: 16px;
-  flex: 1;
+/* ===== Blog Content ===== */
+.bloggrid-content {
+  padding: 24px 22px 30px;
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
 }
 
-.blockgrid-meta {
+.bloggrid-meta {
   display: flex;
   justify-content: space-between;
-  color: #d10000;
   font-size: 14px;
-  margin-bottom: 10px;
+  color: #e94e77;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
-.blockgrid-title {
-  font-size: 18px;
+.bloggrid-title {
+  font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: #1a1a1a;
+  line-height: 1.5;
   margin-bottom: 10px;
+  transition: color 0.3s ease;
 }
 
-.blockgrid-desc {
-  font-size: 14px;
+.bloggrid-card:hover .bloggrid-title {
+  color: #e94e77;
+}
+
+.bloggrid-desc {
+  font-size: 15px;
   color: #555;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  line-height: 1.7;
 }
 
-.blockgrid-readmore {
-  color: #d10000;
-  font-weight: bold;
+/* ===== Read More Button ===== */
+.bloggrid-readmore {
+  color: #e94e77;
+  font-weight: 600;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  font-size: 15px;
   display: inline-flex;
   align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
 }
 
-.blockgrid-readmore:hover {
-  transform: translateX(4px);
+.bloggrid-readmore span {
+  transition: transform 0.3s ease;
 }
 
-/* ===== Responsive Layout ===== */
+.bloggrid-readmore:hover span {
+  transform: translateX(6px);
+}
 
-/* Medium Screens (Tablet) */
+/* ===== Hover Glow Effect ===== */
+.bloggrid-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: radial-gradient(
+    circle at top left,
+    rgba(233, 78, 119, 0.12),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.bloggrid-card:hover::after {
+  opacity: 1;
+}
+
+/* ===== Animation Glow Border ===== */
+.bloggrid-card:hover {
+  border: 1.5px solid rgba(233, 78, 119, 0.3);
+}
+
+/* ===== Responsive Design ===== */
+
+/* ---------- For Large Tablets / Small Laptops ---------- */
+@media (max-width: 1200px) {
+  .bloggrid-section {
+    padding: 4rem 3rem;
+  }
+  .bloggrid-container {
+    gap: 2rem;
+  }
+  .bloggrid-title {
+    font-size: 19px;
+  }
+  .bloggrid-desc {
+    font-size: 14.5px;
+  }
+}
+
+/* ---------- For Tablets ---------- */
 @media (max-width: 992px) {
-  .blockgrid-container {
+  .bloggrid-section {
+    padding: 3.5rem 2rem;
+  }
+  .bloggrid-container {
     grid-template-columns: repeat(2, 1fr);
-    padding: 2rem;
+    gap: 2rem;
+  }
+  .bloggrid-title {
+    font-size: 18px;
+  }
+  .bloggrid-desc {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .bloggrid-meta {
+    font-size: 13px;
   }
 }
 
-/* Small Screens (Mobile) */
-@media (max-width: 600px) {
-  .blockgrid-container {
+/* ---------- For Mobile (Portrait) ---------- */
+@media (max-width: 768px) {
+  .bloggrid-section {
+    padding: 3rem 1.5rem;
+  }
+  .bloggrid-container {
     grid-template-columns: 1fr;
-    padding: 1rem;
+    gap: 1.8rem;
   }
-
-  .blockgrid-date {
-    width: 42px;
-    padding: 4px 0;
+  .bloggrid-card {
+    border-radius: 14px;
   }
+  .bloggrid-image {
+    height: 220px;
+  }
+  .bloggrid-content {
+    padding: 20px 18px 25px;
+  }
+  .bloggrid-title {
+    font-size: 17px;
+    line-height: 1.4;
+  }
+  .bloggrid-desc {
+    font-size: 13.5px;
+  }
+  .bloggrid-readmore {
+    font-size: 14px;
+  }
+}
 
-  .blockgrid-day {
+/* ---------- For Small Mobile Screens ---------- */
+@media (max-width: 480px) {
+  .bloggrid-section {
+    padding: 2.5rem 1rem;
+  }
+  .bloggrid-container {
+    gap: 1.5rem;
+  }
+  .bloggrid-title {
     font-size: 16px;
   }
-
-  .blockgrid-month {
+  .bloggrid-desc {
+    font-size: 13px;
+  }
+  .bloggrid-meta {
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .bloggrid-image {
+    height: 200px;
+  }
+  .bloggrid-day {
+    font-size: 20px;
+  }
+  .bloggrid-month {
     font-size: 11px;
   }
 }

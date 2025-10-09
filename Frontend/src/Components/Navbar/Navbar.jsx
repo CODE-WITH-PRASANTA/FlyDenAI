@@ -54,7 +54,7 @@ const Navbar = () => {
   path: "/visa/overview",
   sub: [
     { name: "All Visa Overview", path: "/visa/overview" },
-    { name: "Tourist Visa", path: "/ComingSoon" },
+    { name: "Tourist Visa", path: "/TouristVisa" },
     { name: "Student Visa", path: "/ComingSoon" },
     { name: "Business Visa", path: "/ComingSoon" },
     { name: "Work Visa", path: "/ComingSoon" },
@@ -77,7 +77,6 @@ const Navbar = () => {
       { name: "Intern Abroad", path: "/ComingSoon" },
     ]},
     { name: "Blog", path: "/blog" },
-    { name: "BlogDetails", path: "/blog/details" },
     { name: "Contact Us", path: "/contact" },
     { name: "Get a Quote", path: "/ComingSoon" },
   ];

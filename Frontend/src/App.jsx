@@ -12,8 +12,9 @@ import ComingSoon from "./Components/ComingSoon/ComingSoon";
 import TeamMembers from "./Pages/TeamMembers/TeamMembers";
 import ContactPage from "./Pages/ContactPage/ContactPage";
 import BlogSec from "./Pages/BlogSec/BlogSec";
-import BlogDetails from "./Components/BlogDetails/BlogDetails";
 import AllVisaOverView from "./Pages/AllVisaOverView/AllVisaOverView";
+import BlogDetails from "./Pages/BlogDetails/BlogDetails";
+import TouristVisa from "./Pages/TouristVisa/TouristVisa";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
           <Route path="/blog" element={<BlogSec />} />
           <Route path="/blog/details" element={<BlogDetails />} />
           <Route path="/visa/overview" element={<AllVisaOverView />} />
+
+
+          {/* Visa Sec */}
+          <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
         </Routes>
       <Footer />

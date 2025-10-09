@@ -1,0 +1,371 @@
+/* 🌐 SECTION */
+.AllVisaAvalable-section {
+  width: 100%;
+  padding: 20px 6%;
+  background: linear-gradient(135deg, #fdf6f9 0%, #fff0f5 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 4px solid #E94E77;        /* subtle top border */
+  border-bottom: 4px solid #E94E77;     /* subtle bottom border */
+  border-radius: 20px;                   /* rounded edges for elegance */
+  box-shadow: 0 15px 40px rgba(233, 78, 119, 0.1); /* soft shadow for depth */
+  transition: all 0.5s ease;
+}
+
+.AllVisaAvalable-section:hover {
+  box-shadow: 0 25px 50px rgba(233, 78, 119, 0.2);
+}
+
+/* ✨ Floating subtle gradient overlay for depth */
+.AllVisaAvalable-section::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at top right, rgba(233, 78, 119, 0.15), transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+}
+
+.AllVisaAvalable-section::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at bottom left, rgba(7, 41, 77, 0.08), transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
+}
+
+/* ---------- HEADER ---------- */
+.AllVisaAvalable-header {
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+.AllVisaAvalable-subtitle {
+  color: #e94e77;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+  animation: fadeDown 1s ease forwards;
+}
+
+.AllVisaAvalable-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 3px;
+  background: #e94e77;
+  border-radius: 3px;
+}
+
+.AllVisaAvalable-title {
+  font-size: 38px;
+  color: #07294d;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-top: 25px;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+/* ---------- CARD GRID ---------- */
+.AllVisaAvalable-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- CARD ---------- */
+.AllVisaAvalable-card {
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(7, 41, 77, 0.08);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(233, 78, 119, 0.15);
+  position: relative;
+  animation: slideUp 0.8s ease forwards;
+}
+
+.AllVisaAvalable-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 40px rgba(233, 78, 119, 0.25);
+  border-color: rgba(233, 78, 119, 0.4);
+}
+
+/* ---------- IMAGE ---------- */
+.AllVisaAvalable-image {
+  overflow: hidden;
+}
+
+.AllVisaAvalable-image img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.AllVisaAvalable-card:hover .AllVisaAvalable-image img {
+  transform: scale(1.08);
+}
+
+/* ---------- CONTENT ---------- */
+.AllVisaAvalable-content {
+  text-align: left;
+  padding: 25px 25px 22px;
+}
+
+.AllVisaAvalable-number {
+  color: #e94e77;
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 17px;
+  opacity: 0.9;
+}
+
+.AllVisaAvalable-name {
+  color: #07294d;
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.AllVisaAvalable-description {
+  color: #5c5c5c;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* ---------- LIST ---------- */
+.AllVisaAvalable-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.AllVisaAvalable-list li {
+  color: #5c5c5c;
+  font-size: 15px;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.AllVisaAvalable-list li span {
+  color: #e94e77;
+  font-weight: bold;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.AllVisaAvalable-list li:hover {
+  color: #e94e77;
+  transform: translateX(5px);
+}
+
+.AllVisaAvalable-list li:hover span {
+  transform: scale(1.2);
+}
+
+/* ---------- FOOTER ---------- */
+.AllVisaAvalable-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+  margin-top: 10px;
+}
+
+.AllVisaAvalable-readmore {
+  color: #07294d;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.AllVisaAvalable-readmore:hover {
+  color: #e94e77;
+  letter-spacing: 0.5px;
+}
+
+.AllVisaAvalable-dots {
+  color: #a5a5a5;
+  font-size: 18px;
+}
+
+/* ---------- ANIMATIONS ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ------------------ MEDIA QUERIES ------------------ */
+
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
+  .AllVisaAvalable-section {
+    padding: 30px 4%;
+    border-radius: 15px;
+  }
+
+  .AllVisaAvalable-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .AllVisaAvalable-subtitle {
+    font-size: 13px;
+  }
+
+  .AllVisaAvalable-container {
+    gap: 20px;
+  }
+
+  .AllVisaAvalable-card {
+    border-radius: 12px;
+  }
+
+  .AllVisaAvalable-image img {
+    height: 180px;
+  }
+
+  .AllVisaAvalable-name {
+    font-size: 18px;
+  }
+
+  .AllVisaAvalable-description,
+  .AllVisaAvalable-list li {
+    font-size: 14px;
+  }
+
+  .AllVisaAvalable-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* Small Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .AllVisaAvalable-section {
+    padding: 40px 5%;
+  }
+
+  .AllVisaAvalable-title {
+    font-size: 32px;
+  }
+
+  .AllVisaAvalable-subtitle {
+    font-size: 14px;
+  }
+
+  .AllVisaAvalable-container {
+    gap: 25px;
+  }
+
+  .AllVisaAvalable-image img {
+    height: 200px;
+  }
+
+  .AllVisaAvalable-name {
+    font-size: 19px;
+  }
+
+  .AllVisaAvalable-description,
+  .AllVisaAvalable-list li {
+    font-size: 14.5px;
+  }
+}
+
+/* Medium Tablets / Small Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .AllVisaAvalable-section {
+    padding: 50px 5%;
+  }
+
+  .AllVisaAvalable-title {
+    font-size: 34px;
+  }
+
+  .AllVisaAvalable-subtitle {
+    font-size: 14px;
+  }
+
+  .AllVisaAvalable-container {
+    gap: 30px;
+  }
+
+  .AllVisaAvalable-image img {
+    height: 210px;
+  }
+}
+
+/* Large Laptops & Desktops (1025px and above) */
+@media (min-width: 1025px) {
+  .AllVisaAvalable-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+  }
+}
+
+/* Extra Large Screens (1440px and above) */
+@media (min-width: 1440px) {
+  .AllVisaAvalable-container {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .AllVisaAvalable-title {
+    font-size: 42px;
+  }
+}

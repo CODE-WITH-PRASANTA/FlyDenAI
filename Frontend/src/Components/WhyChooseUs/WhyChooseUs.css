@@ -1,0 +1,250 @@
+.whychooseus-section {
+  width: 100%;
+  background: #fdf0f2; /* Soft, attractive pink background */
+  padding: 20px 0;
+  text-align: center;
+  position: relative;
+}
+
+.whychooseus-container {
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.whychooseus-subtitle {
+  color: #e42121;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.whychooseus-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  width: 50px;
+  height: 2px;
+  background: #e42121;
+  transform: translateX(-50%);
+}
+
+.whychooseus-title {
+  font-size: 36px;
+  color: #062c43;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 60px;
+}
+
+.whychooseus-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  justify-content: center;
+  margin-bottom: 80px;
+}
+
+.whychooseus-card {
+  background: #fff;
+  border: 1px solid #e7e7e7;
+  border-radius: 16px;
+  padding: 40px 25px;
+  transition: all 0.4s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.whychooseus-card:hover {
+  transform: translateY(-10px);
+  border-color: #e42121;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.whychooseus-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 18px;
+}
+
+.whychooseus-card-title {
+  color: #002b45;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.whychooseus-card-desc {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.whychooseus-more {
+  color: #e42121;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whychooseus-more .whychoose-arrow {
+  margin-left: 5px;
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.whychooseus-card:hover .whychooseus-arrow {
+  transform: translateX(4px);
+}
+
+.whychooseus-footer {
+  border-top: 1px solid #e6e6e6;
+  padding-top: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.whychooseus-footer-text {
+  font-size: 22px;
+  font-weight: 600;
+  color: #062c43;
+  margin-bottom: 25px;
+}
+
+.whychooseus-footer-text .highlight {
+  color: #e42121;
+  text-decoration: underline;
+}
+
+.whychooseus-btn {
+  background: transparent;
+  color: #e42121;
+  border: 2px solid #e42121;
+  padding: 14px 30px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.whychooseus-btn:hover {
+  background: #e42121;
+  color: #fff;
+}
+
+
+/* Tablet & small screens */
+@media (max-width: 1200px) {
+  .whychooseus-title {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .whychooseus-cards {
+    gap: 25px;
+  }
+
+  .whychooseus-card {
+    padding: 35px 20px;
+  }
+
+  .whychooseus-footer-text {
+    font-size: 20px;
+  }
+
+  .whychooseus-btn {
+    padding: 12px 28px;
+    font-size: 13px;
+  }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+  .whychooseus-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .whychooseus-title {
+    font-size: 28px;
+  }
+
+  .whychooseus-footer-text {
+    font-size: 18px;
+  }
+
+  .whychooseus-btn {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 768px) {
+  .whychooseus-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .whychooseus-title {
+    font-size: 24px;
+  }
+
+  .whychooseus-footer-text {
+    font-size: 16px;
+  }
+
+  .whychooseus-btn {
+    padding: 10px 20px;
+    font-size: 12px;
+  }
+
+  .whychooseus-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Extra small screens (very small mobiles) */
+@media (max-width: 480px) {
+  .whychooseus-section {
+    padding: 50px 15px;
+  }
+
+  .whychooseus-title {
+    font-size: 22px;
+  }
+
+  .whychooseus-subtitle {
+    font-size: 13px;
+  }
+
+  .whychooseus-card-title {
+    font-size: 18px;
+  }
+
+  .whychooseus-card-desc {
+    font-size: 14px;
+  }
+
+  .whychooseus-footer-text {
+    font-size: 15px;
+  }
+
+  .whychooseus-btn {
+    padding: 8px 18px;
+    font-size: 12px;
+  }
+
+  .whychooseus-icon {
+    width: 50px;
+    height: 50px;
+  }
+}
