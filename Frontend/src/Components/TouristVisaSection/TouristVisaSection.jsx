@@ -9,6 +9,7 @@ import {
   FaMoneyCheckAlt,
   FaHandshake,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import v1 from "../../assets/v1.webp";
 import v2 from "../../assets/v2.webp";
@@ -20,6 +21,21 @@ import v6 from "../../assets/v6.webp";
 import "./TouristVisaSection.css";
 
 const TouristVisaSection = () => {
+
+  // State for dynamic Visa Category
+const [selectedVisa, setSelectedVisa] = useState("");
+
+// Visa categories by type
+const visaCategories = {
+  "Student Visa": ["F1 Student", "J1 Exchange", "M-1 Non-Academic"],
+  "Residence Visa": ["Permanent Residence", "Temporary Residence", "Work Permit"],
+  "Business Visa": ["Investor", "Trade", "Conference"],
+  "Tourist Visa": ["Short-term", "Family Visit", "Holiday"],
+  "Conference Visa": ["Academic Conference", "Business Conference"],
+  "Medical Visa": ["Treatment", "Consultation"],
+};
+
+
   const visaOptions = [
     "Student Visa",
     "Residence Visa",
@@ -31,6 +47,18 @@ const TouristVisaSection = () => {
 
   const [activeVisa, setActiveVisa] = useState("Tourist Visa");
   const [activeConsultation, setActiveConsultation] = useState("Free Consultation");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const togglePopup = () => {
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  const handleContinue = () => {
+    setIsPopupOpen(false);
+    navigate("/FreeEnquery");
+  };
 
   const consultationItems = [
     {
@@ -66,7 +94,6 @@ const TouristVisaSection = () => {
     (item) => item.id === activeConsultation
   );
 
-  // Map activeVisa to image
   const visaImages = {
     "Student Visa": v1,
     "Residence Visa": v2,
@@ -80,7 +107,6 @@ const TouristVisaSection = () => {
     <section className="TouristVisaSection">
       {/* ===== First Section: Visa Selector ===== */}
       <div className="visa-selector">
-        {/* Left Sidebar - Visa Options */}
         <div className="visa-left-sidebar">
           {visaOptions.map((visa, index) => (
             <div
@@ -94,66 +120,20 @@ const TouristVisaSection = () => {
           ))}
         </div>
 
-        {/* Right Image for Active Visa */}
         <div className="visa-right-image">
           <img src={visaImages[activeVisa]} alt={activeVisa} />
         </div>
       </div>
 
-      {/* ===== Second Section: Downloads & Overview ===== */}
+     {/* Floating Enroll Button */}
+      <div className="floating-enroll-btn" onClick={togglePopup}>
+        <FaHandshake className="floating-icon" />
+        Free Consultation
+      </div>
+
+      {/* ===== Second Section ===== */}
       <div className="visa-details-layout">
-        {/* Left Downloads Sidebar */}
-        <div className="downloads-sidebar">
-          <h2>Downloads</h2>
-          <div className="download-card">
-            <img src="/pdf-icon.png" alt="PDF" className="file-icon" />
-            <div>
-              <p className="file-title">Application Form</p>
-              <p className="file-size">450kb</p>
-            </div>
-          </div>
-          <div className="download-card">
-            <img src="/doc-icon.png" alt="DOC" className="file-icon" />
-            <div>
-              <p className="file-title">Terms & Conditions</p>
-              <p className="file-size">12mb</p>
-            </div>
-          </div>
-<section className="study-card-section">
-  <div className="study-card">
-    <div className="study-card-bg"></div>
-    <div className="study-card-overlay"></div>
-
-    <div className="study-card-inner">
-      {/* Left Side - Text */}
-      <div className="study-card-content">
-        <p className="study-card-subtitle">Planning To</p>
-        <h2 className="study-card-title">Study in Abroad</h2>
-
-        <ul className="study-card-list">
-          <li>✔ World Class Institution</li>
-          <li>✔ Quality Education</li>
-          <li>✔ Affordable Fees</li>
-        </ul>
-
-        <p className="study-card-note">* Terms & Conditions</p>
-
-        <button className="study-card-btn">MAKE AN APPOINTMENT →</button>
-      </div>
-
-      {/* Right Side - Imported Image */}
-      <div className="study-card-image">
-        <img src={v5} alt="Study Abroad" />
-      </div>
-    </div>
-  </div>
-</section>
-
-        </div>
-
-        {/* Right Main Content */}
         <div className="visa-main-content">
-          {/* Visa Overview */}
           <div className="visa-overview">
             <h2>{activeVisa} Overview</h2>
             <p>
@@ -207,7 +187,9 @@ const TouristVisaSection = () => {
               {consultationItems.map((item) => (
                 <div
                   key={item.id}
-                  className={`consultation-item ${item.id === activeConsultation ? "active" : ""}`}
+                  className={`consultation-item ${
+                    item.id === activeConsultation ? "active" : ""
+                  }`}
                   onClick={() => setActiveConsultation(item.id)}
                 >
                   {item.icon}
@@ -222,11 +204,14 @@ const TouristVisaSection = () => {
             <div className="consultation-right">
               <h3>{activeConsultationData.title}</h3>
               <p>{activeConsultationData.description}</p>
-              <img src={activeConsultationData.imgSrc} alt={activeConsultationData.title} />
+              <img
+                src={activeConsultationData.imgSrc}
+                alt={activeConsultationData.title}
+              />
             </div>
           </div>
 
-          {/* ===== Modern Reason Grid Section ===== */}
+          {/* Modern Reason Grid */}
           <div className="reason-grid">
             {[
               {
@@ -261,6 +246,68 @@ const TouristVisaSection = () => {
           </div>
         </div>
       </div>
+
+   {/* ==== Popup Modal with Enquiry Form ==== */}
+    {isPopupOpen && (
+      <div className="popup-overlay" onClick={togglePopup}>
+        <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+          <h3>Free Enquiry Form</h3>
+          <p>Fill in your details and our team will contact you shortly.</p>
+
+          <form
+            className="enquiry-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              // Handle form submission here
+              alert("Form Submitted!");
+              setIsPopupOpen(false);
+            }}
+          >
+            <input type="text" placeholder="Full Name" required />
+            <input type="email" placeholder="Email Address" required />
+
+            {/* Visa Type Select */}
+            <select
+              required
+              onChange={(e) => setSelectedVisa(e.target.value)}
+              value={selectedVisa}
+            >
+              <option value="">Select Visa Type</option>
+              {visaOptions.map((visa) => (
+                <option key={visa} value={visa}>
+                  {visa}
+                </option>
+              ))}
+            </select>
+
+            {/* Visa Category Select - dynamic */}
+            <select required>
+              <option value="">Select Visa Category</option>
+              {selectedVisa &&
+                visaCategories[selectedVisa]?.map((cat, idx) => (
+                  <option key={idx} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+            </select>
+
+            <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" required />
+            <input type="text" placeholder="Address" required />
+            <textarea placeholder="Your Message" rows="4"></textarea>
+
+            <div className="popup-buttons">
+              <button type="button" className="close-btn" onClick={togglePopup}>
+                Cancel
+              </button>
+              <button type="submit" className="continue-btn">
+                Submit <FaArrowRight />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    )}
+
     </section>
   );
 };
