@@ -1,0 +1,164 @@
+.team-section {
+  background: linear-gradient(135deg, #f8f9fa, #e9f2f9);
+  padding: 60px 20px;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+}
+
+.team-section h2 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #222;
+}
+
+/* Carousel container */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  gap: 30px;
+  animation: scroll 30s linear infinite;
+}
+.carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Card styling */
+.team-member {
+  flex: 0 0 auto;
+}
+
+.member-card {
+  width: 260px;
+  backdrop-filter: blur(15px);
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.member-card:hover {
+  transform: translateY(-12px) scale(1.07);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Card header with glow */
+.card-header {
+  position: relative;
+  height: 140px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.8);
+  object-fit: cover;
+  position: absolute;
+  bottom: -60px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 123, 255, 0.4);
+}
+
+.member-card:hover .card-header img {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* Role tag ribbon */
+.role-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Member info */
+.member-info {
+  padding: 80px 20px 20px;
+  text-align: center;
+}
+
+.member-info h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #007bff;
+}
+
+.member-info p {
+  font-size: 14px;
+  color: #555;
+  margin: 2px 0;
+}
+
+/* Infinite scroll animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Navigation buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 123, 255, 0.9);
+  border: none;
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.nav-button.left {
+  left: 10px;
+}
+.nav-button.right {
+  right: 10px;
+}
+.nav-button:hover {
+  background: rgba(0, 86, 179, 0.9);
+  transform: scale(1.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .member-card { width: 220px; }
+}
+@media (max-width: 768px) {
+  .member-card { width: 180px; padding: 10px; }
+  .card-header img { width: 90px; height: 90px; }
+}
+@media (max-width: 480px) {
+  .member-card { width: 150px; }
+  .nav-button { padding: 10px; font-size: 16px; }
+}

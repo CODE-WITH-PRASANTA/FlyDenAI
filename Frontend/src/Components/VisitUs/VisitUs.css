@@ -1,0 +1,138 @@
+/* 🌟 Visit Us Section - Clean Professional Style */
+.visit-us {
+  padding: 60px 20px;
+  background: #f8f9fa; /* light professional background */
+  color: #333;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  position: relative;
+}
+
+/* Section Title */
+.visit-us h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #222;
+  line-height: 1.2;
+}
+
+/* Cards Container Grid */
+.locations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Card Design */
+.location-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon Design */
+.location-icon {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* clean professional blue */
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.location-card:hover .location-icon {
+  transform: scale(1.1);
+}
+
+/* Card Content */
+.location-info h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.location-info p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #555;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.view-on-maps {
+  font-size: 0.9rem;
+  color: #007bff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.view-on-maps:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Large desktops */
+@media (max-width: 1200px) {
+  .locations-container {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+}
+
+/* Medium desktops/tablets */
+@media (max-width: 992px) {
+  .locations-container {
+    gap: 20px;
+  }
+}
+
+/* Small tablets/mobile landscape */
+@media (max-width: 768px) {
+  .visit-us h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .visit-us h2 {
+    font-size: 1.8rem;
+  }
+
+  .location-card {
+    padding: 20px;
+  }
+
+  .location-info h3 {
+    font-size: 1.1rem;
+  }
+
+  .location-info p {
+    font-size: 0.85rem;
+  }
+
+  .location-icon {
+    padding: 14px;
+    font-size: 1.5rem;
+  }
+}

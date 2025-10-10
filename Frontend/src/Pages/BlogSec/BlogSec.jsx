@@ -9,7 +9,7 @@ const BlogSec = () => {
     <div>
       <BlogBanner/>
       <BlogGrid/>
-    </div>
+W    </div>
   )
 }
 

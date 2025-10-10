@@ -1,0 +1,214 @@
+/* 🌍 Base Banner */
+.allcountry-banner {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* ✨ Overlay */
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65));
+  z-index: 1;
+}
+
+/* 📦 Content */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  max-width: 700px;
+  padding: 0 1rem;
+}
+
+/* 🏆 Badge */
+.banner-badge {
+  position: absolute;
+  top: 40px;
+  right: 60px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #000;
+  padding: 10px 22px;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(255, 200, 50, 0.3);
+  animation: fadeDown 0.8s ease;
+}
+
+.banner-badge span {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* 💬 Title */
+.banner-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 35px;
+  animation: fadeUp 1s ease;
+}
+
+/* 🔍 Search Box */
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 60px;
+  padding: 12px 20px;
+  max-width: 520px;
+  margin: 0 auto 35px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.search-box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 🔸 Icons */
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.search-icon.left {
+  color: #007bff;
+  margin-right: 15px;
+}
+
+.search-icon.right {
+  margin-left: 20px;
+  background: linear-gradient(135deg, #007bff, #00b4ff);
+  color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon.right:hover {
+  transform: rotate(45deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+}
+
+/* ✏️ Search Text */
+.search-text {
+  flex: 1;
+  text-align: center;
+  font-size: 1.05rem;
+  color: #555;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* 🟨 Bottom Ribbon */
+.bottom-ribbon {
+  display: inline-block;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #000;
+  padding: 10px 25px;
+  border-radius: 40px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  animation: fadeUp 1.2s ease;
+  margin-top: 10vh;
+}
+
+/* 💨 Animations */
+@keyframes fadeUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 992px) {
+  .banner-badge {
+    right: 30px;
+    top: 25px;
+    font-size: 0.85rem;
+  }
+  .banner-title {
+    font-size: 2.2rem;
+  }
+  .search-box {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 768px) {
+  .allcountry-banner {
+    height: 75vh;
+  }
+  .banner-title {
+    font-size: 2rem;
+  }
+  .search-box {
+    width: 90%;
+    padding: 12px 20px;
+  }
+  .search-text {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 1.7rem;
+  }
+  .banner-badge {
+    top: 20px;
+    right: 20px;
+    padding: 8px 15px;
+  }
+  .bottom-ribbon {
+    font-size: 0.9rem;
+    padding: 8px 18px;
+  }
+  .search-box {
+    padding: 10px 16px;
+  }
+  .search-text {
+    font-size: 0.9rem;
+  }
+}

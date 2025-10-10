@@ -1,0 +1,259 @@
+/* ===========================
+   🌟 VISIT US SECTION
+   =========================== */
+.visitussection-section {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #1e1e1e;
+  background: #f9f9f9;
+  padding-bottom: 60px;
+  animation: fadeInSection 1s ease forwards;
+}
+
+@keyframes fadeInSection {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADER ===== */
+.visitussection-header {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  padding: 60px 20px 100px;
+  text-align: center;
+  color: white;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.visitussection-header h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+  animation: fadeInText 1.2s ease forwards;
+}
+
+@keyframes fadeInText {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Animated background shapes */
+.visitussection-header::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  top: -50px;
+  left: -50px;
+  animation: floatShape 6s ease-in-out infinite alternate;
+}
+
+.visitussection-header::after {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  bottom: -40px;
+  right: -40px;
+  animation: floatShape 8s ease-in-out infinite alternate;
+}
+
+@keyframes floatShape {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(15px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* ===== CARDS GRID ===== */
+.visitussection-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: -60px auto 50px;
+  padding: 0 20px;
+}
+
+/* ===== CARD — Glassmorphism ===== */
+.visitussection-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  padding: 25px 20px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInCard 0.8s ease forwards;
+}
+
+.visitussection-card:nth-child(1) { animation-delay: 0.2s; }
+.visitussection-card:nth-child(2) { animation-delay: 0.4s; }
+.visitussection-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes fadeInCard {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.visitussection-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Card content */
+.visitussection-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.visitussection-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  flex-grow: 1;
+}
+
+.visitussection-maplink {
+  font-size: 0.9rem;
+  color: #0073e6;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.visitussection-maplink:hover {
+  color: #005bb5;
+  transform: translateX(4px);
+}
+
+/* ===== CONTINENT TABS — Sliding Effect ===== */
+.visitussection-tabs {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  padding: 12px;
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.visitussection-tab {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: #555;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.visitussection-tab:hover {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: #0073e6;
+}
+
+.visitussection-tab.active {
+  background: linear-gradient(135deg, #0073e6, #00b4ff);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== REGION LIST ===== */
+.visitussection-regionlist {
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+  text-align: left;
+  animation: fadeInRegion 0.8s ease forwards;
+}
+
+@keyframes fadeInRegion {
+  0% { opacity: 0; transform: translateX(-20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.visitussection-region {
+  max-width: 1100px;
+  margin: 0 auto 25px auto;
+}
+
+.visitussection-region h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #004c97;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  border-left: 4px solid #ff7e5f;
+  padding-left: 8px;
+}
+
+.visitussection-region p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  word-spacing: 3px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .visitussection-cards {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 992px) {
+  .visitussection-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .visitussection-header {
+    padding: 50px 15px 80px;
+  }
+}
+
+@media (max-width: 576px) {
+  .visitussection-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .visitussection-card {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .visitussection-tab {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .visitussection-region h4 {
+    font-size: 0.9rem;
+  }
+
+  .visitussection-region p {
+    font-size: 0.85rem;
+  }
+}
