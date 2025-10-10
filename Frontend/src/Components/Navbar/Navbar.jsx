@@ -69,7 +69,6 @@ const Navbar = () => {
   name: "Country", 
   path: "/AllCountry" 
 },
-    { name: "Our Partners", path: "/ComingSoon" },
     { name: "Program Type", path: "/ComingSoon", sub: [
       { name: "Study Abroad", path: "/ComingSoon" },
       { name: "Teach Abroad", path: "/ComingSoon" },
@@ -77,7 +76,7 @@ const Navbar = () => {
     ]},
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
-    { name: "Get a Quote", path: "/ComingSoon" },
+    { name: "Get a Quote", path: "/GetaQuotes" },
   ];
 
   return (
