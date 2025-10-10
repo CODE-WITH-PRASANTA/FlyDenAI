@@ -15,6 +15,7 @@ import BlogSec from "./Pages/BlogSec/BlogSec";
 import AllVisaOverView from "./Pages/AllVisaOverView/AllVisaOverView";
 import BlogDetails from "./Pages/BlogDetails/BlogDetails";
 import TouristVisa from "./Pages/TouristVisa/TouristVisa";
+import AllCountry from "./Pages/AllCountry/AllCountry";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/blog" element={<BlogSec />} />
           <Route path="/blog/details" element={<BlogDetails />} />
           <Route path="/visa/overview" element={<AllVisaOverView />} />
+          <Route path="/AllCountry" element={<AllCountry />} />
 
 
           {/* Visa Sec */}

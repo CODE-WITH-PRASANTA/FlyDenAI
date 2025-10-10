@@ -65,11 +65,10 @@ const Navbar = () => {
     { name: "Free Visa Enquiry", path: "/ComingSoon" },
   ],
 },
-    { name: "Country", path: "/ComingSoon", sub: [
-      { name: "France", path: "/ComingSoon" },
-      { name: "Australia", path: "/ComingSoon" },
-      { name: "India", path: "/ComingSoon" },
-    ]},
+ { 
+  name: "Country", 
+  path: "/AllCountry" 
+},
     { name: "Our Partners", path: "/ComingSoon" },
     { name: "Program Type", path: "/ComingSoon", sub: [
       { name: "Study Abroad", path: "/ComingSoon" },
