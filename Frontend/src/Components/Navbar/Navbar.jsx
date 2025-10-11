@@ -55,7 +55,7 @@ const Navbar = () => {
   sub: [
     { name: "All Visa Overview", path: "/visa/overview" },
     { name: "Visa Enquiry’s", path: "/TouristVisa" },
-    { name: "Free Visa Enquiry", path: "/ComingSoon" },
+    { name: "Free Visa Enquiry", path: "/FreeVisaQuotes" },
   ],
 },
  { 
@@ -63,7 +63,7 @@ const Navbar = () => {
   path: "/AllCountry" 
 },
     { name: "Program Type", path: "/ComingSoon", sub: [
-      { name: "Study Abroad", path: "/ComingSoon" },
+      { name: "Study Abroad", path: "/StudyAbroad" },
       { name: "Teach Abroad", path: "/ComingSoon" },
       { name: "Intern Abroad", path: "/ComingSoon" },
     ]},
