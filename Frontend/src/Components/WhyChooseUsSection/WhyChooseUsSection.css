@@ -1,10 +1,35 @@
-/* WhyChooseUsSection.css */
+/* 🌍 Base Section */
 .why-choose-us {
-  padding: 60px 20px;
+  padding: 40px 20px;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   font-family: "Poppins", sans-serif;
   text-align: center;
+  border: 5px solid transparent; /* Invisible base border */
+  border-radius: 25px;
+  background-clip: padding-box;
+  position: relative;
+  overflow: hidden;
 }
+
+/* ✨ Gradient Border Effect */
+.why-choose-us::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b, #ffcc70);
+  z-index: 0;
+}
+
+/* Keep content above border overlay */
+.why-choose-us > * {
+  position: relative;
+  z-index: 1;
+}
+
 
 .why-choose-us h2 {
   font-size: 2.8rem;
@@ -13,31 +38,22 @@
   margin-bottom: 50px;
 }
 
+/* 🌟 Container */
 .why-choose-us-container {
   display: flex;
-  gap: 30px;
-  overflow-x: auto;
-  padding-bottom: 15px;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: stretch;
+  gap: 25px;
+  padding-bottom: 15px;
 }
 
-.why-choose-us-container::-webkit-scrollbar {
-  height: 6px;
-}
-.why-choose-us-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-/* Card styling */
+/* 🧩 Service Card */
 .service-card {
-  background: white;
+  background: #fff;
   border-radius: 18px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  flex: 0 0 auto;
   width: 220px;
-  padding: 20px;
+  padding: 25px 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -49,7 +65,7 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-/* Icon container */
+/* 🎯 Icon Container */
 .icon-container {
   background: linear-gradient(135deg, #ff7e5f, #feb47b);
   width: 70px;
@@ -72,7 +88,7 @@
   font-size: 28px;
 }
 
-/* Text styling */
+/* 📜 Text */
 .service-card p {
   font-size: 15px;
   color: #444;
@@ -81,24 +97,92 @@
   line-height: 1.5;
 }
 
-/* Responsive adjustments */
-@media (max-width: 992px) {
+/* 🔹 Scrollbar for overflow (small screens) */
+.why-choose-us-container::-webkit-scrollbar {
+  height: 6px;
+}
+.why-choose-us-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* 📱 Responsive Design */
+
+/* Large Devices (Desktops & Laptops) */
+@media (max-width: 1200px) {
   .service-card {
     width: 200px;
+    padding: 20px 15px;
+  }
+  .why-choose-us h2 {
+    font-size: 2.4rem;
   }
 }
 
-@media (max-width: 768px) {
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+  .why-choose-us {
+    padding: 70px 15px;
+  }
+  .why-choose-us h2 {
+    font-size: 2.3rem;
+  }
   .why-choose-us-container {
     gap: 20px;
   }
   .service-card {
-    width: 180px;
+    width: 45%;
   }
 }
 
-@media (max-width: 480px) {
+/* Mobile Devices (480px - 767px) */
+@media (max-width: 767px) {
+  .why-choose-us {
+    padding: 60px 15px;
+  }
+  .why-choose-us h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .why-choose-us-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
   .service-card {
-    width: 160px;
+    width: 80%;
+    padding: 20px;
+  }
+  .icon-container {
+    width: 60px;
+    height: 60px;
+  }
+  .icon-container svg {
+    font-size: 24px;
+  }
+  .service-card p {
+    font-size: 14px;
+  }
+}
+
+/* Extra Small Devices (Under 480px) */
+@media (max-width: 480px) {
+  .why-choose-us {
+    padding: 50px 10px;
+  }
+  .why-choose-us h2 {
+    font-size: 1.8rem;
+  }
+  .service-card {
+    width: 95%;
+    padding: 18px;
+  }
+  .icon-container {
+    width: 55px;
+    height: 55px;
+  }
+  .icon-container svg {
+    font-size: 22px;
   }
 }

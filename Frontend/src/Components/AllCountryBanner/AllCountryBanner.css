@@ -1,147 +1,189 @@
-/* 🌍 Base Banner */
+/* 🌍 Main Banner */
 .allcountry-banner {
   position: relative;
   width: 100%;
-  height: 50vh;
+  height: 70vh;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
   color: #fff;
+  font-family: "Poppins", sans-serif;
   overflow: hidden;
 }
 
-/* ✨ Overlay */
-.banner-overlay {
+/* 🔷 Gradient Overlay */
+.allcountry-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.65));
+  background: linear-gradient(
+    180deg,
+    rgba(0, 25, 55, 0.6),
+    rgba(0, 0, 0, 0.8)
+  );
   z-index: 1;
+  backdrop-filter: blur(2px);
 }
 
-/* 📦 Content */
-.banner-content {
+/* 🎖 Top Badge */
+.allcountry-badge {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  padding: 12px 26px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 2;
+  box-shadow: 0 6px 18px rgba(0, 123, 255, 0.3);
+  animation: slideDown 0.9s ease;
+}
+
+/* 🧭 Main Content */
+.allcountry-content {
   position: relative;
   z-index: 2;
   text-align: center;
-  width: 100%;
-  max-width: 700px;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
+  max-width: 800px;
+  animation: fadeUp 1.2s ease;
 }
 
-/* 🏆 Badge */
-.banner-badge {
-  position: absolute;
-  top: 40px;
-  right: 60px;
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
-  color: #000;
-  padding: 10px 22px;
-  border-radius: 40px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  z-index: 2;
-  box-shadow: 0 4px 15px rgba(255, 200, 50, 0.3);
-  animation: fadeDown 0.8s ease;
-}
-
-.banner-badge span {
-  color: #fff;
-  font-weight: 700;
-}
-
-/* 💬 Title */
-.banner-title {
-  font-size: 2.8rem;
+/* ✨ Title */
+.allcountry-title {
+  font-size: 3.2rem;
   font-weight: 700;
   line-height: 1.3;
-  margin-bottom: 35px;
-  animation: fadeUp 1s ease;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+}
+
+.allcountry-title span {
+  background: linear-gradient(135deg, #00b4ff, #00f9a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* 💬 Subtitle */
+.allcountry-subtitle {
+  font-size: 1.1rem;
+  color: #f0f0f0;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  line-height: 1.6;
 }
 
 /* 🔍 Search Box */
-.search-box {
+.allcountry-searchbox {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
+  background: #ffffff;
   border-radius: 60px;
-  padding: 12px 20px;
+  padding: 12px 22px;
   max-width: 520px;
-  margin: 0 auto 35px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
 }
 
-.search-box:hover {
+.allcountry-searchbox:hover {
+  box-shadow: 0 15px 35px rgba(0, 174, 255, 0.4);
   transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 🧾 Input */
+.allcountry-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #333;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.allcountry-input::placeholder {
+  color: #888;
 }
 
 /* 🔸 Icons */
-.search-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.search-icon.left {
+.allcountry-icon.left {
   color: #007bff;
-  margin-right: 15px;
+  margin-right: 10px;
+  font-size: 1.4rem;
 }
 
-.search-icon.right {
-  margin-left: 20px;
-  background: linear-gradient(135deg, #007bff, #00b4ff);
+.allcountry-icon.right {
+  background: linear-gradient(135deg, #007bff, #00d4ff);
   color: #fff;
-  padding: 10px;
   border-radius: 50%;
-  font-size: 1.2rem;
+  padding: 9px;
+  font-size: 1.9rem;
+  margin-left: 10px;
+  cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.search-icon.right:hover {
-  transform: rotate(45deg) scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+.allcountry-icon.right:hover {
+  transform: rotate(45deg) scale(1.15);
+  box-shadow: 0 0 15px #00bfff;
 }
 
-/* ✏️ Search Text */
-.search-text {
-  flex: 1;
-  text-align: center;
-  font-size: 1.05rem;
-  color: #555;
+/* 🌎 Suggestions */
+.allcountry-suggestions {
+  margin: 20px auto;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: fadeUp 0.7s ease;
+}
+
+.allcountry-country {
+  padding: 12px 22px;
+  text-align: left;
+  color: #333;
   font-weight: 500;
-  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+.allcountry-country:hover {
+  background: linear-gradient(135deg, #e3f2ff, #c8f3ff);
+  color: #007bff;
+}
+
+.allcountry-nodata {
+  color: #777;
+  font-size: 1rem;
+  padding: 12px 22px;
 }
 
 /* 🟨 Bottom Ribbon */
-.bottom-ribbon {
+.allcountry-ribbon {
   display: inline-block;
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
-  color: #000;
-  padding: 10px 25px;
-  border-radius: 40px;
+  background: linear-gradient(135deg, #ffcc33, #ffb347);
+  color: #111;
+  padding: 12px 35px;
+  border-radius: 50px;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-  animation: fadeUp 1.2s ease;
-  margin-top: 10vh;
+  font-size: 1rem;
+  box-shadow: 0 6px 16px rgba(255, 200, 0, 0.4);
+  margin-top: 30px;
+  animation: fadeUp 1.3s ease;
 }
 
 /* 💨 Animations */
 @keyframes fadeUp {
   from {
-    transform: translateY(30px);
+    transform: translateY(25px);
     opacity: 0;
   }
   to {
@@ -150,9 +192,9 @@
   }
 }
 
-@keyframes fadeDown {
+@keyframes slideDown {
   from {
-    transform: translateY(-20px);
+    transform: translateY(-25px);
     opacity: 0;
   }
   to {
@@ -161,54 +203,100 @@
   }
 }
 
-/* 📱 Responsive */
-@media (max-width: 992px) {
-  .banner-badge {
-    right: 30px;
-    top: 25px;
-    font-size: 0.85rem;
+/* Existing CSS code remains the same */
+
+/* Media Queries */
+
+/* Desktop View (>= 1200px) */
+@media (min-width: 1200px) {
+  .allcountry-content {
+    max-width: 900px;
   }
-  .banner-title {
-    font-size: 2.2rem;
+  .allcountry-title {
+    font-size: 3.5rem;
   }
-  .search-box {
-    max-width: 440px;
+  .allcountry-subtitle {
+    font-size: 1.2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .allcountry-banner {
-    height: 75vh;
+/* Laptop View (>= 992px and < 1200px) */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .allcountry-content {
+    max-width: 800px;
   }
-  .banner-title {
-    font-size: 2rem;
+  .allcountry-title {
+    font-size: 3.2rem;
   }
-  .search-box {
-    width: 90%;
-    padding: 12px 20px;
-  }
-  .search-text {
-    font-size: 0.95rem;
+  .allcountry-subtitle {
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 480px) {
-  .banner-title {
-    font-size: 1.7rem;
+/* Tablet View (>= 768px and < 992px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .allcountry-content {
+    max-width: 600px;
   }
-  .banner-badge {
+  .allcountry-title {
+    font-size: 2.8rem;
+  }
+
+  .allcountry-badge {
     top: 20px;
     right: 20px;
-    padding: 8px 15px;
-  }
-  .bottom-ribbon {
+    padding: 10px 20px;
     font-size: 0.9rem;
-    padding: 8px 18px;
   }
-  .search-box {
-    padding: 10px 16px;
+}
+
+/* Mobile View (< 768px) */
+@media (max-width: 767px) {
+  .allcountry-banner {
+    height: auto;
+    padding: 40px 0;
   }
-  .search-text {
+  .allcountry-content {
+    max-width: 90%;
+    padding: 0;
+    margin-top: 60px;
+  }
+  .allcountry-title {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  .allcountry-subtitle {
+    margin-bottom: 20px;
+  }
+  .allcountry-icon.left {
+    font-size: 1.2rem;
+  }
+  .allcountry-icon.right {
+    font-size: 1.5rem;
+    padding: 6px;
+  }
+  .allcountry-ribbon {
+    margin-top: 20px;
+    padding: 5px 10px;
     font-size: 0.9rem;
+  }
+}
+
+/* Small Mobile View (< 480px) */
+@media (max-width: 480px) {
+  .allcountry-title {
+    font-size: 1.8rem;
+    text-align: start;
+  }
+  .allcountry-subtitle {
+    text-align: start;
+  }
+  .allcountry-badge {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+
+  }
+  .allcountry-icon.left {
+    font-size: 1rem;
   }
 }

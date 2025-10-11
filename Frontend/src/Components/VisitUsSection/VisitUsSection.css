@@ -6,7 +6,6 @@
   font-family: "Poppins", sans-serif;
   color: #1e1e1e;
   background: #f9f9f9;
-  padding-bottom: 60px;
   animation: fadeInSection 1s ease forwards;
 }
 
@@ -139,21 +138,22 @@
   color: #005bb5;
   transform: translateX(4px);
 }
-
 /* ===== CONTINENT TABS — Sliding Effect ===== */
 .visitussection-tabs {
   background-color: #fff;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border-radius: 10px;
+  border-radius: 12px; /* slightly larger for a premium look */
   padding: 12px;
   gap: 15px;
   max-width: 1000px;
   margin: 0 auto 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); /* subtle depth */
+  border: 1.5px solid rgba(0, 0, 0, 0.1); /* professional border */
   overflow-x: auto;
   scroll-behavior: smooth;
+  transition: all 0.3s ease;
 }
 
 .visitussection-tab {
@@ -185,7 +185,16 @@
   background-color: #f8f9fa;
   padding: 40px 20px;
   text-align: left;
+  border: 1.5px solid rgba(0, 0, 0, 0.08); /* subtle professional border */
+  border-radius: 15px; /* smooth corners */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); /* subtle depth */
   animation: fadeInRegion 0.8s ease forwards;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for desktop */
+.visitussection-regionlist:hover {
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes fadeInRegion {

@@ -1,12 +1,17 @@
 /* 🌟 Customer Reviews Section - Modern Professional Style */
+/* ===================== Customer Reviews Section ===================== */
 .customer-reviews {
   font-family: "Poppins", sans-serif;
   padding: 80px 6%;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); 
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
   color: #222;
   text-align: center;
   overflow: hidden;
   position: relative;
+  border: 2px solid rgba(0, 0, 0, 0.05); /* subtle professional border */
+  border-radius: 25px; /* smooth rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* subtle depth */
+  transition: all 0.3s ease;
 }
 
 /* Section Title */
@@ -161,74 +166,83 @@
   text-decoration: underline;
 }
 
-/* Responsive Design */
+/* ===================== Responsive Media Queries ===================== */
 
-/* Medium Screens (Tablets) */
-@media (max-width: 992px) {
+/* Tablets: 768px and below */
+@media screen and (max-width: 1024px) {
   .customer-reviews {
     padding: 60px 5%;
   }
 
-  .customer-reviews .title {
-    font-size: 2rem;
-  }
-
   .review-section {
     flex-direction: column;
-    gap: 35px;
+    gap: 30px;
   }
 
   .review-left {
-    order: 2;
-    max-width: 320px;
-  }
-
-  .review-cards {
-    order: 1;
-    max-width: 400px;
-  }
-
-  .nav-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-}
-
-/* Small Screens (Mobile) */
-@media (max-width: 576px) {
-  .customer-reviews {
-    padding: 50px 4%;
-  }
-
-  .customer-reviews .title {
-    font-size: 1.8rem;
-    margin-bottom: 35px;
-  }
-
-  .review-left {
-    min-width: 240px;
-    max-width: 260px;
+    max-width: 300px;
   }
 
   .circle-large {
-    width: 160px;
-    height: 160px;
-    top: 35%;
-    right: 5%;
+    width: 180px;
+    height: 180px;
+    top: 20%;
+    right: 10%;
+  }
+
+  .review-cards {
+    max-width: 380px;
   }
 
   .review-card {
-    padding: 22px 20px;
-    max-width: 100%;
+    padding: 25px;
+  }
+
+  .reviewer h4 {
+    font-size: 1rem;
   }
 
   .review-text {
     font-size: 0.9rem;
   }
+}
 
-  .read-more {
-    font-size: 0.9rem;
+/* Mobile Landscape: 480px - 767px */
+@media screen and (max-width: 767px) {
+  .customer-reviews {
+    padding: 50px 4%;
+  }
+
+  .review-section {
+    flex-direction: column-reverse;
+    gap: 25px;
+  }
+
+  .review-left {
+    max-width: 250px;
+  }
+
+  .circle-large {
+    width: 140px;
+    height: 140px;
+    top: 15%;
+    right: 5%;
+  }
+
+  .review-cards {
+    max-width: 320px;
+    gap: 5px;
+  }
+
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .review-card {
+    padding: 20px;
+    border-radius: 15px;
   }
 
   .profile-img {
@@ -236,33 +250,63 @@
     height: 50px;
   }
 
-  .nav-btn {
-    width: 36px;
-    height: 36px;
-    font-size: 1.2rem;
-  }
-}
-
-/* Extra Small Screens (Under 380px) */
-@media (max-width: 380px) {
-  .customer-reviews .title {
-    font-size: 1.4rem;
-  }
-
-  .review-card {
-    padding: 18px 16px;
+  .reviewer h4 {
+    font-size: 0.95rem;
   }
 
   .review-text {
     font-size: 0.85rem;
   }
+}
 
-  .read-more {
-    font-size: 0.85rem;
+/* Mobile Portrait: below 480px */
+@media screen and (max-width: 480px) {
+  .customer-reviews {
+    padding: 40px 3%;
+  }
+
+  .review-left {
+    max-width: 200px;
   }
 
   .circle-large {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
+    top: 10%;
+    right: 5%;
+  }
+
+  .review-cards {
+    max-width: 280px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .review-card {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .profile-img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .reviewer h4 {
+    font-size: 0.9rem;
+  }
+
+  .review-text {
+    font-size: 0.8rem;
+  }
+
+  .read-more {
+    font-size: 0.85rem;
   }
 }
