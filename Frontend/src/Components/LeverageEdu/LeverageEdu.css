@@ -1,0 +1,53 @@
+.leverage-section {
+  padding: 60px 20px;
+  background-color: #f5fafe;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.leverage-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.leverage-title span {
+  color: #1a73e8;
+}
+
+.leverage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.leverage-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leverage-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 24px rgba(0,0,0,0.1);
+}
+
+.icon-wrapper {
+  margin-bottom: 20px;
+}
+
+.feature-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.feature-desc {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 8px;
+}

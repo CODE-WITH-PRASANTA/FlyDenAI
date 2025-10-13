@@ -1,0 +1,90 @@
+.study-info-section {
+  background-color: #f8fbff;
+  padding: 80px 10%;
+  font-family: 'Poppins', sans-serif;
+  color: #444;
+  line-height: 1.7;
+}
+
+.study-info-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.study-info-container h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #002b5b;
+  margin-bottom: 20px;
+}
+
+.study-info-container h2 span {
+  color: #007bff;
+}
+
+.study-info-container p {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #555;
+}
+
+.study-info-container h3 {
+  font-size: 22px;
+  color: #003366;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.study-info-container ul,
+.study-info-container ol {
+  margin-left: 25px;
+  margin-bottom: 16px;
+}
+
+.study-info-container li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.read-more-btn:hover {
+  color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .study-info-section {
+    padding: 60px 6%;
+  }
+
+  .study-info-container h2 {
+    font-size: 26px;
+  }
+
+  .study-info-container p,
+  .study-info-container li {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .study-info-section {
+    padding: 50px 5%;
+  }
+
+  .study-info-container h2 {
+    font-size: 24px;
+  }
+}

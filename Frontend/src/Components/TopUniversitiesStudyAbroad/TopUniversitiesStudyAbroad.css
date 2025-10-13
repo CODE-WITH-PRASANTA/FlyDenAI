@@ -1,0 +1,149 @@
+.universities-container {
+  max-width: 1200px;
+  margin: 2rem auto 4rem;
+  padding: 0 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1c1c1c;
+}
+
+/* Heading */
+.heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+.heading span {
+  color: #0073ff;
+}
+
+/* Country nav */
+.countries-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 2px solid transparent;
+}
+
+.country-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #9b9b9b;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.country-btn.active,
+.country-btn:hover {
+  color: #0073ff;
+  border-bottom-color: #0073ff;
+}
+
+/* Flag icon */
+.flag-icon {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+/* Universities grid */
+.universities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* University card */
+.university-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 12px;
+  background: #f9fafe;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.university-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+
+/* University logo */
+.university-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: #fff;
+  padding: 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* University info */
+.university-info h3 {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+  color: #1c1c1c;
+}
+
+.university-info p {
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* Courses tag */
+.courses-tag {
+  margin-left: auto;
+  background: #ffeb3b;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 6px;
+  color: #5a4d00;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .heading {
+    font-size: 2.2rem;
+  }
+
+  .countries-nav {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .country-btn {
+    font-size: 0.9rem;
+  }
+
+  .university-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .courses-tag {
+    margin-left: 0;
+    margin-top: 0.5rem;
+  }
+}
