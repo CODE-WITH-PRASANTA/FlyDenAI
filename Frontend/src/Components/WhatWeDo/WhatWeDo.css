@@ -1,258 +1,233 @@
-/* === General Section Styles (Compact & Attractive) === */
+/* WhatWeDo.css */
+
+/* Section styling */
 .whatwedo {
-  font-family: "Poppins", sans-serif;
-  padding: 40px 15px;
-  overflow: hidden;
-  border-radius: 20px;
-  max-width: 1100px;
-  margin: 40px auto;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9f2fb 100%);
+  font-family: 'Poppins', sans-serif;
+  color: #333;
 }
 
-/* Container Flex */
+/* Container layout */
 .whatwedo-container {
   display: flex;
-  align-items: stretch;
-  gap: 30px;
-  animation: fadeIn 0.8s ease-in-out;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  margin: 0 auto;
+  gap: 40px;
+  align-items: center;
 }
 
-/* === Left Side: Image & Stats (Smaller & Compact) === */
+/* LEFT side: image & stats */
 .whatwedo-left {
-  flex: 0 0 55%;
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  min-height: 400px;
+  flex: 1 1 500px;
+  min-width: 300px;
 }
 
 .whatwedo-img {
   width: 100%;
-  height: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   object-fit: cover;
-  display: block;
-  min-height: 400px;
-  animation: zoomIn 10s ease-in-out infinite;
-  transition: transform 0.5s ease;
 }
 
-/* Stats Box (Compact & Hover Interactive) */
+/* Stats cards */
 .whatwedo-stats {
   position: absolute;
-  bottom: 15px;
-  right: -25px;
+  right: -30px;
+  bottom: 20px;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 220px;
-  z-index: 5;
-  animation: slideIn 1s ease forwards;
 }
 
-.whatwedo-stats .stat {
-  padding: 15px 12px;
+.stat {
+  background: #ffffff;
+  padding: 15px 25px;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  min-width: 180px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
 }
 
-.whatwedo-stats .stat:nth-child(2) {
-  background: linear-gradient(135deg, #f2994a 0%, #f2c94c 100%);
-}
-
-.whatwedo-stats .stat:nth-child(3) {
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+.stat:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
 .stat-number {
-  font-weight: 800;
-  font-size: 2rem;
-  color: #fff;
-  margin-bottom: 6px;
-  animation: pulse 2s infinite;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0d6efd;
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 5px;
 }
 
-.whatwedo-stats .stat:hover {
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
-}
-
-/* === Right Side: Text Content (Compact & Clickable Look) === */
+/* RIGHT side: text content */
 .whatwedo-right {
-  flex: 0 0 45%;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 25px;
-  background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
-  border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
-  cursor: pointer;
+  flex: 1 1 500px;
+  min-width: 300px;
 }
 
-.whatwedo-right:hover {
-  background: linear-gradient(145deg, #f0f4ff 0%, #ffffff 100%);
-}
-
-/* Sub-title */
 .sub-title {
-  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0d6efd;
   letter-spacing: 1px;
-  font-weight: 700;
-  font-size: 0.85rem;
   margin-bottom: 10px;
-  padding-left: 8px;
-  border-left: 4px solid #3498db;
-  color: #3498db;
 }
 
-/* Main Title */
 .title {
   font-size: 2rem;
-  line-height: 1.25;
-  margin: 0 0 20px 0;
-  font-weight: 800;
-  color: #2c3e50;
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 30px;
 }
 
-.title span {
+.title .em {
   color: #e94e77;
-  font-style: italic;
-  background: linear-gradient(90deg, #ff758c, #ff7eb3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-/* Content Blocks */
 .content-block {
-  margin-bottom: 18px;
-  padding: 12px;
-  border-radius: 10px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  background: #ffffff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .content-block:hover {
-  background: rgba(52, 152, 219, 0.08);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
 }
 
 .content-block h3 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #2980b9;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #0d6efd;
 }
 
 .content-block p {
-  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: #555;
-  line-height: 1.5;
-  font-size: 0.94rem;
 }
 
 /* Divider */
 .divider {
-  height: 2px;
-  background: linear-gradient(to right, #3498db, #e74c3c, #f1c40f);
-  margin: 16px 0;
+  height: 1px;
+  width: 50px;
+  background: #0d6efd;
+  margin: 20px 0;
+  border-radius: 5px;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* Responsive adjustments for WhatWeDo section */
 
-@keyframes zoomIn {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* === Responsive === */
-@media screen and (max-width: 1024px) {
+/* Base section remains same, we focus on responsiveness */
+@media (max-width: 1200px) {
   .whatwedo-container {
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
   }
+
+  .whatwedo-left,
+  .whatwedo-right {
+    flex: 1 1 45%;
+  }
+
+  .whatwedo-stats {
+    right: -20px;
+    bottom: 15px;
+  }
+
+  .stat {
+    min-width: 150px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  .whatwedo-container {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 35px;
+  }
+
   .whatwedo-left,
   .whatwedo-right {
     flex: 1 1 100%;
+    min-width: auto;
   }
-  .whatwedo-left {
-    margin-bottom: 25px;
-  }
-  .whatwedo-right {
-    padding: 25px 20px;
-  }
-  .whatwedo-stats {
-    right: 15px;
-    bottom: -10px;
-    width: 200px;
-  }
-}
 
-@media screen and (max-width: 600px) {
+  .whatwedo-stats {
+    position: static;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
   .title {
     font-size: 1.8rem;
   }
-  .whatwedo-stats {
-    width: 160px;
-    bottom: -15px;
-    right: 10px;
-  }
-  .stat-number {
-    font-size: 1.8rem;
-  }
+
   .content-block h3 {
-    font-size: 1rem;
+    font-size: 1.15rem;
   }
+
   .content-block p {
     font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .whatwedo {
+    padding: 60px 15px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .sub-title {
+    font-size: 0.85rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .content-block {
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .whatwedo {
+    padding: 50px 10px;
+  }
+
+  .whatwedo-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .stat {
+    min-width: 140px;
+    padding: 10px 15px;
+  }
+
+  .title {
+    text-align: start;
   }
 }

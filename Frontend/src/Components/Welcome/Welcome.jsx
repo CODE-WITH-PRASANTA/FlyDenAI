@@ -2,49 +2,55 @@ import React from "react";
 import "./Welcome.css";
 
 // Import your assets
-import passportImg from "../../assets/single-img-1.png"; // background passport image
-import travelerImg from "../../assets/single-img-2.webp"; // traveler PNG
+import passportImg from "../../assets/single-img-1.png";
+import travelerImg from "../../assets/single-img-2.webp";
 
 const Welcome = () => {
   return (
-    <div className="welcome-container">
-      {/* Left Side (Passport background) */}
-      <div className="welcome-left-side">
-        <img src={passportImg} alt="Passport" className="welcome-passport-bg" />
-        {/* Traveler starts here and moves across */}
-        <img src={travelerImg} alt="Traveler" className="welcome-traveler-move" />
+    <section className="welcome-section">
+      {/* Left Side: Passport + Traveler */}
+      <div className="welcome-left">
+        <img src={passportImg} alt="Passport" className="passport-bg" />
+        <img src={travelerImg} alt="Traveler" className="traveler" />
       </div>
 
       {/* Right Side Content */}
-      <div className="welcome-right-side">
-        <h1 className="welcome-heading">
-          Welcome to <span className="welcome-highlight">Immigration Advisory</span> Services
-        </h1>
-        <p className="welcome-description-text">
-          Truvik immigration advisory foundation was established with a small
-          idea that was incepted in the minds of its promoters in the year 1994!
-          We skilfully guide applicants for immigration process to any country
-          they aspire to settle down.
+      <div className="welcome-right">
+        <h2 className="welcome-title">
+          Welcome to <span className="highlight">FlyDenAI</span>
+        </h2>
+        <p className="welcome-text">
+          Your trusted platform for <strong>Visa Booking</strong>, 
+          <strong> Study Abroad</strong>, and <strong>Intern Abroad</strong> opportunities. 
+          We simplify every step with expert guidance and smart tools for a seamless journey.
         </p>
 
-        <ul className="welcome-benefits-list">
-          <li className="welcome-benefit-item">
-            <span className="welcome-check-icon">✓</span>
-            The desire to blur the global boundaries fulfil
+        <ul className="benefits-list">
+          <li>
+            <span className="check">✓</span>
+            Fast and reliable Visa Booking with real-time updates
           </li>
-          <li className="welcome-benefit-item">
-            <span className="welcome-check-icon">✓</span>
-            Certified legal advisors to serve you better way.
+          <li>
+            <span className="check">✓</span>
+            Step-by-step guidance for Study Abroad programs
           </li>
-          <li className="welcome-benefit-item">
-            <span className="welcome-check-icon">✓</span>
-            Easy approval by choosing top visa consultant
+          <li>
+            <span className="check">✓</span>
+            Access paid Intern Abroad opportunities worldwide
+          </li>
+          <li>
+            <span className="check">✓</span>
+            24/7 expert support for every application
+          </li>
+          <li>
+            <span className="check">✓</span>
+            Smart tracking system for fast approval and updates
           </li>
         </ul>
 
-        <button className="welcome-watch-video-btn">Watch The Video</button>
+        <button className="btn-primary">Watch How FlyDenAI Works</button>
       </div>
-    </div>
+    </section>
   );
 };
 
