@@ -8,15 +8,15 @@ import avatar3 from "../../assets/avatar-3.webp";
 
 const AboutSection = () => {
   return (
-    <section className="about-section">
+    <section className="aboutsec-section">
       {/* Left side images */}
-      <div className="about-left">
-        <div className="image-wrapper">
-          <img src={mainImage} alt="Airplane" className="main-image" />
-          <div className="small-image">
+      <div className="aboutsec-left">
+        <div className="aboutsec-image-wrapper">
+          <img src={mainImage} alt="Airplane" className="aboutsec-main-image" />
+          <div className="aboutsec-small-image">
             <img src={personImage} alt="Person" />
           </div>
-          <div className="experience-badge">
+          <div className="aboutsec-experience-badge">
             <span>We’re</span>
             <h2>25+</h2>
             <p>Years Of Experience</p>
@@ -25,54 +25,61 @@ const AboutSection = () => {
       </div>
 
       {/* Right side content */}
-      <div className="about-right">
-        <p className="sub-title">About Company</p>
-        <h1>Welcome to Experience Visa Consulting Firm</h1>
-        <p className="description">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae
-          abillo inventore veritatis et quasi architecto beatae vitae dicta sunt
-          explicabo.
+      <div className="aboutsec-right">
+        <p className="aboutsec-sub-title">About FlyDenAI</p>
+        <h1 className="aboutsec-heading">Your Global Visa & Study Abroad Partner</h1>
+        <p className="aboutsec-description">
+          At FlyDenAI, we simplify international travel and career opportunities. 
+          From visa applications to study abroad programs and internships abroad, 
+          our expert team guides you through every step. Trusted by thousands of 
+          satisfied clients worldwide, we ensure a seamless experience for your 
+          global journey.
         </p>
 
-        <div className="features">
-          <div className="feature">
-            <span className="icon">📝</span>
-            <div>
-              <h4>Legal Immigration Success</h4>
+        <div className="aboutsec-features">
+          <div className="aboutsec-feature">
+            <span className="aboutsec-icon">📝</span>
+            <div className="aboutsec-feature-content">
+              <h4 className="aboutsec-feature-title">All-Country Visa Services</h4>
+              <p className="aboutsec-feature-desc">
+                Expert support for visas to every country, ensuring approvals faster and easier.
+              </p>
             </div>
           </div>
-          <div className="feature">
-            <span className="icon">📂</span>
-            <div>
-              <h4>Regiments Document Support</h4>
+
+          <div className="aboutsec-feature">
+            <span className="aboutsec-icon">🎓</span>
+            <div className="aboutsec-feature-content">
+              <h4 className="aboutsec-feature-title">Study Abroad Programs</h4>
+              <p className="aboutsec-feature-desc">
+                Guidance on selecting top universities, application process, and smooth admission.
+              </p>
             </div>
           </div>
-          <div className="feature">
-            <span className="icon">👨‍👩‍👧‍👦</span>
-            <div>
-              <h4>Family Ties & Visa Process & Report</h4>
+
+          <div className="aboutsec-feature">
+            <span className="aboutsec-icon">💼</span>
+            <div className="aboutsec-feature-content">
+              <h4 className="aboutsec-feature-title">Intern Abroad Opportunities</h4>
+              <p className="aboutsec-feature-desc">
+                Hands-on internship programs internationally, building your career and experience.
+              </p>
             </div>
           </div>
-          <div className="feature">
-            <span className="icon">💻</span>
-            <div>
-              <h4>Free Online Assessment</h4>
+
+          <div className="aboutsec-feature">
+            <span className="aboutsec-icon">💻</span>
+            <div className="aboutsec-feature-content">
+              <h4 className="aboutsec-feature-title">Free Online Consultation</h4>
+              <p className="aboutsec-feature-desc">
+                Get expert advice online before applying, completely free of charge.
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="about-footer">
-          <button className="learn-more">Learn More Us &gt;</button>
-          <div className="trusted">
-            <span>10m+ Trusted Customer</span>
-            <div className="client-avatars">
-              <img src={avatar1} alt="client1" />
-              <img src={avatar2} alt="client2" />
-              <img src={avatar3} alt="client3" />
-              <div className="more">+</div>
-            </div>
-          </div>
+        <div className="aboutsec-footer">
+          <button className="aboutsec-learn-more">Learn More About FlyDenAI &gt;</button>
         </div>
       </div>
     </section>

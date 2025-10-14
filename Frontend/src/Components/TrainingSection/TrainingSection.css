@@ -1,38 +1,30 @@
 /* ===========================
-   🌸 BASE RESET & FONTS
+   🌟 VISA ENQUIRY SECTION LAYOUT
 =========================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* ===========================
-   🌈 SECTION LAYOUT
-=========================== */
-.training-section {
-  background: linear-gradient(180deg, #fff8fa 0%, #fef3f6 100%);
-  padding: 6rem 2rem 7rem;
+.visa-enquiry-section {
+  background: linear-gradient(180deg, #fdf7f9 0%, #fff1f5 100%);
+  padding: 2rem 2rem 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-.section-subtitle {
+.TrainingSec-subtitle {
   color: #e3002b;
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
 }
 
 .section-title {
   font-weight: 800;
-  font-size: 2.6rem;
-  margin-bottom: 4.5rem;
+  font-size: 2.8rem;
+  margin-bottom: 5rem;
   color: #111;
-  line-height: 1.2;
-  max-width: 720px;
+  line-height: 1.3;
+  max-width: 750px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -40,7 +32,7 @@
 /* ===========================
    🧩 CARD GRID
 =========================== */
-.cards-container {
+.enquiry-cards-container {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -51,22 +43,15 @@
 /* ===========================
    🎴 CARD DESIGN
 =========================== */
-.card {
+.enquiry-card {
   background: #fff;
   width: 280px;
-  padding: 6rem 2rem 3.5rem;
+  padding: 6rem 2rem 3rem;
   position: relative;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(227, 0, 43, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(227, 0, 43, 0.1);
   cursor: pointer;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-.card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 22px 55px rgba(227, 0, 43, 0.18);
+  transition: all 0.4s ease;
 }
 
 /* ===========================
@@ -81,7 +66,7 @@
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(227, 0, 43, 0.25);
+  box-shadow: 0 10px 30px rgba(227, 0, 43, 0.25);
   z-index: 2;
 }
 
@@ -89,11 +74,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s ease;
+  transition: transform 0.6s ease;
 }
 
-.card:hover .img-circle img {
-  transform: scale(1.08) rotate(1deg);
+.enquiry-card:hover .img-circle img {
+  transform: scale(1.1);
 }
 
 /* ===========================
@@ -114,169 +99,231 @@
   font-size: 28px;
   color: #fff;
   border: 4px solid #fff;
-  box-shadow: 0 8px 18px rgba(227, 0, 43, 0.4);
+  box-shadow: 0 10px 25px rgba(227, 0, 43, 0.35);
   z-index: 3;
   transition: all 0.4s ease;
 }
 
-.card:hover .icon-circle {
-  background: #ff4065;
-  transform: translateX(-50%) scale(1.1);
+.enquiry-card:hover .icon-circle {
+  background: #ff4165;
+  transform: translateX(-50%) scale(1.15);
 }
 
 /* ===========================
-   ✍️ TITLE & DESCRIPTION
+   ✍️ CARD TITLE & DESCRIPTION
 =========================== */
-.card-title {
+.TrainingSec-card-title {
   margin-top: 2rem;
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   color: #111;
   margin-bottom: 1rem;
 }
 
 .card-desc {
   font-weight: 400;
-  font-size: 0.95rem;
-  color: #777;
-  line-height: 1.6;
-  margin-bottom: 4rem;
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  min-height: 90px;
+  text-align: justify;
 }
 
 /* ===========================
-   🚀 ADVANCED READ MORE BUTTON
+   🚀 READ MORE BUTTON
 =========================== */
-.read-more-btn {
+.TrainingSec-readbtn {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 0.5rem;
   font-weight: 600;
   font-size: 1rem;
-  color: #111;
-  background: none;
-  border: none;
+  color: #e3002b;
+  background: transparent;
+  border: 2px solid #e3002b;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
   cursor: pointer;
-  transition: color 0.4s ease;
-  overflow: hidden;
-  perspective: 600px;
-  letter-spacing: 0.2px;
+  transition: all 0.3s ease;
 }
 
-/* Gradient underline animation */
-.read-more-btn::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -3px;
-  transform: translateX(-50%) scaleX(0);
-  width: 70%;
-  height: 2px;
-  background: linear-gradient(90deg, #e3002b, #ff4b6b, #e3002b);
-  border-radius: 2px;
-  transition: transform 0.4s ease;
-  transform-origin: center;
+.TrainingSec-readbtn:hover {
+  background: #e3002b;
+  color: #fff;
+  transform: translateY(-3px);
 }
 
-/* Arrow icon */
-.arrow-icon {
-  font-size: 1.25rem;
-  transition: transform 0.4s ease, color 0.4s ease, opacity 0.4s ease;
-  color: #111;
+.TrainingSec-readbtn .arrow-icon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
 }
 
-/* Hover motion */
-.read-more-btn:hover {
-  color: #e3002b;
-  transform: translateZ(8px);
-}
-
-.read-more-btn:hover::after {
-  transform: translateX(-50%) scaleX(1);
-}
-
-.read-more-btn:hover .arrow-icon {
-  transform: translateX(8px) scale(1.1);
-  color: #e3002b;
-}
-
-.read-more-btn:active .arrow-icon {
-  transform: scale(0.9);
-}
-
-/* Ripple burst */
-.read-more-btn::before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(227, 0, 43, 0.25) 0%, transparent 70%);
-  opacity: 0;
-  transition: width 0.5s ease, height 0.5s ease, opacity 0.6s ease;
-}
-
-.read-more-btn:active::before {
-  width: 160px;
-  height: 160px;
-  opacity: 1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Floating idle motion */
-@keyframes buttonFloat {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-3px) rotate(1deg); }
-  100% { transform: translateY(0px) rotate(0deg); }
-}
-
-.read-more-btn {
-  animation: buttonFloat 4s ease-in-out infinite;
+.TrainingSec-readbtn:hover .arrow-icon {
+  transform: translateX(5px);
 }
 
 /* ===========================
-   📱 RESPONSIVE
+   RESPONSIVE MEDIA QUERIES
 =========================== */
-@media (max-width: 960px) {
-  .cards-container {
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+  .section-title {
+    font-size: 2.4rem;
+    max-width: 600px;
+  }
+
+  .enquiry-cards-container {
     gap: 2rem;
   }
 
-  .card {
-    width: 240px;
-    padding: 5.5rem 1.5rem 3rem;
-  }
 
   .img-circle {
-    width: 120px;
-    height: 120px;
-    top: -60px;
+    width: 130px;
+    height: 130px;
+    top: -45px;
   }
 
   .icon-circle {
     width: 60px;
     height: 60px;
-    font-size: 22px;
-    bottom: calc(100% - 50px);
+    font-size: 24px;
+    bottom: calc(100% - 110px);
   }
 
-  .card-title {
-    font-size: 1.1rem;
+  .TrainingSec-card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+    min-height: 80px;
+  }
+
+  .TrainingSec-readbtn {
+    padding: 0.45rem 1rem;
+    font-size: 0.95rem;
   }
 }
 
-@media (max-width: 600px) {
-  .cards-container {
-    flex-direction: column;
-    align-items: center;
+/* Tablets and larger mobiles */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+    max-width: 90%;
+    margin-bottom: 3.5rem;
   }
 
-  .card {
-    width: 100%;
-    max-width: 340px;
+  .enquiry-cards-container {
+    flex-wrap: nowrap; /* horizontal scroll for small screens */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+  }
+
+  .enquiry-card {
+    flex: 0 0 auto; /* Fix width for horizontal scroll */
+    padding: 4.5rem 1.5rem 2.5rem;
+  }
+
+  .img-circle {
+    width: 120px;
+    height: 120px;
+    top: -40px;
+  }
+
+  .icon-circle {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+    bottom: calc(100% - 95px);
+  }
+
+  .TrainingSec-card-title {
+    font-size: 1.15rem;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    min-height: 70px;
+  }
+
+  .TrainingSec-readbtn {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  /* Hide scrollbar for a clean look */
+  .enquiry-cards-container::-webkit-scrollbar {
+    display: none;
+  }
+  .enquiry-cards-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    justify-content: unset;
+  }
+}
+
+/* Mobile phones (portrait) */
+@media (max-width: 480px) {
+  .TrainingSec-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
     margin-bottom: 3rem;
+  }
+
+
+  .img-circle {
+    width: 100px;
+    height: 100px;
+    top: -35px;
+  }
+
+  .icon-circle {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    bottom: calc(100% - 85px);
+  }
+
+  .TrainingSec-card-title {
+    font-size: 1.05rem;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    min-height: 65px;
+    text-align: justify;
+  }
+
+  .TrainingSec-readbtn {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .visa-enquiry-section{
+    padding: 20px;
+  }
+}
+
+/* Very small devices (360px) */
+@media (max-width: 360px) {
+  
+  .card-desc {
+    font-size: 0.8rem;
+    min-height: 60px;
+  }
+
+  .TrainingSec-readbtn {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
   }
 }

@@ -8,7 +8,6 @@ import ImmigrationOverview from '../../Components/ImmigrationOverview/Immigratio
 import ChooseUsSection from '../../Components/ChooseUsSection/ChooseUsSection'
 import FaqSection from '../../Components/FaqSection/FaqSection'
 import VisaStepsSection from '../../Components/VisaStepsSection/VisaStepsSection'
-import LatestProjects from '../../Components/LatestProjects/LatestProjects'
 import GetInTouch from '../../Components/GetInTouch/GetInTouch'
 import FreeVisaQuotesBanner from '../../Components/FreeVisaQuotesBanner/FreeVisaQuotesBanner'
 
@@ -20,15 +19,12 @@ const FreeVisaQuotes = () => {
       <TrainingSection/>
       <TopSection/>
       <AboutSection/>
-      <VisaServiceSection/>
       <ImmigrationOverview/>
+      <VisaStepsSection/>
+      <VisaServiceSection/>
       <ChooseUsSection/>
       <FaqSection/>
-      <VisaStepsSection/>
-      <LatestProjects/>
       <GetInTouch/>
-    
-        
     </div>
   )
 }
