@@ -1,0 +1,354 @@
+/* === DOCUMENTS WRAPPER === */
+.documents-wrapper {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.documents-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #111827;
+  text-align: center;
+}
+
+/* === DOCUMENT TOGGLE SECTIONS === */
+.document-section {
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.07);
+  background: #fff;
+  border: 1px solid #e1e7f0;
+  overflow: hidden;
+}
+
+.document-toggle-btn {
+  background: #eef4ff;
+  padding: 18px 20px;
+  border: none;
+  width: 100%;
+  font-size: 17px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  color: #111827;
+  transition: background 0.25s ease;
+}
+
+.document-toggle-btn:hover {
+  background: #dce8ff;
+}
+
+.arrow {
+  font-size: 18px;
+  color: #2563eb;
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(180deg);
+}
+
+.documents-list {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  font-size: 15px;
+  color: #4b5563;
+  border-left: 4px solid #2563eb;
+  background: #f8fbff;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.documents-list.open {
+  max-height: 1000px;
+  padding: 15px 20px;
+}
+
+.documents-list ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.documents-list li {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* === TEAM CAROUSEL === */
+.team-section {
+  margin: 50px 0;
+}
+
+.team-section h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111827;
+  text-align: center;
+}
+
+.team-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: hidden; /* hide scrollbar */
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.team-card {
+  min-width: 260px;
+  max-width: 260px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.team-photo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.team-info strong {
+  font-weight: 700;
+  font-size: 17px;
+  text-align: center;
+}
+
+.team-info div {
+  font-size: 14px;
+  color: #e0f2ff;
+  text-align: center;
+}
+
+/* === VISA PROCESS BANNER === */
+.visa-process-banner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #a0001c, #870017);
+  padding: 25px 30px;
+  margin-top: 40px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  gap: 15px;
+}
+
+.click-here-btn {
+  background: #fff;
+  color: #a0001c;
+  border: 3px solid #a0001c;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.click-here-btn:hover {
+  background: #fce5e8;
+  color: #870017;
+}
+
+/* === SAMPLE VISA CARD === */
+.sample-visa-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  color: #fff;
+  padding: 20px 25px;
+  margin: 25px 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 15px;
+}
+
+.sample-visa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+.sample-visa-icon {
+  font-size: 32px;
+}
+
+.sample-visa-text {
+  font-size: 18px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.sample-visa-btn {
+  background: #fff;
+  color: #2563eb;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sample-visa-btn:hover {
+  background: #e0f2ff;
+}
+
+/* === RESPONSIVE STYLES === */
+
+/* Large tablets / small desktops */
+@media (max-width: 1200px) {
+  .documents-wrapper {
+    padding: 35px 20px;
+  }
+  .team-card {
+    min-width: 240px;
+    max-width: 240px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .documents-wrapper {
+    padding: 30px 20px;
+  }
+  .team-carousel {
+    gap: 15px;
+  }
+  .sample-visa-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Medium devices (mobile landscape) */
+@media (max-width: 768px) {
+  .documents-title {
+    font-size: 24px;
+  }
+  .document-toggle-btn {
+    font-size: 16px;
+    padding: 15px 18px;
+  }
+  .documents-list {
+    font-size: 14px;
+    padding: 12px 18px;
+  }
+  .team-card {
+    min-width: 200px;
+    max-width: 200px;
+    padding: 15px;
+    gap: 10px;
+  }
+  .team-photo {
+    width: 60px;
+    height: 60px;
+  }
+  .team-info strong {
+    font-size: 16px;
+  }
+  .team-info div {
+    font-size: 13px;
+  }
+  .visa-process-banner {
+    font-size: 18px;
+    padding: 20px 15px;
+    flex-direction: column;
+  }
+  .click-here-btn {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+  .sample-visa-card {
+    font-size: 16px;
+    padding: 18px 20px;
+  }
+  .sample-visa-text {
+    font-size: 16px;
+  }
+  .sample-visa-icon {
+    font-size: 28px;
+  }
+}
+
+/* Small devices (mobile portrait) */
+@media (max-width: 480px) {
+  .documents-wrapper {
+    padding: 25px 15px;
+  }
+  .documents-title {
+    font-size: 22px;
+  }
+  .document-toggle-btn {
+    font-size: 15px;
+    padding: 12px 15px;
+  }
+  .documents-list {
+    font-size: 13px;
+    padding: 10px 15px;
+  }
+  .team-card {
+    min-width: 180px;
+    max-width: 180px;
+    gap: 8px;
+    padding: 12px;
+  }
+  .team-photo {
+    width: 50px;
+    height: 50px;
+  }
+  .team-info strong {
+    font-size: 15px;
+  }
+  .team-info div {
+    font-size: 12px;
+  }
+  .visa-process-banner {
+    font-size: 16px;
+    padding: 15px 10px;
+  }
+  .click-here-btn {
+    font-size: 13px;
+    padding: 6px 15px;
+  }
+  .sample-visa-card {
+    font-size: 14px;
+    padding: 15px 15px;
+  }
+  .sample-visa-text {
+    font-size: 14px;
+  }
+  .sample-visa-icon {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,176 @@
+.types-visa-page {
+  display: flex;
+  gap: 30px;
+  max-width: 1200px;   /* max width */
+  margin: 40px auto;   /* center the page */
+  padding: 0 20px;     /* left and right space */
+  font-family: 'Arial', sans-serif;
+  color: #222;
+}
+
+/* Left Content */
+.left-content {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Title */
+.types-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* Visa Cards */
+.visa-cards {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.visa-card {
+  background-color: #f7fafd;
+  border-radius: 5px;
+  flex: 1 1 45%;
+  min-width: 280px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.visa-card-header {
+  background-color: #d7ebff;
+  font-weight: 700;
+  padding: 15px 20px;
+  border-radius: 5px 5px 0 0;
+}
+
+.visa-card-details {
+  padding: 15px 20px 25px;
+  font-size: 14px;
+  color: #3a3a3a;
+}
+
+.visa-card-details div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.visa-fees {
+  font-weight: 700;
+  color: #304a7d;
+}
+
+/* Author Update */
+.author-update {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.author-photo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ccc;
+}
+
+.author-role {
+  color: #5a8fc2;
+  font-size: 13px;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.last-updated {
+  font-size: 14px;
+  color: #222;
+  font-weight: 500;
+}
+
+.last-updated strong {
+  font-weight: 700;
+}
+
+/* Reviews Banner */
+.reviews-banner {
+  background-color: #d8f2f0;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.review-avatars {
+  display: flex;
+  gap: 10px;
+}
+
+.review-avatars img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ccc;
+}
+
+.review-text {
+  flex-grow: 1;
+}
+
+.review-text strong {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.review-details {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.review-rating {
+  font-weight: 700;
+  color: #0770d9;
+}
+
+.google-logo {
+  width: 72px;
+  vertical-align: middle;
+}
+
+/* Right sticky form */
+.right-form {
+  width: 360px;
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+  margin-left: 20px; /* space from left content */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .types-visa-page {
+    flex-direction: column;
+    padding: 0 15px; /* reduce side padding on mobile */
+  }
+  .right-form {
+    width: 100%;
+    position: static;
+    margin-top: 30px;
+  }
+}

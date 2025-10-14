@@ -1,0 +1,101 @@
+/* VisaWhyChooseUs.css */
+
+.visa-why-choose-us-wrapper {
+  max-width: 1140px;
+  margin: 50px auto;
+  padding: 0 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.visa-why-choose-us-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 40px;
+}
+
+.visa-why-choose-us-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+.visa-why-choose-us-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 25px 20px;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 250px;
+}
+
+.visa-why-choose-us-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.visa-why-choose-us-icon {
+  color: #2563eb;
+  font-size: 40px;
+}
+
+.visa-why-choose-us-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .visa-why-choose-us-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .visa-why-choose-us-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .visa-why-choose-us-card {
+    padding: 20px 15px;
+  }
+
+  .visa-why-choose-us-title {
+    font-size: 24px;
+  }
+
+  .visa-why-choose-us-text {
+    font-size: 15px;
+  }
+
+  .visa-why-choose-us-icon {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .visa-why-choose-us-title {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  .visa-why-choose-us-card {
+    padding: 18px 12px;
+    min-width: auto;
+  }
+
+  .visa-why-choose-us-text {
+    font-size: 14px;
+  }
+
+  .visa-why-choose-us-icon {
+    font-size: 30px;
+  }
+}

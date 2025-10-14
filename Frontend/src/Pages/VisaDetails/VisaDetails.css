@@ -1,0 +1,59 @@
+.visa-details-container {
+  font-family: "Arial", sans-serif;
+}
+
+/* Sticky Navbar */
+.visa-details-container nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Main wrapper for sections + right form */
+.visa-content-wrapper {
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px; /* space between left content and right form */
+  padding: 20px;
+}
+
+/* Sections container (left) */
+.visa-sections {
+  flex: 0 0 780px; /* fixed width for left content */
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 50px; /* space between sections */
+}
+
+/* Section wrapper for consistent padding & alignment */
+.section-wrapper {
+  width: 100%;
+}
+
+/* Right sticky VisaForm */
+.visa-form-right {
+  flex: 0 0 300px; /* fixed width for form */
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .visa-content-wrapper {
+    flex-direction: column;
+  }
+
+  .visa-form-right {
+    position: static;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .visa-sections {
+    width: 100%;
+  }
+}
