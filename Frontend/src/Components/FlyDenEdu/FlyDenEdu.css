@@ -1,0 +1,145 @@
+/* ===== FLYDEN EDU SECTION ===== */
+.flyden-section {
+  padding: 20px 20px;
+  background-color: #f9f9fb;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+
+  /* New border styles */
+  border: 2px solid #ff4c60; /* soft primary color border */
+  border-radius: 20px;        /* rounded corners for smooth look */
+  margin: 0 auto;             /* center horizontally */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* subtle shadow for depth */
+  transition: all 0.3s ease;
+}
+
+/* Section Title */
+.flyden-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin-bottom: 40px;
+}
+
+.flyden-title span {
+  color: #ff4c60;
+}
+
+/* Grid Layout */
+.flyden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Card */
+.flyden-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 25px 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.flyden-card:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon */
+.flyden-icon {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  background-color: #f0f4f8;
+}
+
+/* Feature Title */
+.flyden-feature-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1c1c1c;
+  margin-bottom: 10px;
+}
+
+/* Feature Description */
+.flyden-feature-desc {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .flyden-section {
+    padding: 50px 15px;
+  }
+
+  .flyden-title {
+    font-size: 26px;
+  }
+
+  .flyden-card {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .flyden-section {
+    padding: 40px 10px;
+  }
+
+  .flyden-title {
+    font-size: 24px;
+  }
+
+  /* Make grid scrollable horizontally */
+  .flyden-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+  }
+
+  .flyden-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .flyden-grid::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 3px;
+  }
+
+  .flyden-grid::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 480px) {
+  .flyden-section {
+    padding: 30px 5px;
+  }
+
+  .flyden-title {
+    font-size: 20px;
+  }
+
+  .flyden-card {
+    min-width: 180px;
+    padding: 15px 10px;
+  }
+
+  .flyden-feature-title {
+    font-size: 16px;
+  }
+}

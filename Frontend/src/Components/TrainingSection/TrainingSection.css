@@ -1,0 +1,282 @@
+/* ===========================
+   🌸 BASE RESET & FONTS
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===========================
+   🌈 SECTION LAYOUT
+=========================== */
+.training-section {
+  background: linear-gradient(180deg, #fff8fa 0%, #fef3f6 100%);
+  padding: 6rem 2rem 7rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-subtitle {
+  color: #e3002b;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: 2.6rem;
+  margin-bottom: 4.5rem;
+  color: #111;
+  line-height: 1.2;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===========================
+   🧩 CARD GRID
+=========================== */
+.cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   🎴 CARD DESIGN
+=========================== */
+.card {
+  background: #fff;
+  width: 280px;
+  padding: 6rem 2rem 3.5rem;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(227, 0, 43, 0.08);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.03);
+  box-shadow: 0 22px 55px rgba(227, 0, 43, 0.18);
+}
+
+/* ===========================
+   🖼 IMAGE CIRCLE
+=========================== */
+.img-circle {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(227, 0, 43, 0.25);
+  z-index: 2;
+}
+
+.img-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s ease;
+}
+
+.card:hover .img-circle img {
+  transform: scale(1.08) rotate(1deg);
+}
+
+/* ===========================
+   🔵 ICON OVERLAY
+=========================== */
+.icon-circle {
+  position: absolute;
+  bottom: calc(100% - 120px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e3002b;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  color: #fff;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 18px rgba(227, 0, 43, 0.4);
+  z-index: 3;
+  transition: all 0.4s ease;
+}
+
+.card:hover .icon-circle {
+  background: #ff4065;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* ===========================
+   ✍️ TITLE & DESCRIPTION
+=========================== */
+.card-title {
+  margin-top: 2rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.card-desc {
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 4rem;
+}
+
+/* ===========================
+   🚀 ADVANCED READ MORE BUTTON
+=========================== */
+.read-more-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #111;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.4s ease;
+  overflow: hidden;
+  perspective: 600px;
+  letter-spacing: 0.2px;
+}
+
+/* Gradient underline animation */
+.read-more-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -3px;
+  transform: translateX(-50%) scaleX(0);
+  width: 70%;
+  height: 2px;
+  background: linear-gradient(90deg, #e3002b, #ff4b6b, #e3002b);
+  border-radius: 2px;
+  transition: transform 0.4s ease;
+  transform-origin: center;
+}
+
+/* Arrow icon */
+.arrow-icon {
+  font-size: 1.25rem;
+  transition: transform 0.4s ease, color 0.4s ease, opacity 0.4s ease;
+  color: #111;
+}
+
+/* Hover motion */
+.read-more-btn:hover {
+  color: #e3002b;
+  transform: translateZ(8px);
+}
+
+.read-more-btn:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.read-more-btn:hover .arrow-icon {
+  transform: translateX(8px) scale(1.1);
+  color: #e3002b;
+}
+
+.read-more-btn:active .arrow-icon {
+  transform: scale(0.9);
+}
+
+/* Ripple burst */
+.read-more-btn::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(227, 0, 43, 0.25) 0%, transparent 70%);
+  opacity: 0;
+  transition: width 0.5s ease, height 0.5s ease, opacity 0.6s ease;
+}
+
+.read-more-btn:active::before {
+  width: 160px;
+  height: 160px;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Floating idle motion */
+@keyframes buttonFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.read-more-btn {
+  animation: buttonFloat 4s ease-in-out infinite;
+}
+
+/* ===========================
+   📱 RESPONSIVE
+=========================== */
+@media (max-width: 960px) {
+  .cards-container {
+    gap: 2rem;
+  }
+
+  .card {
+    width: 240px;
+    padding: 5.5rem 1.5rem 3rem;
+  }
+
+  .img-circle {
+    width: 120px;
+    height: 120px;
+    top: -60px;
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
+    bottom: calc(100% - 50px);
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 3rem;
+  }
+}

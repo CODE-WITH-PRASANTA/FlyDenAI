@@ -1,0 +1,227 @@
+/* ===========================
+   Main Wrapper
+=========================== */
+.git-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 80px 8%;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9f9;
+}
+
+/* ===========================
+   Left Section
+=========================== */
+.git-left {
+  flex: 1;
+  min-width: 320px;
+  position: relative;
+  padding: 50px 30px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.git-left-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+  border-radius: 20px;
+}
+
+.git-left-content {
+  position: relative;
+  z-index: 1;
+}
+
+.git-subtitle {
+  font-size: 14px;
+  color: #ff4757;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.git-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.git-text {
+  font-size: 16px;
+  color: #f1f1f1;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.git-info p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* ===========================
+   Right Section Form
+=========================== */
+.git-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+.git-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.git-form input,
+.git-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.git-form input:focus,
+.git-form textarea:focus {
+  outline: none;
+  border-color: #ff4757;
+  box-shadow: 0 0 10px rgba(255, 71, 87, 0.25);
+}
+
+.git-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+.git-btn {
+  background: #ff4757;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.git-btn:hover {
+  background: #e40046;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* ===========================
+   Responsive Design
+=========================== */
+
+/* Tablets */
+@media (max-width: 1200px) {
+  .git-section {
+    padding: 60px 6%;
+  }
+
+  .git-title {
+    font-size: 28px;
+  }
+
+  .git-text {
+    font-size: 15px;
+  }
+}
+
+/* Medium Tablets / Large Mobile */
+@media (max-width: 900px) {
+  .git-section {
+    flex-direction: column;
+    gap: 30px;
+    padding: 50px 5%;
+  }
+
+  .git-left {
+    min-height: 350px;
+    padding: 40px 25px;
+  }
+
+  .git-title {
+    font-size: 26px;
+  }
+
+  .git-text {
+    font-size: 14px;
+  }
+
+  .git-form {
+    padding: 30px 20px;
+  }
+
+  .git-form input,
+  .git-form textarea {
+    font-size: 13px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 600px) {
+  .git-left {
+    min-height: 300px;
+    padding: 30px 20px;
+    border-radius: 15px;
+  }
+
+  .git-title {
+    font-size: 22px;
+  }
+
+  .git-text {
+    font-size: 13px;
+  }
+
+  .git-form {
+    padding: 25px 15px;
+  }
+
+  .git-btn {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 400px) {
+  .git-left {
+    padding: 20px 15px;
+  }
+
+  .git-title {
+    font-size: 20px;
+  }
+
+  .git-text {
+    font-size: 12px;
+  }
+
+  .git-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}

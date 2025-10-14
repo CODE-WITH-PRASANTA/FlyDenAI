@@ -1,0 +1,138 @@
+/* Container */
+.flyden-advantage-section {
+  padding: 5rem 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f9f9fb;
+  text-align: center;
+}
+
+/* Heading */
+.flyden-advantage-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #1c1c1c;
+}
+
+.flyden-advantage-heading span {
+  color: #ff4c60;
+}
+
+/* Grid */
+.flyden-advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
+}
+
+/* Card */
+.flyden-advantage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 25px 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s ease;
+}
+
+.flyden-advantage-card:hover {
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon */
+.flyden-icon-wrapper {
+  background-color: #ff4c60;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.flyden-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+}
+
+/* Text */
+.flyden-text h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #1c1c1c;
+}
+
+.flyden-text p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 1024px) {
+  .flyden-advantages-grid {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .flyden-advantages-grid {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 10px;
+  }
+
+  .flyden-advantage-card {
+    flex: 0 0 250px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 480px) {
+  .flyden-advantage-section {
+    padding: 3rem 1rem;
+  }
+
+  .flyden-advantage-heading {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .flyden-advantages-grid {
+    gap: 1rem;
+  }
+
+  .flyden-advantage-card {
+    flex: 0 0 200px;
+    padding: 20px 15px;
+  }
+
+  .flyden-text h3 {
+    font-size: 1.1rem;
+  }
+
+  .flyden-text p {
+    font-size: 0.9rem;
+  }
+
+  .flyden-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .flyden-icon {
+    font-size: 2rem;
+  }
+}

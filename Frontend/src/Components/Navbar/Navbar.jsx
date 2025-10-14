@@ -64,7 +64,6 @@ const Navbar = () => {
 },
     { name: "Program Type", path: "/ComingSoon", sub: [
       { name: "Study Abroad", path: "/StudyAbroad" },
-      { name: "Teach Abroad", path: "/ComingSoon" },
       { name: "Intern Abroad", path: "/ComingSoon" },
     ]},
     { name: "Blog", path: "/blog" },

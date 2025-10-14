@@ -19,6 +19,7 @@ import AllCountry from "./Pages/AllCountry/AllCountry";
 import GetAQuotes from "./Pages/GetAQuotes/GetAQuotes";
 import FreeVisaQuotes from "./Pages/FreeVisaQuotes/FreeVisaQuotes";
 import StudyAbroad from "./Pages/StudyAbroad/StudyAbroad";
+import VisaDetails from "./Pages/VisaDetails/VisaDetails";
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
           {/* Visa Sec */}
           <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
+
+          {/* Visa Details */}
+          <Route path="/Visa/Details" element={<VisaDetails />} />
+
         </Routes>
       <Footer />
       </PageWrapper>

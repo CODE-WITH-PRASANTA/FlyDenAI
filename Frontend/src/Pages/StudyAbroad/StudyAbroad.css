@@ -1,0 +1,55 @@
+/* Floating Button Container */
+.floating-buttons {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+}
+
+/* Floating Button Style */
+.float-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+/* Hover Effect */
+.float-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Colors */
+.StudyAbroad-call-btn {
+  background-color: #1e90ff;
+}
+
+.StudyAbroad-whatsapp-btn {
+  background-color: #25d366;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .floating-buttons {
+    bottom: 20px;
+    right: 15px;
+  }
+
+  .float-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+}

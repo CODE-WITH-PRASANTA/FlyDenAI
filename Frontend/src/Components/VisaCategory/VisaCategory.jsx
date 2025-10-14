@@ -86,11 +86,11 @@ function VisaCategory() {
 
       <div className="visa-category-scroll">
         {visaCategories.map((category) => (
-          <div key={category.id} className="visa-card">
+          <div key={category.id} className="VisaCategory-card">
             <img
               src={category.image}
               alt={category.title}
-              className="visa-image"
+              className="VisaCategory-image"
             />
             <h3 className="visa-title">{category.title}</h3>
             <p className="visa-description">{category.description}</p>
