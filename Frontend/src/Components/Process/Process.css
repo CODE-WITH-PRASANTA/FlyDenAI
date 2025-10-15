@@ -1,0 +1,163 @@
+.process-wrapper {
+  max-width: 1140px;
+  margin: 50px auto;
+  padding: 0 20px;
+  font-family: "Arial", sans-serif;
+  text-align: center;
+}
+
+.process-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 50px;
+}
+
+/* Steps Container */
+.process-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Individual Step Card */
+.process-card {
+  flex: 1;
+  border-radius: 12px;
+  padding: 30px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.process-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Icon Circle */
+.process-icon {
+  width: 60px;
+  height: 60px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Step Title and Description */
+.process-step-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.process-step-desc {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.5;
+  max-width: 180px;
+  word-wrap: break-word;
+}
+
+/* Connector Line */
+.process-connector {
+  position: absolute;
+  top: 60px; /* center of icon */
+  right: -50%;
+  height: 4px;
+  width: 100%;
+  background: #2563eb;
+  z-index: -1;
+}
+
+.process-card:last-child .process-connector {
+  display: none;
+}
+
+/* ----------------------------
+   Fully Responsive
+---------------------------- */
+@media (max-width: 1024px) {
+  .process-title {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+  .process-card {
+    padding: 25px 18px;
+  }
+  .process-step-title {
+    font-size: 17px;
+  }
+  .process-step-desc {
+    font-size: 13px;
+    max-width: 160px;
+  }
+  .process-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .process-connector {
+    display: none;
+  }
+  .process-card {
+    padding: 22px 15px;
+  }
+  .process-title {
+    font-size: 24px;
+  }
+  .process-step-title {
+    font-size: 16px;
+  }
+  .process-step-desc {
+    font-size: 13px;
+    max-width: 100%;
+  }
+  .process-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-wrapper {
+    padding: 0 15px;
+  }
+  .process-title {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+  .process-card {
+    padding: 18px 12px;
+  }
+  .process-step-title {
+    font-size: 15px;
+  }
+  .process-step-desc {
+    font-size: 12px;
+    max-width: 100%;
+  }
+  .process-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+}

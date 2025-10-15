@@ -1,0 +1,230 @@
+/* --- Base structure --- */
+.contact-us-block {
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  padding: 72px 6%;
+  color: #222;
+}
+
+.contact-us-wrapper {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+/* === LEFT SIDE === */
+.contact-us-left {
+  flex: 1 1 48%;
+  min-width: 300px;
+  animation: ciu-fade-left 0.9s ease both;
+}
+
+.contact-us-sub {
+  color: #e40046;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.contact-us-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.contact-us-lead {
+  color: #666;
+  margin-bottom: 35px;
+  line-height: 1.7;
+}
+
+/* === GRID LAYOUT for info items === */
+.contact-us-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  gap: 25px 30px;
+}
+
+.contact-us-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: transform 0.3s ease;
+}
+
+.contact-us-item:hover {
+  transform: translateY(-4px);
+}
+
+.ciu-icon {
+  color: #e40046;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.ciu-text h4 {
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.ciu-text p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* === SOCIAL ICONS === */
+.ciu-socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.ciu-socials a {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ddd;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.ciu-socials a:hover {
+  background: #e40046;
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* === IMAGE === */
+.contact-us-photo {
+  margin-top: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contact-us-photo img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.contact-us-photo:hover img {
+  transform: scale(1.05);
+}
+
+/* === RIGHT SIDE (Form) === */
+.contact-us-right {
+  flex: 1 1 44%;
+  min-width: 300px;
+  border-left: 1px solid #f0f0f0;
+  padding: 20px 0 0 28px;
+  animation: ciu-fade-right 0.9s ease both;
+}
+
+.contact-us-form-heading {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.contact-us-form-sub {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.ciu-inputwrap {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.ciu-formicon {
+  position: absolute;
+  top: 18px; /* Adjusted for perfect centering in textarea/input */
+  left: 12px;
+  color: #999;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.ciu-input,
+.ciu-textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 14px 10px 14px 40px; /* Enough left space for icon */
+  font-size: 15px;
+  outline: none;
+  background: transparent;
+  transition: border-color 0.3s ease;
+  line-height: 1.6;
+  resize: none;
+}
+
+.ciu-input:focus,
+.ciu-textarea:focus {
+  border-color: #e40046;
+}
+
+/* Optional subtle focus effect */
+.ciu-inputwrap:focus-within .ciu-formicon {
+  color: #e40046;
+}
+
+
+.ciu-submit {
+  background: #e40046;
+  color: #fff;
+  border: none;
+  padding: 13px 30px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 18px rgba(228, 0, 70, 0.15);
+}
+
+.ciu-submit-icon {
+margin-right: 10px;
+}
+
+.ciu-submit:hover {
+  background: #c0003b;
+  transform: translateY(-3px);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 992px) {
+  .contact-us-wrapper {
+    flex-direction: column;
+  }
+  .contact-us-right {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .contact-us-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes ciu-fade-left {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes ciu-fade-right {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
