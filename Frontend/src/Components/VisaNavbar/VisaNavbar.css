@@ -1,46 +1,95 @@
-.visanavbar {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 1rem;
-  padding: 1rem 10px;
-  background-color: #f1faff;
-  border-bottom: 1px solid #ccc;
-  position: sticky; /* always visible */
+/* ===============================
+   🌐 Visa Navbar Styles (Modern)
+================================ */
+.visa-navbar {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 999;
-  overflow-x: auto;
-  scrollbar-width: none;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
 }
 
-.visanavbar::-webkit-scrollbar {
-  display: none;
+/* Navbar list */
+.visa-navbar-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0 20px;
+  gap: 30px;
 }
 
-.visanavbar a {
-  color: #007ab8;
-  text-decoration: none;
+/* Navbar items */
+.visa-navbar-item {
+  cursor: pointer;
   font-weight: 600;
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  color: #333;
+  font-size: 1rem;
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
 }
 
-.visanavbar a:hover {
-  background-color: #e0f5ff;
+/* Hover effect with background */
+.visa-navbar-item:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #0072ff, #00bcd4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.3);
 }
 
-.visanavbar-active {
-  background-color: #007ab8;
-  color: #fff !important;
+/* Active section styling */
+.visa-navbar-item.active {
+  color: #fff;
+  background: linear-gradient(90deg, #0072ff, #00bcd4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.3);
 }
 
+/* Active underline (optional) */
+.visa-navbar-item.active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 4px;
+  background-color: #ffd700;
+  border-radius: 3px;
+}
+
+/* Media query for tablet and below */
 @media (max-width: 768px) {
-  .visanavbar {
-    justify-content: flex-start;
-    gap: 0.75rem;
+  .visa-navbar-list {
+    gap: 15px;
+    padding: 0 10px;
+  }
+  .visa-navbar-item {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
+
+/* Media query for mobile and below */
+@media (max-width: 480px) {
+  .visa-navbar-list {
+    gap: 5px;
+    padding: 0 5px;
+  }
+  .visa-navbar-item {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    text-align: center;
+  }
+  .visa-navbar-item.active::after {
+    width: 20%;
   }
 }

@@ -1,53 +1,68 @@
+/* ===============================
+   ✈️ Visa Details Banner Section
+================================ */
 .visadetailsbanner {
   position: relative;
   background-size: cover;
   background-position: center;
-  height: 70vh;
+  height: 60vh;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   font-family: "Poppins", sans-serif;
   color: #000;
   overflow: hidden;
+  border-bottom: 4px solid #0072ff;
 }
 
+/* Soft gradient overlay for readability */
 .visadetailsbanner-overlay {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #ffffff 55%, rgba(255, 255, 255, 0.6) 80%, rgba(255, 255, 255, 0) 100%);
   display: flex;
   align-items: center;
+  backdrop-filter: blur(4px);
 }
 
+/* ===============================
+   🧭 Content Section
+================================ */
 .visadetailsbanner-content {
-  max-width: 600px;
+  max-width: 620px;
   margin-left: 8%;
-  animation: fadeInUp 1.2s ease forwards;
 }
 
+/* Main Title */
 .visadetailsbanner-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin-bottom: 18px;
+  color: #001e5a;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.2;
 }
 
+/* Badge Section */
 .visadetailsbanner-badge {
   display: inline-flex;
   align-items: center;
-  background: #00a8a8;
+  background: linear-gradient(135deg, #00bcd4, #0066ff);
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 10px 22px;
+  border-radius: 50px;
   font-size: 1rem;
   margin-bottom: 40px;
-  box-shadow: 0 4px 10px rgba(0, 168, 168, 0.3);
-  animation: fadeInBadge 1.6s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .visadetailsbanner-badge:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 168, 168, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
 }
 
 .visadetailsbanner-badgeicon {
@@ -56,108 +71,141 @@
   font-size: 1.2rem;
 }
 
+/* ===============================
+   📊 Info Section
+================================ */
 .visadetailsbanner-info {
   display: flex;
   gap: 60px;
   flex-wrap: wrap;
-  animation: fadeInUp 2s ease forwards;
 }
 
 .visadetailsbanner-item {
   display: flex;
   flex-direction: column;
+  padding: 18px 28px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
 }
 
+.visadetailsbanner-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Label */
 .visadetailsbanner-label {
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #444;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
+/* Value */
 .visadetailsbanner-value {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  color: #001e5a;
 }
 
 .visadetailsbanner-icon {
-  color: #e40046;
+  color: #ff0059;
   font-size: 1.3rem;
 }
 
-/* === Animations === */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ===============================
+   📱 Responsive Design
+================================ */
 
-@keyframes fadeInBadge {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* === Responsive === */
+/* Tablets (1024px and below) */
 @media (max-width: 1024px) {
-  .visadetailsbanner-title {
-    font-size: 2.5rem;
+  .visadetailsbanner {
+    height: 55vh;
   }
 
   .visadetailsbanner-content {
     margin-left: 6%;
+    max-width: 500px;
+  }
+
+  .visadetailsbanner-title {
+    font-size: 2.6rem;
   }
 
   .visadetailsbanner-info {
     gap: 40px;
   }
+
+  .visadetailsbanner-item {
+    padding: 16px 22px;
+  }
 }
 
+/* Mobile (768px and below) */
 @media (max-width: 768px) {
   .visadetailsbanner {
-    height: 60vh;
-    justify-content: center;
+    height: auto;
+    padding: 60px 0;
     text-align: center;
-  }
-
-  .visadetailsbanner-overlay {
-    background: linear-gradient(180deg, #ffffff 70%, rgba(255, 255, 255, 0.2) 100%);
     justify-content: center;
   }
 
   .visadetailsbanner-content {
-    margin: 0;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
-  .visadetailsbanner-info {
-    justify-content: center;
-    gap: 30px;
-  }
-}
-
-@media (max-width: 480px) {
   .visadetailsbanner-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .visadetailsbanner-badge {
+    margin-bottom: 30px;
+    justify-content: center;
     font-size: 0.9rem;
-    padding: 8px 16px;
+  }
+
+  .visadetailsbanner-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .visadetailsbanner-item {
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
   }
 
   .visadetailsbanner-value {
-    font-size: 1.2rem;
+    justify-content: center;
+  }
+}
+
+/* Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .visadetailsbanner-title {
+    font-size: 1.9rem;
+  }
+
+  .visadetailsbanner-badge {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .visadetailsbanner-item {
+    padding: 14px 18px;
+  }
+
+  .visadetailsbanner-value {
+    font-size: 1.4rem;
   }
 }

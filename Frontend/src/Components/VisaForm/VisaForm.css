@@ -1,173 +1,165 @@
-/* ===================== VISA APPLICATION FORM ===================== */
-.visa-application-form {
-  flex: 1;
-  background-color: #007ab8;
-  color: white;
-  border-radius: 8px;
-  min-width: 300px;
-  overflow: hidden;
-  font-family: 'Arial', sans-serif;
-}
-
-/* Form Header */
-.form-header {
-  background-color: #ffd591;
+/* ===========================
+   FLOATING VISA FORM WRAPPER
+=========================== */
+.float-contact-form-wrapper {
+  background-color: #ffffff;
   color: #222;
-  padding: 0.75rem;
-  font-size: 0.9rem;
-  text-align: center;
-  font-weight: bold;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 320px;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+  transition: all 0.3s ease;
 }
 
-/* Form Inputs */
-form {
+/* ===========================
+   FORM HEADER
+=========================== */
+.float-contact-form-header {
+  background-color: #eef2ff;
+  color: #1d4ed8;
+  font-weight: 600;
+  font-size: 0.88rem;
+  text-align: center;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid #dbeafe;
+}
+
+/* ===========================
+   FORM INPUTS
+=========================== */
+.float-contact-form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  padding: 1rem;
+  gap: 0.6rem;
+  padding: 0.8rem;
 }
 
-input,
-select {
-  padding: 0.6rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+.float-contact-form-input,
+.float-contact-form-select {
+  padding: 0.5rem 0.65rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
   width: 100%;
+  outline: none;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Form Footer */
-.form-footer {
+.float-contact-form-input:focus,
+.float-contact-form-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.25);
+}
+
+/* ===========================
+   FORM FOOTER
+=========================== */
+.float-contact-form-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
 }
 
-.form-footer .form-price {
-  font-weight: bold;
-  font-size: 1.1rem;
+.float-contact-form-price {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1d4ed8;
 }
 
-button {
-  background-color: #00415a;
+.float-contact-form-button {
+  background-color: #2563eb;
+  color: #fff;
+  padding: 0.55rem 1rem;
   border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
   border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.92rem;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background 0.25s ease, transform 0.25s ease;
 }
 
-button:hover {
-  background-color: #005f80;
-  transform: translateY(-2px);
-}
 
-/* ===================== CONTACT OPTIONS GRID ===================== */
-.contact-options-grid {
+
+/* ===========================
+   CONTACT OPTIONS GRID
+=========================== */
+.float-contact-form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 10px;
-  margin-top: 20px;
+  gap: 20px;
+  margin-top: 14px;
 }
 
-/* Individual Contact Card */
-.contact-card {
-  background-color: #f9f9f9;
+/* ===========================
+   INDIVIDUAL CONTACT CARD
+=========================== */
+.float-contact-card {
+  background-color: #f8fafc;
   color: #222;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  font-size: 0.88rem;
 }
 
-.contact-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
 
-/* Header with icon and title in one row */
-.contact-card-header {
+/* CARD HEADER: ICON + INFO */
+.float-contact-card-header {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 5px;
 }
 
-/* Icon */
-.contact-icon {
-  font-size: 1.5rem;
-  color: #007ab8;
+/* ICON */
+.float-contact-icon {
+  font-size: 1.35rem;
   flex-shrink: 0;
+  color: #2563eb;
 }
 
-/* Info next to icon */
-.contact-info {
+/* INFO */
+.float-contact-info {
   display: flex;
   flex-direction: column;
 }
 
-.contact-info .title {
-  font-weight: bold;
-  font-size: 0.95rem;
+.float-contact-title {
+  font-weight: 600;
+  font-size: 0.88rem;
   color: #222;
-  margin: 0;
 }
 
-.contact-info .desc {
-  font-size: 0.85rem;
+.float-contact-desc {
+  font-size: 0.8rem;
   color: #555;
   margin-top: 2px;
+  word-break: break-word;
 }
 
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 1024px) {
-  .visa-application-form {
-    min-width: 100%;
-  }
-
-  .contact-options-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 8px;
-  }
-
-  .contact-card {
-    padding: 8px;
-  }
-
-  .contact-icon {
-    font-size: 1.3rem;
-  }
-
-  .contact-info .title {
-    font-size: 0.9rem;
-  }
-
-  .contact-info .desc {
-    font-size: 0.8rem;
+/* ===========================
+   RESPONSIVE ADJUSTMENTS
+=========================== */
+@media (max-width: 768px) {
+  .float-contact-form-wrapper {
+    max-width: 85vw;
   }
 }
 
 @media (max-width: 480px) {
-  .contact-options-grid {
-    grid-template-columns: 1fr 1fr;
+  .float-contact-form-wrapper {
+    max-width: 95vw;
+    border-radius: 10px;
   }
 
-  .contact-card-header {
-    gap: 5px;
+  .float-contact-form-button {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.88rem;
   }
 
-  .contact-icon {
-    font-size: 1.2rem;
-  }
-
-  .contact-info .title {
-    font-size: 0.85rem;
-  }
-
-  .contact-info .desc {
-    font-size: 0.75rem;
+  .float-contact-form-grid {
+    gap: 8px;
   }
 }

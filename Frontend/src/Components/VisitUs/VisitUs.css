@@ -1,151 +1,186 @@
+/* ================================
+   🎨 VisitUs Component - Professional Redesign
+================================= */
+
 .visit-us-wrapper {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 30px 20px;
+  max-width: 960px;
+  margin: 20px auto;
+  padding: 20px 25px;
   font-family: 'Poppins', sans-serif;
-  background: #fff;
-  border-radius: 15px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-.visit-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: #e40046;
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-/* === Locations === */
-.locations-container {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.location-item {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid #eee;
+  background: #f9faff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
 }
 
+.visit-us-wrapper:hover {
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+.visit-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e40046;
+  text-align: center;
+  margin-bottom: 35px;
+  letter-spacing: 1px;
+}
+
+/* ================================
+   Locations Section
+================================= */
+.locations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.location-item {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #e6e6e6;
+  transition: all 0.4s ease;
+}
+
+.location-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
 .location-header {
-  padding: 14px 18px;
-  font-size: 18px;
-  font-weight: 500;
+  padding: 16px 20px;
+  font-size: 19px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   cursor: pointer;
-  background: #f7f7f7;
-  user-select: none;
-  transition: background 0.3s;
+  background: #f1f4f9;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  transition: background 0.3s, color 0.3s;
 }
 
 .location-header:hover {
-  background: #f0f0f0;
+  background: #eaeef6;
 }
 
 .location-header.active {
   color: #e40046;
+  font-weight: 700;
 }
 
 .toggle-icon {
-  font-size: 20px;
-  margin-right: 12px;
+  font-size: 22px;
+  margin-right: 14px;
   font-weight: bold;
+  color: #e40046;
 }
 
 .location-address {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
+  transition: max-height 0.5s ease, padding 0.4s ease;
   background: #fff;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 
 .location-address.open {
   max-height: 500px;
-  padding: 12px 18px;
+  padding: 15px 20px;
 }
 
 .location-address p {
-  margin: 6px 0;
-  line-height: 1.5;
+  margin: 8px 0;
+  line-height: 1.6;
   font-size: 16px;
-  color: #333;
+  color: #555;
 }
 
-/* === Other Visas === */
+/* ================================
+   Other Visas Section
+================================= */
 .other-visas {
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 .other-visas-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
-  color: #222;
+  color: #1a1a1a;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .visa-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .visa-card {
-  background: linear-gradient(145deg, #ffe6ed, #fff0f5);
-  border-radius: 15px;
-  padding: 18px 25px;
-  min-width: 140px;
+  background: #fff;
+  border-radius: 18px;
+  padding: 20px 28px;
+  min-width: 150px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   cursor: pointer;
+  border: 1px solid #f0f0f0;
 }
 
 .visa-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  background: linear-gradient(135deg, #ffe6ed, #fff0f5);
 }
 
 .visa-country {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 19px;
   color: #e40046;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .visa-price {
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: #333;
 }
 
-/* === Responsive === */
+/* ================================
+   Responsive Design
+================================= */
 @media (max-width: 768px) {
   .visit-us-wrapper {
-    padding: 20px 15px;
+    padding: 30px 20px;
+  }
+
+  .visit-title {
+    font-size: 28px;
   }
 
   .location-header {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .location-address p {
-    font-size: 14px;
+    font-size: 15px;
+  }
+
+  .other-visas-title {
+    font-size: 22px;
   }
 
   .visa-card {
-    min-width: 120px;
-    padding: 15px 20px;
+    min-width: 130px;
+    padding: 16px 20px;
   }
 
   .visa-country {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .visa-price {
@@ -155,20 +190,32 @@
 
 @media (max-width: 480px) {
   .visit-us-wrapper {
-    padding: 15px 10px;
+    padding: 25px 15px;
+  }
+
+  .visit-title {
+    font-size: 24px;
   }
 
   .location-header {
-    font-size: 15px;
+    font-size: 17px;
+  }
+
+  .location-address p {
+    font-size: 14px;
+  }
+
+  .other-visas-title {
+    font-size: 20px;
   }
 
   .visa-card {
-    min-width: 100%;
-    padding: 12px 15px;
+    min-width: 120px;
+    padding: 14px 18px;
   }
 
   .visa-country {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   .visa-price {

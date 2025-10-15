@@ -1,0 +1,150 @@
+/* ===============================
+   🌐 VisaDetails FAQ - Main Wrapper
+=============================== */
+.VisaDetails-Faq-wrapper {
+  max-width: 1140px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+}
+
+/* ===============================
+   🏆 Title
+=============================== */
+.VisaDetails-Faq-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin-bottom: 35px;
+  position: relative;
+}
+
+.VisaDetails-Faq-title::after {
+  content: "";
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  border-radius: 3px;
+  display: block;
+  margin: 12px auto 0;
+}
+
+/* ===============================
+   📜 FAQ List Container
+=============================== */
+.VisaDetails-Faq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===============================
+   📦 FAQ Item
+=============================== */
+.VisaDetails-Faq-item {
+  margin-bottom: 18px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.VisaDetails-Faq-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+}
+
+/* ===============================
+   💬 Question Button
+=============================== */
+.VisaDetails-Faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 18px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  background: #f3f7ff;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.3s ease;
+}
+
+.VisaDetails-Faq-question:hover {
+  background: #e0ebff;
+}
+
+/* ===============================
+   ➕ Icon
+=============================== */
+.VisaDetails-Faq-icon {
+  margin-right: 14px;
+  font-size: 18px;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===============================
+   🧾 Answer Content
+=============================== */
+.VisaDetails-Faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background: #f8fbff;
+  padding: 0 24px;
+  transition: all 0.4s ease;
+  border-top: 1px solid #e5e7eb;
+}
+
+.VisaDetails-Faq-answer.open {
+  max-height: 400px;
+  padding: 16px 24px 20px;
+}
+
+.VisaDetails-Faq-answer p {
+  font-size: 15.5px;
+  color: #4b5563;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===============================
+   📱 Responsive Styling
+=============================== */
+@media (max-width: 768px) {
+  .VisaDetails-Faq-title {
+    font-size: 26px;
+  }
+
+  .VisaDetails-Faq-question {
+    font-size: 16px;
+    padding: 16px 18px;
+  }
+
+  .VisaDetails-Faq-answer p {
+    font-size: 14.5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .VisaDetails-Faq-item {
+    border-radius: 10px;
+  }
+
+  .VisaDetails-Faq-question {
+    padding: 14px 16px;
+  }
+
+  .VisaDetails-Faq-icon {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+}

@@ -1,163 +1,179 @@
+/* ===============================
+   ✈️ PROCESS WRAPPER
+=============================== */
 .process-wrapper {
   max-width: 1140px;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 0 20px;
-  font-family: "Arial", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
 }
 
+/* ===============================
+   🏆 TITLE
+=============================== */
 .process-title {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 700;
-  color: #1f2937;
-  margin-bottom: 50px;
+  color: #0f172a;
+  margin-bottom: 30px;
+  position: relative;
 }
 
-/* Steps Container */
+.process-title::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #2563eb;
+  border-radius: 2px;
+  margin: 15px auto 0;
+}
+
+/* ===============================
+   🔄 STEPS CONTAINER
+=============================== */
 .process-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 30px;
   position: relative;
-  gap: 20px;
-  flex-wrap: wrap;
+  overflow-x: auto; /* ✅ enable horizontal scroll */
+  scroll-behavior: smooth;
+  padding-bottom: 15px;
 }
 
-/* Individual Step Card */
+/* ✅ For mobile/touch smooth scroll feel */
+.process-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.process-container::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+.process-container::-webkit-scrollbar-track {
+  background: #e2e8f0;
+}
+
+/* ===============================
+   📦 PROCESS CARD
+=============================== */
 .process-card {
-  flex: 1;
-  border-radius: 12px;
-  padding: 30px 20px;
+  flex: 0 0 250px; /* ✅ fixed width for scroll cards */
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 35px 25px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+  transition: all 0.35s ease;
+  overflow: hidden;
+  scroll-snap-align: start; /* ✅ snap each card nicely */
 }
 
-.process-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+.process-container {
+  scroll-snap-type: x mandatory; /* ✅ snap scrolling enabled */
 }
 
-/* Icon Circle */
+/* ===============================
+   💠 ICON DESIGN
+=============================== */
 .process-icon {
-  width: 60px;
-  height: 60px;
-  background: #2563eb;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: #fff;
-  font-size: 24px;
+  font-size: 26px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+  transition: all 0.4s ease;
 }
 
-/* Step Title and Description */
+.process-card:hover .process-icon {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
+}
+
+/* ===============================
+   📝 STEP TITLE
+=============================== */
 .process-step-title {
   font-size: 18px;
   font-weight: 700;
-  margin-bottom: 8px;
-  color: #111827;
+  margin-bottom: 10px;
+  color: #0f172a;
+  text-transform: capitalize;
 }
 
+/* ===============================
+   📄 STEP DESCRIPTION
+=============================== */
 .process-step-desc {
-  font-size: 14px;
-  color: #4b5563;
-  line-height: 1.5;
-  max-width: 180px;
-  word-wrap: break-word;
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 220px;
+  margin: 0 auto;
+  transition: color 0.3s ease;
 }
 
-/* Connector Line */
+/* ===============================
+   🔗 CONNECTOR LINE
+=============================== */
 .process-connector {
-  position: absolute;
-  top: 60px; /* center of icon */
-  right: -50%;
-  height: 4px;
-  width: 100%;
-  background: #2563eb;
-  z-index: -1;
+  display: none; /* hidden in scroll mode */
 }
 
-.process-card:last-child .process-connector {
-  display: none;
-}
+/* ===============================
+   📱 RESPONSIVE DESIGN
+=============================== */
 
-/* ----------------------------
-   Fully Responsive
----------------------------- */
-@media (max-width: 1024px) {
+/* ✅ Tablet (768px and below) */
+@media (max-width: 992px) {
+  .process-wrapper {
+    padding: 10px 15px;
+  }
   .process-title {
     font-size: 26px;
-    margin-bottom: 40px;
-  }
-  .process-card {
-    padding: 25px 18px;
-  }
-  .process-step-title {
-    font-size: 17px;
-  }
-  .process-step-desc {
-    font-size: 13px;
-    max-width: 160px;
-  }
-  .process-icon {
-    width: 55px;
-    height: 55px;
-    font-size: 22px;
   }
 }
 
-@media (max-width: 768px) {
+/* ✅ Mobile (600px and below) */
+@media (max-width: 600px) {
   .process-container {
-    flex-direction: column;
-    gap: 40px;
+    gap: 20px;
+    padding-bottom: 10px;
   }
-  .process-connector {
-    display: none;
-  }
+
   .process-card {
-    padding: 22px 15px;
+    flex: 0 0 220px; /* smaller card size for phone */
+    padding: 25px 20px;
   }
-  .process-title {
-    font-size: 24px;
+
+  .process-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 22px;
   }
+
   .process-step-title {
     font-size: 16px;
   }
-  .process-step-desc {
-    font-size: 13px;
-    max-width: 100%;
-  }
-  .process-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-  }
-}
 
-@media (max-width: 480px) {
-  .process-wrapper {
-    padding: 0 15px;
-  }
-  .process-title {
-    font-size: 22px;
-    margin-bottom: 30px;
-  }
-  .process-card {
-    padding: 18px 12px;
-  }
-  .process-step-title {
-    font-size: 15px;
-  }
   .process-step-desc {
-    font-size: 12px;
-    max-width: 100%;
-  }
-  .process-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 18px;
+    font-size: 14px;
   }
 }

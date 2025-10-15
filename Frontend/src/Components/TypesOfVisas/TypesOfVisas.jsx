@@ -16,10 +16,10 @@ const TypesOfVisas = () => {
         <h2 className="types-title">Types of Malaysia Visas</h2>
 
         {/* Visa Cards */}
-        <div className="visa-cards">
-          <div className="visa-card">
-            <div className="visa-card-header">Malaysia Digital Arrival Card (MDAC)</div>
-            <div className="visa-card-details">
+        <div className="TypesVisa-cards">
+          <div className="TypesVisa-card">
+            <div className="TypesVisa-card-header">Malaysia Digital Arrival Card (MDAC)</div>
+            <div className="TypesVisa-card-details">
               <div><span>Processing time:</span> 24 hours</div>
               <div><span>Stay period:</span> 30 days</div>
               <div><span>Validity:</span> 1 month</div>
@@ -29,9 +29,9 @@ const TypesOfVisas = () => {
             </div>
           </div>
 
-          <div className="visa-card">
-            <div className="visa-card-header">30 Days Malaysia Sticker Visa</div>
-            <div className="visa-card-details">
+          <div className="TypesVisa-card">
+            <div className="TypesVisa-card-header">30 Days Malaysia Sticker Visa</div>
+            <div className="TypesVisa-card-details">
               <div><span>Processing time:</span> 4–5 days</div>
               <div><span>Stay period:</span> 30 days</div>
               <div><span>Validity:</span> Up to 12 months</div>

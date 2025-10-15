@@ -46,24 +46,6 @@ button {
 }
 
 
-@media (max-width: 992px) {
-  section {
-    padding: 50px 15px;
-  }
-}
-
-@media (max-width: 768px) {
-  section {
-    padding: 40px 10px;
-  }
-}
-
-@media (max-width: 576px) {
-  section {
-    padding: 30px 8px;
-  }
-}
-
 /* ===== Links for Buttons / CTA ===== */
 a.button {
   display: inline-block;

@@ -2,29 +2,38 @@ import React from "react";
 import "./VisaNavbar.css";
 
 const VisaNavbar = ({ activeSection }) => {
-  const links = [
-    { href: "#types", label: "Types Of Visas" },
-    { href: "#documents", label: "Documents" },
-    { href: "#process", label: "Process" },
-    { href: "#why-choose-us", label: "Why Choose Us" },
-    { href: "#sample-visa", label: "Sample Visa" },
-    { href: "#faqs", label: "FAQs" },
-    { href: "#reviews", label: "Reviews" },
-    { href: "#embassy", label: "Embassy" },
-    { href: "#visit-us", label: "Visit Us" },
+  const handleSectionClick = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const navItems = [
+    { id: "types", label: "Types" },
+    { id: "documents", label: "Documents" },
+    { id: "process", label: "Process" },
+    { id: "why-choose-us", label: "Why Choose Us" },
+    { id: "faqs", label: "FAQs" },
+    { id: "embassy", label: "Embassy" },
+    { id: "visit-us", label: "Visit Us" },
   ];
 
   return (
-    <nav className="visanavbar">
-      {links.map((link) => (
-        <a
-          key={link.href}
-          href={link.href}
-          className={activeSection === link.href.substring(1) ? "visanavbar-active" : ""}
-        >
-          {link.label}
-        </a>
-      ))}
+    <nav className="visa-navbar">
+      <ul className="visa-navbar-list">
+        {navItems.map((item) => (
+          <li
+            key={item.id}
+            className={`visa-navbar-item ${
+              activeSection === item.id ? "active" : ""
+            }`}
+            onClick={() => handleSectionClick(item.id)}
+          >
+            {item.label}
+          </li>
+        ))}
+      </ul>
     </nav>
   );
 };

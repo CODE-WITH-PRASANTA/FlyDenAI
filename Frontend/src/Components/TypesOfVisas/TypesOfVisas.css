@@ -1,72 +1,108 @@
+/* ========================================
+   🌏 Base Page Wrapper
+======================================== */
 .types-visa-page {
   display: flex;
-  gap: 30px;
-  max-width: 1200px;   /* max width */
-  margin: 40px auto;   /* center the page */
-  padding: 0 20px;     /* left and right space */
-  font-family: 'Arial', sans-serif;
-  color: #222;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 20px auto 60px;
+  padding: 0 25px;
+  font-family: 'Poppins', sans-serif;
+  color: #1f2d3d;
+  line-height: 1.6;
 }
 
-/* Left Content */
+/* ========================================
+   📄 Left Content
+======================================== */
 .left-content {
   flex: 1;
-  min-width: 0;
+  min-width: 300px;
 }
 
-/* Title */
+/* ========================================
+   🏷️ Title
+======================================== */
 .types-title {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #0d1b2a;
+  margin-bottom: 35px;
+  border-left: 5px solid #0077b6;
+  padding-left: 14px;
+  letter-spacing: 0.5px;
 }
 
-/* Visa Cards */
-.visa-cards {
+/* ========================================
+   🧾 Visa Cards
+======================================== */
+.TypesVisa-cards {
   display: flex;
-  gap: 25px;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  gap: 30px;
+  margin-bottom: 50px;
 }
 
-.visa-card {
-  background-color: #f7fafd;
-  border-radius: 5px;
+.TypesVisa-card {
+  background: #ffffff;
+  border-radius: 12px;
   flex: 1 1 45%;
   min-width: 280px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.visa-card-header {
-  background-color: #d7ebff;
-  font-weight: 700;
-  padding: 15px 20px;
-  border-radius: 5px 5px 0 0;
+.TypesVisa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
-.visa-card-details {
-  padding: 15px 20px 25px;
-  font-size: 14px;
-  color: #3a3a3a;
+.TypesVisa-card-header {
+  background: linear-gradient(90deg, #0077b6, #0096c7);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 22px;
+  letter-spacing: 0.3px;
 }
 
-.visa-card-details div {
+.TypesVisa-card-details {
+  padding: 18px 22px 25px;
+  font-size: 14.5px;
+  color: #333;
+  line-height: 1.7;
+}
+
+.TypesVisa-card-details div {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-.visa-fees {
-  font-weight: 700;
-  color: #304a7d;
+.TypesVisa-card-details span:first-child {
+  color: #555;
 }
 
-/* Author Update */
+.visa-fees {
+  font-weight: 700;
+  color: #0077b6;
+  font-size: 15px;
+}
+
+/* ========================================
+   ✍️ Author + Last Update Section
+======================================== */
 .author-update {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  background: #f3f8fb;
+  padding: 18px 22px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  margin-bottom: 45px;
   flex-wrap: wrap;
   gap: 15px;
 }
@@ -78,39 +114,41 @@
 }
 
 .author-photo {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid #ccc;
+  border: 2px solid #d1e3f0;
 }
 
 .author-role {
-  color: #5a8fc2;
+  color: #0077b6;
   font-size: 13px;
-  margin-top: 2px;
   font-weight: 500;
+  margin-top: 2px;
 }
 
 .last-updated {
   font-size: 14px;
   color: #222;
-  font-weight: 500;
 }
 
 .last-updated strong {
-  font-weight: 700;
+  color: #0d47a1;
 }
 
-/* Reviews Banner */
+/* ========================================
+   ⭐ Reviews Banner
+======================================== */
 .reviews-banner {
-  background-color: #d8f2f0;
-  padding: 15px 20px;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #e3f2fd, #f1fcf9);
+  padding: 20px 25px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   gap: 20px;
   max-width: 600px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
 }
 
 .review-avatars {
@@ -119,11 +157,11 @@
 }
 
 .review-avatars img {
-  width: 48px;
-  height: 48px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1.5px solid #ccc;
+  border: 1.5px solid #cfd8dc;
 }
 
 .review-text {
@@ -133,44 +171,239 @@
 .review-text strong {
   font-weight: 700;
   font-size: 18px;
+  color: #0d1b2a;
 }
 
 .review-details {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-top: 4px;
+  margin-top: 5px;
   flex-wrap: wrap;
 }
 
 .review-rating {
   font-weight: 700;
-  color: #0770d9;
+  color: #0077b6;
 }
 
 .google-logo {
-  width: 72px;
+  width: 70px;
   vertical-align: middle;
 }
 
-/* Right sticky form */
-.right-form {
-  width: 360px;
-  position: sticky;
-  top: 90px;
-  align-self: flex-start;
-  margin-left: 20px; /* space from left content */
+/* ========================================
+   📱 Responsive Design (All Devices)
+======================================== */
+
+/* ===== Tablet Devices (1024px and below) ===== */
+@media (max-width: 1024px) {
+  .types-visa-page {
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .types-title {
+    font-size: 24px;
+    margin-bottom: 28px;
+  }
+
+  .TypesVisa-cards {
+    gap: 20px;
+  }
+
+  .TypesVisa-card {
+    flex: 1 1 48%;
+  }
+
+  .TypesVisa-card-header {
+    font-size: 15px;
+    padding: 14px 18px;
+  }
+
+  .TypesVisa-card-details {
+    font-size: 14px;
+    padding: 15px 18px;
+  }
+
+  .reviews-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .review-avatars {
+    gap: 8px;
+  }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
+/* ===== Large Mobile (768px and below) ===== */
+@media (max-width: 768px) {
   .types-visa-page {
     flex-direction: column;
-    padding: 0 15px; /* reduce side padding on mobile */
+    align-items: center;
+    padding: 0 18px;
   }
-  .right-form {
+
+  .left-content {
     width: 100%;
-    position: static;
-    margin-top: 30px;
+  }
+
+  .types-title {
+    font-size: 22px;
+    text-align: center;
+    border-left: none;
+    border-bottom: 3px solid #0077b6;
+    padding-left: 0;
+    padding-bottom: 6px;
+  }
+
+  .TypesVisa-cards {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .TypesVisa-card {
+    width: 100%;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  }
+
+  .TypesVisa-card-header {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .TypesVisa-card-details div {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .visa-fees {
+    text-align: center;
+    font-size: 15.5px;
+  }
+
+  .author-update {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .author-info {
+    justify-content: center;
+  }
+
+  .reviews-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    max-width: 100%;
+  }
+
+  .review-text strong {
+    font-size: 16px;
+    text-align: start;
+  }
+
+  .google-logo {
+    width: 60px;
+  }
+}
+
+/* ===== Small Mobile (480px and below) ===== */
+@media (max-width: 480px) {
+  .types-visa-page {
+    gap: 25px;
+    padding: 0 14px;
+  }
+
+  .types-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .TypesVisa-card-header {
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  .TypesVisa-card-details {
+    font-size: 13.5px;
+    padding: 14px 16px;
+  }
+
+  .TypesVisa-card-details div {
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .author-update {
+    padding: 14px 16px;
+    flex-direction: unset;
+    text-align: unset;
+  }
+
+  .author-photo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .last-updated {
+    font-size: 13px;
+  }
+
+  .reviews-banner {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .review-avatars img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .review-text strong {
+    font-size: 15px;
+    text-align: start;
+  }
+
+  .review-rating {
+    font-size: 13.5px;
+  }
+
+  .google-logo {
+    width: 55px;
+  }
+}
+
+/* ===== Extra Small Devices (360px and below) ===== */
+@media (max-width: 360px) {
+  .types-title {
+    font-size: 18px;
+  }
+
+  .TypesVisa-card-header {
+    font-size: 13px;
+  }
+
+  .TypesVisa-card-details {
+    font-size: 13px;
+  }
+
+  .author-photo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .reviews-banner {
+    padding: 12px;
+  }
+
+  .review-text strong {
+    font-size: 14px;
+  }
+
+  .review-details span {
+    font-size: 12.5px;
   }
 }

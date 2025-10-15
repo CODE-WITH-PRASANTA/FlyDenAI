@@ -1,85 +1,97 @@
-/* === General Wrapper === */
+/* ================================
+   🎨 General Wrapper
+================================= */
 .embassy-wrapper {
   font-family: 'Poppins', sans-serif;
   padding: 50px 5%;
-  background: #f7f9ff;
+  background: #f4f7fc;
   color: #333;
   max-width: 1200px;
   margin: 0 auto;
+  gap: 40px;
 }
 
-/* === Malaysia Visa Steps Section === */
+/* ================================
+   🎯 Malaysia Visa Steps Section
+================================= */
 .visa-steps-container {
   background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 45px 35px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
   margin-bottom: 50px;
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .visa-steps-container:hover {
-  transform: translateY(-5px);
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
 .visa-steps-container h2 {
-  font-size: 28px;
+  font-size: 30px;
+  font-weight: 700;
+  color: #1a1a1a;
   margin-bottom: 20px;
 }
 
 .visa-steps-container p {
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.8;
   margin-bottom: 15px;
   color: #555;
 }
 
 .visa-steps-container h3 {
-  font-size: 20px;
-  margin-top: 20px;
+  font-size: 22px;
+  margin-top: 25px;
   margin-bottom: 15px;
+  color: #0770d9;
 }
 
 .visa-steps-container ul {
   list-style: disc inside;
-  margin-left: 0;
-  padding-left: 0;
   margin-bottom: 15px;
 }
 
 .visa-steps-container ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 16px;
   color: #555;
 }
 
 .toggle-btn {
-  background: #e40046;
+  background: linear-gradient(135deg, #e40046, #ff3b5c);
   color: #fff;
   border: none;
-  padding: 12px 25px;
-  border-radius: 6px;
+  padding: 12px 28px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .toggle-btn:hover {
-  background: #ff3b5c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 59, 92, 0.5);
 }
 
-/* === Basic Requirements === */
+/* ================================
+   🎯 Basic Requirements
+================================= */
 .embassy-req {
   background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 45px 35px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
   margin-bottom: 50px;
 }
 
 .embassy-req h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1a1a1a;
 }
 
 .embassy-req ul {
@@ -88,8 +100,9 @@
 }
 
 .embassy-req ul li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   font-size: 16px;
+  color: #555;
 }
 
 .read-more {
@@ -101,73 +114,82 @@
 
 .read-more:hover {
   color: #ff3b5c;
+  text-decoration: underline;
 }
 
-/* === Tourist Attractions Vertical Cards === */
+/* ================================
+   🎯 Tourist Attractions Cards
+================================= */
 .embassy-attractions h2 {
-  font-size: 28px;
+  font-size: 30px;
+  font-weight: 700;
   margin-bottom: 30px;
+  color: #1a1a1a;
 }
 
 .embassy-grid-vertical {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 35px;
 }
 
 .embassy-card-vertical {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+  transition: all 0.4s ease;
 }
 
 .embassy-card-vertical:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  transform: translateY(-7px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
 }
 
 .embassy-card-text {
   flex: 1;
-  padding: 25px 30px;
+  padding: 30px 35px;
 }
 
 .embassy-card-text h3 {
   font-size: 22px;
   color: #0770d9;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
 .embassy-card-text p {
   font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 12px;
+  line-height: 1.8;
+  margin-bottom: 15px;
   color: #555;
 }
 
 .price {
   font-weight: 700;
-  color: #0770d9;
+  color: #e40046;
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 
 .enquire-btn {
-  background: #0770d9;
+  background: linear-gradient(135deg, #0770d9, #00c6ff);
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
+  padding: 10px 22px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .enquire-btn:hover {
-  background: #ff3b5c;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(7,112,217,0.5);
 }
 
 .embassy-card-image {
@@ -187,35 +209,42 @@
   transform: scale(1.05);
 }
 
-/* === Arrival & Travel Info === */
+/* ================================
+   🎯 Arrival & Travel Info
+================================= */
 .embassy-info {
   background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 45px 35px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
   margin-bottom: 50px;
+  margin-top: 10px;
 }
 
 .embassy-info h2 {
-  font-size: 26px;
-  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1a1a1a;
 }
 
 .embassy-info p, .embassy-info li {
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.8;
   color: #555;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .embassy-info table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .embassy-info table td {
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ddd;
   font-size: 16px;
 }
@@ -225,18 +254,21 @@
   color: #0770d9;
 }
 
-/* === Malaysia Info Links === */
+/* ================================
+   🎯 Malaysia Info Links
+================================= */
 .embassy-links {
   background: #fff;
-  padding: 40px 30px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  margin-bottom: 50px;
+  padding: 45px 35px;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
 }
 
 .embassy-links h2 {
-  font-size: 26px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1a1a1a;
 }
 
 .embassy-links ul {
@@ -246,24 +278,36 @@
 .embassy-links ul li {
   margin-bottom: 12px;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.8;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* === Responsive Design === */
-@media screen and (max-width: 1024px) {
-  .embassy-card-vertical {
-    flex-direction: column;
-  }
-
-  .embassy-card-image {
-    max-width: 100%;
-    height: 250px;
-  }
+.embassy-links ul li:hover {
+  color: #e40046;
+  transform: translateX(5px);
+  font-weight: 600;
 }
 
-@media screen and (max-width: 768px) {
+
+/* ==============================
+   🎯 Responsive Media Queries
+================================ */
+
+/* Mobile Devices (up to 480px) */
+@media (max-width: 480px) {
   .embassy-wrapper {
-    padding: 30px 3%;
+    padding: 30px 5%;
+    gap: 30px;
+  }
+
+  .visa-steps-container,
+  .embassy-req,
+  .embassy-attractions,
+  .embassy-info,
+  .embassy-links {
+    padding: 30px 20px;
   }
 
   .visa-steps-container h2,
@@ -274,32 +318,43 @@
     font-size: 24px;
   }
 
-  .visa-steps-container p,
-  .embassy-req ul li,
-  .embassy-info p,
-  .embassy-info li,
-  .embassy-links ul li,
-  .embassy-card-text p {
-    font-size: 15px;
+  .embassy-card-vertical {
+    flex-direction: column;
   }
 
-  .visa-steps-container h3 {
-    font-size: 18px;
+  .embassy-card-image {
+    max-width: 100%;
+    margin-top: 15px;
   }
 
   .embassy-card-text h3 {
     font-size: 20px;
   }
 
-  .toggle-btn, .enquire-btn {
-    padding: 8px 16px;
+  .price {
+    font-size: 15px;
+  }
+
+  .enquire-btn {
+    padding: 10px 18px;
     font-size: 14px;
+  }
+
+  .embassy-info table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .embassy-links ul li {
+    font-size: 15px;
   }
 }
 
-@media screen and (max-width: 480px) {
+/* Small Tablets (481px – 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
   .embassy-wrapper {
-    padding: 20px 2%;
+    padding: 35px 5%;
+    gap: 35px;
   }
 
   .visa-steps-container h2,
@@ -307,27 +362,101 @@
   .embassy-attractions h2,
   .embassy-info h2,
   .embassy-links h2 {
-    font-size: 20px;
+    font-size: 26px;
   }
 
-  .embassy-card-text h3 {
-    font-size: 18px;
-  }
-
-  .visa-steps-container h3 {
-    font-size: 16px;
-  }
-
-  .visa-steps-container p,
-  .embassy-req ul li,
-  .embassy-info p,
-  .embassy-info li,
-  .embassy-links ul li,
-  .embassy-card-text p {
-    font-size: 14px;
+  .embassy-card-vertical {
+    flex-direction: column;
   }
 
   .embassy-card-image {
-    height: 200px;
+    max-width: 100%;
+    margin-top: 15px;
+  }
+
+  .embassy-card-text h3 {
+    font-size: 21px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+
+  .enquire-btn {
+    padding: 10px 20px;
+  }
+
+  .embassy-info table td {
+    font-size: 15px;
+    padding: 10px;
+  }
+
+  .embassy-links ul li {
+    font-size: 16px;
+  }
+}
+
+/* Medium Tablets / Small Laptops (769px – 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .embassy-wrapper {
+    padding: 40px 5%;
+    gap: 40px;
+  }
+
+  .visa-steps-container h2,
+  .embassy-req h2,
+  .embassy-attractions h2,
+  .embassy-info h2,
+  .embassy-links h2 {
+    font-size: 28px;
+  }
+
+  .embassy-card-vertical {
+    flex-direction: row;
+  }
+
+  .embassy-card-image {
+    max-width: 50%;
+    margin-top: 0;
+  }
+
+  .embassy-card-text h3 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 16px;
+  }
+}
+
+/* Large Desktops (>1024px) */
+@media (min-width: 1025px) {
+  .embassy-wrapper {
+    padding: 50px 5%;
+    gap: 40px;
+  }
+
+  .visa-steps-container h2,
+  .embassy-req h2,
+  .embassy-attractions h2,
+  .embassy-info h2,
+  .embassy-links h2 {
+    font-size: 30px;
+  }
+
+  .embassy-card-vertical {
+    flex-direction: row;
+  }
+
+  .embassy-card-image {
+    max-width: 50%;
+  }
+
+  .embassy-card-text h3 {
+    font-size: 22px;
+  }
+
+  .price {
+    font-size: 16px;
   }
 }

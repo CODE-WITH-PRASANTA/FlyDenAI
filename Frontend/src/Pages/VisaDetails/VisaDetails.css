@@ -1,60 +1,143 @@
-.visa-details-container {
-  font-family: "Arial", sans-serif;
-}
-
-/* Sticky Navbar */
-.visa-details-container nav {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-/* Main wrapper for sections + right form */
-.visa-content-wrapper {
-  display: flex;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 40px; /* space between left content and right form */
-  padding: 20px;
-}
-
-/* Sections container (left) */
-.visa-sections {
-  flex: 0 0 780px;
-  min-width: 0;
+/* ===========================
+   🎨 Floating Visa Form Wrapper
+=========================== */
+.floating-form-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  padding-top: 80px; /* <-- add space for fixed navbar height */
+  align-items: flex-end;
+  transition: all 0.3s ease;
+}
+/* ===========================
+   🎨 Floating Toggle Button
+=========================== */
+.floating-form-toggle {
+  width: 50px;              /* slightly smaller */
+  height: 50px;             /* slightly smaller */
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #fff;
+  font-size: 24px;           /* smaller font size */
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35); /* subtle shadow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-/* Section wrapper for consistent padding & alignment */
-.section-wrapper {
-  width: 100%;
+.floating-form-toggle:hover {
+  background: linear-gradient(135deg, #1e40af, #2563eb); /* subtle hover gradient */
+  transform: scale(1.1);  /* smooth hover scaling */
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
 }
 
-/* Right sticky VisaForm */
-.visa-form-right {
-  flex: 0 0 300px; /* fixed width for form */
-  position: sticky;
-  top: 100px;
-  align-self: flex-start;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-form-toggle {
+    width: 45px;
+    height: 45px;
+    font-size: 22px;
+  }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .visa-content-wrapper {
-    flex-direction: column;
+@media (max-width: 480px) {
+  .floating-form-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+
+/* ===========================
+   🎨 Floating Form Content
+=========================== */
+.floating-form-content {
+  margin-bottom: 15px;
+  width: 350px;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.45s ease;
+  overflow-y: auto;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+.floating-form-wrapper.open .floating-form-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Optional: Add subtle bounce on open for better UX */
+.floating-form-wrapper.open .floating-form-content {
+  animation: floatUp 0.5s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   🎨 Scrollbar Styling (Modern)
+=========================== */
+.floating-form-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.floating-form-content::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 10px;
+}
+
+.floating-form-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+/* ===========================
+   🎨 Responsive Adjustments
+=========================== */
+@media (max-width: 768px) {
+  .floating-form-content {
+    width: 90vw;
+    padding: 20px;
   }
 
-  .visa-form-right {
-    position: static;
-    width: 100%;
-    margin-top: 30px;
+  .floating-form-toggle {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-form-content {
+    width: 95vw;
+    padding: 18px;
   }
 
-  .visa-sections {
-    width: 100%;
+  .floating-form-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
   }
 }

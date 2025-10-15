@@ -89,7 +89,7 @@ const Documents = () => {
                 {type === "online"
                   ? "Must have Documents for Malaysia Visa Online"
                   : "Must have Documents for Malaysia Sticker Visa"}
-                <span className={`arrow ${openSection === type ? "open" : ""}`}>▼</span>
+                <span className={`Document-arrow ${openSection === type ? "open" : ""}`}>▼</span>
               </button>
 
               <div
@@ -105,11 +105,11 @@ const Documents = () => {
           ))}
 
           {/* Team Carousel */}
-          <div className="team-section">
+          <div className="Document-team-section">
             <h3>Meet Our Team Of Visa Experts</h3>
             <div className="team-carousel" ref={carouselRef}>
               {teamMembers.map((member, i) => (
-                <div className="team-card" key={i}>
+                <div className="Document-TeamCard" key={i}>
                   <img src={member.img} alt={member.name} className="team-photo" />
                   <div className="team-info">
                     <strong>{member.name}</strong>
@@ -120,7 +120,7 @@ const Documents = () => {
               ))}
               {/* Duplicate cards for infinite feel */}
               {teamMembers.map((member, i) => (
-                <div className="team-card" key={`dup-${i}`}>
+                <div className="Document-TeamCard" key={`dup-${i}`}>
                   <img src={member.img} alt={member.name} className="team-photo" />
                   <div className="team-info">
                     <strong>{member.name}</strong>

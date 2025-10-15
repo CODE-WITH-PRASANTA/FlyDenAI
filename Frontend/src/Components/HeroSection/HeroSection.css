@@ -28,7 +28,7 @@
   z-index: 2;
 }
 
-/* Overlay gradient */
+/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
@@ -98,45 +98,98 @@
   align-items: center;
   gap: 10px;
 }
-
-/* Buttons */
-.buttons {
+/* ===============================
+   🎯 Buttons Section
+=============================== */
+.hero-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  align-items: center;
 }
 
-.btn {
-  border: 2px solid #fff;
+/* Base Button */
+.hero-btn {
   border-radius: 30px;
-  padding: 12px 28px;
+  padding: 12px 30px;
   font-weight: 600;
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.3s ease;
   text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  min-width: 180px;
 }
 
-.btn.primary {
+/* Primary Button */
+.hero-btn-primary {
   background: linear-gradient(135deg, #e94e77, #e53935);
+  color: #fff;
   border: none;
-  color: #fff;
 }
 
-.btn.primary:hover {
+.hero-btn-primary:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(233, 78, 119, 0.6);
+  box-shadow: 0 0 18px rgba(233, 78, 119, 0.6);
 }
 
-.btn.secondary {
+/* Secondary Button */
+.hero-btn-secondary {
   background: transparent;
+  border: 2px solid #fff;
   color: #fff;
 }
 
-.btn.secondary:hover {
+.hero-btn-secondary:hover {
   color: #e94e77;
   border-color: #e94e77;
   transform: scale(1.05);
+}
+
+/* ===============================
+   📱 Responsive Design
+=============================== */
+
+/* Tablet View */
+@media (max-width: 992px) {
+  .hero-buttons {
+    gap: 12px;
+  }
+
+  .hero-btn {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    min-width: 160px;
+  }
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .hero-btn {
+    width: 85%;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Extra Small Devices (≤ 480px) */
+@media (max-width: 480px) {
+  .hero-btn {
+    width: 90%;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    min-width: auto;
+  }
 }
 
 /* Arrows */
@@ -208,13 +261,15 @@
   }
 }
 
-
 /* ============================
-   📱 Responsive Font Sizes Only
+   📱 Responsive Font & Height
 ============================ */
 
 /* Tablets (max-width: 1024px) */
 @media (max-width: 1024px) {
+  .hero-section {
+    height: 60vh;
+  }
   .hero-content h1 {
     font-size: 2.8rem;
   }
@@ -224,13 +279,19 @@
   .hero-content ul li {
     font-size: 1rem;
   }
-  .btn {
+  .herobtn {
     font-size: 0.95rem;
   }
 }
 
 /* Mobile Landscape (max-width: 768px) */
 @media (max-width: 768px) {
+  .hero-section {
+    height: 55vh;
+  }
+  .hero-content {
+    top: 16%;
+  }
   .hero-content h1 {
     font-size: 2.2rem;
   }
@@ -240,15 +301,23 @@
   .hero-content ul li {
     font-size: 0.95rem;
   }
-  .btn {
+  .herobtn {
     font-size: 0.9rem;
   }
 }
 
-/* Mobile Portrait (max-width: 480px) */
-@media (max-width: 480px) {
+/* iPhone 11, 12, 13, 14, 15 Pro, etc. (max-width: 430px) */
+@media (max-width: 430px) {
+  .hero-section {
+    height: 55vh;
+  }
+  .hero-content {
+    top: 10%;
+    padding: 0 12px;
+  }
   .hero-content h1 {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+    line-height: 1.25;
   }
   .hero-subtitle {
     font-size: 0.9rem;
@@ -256,41 +325,32 @@
   .hero-content ul li {
     font-size: 0.85rem;
   }
-  .btn {
+  .herobtn {
     font-size: 0.85rem;
+    padding: 10px 22px;
+  }
+   .herobuttons{
+    display: block;
   }
 }
 
-/* ============================
-   📱 Responsive Hero Height
-============================ */
-
-/* Default (already set) */
-.hero-section {
-  height: 65vh;
-}
-
-/* Tablets (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .hero-section {
-    height: 60vh;
-  }
-}
-
-/* Mobile Landscape (max-width: 768px) */
-@media (max-width: 768px) {
-  .hero-section {
-    height: 55vh;
-  }
-}
-
-/* Mobile Portrait (max-width: 480px) */
-@media (max-width: 480px) {
+/* Smaller Mobiles (max-width: 375px, e.g., iPhone SE) */
+@media (max-width: 375px) {
   .hero-section {
     height: 50vh;
   }
-
-  .hero-content.right{
-    padding: 10px;
+  .hero-content h1 {
+    font-size: 1.7rem;
   }
+  .hero-subtitle {
+    font-size: 0.85rem;
+  }
+  .hero-content ul li {
+    font-size: 0.8rem;
+  }
+  .herobtn {
+    font-size: 0.8rem;
+    padding: 9px 20px;
+  }
+ 
 }

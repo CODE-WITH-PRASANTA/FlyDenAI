@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from 'react';
 import "./VisaDetails.css";
 import VisaDetailsBanner from "../../Components/VisaDetailsBanner/VisaDetailsBanner";
 import VisaNavbar from "../../Components/VisaNavbar/VisaNavbar";
@@ -8,42 +8,28 @@ import VisaForm from "../../Components/VisaForm/VisaForm";
 import TypesOfVisas from "../../Components/TypesOfVisas/TypesOfVisas";
 import Documents from "../../Components/Documents/Documents";
 import Process from "../../Components/Process/Process";
-import Faqs from "../../Components/Faqs/Faqs";
 import VisaWhyChooseUs from "../../Components/VisaWhyChooseUs/VisaWhyChooseUs";
 import Embassy from "../../Components/Embassy/Embassy";
 import VisitUs from "../../Components/VisitUs/VisitUs";
+import VisaDetailsFaq from '../../Components/VisaDetailsFaq/VisaDetailsFaq';
 
 const VisaDetails = () => {
-  const [activeSection, setActiveSection] = useState("types");
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
-  useEffect(() => {
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => sections.forEach((section) => observer.unobserve(section));
-  }, []);
+  const toggleForm = () => {
+    setIsFormOpen(prev => !prev);
+  };
 
   return (
     <div className="visa-details-container">
-      {/* Banner at the top */}
+      {/* Banner */}
       <VisaDetailsBanner />
 
       {/* Sticky Navbar */}
-      <VisaNavbar activeSection={activeSection} />
+      <VisaNavbar />
 
-      {/* Main wrapper */}
+      {/* Main content */}
       <div className="visa-content-wrapper">
-        {/* Sections container */}
         <div className="visa-sections">
           <section id="types" className="section-wrapper">
             <div className="section-container">
@@ -63,15 +49,15 @@ const VisaDetails = () => {
             </div>
           </section>
 
-          <section id="why-choose-us" className="section-wrapper">
+          <section id="faqs" className="section-wrapper">
             <div className="section-container">
-              <VisaWhyChooseUs />
+              <VisaDetailsFaq />
             </div>
           </section>
 
-          <section id="faqs" className="section-wrapper">
+          <section id="why-choose-us" className="section-wrapper">
             <div className="section-container">
-              <Faqs />
+              <VisaWhyChooseUs />
             </div>
           </section>
 
@@ -88,9 +74,16 @@ const VisaDetails = () => {
           </section>
         </div>
 
-        {/* Right VisaForm */}
-        <div className="visa-form-right">
-          <VisaForm />
+        {/* Floating VisaForm */}
+        <div className={`floating-form-wrapper ${isFormOpen ? 'open' : ''}`}>
+          <button className="floating-form-toggle" onClick={toggleForm}>
+            {isFormOpen ? '×' : '^'}
+          </button>
+          {isFormOpen && (
+            <div className="floating-form-content">
+              <VisaForm />
+            </div>
+          )}
         </div>
       </div>
     </div>
