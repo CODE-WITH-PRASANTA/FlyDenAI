@@ -1,12 +1,20 @@
-/* === BASE SECTION === */
 .visa-steps-section {
   font-family: "Poppins", sans-serif;
   text-align: center;
-  padding: 100px 8%;
+  padding: 20px 8%;
   background: linear-gradient(180deg, #fff 0%, #f7f9ff 100%);
   position: relative;
   overflow: hidden;
+  border: 4px solid transparent;
+  border-radius: 16px;
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  background-image: 
+    linear-gradient(180deg, #fff 0%, #f7f9ff 100%), 
+    linear-gradient(135deg, #ff3b5c, #ff9f43, #1dd1a1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.08);
 }
+
 
 .section-subtitle {
   color: #e40046;
@@ -197,54 +205,174 @@
   opacity: 0.6;
 }
 
-/* === FULLY RESPONSIVE === */
+/* 🌐 RESPONSIVE DESIGN */
 
-/* Large Tablets / Laptops */
+/* 🖥️ Large Tablets & Small Laptops */
 @media (max-width: 1200px) {
-  .section-title { font-size: 30px; margin-bottom: 60px; }
-  .step-circle { width: 100px; height: 100px; }
-  .step-icon { font-size: 32px; }
-  .step-content h2 { font-size: 18px; }
+  .visa-steps-section {
+    padding: 20px 5%;
+  }
+
+  .section-title {
+    font-size: 30px;
+    margin-bottom: 60px;
+  }
+
+  .steps-timeline {
+    gap: 40px;
+  }
+
+  .connector-line {
+    right: -80px;
+    width: 160px;
+  }
 }
 
-/* Tablets */
+/* 📱 Tablets */
 @media (max-width: 992px) {
+  .section-title {
+    font-size: 28px;
+  }
+
+  .steps-timeline {
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .timeline-step {
+    flex: 0 0 45%;
+    text-align: center;
+  }
+
+  .connector-line {
+    display: none;
+  }
+
+  .step-circle {
+    width: 110px;
+    height: 110px;
+  }
+
+  .step-content h2 {
+    font-size: 18px;
+  }
+}
+
+/* 📲 Mobile (Landscape & Large Mobiles) */
+@media (max-width: 768px) {
+  .visa-steps-section {
+    padding: 30px 25px;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+  }
+
   .steps-timeline {
     flex-direction: column;
     align-items: center;
     gap: 50px;
   }
-  .connector-line { display: none; }
+
+  .timeline-step {
+    flex: none;
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .step-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .step-icon {
+    font-size: 32px;
+  }
+
+  .step-content h2 {
+    font-size: 18px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+  }
+
+  .connector-line {
+    display: none;
+  }
 }
 
-/* Small Tablets / Large Mobile */
-@media (max-width: 768px) {
-  .visa-steps-section { padding: 80px 5%; }
-  .section-title { font-size: 26px; }
-  .step-circle { width: 90px; height: 90px; }
-  .step-icon { font-size: 28px; }
-  .step-content h2 { font-size: 16px; }
-  .step-content p { font-size: 13px; max-width: 250px; }
-  .check-dot { width: 25px; height: 25px; font-size: 14px; }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-  .section-title { font-size: 22px; margin-bottom: 40px; }
-  .step-circle { width: 80px; height: 80px; }
-  .step-icon { font-size: 24px; }
-  .step-content h2 { font-size: 15px; }
-  .step-content p { font-size: 12px; max-width: 200px; }
-  .check-dot { width: 22px; height: 22px; font-size: 12px; }
-}
-
-/* Extra Small Mobile */
+/* 📞 Small Mobile (Portrait < 480px) */
 @media (max-width: 480px) {
-  .visa-steps-section { padding: 60px 4%; }
-  .section-title { font-size: 20px; }
-  .step-circle { width: 70px; height: 70px; }
-  .step-icon { font-size: 20px; }
-  .step-content h2 { font-size: 14px; }
-  .step-content p { font-size: 11px; max-width: 180px; }
-  .check-dot { width: 20px; height: 20px; font-size: 11px; }
+  .visa-steps-section {
+    padding: 25px 15px;
+  }
+
+  .section-title {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .step-circle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .step-icon {
+    font-size: 28px;
+  }
+
+  .check-dot {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    bottom: -4px;
+    right: -4px;
+  }
+
+  .step-content h3 {
+    font-size: 13px;
+  }
+
+  .step-content h2 {
+    font-size: 16px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .timeline-step {
+    padding-bottom: 10px;
+  }
+}
+
+/* 📱 Extra Small (Very small devices < 360px) */
+@media (max-width: 360px) {
+  .visa-steps-section {
+    padding: 20px 10px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .step-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .step-icon {
+    font-size: 24px;
+  }
+
+  .step-content p {
+    font-size: 12px;
+  }
 }

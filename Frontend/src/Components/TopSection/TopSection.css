@@ -2,18 +2,23 @@
 .top-section {
   width: 100%;
   font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  background-color: #fff;
+  gap: 10px;
 }
 
 /* ------------------- Top Slider ------------------- */
 .partner-slider {
-  width: 100vw; /* full width */
-  background: linear-gradient(90deg, #d5102a, #f3224d, #ff3b5c);
+  width: 100vw;
   overflow: hidden;
   display: flex;
   align-items: center;
   position: relative;
   padding: 12px 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #d5102a, #f3224d, #ff3b5c);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .partner-track {
@@ -28,21 +33,15 @@
 .partner-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 16px 40px;
-  font-size: 1.1rem;
+  gap: 14px;
+  padding: 16px 36px;
+  font-size: 1.05rem;
   font-weight: 600;
   color: #fff;
   flex-shrink: 0;
   white-space: nowrap;
-  cursor: default;
-  transition: transform 0.35s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.partner-item:hover {
-  transform: scale(1.08);
-  color: #ffe66d;
-  box-shadow: 0 4px 12px rgba(255, 230, 109, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .partner-icon {
@@ -50,20 +49,6 @@
   display: flex;
   align-items: center;
   color: #fff;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.partner-item:hover .partner-icon {
-  color: #ffe66d;
-  transform: rotate(8deg);
-}
-
-/* Remove edge fade for full-width slider */
-.partner-slider::before,
-.partner-slider::after {
-  content: "";
-  width: 0;
-  height: 0;
 }
 
 /* Continuous scroll animation */
@@ -71,22 +56,39 @@
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 /* ------------------- Clients + Updates Modern ------------------- */
 .notification-bar.modern {
   display: flex;
   justify-content: center;
-  background-color: #f8f8f8;
-  padding: 10px 15px;
-  margin-top: 12px;
-  border-radius: 10px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  background-color: #fdf2f5; /* soft pinkish background */
+  padding: 16px 24px;
+  border-radius: 16px;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  /* Professional subtle border */
+  border: 2px solid #e3002b; /* main theme color */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
+
+/* Optional: slight gradient border effect */
+.notification-bar.modern::before {
+  content: "";
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #d5102a, #f3224d, #ff3b5c);
+  z-index: -1;
+}
+
 
 .clients-updates {
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  gap: 24px;
   flex-wrap: wrap;
 }
 
@@ -94,73 +96,171 @@
 .clients {
   display: flex;
   align-items: center;
-  gap: 12px; /* slightly more spacing */
+  gap: 14px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
 .group-image {
-  width: 150px;       /* full width */
-  height: auto;       /* maintain aspect ratio */
-  border-radius: 10px; /* rounded corners */
-  object-fit: contain; /* show full image */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Text */
-.client-text {
-  font-size: 14px;
+.topsec-client-text {
+  font-size: 15px;
+  font-weight: 600;
   color: #333;
-  line-height: 1.2;
+  line-height: 1.3;
 }
-
 
 /* Updates */
 .updates {
   display: flex;
   align-items: center;
-  background-color: #111;
+  background-color: #e3002b;
   color: #fff;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
   font-size: 14px;
-  min-width: 250px;
-  gap: 6px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-  animation: fadeIn 0.5s ease;
+  gap: 8px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
 .updates .bell {
-  font-size: 16px;
+  font-size: 18px;
 }
 
+/* Update text styling */
 .update-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 /* Fade-in animation for update text */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
+  from { opacity: 0; transform: translateY(-3px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ------------------- Responsive ------------------- */
+/* ------------------- Responsive Design ------------------- */
+
+/* Large Tablets / iPads */
 @media (max-width: 1024px) {
-  .group-image { width: 50px; height: 50px; }
+  .partner-item {
+    font-size: 1rem;
+    padding: 14px 28px;
+    gap: 12px;
+  }
+  .partner-icon {
+    font-size: 20px;
+  }
+  .topsec-client-text {
+    font-size: 14px;
+  }
+  .updates {
+    min-width: 250px;
+    font-size: 13px;
+    padding: 7px 14px;
+  }
 }
 
+/* Tablets / Small iPads */
 @media (max-width: 768px) {
-  .partner-item { font-size: 0.95rem; padding: 14px 30px; }
-  .partner-icon { font-size: 18px; }
-  .updates { min-width: 200px; font-size: 13px; }
-}
-
-@media (max-width: 480px) {
+  .partner-item {
+    font-size: 0.95rem;
+    padding: 12px 24px;
+    gap: 10px;
+  }
+  .partner-icon {
+    font-size: 18px;
+  }
+  .topsec-client-text {
+    font-size: 13px;
+  }
+  .updates {
+    min-width: 220px;
+    font-size: 12px;
+    padding: 6px 12px;
+  }
   .notification-bar.modern {
     flex-direction: column;
     align-items: flex-start;
+    padding: 14px 18px;
   }
-  .updates { min-width: 100%; margin-top: 6px; }
-  .group-image { width: 45px; height: 45px; }
-  .update-text { font-size: 13px; }
+}
+
+/* Large Mobile / Small Tablets */
+@media (max-width: 600px) {
+  .partner-item {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    gap: 8px;
+  }
+  .partner-icon {
+    font-size: 16px;
+  }
+  .topsec-client-text {
+    font-size: 12px;
+  }
+  .updates {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  .notification-bar.modern {
+    gap: 12px;
+  }
+}
+
+/* Small Mobile / Portrait Phones */
+@media (max-width: 480px) {
+  .partner-item {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    gap: 6px;
+  }
+  .partner-icon {
+    font-size: 15px;
+  }
+  .topsec-client-text {
+    font-size: 11px;
+  }
+  .updates {
+    min-width: 100%;
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+  .notification-bar.modern {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 14px;
+  }
+}
+
+/* Extra Small Devices / Very Small Phones */
+@media (max-width: 360px) {
+  .partner-item {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    gap: 5px;
+  }
+  .partner-icon {
+    font-size: 14px;
+  }
+  .group-image {
+    width: 35px;
+    height: 35px;
+  }
+  .topsec-client-text {
+    font-size: 10px;
+  }
+  .updates {
+    width: 100%;
+    font-size: 10px;
+    padding: 4px 6px;
+  }
 }

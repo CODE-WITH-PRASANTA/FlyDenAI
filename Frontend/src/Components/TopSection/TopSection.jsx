@@ -5,25 +5,29 @@ import {
   FaIdCardClip, 
   FaEarthAsia, 
   FaUmbrellaBeach, 
-  FaClipboardCheck 
+  FaGraduationCap, 
+  FaBriefcase 
 } from "react-icons/fa6";
 import group1 from "../../assets/group1.webp"; // Replace with your image
 
 const TopSection = () => {
-  // Slider items
+  // Slider items with more attractive, reliable content
   const sliderItems = [
-    { text: "Travel Partners", icon: <FaPlaneUp /> },
     { text: "Visa Consultancy", icon: <FaIdCardClip /> },
-    { text: "Immigrations", icon: <FaEarthAsia /> },
+    { text: "Travel Partners", icon: <FaPlaneUp /> },
     { text: "Tours & Travel Agency", icon: <FaUmbrellaBeach /> },
-    { text: "Help in Documents", icon: <FaClipboardCheck /> },
+    { text: "Study Abroad Programs", icon: <FaGraduationCap /> },
+    { text: "Intern Abroad Opportunities", icon: <FaBriefcase /> },
+    { text: "Immigration Support", icon: <FaEarthAsia /> },
   ];
 
-  // Updates for notification
+  // Notification updates with catchy, trustable content
   const updates = [
-    "Turning Dreams into Stamps: Where Every Visa Application Unfolds a New Chapter of Possibilities",
-    "Your Visa Success Is Our Priority — Trusted by Thousands Worldwide!",
-    "Apply Today and Start Your Global Journey with Visaz"
+    "Turning Dreams into Reality: Your Visa Success Is Our Mission!",
+    "Trusted by 5000+ Global Travelers — Apply and Start Your Journey!",
+    "From Study Abroad to Internships : We Make Every Step Seamless",
+    "Expert Guidance in Visa Applications, Travel Planning & Support",
+    "Your Global Adventure Starts Here — Join Thousands of Clients!",
   ];
 
   const [currentUpdate, setCurrentUpdate] = useState(0);
@@ -55,8 +59,8 @@ const TopSection = () => {
         <div className="clients-updates">
           <div className="clients">
             <img src={group1} alt="Group" className="group-image" />
-            <span className="client-text">
-              <strong>3450+</strong> Satisfied clients
+            <span className="topsec-client-text">
+              <strong>3450+</strong> Satisfied Clients Worldwide
             </span>
           </div>
           <div className="updates">
