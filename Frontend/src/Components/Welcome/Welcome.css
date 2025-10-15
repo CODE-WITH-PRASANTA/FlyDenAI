@@ -154,16 +154,16 @@
 /* Medium mobiles */
 @media (max-width: 576px) {
   .btn-primary { padding: 10px 20px; font-size: 14px; }
-  .traveler { width: 90px; }
+  .traveler { width: 70px; }
   .welcome-left { min-height: 250px; }
   .welcome-right { padding: 0px; }
-  .passport-bg {width: 350px;}
+  .passport-bg {width: 250px;}
   .welcome-section {margin: 0px;}
 }
 
 /* Small mobiles */
 @media (max-width: 400px) {
   .btn-primary { padding: 8px 16px; font-size: 13px; }
-  .traveler { width: 80px; }
+  .traveler { width: 60px; }
   .welcome-left { min-height: 200px; }
 }
