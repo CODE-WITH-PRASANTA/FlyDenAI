@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home/Home";
@@ -22,12 +23,21 @@ import StudyAbroad from "./Pages/StudyAbroad/StudyAbroad";
 import VisaDetails from "./Pages/VisaDetails/VisaDetails";
 
 function App() {
+  const navigate = useNavigate();
+
+  // 🔁 Redirect to /AllCountry when the site first opens
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      navigate("/AllCountry");
+    }
+  }, [navigate]);
+
   return (
     <>
       <PageWrapper>
-      <Navbar />
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<OurTeam />} />
@@ -41,17 +51,11 @@ function App() {
           <Route path="/GetaQuotes" element={<GetAQuotes />} />
           <Route path="/FreeVisaQuotes" element={<FreeVisaQuotes />} />
           <Route path="/StudyAbroad" element={<StudyAbroad />} />
-
-
-          {/* Visa Sec */}
           <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
-
-          {/* Visa Details */}
           <Route path="/Visa/Details" element={<VisaDetails />} />
-
         </Routes>
-      <Footer />
+        <Footer />
       </PageWrapper>
     </>
   );

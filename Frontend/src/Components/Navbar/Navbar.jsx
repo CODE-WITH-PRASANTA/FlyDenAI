@@ -42,7 +42,7 @@ const Navbar = () => {
 
   // ✅ Updated Menu Items with proper routing
   const menuItems = [
-    { name: "Home", path: "/" },
+    { name: "Home", path: "/home" },
     { name: "About Us", path: "/about", sub: [
       { name: "About Us", path: "/about" },
       { name: "Services", path: "/services" },
