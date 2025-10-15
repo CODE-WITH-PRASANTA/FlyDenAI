@@ -1,3 +1,4 @@
+/* ===================== VISA APPLICATION FORM ===================== */
 .visa-application-form {
   flex: 1;
   background-color: #007ab8;
@@ -5,8 +6,10 @@
   border-radius: 8px;
   min-width: 300px;
   overflow: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Form Header */
 .form-header {
   background-color: #ffd591;
   color: #222;
@@ -16,6 +19,7 @@
   font-weight: bold;
 }
 
+/* Form Inputs */
 form {
   display: flex;
   flex-direction: column;
@@ -32,10 +36,12 @@ select {
   width: 100%;
 }
 
+/* Form Footer */
 .form-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10px;
 }
 
 .form-footer .form-price {
@@ -51,9 +57,117 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 button:hover {
   background-color: #005f80;
+  transform: translateY(-2px);
+}
+
+/* ===================== CONTACT OPTIONS GRID ===================== */
+.contact-options-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Individual Contact Card */
+.contact-card {
+  background-color: #f9f9f9;
+  color: #222;
+  padding: 10px;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header with icon and title in one row */
+.contact-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+/* Icon */
+.contact-icon {
+  font-size: 1.5rem;
+  color: #007ab8;
+  flex-shrink: 0;
+}
+
+/* Info next to icon */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info .title {
+  font-weight: bold;
+  font-size: 0.95rem;
+  color: #222;
+  margin: 0;
+}
+
+.contact-info .desc {
+  font-size: 0.85rem;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .visa-application-form {
+    min-width: 100%;
+  }
+
+  .contact-options-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+  }
+
+  .contact-card {
+    padding: 8px;
+  }
+
+  .contact-icon {
+    font-size: 1.3rem;
+  }
+
+  .contact-info .title {
+    font-size: 0.9rem;
+  }
+
+  .contact-info .desc {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-options-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-card-header {
+    gap: 5px;
+  }
+
+  .contact-icon {
+    font-size: 1.2rem;
+  }
+
+  .contact-info .title {
+    font-size: 0.85rem;
+  }
+
+  .contact-info .desc {
+    font-size: 0.75rem;
+  }
 }

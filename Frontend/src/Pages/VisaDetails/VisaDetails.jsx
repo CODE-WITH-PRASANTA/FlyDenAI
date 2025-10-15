@@ -10,6 +10,8 @@ import Documents from "../../Components/Documents/Documents";
 import Process from "../../Components/Process/Process";
 import Faqs from "../../Components/Faqs/Faqs";
 import VisaWhyChooseUs from "../../Components/VisaWhyChooseUs/VisaWhyChooseUs";
+import Embassy from "../../Components/Embassy/Embassy";
+import VisitUs from "../../Components/VisitUs/VisitUs";
 
 const VisaDetails = () => {
   const [activeSection, setActiveSection] = useState("types");
@@ -45,48 +47,48 @@ const VisaDetails = () => {
         <div className="visa-sections">
           <section id="types" className="section-wrapper">
             <div className="section-container">
-              <div className="section-left">
-                <TypesOfVisas />
-              </div>
+              <TypesOfVisas />
             </div>
           </section>
 
           <section id="documents" className="section-wrapper">
             <div className="section-container">
-              <div className="section-left">
-                <Documents />
-              </div>
+              <Documents />
             </div>
           </section>
 
           <section id="process" className="section-wrapper">
             <div className="section-container">
-              <div className="section-left">
-                <Process />
-              </div>
+              <Process />
             </div>
           </section>
 
           <section id="why-choose-us" className="section-wrapper">
             <div className="section-container">
-              <div className="section-left">
-                <VisaWhyChooseUs />
-              </div>
+              <VisaWhyChooseUs />
             </div>
           </section>
 
           <section id="faqs" className="section-wrapper">
             <div className="section-container">
-              <div className="section-left">
-                <Faqs />
-              </div>
+              <Faqs />
             </div>
           </section>
 
-          {/* Add other sections below similarly */}
+          <section id="embassy" className="section-wrapper">
+            <div className="section-container">
+              <Embassy />
+            </div>
+          </section>
+
+          <section id="visit-us" className="section-wrapper">
+            <div className="section-container">
+              <VisitUs />
+            </div>
+          </section>
         </div>
 
-        {/* Sticky right VisaForm */}
+        {/* Right VisaForm */}
         <div className="visa-form-right">
           <VisaForm />
         </div>

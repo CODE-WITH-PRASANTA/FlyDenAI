@@ -1,7 +1,7 @@
 import React from "react";
 import "./VisaDetailsBanner.css";
 import { FaRegClock, FaCheckCircle } from "react-icons/fa";
-import malaysiaBg from "../../assets/05.webp"; 
+import malaysiaBg from "../../assets/malaysia-img.webp"; 
 
 const VisaDetailsBanner = () => {
   return (

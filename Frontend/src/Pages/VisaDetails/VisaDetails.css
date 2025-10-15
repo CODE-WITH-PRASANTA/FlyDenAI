@@ -21,11 +21,12 @@
 
 /* Sections container (left) */
 .visa-sections {
-  flex: 0 0 780px; /* fixed width for left content */
+  flex: 0 0 780px;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 50px; /* space between sections */
+  gap: 50px;
+  padding-top: 80px; /* <-- add space for fixed navbar height */
 }
 
 /* Section wrapper for consistent padding & alignment */

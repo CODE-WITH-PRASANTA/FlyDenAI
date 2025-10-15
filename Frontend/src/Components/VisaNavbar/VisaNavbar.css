@@ -6,8 +6,10 @@
   padding: 1rem 10px;
   background-color: #f1faff;
   border-bottom: 1px solid #ccc;
-  position: sticky;
+  position: sticky; /* always visible */
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
   overflow-x: auto;
   scrollbar-width: none;
