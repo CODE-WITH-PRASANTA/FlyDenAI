@@ -21,6 +21,7 @@ import GetAQuotes from "./Pages/GetAQuotes/GetAQuotes";
 import FreeVisaQuotes from "./Pages/FreeVisaQuotes/FreeVisaQuotes";
 import StudyAbroad from "./Pages/StudyAbroad/StudyAbroad";
 import VisaDetails from "./Pages/VisaDetails/VisaDetails";
+import ApplyNow from "./Pages/ApplyNow/ApplyNow";
 
 function App() {
   const navigate = useNavigate();
@@ -54,6 +55,11 @@ function App() {
           <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
           <Route path="/Visa/Details" element={<VisaDetails />} />
+
+          {/* Apply To the Visa Page */}
+          <Route path="/Apply/Now" element={<ApplyNow />} />
+
+
         </Routes>
         <Footer />
       </PageWrapper>

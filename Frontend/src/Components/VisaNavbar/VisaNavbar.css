@@ -92,4 +92,7 @@
   .visa-navbar-item.active::after {
     width: 20%;
   }
+  .visa-navbar{
+    position: unset;
+  }
 }

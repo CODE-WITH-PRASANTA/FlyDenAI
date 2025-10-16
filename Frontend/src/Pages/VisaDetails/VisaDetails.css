@@ -39,21 +39,8 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .floating-form-toggle {
-    width: 45px;
-    height: 45px;
-    font-size: 22px;
-  }
+ 
 }
-
-@media (max-width: 480px) {
-  .floating-form-toggle {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-}
-
 
 /* ===========================
    🎨 Floating Form Content
@@ -139,5 +126,68 @@
     width: 50px;
     height: 50px;
     font-size: 22px;
+  }
+}
+
+/* ===========================
+   🎨 Scroll to Top Button
+=========================== */
+.VisaDetails-Scroll-Top {
+  position: fixed;
+  bottom: 100px; /* above floating form button */
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.VisaDetails-Scroll-Top:hover {
+  color: #f1f1f1;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* Smooth fade in animation */
+.VisaDetails-Scroll-Top {
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .VisaDetails-Scroll-Top {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    bottom: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .VisaDetails-Scroll-Top {
+    font-size: 18px;
+    bottom: 85px;
+    right: 32px;
   }
 }

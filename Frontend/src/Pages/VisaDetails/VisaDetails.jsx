@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./VisaDetails.css";
 import VisaDetailsBanner from "../../Components/VisaDetailsBanner/VisaDetailsBanner";
 import VisaNavbar from "../../Components/VisaNavbar/VisaNavbar";
@@ -15,9 +15,28 @@ import VisaDetailsFaq from '../../Components/VisaDetailsFaq/VisaDetailsFaq';
 
 const VisaDetails = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleForm = () => {
     setIsFormOpen(prev => !prev);
+  };
+
+  // ✅ Show "Back to Top" button on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) setShowScrollTop(true);
+      else setShowScrollTop(false);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ✅ Smooth scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   return (
@@ -85,6 +104,13 @@ const VisaDetails = () => {
             </div>
           )}
         </div>
+
+        {/* 🔝 Back to Top Button */}
+        {showScrollTop && (
+          <button className="VisaDetails-Scroll-Top" onClick={scrollToTop}>
+            🔝
+          </button>
+        )}
       </div>
     </div>
   );
