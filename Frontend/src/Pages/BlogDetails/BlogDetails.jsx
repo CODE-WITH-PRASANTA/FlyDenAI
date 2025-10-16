@@ -8,6 +8,7 @@ const BlogDetails = () => {
     <div>
     <BlogDetailsBanner/>
       <MindBlowing/>
+
     </div>
   )
 }

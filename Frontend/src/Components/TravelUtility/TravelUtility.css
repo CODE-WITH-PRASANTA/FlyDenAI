@@ -1,0 +1,398 @@
+/* ======================= CONTAINER ======================= */
+.travel-utility-container {
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 50px;
+  background: #f6f7fb;
+}
+
+.travel-utility-container h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  color: #222;
+  font-weight: 600;
+}
+
+.travel-utility-container p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* ======================= MAIN GRID ======================= */
+.travel-utility-main-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+/* ======================= LEFT COLUMN ======================= */
+.utility-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ======= UTILITY CARD ======= */
+.utility-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.utility-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.card-header {
+  font-weight: 600;
+  color: #e40046;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+/* Form rows */
+.card-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card-content .form-row {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+}
+
+.card-content label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.card-content input,
+.card-content select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  width: 100%;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.card-content input:focus,
+.card-content select:focus {
+  border-color: #e40046;
+  box-shadow: 0 0 0 2px rgba(228,0,70,0.1);
+}
+
+.phone-input {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-input select {
+  width: 80px;
+  border-radius: 8px;
+}
+
+/* ======================= RIGHT COLUMN ======================= */
+.utility-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Features cards */
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.feature-icon {
+  color: #e40046;
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.feature div {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.feature p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+}
+
+/* ======================= UPI PAYMENT SECTION ======================= */
+.upi-payment-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  font-family: 'Poppins', sans-serif;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.upi-payment-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.upi-payment-section h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #222;
+  font-weight: 600;
+}
+
+.upi-note {
+  display: inline-block;
+  background: #c75d0e;
+  color: #fff;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.upi-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Menu */
+.upi-menu {
+  flex: 0 0 180px;
+  border-right: 1px solid #eee;
+}
+
+.upi-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.upi-menu li {
+  padding: 12px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.upi-menu li:hover {
+  background: #f0f7ff;
+}
+
+.upi-menu li.active {
+  background: #e40046;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Content */
+.upi-content {
+  flex: 1;
+}
+
+.upi-content h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.upi-content ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.upi-icons img {
+  width: 20rem;
+  margin-right: 8px;
+}
+
+/* Steps */
+.upi-steps {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.step {
+  background: #f8f9fb;
+  padding: 15px;
+  flex: 1;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.step-number {
+  color: #e40046;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Virtual Address */
+.virtual-address {
+  margin-bottom: 20px;
+}
+
+.virtual-address label {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.virtual-address input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.virtual-address input:focus {
+  border-color: #e40046;
+  box-shadow: 0 0 0 2px rgba(228,0,70,0.1);
+}
+
+/* Payment Footer */
+.payment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pay-btn {
+  background: #e40046;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.pay-btn:hover {
+  background: #c3003c;
+  transform: translateY(-2px);
+}
+
+/* Card Payment Form inside menu content */
+.card-payment-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.card-payment-form .form-row {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-payment-form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.card-payment-form input:focus {
+  border-color: #e40046;
+  box-shadow: 0 0 0 2px rgba(228,0,70,0.1);
+}
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 1024px) {
+  .travel-utility-main-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-content {
+    flex-direction: column;
+  }
+  .card-content .form-row {
+    min-width: auto;
+  }
+  .upi-grid {
+    flex-direction: column;
+  }
+  .upi-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    border-bottom: 1px solid #eee;
+    border-right: none;
+  }
+  .upi-menu ul {
+    display: flex;
+    gap: 10px;
+  }
+  .upi-menu li {
+    flex: none;
+    white-space: nowrap;
+  }
+  .payment-footer {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* AgreementText.css */
+.agreement-text {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  padding: 10px;
+}
+
+.agreement-text a {
+  text-decoration: none;
+  color: #0066cc;
+}
+
+.agreement-text a:hover {
+  text-decoration: underline;
+}
+
+.read-more {
+  text-decoration: underline;
+}

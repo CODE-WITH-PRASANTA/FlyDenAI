@@ -1,0 +1,297 @@
+/* ======================= CONTAINER ======================= */
+.visa-application-container {
+  font-family: 'Poppins', sans-serif;
+  padding: 30px 50px;
+  background: #f5f6fa;
+}
+
+/* ======================= PROGRESS BAR ======================= */
+.visa-application-progress {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.visa-application-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #999;
+  font-weight: 500;
+  position: relative;
+}
+
+.visa-application-step.active {
+  color: #e40046;
+}
+
+.step-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  background: white;
+}
+
+.step-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.step-arrow {
+  margin-left: 5px;
+  color: #ccc;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+/* ======================= GRID ======================= */
+.visa-application-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+/* ======================= LEFT COLUMN ======================= */
+.visa-application-left {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ======================= SECTION ======================= */
+.visa-application-section {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.section-number {
+  width: 38px;
+  height: 38px;
+  background: #e40046;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.section-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* ======================= FORM ROW ======================= */
+.form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.form-col.full { flex: 1 1 100%; }
+.form-col.half { flex: 1 1 calc(50% - 10px); }
+.form-col.third { flex: 1 1 calc(33.33% - 13px); }
+
+.form-label { margin-bottom: 6px; font-weight: 500; font-size: 14px; display: block; }
+
+.input-wrapper { position: relative; display: flex; align-items: center; }
+.form-input {
+  width: 100%;
+  padding: 12px 12px 12px 35px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus { border-color: #e40046; }
+.input-icon { position: absolute; left: 10px; color: #999; font-size: 16px; }
+
+.form-input.readonly { background: #f3f3f3; cursor: not-allowed; padding-left: 12px; }
+
+/* ======================= TRAVELLER LABEL ======================= */
+.traveller-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.traveller-icon { color: #e40046; font-size: 18px; }
+
+/* ======================= CHECKBOX ======================= */
+.form-checks label, .form-actions label { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* ======================= BUTTON ======================= */
+.continue-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e40046;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.continue-btn:hover { background: #ff3b5c; }
+
+/* ======================= RIGHT COLUMN ======================= */
+.visa-application-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.fare-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.fare-box h4 { margin-bottom: 15px; font-size: 16px; font-weight: 600; color: #e40046; }
+.fare-line, .fare-total { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; }
+.fare-total { font-weight: 600; font-size: 16px; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px; }
+.fare-note { font-size: 12px; color: #999; margin-top: 10px; }
+
+/* ======================= PAYMENT OPTIONS ======================= */
+.payment-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.payment-option {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.payment-option:hover, .payment-option.active {
+  border-color: #e40046;
+  background: #fef0f4;
+  color: #e40046;
+}
+
+/* ======================= PAYMENT CONTENT ======================= */
+.payment-content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.payment-content h4 { font-size: 16px; font-weight: 600; }
+.payment-content p { font-size: 14px; color: #555; }
+
+.upi-icons img {
+  width: 40px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.virtual-address { margin-top: 10px; }
+.virtual-address label { display: block; font-size: 13px; margin-bottom: 5px; }
+.virtual-address input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.payment-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.pay-btn {
+  background: #e40046;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.pay-btn:hover { background: #ff3b5c; }
+
+/* ======================= UPLOAD DOCUMENTS ======================= */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.upload-box {
+  background: #f8f9fb;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upload-box label { font-size: 13px; font-weight: 500; }
+.upload-box input { padding: 8px; border-radius: 6px; border: 1px solid #ddd; }
+
+.upload-footer { margin-top: 15px; }
+
+/* ======================= RESPONSIVE ======================= */
+@media (max-width: 1200px) {
+  .visa-application-grid { grid-template-columns: 1fr; }
+  .form-col.half, .form-col.third { flex: 1 1 100%; }
+  .payment-options-grid, .upload-grid { grid-template-columns: 1fr; }
+  .visa-application-progress { justify-content: flex-start; }
+}
+
+@media (max-width: 768px) {
+  .visa-application-container { padding: 20px 25px; }
+  .fare-box { padding: 20px; }
+  .visa-application-section { padding: 20px; }
+  .form-input { padding: 10px 10px 10px 30px; }
+}
+
+@media (max-width: 480px) {
+  .continue-btn { width: 100%; justify-content: center; }
+  .payment-footer { flex-direction: column; gap: 10px; align-items: stretch; }
+}
