@@ -83,7 +83,7 @@ const Navbar = () => {
             </div>
             <div className="topbar-right">
               <Link to="/login" className="topbar-login">🔑 Login / Register</Link>
-              <Link to="/apply" className="topbar-cta">🚀 Apply Now</Link>
+              <Link to="/Apply/Now" className="topbar-cta">🚀 Apply Now</Link>
             </div>
           </div>
         </div>

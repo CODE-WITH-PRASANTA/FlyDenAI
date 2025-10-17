@@ -7,7 +7,6 @@ const ApplyNow = () => {
   return (
     <div>
       <VisaApplicationForm/>
-
     </div>
   )
 }

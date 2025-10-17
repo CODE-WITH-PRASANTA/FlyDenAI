@@ -22,6 +22,8 @@ import FreeVisaQuotes from "./Pages/FreeVisaQuotes/FreeVisaQuotes";
 import StudyAbroad from "./Pages/StudyAbroad/StudyAbroad";
 import VisaDetails from "./Pages/VisaDetails/VisaDetails";
 import ApplyNow from "./Pages/ApplyNow/ApplyNow";
+import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
+import TermAndCondition from "./Pages/TermAndCondition/TermAndCondition";
 
 function App() {
   const navigate = useNavigate();
@@ -58,6 +60,10 @@ function App() {
 
           {/* Apply To the Visa Page */}
           <Route path="/Apply/Now" element={<ApplyNow />} />
+
+          {/* Privacy Policy & Term and Condition  */}
+          <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+          <Route path="/TermAndCondition" element={<TermAndCondition />} />
 
 
         </Routes>
