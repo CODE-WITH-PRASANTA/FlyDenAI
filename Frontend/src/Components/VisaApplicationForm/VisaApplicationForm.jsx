@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import "./VisaApplicationForm.css";
-import { FaUser, FaCalendarAlt, FaArrowRight, FaPlaneDeparture } from "react-icons/fa";
+import {
+  FaUser,
+  FaCalendarAlt,
+  FaArrowRight,
+  FaPlaneDeparture,
+  FaCreditCard,
+  FaCheckCircle,
+  FaFileUpload,
+} from "react-icons/fa";
 
 const VisaApplicationForm = () => {
+  const [step, setStep] = useState(1);
   const [activePayment, setActivePayment] = useState("UPI");
 
   const paymentOptions = [
@@ -16,246 +25,266 @@ const VisaApplicationForm = () => {
     "AMEX",
   ];
 
+  const handleNext = () => {
+    if (step < 5) setStep(step + 1);
+  };
+
+  const handlePrev = () => {
+    if (step > 1) setStep(step - 1);
+  };
+
+  const progressSteps = [
+    { label: "Itinerary", icon: <FaPlaneDeparture /> },
+    { label: "Traveller Details", icon: <FaUser /> },
+    { label: "Make Payment", icon: <FaCreditCard /> },
+    { label: "Upload Documents", icon: <FaFileUpload /> },
+  ];
+
   return (
     <div className="visa-application-container">
       {/* ======= PROGRESS BAR ======= */}
       <div className="visa-application-progress">
-        <div className="visa-application-step active">
-          <div className="step-circle">1</div>
-          <span className="step-label">Itinerary</span>
-          <div className="step-arrow"><FaArrowRight /></div>
-        </div>
-        <div className="visa-application-step">
-          <div className="step-circle">2</div>
-          <span className="step-label">Traveller Details</span>
-          <div className="step-arrow"><FaArrowRight /></div>
-        </div>
-        <div className="visa-application-step">
-          <div className="step-circle">3</div>
-          <span className="step-label">Make Payment</span>
-          <div className="step-arrow"><FaArrowRight /></div>
-        </div>
-        <div className="visa-application-step">
-          <div className="step-circle">4</div>
-          <span className="step-label">Upload Documents</span>
-        </div>
+        {progressSteps.map((item, index) => {
+          const currentStep = index + 1;
+          return (
+            <div
+              key={index}
+              className={`visa-progress-step ${
+                step === currentStep
+                  ? "active"
+                  : step > currentStep
+                  ? "completed"
+                  : ""
+              }`}
+            >
+              <div className="progress-circle">{item.icon}</div>
+              <span className="progress-label">{item.label}</span>
+              {index < progressSteps.length - 1 && (
+                <div className="progress-line"></div>
+              )}
+            </div>
+          );
+        })}
       </div>
 
-      {/* ======= FORM GRID ======= */}
+      {/* ======= MAIN GRID ======= */}
       <div className="visa-application-grid">
-        {/* LEFT COLUMN */}
         <div className="visa-application-left">
-          {/* ================= SECTION 1: Itinerary ================= */}
-          <div className="visa-application-section">
-            <div className="section-header">
-              <div className="section-number">1</div>
-              <h3>Itinerary</h3>
-            </div>
+          {/* Step 1 - Itinerary */}
+          {step === 1 && (
+            <div className="visa-application-section fade-in">
+              <h3 className="section-title">Travel Itinerary</h3>
+              <p className="section-subtitle">
+                Plan your travel dates and choose your arrival card type.
+              </p>
 
-            <div className="form-row">
-              <div className="form-col full">
-                <label className="form-label">Malaysia Digital Arrival Card (MDAC)</label>
-                <div className="input-wrapper">
+              <div className="form-row">
+                <div className="form-col full">
+                  <label>Visa Type</label>
                   <select className="form-input">
                     <option>Malaysia Digital Arrival Card (MDAC)</option>
                   </select>
                 </div>
               </div>
-            </div>
 
-            <div className="form-row">
-              <div className="form-col half">
-                <label className="form-label">Onward Date</label>
-                <div className="input-wrapper">
-                  <FaCalendarAlt className="input-icon" />
-                  <input type="text" placeholder="dd/mm/yyyy" className="form-input" />
+              <div className="form-row">
+                <div className="form-col half">
+                  <label>Onward Date</label>
+                  <div className="input-wrapper">
+                    <FaCalendarAlt className="input-icon" />
+                    <input type="text" placeholder="dd/mm/yyyy" />
+                  </div>
+                </div>
+                <div className="form-col half">
+                  <label>Return Date</label>
+                  <div className="input-wrapper">
+                    <FaCalendarAlt className="input-icon" />
+                    <input type="text" placeholder="dd/mm/yyyy" />
+                  </div>
                 </div>
               </div>
-              <div className="form-col half">
-                <label className="form-label">Return Date</label>
-                <div className="input-wrapper">
-                  <FaCalendarAlt className="input-icon" />
-                  <input type="text" placeholder="dd/mm/yyyy" className="form-input" />
-                </div>
+
+              <button className="continue-btn" onClick={handleNext}>
+                Continue <FaArrowRight />
+              </button>
+            </div>
+          )}
+
+          {/* Step 2 - Traveller Details */}
+          {step === 2 && (
+            <div className="visa-application-section fade-in">
+              <h3 className="section-title">Traveller Details</h3>
+              <p className="section-subtitle">
+                Enter your personal and passport information carefully.
+              </p>
+
+              <div className="traveller-info">
+                <FaUser /> <span>Primary Applicant</span>
               </div>
-            </div>
-          </div>
 
-          {/* ================= SECTION 2: Traveller Details ================= */}
-          <div className="visa-application-section">
-            <div className="section-header">
-              <div className="section-number">2</div>
-              <h3>Traveller Details</h3>
-            </div>
-
-            <div className="traveller-label">
-              <FaUser className="traveller-icon" />
-              <span>Primary Applicant</span>
-            </div>
-
-            <div className="form-row">
-              <div className="form-col third">
-                <label className="form-label">Title</label>
-                <div className="input-wrapper">
-                  <select className="form-input">
+              <div className="form-row">
+                <div className="form-col third">
+                  <label>Title</label>
+                  <select>
                     <option>Mr</option>
                     <option>Mrs</option>
                     <option>Ms</option>
                   </select>
                 </div>
-              </div>
-              <div className="form-col third">
-                <label className="form-label">First Name</label>
-                <div className="input-wrapper">
-                  <input type="text" className="form-input" />
+                <div className="form-col third">
+                  <label>First Name</label>
+                  <input type="text" />
+                </div>
+                <div className="form-col third">
+                  <label>Last Name</label>
+                  <input type="text" />
                 </div>
               </div>
-              <div className="form-col third">
-                <label className="form-label">Last Name</label>
-                <div className="input-wrapper">
-                  <input type="text" className="form-input" />
+
+              <div className="form-row">
+                <div className="form-col half">
+                  <label>Date of Birth</label>
+                  <div className="input-wrapper">
+                    <FaCalendarAlt className="input-icon" />
+                    <input type="text" placeholder="dd/mm/yyyy" />
+                  </div>
+                </div>
+                <div className="form-col half">
+                  <label>Nationality</label>
+                  <input type="text" value="Indian" readOnly />
                 </div>
               </div>
-            </div>
 
-            <div className="form-row">
-              <div className="form-col half">
-                <label className="form-label">Date of Birth</label>
-                <div className="input-wrapper">
-                  <FaCalendarAlt className="input-icon" />
-                  <input type="text" placeholder="dd/mm/yyyy" className="form-input" />
+              <div className="form-row">
+                <div className="form-col half">
+                  <label>Passport No</label>
+                  <input type="text" />
+                </div>
+                <div className="form-col half">
+                  <label>Contact Number</label>
+                  <input type="text" />
                 </div>
               </div>
-              <div className="form-col half">
-                <label className="form-label">Nationality</label>
-                <input type="text" value="Indian" readOnly className="form-input readonly" />
+
+              <div className="form-actions between">
+                <button className="continue-btn outline" onClick={handlePrev}>
+                  Back
+                </button>
+                <button className="continue-btn" onClick={handleNext}>
+                  Continue <FaArrowRight />
+                </button>
               </div>
             </div>
+          )}
 
-            <div className="form-row">
-              <div className="form-col half">
-                <label className="form-label">Passport No</label>
-                <input type="text" className="form-input" />
-              </div>
-              <div className="form-col half">
-                <label className="form-label">Contact Number</label>
-                <input type="text" placeholder="1111111111" className="form-input" />
-              </div>
-            </div>
-
-            <div className="form-row">
-              <div className="form-col half">
-                <label className="form-label">Email ID</label>
-                <input type="email" placeholder="example@gmail.com" className="form-input" />
-              </div>
-              <div className="form-col half">
-                <label className="form-label">Optional Info</label>
-                <input type="text" placeholder="Additional Info" className="form-input" />
-              </div>
-            </div>
-
-            <div className="form-checks">
-              <label><input type="checkbox" /> I need a business GST invoice</label>
-            </div>
-
-            <div className="form-actions">
-              <label><input type="checkbox" defaultChecked /> I accept the rules of this trip</label>
-              <button className="continue-btn">Continue <FaPlaneDeparture /></button>
-            </div>
-          </div>
-
-          {/* ================= SECTION 3: Make Payment ================= */}
-          <div className="visa-application-section">
-            <div className="section-header">
-              <div className="section-number">3</div>
-              <h3>Make Payment</h3>
-            </div>
-
-            <div className="payment-options-grid">
-              {paymentOptions.map((option) => (
-                <div
-                  key={option}
-                  className={`payment-option ${activePayment === option ? "active" : ""}`}
-                  onClick={() => setActivePayment(option)}
-                >
-                  {option}
-                </div>
-              ))}
-            </div>
-
-            <div className="payment-content">
-              <h4>{activePayment} Payment</h4>
-              <p>
-                {activePayment === "UPI"
-                  ? "Scan the QR code with your UPI app or enter your Virtual Payment Address."
-                  : `Enter your ${activePayment} details to proceed.`}
+          {/* Step 3 - Payment */}
+          {step === 3 && (
+            <div className="visa-application-section fade-in">
+              <h3 className="section-title">Make Payment</h3>
+              <p className="section-subtitle">
+                Select your preferred payment method and complete your payment.
               </p>
 
-              {activePayment === "UPI" && (
-                <div className="upi-icons">
-                  <img src="/path-to-icons/phonepe.png" alt="PhonePe" />
+              <div className="payment-options-grid">
+                {paymentOptions.map((option) => (
+                  <div
+                    key={option}
+                    className={`payment-option ${
+                      activePayment === option ? "active" : ""
+                    }`}
+                    onClick={() => setActivePayment(option)}
+                  >
+                    {option}
+                  </div>
+                ))}
+              </div>
 
+              <div className="payment-content">
+                <h4>{activePayment} Payment</h4>
+                <p>
+                  {activePayment === "UPI"
+                    ? "Scan the QR code or enter your Virtual Payment Address."
+                    : `Enter your ${activePayment} details to proceed.`}
+                </p>
+
+                <div className="payment-footer">
+                  <span>
+                    Total payable amount <strong>₹748</strong>
+                  </span>
+                  <button className="pay-btn" onClick={handleNext}>
+                    Pay Now
+                  </button>
                 </div>
-              )}
-
-              {activePayment === "UPI" && (
-                <div className="virtual-address">
-                  <label>Virtual Payment Address</label>
-                  <input type="text" placeholder="Enter your VPA" />
-                </div>
-              )}
-
-              <div className="payment-footer">
-                <span>Total payable amount <strong>₹748</strong></span>
-                <button className="pay-btn">Pay Now</button>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* ================= SECTION 4: Upload Documents ================= */}
-          <div className="visa-application-section">
-            <div className="section-header">
-              <div className="section-number">4</div>
-              <h3>Upload Documents</h3>
-            </div>
+          {/* Step 4 - Upload Documents */}
+          {step === 4 && (
+            <div className="visa-application-section fade-in">
+              <h3 className="section-title">Upload Documents</h3>
+              <p className="section-subtitle">
+                Please upload clear scanned copies of the required documents.
+              </p>
 
-            <div className="upload-instructions">
-              <p>Please upload the required documents to complete your visa application.</p>
-            </div>
+              <div className="upload-grid">
+                {["Passport Copy", "Photo", "Travel Itinerary", "Additional Document"].map(
+                  (label) => (
+                    <div className="upload-box" key={label}>
+                      <label>{label}</label>
+                      <input type="file" />
+                    </div>
+                  )
+                )}
+              </div>
 
-            <div className="upload-grid">
-              <div className="upload-box">
-                <label>Passport Copy</label>
-                <input type="file" />
-              </div>
-              <div className="upload-box">
-                <label>Photo</label>
-                <input type="file" />
-              </div>
-              <div className="upload-box">
-                <label>Travel Itinerary</label>
-                <input type="file" />
-              </div>
-              <div className="upload-box">
-                <label>Additional Document</label>
-                <input type="file" />
+              <div className="form-actions between">
+                <button className="continue-btn outline" onClick={handlePrev}>
+                  Back
+                </button>
+                <button className="continue-btn" onClick={handleNext}>
+                  Submit Documents
+                </button>
               </div>
             </div>
+          )}
 
-            <div className="upload-footer">
-              <button className="continue-btn">Submit Documents</button>
+          {/* Step 5 - Thank You */}
+          {step === 5 && (
+            <div className="thank-you-section fade-in">
+              <FaCheckCircle className="thank-icon" />
+              <h2>Thank You! 🎉</h2>
+              <p>
+                Your Malaysia Visa Application has been submitted successfully.
+                We’ll update you via email once it’s processed.
+              </p>
+              <button className="continue-btn" onClick={() => setStep(1)}>
+                Apply Another Visa
+              </button>
             </div>
-          </div>
+          )}
         </div>
 
-        {/* RIGHT COLUMN */}
-        <div className="visa-application-right">
+        {/* RIGHT SIDEBAR */}
+        <div className="visa-application-right sticky-right">
           <div className="fare-box">
             <h4>Fare Details</h4>
-            <div className="fare-line"><span>Base Fare</span><span>₹0.00</span></div>
-            <div className="fare-line"><span>Surcharges & Taxes</span><span>₹499.00</span></div>
-            <div className="fare-total"><span>Total</span><span>₹499.00</span></div>
-            <p className="fare-note">Fare BreakUp</p>
+            <div className="fare-line">
+              <span>Base Fare</span>
+              <span>₹249.00</span>
+            </div>
+            <div className="fare-line">
+              <span>Service Charges</span>
+              <span>₹250.00</span>
+            </div>
+            <div className="fare-line">
+              <span>Taxes</span>
+              <span>₹249.00</span>
+            </div>
+            <div className="fare-total">
+              <span>Total</span>
+              <span>₹748.00</span>
+            </div>
           </div>
         </div>
       </div>
