@@ -1,0 +1,134 @@
+/* ====================== MAIN CONTAINER ====================== */
+.explore-wrapper {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+}
+
+/* ====================== TOP SECTION ====================== */
+.explore-top {
+  text-align: center;
+  padding: 80px 20px 60px;
+}
+
+.explore-heading {
+  font-size: 32px;
+  color: #111;
+  font-weight: 700;
+  margin-bottom: 35px;
+}
+
+.explore-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.explore-buttons button {
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  color: #222;
+  font-size: 16px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.explore-buttons button:hover,
+.explore-buttons button.active {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+/* ====================== BOTTOM SECTION ====================== */
+.explore-bottom {
+  background-color: #f4fafc;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.explore-subtitle {
+  font-size: 34px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 60px;
+  line-height: 1.3;
+}
+
+/* ====================== VIDEO THUMBNAIL ====================== */
+.video-container {
+  position: relative;
+  max-width: 850px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.video-thumbnail {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* ====================== PLAY OVERLAY ====================== */
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-circle {
+  width: 130px;
+  height: 130px;
+  background: rgba(0, 141, 168, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.play-circle:hover {
+  transform: scale(1.1);
+  background: rgba(0, 141, 168, 1);
+}
+
+.play-icon {
+  color: #fff;
+  font-size: 58px;
+  margin-left: 6px;
+  line-height: 1;
+}
+
+/* ====================== RESPONSIVE ====================== */
+@media (max-width: 768px) {
+  .explore-heading {
+    font-size: 26px;
+  }
+
+  .explore-subtitle {
+    font-size: 26px;
+    margin-bottom: 40px;
+  }
+
+  .play-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .play-icon {
+    font-size: 36px;
+  }
+}
