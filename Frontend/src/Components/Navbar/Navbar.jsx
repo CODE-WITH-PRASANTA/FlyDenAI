@@ -50,18 +50,18 @@ const Navbar = () => {
       { name: "Team Details", path: "/team/details" },
     ]},
     {
-  name: "Visa",
-  path: "/visa/overview",
-  sub: [
-    { name: "All Visa Overview", path: "/visa/overview" },
-    { name: "Visa Enquiry’s", path: "/TouristVisa" },
-    { name: "Free Visa Enquiry", path: "/FreeVisaQuotes" },
-  ],
-},
- { 
-  name: "Country", 
-  path: "/AllCountry" 
-},
+      name: "Visa",
+      path: "/visa/overview",
+      sub: [
+        { name: "All Visa Overview", path: "/visa/overview" },
+        { name: "Visa Enquiry’s", path: "/TouristVisa" },
+        { name: "Free Visa Enquiry", path: "/FreeVisaQuotes" },
+      ],
+      },
+      { 
+        name: "Country", 
+        path: "/AllCountry" 
+      },
     { name: "Program Type", path: "/StudyAbroad", sub: [
       { name: "Study Abroad", path: "/StudyAbroad" },
       { name: "Intern Abroad", path: "/InternsAbroad" },
