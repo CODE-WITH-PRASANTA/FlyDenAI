@@ -1,0 +1,213 @@
+.ApplyNow-Banner-Container {
+  width: 100%;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-top: 4px solid #8c8c8c; /* ✨ Added yellow matching top border */
+  border-bottom: 4px solid #8c8c8c;
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+  border-radius: 12px; /* 🌟 Added border-radius */
+}
+
+
+/* ---------- Inner Wrapper ---------- */
+.ApplyNow-Banner-Content {
+  width: 90%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 10px;
+}
+
+/* ---------- Title Section ---------- */
+.ApplyNow-Banner-Title {
+  font-size: 34px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: 0.4px;
+  font-family: "Poppins", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- Right Ribbon Section ---------- */
+.ApplyNow-Banner-Ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Ribbon Text ---------- */
+.ApplyNow-Banner-RibbonText {
+  background: linear-gradient(90deg, #0097a7 0%, #00bcd4 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 30px;
+  border-radius: 4px 0 0 4px;
+  clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%);
+  box-shadow: 0 3px 8px rgba(0, 151, 167, 0.25);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-family: "Inter", "Roboto", sans-serif;
+}
+
+/* ---------- Logos Section ---------- */
+.ApplyNow-Banner-Logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-left: 20px;
+  background-color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e5e7eb;
+}
+
+/* ---------- Individual Logos ---------- */
+.ApplyNow-Banner-Logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* ---------- Small UI Enhancement (No Hover Needed) ---------- */
+.ApplyNow-Banner-Logo:first-child {
+  margin-left: 0;
+}
+
+.ApplyNow-Banner-Logo:last-child {
+  margin-right: 0;
+}
+
+/* ---------- Responsive Design ---------- */
+
+/* Large Tablets & Small Laptops */
+@media (max-width: 1024px) {
+  .ApplyNow-Banner-Content {
+    width:100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .ApplyNow-Banner-Title {
+    font-size: 30px;
+  }
+
+  .ApplyNow-Banner-Ribbon {
+    justify-content: center;
+  }
+
+  .ApplyNow-Banner-Logos {
+    margin-left: 0;
+  }
+}
+
+/* Tablets (Portrait) */
+@media (max-width: 768px) {
+  .ApplyNow-Banner-Container {
+    padding: 25px 0;
+  }
+
+  .ApplyNow-Banner-Content {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .ApplyNow-Banner-Title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .ApplyNow-Banner-RibbonText {
+    font-size: 15px;
+    padding: 10px 24px;
+  }
+
+  .ApplyNow-Banner-Logos {
+    padding: 8px 15px;
+    gap: 14px;
+  }
+
+  .ApplyNow-Banner-Logo {
+    height: 28px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .ApplyNow-Banner-Container {
+    padding: 20px 0;
+  }
+
+  .ApplyNow-Banner-Content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ApplyNow-Banner-Title {
+    font-size: 22px;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .ApplyNow-Banner-Ribbon {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ApplyNow-Banner-RibbonText {
+    font-size: 14px;
+    padding: 8px 20px;
+    clip-path: none;
+    border-radius: 6px;
+    text-transform: none;
+  }
+
+  .ApplyNow-Banner-Logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .ApplyNow-Banner-Logo {
+    height: 26px;
+    opacity: 1;
+  }
+}
+
+/* Very Small Devices (iPhone SE, etc.) */
+@media (max-width: 360px) {
+  .ApplyNow-Banner-Title {
+    font-size: 20px;
+  }
+
+  .ApplyNow-Banner-RibbonText {
+    font-size: 13px;
+    padding: 7px 16px;
+  }
+
+  .ApplyNow-Banner-Logo {
+    height: 24px;
+  }
+}

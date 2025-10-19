@@ -25,14 +25,6 @@ const VisaApplicationForm = () => {
     "AMEX",
   ];
 
-  const handleNext = () => {
-    if (step < 5) setStep(step + 1);
-  };
-
-  const handlePrev = () => {
-    if (step > 1) setStep(step - 1);
-  };
-
   const progressSteps = [
     { label: "Itinerary", icon: <FaPlaneDeparture /> },
     { label: "Traveller Details", icon: <FaUser /> },
@@ -40,152 +32,184 @@ const VisaApplicationForm = () => {
     { label: "Upload Documents", icon: <FaFileUpload /> },
   ];
 
+  const handleNext = () => step < 5 && setStep(step + 1);
+  const handlePrev = () => step > 1 && setStep(step - 1);
+
   return (
-    <div className="visa-application-container">
-      {/* ======= PROGRESS BAR ======= */}
-      <div className="visa-application-progress">
+    <div className="visa-app-wrapper">
+      {/* ====================== PROGRESS BAR ====================== */}
+      <div className="visa-progress-container">
+        <div className="progress-edge left-edge"></div>
+
+        <div
+          className="visa-progress-fill"
+          style={{
+            width:
+              (step - 1) / (progressSteps.length - 1) < 1
+                ? `${(step - 1) / (progressSteps.length - 1) * 100}%`
+                : "auto",
+          }}
+        ></div>
+
         {progressSteps.map((item, index) => {
-          const currentStep = index + 1;
+          const current = index + 1;
           return (
             <div
               key={index}
-              className={`visa-progress-step ${
-                step === currentStep
+              className={`progress-step ${
+                step === current
                   ? "active"
-                  : step > currentStep
+                  : step > current
                   ? "completed"
                   : ""
               }`}
             >
-              <div className="progress-circle">{item.icon}</div>
+              <div className="progress-icon">{item.icon}</div>
               <span className="progress-label">{item.label}</span>
-              {index < progressSteps.length - 1 && (
-                <div className="progress-line"></div>
-              )}
             </div>
           );
         })}
+
+        <div className="progress-edge right-edge"></div>
       </div>
 
-      {/* ======= MAIN GRID ======= */}
-      <div className="visa-application-grid">
-        <div className="visa-application-left">
-          {/* Step 1 - Itinerary */}
+      {/* ====================== MAIN FORM SECTION ====================== */}
+      <div className="visa-form-layout">
+        <div className="visa-left-panel">
+          {/* ========== STEP 1: Itinerary ========== */}
           {step === 1 && (
-            <div className="visa-application-section fade-in">
-              <h3 className="section-title">Travel Itinerary</h3>
-              <p className="section-subtitle">
-                Plan your travel dates and choose your arrival card type.
+            <section className="visa-step fade-in">
+              <h3 className="visa-step-title">Travel Itinerary</h3>
+              <p className="visa-step-subtitle">
+                Plan your travel dates and choose your visa type.
               </p>
 
-              <div className="form-row">
-                <div className="form-col full">
-                  <label>Visa Type</label>
-                  <select className="form-input">
-                    <option>Malaysia Digital Arrival Card (MDAC)</option>
-                  </select>
-                </div>
+              <div className="visa-form-group">
+                <label>Visa Type</label>
+                <select className="visa-input">
+                  <option>Malaysia Digital Arrival Card (MDAC)</option>
+                </select>
               </div>
 
-              <div className="form-row">
-                <div className="form-col half">
+              <div className="visa-row">
+                <div className="visa-col">
                   <label>Onward Date</label>
-                  <div className="input-wrapper">
-                    <FaCalendarAlt className="input-icon" />
-                    <input type="text" placeholder="dd/mm/yyyy" />
+                  <div className="visa-input-wrapper">
+                    <FaCalendarAlt className="visa-input-icon" />
+                    <input
+                      type="text"
+                      placeholder="dd/mm/yyyy"
+                      className="visa-input"
+                    />
                   </div>
                 </div>
-                <div className="form-col half">
+
+                <div className="visa-col">
                   <label>Return Date</label>
-                  <div className="input-wrapper">
-                    <FaCalendarAlt className="input-icon" />
-                    <input type="text" placeholder="dd/mm/yyyy" />
+                  <div className="visa-input-wrapper">
+                    <FaCalendarAlt className="visa-input-icon" />
+                    <input
+                      type="text"
+                      placeholder="dd/mm/yyyy"
+                      className="visa-input"
+                    />
                   </div>
                 </div>
               </div>
 
-              <button className="continue-btn" onClick={handleNext}>
-                Continue <FaArrowRight />
-              </button>
-            </div>
+              <div className="visa-actions">
+                <button className="visaapplication-btn primary" onClick={handleNext}>
+                  Continue <FaArrowRight />
+                </button>
+              </div>
+            </section>
           )}
 
-          {/* Step 2 - Traveller Details */}
+          {/* ========== STEP 2: Traveller Details ========== */}
           {step === 2 && (
-            <div className="visa-application-section fade-in">
-              <h3 className="section-title">Traveller Details</h3>
-              <p className="section-subtitle">
-                Enter your personal and passport information carefully.
+            <section className="visa-step fade-in">
+              <h3 className="visa-step-title">Traveller Details</h3>
+              <p className="visa-step-subtitle">
+                Enter your personal and passport details carefully.
               </p>
 
-              <div className="traveller-info">
+              <div className="traveller-header">
                 <FaUser /> <span>Primary Applicant</span>
               </div>
 
-              <div className="form-row">
-                <div className="form-col third">
+              <div className="visa-row">
+                <div className="visa-col small">
                   <label>Title</label>
-                  <select>
+                  <select className="visa-input">
                     <option>Mr</option>
                     <option>Mrs</option>
                     <option>Ms</option>
                   </select>
                 </div>
-                <div className="form-col third">
+                <div className="visa-col">
                   <label>First Name</label>
-                  <input type="text" />
+                  <input type="text" className="visa-input" />
                 </div>
-                <div className="form-col third">
+                <div className="visa-col">
                   <label>Last Name</label>
-                  <input type="text" />
+                  <input type="text" className="visa-input" />
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-col half">
+              <div className="visa-row">
+                <div className="visa-col">
                   <label>Date of Birth</label>
-                  <div className="input-wrapper">
-                    <FaCalendarAlt className="input-icon" />
-                    <input type="text" placeholder="dd/mm/yyyy" />
+                  <div className="visa-input-wrapper">
+                    <FaCalendarAlt className="visa-input-icon" />
+                    <input
+                      type="text"
+                      placeholder="dd/mm/yyyy"
+                      className="visa-input"
+                    />
                   </div>
                 </div>
-                <div className="form-col half">
+                <div className="visa-col">
                   <label>Nationality</label>
-                  <input type="text" value="Indian" readOnly />
+                  <input
+                    type="text"
+                    className="visa-input readonly"
+                    value="Indian"
+                    readOnly
+                  />
                 </div>
               </div>
 
-              <div className="form-row">
-                <div className="form-col half">
+              <div className="visa-row">
+                <div className="visa-col">
                   <label>Passport No</label>
-                  <input type="text" />
+                  <input type="text" className="visa-input" />
                 </div>
-                <div className="form-col half">
+                <div className="visa-col">
                   <label>Contact Number</label>
-                  <input type="text" />
+                  <input type="text" className="visa-input" />
                 </div>
               </div>
 
-              <div className="form-actions between">
-                <button className="continue-btn outline" onClick={handlePrev}>
+              <div className="visa-actions">
+                <button className="visaapplication-btn outline" onClick={handlePrev}>
                   Back
                 </button>
-                <button className="continue-btn" onClick={handleNext}>
+                <button className="visaapplication-btn primary" onClick={handleNext}>
                   Continue <FaArrowRight />
                 </button>
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Step 3 - Payment */}
+          {/* ========== STEP 3: Payment ========== */}
           {step === 3 && (
-            <div className="visa-application-section fade-in">
-              <h3 className="section-title">Make Payment</h3>
-              <p className="section-subtitle">
-                Select your preferred payment method and complete your payment.
+            <section className="visa-step fade-in">
+              <h3 className="visa-step-title">Make Payment</h3>
+              <p className="visa-step-subtitle">
+                Choose your preferred payment method.
               </p>
 
-              <div className="payment-options-grid">
+              <div className="payment-options">
                 {paymentOptions.map((option) => (
                   <div
                     key={option}
@@ -199,7 +223,7 @@ const VisaApplicationForm = () => {
                 ))}
               </div>
 
-              <div className="payment-content">
+              <div className="payment-box">
                 <h4>{activePayment} Payment</h4>
                 <p>
                   {activePayment === "UPI"
@@ -209,75 +233,76 @@ const VisaApplicationForm = () => {
 
                 <div className="payment-footer">
                   <span>
-                    Total payable amount <strong>₹748</strong>
+                    Total payable amount: <strong>₹748</strong>
                   </span>
-                  <button className="pay-btn" onClick={handleNext}>
-                    Pay Now
+                 <button className="visaapplication-btn pay" onClick={handleNext}>
+                    Pay Now <FaArrowRight />
                   </button>
+
                 </div>
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Step 4 - Upload Documents */}
+          {/* ========== STEP 4: Upload Documents ========== */}
           {step === 4 && (
-            <div className="visa-application-section fade-in">
-              <h3 className="section-title">Upload Documents</h3>
-              <p className="section-subtitle">
-                Please upload clear scanned copies of the required documents.
+            <section className="visa-step fade-in">
+              <h3 className="visa-step-title">Upload Documents</h3>
+              <p className="visa-step-subtitle">
+                Upload clear scanned copies of your required documents.
               </p>
 
               <div className="upload-grid">
-                {["Passport Copy", "Photo", "Travel Itinerary", "Additional Document"].map(
-                  (label) => (
-                    <div className="upload-box" key={label}>
-                      <label>{label}</label>
-                      <input type="file" />
-                    </div>
-                  )
-                )}
+                {[
+                  "Passport Copy",
+                  "Photo",
+                  "Travel Itinerary",
+                  "Additional Document",
+                ].map((label) => (
+                  <div key={label} className="upload-box">
+                    <label>{label}</label>
+                    <input type="file" className="upload-input" />
+                  </div>
+                ))}
               </div>
 
-              <div className="form-actions between">
-                <button className="continue-btn outline" onClick={handlePrev}>
+              <div className="visa-actions">
+                <button className="visaapplication-btn outline" onClick={handlePrev}>
                   Back
                 </button>
-                <button className="continue-btn" onClick={handleNext}>
+                <button className="visaapplication-btn primary" onClick={handleNext}>
                   Submit Documents
                 </button>
               </div>
-            </div>
+            </section>
           )}
 
-          {/* Step 5 - Thank You */}
+          {/* ========== STEP 5: Thank You ========== */}
           {step === 5 && (
-            <div className="thank-you-section fade-in">
+            <section className="visa-step fade-in thankyou-section">
               <FaCheckCircle className="thank-icon" />
               <h2>Thank You! 🎉</h2>
-              <p>
-                Your Malaysia Visa Application has been submitted successfully.
-                We’ll update you via email once it’s processed.
-              </p>
-              <button className="continue-btn" onClick={() => setStep(1)}>
+              <p>Your Malaysia Visa Application has been submitted successfully.</p>
+              <button className="visaapplication-btn primary" onClick={() => setStep(1)}>
                 Apply Another Visa
               </button>
-            </div>
+            </section>
           )}
         </div>
 
-        {/* RIGHT SIDEBAR */}
-        <div className="visa-application-right sticky-right">
-          <div className="fare-box">
+        {/* ====================== RIGHT SIDEBAR ====================== */}
+        <aside className="visa-right-panel">
+          <div className="fare-summary-card">
             <h4>Fare Details</h4>
-            <div className="fare-line">
+            <div className="fare-item">
               <span>Base Fare</span>
               <span>₹249.00</span>
             </div>
-            <div className="fare-line">
+            <div className="fare-item">
               <span>Service Charges</span>
               <span>₹250.00</span>
             </div>
-            <div className="fare-line">
+            <div className="fare-item">
               <span>Taxes</span>
               <span>₹249.00</span>
             </div>
@@ -286,7 +311,7 @@ const VisaApplicationForm = () => {
               <span>₹748.00</span>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
     </div>
   );

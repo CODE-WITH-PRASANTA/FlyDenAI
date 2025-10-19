@@ -24,6 +24,8 @@ import VisaDetails from "./Pages/VisaDetails/VisaDetails";
 import ApplyNow from "./Pages/ApplyNow/ApplyNow";
 import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import TermAndCondition from "./Pages/TermAndCondition/TermAndCondition";
+import InternsAbroad from "./Pages/InternsAbroad/InternsAbroad";
+import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
 
 function App() {
   const navigate = useNavigate();
@@ -53,18 +55,22 @@ function App() {
           <Route path="/AllCountry" element={<AllCountry />} />
           <Route path="/GetaQuotes" element={<GetAQuotes />} />
           <Route path="/FreeVisaQuotes" element={<FreeVisaQuotes />} />
-          <Route path="/StudyAbroad" element={<StudyAbroad />} />
+
           <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
           <Route path="/Visa/Details" element={<VisaDetails />} />
 
           {/* Apply To the Visa Page */}
           <Route path="/Apply/Now" element={<ApplyNow />} />
+          <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition  */}
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/TermAndCondition" element={<TermAndCondition />} />
 
+          {/* Study Abroad & Interns Abroad */}
+          <Route path="/StudyAbroad" element={<StudyAbroad />} />
+          <Route path="/InternsAbroad" element={<InternsAbroad />} />
 
         </Routes>
         <Footer />

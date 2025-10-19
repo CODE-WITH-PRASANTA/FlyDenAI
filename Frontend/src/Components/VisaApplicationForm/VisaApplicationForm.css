@@ -1,299 +1,842 @@
-/* ===========================
-   VisaApplicationForm.css
-   (matches the JSX you provided)
-   =========================== */
-
-/* ---------- reset & base ---------- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-:root{
-  --primary-1: #0077b6;
-  --primary-2: #00b4d8;
-  --accent: #10b981;
-  --muted: #6b7280;
-  --card-bg: #ffffff;
-  --glass: rgba(255,255,255,0.7);
+/* ======================================
+   RESET & BASE
+====================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* container */
-.visa-application-container{
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg,#f3f7fb 0%, #eaf6ff 100%);
-  padding: 40px 48px;
+:root {
+  --primary: #2563eb;
+  --secondary: #3b82f6;
+  --success: #10b981;
+  --muted: #64748b;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  --radius: 12px;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
   color: #111827;
+}
+
+/* ======================================
+   MAIN WRAPPER
+====================================== */
+.visa-app-wrapper {
+  padding: 20px 50px;
+  background: linear-gradient(135deg, #f0f7ff 0%, #eaf2ff 100%);
   min-height: 100vh;
 }
 
-/* =========================
-   PROGRESS / SLIDING FILL
-   ========================= */
-.visa-application-progress {
+/* ======================================
+   PROGRESS BAR (Elegant Modern Look)
+====================================== */
+.visa-progress-container {
   position: relative;
-  padding: 22px 50px; /* more space on left and right */
-  background: var(--card-bg);
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
-  margin-bottom: 36px;
+  max-width: 950px;
+  margin: 0 auto 40px;
+  background: var(--card);
+  padding: 35px 45px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   overflow: visible;
-
-  display: flex;                  
-  justify-content: space-between;  /* space steps evenly */
-  align-items: center;            
 }
 
-/* sliding fill element (must be present in JSX) */
-.visa-application-progress .progress-fill{
+.visa-progress-fill {
   position: absolute;
-  left: 20px; /* aligns with progress step left padding */
-  right: 20px;
-  height: 8px;
-  top: 28px;
-  width: 0%;
-  background: linear-gradient(90deg, var(--primary-2), var(--primary-1));
+  top: 50%;
+  left: 45px;
+  right: 45px;
+  height: 6px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
   border-radius: 999px;
-  z-index: 0;
-  transition: width 600ms cubic-bezier(.2,.9,.2,1);
-  box-shadow: 0 6px 20px rgba(0,123,255,0.12);
+  transition: width 0.6s ease;
+  z-index: 1;
 }
 
-/* each visible step (above the fill) */
-.visa-progress-step {
-  position: relative;
-  z-index: 2; /* above fill */
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  padding: 6px 10px;
-  margin-right: 6px;
-  color: var(--muted);
-  font-weight: 600;
-  font-size: 0.95rem;
-  user-select: none;
-}
-
-/* progress circle that contains icon or number */
-.progress-circle{
-  width: 44px;
-  height: 44px;
+.progress-edge {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #eef2ff;
-  color: var(--primary-1);
-  font-weight: 700;
-  box-shadow: 0 6px 20px rgba(2,6,23,0.04);
-  transition: all 300ms ease;
+  background: #dbeafe;
+  border: 2px solid var(--primary);
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
-/* label under / next to circle */
-.progress-label{
-  color: #0f172a;
-  font-size: 0.94rem;
+.left-edge {
+  left: 30px;
 }
 
-/* completed & active states */
-.visa-progress-step.completed .progress-circle{
-  background: linear-gradient(135deg, #10b981, #34d399);
-  color: #fff;
-  transform: scale(1.03);
-  box-shadow: 0 8px 26px rgba(16,185,129,0.12);
+.right-edge {
+  right: 30px;
 }
 
-.visa-progress-step.active .progress-circle{
-  background: linear-gradient(135deg, var(--primary-2), var(--primary-1));
-  color: #fff;
-  transform: scale(1.08);
-  box-shadow: 0 10px 28px rgba(0,123,255,0.16);
-}
-
-.visa-progress-step.active .progress-label,
-.visa-progress-step.completed .progress-label{
-  color: #022c54;
-}
-
-/* small arrow icon (keeps using your FaArrowRight element) */
-.step-arrow{
-  margin-left: 8px;
-  color: #94a3b8;
-  font-size: 16px;
-}
-
-/* =========================
-   MAIN GRID (LEFT + RIGHT)
-   ========================= */
-.visa-application-grid{
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 28px;
-}
-
-/* left column wrapper (holds steps / form sections) */
-.visa-application-left{
+.progress-step {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  align-items: center;
 }
 
-/* each section card */
-.visa-application-section{
-  background: var(--card-bg);
-  border-radius: 14px;
-  padding: 28px;
-  box-shadow: 0 12px 30px rgba(2,6,23,0.05);
-  overflow: hidden;
+.progress-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  font-size: 15px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
 }
 
-/* section title + subtitle */
-.section-title { font-size: 1.35rem; font-weight: 700; color: #0b1220; margin-bottom:6px; }
-.section-subtitle { color: #6b7280; font-size: 0.96rem; margin-bottom: 18px; }
-
-/* layout rows & columns */
-.form-row{ display:flex; gap:18px; flex-wrap:wrap; margin-bottom: 14px; }
-.form-col{ display:flex; flex-direction:column; gap:8px; flex:1 1 auto; min-width: 160px; }
-.form-col.half{ flex:0 0 calc(50% - 9px); }
-.form-col.third{ flex:0 0 calc(33.33% - 12px); }
-
-/* input wrapper (for icon) */
-.input-wrapper{ position: relative; }
-.input-icon{ position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 16px; }
-.form-input, input[type="text"], input[type="email"], input[type="file"], select {
-  padding: 12px 14px 12px 40px;
-  border-radius: 10px;
-  border: 1px solid #e6eef8;
-  background: #fbfdff;
-  font-size: 14px;
-  outline: none;
-  transition: box-shadow .25s ease, border-color .25s ease, transform .12s ease;
-}
-.form-input:focus, input:focus, select:focus {
-  border-color: var(--primary-2);
-  box-shadow: 0 6px 22px rgba(0,123,255,0.08);
-  transform: translateY(-1px);
-}
-.form-input.readonly { background:#f3f4f6; padding-left:12px; }
-
-/* traveller badge */
-.traveller-label, .traveller-info {
-  display:flex; align-items:center; gap:10px; color: var(--primary-1);
-  background: linear-gradient(90deg, rgba(0,123,255,0.06), rgba(0,180,216,0.03));
-  padding:10px 12px; border-radius:10px; font-weight:600; width:max-content;
+.progress-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
 }
 
-/* =========================
-   PAYMENT OPTIONS + CONTENT
-   ========================= */
-.payment-options-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
-  gap:12px;
-  margin-bottom:16px;
-}
-.payment-option{
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #e6eef8;
-  text-align:center;
-  cursor:pointer;
-  background:#fbfdff;
-  font-weight:600;
-  color:#0b1220;
-  transition: all .22s ease;
-}
-.payment-option:hover{ transform: translateY(-4px); box-shadow: 0 8px 24px rgba(2,6,23,0.06); border-color: var(--primary-2); }
-.payment-option.active{ background: linear-gradient(90deg,var(--primary-2),var(--primary-1)); color:#fff; border:none; box-shadow: 0 10px 30px rgba(0,123,255,0.12); }
-
-.payment-content{
-  background: linear-gradient(180deg,#fbfdff, #f8fbff);
-  padding:16px;
-  border-radius:10px;
-  border:1px solid #eef6ff;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-}
-.payment-content h4{ margin:0 0 6px 0; font-size:1.05rem; font-weight:700; }
-.payment-content p{ color: #475569; margin:0 0 12px 0; }
-
-/* payment footer */
-.payment-footer{ display:flex; align-items:center; justify-content:space-between; margin-top:12px; gap:12px; }
-.pay-btn{
-  background: linear-gradient(135deg,var(--accent), #34d399);
-  color:#fff; border:none; padding:10px 18px; border-radius:10px; font-weight:700; cursor:pointer;
-  transition: transform .18s ease, box-shadow .18s ease;
-}
-.pay-btn:hover{ transform: translateY(-3px); box-shadow: 0 8px 26px rgba(16,185,129,0.16); }
-
-/* =========================
-   UPLOAD GRID
-   ========================= */
-.upload-grid {
-  display:grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 14px;
-  margin-top: 10px;
-}
-.upload-box{
-  padding:18px; border-radius:12px; border:2px dashed #e7f0ff; background:#fbfdff; text-align:center; transition: all .2s ease;
-}
-.upload-box:hover{ border-color: var(--primary-2); background: #f1f9ff; transform: translateY(-6px); }
-
-/* =========================
-   ACTION / BUTTON ALIGNMENT
-   (fixed to right inside each section)
-   ========================= */
-.form-actions{ display:flex; align-items:center; justify-content:flex-end; gap:12px; margin-top:18px; }
-.continue-btn, .pay-btn, .submit-btn {
-  border: none;
-  border-radius: 12px;
-  padding: 10px 18px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.continue-btn{
-  background: linear-gradient(135deg,var(--primary-2),var(--primary-1));
+/* Active + Completed States */
+.progress-step.active .progress-icon {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: #fff;
-  transition: transform .18s ease, box-shadow .18s ease;
+  transform: scale(1.1);
 }
-.continue-btn:hover{ transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,123,255,0.14); }
-.continue-btn.outline{ background: transparent; border: 1.5px solid var(--primary-1); color: var(--primary-1); }
 
-/* =========================
+.progress-step.completed .progress-icon {
+  background: linear-gradient(135deg, var(--success), #34d399);
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.progress-step.active .progress-label,
+.progress-step.completed .progress-label {
+  color: #1e293b;
+}
+
+
+/* ---------- Mobile (≤768px) ---------- */
+@media (max-width: 768px) {
+  .visa-progress-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar (Chrome/Safari) */
+  }
+
+  .visa-progress-fill {
+    display: none; /* hide background fill on scroll view */
+  }
+  .progress-edge {
+    display: none;
+  }
+}
+
+
+/* ======================================
+   FORM LAYOUT
+====================================== */
+.visa-form-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.visa-step {
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.visa-step-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.visa-step-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+/* ======================================
+   FORM FIELDS
+====================================== */
+.visa-form-group,
+.visa-row {
+  margin-bottom: 18px;
+}
+
+.visa-row {
+  display: flex;
+  gap: 20px;
+}
+
+.visa-col {
+  flex: 1;
+}
+
+.visa-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 6px;
+}
+
+.visa-input-wrapper {
+  position: relative;
+}
+
+.visa-input-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: var(--primary);
+}
+
+.visa-input {
+  width: 100%;
+  padding: 10px 12px 10px 35px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.visa-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ======================================
+   BUTTONS
+====================================== */
+.visaapplication-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+.visaapplication-btn.primary {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+}
+
+.visaapplication-btn.primary:hover {
+  opacity: 0.9;
+}
+
+.visaapplication-btn.outline {
+  border: 1.5px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
+}
+
+.visaapplication-btn.outline:hover {
+  background: var(--primary);
+  color: #fff;
+}
+
+.visaapplication-btn.pay {
+  background: linear-gradient(135deg, var(--success), #34d399);
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 25px;
+}
+
+.visa-actions {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ======================================
+   PAYMENT SECTION
+====================================== */
+.payment-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.payment-option {
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.payment-option.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.payment-option:hover {
+  border-color: var(--primary);
+}
+
+.payment-box {
+  padding: 20px;
+  background: #f9fafb;
+  border-radius: var(--radius);
+}
+
+.payment-footer {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ======================================
+   UPLOAD SECTION
+====================================== */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.upload-box {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px dashed #cbd5e1;
+}
+
+.upload-box label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.upload-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9rem;
+}
+
+/* ======================================
    THANK YOU SECTION
-   ========================= */
-.thank-you-section {
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:48px; border-radius:16px;
-  background: linear-gradient(135deg,#e6fff6,#f0f9ff);
-  box-shadow: 0 12px 34px rgba(2,6,23,0.06);
-  text-align:center;
-}
-.thank-icon{ font-size:64px; color: var(--accent); margin-bottom:14px; animation: float 1.8s ease-in-out infinite; }
-@keyframes float{ 0%{ transform: translateY(0) } 50%{ transform: translateY(-8px) } 100%{ transform: translateY(0) } }
-.thank-you-section h2{ font-size:1.8rem; margin-bottom:8px; }
-.thank-you-section p{ color:#475569; max-width:560px; }
-
-/* =========================
-   RIGHT SIDEBAR / FARE BOX
-   ========================= */
-.visa-application-right { display:flex; flex-direction:column; gap:18px; align-items:stretch; }
-.sticky-right{ position:sticky; top:26px; align-self:start; }
-.fare-box{
-  background: linear-gradient(180deg,#ffffff,#fcfeff);
-  padding:18px 20px; border-radius:12px; box-shadow: 0 10px 30px rgba(2,6,23,0.06);
-}
-.fare-box h4{ margin:0 0 12px 0; color: var(--primary-1); font-size:1.05rem; font-weight:700; }
-.fare-line{ display:flex; justify-content:space-between; color:#475569; margin-bottom:8px; }
-.fare-total{ display:flex; justify-content:space-between; margin-top:10px; border-top:1px solid #eef4ff; padding-top:10px; font-weight:700; color:#0b1220; }
-
-/* =========================
-   RESPONSIVE
-   ========================= */
-@media (max-width: 1100px){
-  .visa-application-grid{ grid-template-columns: 1fr; }
-  .sticky-right{ position:static; }
-  .visa-application-progress .progress-fill{ left:16px; right:16px; top:32px; }
+====================================== */
+.thankyou-section {
+  text-align: center;
+  padding: 60px 0;
 }
 
-@media (max-width: 640px){
-  .progress-label{ display:none; } /* hide labels on very small screens */
-  .progress-circle{ width:38px; height:38px; font-size:14px; }
-  .form-col.half, .form-col.third{ flex:1 1 100%; }
+.thank-icon {
+  font-size: 70px;
+  color: var(--success);
+  margin-bottom: 15px;
+}
+
+/* ======================================
+   RIGHT SIDEBAR (Fare Summary)
+====================================== */
+.visa-right-panel {
+  position: sticky;
+  top: 20px;
+}
+
+.fare-summary-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 25px;
+}
+
+.fare-summary-card h4 {
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.fare-item,
+.fare-total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  padding: 5px 0;
+}
+
+.fare-total {
+  font-weight: 600;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+/* ======================================
+   STEP SECTIONS – Ultra Premium Look
+====================================== */
+.visa-step {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 45px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 🎨 Add beautiful gradient border around step box */
+.visa-step::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #3b82f6);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  opacity: 0.6;
+}
+
+/* ✨ Glowing hover effect with lift */
+.visa-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25);
+}
+
+.visa-step:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg, #3b82f6, #7c3aed, #2563eb);
+}
+/* ======================================
+   STEP SECTIONS – Ultra Premium Look
+====================================== */
+.visa-step {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 45px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s ease;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 🎨 Add beautiful gradient border around step box */
+.visa-step::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed, #3b82f6);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.5s ease;
+  opacity: 0.6;
+}
+
+/* ✨ Glowing hover effect with lift */
+.visa-step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25);
+}
+
+.visa-step:hover::before {
+  opacity: 1;
+  background: linear-gradient(135deg, #3b82f6, #7c3aed, #2563eb);
+}
+
+/* ======================================
+   STEP TITLE – Elegant Gradient Text
+====================================== */
+.visa-step-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #2563eb, #7c3aed, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+  position: relative;
+}
+
+/* Decorative underline */
+.visa-step-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 55px;
+  height: 3px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  transition: width 0.3s ease;
+}
+
+.visa-step:hover .visa-step-title::after {
+  width: 80px;
+}
+
+/* ======================================
+   STEP SUBTITLE – Minimal Muted Tone
+====================================== */
+.visa-step-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+
+/* ======================================
+   FORM INPUTS – Modern Glass Style
+====================================== */
+.visa-input {
+  width: 100%;
+  padding: 12px 15px 12px 38px;
+  background: rgba(248, 250, 252, 0.8);
+  border: 1px solid #dbeafe;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.visa-input:focus {
+  border-color: var(--primary);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.visa-input-icon {
+  color: var(--primary);
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+
+/* ======================================
+   PAYMENT BOX – Elegant Card Look
+====================================== */
+.payment-box {
+  padding: 25px;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+  border-radius: var(--radius);
+  border: 1px solid #dbeafe;
+  box-shadow: inset 0 0 12px rgba(37, 99, 235, 0.05);
+  transition: all 0.3s ease;
+}
+
+.payment-box:hover {
+  box-shadow: inset 0 0 18px rgba(37, 99, 235, 0.1);
+}
+
+.payment-box h4 {
+  color: var(--primary);
+  margin-bottom: 6px;
+}
+
+.payment-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ======================================
+   UPLOAD BOXES – Card Grid
+====================================== */
+.upload-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.upload-box {
+  background: #f9fafb;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.upload-box:hover {
+  background: #eef2ff;
+  border-color: var(--primary);
+  transform: scale(1.02);
+}
+
+.upload-box label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ======================================
+   THANK YOU SECTION – Celebration Style
+====================================== */
+.thankyou-section {
+  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  padding: 60px 30px;
+  animation: fadeIn 0.8s ease;
+}
+
+.thank-icon {
+  font-size: 80px;
+  color: var(--success);
+  margin-bottom: 20px;
+  animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ======================================
+   RESPONSIVE DESIGN (All Devices)
+====================================== */
+
+/* ---------- Large Desktop (1440px & up) ---------- */
+@media (min-width: 1440px) {
+ 
+
+  .visa-form-layout {
+    max-width: 1400px;
+  }
+
+  .visa-step {
+    padding: 50px 60px;
+  }
+}
+
+/* ---------- Laptops & Desktops (1025px–1439px) ---------- */
+@media (max-width: 1439px) and (min-width: 1025px) {
+
+
+  .visa-form-layout {
+    gap: 25px;
+  }
+
+  .fare-summary-card {
+    padding: 20px;
+  }
+}
+
+/* ---------- Tablets (769px–1024px) ---------- */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .visa-form-layout {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 20px;
+  }
+
+  .visa-progress-container {
+    padding: 25px 30px;
+  }
+
+  .visa-step {
+    padding: 35px 30px;
+  }
+
+  .visa-step-title {
+    font-size: 1.4rem;
+  }
+
+  .visa-step-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .payment-option {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+
+/* ---------- Mobile (Max 768px) ---------- */
+@media (max-width: 768px) {
+  .visa-app-wrapper {
+    padding: 25px 20px;
+  }
+
+  .visa-form-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .visa-right-panel {
+    position: relative;
+    top: auto;
+  }
+
+  .visa-progress-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 15px;
+  }
+
+  .progress-step {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .progress-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .progress-label {
+    font-size: 0.85rem;
+  }
+
+  .visa-step {
+    padding: 25px 20px;
+    border-radius: 14px;
+  }
+
+  .visa-step-title {
+    font-size: 1.3rem;
+  }
+
+  .visa-step-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .visa-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .visa-input {
+    padding: 10px 12px 10px 35px;
+  }
+
+  .payment-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .upload-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visa-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .visaapplication-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ---------- Small Devices (≤480px – iPhones etc.) ---------- */
+@media (max-width: 480px) {
+  .visa-progress-container {
+    padding: 15px;
+  }
+
+  .progress-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .visa-step-title {
+    font-size: 1.2rem;
+  }
+
+  .visa-step-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .visa-input {
+    font-size: 0.85rem;
+  }
+
+  .payment-option {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .fare-summary-card {
+    padding: 15px;
+  }
+
+  .thank-icon {
+    font-size: 60px;
+  }
+}
+
+/* ---------- Ultra-Small Screens (≤360px) ---------- */
+@media (max-width: 360px) {
+  .visa-app-wrapper {
+    padding: 15px 10px;
+  }
+
+  .visa-step {
+    padding: 20px 15px;
+  }
+
+  .visa-step-title {
+    font-size: 1.1rem;
+  }
+
+  .visa-step-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .visaapplication-btn {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
 }
