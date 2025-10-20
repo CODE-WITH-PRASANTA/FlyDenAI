@@ -19,49 +19,51 @@ const InternHero = () => {
 
   return (
     <div
-      className="intern-hero"
+      className="InternHero-Container"
       style={{
         backgroundImage: `url(${internImg})`,
       }}
     >
-      <div className="overlay"></div>
+      <div className="InternHero-Overlay"></div>
 
-      <div className="hero-content">
-        <h1 className="hero-title">Intern Abroad HQ</h1>
-        <p className="hero-subtitle">
+      <div className="InternHero-Content">
+        <h1 className="InternHero-Title">Intern Abroad HQ</h1>
+        <p className="InternHero-Subtitle">
           World's #1 rated global internship programs
         </p>
-        <p className="hero-rating">
-          <span className="rating-text">Excellent</span>{" "}
-          <span className="rating-value">4.7 out of 5</span>{" "}
-          <span className="trust">★ Trustpilot</span>
+
+        <p className="InternHero-Rating">
+          <span className="InternHero-RatingText">Excellent</span>{" "}
+          <span className="InternHero-RatingValue">4.7 out of 5</span>{" "}
+          <span className="InternHero-Trust">★ Trustpilot</span>
         </p>
 
-        <div className="search-card">
-          <div className="stats-row">
-            <div className="stat-item">
-              <FaSuitcase className="stat-icon" />
+        <div className="InternHero-SearchCard">
+          <div className="InternHero-StatsRow">
+            <div className="InternHero-StatItem">
+              <FaSuitcase className="InternHero-StatIcon" />
               <span>346 programs</span>
             </div>
-            <div className="stat-item">
-              <FaGlobeAmericas className="stat-icon" />
+            <div className="InternHero-StatItem">
+              <FaGlobeAmericas className="InternHero-StatIcon" />
               <span>25 countries</span>
             </div>
-            <div className="stat-item">
-              <FaCalendarAlt className="stat-icon" />
+            <div className="InternHero-StatItem">
+              <FaCalendarAlt className="InternHero-StatIcon" />
               <span>2 to 24 weeks</span>
             </div>
           </div>
 
-          <div className="search-row">
-            {/* ===== InternHero-DropDown ===== */}
+          <div className="InternHero-SearchRow">
             <div className="InternHero-DropDown">
               <label>Select your career field or specialization</label>
               <select
                 value={careerField}
                 onChange={(e) => setCareerField(e.target.value)}
               >
-                <option value="">Click to choose the focus for your internship</option>
+                <option value="">
+                  Click to choose the focus for your internship
+                </option>
                 <option value="Business">Business</option>
                 <option value="Marketing">Marketing</option>
                 <option value="Engineering">Engineering</option>
@@ -71,14 +73,13 @@ const InternHero = () => {
               </select>
             </div>
 
-            {/* ===== Type Buttons ===== */}
-            <div className="type-buttons">
+            <div className="InternHero-TypeButtons">
               <label>What type of internship are you looking for?</label>
-              <div className="btn-group">
+              <div className="InternHero-BtnGroup">
                 {["Abroad", "Remote", "Any"].map((type) => (
                   <button
                     key={type}
-                    className={`type-btn ${
+                    className={`InternHero-TypeBtn ${
                       internType === type ? "active" : ""
                     }`}
                     onClick={() => setInternType(type)}
@@ -89,8 +90,7 @@ const InternHero = () => {
               </div>
             </div>
 
-            {/* ===== Search Button ===== */}
-            <button className="search-btn" onClick={handleSearch}>
+            <button className="InternHero-SearchBtn" onClick={handleSearch}>
               Search
             </button>
           </div>

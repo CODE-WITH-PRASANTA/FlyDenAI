@@ -26,11 +26,11 @@ const Footer = () => {
 
       {/* Middle Links */}
       <div className="footer-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Visa Service</a>
-        <a href="#">Study Abroad</a>
-        <a href="#">Intern Abroad</a>
+        <a href="/PrivacyPolicy">Privacy Policy</a>
+        <a href="/TermAndCondition">Terms & Conditions</a>
+        <a href="/AllCountry">Visa Service</a>
+        <a href="/StudyAbroad">Study Abroad</a>
+        <a href="/InternsAbroad">Intern Abroad</a>
       </div>
 
       {/* Divider */}

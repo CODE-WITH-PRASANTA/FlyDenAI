@@ -38,31 +38,6 @@ a:hover {
   color: #18b495;
 }
 
-/* ===== Buttons ===== */
-button {
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.3s ease;
-}
-
-
-/* ===== Links for Buttons / CTA ===== */
-a.button {
-  display: inline-block;
-  background: linear-gradient(135deg, #ff512f, #dd2476);
-  color: #fff;
-  padding: 12px 28px;
-  border-radius: 35px;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.4s ease;
-}
-
-a.button:hover {
-  background: linear-gradient(135deg, #ff6a00, #ff0080);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-}
 
 /* ===== Responsive Container Utility ===== */
 .container {

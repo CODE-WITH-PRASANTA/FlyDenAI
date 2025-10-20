@@ -26,6 +26,7 @@ import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
 import TermAndCondition from "./Pages/TermAndCondition/TermAndCondition";
 import InternsAbroad from "./Pages/InternsAbroad/InternsAbroad";
 import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
+import MultiStepForm from "./Components/MultiStepForm/MultiStepForm";
 
 function App() {
   const navigate = useNavigate();
@@ -71,6 +72,9 @@ function App() {
           {/* Study Abroad & Interns Abroad */}
           <Route path="/StudyAbroad" element={<StudyAbroad />} />
           <Route path="/InternsAbroad" element={<InternsAbroad />} />
+
+          {/* Apply To the Intern Abroad Service */}
+         <Route path="/InternAbroad/Apply" element={<MultiStepForm />} />
 
         </Routes>
         <Footer />

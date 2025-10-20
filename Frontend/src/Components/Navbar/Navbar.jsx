@@ -82,7 +82,7 @@ const Navbar = () => {
               <a href="mailto:info@IIInternship.co" className="topbar-item">✉ <span>info@IIInternship.co</span></a>
             </div>
             <div className="topbar-right">
-              <Link to="/login" className="topbar-login">🔑 Login / Register</Link>
+            <Link to="/ComingSoon" className="topbar-login">📄 Check Your Status</Link>
               <Link to="/Apply/Now" className="topbar-cta">🚀 Apply Now</Link>
             </div>
           </div>

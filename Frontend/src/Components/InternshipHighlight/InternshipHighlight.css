@@ -11,9 +11,9 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 50px;
-  color: #1a1a1a; /* adjust as needed */
+  color: #1a1a1a;
+  line-height: 1.4;
 }
-
 
 /* ================= CARD LAYOUT ================= */
 .highlight-card {
@@ -21,8 +21,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   flex-wrap: wrap;
+  transition: all 0.4s ease;
 }
 
 .highlight-card.reverse {
@@ -38,6 +39,7 @@
   border-radius: 18px;
   object-fit: cover;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
 }
 
 /* ================= TEXT SECTION ================= */
@@ -51,6 +53,7 @@
   font-weight: 700;
   line-height: 1.3;
   margin-bottom: 18px;
+  color: #222;
 }
 
 .highlight-content p {
@@ -84,6 +87,7 @@
   font-size: 18px;
   padding: 14px 34px;
   border-radius: 8px;
+  border: 2px solid transparent;
   border: none;
   cursor: pointer;
   font-weight: 600;
@@ -95,19 +99,58 @@
   transform: translateY(-2px);
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
+/* ================= MEDIA QUERIES ================= */
+
+/* ====== Large Tablets (1024px and below) ====== */
+@media (max-width: 1024px) {
+  .internship-section {
+    padding: 60px 30px;
+  }
+
+  .highlight-card {
+    gap: 40px;
+    margin-bottom: 80px;
+  }
+
+  .highlight-content h3 {
+    font-size: 24px;
+  }
+
+  .highlight-content p {
+    font-size: 16px;
+  }
+
+  .choose-btn {
+    font-size: 17px;
+    padding: 12px 30px;
+  }
+}
+
+/* ====== Tablets (768px and below) ====== */
+@media (max-width: 768px) {
+  .internship-section {
+    padding: 50px 25px;
+  }
+
+  .internship-header {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
   .highlight-card {
     flex-direction: column;
     text-align: center;
+    gap: 30px;
+    margin-bottom: 70px;
   }
 
   .highlight-card.reverse {
     flex-direction: column;
   }
 
-  .highlight-image img {
-    max-width: 100%;
+  .highlight-image,
+  .highlight-content {
+    flex: 1 1 100%;
   }
 
   .highlight-content h3 {
@@ -117,15 +160,68 @@
   .highlight-content p {
     font-size: 15px;
   }
+
+  .highlight-content a {
+    font-size: 16px;
+  }
+
+  .choose-btn {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
 }
 
-@media (max-width: 600px) {
+/* ====== Mobile (480px and below) ====== */
+@media (max-width: 480px) {
   .internship-section {
-    padding: 50px 20px;
+    padding: 40px 20px;
+  }
+
+  .internship-header {
+    font-size: 1.6rem;
+  }
+
+  .highlight-card {
+    gap: 25px;
+    margin-bottom: 60px;
+  }
+
+  .highlight-content h3 {
+    font-size: 20px;
+  }
+
+  .highlight-content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .highlight-content a {
+    font-size: 15px;
   }
 
   .choose-btn {
     width: 100%;
-    padding: 16px 0;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 6px;
+  }
+}
+
+/* ====== Small Phones (360px and below) ====== */
+@media (max-width: 360px) {
+  .internship-header {
+    font-size: 1.4rem;
+  }
+
+  .highlight-content h3 {
+    font-size: 18px;
+  }
+
+  .highlight-content p {
+    font-size: 13px;
+  }
+
+  .choose-btn {
+    font-size: 14px;
   }
 }

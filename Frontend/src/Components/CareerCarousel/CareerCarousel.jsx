@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import "./CareerCarousel.css";
 
-// Import your 8 images
 import carousel1 from "../../assets/carousel1.webp";
 import carousel2 from "../../assets/carousel2.webp";
 import carousel3 from "../../assets/carousel3.webp";
@@ -23,93 +22,26 @@ const data = [
 ];
 
 const CareerCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const sliderRef = useRef(null);
-  const intervalRef = useRef(null);
-
-  const totalSlides = data.length;
-
-  // Auto-slide every 3 seconds
-  useEffect(() => {
-    startAutoSlide();
-    return () => stopAutoSlide();
-  }, []);
-
-  const startAutoSlide = () => {
-    intervalRef.current = setInterval(() => {
-      nextSlide();
-    }, 3000);
-  };
-
-  const stopAutoSlide = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-  };
-
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  // Number of visible cards
-  const visibleCards = () => {
-    if (window.innerWidth >= 1200) return 5;
-    if (window.innerWidth >= 900) return 4;
-    if (window.innerWidth >= 600) return 2;
-    return 1;
-  };
-
   return (
-    <div
-      className="carousel-container"
-      onMouseEnter={stopAutoSlide}
-      onMouseLeave={startAutoSlide}
-    >
-      <h2 className="carousel-title">
+    <div className="CareerCarousel-container">
+      <h2 className="CareerCarousel-title">
         What career field do you want to gain experience in?
       </h2>
 
-      <div className="carousel-wrapper">
-        <button
-          aria-label="Previous"
-          className="nav-arrow left-arrow"
-          onClick={prevSlide}
-        >
-          &#10094;
-        </button>
-
-        <div className="carousel-slider-wrapper">
-          <div
-            className="carousel-slider"
-            ref={sliderRef}
-            style={{
-              transform: `translateX(-${(currentIndex * 100) / visibleCards()}%)`,
-              width: `${(totalSlides / visibleCards()) * 100}%`,
-            }}
-          >
-            {data.map(({ title, img }, index) => (
-              <div key={index} className="carousel-card">
-                <div className="carousel-image">
-                  <img src={img} alt={title} />
-                </div>
-                <div className="carousel-label">{title}</div>
+      <div className="CareerCarousel-scroll-section">
+        <div className="CareerCarousel-track">
+          {data.map((item, index) => (
+            <div className="CareerCarousel-card" key={index}>
+              <div className="CareerCarousel-image">
+                <img src={item.img} alt={item.title} />
               </div>
-            ))}
-          </div>
+              <div className="CareerCarousel-label">{item.title}</div>
+            </div>
+          ))}
         </div>
-
-        <button
-          aria-label="Next"
-          className="nav-arrow right-arrow"
-          onClick={nextSlide}
-        >
-          &#10095;
-        </button>
       </div>
 
-      <button className="explore-btn">Explore all industries</button>
+      <button className="CareerCarousel-btn">Explore all industries</button>
     </div>
   );
 };

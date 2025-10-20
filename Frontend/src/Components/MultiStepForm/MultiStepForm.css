@@ -1,70 +1,59 @@
-/* ======================= GLOBAL ======================= */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-}
-
-.multi-step-form {
-  max-width: 1200px;
-  margin: 50px auto;
-  padding: 20px;
+/* =========================================
+   🌍 MULTI STEP FORM - POLISHED DESIGN
+   ========================================= */
+.MultiStepForm-Container {
+  max-width: 1100px;
+  margin: 20px auto;
+  font-family: "Poppins", sans-serif;
   color: #1a1a1a;
-  line-height: 1.5;
-  font-size: 14px;
 }
 
-/* ======================= PROGRESS BAR ======================= */
-.stepper {
+/* ====================== STEPPER ====================== */
+.MultiStepForm-Stepper {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
+  align-items: center;
+  margin-bottom: 45px;
   flex-wrap: wrap;
 }
 
-.step-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.MultiStepForm-StepItem {
   flex: 1;
-  min-width: 80px;
   text-align: center;
   position: relative;
 }
 
-.step-item .circle {
-  width: 40px;
-  height: 40px;
+.MultiStepForm-StepCircle {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   border: 2px solid #ccc;
-  background-color: #fff;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
   font-weight: 600;
-  color: #555;
+  color: #666;
+  margin: 0 auto 8px;
   transition: all 0.3s ease;
 }
 
-.step-item.active .circle {
+.MultiStepForm-StepItem.active .MultiStepForm-StepCircle {
   background-color: #ff7043;
-  border-color: #ff7043;
   color: #fff;
+  border-color: #ff7043;
 }
 
-.step-item p {
+.MultiStepForm-StepLabel {
   font-size: 13px;
-  color: #555;
   font-weight: 500;
+  color: #555;
 }
 
-/* Connectors */
-.step-item:not(:last-child)::after {
-  content: '';
+.MultiStepForm-StepItem:not(:last-child)::after {
+  content: "";
   position: absolute;
-  top: 18px;
+  top: 20px;
   right: -50%;
   width: 100%;
   height: 2px;
@@ -72,468 +61,495 @@
   z-index: -1;
 }
 
-.step-item.active:not(:last-child)::after {
+.MultiStepForm-StepItem.active:not(:last-child)::after {
   background-color: #ff7043;
 }
 
-/* ======================= FORM CONTAINER ======================= */
-.form-container {
+/* ====================== FORM CONTAINER ====================== */
+.MultiStepForm-FormStep {
   background: #fff;
-  padding: 30px 40px;
+  padding: 45px 50px;
   border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* ======================= FORM TITLES & SUBTITLES ======================= */
-.form-title {
-  font-size: 24px;
+/* ====================== HEADINGS ====================== */
+.MultiStepForm-Heading {
+  font-size: 26px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   color: #1a1a1a;
 }
 
-.form-subtitle {
+.MultiStepForm-Subtext {
   font-size: 14px;
-  margin-bottom: 25px;
   color: #555;
+  margin-bottom: 25px;
 }
 
-/* ======================= FORM ROWS ======================= */
-.form-row {
-  display: flex;
-  gap: 20px;
+/* ====================== FORM GRID ====================== */
+.MultiStepForm-Grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
   margin-bottom: 20px;
-  flex-wrap: wrap;
 }
 
-.form-field {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  background: #fff;
-  padding: 14px 16px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-  transition: box-shadow 0.3s ease;
-}
-
-.form-field:hover {
-  box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-}
-
-.form-field label {
-  font-size: 14px;
-  margin-bottom: 6px;
-  font-weight: 500;
-  color: #333;
-}
-
-.form-field input,
-.form-field select,
-.form-field textarea {
+.MultiStepForm-Input,
+.MultiStepForm-Select,
+.MultiStepForm-Textarea {
   width: 100%;
-  padding: 10px 14px;
+  padding: 13px 15px;
   border-radius: 10px;
   border: 1px solid #ccc;
   font-size: 14px;
+  outline: none;
   transition: all 0.3s ease;
+  background: #fafafa;
 }
 
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
+.MultiStepForm-Input:focus,
+.MultiStepForm-Select:focus,
+.MultiStepForm-Textarea:focus {
   border-color: #ff7043;
-  box-shadow: 0 0 8px rgba(255,112,67,0.2);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 112, 67, 0.25);
 }
 
-/* ======================= CHECKBOX & RADIO ======================= */
-.checkbox-group {
+.MultiStepForm-Textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ====================== CHECKBOX ====================== */
+.MultiStepForm-Checkbox {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  font-size: 14px;
   gap: 10px;
-  margin-bottom: 10px;
-  font-size: 14px;
+  color: #444;
 }
 
-.checkbox-group input[type="checkbox"],
-.checkbox-group input[type="radio"] {
-  width: 16px;
-  height: 16px;
+.MultiStepForm-Checkbox input {
+  margin-top: 3px;
   accent-color: #ff7043;
+  flex-shrink: 0;
 }
 
-/* ======================= BUTTONS ======================= */
-.primary-btn {
-  background-color: #ff7043;
-  color: #fff;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.primary-btn:hover {
-  background-color: #e65b2f;
-}
-
-.secondary-btn {
-  background-color: #fff;
-  color: #ff7043;
-  border: 2px solid #ff7043;
-  padding: 12px 25px;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-right: 15px;
-}
-
-.secondary-btn:hover {
-  background-color: #ff7043;
-  color: #fff;
-}
-
-/* ======================= STEP 2 OPTIONS ======================= */
-.card-group {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
-}
-
-.option-card {
-  flex: 1;
-  min-width: 250px;
-  border: 2px solid #ccc;
-  border-radius: 16px;
-  padding: 25px 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: #fff;
-}
-
-.option-card.active {
-  border-color: #ff7043;
-  box-shadow: 0 15px 35px rgba(255,112,67,0.25);
-}
-
-.option-card .card-icon {
-  font-size: 30px;
-  color: #ff7043;
-  margin-bottom: 12px;
-}
-
-.option-card h3 {
-  margin-bottom: 10px;
-  color: #1a1a1a;
-}
-
-.option-card p {
-  font-size: 13px;
-  color: #555;
-}
-
-/* ======================= STEP 3,4,5 GRID ======================= */
-.step-three, .step-four, .step-five {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.program-left, .form-left {
-  flex: 2;
-}
-
-.program-right, .form-right {
-  flex: 1;
-  background: #fff;
-  padding: 25px 20px;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
-  height: fit-content;
-  position: sticky;
-  top: 30px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.program-right:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-}
-
-.program-right h3, .form-right h3 {
-  margin-bottom: 15px;
-  color: #1a1a1a;
-  font-weight: 600;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 10px;
-}
-
-.program-right p, .form-right p {
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #555;
-}
-
-.program-right p svg {
-  color: #ff7043;
-  font-size: 16px;
-}
-
-.program-right h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-top: 20px;
-  margin-bottom: 12px;
-  color: #ff7043;
-}
-
-.program-right .whats-included {
-  list-style: disc;
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
-
-.program-right .whats-included li {
-  margin-bottom: 6px;
-  font-size: 13px;
-}
-
-.summary-image {
-  width: 100%;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease;
-}
-
-.summary-image:hover {
-  transform: scale(1.02);
-}
-
-.requirements-box {
-  background: #fff5e6;
-  padding: 15px;
-  border-left: 4px solid #ff7043;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  font-size: 13px;
-  color: #4a3e2c;
-}
-
-/* ======================= STEP 5 DEPOSIT ======================= */
-.deposit-options {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 25px;
-}
-
-.deposit-options .option-card {
-  flex: 1;
-  min-width: 200px;
-  background: #fff;
-  border: 2px solid #ccc;
-  border-radius: 16px;
-  padding: 20px;
-  transition: all 0.3s ease;
-}
-
-.deposit-options .option-card:hover {
-  border-color: #ff7043;
-  box-shadow: 0 15px 35px rgba(255,112,67,0.25);
-}
-
-.what-you-get ul {
-  padding-left: 20px;
+.MultiStepForm-Checkbox + .MultiStepForm-Checkbox {
   margin-top: 10px;
 }
 
-.what-you-get li {
-  margin-bottom: 8px;
-  font-size: 14px;
+/* ====================== BUTTONS ====================== */
+.MultiStepForm-Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
 }
 
-/* ======================= LOGIN TEXT ======================= */
-.login-text {
+.MultiStepForm-BtnPrimary,
+.MultiStepForm-BtnSecondary {
+  padding: 12px 26px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.MultiStepForm-BtnPrimary {
+  background-color: #ff7043;
+  color: #fff;
+}
+
+.MultiStepForm-BtnPrimary:hover {
+  background-color: #e65b2f;
+}
+
+.MultiStepForm-BtnPrimary:disabled {
+  background-color: #ffb899;
+  cursor: not-allowed;
+}
+
+.MultiStepForm-BtnSecondary {
+  background-color: #fff;
+  color: #ff7043;
+  border: 2px solid #ff7043;
+}
+
+.MultiStepForm-BtnSecondary:hover {
+  background-color: #ff7043;
+  color: #fff;
+}
+
+/* ====================== OPTIONS ====================== */
+.MultiStepForm-Options {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  justify-content: center;
+}
+
+.MultiStepForm-Option {
+  flex: 1;
+  min-width: 240px;
+  background: #fff;
+  border: 2px solid #ccc;
+  border-radius: 14px;
+  padding: 25px 20px;
+  cursor: pointer;
   text-align: center;
-  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.MultiStepForm-Option.active {
+  border-color: #ff7043;
+  box-shadow: 0 10px 25px rgba(255, 112, 67, 0.25);
+}
+
+.MultiStepForm-OptionIcon {
+  font-size: 32px;
+  color: #ff7043;
+  margin-bottom: 10px;
+}
+
+.MultiStepForm-OptionText {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+/* ====================== TWO COLUMN LAYOUT ====================== */
+.MultiStepForm-TwoColumn {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+}
+
+.MultiStepForm-Left {
+  flex: 2;
+}
+
+/* ====================== SUMMARY CARD ====================== */
+.MultiStepForm-SummaryCard {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  height: fit-content;
+  position: sticky;
+  top: 25px;
+}
+
+.MultiStepForm-SummaryTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.MultiStepForm-SummaryImg {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ====================== SUMMARY INFO ====================== */
+.MultiStepForm-SummaryInfo p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.MultiStepForm-SummaryInfo svg {
+  color: #ff7043;
+}
+
+/* ====================== INCLUDED SECTION ====================== */
+.MultiStepForm-SummaryIncluded h4,
+.MultiStepForm-SummaryFees h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 20px;
+  color: #ff7043;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 6px;
+}
+
+.MultiStepForm-SummaryIncluded ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin: 10px 0;
+}
+
+.MultiStepForm-SummaryIncluded li {
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+/* ====================== FEES SECTION ====================== */
+.MultiStepForm-SummaryFees div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.MultiStepForm-SummaryFees span:last-child {
+  font-weight: 600;
+  color: #ff7043;
+}
+
+.MultiStepForm-SummaryNote {
+  font-size: 13px;
+  font-style: italic;
+  color: #4a3e2c;
+  margin-top: 10px;
+}
+
+/* ====================== LOGIN TEXT ====================== */
+.MultiStepForm-LoginText {
+  text-align: center;
+  margin-top: 20px;
   font-size: 14px;
 }
 
-.login-text a {
+.MultiStepForm-LoginText a {
   color: #ff7043;
   text-decoration: none;
 }
 
-.login-text a:hover {
+.MultiStepForm-LoginText a:hover {
   text-decoration: underline;
 }
 
-/* ======================= ADDRESS FIELDS ======================= */
-.address-group label {
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  display: block;
-  color: #333;
+
+/* ====================== STEP 3 - PROGRAM DETAILS ====================== */
+.MultiStepForm-TwoColumn {
+  display: flex;
+  gap: 35px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.address-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
+/* Left Section */
+.MultiStepForm-Left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Adds even spacing between all form elements */
 }
 
-.address-grid input {
-  padding: 12px 14px;
-  border: 1px solid #ccc;
+/* Select & Input Fields */
+.MultiStepForm-Select,
+.MultiStepForm-Input {
+  width: 100%;
+  padding: 13px 15px;
   border-radius: 10px;
-  font-size: 14px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background: #fafafa;
   outline: none;
   transition: all 0.3s ease;
 }
 
-.address-grid input:focus {
+.MultiStepForm-Select:focus,
+.MultiStepForm-Input:focus {
   border-color: #ff7043;
-  box-shadow: 0 0 8px rgba(255,112,67,0.2);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 112, 67, 0.25);
+}
+
+/* Headings */
+.MultiStepForm-Heading {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+/* Action Buttons (Next / Back) */
+.MultiStepForm-Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+/* Summary Card Alignment */
+.MultiStepForm-SummaryCard {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  height: fit-content;
+  position: sticky;
+  top: 25px;
 }
 
 
-
-
-.fees-section {
-  background: #fff;
-  padding: 25px 20px;
-  border-radius: 16px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+.MultiStepForm-DepositOptions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
   margin-bottom: 25px;
 }
 
-.fees-section h4 {
-  font-size: 20px;
-  font-weight: 600;
-  color: #ff7043;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 10px;
-}
-
-.fee-item {
-  display: flex;
-  flex-direction: column;
-  background: #f9f9f9;
-  padding: 15px 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
+.MultiStepForm-DepositOptions .MultiStepForm-Option {
+  flex: 1;
+  min-width: 230px;
+  border: 2px solid #ccc;
+  border-radius: 14px;
+  padding: 20px;
+  background: #fafafa;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.fee-item:hover {
-  background: #fff5e6;
-  box-shadow: 0 10px 20px rgba(255,112,67,0.2);
+.MultiStepForm-DepositOptions .MultiStepForm-Option:hover {
+  border-color: #ff7043;
+  box-shadow: 0 8px 20px rgba(255, 112, 67, 0.2);
+  background: #fff;
 }
 
-.fee-label {
+.case5-MultiStepForm-Subtext {
   font-size: 14px;
-  font-weight: 500;
   color: #555;
 }
 
-.fee-amount {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ff7043;
-  margin-top: 5px;
+
+/* =========================================
+   📱 RESPONSIVE DESIGN - MULTI STEP FORM
+   ========================================= */
+
+/* ===== Tablet (1024px and below) ===== */
+@media (max-width: 1024px) {
+  .MultiStepForm-Container {
+    padding: 0 10px;
+  }
+
+  .MultiStepForm-StepLabel {
+    font-size: 12px;
+  }
+
+  .MultiStepForm-TwoColumn {
+    gap: 25px;
+  }
+
+  .MultiStepForm-Option {
+    min-width: 200px;
+  }
 }
 
-.fee-desc {
-  font-size: 13px;
-  color: #777;
-  margin-top: 4px;
-}
-
-.fee-note {
-  font-size: 13px;
-  color: #4a3e2c;
-  font-style: italic;
-  margin-top: 15px;
-}
-
-/* Responsive */
+/* ===== Mobile Landscape & Small Tablets (768px and below) ===== */
 @media (max-width: 768px) {
-  .fee-item {
-    padding: 12px 15px;
+  .MultiStepForm-Stepper {
+    gap: 10px;
+    margin-bottom: 30px;
   }
-  
-  .fees-section h4 {
-    font-size: 18px;
-  }
-  
-  .fee-amount {
-    font-size: 15px;
-  }
-}
 
-
-/* ======================= RESPONSIVE ======================= */
-@media (max-width: 1200px) {
-  .stepper {
-    margin-bottom: 40px;
+  .MultiStepForm-StepItem::after {
+    display: none;
   }
-}
 
-@media (max-width: 1000px) {
-  .form-row,
-  .step-three, .step-four, .step-five {
+  .MultiStepForm-FormStep {
+    padding: 25px 20px;
+  }
+
+  .MultiStepForm-TwoColumn {
     flex-direction: column;
+    gap: 25px;
   }
 
-  .program-right, .form-right {
-    position: relative;
-    top: 0;
-    margin-top: 20px;
-  }
-
-  .form-left, .program-left {
+  .MultiStepForm-SummaryCard {
+    position: static;
     width: 100%;
+    order: 2;
   }
-}
 
-@media (max-width: 768px) {
-  .primary-btn, .secondary-btn {
+  .MultiStepForm-Left {
     width: 100%;
-    margin-bottom: 10px;
+    order: 1;
   }
 
-  .card-group {
-    flex-direction: column;
+  .MultiStepForm-Actions {
+    justify-content: center;
   }
 
-  .deposit-options {
-    flex-direction: column;
+  .MultiStepForm-BtnPrimary,
+  .MultiStepForm-BtnSecondary {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .MultiStepForm-Option {
+    min-width: 100%;
   }
 }
 
-@media (max-width: 600px) {
-  .multi-step-form {
-    padding: 15px;
+/* ===== Mobile Portrait (480px and below) ===== */
+@media (max-width: 480px) {
+  .MultiStepForm-Heading {
+    font-size: 22px;
+    text-align: center;
   }
 
-  .form-container {
+  .MultiStepForm-Subtext,
+  .case5-MultiStepForm-Subtext {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .MultiStepForm-StepCircle {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .MultiStepForm-StepLabel {
+    font-size: 11px;
+  }
+
+  .MultiStepForm-SummaryCard {
     padding: 20px;
   }
 
-  .step-item p {
-    font-size: 12px;
+  .MultiStepForm-BtnPrimary,
+  .MultiStepForm-BtnSecondary {
+    font-size: 14px;
+    padding: 10px 18px;
+  }
+}
+
+/* ===== Small iPhones (380px and below) ===== */
+@media (max-width: 380px) {
+  .MultiStepForm-Heading {
+    font-size: 20px;
+  }
+
+  .MultiStepForm-StepLabel {
+    display: none;
+  }
+
+  .MultiStepForm-StepCircle {
+    margin-bottom: 0;
+  }
+
+  .MultiStepForm-OptionText {
+    font-size: 14px;
   }
 }

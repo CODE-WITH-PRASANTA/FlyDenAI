@@ -252,7 +252,7 @@ const VisaApplicationForm = () => {
                 Upload clear scanned copies of your required documents.
               </p>
 
-              <div className="upload-grid">
+              <div className="VisaApplicationForm-uploadgrid">
                 {[
                   "Passport Copy",
                   "Photo",

@@ -9,57 +9,57 @@ import card5 from "../../assets/intern-card5.webp";
 import card6 from "../../assets/intern-card6.webp";
 
 const InternshipHighlight = () => {
-  const highlights = [
-    {
-      id: 1,
-      title: "Personalized international internships that advance your career",
-      text: "Get matched with a world-class internship placement tailored to your unique goals, budget, and availability.",
-      link: "Find your internship →",
-      image: card1,
-      reverse: false,
-    },
-    {
-      id: 2,
-      title:
-        "Experience cultural immersion while working with English-speaking professionals",
-      text: "Almost all our internships can be conducted in English no matter where you're located - or practice your local language skills as an extra benefit!",
-      link: "See how it works →",
-      image: card2,
-      reverse: true,
-    },
-    {
-      id: 3,
-      title: "Proven to enhance resume credentials and job prospects",
-      text: "Build the hands-on experience, cultural intelligence, and international exposure you need to get ahead in today's job market.",
-      link: "See how we help you excel →",
-      image: card3,
-      reverse: false,
-    },
-    {
-      id: 4,
-      title: "Short duration internships that offer unbeatable value",
-      text: "Intern abroad from just $1129 with your accommodation and meals included. Choose when you want to start and your preferred duration from 2 to 24 weeks.",
-      link: "See what's included →",
-      image: card4,
-      reverse: true,
-    },
-    {
-      id: 5,
-      title: "Earn academic credits while you intern",
-      text: "If you're a student, you could save thousands of dollars on tuition fees by earning course credits during your internship.",
-      link: "Explore course credit options →",
-      image: card5,
-      reverse: false,
-    },
-    {
-      id: 6,
-      title: "The ethical and sustainable choice",
-      text: "We're a Certified B Corporation, 100% carbon neutral, and are committed to offering ethical, locally-driven internships that are mutually beneficial for interns and host organizations.",
-      link: "Read about our commitments to sustainability →",
-      image: card6,
-      reverse: true,
-    },
-  ];
+const highlights = [
+  {
+    id: 1,
+    title: "Customized Global Internships Designed to Boost Your Career",
+    text: "Secure a top-tier international internship specifically curated for your career goals, budget, and preferred timeline — giving you an edge in today’s global job market.",
+    link: "Discover your perfect internship →",
+    image: card1,
+    reverse: false,
+  },
+  {
+    id: 2,
+    title: "Gain Real Experience in a Cross-Cultural, English-Speaking Environment",
+    text: "Work alongside experienced professionals from around the world. Most of our placements are English-based, so you can excel professionally while immersing yourself in a new culture.",
+    link: "Explore internship experience →",
+    image: card2,
+    reverse: true,
+  },
+  {
+    id: 3,
+    title: "Strengthen Your Resume with Global Work Experience",
+    text: "Develop professional expertise, cultural intelligence, and international exposure that employers value — positioning yourself ahead of the competition.",
+    link: "Learn how we help you stand out →",
+    image: card3,
+    reverse: false,
+  },
+  {
+    id: 4,
+    title: "Flexible, Short-Term Internships That Fit Your Schedule",
+    text: "Join international internships starting from just $1129 — including accommodation and meals. Choose flexible start dates and durations from 2 to 24 weeks.",
+    link: "Check what's included →",
+    image: card4,
+    reverse: true,
+  },
+  {
+    id: 5,
+    title: "Earn Academic Credits While You Gain Experience",
+    text: "Turn your internship into a valuable academic opportunity. Many of our programs qualify for university credit, helping you save on tuition while advancing your degree.",
+    link: "See credit eligibility →",
+    image: card5,
+    reverse: false,
+  },
+  {
+    id: 6,
+    title: "Committed to Ethical, Sustainable, and Impactful Internships",
+    text: "As a Certified B Corporation and 100% carbon-neutral organization, we ensure every internship supports local communities and creates meaningful, ethical impact for all participants.",
+    link: "Learn about our sustainability promise →",
+    image: card6,
+    reverse: true,
+  },
+];
+
 
   return (
     <div className="internship-section">

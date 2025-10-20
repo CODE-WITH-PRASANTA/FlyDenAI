@@ -1,81 +1,122 @@
-.intern-hero {
+/* ===============================
+   INTERN HERO MAIN SECTION
+================================= */
+.InternHero-Container {
   position: relative;
+  background: linear-gradient(135deg, #141e30, #243b55); /* Background */
   background-size: cover;
   background-position: center;
   color: #fff;
-  padding: 120px 20px;
+  padding: 70px 20px;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
-  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 3px solid transparent;
+  border-radius: 20px;
+  background-clip: padding-box;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+
+  /* Gradient border effect */
+  position: relative;
 }
 
-.overlay {
+.InternHero-Container::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  z-index: -1;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #e94e77, #56ccf2, #2f80ed);
+  background-size: 200% 200%;
+  animation: gradientBorder 6s linear infinite;
+}
+
+/* Gradient border animation */
+@keyframes gradientBorder {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.InternHero-Overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 25, 50, 0.6);
+  background: rgba(0, 25, 50, 0.55);
   z-index: 1;
+   border-radius: 20px;
 }
 
-.hero-content {
+.InternHero-Content {
   position: relative;
   z-index: 2;
   max-width: 1100px;
   width: 100%;
 }
 
-.hero-title {
-  font-size: 48px;
+/* ===============================
+   HEADINGS & TEXT
+================================= */
+.InternHero-Title {
+  font-size: 44px;
   font-weight: 700;
   margin-bottom: 10px;
-  animation: fadeInDown 1s ease forwards;
 }
 
-.hero-subtitle {
-  font-size: 22px;
+.InternHero-Subtitle {
+  font-size: 20px;
   font-weight: 500;
   margin-bottom: 10px;
-  animation: fadeInDown 1.2s ease forwards;
+  color: #f1f1f1;
 }
 
-.hero-rating {
+.InternHero-Rating {
   font-size: 18px;
   margin-bottom: 40px;
-  animation: fadeInDown 1.4s ease forwards;
 }
 
-.rating-text {
+.InternHero-RatingText {
   color: #fff;
   font-weight: 500;
 }
 
-.rating-value {
-  color: #ffb84d;
+.InternHero-RatingValue {
+  color: #ffc14d;
   margin: 0 5px;
 }
 
-.trust {
+.InternHero-Trust {
   color: #00c17b;
   font-weight: 600;
 }
 
-.search-card {
-  background: #fff;
+/* ===============================
+   SEARCH CARD
+================================= */
+.InternHero-SearchCard {
+  background: #ffffff;
   color: #333;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
   padding: 30px 40px;
   display: flex;
   flex-direction: column;
   gap: 25px;
   max-width: 950px;
   margin: 0 auto;
-  animation: fadeInUp 1s ease forwards;
 }
 
-.stats-row {
+/* ===============================
+   STATS SECTION
+================================= */
+.InternHero-StatsRow {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -84,19 +125,23 @@
   padding-bottom: 15px;
 }
 
-.stat-item {
+.InternHero-StatItem {
   display: flex;
   align-items: center;
   font-weight: 600;
   color: #e65b3f;
   gap: 8px;
+  font-size: 15px;
 }
 
-.stat-icon {
+.InternHero-StatIcon {
   font-size: 18px;
 }
 
-.search-row {
+/* ===============================
+   SEARCH FILTERS
+================================= */
+.InternHero-SearchRow {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -105,14 +150,14 @@
 }
 
 .InternHero-DropDown,
-.type-buttons {
+.InternHero-TypeButtons {
   flex: 1;
   min-width: 260px;
   text-align: left;
 }
 
 .InternHero-DropDown label,
-.type-buttons label {
+.InternHero-TypeButtons label {
   font-weight: 600;
   display: block;
   margin-bottom: 6px;
@@ -123,48 +168,41 @@
 .InternHero-DropDown select {
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
   font-size: 15px;
-  cursor: pointer;
-  background-color: #f9f9f9;
-  transition: all 0.3s ease;
+  background-color: #fafafa;
 }
 
-.InternHero-DropDown select:hover,
-.InternHero-DropDown select:focus {
-  border-color: #ff6433;
-  outline: none;
-  background-color: #fff;
-}
-
-.type-buttons .btn-group {
+/* ===============================
+   TYPE BUTTONS
+================================= */
+.InternHero-BtnGroup {
   display: flex;
   gap: 10px;
 }
 
-.type-btn {
+.InternHero-TypeBtn {
   flex: 1;
   padding: 10px 0;
-  border-radius: 6px;
+  border-radius: 8px;
   border: 1px solid #ccc;
   font-weight: 600;
-  cursor: pointer;
   background: #fff;
-  transition: 0.3s;
+  color: #333;
+  cursor: pointer;
 }
 
-.type-btn:hover {
-  background: #f0f0f0;
-}
-
-.type-btn.active {
+.InternHero-TypeBtn.active {
   background: #ff6433;
   color: #fff;
   border-color: #ff6433;
 }
 
-.search-btn {
+/* ===============================
+   SEARCH BUTTON
+================================= */
+.InternHero-SearchBtn {
   background: #ff6433;
   color: #fff;
   font-weight: 600;
@@ -172,64 +210,81 @@
   padding: 12px 40px;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 16px;
 }
 
-.search-btn:hover {
-  background: #ff4313;
-  transform: scale(1.05);
-}
+/* ===============================
+   RESPONSIVE MEDIA QUERIES
+================================= */
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
+/* Large Screens (1200px and up) */
+@media (min-width: 1200px) {
+  .InternHero-Title {
+    font-size: 48px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .InternHero-Subtitle {
+    font-size: 22px;
   }
 }
 
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== RESPONSIVE DESIGN ========== */
+/* Medium Devices (Tablets) */
 @media (max-width: 992px) {
-  .hero-title {
+  .InternHero-Title {
     font-size: 38px;
   }
-  .hero-subtitle {
-    font-size: 20px;
+  .InternHero-Subtitle {
+    font-size: 18px;
+  }
+  .InternHero-SearchCard {
+    padding: 25px 30px;
   }
 }
 
+/* Small Devices (Mobiles) */
 @media (max-width: 768px) {
-  .search-card {
-    padding: 25px;
+  .InternHero-Title {
+    font-size: 32px;
   }
-  .search-row {
+
+  .InternHero-Subtitle {
+    font-size: 17px;
+  }
+
+  .InternHero-SearchRow {
     flex-direction: column;
     align-items: stretch;
   }
-  .search-btn {
+
+  .InternHero-SearchBtn {
     width: 100%;
+  }
+
+  .InternHero-SearchCard {
+    padding: 20px;
+  }
+
+  .InternHero-StatItem {
+    font-size: 14px;
   }
 }
 
+/* Extra Small Devices (below 480px) */
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 30px;
+  .InternHero-Title {
+    font-size: 26px;
   }
-  .hero-subtitle {
-    font-size: 18px;
+
+  .InternHero-Subtitle {
+    font-size: 15px;
+  }
+
+  .InternHero-Rating {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+
+  .InternHero-SearchBtn {
+    font-size: 15px;
+    padding: 10px 0;
   }
 }
