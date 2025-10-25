@@ -23,41 +23,68 @@ const ContactUsBlock = () => {
           <p className="contact-us-sub">GET IN TOUCH</p>
           <h2 className="contact-us-heading">Contact Us</h2>
           <p className="contact-us-lead">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium, totam rem aperiam, eaque
-            inventore.
+            Reach out to FlyDenAi Consultancy for any queries regarding visas,
+            study abroad programs, and internships. Our offices in Uttar Pradesh
+            are here to assist you professionally.
           </p>
 
           <div className="contact-us-grid">
-            {/* 1st row */}
+            {/* Delhi Office */}
             <div className="contact-us-item">
               <FaMapMarkerAlt className="ciu-icon" />
               <div className="ciu-text">
-                <h4>Location</h4>
+                <h4>Delhi Office</h4>
                 <p>
-                  55 Main street, 2nd block,<br />
-                  Melbourne, Australia
+                  FlyDenAi Consultancy Pvt. Ltd.<br />
+                  2nd Floor, ABC Tower,<br />
+                  Sector 14, Dwarka, New Delhi – 110075, India
                 </p>
               </div>
             </div>
 
+            {/* Lucknow Office */}
+            <div className="contact-us-item">
+              <FaMapMarkerAlt className="ciu-icon" />
+              <div className="ciu-text">
+                <h4>Lucknow Office</h4>
+                <p>
+                  2nd Floor, HCL Tower,<br />
+                  17 Ashok Marg, Hazratganj, Lucknow – 226001, Uttar Pradesh, India
+                </p>
+              </div>
+            </div>
+
+            {/* Noida Office */}
+            <div className="contact-us-item">
+              <FaMapMarkerAlt className="ciu-icon" />
+              <div className="ciu-text">
+                <h4>Noida Office</h4>
+                <p>
+                  Unit 305, Sector 18,<br />
+                  Noida, Gautam Buddha Nagar – 201301, Uttar Pradesh, India
+                </p>
+              </div>
+            </div>
+
+            {/* Phone */}
             <div className="contact-us-item">
               <FaPhoneAlt className="ciu-icon" />
               <div className="ciu-text">
                 <h4>Phone</h4>
-                <p>+09 354 587 874<br />+01 368 567 894</p>
+                <p>+91 990 533 7044<br />+91 990 533 7044</p>
               </div>
             </div>
 
-            {/* 2nd row */}
+            {/* Email */}
             <div className="contact-us-item">
               <FaEnvelope className="ciu-icon" />
               <div className="ciu-text">
                 <h4>Email</h4>
-                <p>info@example.com<br />info@example.com</p>
+                <p>infoflydenai@gmail.com<br />support@flydenai.com</p>
               </div>
             </div>
 
+            {/* Social */}
             <div className="contact-us-item">
               <FaShareAlt className="ciu-icon" />
               <div className="ciu-text">
@@ -103,7 +130,7 @@ const ContactUsBlock = () => {
             <label className="ciu-label">
               <div className="ciu-inputwrap">
                 <FaPaperPlane className="ciu-formicon" />
-                <textarea className="ciu-textarea" placeholder="Enter Your Message Here" rows="5"></textarea>
+                <textarea className="ciu-textarea" placeholder="Enter Your Message Here" rows="5" required></textarea>
               </div>
             </label>
 

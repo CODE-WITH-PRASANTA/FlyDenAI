@@ -11,6 +11,12 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
+import PostCountry from "./DashboardPages/PostCountry/PostCountry";
+import VisaType from "./DashboardPages/VisaType/VisaType";
+import PostTeamMember from "./DashboardPages/PostTeamMember/PostTeamMember";
+import ContactManagemenet from "./DashboardPages/ContactManagemenet/ContactManagemenet";
+import VisaPosting from "./DashboardPages/VisaPosting/VisaPosting";
+import PreviewVisa from "./DashboardPages/PreviewVisa/PreviewVisa";
 
 export default function App() {
   return (
@@ -35,11 +41,22 @@ export default function App() {
             {/* Charts */}
             <Route path="line-chart" element={<LineChart />} />
             <Route path="bar-chart" element={<BarChart />} />
+
+
+
+            {/* All DashBoard Pages , Routes Here!!!! */}
+          <Route path="/country/manage" element={<PostCountry />} />
+          <Route path="/country/visa-type" element={<VisaType />} />
+          <Route path="/team/post-member" element={<PostTeamMember />} />
+          <Route path="/contact/manage" element={<ContactManagemenet />} />
+          <Route path="/visa/post-visa" element={<VisaPosting />} />
+          <Route path="/visa/preview" element={<PreviewVisa />} />
+          
           </Route>
 
           {/* Auth Layout */}
-          <Route path="/TailAdmin/signin" element={<SignIn />} />
-          <Route path="/TailAdmin/signup" element={<SignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
 
           {/* Fallback Route */}
           <Route path="*" element={<NotFound />} />

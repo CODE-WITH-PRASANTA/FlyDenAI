@@ -78,8 +78,8 @@ const Navbar = () => {
         <div className="topbar-container">
           <div className="topbar-content">
             <div className="topbar-left">
-              <a href="tel:12345615523" className="topbar-item">📞 <span>123 4561 5523</span></a>
-              <a href="mailto:info@IIInternship.co" className="topbar-item">✉ <span>info@IIInternship.co</span></a>
+              <a href="tel:9905337044" className="topbar-item">📞 <span>+91-990 533 7044</span></a>
+              <a href="mailto:infoflydenai@gmail.com" className="topbar-item">✉ <span>infoflydenai@gmail.com</span></a>
             </div>
             <div className="topbar-right">
             <Link to="/ComingSoon" className="topbar-login">📄 Check Your Status</Link>

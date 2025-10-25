@@ -11,9 +11,6 @@ const GetAQuotes = () => {
       <ContactSecBanner/>
       <ContactUsBlock/>
       <MapSection/>
- 
-
-        
     </div>
   )
 }

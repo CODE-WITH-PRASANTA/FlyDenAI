@@ -1,0 +1,276 @@
+/*------------------ THEME VARIABLES ------------------*/
+:root {
+  --bg-light: #ffffff;
+  --bg-aside-light: #f9f9f9;
+  --bg-form-light: #ffffff;
+  --text-light: #333333;
+  --text-muted-light: #666666;
+  --border-light: #e0e0e0;
+  --accent: #4f46e5;
+  --success: #10b981;
+  --danger: #ef4444;
+  --info: #3b82f6;
+
+  --bg-dark: rgb(16 24 40);
+  --bg-form-dark: rgb(30 41 59);
+  --bg-aside-dark: rgb(30 41 59);
+  --text-dark: #f5f5f5;
+  --text-muted-dark: #cbd5e1;
+  --border-dark: #374151;
+}
+
+/*------------------ CONTAINER ------------------*/
+.PostTeamMember-container {
+  display: flex;
+  gap: 30px;
+  padding: 25px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.PostTeamMember-container.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+.PostTeamMember-container.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/*------------------ FORM SECTION ------------------*/
+.PostTeamMember-form-section {
+  flex: 1;
+  min-width: 320px;
+  background-color: var(--bg-form-light);
+  border-radius: 14px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  max-height: 85vh;
+  transition: 0.3s ease;
+}
+
+.PostTeamMember-container.dark .PostTeamMember-form-section {
+  background-color: var(--bg-form-dark);
+}
+
+/* Heading */
+.PostTeamMember-heading {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 10px;
+}
+
+/* Form Boxes */
+.PostTeamMember-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.PostTeamMember-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 10px;
+  background: var(--bg-aside-light);
+  border: 1px solid var(--border-light);
+  transition: 0.3s;
+}
+
+.PostTeamMember-container.dark .PostTeamMember-box {
+  background: var(--bg-aside-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.PostTeamMember-box-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.PostTeamMember-box-item {
+  flex: 1;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+}
+
+.PostTeamMember-box-item label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: var(--text-muted-light);
+}
+
+.PostTeamMember-container.dark .PostTeamMember-box-item label {
+  color: var(--text-muted-dark);
+}
+
+.PostTeamMember-box-item input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+  background-color: var(--bg-form-light);
+  color: var(--text-light);
+}
+
+.PostTeamMember-container.dark .PostTeamMember-box-item input {
+  border: 1px solid var(--border-dark);
+  background-color: var(--bg-form-dark);
+  color: var(--text-dark);
+}
+
+.PostTeamMember-box-item input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* Submit button */
+.PostTeamMember-submit-btn {
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: 0.3s ease;
+  align-self: flex-start;
+}
+
+.PostTeamMember-submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/*------------------ TABLE SECTION ------------------*/
+.PostTeamMember-table-section {
+  flex: 1;
+  min-width: 320px;
+  background-color: var(--bg-form-light);
+  border-radius: 14px;
+  padding: 30px 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  max-height: 85vh;
+  transition: 0.3s ease;
+}
+
+.PostTeamMember-container.dark .PostTeamMember-table-section {
+  background-color: var(--bg-form-dark);
+}
+
+.PostTeamMember-table-wrapper {
+  overflow-x: auto;
+}
+
+.PostTeamMember-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.PostTeamMember-table th,
+.PostTeamMember-table td {
+  padding: 12px 8px;
+  text-align: center;
+  border: 1px solid var(--border-light);
+}
+
+.PostTeamMember-container.dark .PostTeamMember-table th,
+.PostTeamMember-container.dark .PostTeamMember-table td {
+  border: 1px solid var(--border-dark);
+}
+
+.PostTeamMember-table th {
+  background-color: var(--bg-aside-light);
+  font-weight: 600;
+}
+
+.PostTeamMember-container.dark .PostTeamMember-table th {
+  background-color: var(--bg-aside-dark);
+}
+
+/* Profile image */
+.PostTeamMember-profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Action buttons */
+.PostTeamMember-action-buttons button {
+  margin: 0 3px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.PostTeamMember-edit-btn {
+  background-color: var(--success);
+  color: #fff;
+}
+
+.PostTeamMember-delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+.PostTeamMember-preview-btn {
+  background-color: var(--info);
+  color: #fff;
+}
+
+.PostTeamMember-action-buttons button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* Scrollbars */
+.PostTeamMember-form-section::-webkit-scrollbar,
+.PostTeamMember-table-section::-webkit-scrollbar {
+  width: 7px;
+}
+.PostTeamMember-form-section::-webkit-scrollbar-thumb,
+.PostTeamMember-table-section::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+/*------------------ MEDIA QUERIES ------------------*/
+
+/* Tablets */
+@media (max-width: 1024px) {
+
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .PostTeamMember-container{
+    padding: 10px;
+  }
+  /* Only table wrapper scroll horizontally */
+  .PostTeamMember-table-wrapper {
+    overflow-x: auto;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .PostTeamMember-container{
+    padding: 0px;
+  }
+}

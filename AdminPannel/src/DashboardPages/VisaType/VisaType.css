@@ -1,0 +1,388 @@
+/*------------------ THEME VARIABLES ------------------*/
+:root {
+  --bg-light: #fff;
+  --bg-aside-light: #fafafa;
+  --bg-form-light: #fff;
+  --text-light: #333;
+  --text-muted-light: #777;
+  --border-light: #ddd;
+  --accent: #4f46e5;
+  --success: #10b981;
+  --danger: #ef4444;
+  --info: #3b82f6;
+
+  --bg-dark: rgb(16 24 40);
+  --bg-form-dark: rgb(30 41 59);
+  --bg-aside-dark: rgb(30 41 59);
+  --text-dark: #f5f5f5;
+  --text-muted-dark: #cbd5e1;
+  --border-dark: #374151;
+}
+
+/*------------------ WRAPPER ------------------*/
+.visa-type-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin: 30px auto;
+  max-width: 1400px;
+  height: calc(100vh - 80px);
+  
+  box-sizing: border-box;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.visa-type-wrapper.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/*------------------ FORM SECTION ------------------*/
+.visa-type-container {
+  padding: 15px;
+  border-radius: 16px;
+  background-color: var(--bg-form-light);
+  border: 1px solid var(--border-light);
+  overflow-y: auto;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.visa-type-wrapper.dark .visa-type-container {
+  background-color: var(--bg-form-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+.visa-type-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/*------------------ FORM INPUTS ------------------*/
+.visa-type-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.visa-input-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.visa-input-group label {
+  grid-column: 1 / -1;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-light);
+}
+
+.visa-type-wrapper.dark .visa-input-group label {
+  color: var(--text-dark);
+}
+
+.visa-input-group input,
+.visa-input-group textarea {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.25s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.visa-type-wrapper.dark .visa-input-group input,
+.visa-type-wrapper.dark .visa-input-group textarea {
+  background-color: var(--bg-form-dark);
+  color: var(--bg-light);
+}
+
+.visa-input-group input:focus,
+.visa-input-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 4px rgba(79, 70, 229, 0.3);
+}
+
+textarea {
+  grid-column: 1 / -1;
+  min-height: 90px;
+  resize: vertical;
+}
+
+/*------------------ BUTTONS ------------------*/
+.add-btn,
+.submit-btn,
+.visatype-edit-btn,
+.visatype-delete-btn,
+.visatype-preview-btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.add-btn {
+  grid-column: 1 / -1;
+  background-color: var(--accent);
+  color: #fff;
+  padding: 8px 14px;
+}
+
+.add-btn:hover {
+  background-color: #3730a3;
+}
+
+.submit-btn {
+  margin-top: 25px;
+  background-color: var(--success);
+  color: #fff;
+  padding: 12px 20px;
+}
+
+.submit-btn:hover {
+  background-color: #059669;
+}
+
+.visatype-edit-btn {
+  background-color: var(--info);
+  color: #fff;
+}
+
+.visatype-delete-btn {
+  background-color: var(--danger);
+  color: #fff;
+}
+
+.visatype-preview-btn {
+  background-color: var(--success);
+  color: #fff;
+}
+
+
+/*------------------ CONSULTANT SECTION ------------------*/
+.consultant-section {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px dashed var(--border-light);
+  background: rgba(79, 70, 229, 0.03);
+}
+
+.visa-type-wrapper.dark .consultant-section {
+  border: 1px dashed var(--border-dark);
+  background: rgba(79, 70, 229, 0.1);
+}
+
+/*------------------ TABLE ------------------*/
+.visa-aside {
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--bg-aside-light);
+  border: 1px solid var(--border-light);
+  overflow-y: auto;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.visa-type-wrapper.dark .visa-aside {
+  background: var(--bg-aside-dark);
+  border: 1px solid var(--border-dark);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+
+/* Visa Form Title */
+.visa-type-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.visa-type-wrapper.dark .visa-type-title {
+  color: #fff; /* White color for dark mode */
+}
+
+/* Visa Aside Title */
+.visa-aside h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.visa-type-wrapper.dark .visa-aside h2 {
+  color: #fff; /* White color for dark mode */
+}
+
+
+.visa-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.visa-table th,
+.visa-table td {
+  border-bottom: 1px solid var(--border-light);
+  padding: 10px 8px;
+  font-size: 0.95rem;
+}
+
+.visa-type-wrapper.dark .visa-table th,
+.visa-type-wrapper.dark .visa-table td {
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+.visa-table th {
+  background: var(--accent);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.visa-table tr:hover {
+  background: rgba(79, 70, 229, 0.08);
+}
+
+.table-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/*------------------ NO DATA ------------------*/
+.no-data {
+  text-align: center;
+  color: var(--text-muted-light);
+  padding: 40px 0;
+  font-size: 1rem;
+}
+
+.visa-type-wrapper.dark .no-data {
+  color: var(--text-muted-dark);
+}
+
+/*------------------ SCROLLBAR ------------------*/
+.visa-type-container::-webkit-scrollbar,
+.visa-aside::-webkit-scrollbar {
+  width: 6px;
+}
+
+.visa-type-container::-webkit-scrollbar-thumb,
+.visa-aside::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 8px;
+}
+
+.visa-type-wrapper.dark .visa-type-container::-webkit-scrollbar-thumb,
+.visa-type-wrapper.dark .visa-aside::-webkit-scrollbar-thumb {
+  background: #555;
+}
+
+/*------------------ RESPONSIVE ------------------*/
+@media (max-width: 1024px) {
+  .visa-type-wrapper {
+    grid-template-columns: 1fr;
+    
+  }
+
+  .visa-aside {
+    margin-top: 25px;
+    max-height: 500px;
+  }
+  .visa-type-container{
+    padding: 10px;
+  }
+}
+
+/* Action Buttons Container */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Common button styles */
+.action-buttons button {
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Edit Button */
+.visatype-edit-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+.visatype-edit-btn:hover {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  transform: translateY(-2px);
+}
+
+/* Delete Button */
+.visatype-delete-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+.visatype-delete-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+}
+
+/* Preview Button */
+.visatype-preview-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+.visatype-preview-btn:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-2px);
+}
+
+/* Dark Mode Buttons */
+.visa-type-wrapper.dark .action-buttons button {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Optional: Add subtle tooltip effect */
+.action-buttons button:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}

@@ -1,39 +1,65 @@
 import PageBreadcrumb from "../../components/common/PageBreadCrumb";
-import DefaultInputs from "../../components/form/form-elements/DefaultInputs";
-import InputGroup from "../../components/form/form-elements/InputGroup";
-import DropzoneComponent from "../../components/form/form-elements/DropZone";
-import CheckboxComponents from "../../components/form/form-elements/CheckboxComponents";
-import RadioButtons from "../../components/form/form-elements/RadioButtons";
-import ToggleSwitch from "../../components/form/form-elements/ToggleSwitch";
-import FileInputExample from "../../components/form/form-elements/FileInputExample";
-import SelectInputs from "../../components/form/form-elements/SelectInputs";
-import TextAreaInput from "../../components/form/form-elements/TextAreaInput";
-import InputStates from "../../components/form/form-elements/InputStates";
 import PageMeta from "../../components/common/PageMeta";
 
 export default function FormElements() {
   return (
     <div>
       <PageMeta
-        title="React.js Form Elements Dashboard | TailAdmin - React.js Admin Dashboard Template"
-        description="This is React.js Form Elements  Dashboard page for TailAdmin - React.js Tailwind CSS Admin Dashboard Template"
+        title="FlyDenAi Admin | Add / Edit Form"
+        description="Admin dashboard form section for managing FlyDenAi data"
       />
-      <PageBreadcrumb pageTitle="From Elements" />
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <div className="space-y-6">
-          {/* <DefaultInputs /> */}
-          <SelectInputs />
-          <TextAreaInput />
-          <InputStates />
-        </div>
-        <div className="space-y-6">
-          <InputGroup />
-          <FileInputExample />
-          <CheckboxComponents />
-          <RadioButtons />
-          <ToggleSwitch />
-          <DropzoneComponent />
-        </div>
+      <PageBreadcrumb pageTitle="Manage Form Data" />
+
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-xl font-semibold mb-4 text-gray-800">
+          Add New Entry
+        </h2>
+
+        <form className="space-y-4">
+          {/* Example field */}
+          <div>
+            <label className="block mb-2 text-gray-700">Full Name</label>
+            <input
+              type="text"
+              placeholder="Enter full name"
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-gray-700">Email Address</label>
+            <input
+              type="email"
+              placeholder="Enter email"
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-gray-700">Phone Number</label>
+            <input
+              type="text"
+              placeholder="Enter phone number"
+              maxLength={10}
+              className="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block mb-2 text-gray-700">Upload Document</label>
+            <input
+              type="file"
+              className="w-full border border-gray-300 rounded-md p-2"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );

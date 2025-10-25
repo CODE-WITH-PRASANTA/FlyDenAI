@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation } from "react-router-dom";
 import {
   ChevronDownIcon,
   GridIcon,
@@ -12,7 +12,7 @@ import {
   HorizontaLDots,
 } from "../icons";
 import { useSidebar } from "../context/SidebarContext";
-import companylogo from '../Asserts/Logo.png';
+import companylogo from "../Asserts/Logo.png";
 
 type NavItem = {
   name: string;
@@ -21,18 +21,14 @@ type NavItem = {
   subItems?: { name: string; path: string }[];
 };
 
-// =============================
-// MAIN NAVIGATION STRUCTURE (UPDATED)
-// =============================
 const navItems: NavItem[] = [
   { icon: <GridIcon />, name: "Dashboard", path: "/" },
-  
+
   {
     icon: <BoxCubeIcon />,
     name: "Visa Management",
     subItems: [
       { name: "Post Visa", path: "/visa/post-visa" },
-      { name: "Category Manage", path: "/visa/category-manage" },
       { name: "Preview", path: "/visa/preview" },
     ],
   },
@@ -87,14 +83,23 @@ const navItems: NavItem[] = [
   },
   { icon: <PlugInIcon />, name: "Contact Management", path: "/contact/manage" },
   { icon: <BoxCubeIcon />, name: "Media Upload", path: "/media/upload" },
-  { icon: <TableIcon />, name: "Country Manage", path: "/country/manage" },
+
+  // ✅ Updated Country Manage section with dropdown
+  {
+    icon: <TableIcon />,
+    name: "Country Manage",
+    subItems: [
+      { name: "Country", path: "/country/manage" },
+      { name: "Visa Type", path: "/country/visa-type" },
+    ],
+  },
+
   {
     icon: <UserCircleIcon />,
     name: "Our Successful Clients",
     path: "/clients/successful",
   },
 ];
-
 
 // =============================
 // SIDEBAR COMPONENT
@@ -104,36 +109,35 @@ const AppSidebar: React.FC = () => {
   const location = useLocation();
 
   const [openSubmenu, setOpenSubmenu] = useState<{ index: number } | null>(null);
-  const [subMenuHeight, setSubMenuHeight] = useState<Record<string, number>>({});
-  const subMenuRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [subMenuHeight, setSubMenuHeight] = useState<Record<number, number>>({});
+  const subMenuRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   const isActive = useCallback(
     (path: string) => location.pathname === path,
     [location.pathname]
   );
 
+  // Auto-expand submenu for active route
   useEffect(() => {
     let matched = false;
     navItems.forEach((nav, index) => {
-      if (nav.subItems) {
-        nav.subItems.forEach((sub) => {
-          if (isActive(sub.path)) {
-            setOpenSubmenu({ index });
-            matched = true;
-          }
-        });
+      if (nav.subItems?.some((sub) => isActive(sub.path))) {
+        setOpenSubmenu({ index });
+        matched = true;
       }
     });
     if (!matched) setOpenSubmenu(null);
   }, [location, isActive]);
 
+  // Calculate submenu height dynamically
   useEffect(() => {
     if (openSubmenu !== null) {
-      const key = `${openSubmenu.index}`;
-      if (subMenuRefs.current[key]) {
+      const key = openSubmenu.index;
+      const ref = subMenuRefs.current[key];
+      if (ref) {
         setSubMenuHeight((prev) => ({
           ...prev,
-          [key]: subMenuRefs.current[key]?.scrollHeight || 0,
+          [key]: ref.scrollHeight,
         }));
       }
     }
@@ -144,20 +148,21 @@ const AppSidebar: React.FC = () => {
   };
 
   return (
-    <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
-        ${
-          isExpanded || isMobileOpen
-            ? "w-[290px]"
-            : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
-        }
-        ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
-        lg:translate-x-0`}
-      onMouseEnter={() => !isExpanded && setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+   <aside
+  className={`fixed top-0 left-0 mt-16 lg:mt-0 flex flex-col h-[calc(100vh-4rem)] lg:h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 text-gray-900 transition-all duration-300 ease-in-out z-50
+    ${
+      isExpanded || isMobileOpen
+        ? "w-[290px]"
+        : isHovered
+        ? "w-[290px]"
+        : "w-[90px]"
+    }
+    ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
+    lg:translate-x-0`}
+  onMouseEnter={() => !isExpanded && setIsHovered(true)}
+  onMouseLeave={() => setIsHovered(false)}
+>
+
       {/* ===== LOGO SECTION ===== */}
       <div
         className={`py-5 flex ${
@@ -175,7 +180,7 @@ const AppSidebar: React.FC = () => {
       </div>
 
       {/* ===== MENU SECTION ===== */}
-      <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
+      <div className="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear">
         <nav>
           <h2
             className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
@@ -192,6 +197,7 @@ const AppSidebar: React.FC = () => {
           <ul className="flex flex-col gap-4">
             {navItems.map((nav, index) => (
               <li key={nav.name}>
+                {/* MAIN MENU ITEM */}
                 {nav.subItems ? (
                   <button
                     onClick={() => handleSubmenuToggle(index)}
@@ -199,7 +205,7 @@ const AppSidebar: React.FC = () => {
                       openSubmenu?.index === index
                         ? "menu-item-active"
                         : "menu-item-inactive"
-                    } cursor-pointer ${
+                    } ${
                       !isExpanded && !isHovered
                         ? "lg:justify-center"
                         : "lg:justify-start"
@@ -253,15 +259,17 @@ const AppSidebar: React.FC = () => {
                   )
                 )}
 
-                {/* SUBMENU */}
+                {/* ===== SUBMENU ===== */}
                 {nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
                   <div
-                    ref={(el) => (subMenuRefs.current[index] = el)}
+                    ref={(el) => {
+                      if (el) subMenuRefs.current[index] = el;
+                    }}
                     className="overflow-hidden transition-all duration-300"
                     style={{
                       height:
                         openSubmenu?.index === index
-                          ? `${subMenuHeight[index]}px`
+                          ? `${subMenuHeight[index] || 0}px`
                           : "0px",
                     }}
                   >

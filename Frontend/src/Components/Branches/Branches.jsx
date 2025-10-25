@@ -6,24 +6,24 @@ import br3 from '../../assets/br3.webp';
 
 const branches = [
   {
-    name: 'New York Hospital',
-    address: 'Peachtree St Atlanta, USA',
-    phone: '+123 456 7890',
-    email: 'supportrt@example.com',
+    name: 'Lucknow Branch',
+    address: '2nd Floor, HCL Tower, 17 Ashok Marg, Hazratganj, Lucknow, Uttar Pradesh 226001',
+    phone: '+91 522 123 4567',
+    email: 'lucknow@flydenai.com',
     image: br1,
   },
   {
-    name: 'Atlanta Hospital',
-    address: 'Peachtree St Atlanta, USA',
-    phone: '+123 456 7890',
-    email: 'supportrt@example.com',
+    name: 'Noida Branch',
+    address: 'Unit 305, Sector 18, Noida, Gautam Buddha Nagar, Uttar Pradesh 201301',
+    phone: '+91 120 765 4321',
+    email: 'noida@flydenai.com',
     image: br2,
   },
   {
-    name: 'San Fransisco Hospital',
-    address: 'Peachtree St Atlanta, USA',
-    phone: '+123 456 7890',
-    email: 'supportrt@example.com',
+    name: 'Kanpur Branch',
+    address: '3rd Floor, Ratan Plaza, Mall Road, Kanpur, Uttar Pradesh 208001',
+    phone: '+91 512 987 6543',
+    email: 'kanpur@flydenai.com',
     image: br3,
   },
 ];
