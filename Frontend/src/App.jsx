@@ -27,6 +27,7 @@ import TermAndCondition from "./Pages/TermAndCondition/TermAndCondition";
 import InternsAbroad from "./Pages/InternsAbroad/InternsAbroad";
 import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
 import MultiStepForm from "./Components/MultiStepForm/MultiStepForm";
+import ExecutiveTeam from "./Components/ExecutiveTeam/ExecutiveTeam";
 
 function App() {
   const navigate = useNavigate();
@@ -75,6 +76,12 @@ function App() {
 
           {/* Apply To the Intern Abroad Service */}
          <Route path="/InternAbroad/Apply" element={<MultiStepForm />} />
+
+
+        <Route path="/ExecutiveTeam" element={<ExecutiveTeam />} />
+
+
+         
 
         </Routes>
         <Footer />
