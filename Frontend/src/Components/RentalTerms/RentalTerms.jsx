@@ -87,15 +87,17 @@ const ServiceTerms = () => {
 
           <div className="term-item">
             <h2>8. Refund Policy</h2>
-            <p>
-              FlyDenAi’s consultancy fees are non-refundable under the following circumstances:
-              <ul>
-                <li>Application rejections due to client-provided incorrect information.</li>
-                <li>Delays caused by incomplete or late document submission.</li>
-                <li>Voluntary withdrawal of applications by the client after submission.</li>
-              </ul>
-              Refunds may only be considered if the error was due to FlyDenAi’s gross negligence or omission.
-            </p>
+           <p>
+            FlyDenAi’s consultancy fees are non-refundable under the following circumstances:
+            <ul>
+              <li>Application rejections due to client-provided incorrect information.</li>
+              <li>Delays caused by incomplete or late document submission.</li>
+              <li>Voluntary withdrawal of applications by the client after submission.</li>
+            </ul>
+            Refunds may only be considered if the error was due to FlyDenAi’s gross negligence or omission.  
+            <br /><br />
+            For payments made through online payment gateways, any approved refund will be automatically credited to your original method of payment within <strong>10 business days</strong> from the date of approval. Processing times may vary depending on your bank or payment service provider.
+          </p>
           </div>
 
           <div className="term-item">
