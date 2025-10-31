@@ -84,7 +84,6 @@ const navItems: NavItem[] = [
   { icon: <PlugInIcon />, name: "Contact Management", path: "/contact/manage" },
   { icon: <BoxCubeIcon />, name: "Media Upload", path: "/media/upload" },
 
-  // ✅ Updated Country Manage section with dropdown
   {
     icon: <TableIcon />,
     name: "Country Manage",
@@ -99,11 +98,18 @@ const navItems: NavItem[] = [
     name: "Our Successful Clients",
     path: "/clients/successful",
   },
+
+  // ✅ NEW SECTION: FAQ MANAGEMENT
+  {
+    icon: <PageIcon />,
+    name: "FAQ Management",
+    subItems: [
+      { name: "Post FAQ", path: "/faq/post-faq" },
+      { name: "View All", path: "/faq/preview" },
+    ],
+  },
 ];
 
-// =============================
-// SIDEBAR COMPONENT
-// =============================
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const location = useLocation();
@@ -148,21 +154,20 @@ const AppSidebar: React.FC = () => {
   };
 
   return (
-   <aside
-  className={`fixed top-0 left-0 mt-16 lg:mt-0 flex flex-col h-[calc(100vh-4rem)] lg:h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 text-gray-900 transition-all duration-300 ease-in-out z-50
-    ${
-      isExpanded || isMobileOpen
-        ? "w-[290px]"
-        : isHovered
-        ? "w-[290px]"
-        : "w-[90px]"
-    }
-    ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
-    lg:translate-x-0`}
-  onMouseEnter={() => !isExpanded && setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
->
-
+    <aside
+      className={`fixed top-0 left-0 mt-16 lg:mt-0 flex flex-col h-[calc(100vh-4rem)] lg:h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 text-gray-900 transition-all duration-300 ease-in-out z-50
+        ${
+          isExpanded || isMobileOpen
+            ? "w-[290px]"
+            : isHovered
+            ? "w-[290px]"
+            : "w-[90px]"
+        }
+        ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
+        lg:translate-x-0`}
+      onMouseEnter={() => !isExpanded && setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       {/* ===== LOGO SECTION ===== */}
       <div
         className={`py-5 flex ${

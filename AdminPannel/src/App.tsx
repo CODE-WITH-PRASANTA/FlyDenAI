@@ -17,6 +17,11 @@ import PostTeamMember from "./DashboardPages/PostTeamMember/PostTeamMember";
 import ContactManagemenet from "./DashboardPages/ContactManagemenet/ContactManagemenet";
 import VisaPosting from "./DashboardPages/VisaPosting/VisaPosting";
 import PreviewVisa from "./DashboardPages/PreviewVisa/PreviewVisa";
+import BlogPosting from "./DashboardPages/BlogPosting/BlogPosting";
+import PostTestimonial from "./DashboardPages/PostTestimonial/PostTestimonial";
+import ClientAction from "./DashboardPages/ClientAction/ClientAction";
+import FaqPosting from "./DashboardPages/FaqPosting/FaqPosting";
+import AdvertizingBanner from "./DashboardPages/AdvertizingBanner/AdvertizingBanner";
 
 export default function App() {
   return (
@@ -51,6 +56,11 @@ export default function App() {
           <Route path="/contact/manage" element={<ContactManagemenet />} />
           <Route path="/visa/post-visa" element={<VisaPosting />} />
           <Route path="/visa/preview" element={<PreviewVisa />} />
+          <Route path="/blog/post" element={<BlogPosting />} />
+          <Route path="/testimonial/post" element={<PostTestimonial />} />
+          <Route path="/testimonial/client-action" element={<ClientAction />} />
+          <Route path="/faq/post-faq" element={<FaqPosting />} />
+          <Route path="/advertise/banner" element={<AdvertizingBanner />} />
           
           </Route>
 

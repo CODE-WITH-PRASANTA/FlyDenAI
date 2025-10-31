@@ -1,0 +1,203 @@
+.clientAction-container {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  font-family: "Poppins", sans-serif;
+  color: #333;
+}
+
+.clientAction-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #222;
+}
+
+.clientAction-tableWrapper {
+  overflow-x: auto;
+}
+
+.clientAction-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.clientAction-table th {
+  background: #007bff;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  padding: 12px 8px;
+}
+
+.clientAction-table td {
+  text-align: center;
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+.clientAction-table tr:hover {
+  background: #f1f5ff;
+  transition: 0.3s;
+}
+
+/* ✅ Client Message */
+.clientAction-message {
+  max-width: 300px;
+  text-align: left;
+  color: #444;
+  line-height: 1.4;
+  position: relative;
+}
+
+.clientAction-readMoreBtn {
+  display: inline-block;
+  margin-left: 8px;
+  color: #007bff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.clientAction-readMoreBtn:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Status */
+.clientAction-status {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.clientAction-status.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.clientAction-status.inactive {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ✅ Action Buttons */
+.clientAction-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.clientAction-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.clientAction-btn.publish {
+  background: #28a745;
+  color: white;
+}
+
+.clientAction-btn.unpublish {
+  background: #ffc107;
+  color: #222;
+}
+
+.clientAction-btn.delete {
+  background: #dc3545;
+  color: white;
+}
+
+.clientAction-btn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.clientAction-noData {
+  text-align: center;
+  color: #777;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* 🌐 Responsive Media Queries — Smart Adjustments */
+@media (max-width: 1024px) {
+  .clientAction-table th,
+  .clientAction-table td {
+    padding: 10px 6px;
+  }
+  .clientAction-message {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clientAction-container {
+    padding: 20px;
+  }
+  .clientAction-table th,
+  .clientAction-table td {
+    padding: 10px 5px;
+  }
+  .clientAction-message {
+    max-width: 220px;
+  }
+  .clientAction-actions {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .clientAction-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .clientAction-table {
+    font-size: 0.9rem;
+  }
+  .clientAction-table th,
+  .clientAction-table td {
+    padding: 8px 5px;
+  }
+  .clientAction-message {
+    max-width: 180px;
+  }
+  .clientAction-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 430px) {
+  .clientAction-container {
+    padding: 16px;
+  }
+  .clientAction-table th,
+  .clientAction-table td {
+    padding: 8px 4px;
+  }
+  .clientAction-message {
+    max-width: 150px;
+  }
+  .clientAction-readMoreBtn {
+    display: block;
+    margin-top: 4px;
+  }
+  .clientAction-btn {
+    padding: 5px 8px;
+  }
+}
