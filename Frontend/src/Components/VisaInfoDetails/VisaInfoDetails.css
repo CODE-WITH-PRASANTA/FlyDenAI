@@ -1,0 +1,1178 @@
+/* =========================================================
+   VISA INFO DETAILS PAGE STYLESHEET
+   ========================================================= */
+
+/* ================= BASE CONTAINER ================= */
+.visa-info-details {
+  padding: 60px 0;
+  background-color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.visa-info-details-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================================================
+   LEFT SIDE MAIN DETAILS
+   ========================================================= */
+.visa-info-details-left {
+  background: #fff;
+}
+
+/* ----- Author Section ----- */
+.visa-info-details-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.visa-info-details-author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.visa-info-details-author-category {
+  font-size: 14px;
+  color: #e63946;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.visa-info-details-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e63946;
+  margin-right: 6px;
+}
+
+.visa-info-details-author-name {
+  color: #666;
+  font-size: 14px;
+}
+
+/* ----- Title + Image + Text ----- */
+.visa-info-details-title {
+  font-size: 30px;
+  color: #001f3f;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+
+.visa-info-details-image-wrapper {
+  margin-bottom: 20px;
+}
+
+.visa-info-details-image {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.visa-info-details-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  margin-top: 10px;
+}
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+.visa-info-details-sidebar h3 {
+  color: #001f3f;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #001f3f;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ----- Search Box ----- */
+.visa-info-details-search {
+  margin-bottom: 40px;
+}
+
+.visa-info-details-search-box {
+  position: relative;
+}
+
+.visa-info-details-search-box input {
+  width: 100%;
+  padding: 14px 42px 14px 16px;
+  font-size: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.visa-info-details-search-box input:focus {
+  border-color: #001f3f;
+}
+
+.visa-info-details-search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+}
+
+/* ----- Popular Posts ----- */
+.visa-info-details-popular {
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.visa-info-details-popular-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.visa-info-details-popular-controls button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  padding: 4px;
+  transition: color 0.3s;
+}
+
+.visa-info-details-popular-controls button:hover {
+  color: #001f3f;
+}
+
+.visa-info-details-popular-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.visa-info-details-popular-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.visa-info-details-popular-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+}
+
+.visa-info-details-popular-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 18px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  width: 100%;
+}
+
+.visa-info-details-popular-category {
+  color: #ff5a5f;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.visa-info-details-popular-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.visa-info-details-popular-icons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.visa-info-details-icon-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* ----- Categories ----- */
+.visa-info-details-categories {
+  margin-bottom: 45px;
+}
+
+.visa-info-details-categories ul {
+  list-style: none;
+  padding: 0;
+}
+
+.visa-info-details-categories li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 18px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  color: #333;
+  transition: all 0.3s ease;
+  background: #fafafa;
+}
+
+.visa-info-details-categories li:hover {
+  background: #001f3f;
+  color: #fff;
+}
+
+/* ----- Gallery ----- */
+.visa-info-details-gallery {
+  margin-bottom: 20px;
+}
+
+.visa-info-details-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.visa-info-details-gallery-grid img {
+  width: 100%;
+  height: 95px;
+  border-radius: 6px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.visa-info-details-gallery-grid img:hover {
+  transform: scale(1.06);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   LEFT SIDE CONTENT SECTIONS
+   ========================================================= */
+
+/* ----- Points Section ----- */
+.visa-info-details-points {
+  margin-top: 40px;
+}
+
+.visa-info-details-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.visa-info-details-bullet {
+  width: 14px;
+  height: 14px;
+  background: #e63946;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.visa-info-details-point h4 {
+  color: #001f3f;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.visa-info-details-point p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+.visa-info-details-point ul {
+  margin-top: 12px;
+  padding-left: 24px;
+}
+
+.visa-info-details-point ul li {
+  list-style: none;
+  position: relative;
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.visa-info-details-point ul li::before {
+  content: "○";
+  position: absolute;
+  left: -18px;
+  top: 0;
+  color: #e63946;
+  font-weight: bold;
+}
+
+/* ----- Requirements Section ----- */
+.visa-info-details-req {
+  margin-top: 40px;
+}
+
+.visa-info-details-req h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #001f3f;
+  margin-bottom: 16px;
+}
+
+.visa-info-details-req p {
+  color: #444;
+  line-height: 1.8;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+/* =========================================================
+   QUOTE + TAG + SHARE SECTION
+   ========================================================= */
+.visa-info-quote-section {
+  margin-top: 50px;
+  color: #1e293b;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ----- Quote Box ----- */
+.quote-box {
+  position: relative;
+  border: 2px solid #ef4444;
+  padding: 40px 30px;
+  background-color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quote-icon-left,
+.quote-icon-right {
+  position: absolute;
+  font-size: 40px;
+  color: #ef4444;
+  background: #fff;
+  padding: 0 5px;
+}
+
+.quote-icon-left {
+  top: -15px;
+  left: 15px;
+}
+
+.quote-icon-right {
+  bottom: -25px;
+  right: 20px;
+}
+
+.quote-text {
+  font-size: 22px;
+  font-weight: 500;
+  color: #0f172a;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.quote-author {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+/* ----- Quote Description ----- */
+/* ============================= */
+/* QUOTE BOX DESIGN (exact look) */
+/* ============================= */
+
+.visa-info-quote-box {
+  position: relative;
+  background: #faf9f9;
+  padding: 60px 40px;
+  margin: 60px 0;
+  border: 2px solid #e63946;
+  border-left: none;
+  border-right: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.visa-info-quote-content {
+  background: #f8f8f8;
+  padding: 60px 40px;
+  text-align: center;
+  width: 90%;
+  position: relative;
+  border: 2px solid #e63946;
+}
+
+/* Top quote and bottom quote */
+.quote-mark {
+  position: absolute;
+  font-size: 38px;
+  color: #e63946;
+  font-weight: bold;
+}
+
+.quote-top {
+  top: -28px;
+  left: 30px;
+}
+
+.quote-bottom {
+  bottom: -28px;
+  right: 30px;
+  transform: rotate(180deg);
+}
+
+/* Quote Text */
+.visa-info-quote-text {
+  font-size: 22px;
+  line-height: 1.6;
+  color: #0b2239;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Author Name */
+.visa-info-quote-author {
+  color: #e63946;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+/* Decorative border lines (open corner style) */
+.visa-info-quote-content::before,
+.visa-info-quote-content::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 60px;
+  background-color: #e63946;
+}
+
+.visa-info-quote-content::before {
+  top: -2px;
+  left: 0;
+}
+
+.visa-info-quote-content::after {
+  bottom: -2px;
+  right: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .visa-info-quote-content {
+    padding: 40px 20px;
+  }
+
+  .visa-info-quote-text {
+    font-size: 18px;
+  }
+
+  .quote-top,
+  .quote-bottom {
+    font-size: 30px;
+  }
+}
+
+/* ----- Tags + Share Bottom Section ----- */
+.bottom-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.tags h4,
+.share h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.tag-list {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tag-list span {
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
+
+.tag-list span:hover {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.social-icons a:nth-child(1) {
+  background-color: #3b5998;
+}
+.social-icons a:nth-child(2) {
+  background-color: #1da1f2;
+}
+.social-icons a:nth-child(3) {
+  background-color: #1ab7ea;
+}
+.social-icons a:nth-child(4) {
+  background-color: #ff0000;
+}
+
+/* =========================================================
+   TAGS + SHARE BLOCK
+   ========================================================= */
+.visa-info-tags-share {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #f9fafb;
+  padding: 22px 26px;
+  border-radius: 8px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
+  border: 1px solid #eee;
+}
+
+.visa-info-tags-share h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #001f3f;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.tags-section {
+  flex: 1;
+}
+
+.tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tags-list span {
+  background: #e6f0ff;
+  color: #001f3f;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tags-list span:hover {
+  background: #001f3f;
+  color: #fff;
+}
+
+.share-section {
+  flex: 1;
+  text-align: right;
+}
+
+.share-icons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-icons a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #001f3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.share-icons a:hover {
+  background: #e63946;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   AUTHOR SECTION
+   ========================================================= */
+.author-section {
+  margin-top: 60px;
+}
+
+.author-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0b0f19;
+  margin-bottom: 30px;
+}
+
+.author-card {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.author-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 25px;
+}
+
+.author-details {
+  flex: 1;
+}
+
+.author-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.author-bio {
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.author-social {
+  display: flex;
+  gap: 18px;
+}
+
+.author-social a {
+  color: #6b7280;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.author-social a:hover {
+  color: #dc2626;
+}
+
+/* =========================================================
+   COMMENTS SECTION
+   ========================================================= */
+.comments-section {
+  margin-top: 60px;
+}
+
+.comments-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0b2239;
+  margin-bottom: 25px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.comment-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.comment-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b2239;
+  margin: 0;
+}
+
+.comment-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ef4444;
+  letter-spacing: 0.3px;
+}
+
+.comment-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.comment-reply {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.comment-reply span {
+  font-size: 18px;
+  line-height: 0;
+}
+
+.comment-divider {
+  border: none;
+  border-top: 1px solid #e4e4e4;
+  margin: 20px 0;
+}
+
+/* =========================================================
+   LEAVE COMMENT SECTION
+   ========================================================= */
+.leave-comment {
+  background: #f9f9f9;
+  padding: 50px;
+  border-radius: 6px;
+  margin-top: 60px;
+}
+
+.leave-comment-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #0b2239;
+  margin-bottom: 10px;
+}
+
+.leave-comment-text {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.comment-form-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.comment-form-row input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #111827;
+  background: #fff;
+}
+
+.comment-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #111827;
+  background: #fff;
+  resize: none;
+  min-height: 140px;
+}
+
+.comment-form textarea:focus,
+.comment-form input:focus {
+  outline: none;
+  border-color: #ef4444;
+}
+
+.comment-form button {
+  align-self: flex-start;
+  background-color: #ef4444;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 4px;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+}
+
+
+
+/* =========================================================
+   POPULAR TAGS SECTION
+   ========================================================= */
+.visa-info-details-tags {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 28px 26px;
+  border-radius: 8px;
+  margin-top: 40px;
+}
+
+.visa-info-details-tags h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 18px;
+  position: relative;
+}
+
+.visa-info-details-tags h3::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: #ef4444;
+  border-radius: 2px;
+}
+
+.visa-info-details-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.visa-info-details-tags-list span {
+  background-color: #f3f4f6;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.visa-info-details-tags-list span:hover {
+  background-color: #ef4444;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   SUBSCRIBE US SECTION
+   ========================================================= */
+.visa-info-details-subscribe {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 10px;
+  padding: 30px 26px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.visa-info-details-subscribe h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.visa-info-details-subscribe p {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 18px;
+  line-height: 1.6;
+}
+
+.visa-info-details-subscribe input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  font-size: 15px;
+  margin-bottom: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.visa-info-details-subscribe input:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+}
+
+.visa-info-details-subscribe button {
+  width: 100%;
+  background-color: #ef4444;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.visa-info-details-subscribe button:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   RESPONSIVE STYLES
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .visa-info-details-container {
+    grid-template-columns: 1.8fr 1fr;
+    gap: 30px;
+  }
+
+  .visa-info-details-title {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 992px) {
+  .visa-info-details-container {
+    grid-template-columns: 1fr;
+  }
+
+  .visa-info-details-sidebar {
+    margin-top: 60px;
+  }
+
+  .quote-text {
+    font-size: 20px;
+  }
+
+  .author-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .author-avatar {
+    margin: 0 0 20px 0;
+  }
+
+  .share-section {
+    text-align: left;
+  }
+
+  .share-icons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .visa-info-details {
+    padding: 40px 0;
+  }
+
+  .visa-info-details-title {
+    font-size: 24px;
+  }
+
+  .visa-info-details-text {
+    font-size: 15px;
+  }
+
+  .quote-box {
+    padding: 30px 20px;
+  }
+
+  .quote-text {
+    font-size: 18px;
+  }
+
+  .quote-author {
+    font-size: 16px;
+  }
+
+  .tag-list span {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .comment-form button {
+    width: 100%;
+  }
+
+  .comment-form-row {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .visa-info-details {
+    padding: 30px 0;
+  }
+
+  .visa-info-details-container {
+    padding: 0 16px;
+  }
+
+  .visa-info-details-title {
+    font-size: 22px;
+  }
+
+  .quote-box {
+    padding: 25px 18px;
+  }
+
+  .quote-text {
+    font-size: 17px;
+  }
+
+  .quote-author {
+    font-size: 15px;
+  }
+
+  .tags-list span {
+    font-size: 13px;
+  }
+
+  .social-icons a {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .author-card {
+    padding: 20px;
+  }
+
+  .author-name {
+    font-size: 18px;
+  }
+
+  .author-bio {
+    font-size: 14px;
+  }
+
+  .comment-item {
+    flex-direction: column;
+  }
+
+  .comment-avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 400px) {
+  .quote-box {
+    padding: 20px 14px;
+  }
+
+  .quote-text {
+    font-size: 16px;
+  }
+
+  .bottom-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tags h4,
+  .share h4 {
+    font-size: 13px;
+  }
+
+  .tag-list span {
+    padding: 6px 10px;
+  }
+}
+
+
+

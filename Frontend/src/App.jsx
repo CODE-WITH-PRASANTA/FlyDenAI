@@ -28,6 +28,7 @@ import InternsAbroad from "./Pages/InternsAbroad/InternsAbroad";
 import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
 import MultiStepForm from "./Components/MultiStepForm/MultiStepForm";
 import ExecutiveTeam from "./Components/ExecutiveTeam/ExecutiveTeam";
+import VisaInfo from "./Pages/VisaInfo/VisaInfo";
 
 function App() {
   const navigate = useNavigate();
@@ -79,6 +80,8 @@ function App() {
 
 
         <Route path="/ExecutiveTeam" element={<ExecutiveTeam />} />
+        <Route path="/Visa/Info" element={<VisaInfo />} />
+
 
 
          

@@ -1,0 +1,83 @@
+.visa-info-banner {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visa-info-banner-overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 24, 39, 0.6); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visa-info-banner-content {
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.visa-info-banner-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: #d1d5db;
+}
+
+.visa-info-banner-title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.visa-info-banner-breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  color: #e5e7eb;
+}
+
+.visa-info-banner-breadcrumb .breadcrumb-current {
+  font-weight: 600;
+  color: #fff;
+}
+
+.visa-info-banner-breadcrumb .breadcrumb-divider {
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .visa-info-banner {
+    height: 320px;
+  }
+
+  .visa-info-banner-title {
+    font-size: 30px;
+  }
+
+  .visa-info-banner-subtitle {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .visa-info-banner-title {
+    font-size: 26px;
+  }
+
+  .visa-info-banner-breadcrumb {
+    font-size: 13px;
+  }
+}
