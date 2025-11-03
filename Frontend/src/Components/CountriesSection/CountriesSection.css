@@ -73,11 +73,10 @@
   background-size: cover;
   background-position: center;
   transition: all 0.5s ease;
-  filter: brightness(0.75);
+  filter: brightness(0.45);
 }
 
 .country-card:hover .country-image {
-  transform: scale(1.12);
   filter: brightness(0.6);
 }
 
@@ -89,7 +88,7 @@
   transform: translate(-50%, -50%);
   color: #fff;
   font-weight: 700;
-  font-size: 1.4rem;
+  font-size: 0.9rem;
   text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
   animation: namePulse 2s infinite;
 }
@@ -128,13 +127,13 @@
 @media (max-width: 768px) {
   .countries-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
   .countries-title { font-size: 2rem; }
-  .country-name { font-size: 1.1rem; }
+  .country-name { font-size: 0.9rem; }
 }
 
 @media (max-width: 480px) {
   .countries-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
   .countries-title { font-size: 1.8rem; }
-  .country-name { font-size: 1rem; }
+  .country-name { font-size: 0.7rem; }
   .countries-section{
     padding: 0px 10px;
   }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ClientAction.css";
+import { useTheme } from "../../context/ThemeContext";
 
 interface Client {
   id: number;
@@ -11,6 +12,7 @@ interface Client {
 }
 
 const ClientAction: React.FC = () => {
+  const { theme } = useTheme(); // ✅ Access current theme
   const [clients, setClients] = useState<Client[]>([
     {
       id: 1,
@@ -53,7 +55,7 @@ const ClientAction: React.FC = () => {
   };
 
   return (
-    <div className="clientAction-container">
+    <div className={`clientAction-container ${theme}`}>
       <h2 className="clientAction-title">📋 Client Testimonials Management</h2>
 
       <div className="clientAction-tableWrapper">

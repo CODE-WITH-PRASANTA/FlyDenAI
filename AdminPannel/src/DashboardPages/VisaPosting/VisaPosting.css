@@ -57,10 +57,6 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
 
-.VisaPosting.dark .VisaPosting-form {
-  background: var(--bg-card-dark);
-  border-color: var(--border-dark);
-}
 
 .VisaPosting-title {
   font-size: 1.8rem;
@@ -82,10 +78,6 @@
   background: var(--bg-light);
 }
 
-.VisaPosting.dark .VisaPosting-section {
-  background: var(--bg-card-dark);
-  border-color: var(--border-dark);
-}
 
 .VisaPosting-sectionTitle {
   font-size: 1.2rem;
@@ -147,14 +139,6 @@
   transition: all 0.25s ease;
 }
 
-.VisaPosting.dark .VisaPosting-input,
-.VisaPosting.dark .VisaPosting-select,
-.VisaPosting.dark .VisaPosting-textarea,
-.VisaPosting.dark .VisaPosting-file {
-  background: var(--bg-card-dark);
-  color: var(--text-dark);
-  border-color: var(--border-dark);
-}
 
 .VisaPosting-input:focus,
 .VisaPosting-select:focus,
@@ -203,13 +187,6 @@
   background: var(--bg-light);
   color: var(--text-light);
 }
-
-.VisaPosting.dark .VisaPosting-multiSelect {
-  background: var(--bg-card-dark);
-  color: var(--text-dark);
-  border-color: var(--border-dark);
-}
-
 .VisaPosting-selectedTags {
   display: flex;
   flex-wrap: wrap;
@@ -310,10 +287,6 @@
   border-radius: 8px;
 }
 
-.VisaPosting.dark .VisaPosting-listItem {
-  background: var(--bg-card-dark);
-  border-color: var(--border-dark);
-}
 
 /* =====================================================
    ASIDE SECTION (Posted Visas)
@@ -456,11 +429,6 @@
   transition: all 0.3s ease;
 }
 
-.VisaPosting.dark .VisaPosting-input {
-  background: var(--bg-card-dark);
-  color: var(--text-dark);
-  border-color: var(--border-dark);
-}
 
 .VisaPosting-input:focus {
   border-color: var(--accent);

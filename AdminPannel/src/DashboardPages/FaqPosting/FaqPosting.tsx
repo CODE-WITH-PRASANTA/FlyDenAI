@@ -1,6 +1,7 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import "./FaqPosting.css";
 import { FaEdit, FaTrash, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useTheme } from "../../context/ThemeContext"; 
 
 interface Faq {
   id: number;
@@ -10,11 +11,17 @@ interface Faq {
 }
 
 const FaqPosting: React.FC = () => {
+  const { theme } = useTheme(); // light | dark
   const [faqData, setFaqData] = useState<Faq[]>([]);
   const [newFaq, setNewFaq] = useState<Omit<Faq, "id" | "published">>({
     question: "",
     answer: "",
   });
+
+  useEffect(() => {
+    // Apply theme to root container dynamically
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -57,8 +64,8 @@ const FaqPosting: React.FC = () => {
   };
 
   return (
-    <div className="faq-posting-container">
-      {/* Left Section - Add FAQ */}
+    <div className={`faq-posting-container ${theme}`}>
+      {/* Left Section */}
       <div className="faq-posting-form-section">
         <h2 className="faq-posting-title">➕ Add New FAQ</h2>
         <form onSubmit={handleSubmit} className="faq-posting-form">
@@ -87,7 +94,7 @@ const FaqPosting: React.FC = () => {
         </form>
       </div>
 
-      {/* Right Section - FAQ List */}
+      {/* Right Section */}
       <div className="faq-posting-list-section">
         <h2 className="faq-posting-title">📜 Manage FAQs</h2>
         <div className="faq-table-wrapper">

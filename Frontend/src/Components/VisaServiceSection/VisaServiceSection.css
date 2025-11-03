@@ -1,30 +1,41 @@
 /* ------------------- Base Section ------------------- */
 .visa-section {
-  padding: 10px 30px;
-  background: #f9f9fb;
-  font-family: 'Poppins', sans-serif;
+  padding: 60px 30px;
+  background: linear-gradient(180deg, #f9f9fb 0%, #ffffff 100%);
+  font-family: "Poppins", sans-serif;
   text-align: center;
 }
 
 /* ------------------- Titles ------------------- */
 .section-subtitle {
-  color: #E94e77;
+  color: #e94e77;
   font-weight: 600;
   font-size: 16px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .VisaService-tittle {
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 700;
   color: #222;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   max-width: 850px;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.4;
+  position: relative;
+}
+
+.VisaService-tittle::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 4px;
+  background: linear-gradient(90deg, #e94e77, #ff7b9e);
+  margin: 12px auto 0 auto;
+  border-radius: 2px;
 }
 
 /* ------------------- Scrollable Container ------------------- */
@@ -36,117 +47,140 @@
 }
 
 .visa-scroll-container::-webkit-scrollbar {
-  height: 10px;
+  height: 8px;
 }
 
 .visa-scroll-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #E94e77, #ff7b9e);
+  background: linear-gradient(90deg, #e94e77, #ff7b9e);
   border-radius: 10px;
 }
 
 .visa-scroll-container::-webkit-scrollbar-track {
   background: #f0f0f0;
 }
-
-/* ------------------- Cards Layout ------------------- */
-.visa-card-grid {
-  display: flex;
-  gap: 25px;
-  flex-wrap: nowrap; /* force horizontal scroll */
-  padding: 10px;
-}
-
 /* ------------------- Card Style ------------------- */
-.visa-card {
-  background: #fff;
-  border-radius: 16px;
-  min-width: 300px;
-  max-width: 320px;
+.visaServicesec-card {
+  background: linear-gradient(145deg, #ffffff, #fdfbfb);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  min-width: 320px;
+  max-width: 340px;
   overflow: hidden;
-  border: 1px solid #eee;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   flex-shrink: 0;
-}
+  position: relative;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(6px);
 
-.visa-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  /* ✨ Gradient border using background-clip trick */
+  background-image: 
+    linear-gradient(145deg, #ffffff, #fdfbfb), 
+    linear-gradient(135deg, #e94e77, #ff7b9e);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
-
 /* ------------------- Image Section ------------------- */
 .visa-image-wrapper {
   position: relative;
   width: 100%;
-  height: 200px;
-  overflow: hidden;
+  border-bottom: 1px solid rgba(233, 78, 119, 0.1);
 }
 
 .visa-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.7s ease;
 }
 
-.visa-card:hover .visa-image {
+.visaServicesec-card:hover .visa-image {
   transform: scale(1.1);
+  filter: brightness(0.9);
 }
 
 /* ------------------- Icon Circle ------------------- */
 .visa-icon-bg {
   position: absolute;
-  bottom: -20px;
-  right: 20px;
-  width: 65px;
-  height: 65px;
-  background: linear-gradient(135deg, #E94e77, #ff5f8a);
+  bottom: -22px;
+  right: 25px;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #e94e77, #ff5f8a);
+  border: 3px solid #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
   color: #fff;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.visa-card:hover .visa-icon-bg {
-  transform: scale(1.15) rotate(10deg);
+.visaServicesec-card:hover .visa-icon-bg {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 10px 22px rgba(233, 78, 119, 0.35);
 }
 
 /* ------------------- Content Section ------------------- */
 .visa-content {
-  padding: 25px 20px;
+  padding: 30px 25px 25px;
   text-align: left;
 }
 
 .visa-id {
   font-size: 14px;
-  color: #aaa;
-  margin-bottom: 4px;
+  color: #bbb;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-.visa-title {
-  font-size: 20px;
+.visaServicesec-title {
+  font-size: 22px;
   font-weight: 600;
   color: #111;
   margin-bottom: 10px;
+  position: relative;
+}
+
+.visaServicesec-title::after {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #e94e77, #ff7b9e);
+  display: block;
+  margin-top: 5px;
+  border-radius: 2px;
 }
 
 .visa-description {
-  font-size: 15px;
+  font-size: 15.5px;
   color: #555;
-  line-height: 1.6;
-  margin-bottom: 15px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  min-height: 80px;
 }
 
+/* ------------------- Link Button ------------------- */
 .visa-link {
+  display: inline-block;
   font-size: 15px;
   font-weight: 600;
-  color: #E94e77;
+  color: #e94e77;
   text-decoration: none;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.visa-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #e94e77;
+  transition: width 0.3s ease;
 }
 
 .visa-link:hover {
@@ -154,12 +188,49 @@
   transform: translateX(4px);
 }
 
+.visa-link:hover::after {
+  width: 100%;
+}
+
+/* ------------------- Loading State ------------------- */
+.loading-text {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  padding: 60px 0;
+  font-weight: 500;
+}
+
 /* ------------------- Responsive ------------------- */
+@media (max-width: 992px) {
+  .VisaService-tittle {
+    font-size: 28px;
+  }
+
+  .visaServicesec-card {
+    min-width: 280px;
+  }
+}
+
 @media (max-width: 768px) {
+  .visa-section {
+    padding: 40px 15px;
+  }
+
   .VisaService-tittle {
     font-size: 26px;
   }
-  .visa-card {
+
+  .visaServicesec-card {
     min-width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .visaServicesec-title {
+    font-size: 18px;
+  }
+  .visa-description {
+    font-size: 14px;
   }
 }

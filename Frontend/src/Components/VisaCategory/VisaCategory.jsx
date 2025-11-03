@@ -1,102 +1,109 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import DOMPurify from "dompurify";
 import "./VisaCategory.css";
-
-// 🖼️ Import assets properly (replace with correct images if available)
-import jobVisa from "../../assets/visacategory1.webp";
-import businessVisa from "../../assets/visacategory1.webp";
-import diplomaticVisa from "../../assets/visacategory1.webp";
-import touristVisa from "../../assets/visacategory1.webp";
-import studentVisa from "../../assets/visacategory1.webp";
-import transitVisa from "../../assets/visacategory1.webp";
-import immigrantVisa from "../../assets/visacategory1.webp";
-import medicalVisa from "../../assets/visacategory1.webp";
-
-const visaCategories = [
-  {
-    id: 1,
-    title: "Job Visa",
-    description:
-      "Work legally abroad with the right visa. We help you secure your job permit with smooth documentation and faster processing.",
-    image: jobVisa,
-  },
-  {
-    id: 2,
-    title: "Business Visa",
-    description:
-      "Expand your business globally with ease. Our experts guide you through every requirement for a hassle-free visa approval.",
-    image: businessVisa,
-  },
-  {
-    id: 3,
-    title: "Diplomatic Visa",
-    description:
-      "Designed for government officials and diplomats traveling abroad for official purposes with top-level security clearance.",
-    image: diplomaticVisa,
-  },
-  {
-    id: 4,
-    title: "Tourist Visa",
-    description:
-      "Explore dream destinations around the world with our quick and reliable tourist visa services.",
-    image: touristVisa,
-  },
-  {
-    id: 5,
-    title: "Student Visa",
-    description:
-      "Study at top international universities. We assist with every step, from application to admission and visa approval.",
-    image: studentVisa,
-  },
-  {
-    id: 6,
-    title: "Transit Visa",
-    description:
-      "Traveling through another country? Get your short-term transit visa quickly and continue your journey seamlessly.",
-    image: transitVisa,
-  },
-  {
-    id: 7,
-    title: "Immigrant Visa",
-    description:
-      "Settle permanently in your dream country. We guide you through all documentation and eligibility requirements.",
-    image: immigrantVisa,
-  },
-  {
-    id: 8,
-    title: "Medical Visa",
-    description:
-      "Get access to world-class medical care abroad. We make your travel for treatment smooth and stress-free.",
-    image: medicalVisa,
-  },
-];
+import BASE_URL from "../../Api";
 
 function VisaCategory() {
+  const navigate = useNavigate();
+  const [visaCategories, setVisaCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // 🧠 Fetch data from backend
+  useEffect(() => {
+    const fetchVisaCategories = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/visatypes`);
+        if (response.data.success) {
+          setVisaCategories(response.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching visa categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVisaCategories();
+  }, []);
+
+  // 🔗 Navigate to Visa Info page
+  const handleLearnMore = (id) => {
+    navigate(`/visa-info/${id}`);
+  };
+
+  if (loading) {
+    return (
+      <section className="visa-category-section">
+        <div className="visa-loading">
+          <div className="loading-spinner"></div>
+          <h2>Loading Visa Categories...</h2>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="visa-category-section">
-      <div className="visa-category-header">
-        <h2>
-          Explore Our <span className="highlight">Visa Categories</span>
-        </h2>
-        <p>
-          FlyDenAi helps you simplify your visa journey — whether you want to
-          work, study, or explore abroad. Choose your category and get expert
-          assistance every step of the way.
-        </p>
-      </div>
+    <div className="visa-category-header">
+          <h2>
+            Discover Our <span className="highlight">Visa Consultation Categories</span>
+          </h2>
+          <p>
+            We provide expert visa consultation for a wide range of purposes — including
+            <strong> Tourist Visa</strong> for travel, <strong>Student Visa</strong> for
+            higher education, <strong>Business Visa</strong> for corporate expansion,
+            <strong> Job Visa</strong> for overseas employment, and
+            <strong> Family Visa</strong> for reuniting with loved ones.  
+            <br />  
+            Get complete guidance from application to approval, tailored to your needs.
+          </p>
+        </div>
+
 
       <div className="visa-category-scroll">
-        {visaCategories.map((category) => (
-          <div key={category.id} className="VisaCategory-card">
-            <img
-              src={category.image}
-              alt={category.title}
-              className="VisaCategory-image"
-            />
-            <h3 className="visa-title">{category.title}</h3>
-            <p className="visa-description">{category.description}</p>
-            <button className="visa-btn">Learn More</button>
-          </div>
-        ))}
+        {visaCategories.length > 0 ? (
+          visaCategories.map((category) => (
+            <div key={category._id} className="VisaCategory-card">
+              <div className="visa-img-wrapper">
+                <img
+                  src={
+                    category.visaImageUrl?.startsWith("http")
+                      ? category.visaImageUrl
+                      : `${BASE_URL.replace("/api", "")}${category.visaImageUrl}`
+                  }
+                  alt={category.visaName}
+                  className="VisaCategory-image"
+                  loading="lazy"
+                />
+              </div>
+
+              <h3 className="visa-title">{category.visaName}</h3>
+
+              {/* 🧩 Display visaProcess instead of visaDesc */}
+              <p
+                className="visacategory-description"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(
+                    category.visaProcess
+                      ? category.visaProcess.slice(0, 180) + "..."
+                      : "Visa process information coming soon..."
+                  ),
+                }}
+              ></p>
+
+              <button
+                className="visa-btn"
+                onClick={() => handleLearnMore(category._id)}
+              >
+                Learn More
+              </button>
+            </div>
+          ))
+        ) : (
+          <p className="no-data-text">No Visa Categories Found</p>
+        )}
       </div>
     </section>
   );

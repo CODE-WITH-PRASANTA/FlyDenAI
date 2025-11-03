@@ -116,9 +116,6 @@
   transition: transform 0.5s ease;
 }
 
-.contact-us-photo:hover img {
-  transform: scale(1.05);
-}
 
 /* === RIGHT SIDE (Form) === */
 .contact-us-right {

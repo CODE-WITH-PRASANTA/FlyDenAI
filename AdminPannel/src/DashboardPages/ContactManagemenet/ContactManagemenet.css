@@ -124,30 +124,32 @@
   opacity: 0.9;
   transform: translateY(-2px);
 }
-
-/*------------------ TABLE SECTION ------------------*/
+/*------------------ TABLE SECTION (IMPROVED) ------------------*/
 .ContactManagemenet-table-section {
   flex: 1;
-  min-width: 320px;
+  min-width: 350px;
   background: var(--bg-form);
   border-radius: 14px;
   padding: 30px 20px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   max-height: 85vh;
   overflow-y: auto;
   border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
 }
 
 .ContactManagemenet-table-wrapper {
   overflow-x: auto;
+  margin-top: 15px;
   padding-bottom: 10px;
 }
 
-/* Table Styles */
+/* Table Layout */
 .ContactManagemenet-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 6px;
+  border-spacing: 0 10px;
   font-size: 14px;
 }
 
@@ -157,96 +159,133 @@
   padding: 12px;
   text-align: center;
   border-radius: 6px 6px 0 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
 .ContactManagemenet-table td {
   background-color: var(--bg-form);
   padding: 12px;
+  text-align: left;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+
+/* Align and space contents inside each column */
+.ContactManagemenet-table td:nth-child(1),
+.ContactManagemenet-table td:nth-child(2),
+.ContactManagemenet-table td:nth-child(3),
+.ContactManagemenet-table td:nth-child(8) {
   text-align: center;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-  border: 1px solid var(--border);
 }
 
-/* Scrollbar */
-.ContactManagemenet-form-section::-webkit-scrollbar,
-.ContactManagemenet-table-section::-webkit-scrollbar,
-.ContactManagemenet-table-wrapper::-webkit-scrollbar {
-  width: 7px;
-  height: 6px;
-}
-
-.ContactManagemenet-form-section::-webkit-scrollbar-thumb,
-.ContactManagemenet-table-section::-webkit-scrollbar-thumb,
-.ContactManagemenet-table-wrapper::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-}
-
-/*------------------ SOCIAL & OPEN HOURS ------------------*/
-.ContactManagemenet-socials span,
-.ContactManagemenet-openhours span {
-  display: block;
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 2px;
-}
-
-/* Time Input Pair */
-.ContactManagemenet-timepair {
+/*------------------ SOCIAL LINKS ------------------*/
+.ContactManagemenet-socials {
   display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.ContactManagemenet-timepair input[type="time"] {
-  padding: 6px;
+  flex-direction: column;
+  gap: 4px;
   font-size: 13px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  width: 100%;
-  background-color: var(--bg-form);
-  color: var(--text);
 }
 
-.ContactManagemenet-time-separator {
+.ContactManagemenet-socials span {
+  background: rgba(79, 70, 229, 0.08);
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/*------------------ OPEN HOURS ------------------*/
+.ContactManagemenet-openhours {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+}
+
+.ContactManagemenet-openhours span {
+  background: rgba(59, 130, 246, 0.08);
+  border-radius: 6px;
+  padding: 4px 6px;
+  color: var(--text-muted);
   font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*------------------ ADDRESSES ------------------*/
+.ContactManagemenet-table td:nth-child(7) {
+  white-space: pre-line;
+  font-size: 13px;
+  line-height: 1.4;
   color: var(--text-muted);
 }
 
 /*------------------ ACTION BUTTONS ------------------*/
-.ContactManagemenet-actions button {
-  margin: 2px 3px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  cursor: pointer;
-  border: none;
-  transition: all 0.2s ease;
+.ContactManagemenet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
 }
 
-.ContactManagemenet-edit-btn { background: var(--accent); color:#fff; }
-.ContactManagemenet-delete-btn { background: var(--danger); color:#fff; }
-.ContactManagemenet-preview-btn { background: var(--info); color:#fff; }
-
-.ContactManagemenet-publish-btn {
-  padding: 6px 10px;
+.ContactManagemenet-actions button {
+  width: 90px;
+  padding: 7px 0;
   border-radius: 6px;
   font-size: 12px;
+  font-weight: 500;
   cursor: pointer;
   border: none;
   color: #fff;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
-.ContactManagemenet-publish-btn.published { background-color: var(--success); }
-.ContactManagemenet-publish-btn.unpublished { background-color: var(--info); }
+.ContactManagemenet-edit-btn { background: var(--accent); }
+.ContactManagemenet-delete-btn { background: var(--danger); }
+.ContactManagemenet-preview-btn { background: var(--info); }
 
-.ContactManagemenet-actions button:hover,
-.ContactManagemenet-publish-btn:hover {
+.ContactManagemenet-publish-btn {
+  background-color: var(--success);
+  color: #fff;
+}
+
+.ContactManagemenet-publish-btn.unpublished {
+  background-color: var(--info);
+}
+
+.ContactManagemenet-actions button:hover {
   opacity: 0.85;
   transform: translateY(-1px);
 }
+
+/*------------------ RESPONSIVE IMPROVEMENTS ------------------*/
+@media (max-width: 900px) {
+  .ContactManagemenet-openhours {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .ContactManagemenet-table th,
+  .ContactManagemenet-table td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .ContactManagemenet-socials span,
+  .ContactManagemenet-openhours span {
+    font-size: 11px;
+  }
+
+  .ContactManagemenet-actions button {
+    width: 70px;
+    padding: 6px 0;
+    font-size: 11px;
+  }
+}
+
 
 /*------------------ MEDIA QUERIES ------------------*/
 @media (max-width: 1024px) {

@@ -1,0 +1,372 @@
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --bg-light: #f3f4f6;
+  --card-bg: #ffffff;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
+}
+
+/* ====== Container ====== */
+.DirectorAchivment-container {
+  padding: 35px;
+  background: var(--bg-light);
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ====== Title ====== */
+.DirectorAchivment-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 35px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ====== Content ====== */
+.DirectorAchivment-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+/* ====== Left & Right Panels ====== */
+.DirectorAchivment-left,
+.DirectorAchivment-right {
+  flex: 1;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+
+/* ====== Form ====== */
+.DirectorAchivment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.DirectorAchivment-subtitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.DirectorAchivment-row {
+  display: flex;
+  gap: 15px;
+}
+
+.DirectorAchivment-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.DirectorAchivment-form label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--text-dark);
+}
+
+.DirectorAchivment-form input,
+.DirectorAchivment-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  color: var(--text-dark);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.DirectorAchivment-form input:focus,
+.DirectorAchivment-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+
+/* ====== Button ====== */
+.DirectorAchivment-btn {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.DirectorAchivment-btn:hover {
+  opacity: 0.9;
+}
+
+/* ====== Achievements ====== */
+.DirectorAchivment-achievement {
+  margin-top: 30px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+.DirectorAchivment-upload-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.DirectorAchivment-upload-label {
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+}
+
+.DirectorAchivment-file {
+  display: none;
+}
+
+.DirectorAchivment-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.DirectorAchivment-imgBox {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.DirectorAchivment-imgBox img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.DirectorAchivment-imgDelete {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #ef4444;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ====== Table ====== */
+.DirectorAchivment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.DirectorAchivment-table th {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.DirectorAchivment-table th,
+.DirectorAchivment-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.DirectorAchivment-edit,
+.DirectorAchivment-delete {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DirectorAchivment-edit {
+  background: #10b981;
+  margin-right: 5px;
+}
+
+.DirectorAchivment-delete {
+  background: #ef4444;
+}
+
+.DirectorAchivment-empty {
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 15px;
+}
+/* ====== Responsive Design ====== */
+@media (max-width: 992px) {
+  .DirectorAchivment-content {
+    flex-direction: column;
+  }
+
+  .DirectorAchivment-left,
+  .DirectorAchivment-right {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .DirectorAchivment-row {
+    flex-direction: column;
+  }
+
+  .DirectorAchivment-table {
+    width: 100%;
+    min-width: 600px; /* Maintain readability */
+  }
+
+  .DirectorAchivment-right {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .DirectorAchivment-right::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .DirectorAchivment-right::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 4px;
+  }
+
+  .DirectorAchivment-right::-webkit-scrollbar-track {
+    background: var(--border-color);
+  }
+}
+
+@media (max-width: 576px) {
+  .DirectorAchivment-container {
+    padding: 10px;
+  }
+
+  .DirectorAchivment-title {
+    font-size: 22px;
+  }
+
+  .DirectorAchivment-subtitle {
+    font-size: 16px;
+  }
+
+  .DirectorAchivment-upload-label {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .DirectorAchivment-imgBox {
+    width: 80px;
+    height: 80px;
+  }
+
+  .DirectorAchivment-btn {
+    font-size: 14px;
+  }
+}
+
+/* ====== Dark Mode Styles ====== */
+.DirectorAchivment-container.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-title {
+  background: linear-gradient(90deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-left,
+.DirectorAchivment-container.dark .DirectorAchivment-right {
+  background: #1e293b;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  border: 1px solid #334155;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-form label {
+  color: #cbd5e1;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-form input,
+.DirectorAchivment-container.dark .DirectorAchivment-form textarea {
+  background: #334155;
+  color: #f1f5f9;
+  border: 1px solid #475569;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-form input:focus,
+.DirectorAchivment-container.dark .DirectorAchivment-form textarea:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-btn {
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  color: #fff;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-upload-label {
+  background: #2563eb;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-table th {
+  background: #1d4ed8;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-table td {
+  color: #e2e8f0;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-empty {
+  color: #94a3b8;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-imgBox img {
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-edit {
+  background: #22c55e;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-delete {
+  background: #ef4444;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-thumb {
+  background: #3b82f6;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-track {
+  background: #334155;
+}

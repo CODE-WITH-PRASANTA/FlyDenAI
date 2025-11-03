@@ -1,85 +1,133 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./TeamSection.css";
-import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import i1 from "../../assets/col-bgimage-12.jpg"; // Replace with your image path
-
-const TEAM = [
-  {
-    name: "Alex Sam Martin",
-    role: "Director",
-    img: i1,
-    socials: [
-      { icon: <FaFacebookF />, link: "https://facebook.com" },
-      { icon: <FaLinkedinIn />, link: "https://linkedin.com" },
-      { icon: <FaTwitter />, link: "https://twitter.com" }
-    ]
-  },
-  {
-    name: "David Coper",
-    role: "Officer",
-    img: i1,
-    socials: [
-      { icon: <FaFacebookF />, link: "https://facebook.com" },
-      { icon: <FaLinkedinIn />, link: "https://linkedin.com" },
-      { icon: <FaTwitter />, link: "https://twitter.com" }
-    ],
-    active: true
-  },
-  {
-    name: "Melika Fonals",
-    role: "Agent",
-    img: i1,
-    socials: [
-      { icon: <FaFacebookF />, link: "https://facebook.com" },
-      { icon: <FaLinkedinIn />, link: "https://linkedin.com" },
-      { icon: <FaTwitter />, link: "https://twitter.com" }
-    ]
-  },
-  {
-    name: "Sophia Arthur",
-    role: "Migration Agent",
-    img: i1,
-    socials: [
-      { icon: <FaFacebookF />, link: "https://facebook.com" },
-      { icon: <FaLinkedinIn />, link: "https://linkedin.com" },
-      { icon: <FaTwitter />, link: "https://twitter.com" }
-    ]
-  }
-];
+import axios from "axios";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaTwitter,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
+import BASE_URL from "../../Api"; // Example: http://localhost:5000/api
+import i1 from "../../assets/col-bgimage-12.jpg"; // Fallback image
 
 export default function TeamSection() {
+  const [team, setTeam] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // ✅ Fetch team members from backend
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/teammembers`);
+        setTeam(response.data.data || []);
+      } catch (err) {
+        console.error("Error fetching team members:", err);
+        setError("Failed to load team members. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeam();
+  }, []);
+
+  // ✅ Helper: Generate correct image URL path
+  const getImagePath = (imageUrl) => {
+    if (!imageUrl) return i1; // fallback
+    if (imageUrl.startsWith("http")) return imageUrl; // already full URL (e.g., Cloudinary)
+    return `${BASE_URL.replace("/api", "")}${imageUrl}`; // local upload path
+  };
+
   return (
     <div className="team-container">
-      <h1>
-        For the immigration, choose <span>Team Member!</span>
+     <h1>
+        Your Trusted <span>Visa & Study Abroad Consultants</span>
       </h1>
       <p>
-        We believe in delivering exceptional services with a team dedicated to excellence. Our experts combine skills, knowledge, and passion to ensure your journey is seamless and successful.
+        Our dedicated and friendly experts specialize in visa assistance, study abroad guidance, and overseas internship
+        placements.  
+        With years of experience and a client-first approach, we ensure every applicant receives the right advice,
+        accurate documentation support, and end-to-end consultation for a smooth international journey.
       </p>
-      <div className="team-list">
-        {TEAM.map(({ img, name, role, socials, active }) => (
-          <div className={`team-card${active ? " active" : ""}`} key={name}>
-            <img src={img} className="team-avatar" alt={name} />
-            <div className="team-info">
-              <div className="team-name">{name}</div>
-              <div className="team-role">{role}</div>
-              <div className="team-icons">
-                {socials.map(({ icon, link }, idx) => (
-                  <a
-                    href={link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    key={idx}
-                    className="teamsec-icon-box"
-                  >
-                    {icon}
-                  </a>
-                ))}
+
+
+      {loading ? (
+        <div className="loading">Loading team members...</div>
+      ) : error ? (
+        <div className="error">{error}</div>
+      ) : (
+        <div className="team-list">
+          {team.map((member) => (
+            <div className="team-card" key={member._id}>
+              <img
+                src={getImagePath(member.imageUrl)}
+                alt={member.name}
+                className="team-avatar"
+              />
+              <div className="team-info">
+                <div className="team-name">{member.name}</div>
+                <div className="team-role">{member.designation}</div>
+                {member.experience && (
+                  <div className="team-exp">
+                    Experience: {member.experience}
+                  </div>
+                )}
+                <div className="team-icons">
+                  {member.facebook && (
+                    <a
+                      href={member.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="teamsec-icon-box"
+                    >
+                      <FaFacebookF />
+                    </a>
+                  )}
+                  {member.instagram && (
+                    <a
+                      href={member.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="teamsec-icon-box"
+                    >
+                      <FaInstagram />
+                    </a>
+                  )}
+                  {member.twitter && (
+                    <a
+                      href={member.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="teamsec-icon-box"
+                    >
+                      <FaTwitter />
+                    </a>
+                  )}
+                  {member.whatsapp && (
+                    <a
+                      href={`https://wa.me/${member.whatsapp}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="teamsec-icon-box"
+                    >
+                      <FaWhatsapp />
+                    </a>
+                  )}
+                  {member.email && (
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="teamsec-icon-box"
+                    >
+                      <FaLinkedinIn />
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

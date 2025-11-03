@@ -8,8 +8,6 @@ const TeamMembers = () => {
     <div>
       <TeamSecBanner/>
       <TeamSec/>
-      
-        
     </div>
   )
 }

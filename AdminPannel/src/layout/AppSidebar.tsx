@@ -33,6 +33,15 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    icon: <TableIcon />,
+    name: "Country Manage",
+    subItems: [
+      { name: "Country", path: "/country/manage" },
+      { name: "Visa Type", path: "/country/visa-type" },
+    ],
+  },
+
+  {
     icon: <BoxCubeIcon />,
     name: "Visa Notes",
     subItems: [
@@ -84,19 +93,17 @@ const navItems: NavItem[] = [
   { icon: <PlugInIcon />, name: "Contact Management", path: "/contact/manage" },
   { icon: <BoxCubeIcon />, name: "Media Upload", path: "/media/upload" },
 
-  {
-    icon: <TableIcon />,
-    name: "Country Manage",
-    subItems: [
-      { name: "Country", path: "/country/manage" },
-      { name: "Visa Type", path: "/country/visa-type" },
-    ],
-  },
-
+  
   {
     icon: <UserCircleIcon />,
     name: "Our Successful Clients",
     path: "/clients/successful",
+  },
+
+    {
+    icon: <UserCircleIcon />,
+    name: "Director & Achievement Manage",
+    path: "/director-achievement-manage",
   },
 
   // ✅ NEW SECTION: FAQ MANAGEMENT

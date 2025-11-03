@@ -68,7 +68,6 @@
 .faq-posting-textarea:focus {
   border-color: #e94e77;
   box-shadow: 0 0 5px rgba(233, 78, 119, 0.2);
-  background: #fff;
 }
 
 .faq-posting-textarea {
@@ -121,10 +120,6 @@
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.9rem;
-}
-
-.faq-posting-row:hover {
-  background-color: #f9fafc;
 }
 
 /* ===== No Data ===== */
@@ -230,7 +225,7 @@
   .faq-posting-container {
     flex-direction: column;
     gap: 1.2rem;
-    padding: 15px;
+    padding: 0px;
   }
 
   .faq-posting-form-section,
@@ -272,7 +267,7 @@
 /* --- For Small Phones (max-width: 480px) --- */
 @media (max-width: 480px) {
   .faq-posting-container {
-    padding: 10px;
+    padding: 0px;
   }
 
   .faq-posting-title {
@@ -304,4 +299,186 @@
     font-size: 0.75rem;
     padding: 4px 8px;
   }
+}
+
+
+/*------------------ THEME VARIABLES ------------------*/
+:root[data-theme="light"] {
+  --bg: #f7f8fc;
+  --card-bg: #fff;
+  --text: #222;
+  --text-muted: #555;
+  --border: #ddd;
+  --accent: #e94e77;
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+:root[data-theme="dark"] {
+  --bg: rgb(16 24 40);
+  --card-bg: rgb(30 41 59);
+  --text: #f5f5f5;
+  --text-muted: #cbd5e1;
+  --border: #374151;
+  --accent: #e94e77;
+  --shadow: rgba(255, 255, 255, 0.05);
+}
+
+/*------------------ MAIN STYLING ------------------*/
+.faq-posting-container {
+  display: flex;
+  gap: 2rem;
+  padding: 30px;
+  background-color: var(--bg);
+  min-height: 100vh;
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.faq-posting-form-section,
+.faq-posting-list-section {
+  background: var(--card-bg);
+  padding: 25px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-posting-form-section:hover,
+.faq-posting-list-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+
+.faq-posting-title {
+  color: var(--text);
+  margin-bottom: 18px;
+  font-weight: 600;
+  font-size: 1.4rem;
+  border-left: 5px solid var(--accent);
+  padding-left: 12px;
+}
+
+.faq-posting-label {
+  display: block;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.faq-posting-input,
+.faq-posting-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 15px;
+  background: var(--bg);
+  color: var(--text);
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-posting-input:focus,
+.faq-posting-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 5px rgba(233, 78, 119, 0.2);
+}
+
+.faq-posting-btn {
+  background: linear-gradient(90deg, #e94e77, #d23c65);
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.faq-posting-btn:hover {
+  background: linear-gradient(90deg, #d23c65, #b83258);
+  transform: translateY(-2px);
+}
+
+/* Table */
+.faq-posting-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.faq-posting-table th,
+.faq-posting-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.faq-posting-table th {
+  background: rgba(233, 78, 119, 0.05);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.faq-posting-row:hover {
+  background-color: rgba(233, 78, 119, 0.05);
+}
+
+/* Action Icons */
+.faq-posting-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: transform 0.2s, opacity 0.3s;
+}
+
+.faq-posting-icon.edit { color: #2196f3; }
+.faq-posting-icon.delete { color: #e53935; }
+.faq-posting-icon.publish { color: #43a047; }
+.faq-posting-icon.unpublish { color: #ff9800; }
+
+.faq-posting-status {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.faq-posting-status.published {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.faq-posting-status.unpublished {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+/* Responsive same as before */
+
+
+/* Scrollable Right Section */
+.faq-posting-list-section {
+  flex: 2;
+  max-height: 100vh; /* keeps the section fixed height */
+  overflow-y: auto; /* enable vertical scroll inside */
+  overflow-x: hidden;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #e94e77 #f1f1f1; /* scrollbar thumb and track color */
+}
+
+/* For Chrome, Edge, and Safari */
+.faq-posting-list-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.faq-posting-list-section::-webkit-scrollbar-thumb {
+  background: #e94e77;
+  border-radius: 8px;
+}
+
+.faq-posting-list-section::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }

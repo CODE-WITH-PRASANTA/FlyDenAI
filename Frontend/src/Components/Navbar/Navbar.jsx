@@ -1,22 +1,43 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom"; // ✅ React Router
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/Logo.png";
+import BASE_URL from "../../Api"; // Example: http://localhost:5000/api
+import axios from "axios";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
   const [showNavbar, setShowNavbar] = useState(true);
+  const [contactInfo, setContactInfo] = useState(null); // ✅ Dynamic Contact State
+
   const menuRef = useRef();
   const lastScrollY = useRef(0);
 
-  // Detect scroll for Navbar only
+  // ✅ Fetch Contact Info from Backend
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/contacts`);
+        if (response.data.success && response.data.data.length > 0) {
+          // Assuming the latest contact info is the first one
+          setContactInfo(response.data.data[0]);
+        }
+      } catch (error) {
+        console.error("Error fetching contact info:", error);
+      }
+    };
+
+    fetchContactInfo();
+  }, []);
+
+  // ✅ Detect scroll for Navbar only
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY.current) {
-        setShowNavbar(false); // hide when scrolling down
+        setShowNavbar(false);
       } else {
-        setShowNavbar(true); // show when scrolling up
+        setShowNavbar(true);
       }
       lastScrollY.current = window.scrollY;
     };
@@ -24,7 +45,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when clicking outside
+  // ✅ Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -40,32 +61,36 @@ const Navbar = () => {
     setMobileDropdownOpen(mobileDropdownOpen === index ? null : index);
   };
 
-  // ✅ Updated Menu Items with proper routing
+  // ✅ Menu Items
   const menuItems = [
     { name: "Home", path: "/home" },
-    { name: "About Us", path: "/about", sub: [
-      { name: "About Us", path: "/about" },
-      { name: "Services", path: "/services" },
-      { name: "Our Team", path: "/team/member" },
-      { name: "Team Details", path: "/team/details" },
-    ]},
+    {
+      name: "About Us",
+      path: "/about",
+      sub: [
+        { name: "About Us", path: "/about" },
+        { name: "Services", path: "/services" },
+        { name: "Our Team", path: "/team/member" },
+        { name: "Team Details", path: "/team/details" },
+      ],
+    },
     {
       name: "Visa",
       path: "/visa/overview",
       sub: [
         { name: "All Visa Overview", path: "/visa/overview" },
-        { name: "Visa Enquiry’s", path: "/TouristVisa" },
         { name: "Free Visa Enquiry", path: "/FreeVisaQuotes" },
       ],
-      },
-      { 
-        name: "Country", 
-        path: "/AllCountry" 
-      },
-    { name: "Program Type", path: "/StudyAbroad", sub: [
-      { name: "Study Abroad", path: "/StudyAbroad" },
-      { name: "Intern Abroad", path: "/InternsAbroad" },
-    ]},
+    },
+    { name: "Country", path: "/AllCountry" },
+    {
+      name: "Program Type",
+      path: "/StudyAbroad",
+      sub: [
+        { name: "Study Abroad", path: "/StudyAbroad" },
+        { name: "Intern Abroad", path: "/InternsAbroad" },
+      ],
+    },
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
     { name: "Get a Quote", path: "/GetaQuotes" },
@@ -78,38 +103,72 @@ const Navbar = () => {
         <div className="topbar-container">
           <div className="topbar-content">
             <div className="topbar-left">
-              <a href="tel:9905337044" className="topbar-item">📞 <span>+91-990 533 7044</span></a>
-              <a href="mailto:infoflydenai@gmail.com" className="topbar-item">✉ <span>infoflydenai@gmail.com</span></a>
+              {/* ✅ Dynamically Display Contact Info */}
+              {contactInfo ? (
+                <>
+                  <a href={`tel:${contactInfo.phone}`} className="topbar-item">
+                    📞 <span>{contactInfo.phone}</span>
+                  </a>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="topbar-item"
+                  >
+                    ✉ <span>{contactInfo.email}</span>
+                  </a>
+                </>
+              ) : (
+                <p>Loading contact...</p>
+              )}
             </div>
+
             <div className="topbar-right">
-            <Link to="/ComingSoon" className="topbar-login">📄 Check Your Status</Link>
-              <Link to="/Apply/Now" className="topbar-cta">🚀 Apply Now</Link>
+              <Link to="/ComingSoon" className="topbar-login">
+                📄 Check Your Status
+              </Link>
+              <Link to="/Apply/Now" className="topbar-cta">
+                🚀 Apply Now
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
       {/* ===== Navbar ===== */}
-      <header className={`Nav-navbar-wrapper ${showNavbar ? "show" : "hide"}`}>
+      <header
+        className={`Nav-navbar-wrapper ${showNavbar ? "show" : "hide"}`}
+      >
         <nav className="Nav-navbar">
           <div className="Nav-container Nav-navbar-inner">
             <div className="Nav-logo-wrapper">
-              <Link to="/" className="Nav-logo"><img src={logo} alt="EduBlink" /></Link>
+              <Link to="/" className="Nav-logo">
+                <img src={logo} alt="EduBlink" />
+              </Link>
             </div>
-            <button className="Nav-toggler" onClick={() => setMobileMenuOpen(true)}>☰</button>
+            <button
+              className="Nav-toggler"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              ☰
+            </button>
 
             <ul className="Nav-menu">
               {menuItems.map((item, i) => (
                 <li className="Nav-item dropdown" key={i}>
                   {item.name === "Get a Quote" ? (
-                    <Link className="Nav-donate-btn" to={item.path}>{item.name}</Link>
+                    <Link className="Nav-donate-btn" to={item.path}>
+                      {item.name}
+                    </Link>
                   ) : (
                     <>
-                      <Link className="Nav-link" to={item.path}>{item.name}</Link>
+                      <Link className="Nav-link" to={item.path}>
+                        {item.name}
+                      </Link>
                       {item.sub && (
                         <ul className="Nav-dropdown">
                           {item.sub.map((sub, idx) => (
-                            <li key={idx}><Link to={sub.path}>{sub.name}</Link></li>
+                            <li key={idx}>
+                              <Link to={sub.path}>{sub.name}</Link>
+                            </li>
                           ))}
                         </ul>
                       )}
@@ -122,12 +181,23 @@ const Navbar = () => {
         </nav>
 
         {/* ===== Mobile Menu ===== */}
-        <div className={`Nav-mobile-menu ${mobileMenuOpen ? "open" : ""}`} ref={menuRef}>
+        <div
+          className={`Nav-mobile-menu ${mobileMenuOpen ? "open" : ""}`}
+          ref={menuRef}
+        >
           <div className="Nav-mobile-wrapper">
             <div className="Nav-mobile-top">
-              <div className="Nav-mobile-logo"><img src={logo} alt="EduBlink" /></div>
-              <button className="Nav-close" onClick={() => setMobileMenuOpen(false)}>✕</button>
+              <div className="Nav-mobile-logo">
+                <img src={logo} alt="EduBlink" />
+              </div>
+              <button
+                className="Nav-close"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                ✕
+              </button>
             </div>
+
             <ul className="Nav-mobile-list">
               {menuItems.map((item, i) => (
                 <li key={i}>
@@ -168,7 +238,6 @@ const Navbar = () => {
                       </ul>
                     </>
                   ) : (
-                    // ✅ Fix: Direct route for normal links (like Contact Us, Blog, Home, etc.)
                     <Link
                       to={item.path}
                       className="mobile-link"
@@ -180,7 +249,6 @@ const Navbar = () => {
                 </li>
               ))}
             </ul>
-
           </div>
         </div>
       </header>

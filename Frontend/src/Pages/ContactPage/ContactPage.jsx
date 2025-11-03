@@ -9,7 +9,7 @@ const ContactPage = () => {
     <div>
       <ContactSecBanner />
       <ContactSection/>
-      <Branches/>
+      {/* <Branches/> */}
     </div>
   )
 }

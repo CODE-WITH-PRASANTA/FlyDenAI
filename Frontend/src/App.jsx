@@ -52,8 +52,9 @@ function App() {
           <Route path="/team/details" element={<TeamDetails />} />
           <Route path="/team/member" element={<TeamMembers />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/blog" element={<BlogSec />} />
-          <Route path="/blog/details" element={<BlogDetails />} />
+         <Route path="/blog" element={<BlogSec />} />
+          <Route path="/blog/details/:id" element={<BlogDetails />} />
+
           <Route path="/visa/overview" element={<AllVisaOverView />} />
           <Route path="/AllCountry" element={<AllCountry />} />
           <Route path="/GetaQuotes" element={<GetAQuotes />} />
@@ -80,11 +81,7 @@ function App() {
 
 
         <Route path="/ExecutiveTeam" element={<ExecutiveTeam />} />
-        <Route path="/Visa/Info" element={<VisaInfo />} />
-
-
-
-         
+        <Route path="/visa-info/:id" element={<VisaInfo />} /> {/* ✅ Dynamic route */}
 
         </Routes>
         <Footer />

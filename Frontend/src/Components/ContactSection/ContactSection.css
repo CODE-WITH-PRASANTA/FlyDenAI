@@ -237,3 +237,130 @@
     font-size: 14px;
   }
 }
+
+
+/* === Enhanced Contact Info Styling === */
+.enhanced-box {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+  padding: 28px 20px;
+}
+
+.enhanced-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 28px rgba(0, 119, 255, 0.25);
+}
+
+.contact-highlight {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0077ff;
+}
+
+.contact-subtext {
+  font-size: 14px;
+  color: #444;
+}
+
+/* Opening Hours Table Style */
+.opening-hours {
+  margin-top: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e0e6f7;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f9fbff;
+  border-bottom: 1px solid #eaeaea;
+  font-size: 14.5px;
+  color: #003366;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.hours-row:nth-child(even) {
+  background: #f1f7ff;
+}
+
+.day-label {
+  font-weight: 600;
+}
+
+.time-label {
+  color: #0077ff;
+  font-weight: 600;
+}
+
+/* Address List */
+.address-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+
+.address-list li {
+  text-align: start;
+  font-size: 14.5px;
+  color: #003366;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.address-list li::before {
+  content: "📍";
+  position: absolute;
+  left: 0;
+}
+
+/* Social Links Modern Look */
+.social-links-modern {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-links-modern a {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Social brand colors */
+.social-links-modern .fb { background: #1877f2; }
+.social-links-modern .tw { background: #1da1f2; }
+.social-links-modern .ig { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+.social-links-modern .ln { background: #0077b5; }
+
+.social-links-modern a:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .opening-hours {
+    font-size: 13.5px;
+  }
+  .contact-highlight {
+    font-size: 15px;
+  }
+  .social-links-modern a {
+    font-size: 13px;
+    padding: 7px 10px;
+  }
+}

@@ -6,59 +6,65 @@
   font-family: "Poppins", sans-serif;
 }
 
+/* ===== Responsive Blog Grid ===== */
 .bloggrid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2.8rem;
+  grid-template-columns: repeat(4, 1fr); /* 4 blogs per row */
+  gap: 2.2rem;
+  justify-items: center;
 }
 
+@media (max-width: 1200px) {
+  .bloggrid-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .bloggrid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .bloggrid-container {
+    grid-template-columns: 1fr;
+  }
+}
 /* ===== Blog Card ===== */
 .bloggrid-card {
-  background: #fff;
-  border-radius: 18px;
+  width: 100%;
+  max-width: 350px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1.5px solid rgba(233, 78, 119, 0.3); /* 🌸 subtle pink accent border */
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.5s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* subtle shadow */
+  transition: all 0.3s ease;
   position: relative;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
-.bloggrid-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 25px 60px rgba(233, 78, 119, 0.25);
-}
 
 /* ===== Blog Image ===== */
 .bloggrid-image {
-  height: 250px;
+  width: 100%;
+  height: 220px;
   background-size: cover;
   background-position: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.6s ease;
+  border-bottom: 1px solid #f1f1f1; /* separates image from content */
 }
 
-.bloggrid-card:hover .bloggrid-image {
-  transform: scale(1.08);
-}
-
+/* ===== Overlay & Date ===== */
 .bloggrid-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(0, 0, 0, 0.5) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  background: rgba(0, 0, 0, 0.15);
 }
 
-.bloggrid-card:hover .bloggrid-overlay {
-  opacity: 1;
-}
-
-/* ===== Date Tag ===== */
 .bloggrid-date {
   position: absolute;
   top: 15px;
@@ -66,58 +72,56 @@
   background: #e94e77;
   color: #fff;
   text-align: center;
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-weight: 700;
+  padding: 7px 11px;
+  border-radius: 8px;
+  font-weight: 600;
   z-index: 2;
-  box-shadow: 0 4px 15px rgba(233, 78, 119, 0.4);
+  font-size: 13px;
+  box-shadow: 0 3px 8px rgba(233, 78, 119, 0.4);
 }
 
 .bloggrid-day {
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1;
 }
 
 .bloggrid-month {
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
 }
 
 /* ===== Blog Content ===== */
 .bloggrid-content {
-  padding: 24px 22px 30px;
-  position: relative;
-  z-index: 3;
-  transition: all 0.3s ease;
+  flex: 1;
+  padding: 22px 20px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .bloggrid-meta {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  color: #e94e77;
-  margin-bottom: 12px;
+  font-size: 13px;
+  color: #999;
+  margin-bottom: 10px;
   font-weight: 500;
 }
 
 .bloggrid-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #1a1a1a;
-  line-height: 1.5;
+  line-height: 1.4;
   margin-bottom: 10px;
-  transition: color 0.3s ease;
-}
-
-.bloggrid-card:hover .bloggrid-title {
-  color: #e94e77;
 }
 
 .bloggrid-desc {
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
   margin-bottom: 20px;
-  line-height: 1.7;
+  line-height: 1.6;
+  flex-grow: 1;
 }
 
 /* ===== Read More Button ===== */
@@ -129,135 +133,56 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  transition: all 0.3s ease;
 }
 
-.bloggrid-readmore span {
-  transition: transform 0.3s ease;
+/* ===== Empty Message ===== */
+.bloggrid-empty {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  font-weight: 500;
+  grid-column: span 4;
 }
 
-.bloggrid-readmore:hover span {
-  transform: translateX(6px);
-}
-
-/* ===== Hover Glow Effect ===== */
-.bloggrid-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  background: radial-gradient(
-    circle at top left,
-    rgba(233, 78, 119, 0.12),
-    transparent 60%
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.bloggrid-card:hover::after {
-  opacity: 1;
-}
-
-/* ===== Animation Glow Border ===== */
+/* ===== Professional Touch: Subtle Hover Accent (optional, not motion) ===== */
 .bloggrid-card:hover {
-  border: 1.5px solid rgba(233, 78, 119, 0.3);
+  border-color: #e94e77; /* subtle pink accent border on hover */
+  box-shadow: 0 6px 30px rgba(233, 78, 119, 0.15);
 }
 
-/* ===== Responsive Design ===== */
 
-/* ---------- For Large Tablets / Small Laptops ---------- */
-@media (max-width: 1200px) {
+/* ===== Responsive Typography & Layout Fixes ===== */
+
+/* Medium Devices (max-width: 900px) */
+@media (max-width: 900px) {
   .bloggrid-section {
-    padding: 4rem 3rem;
-  }
-  .bloggrid-container {
-    gap: 2rem;
-  }
-  .bloggrid-title {
-    font-size: 19px;
-  }
-  .bloggrid-desc {
-    font-size: 14.5px;
+    padding: 4rem 2rem;
   }
 }
 
-/* ---------- For Tablets ---------- */
-@media (max-width: 992px) {
-  .bloggrid-section {
-    padding: 3.5rem 2rem;
-  }
-  .bloggrid-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-  .bloggrid-title {
-    font-size: 18px;
-  }
-  .bloggrid-desc {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-  .bloggrid-meta {
-    font-size: 13px;
-  }
-}
-
-/* ---------- For Mobile (Portrait) ---------- */
-@media (max-width: 768px) {
+/* Small Devices (max-width: 600px) */
+@media (max-width: 600px) {
   .bloggrid-section {
     padding: 3rem 1.5rem;
   }
-  .bloggrid-container {
-    grid-template-columns: 1fr;
-    gap: 1.8rem;
-  }
+
   .bloggrid-card {
-    border-radius: 14px;
+    max-width: 100%;
   }
-  .bloggrid-image {
-    height: 220px;
-  }
-  .bloggrid-content {
-    padding: 20px 18px 25px;
-  }
-  .bloggrid-title {
-    font-size: 17px;
-    line-height: 1.4;
-  }
-  .bloggrid-desc {
-    font-size: 13.5px;
-  }
-  .bloggrid-readmore {
-    font-size: 14px;
+  .bloggrid-date {
+    padding: 5px 9px;
   }
 }
 
-/* ---------- For Small Mobile Screens ---------- */
-@media (max-width: 480px) {
+/* Extra Small Devices (max-width: 400px) */
+@media (max-width: 400px) {
   .bloggrid-section {
     padding: 2.5rem 1rem;
   }
-  .bloggrid-container {
-    gap: 1.5rem;
-  }
-  .bloggrid-title {
-    font-size: 16px;
-  }
-  .bloggrid-desc {
-    font-size: 13px;
-  }
+
   .bloggrid-meta {
+    flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-  }
-  .bloggrid-image {
-    height: 200px;
-  }
-  .bloggrid-day {
-    font-size: 20px;
-  }
-  .bloggrid-month {
-    font-size: 11px;
   }
 }

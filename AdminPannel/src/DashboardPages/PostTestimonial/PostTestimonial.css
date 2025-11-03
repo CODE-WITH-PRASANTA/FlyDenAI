@@ -357,3 +357,189 @@
     font-size: 0.9rem;
   }
 }
+
+
+/*------------------ THEME VARIABLES ------------------*/
+:root {
+  --bg-light: #fff;
+  --bg-aside-light: #fafafa;
+  --bg-form-light: #fff;
+  --text-light: #333;
+  --text-muted-light: #777;
+  --border-light: #ddd;
+  --accent: #4f46e5;
+  --success: #10b981;
+  --danger: #ef4444;
+  --info: #3b82f6;
+
+  --bg-dark: rgb(16 24 40);
+  --bg-aside-dark: rgb(30 41 59);
+  --bg-form-dark: rgb(30 41 59);
+  --text-dark: #f5f5f5;
+  --text-muted-dark: #cbd5e1;
+  --border-dark: #374151;
+}
+
+/*------------------ CONTAINER ------------------*/
+.postTestimonial-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.postTestimonial-container.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+.postTestimonial-container.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+/*------------------ LEFT PANEL ------------------*/
+.postTestimonial-left {
+  flex: 1;
+  background: var(--bg-form-light);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.postTestimonial-container.dark .postTestimonial-left {
+  background: var(--bg-form-dark);
+  border-color: var(--border-dark);
+}
+
+/*------------------ RIGHT PANEL ------------------*/
+.postTestimonial-right {
+  flex: 2;
+  background: var(--bg-aside-light);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+
+/*------------------ FORM ELEMENTS ------------------*/
+.postTestimonial-input,
+.postTestimonial-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.postTestimonial-container.dark .postTestimonial-input,
+.postTestimonial-container.dark .postTestimonial-textarea {
+  background: var(--bg-form-dark);
+  border-color: var(--border-dark);
+  color: var(--text-dark);
+}
+
+/*------------------ TABLE ------------------*/
+.postTestimonial-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.postTestimonial-table th,
+.postTestimonial-table td {
+  border: 1px solid var(--border-light);
+  padding: 10px;
+}
+
+/*------------------ STATUS & BUTTONS ------------------*/
+.postTestimonial-status.active {
+  color: var(--success);
+}
+
+.postTestimonial-status.inactive {
+  color: var(--danger);
+}
+
+.postTestimonial-btn.publish {
+  background: var(--success);
+  color: #fff;
+}
+
+.postTestimonial-btn.unpublish {
+  background: var(--info);
+  color: #fff;
+}
+
+.postTestimonial-btn.delete {
+  background: var(--danger);
+  color: #fff;
+}
+
+/*------------------ THEME TOGGLE ------------------*/
+.theme-toggle {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.theme-toggle-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+/*------------------ TITLES & LABELS ------------------*/
+.postTestimonial-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--text-light);
+  transition: color 0.3s ease;
+}
+
+.postTestimonial-label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--text-muted-light);
+  transition: color 0.3s ease;
+}
+
+.postTestimonial-container.dark .postTestimonial-title {
+  color: var(--text-dark);
+}
+
+.postTestimonial-container.dark .postTestimonial-label {
+  color: var(--text-muted-dark);
+}
+
+/*------------------ TABLE HEADINGS ------------------*/
+.postTestimonial-table th {
+  background: var(--bg-aside-light);
+  color: var(--text-light);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/*------------------ FORM INPUT PLACEHOLDER ------------------*/
+.postTestimonial-input::placeholder,
+.postTestimonial-textarea::placeholder {
+  color: var(--text-muted-light);
+  opacity: 0.8;
+  transition: color 0.3s ease;
+}
+
+.postTestimonial-container.dark .postTestimonial-input::placeholder,
+.postTestimonial-container.dark .postTestimonial-textarea::placeholder {
+  color: var(--text-muted-dark);
+  opacity: 0.8;
+}

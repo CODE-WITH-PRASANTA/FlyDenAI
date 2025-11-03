@@ -331,3 +331,160 @@
     height: 160px;
   }
 }
+
+/* =====================================================
+   THEME VARIABLES
+===================================================== */
+:root {
+  --bg-light: #ffffff;
+  --bg-dark: #101828;
+
+  --bg-card-light: #f9fafb;
+  --bg-card-dark: #1f2937;
+
+  --text-light: #1e293b;
+  --text-dark: #f9fafb;
+
+  --muted-light: #6b7280;
+  --muted-dark: #cbd5e1;
+
+  --border-light: #e5e7eb;
+  --border-dark: #374151;
+
+  --accent: #4f46e5;
+  --success: #10b981;
+  --danger: #ef4444;
+  --info: #3b82f6;
+}
+
+/* =======================================================
+   🌙 THEME SWITCH MANAGEMENT
+======================================================= */
+
+/* Default (Light Mode) */
+.Advertizing-Banner-container.light {
+  background-color: var(--bg-light);
+  color: var(--text-light);
+}
+
+.Advertizing-Banner-container.light .Advertizing-Banner-left,
+.Advertizing-Banner-container.light .Advertizing-Banner-right {
+  background: var(--bg-card-light);
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+.Advertizing-Banner-container.light input,
+.Advertizing-Banner-container.light textarea {
+  background: #fff;
+  color: var(--text-light);
+  border-color: var(--border-light);
+}
+
+/* Dark Mode */
+.Advertizing-Banner-container.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-left,
+.Advertizing-Banner-container.dark .Advertizing-Banner-right {
+  background: var(--bg-card-dark);
+  color: var(--text-dark);
+  border: 1px solid var(--border-dark);
+}
+
+.Advertizing-Banner-container.dark input,
+.Advertizing-Banner-container.dark textarea {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-color: var(--border-dark);
+}
+
+.Advertizing-Banner-container.dark input::placeholder,
+.Advertizing-Banner-container.dark textarea::placeholder {
+  color: #94a3b8;
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-card {
+  background: #1f2937;
+  color: #f9fafb;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-upload-label {
+  border-color: #e94e77;
+  color: #e94e77;
+  background: rgba(233, 78, 119, 0.1);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-post-btn {
+  box-shadow: 0 0 10px rgba(233, 78, 119, 0.4);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-empty {
+  color: var(--muted-dark);
+}
+
+/* =========================================
+   🎨 Theme Styling for Headings & Labels
+========================================= */
+
+/* Light Mode */
+.Advertizing-Banner-container.light .Advertizing-Banner-heading {
+  color: var(--text-light);
+}
+
+.Advertizing-Banner-container.light .Advertizing-Banner-field label {
+  color: var(--text-light);
+}
+
+/* Dark Mode */
+.Advertizing-Banner-container.dark .Advertizing-Banner-heading {
+  color: var(--text-dark);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-field label {
+  color: var(--muted-dark);
+}
+
+/* =========================================
+   🎨 Theme Styling for Headings, Labels, and Card Content
+========================================= */
+
+/* 🌞 Light Mode */
+.Advertizing-Banner-container.light .Advertizing-Banner-heading {
+  color: var(--text-light);
+}
+
+.Advertizing-Banner-container.light .Advertizing-Banner-field label {
+  color: var(--text-light);
+}
+
+.Advertizing-Banner-container.light .Advertizing-Banner-card-content h3 {
+  color: var(--text-light);
+}
+
+.Advertizing-Banner-container.light .Advertizing-Banner-card-content p,
+.Advertizing-Banner-container.light .Advertizing-Banner-card-content ul {
+  color: var(--muted-light);
+}
+
+/* 🌙 Dark Mode */
+.Advertizing-Banner-container.dark .Advertizing-Banner-heading {
+  color: var(--text-dark);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-field label {
+  color: var(--muted-dark);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-card-content h3 {
+  color: var(--text-dark);
+}
+
+.Advertizing-Banner-container.dark .Advertizing-Banner-card-content p,
+.Advertizing-Banner-container.dark .Advertizing-Banner-card-content ul {
+  color: var(--muted-dark);
+}
+

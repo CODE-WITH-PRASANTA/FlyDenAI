@@ -1,1178 +1,960 @@
-/* =========================================================
-   VISA INFO DETAILS PAGE STYLESHEET
-   ========================================================= */
-
-/* ================= BASE CONTAINER ================= */
-.visa-info-details {
+/* ==== GLOBAL SECTION ==== */
+.visa-info-section {
   padding: 60px 0;
-  background-color: #fff;
+  background: #f7f9fc;
   font-family: "Poppins", sans-serif;
 }
 
-.visa-info-details-container {
+.visa-info-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 40px;
-  max-width: 1300px;
-  margin: 0 auto;
+  max-width: 1500px;
+  margin: auto;
   padding: 0 20px;
 }
 
-/* =========================================================
-   LEFT SIDE MAIN DETAILS
-   ========================================================= */
-.visa-info-details-left {
+/* ==== LEFT SECTION ==== */
+.visa-info-left {
   background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 30px;
 }
 
-/* ----- Author Section ----- */
-.visa-info-details-author {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 20px;
-}
-
-.visa-info-details-author-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.visa-info-details-author-category {
-  font-size: 14px;
-  color: #e63946;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.visa-info-details-dot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #e63946;
-  margin-right: 6px;
-}
-
-.visa-info-details-author-name {
-  color: #666;
-  font-size: 14px;
-}
-
-/* ----- Title + Image + Text ----- */
-.visa-info-details-title {
-  font-size: 30px;
-  color: #001f3f;
+.visa-info-title {
+  font-size: 32px;
   font-weight: 700;
-  margin-bottom: 25px;
-  line-height: 1.3;
-}
-
-.visa-info-details-image-wrapper {
+  color: #1c1c1e;
   margin-bottom: 20px;
 }
 
-.visa-info-details-image {
+.visa-info-image {
   width: 100%;
+  height: 380px;
+  object-fit: cover;
   border-radius: 10px;
-  object-fit: cover;
+  margin-bottom: 25px;
 }
 
-.visa-info-details-text {
+.visa-info-description {
   font-size: 16px;
   line-height: 1.8;
   color: #444;
-  margin-top: 10px;
 }
 
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
-.visa-info-details-sidebar h3 {
-  color: #001f3f;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  border-bottom: 2px solid #001f3f;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-/* ----- Search Box ----- */
-.visa-info-details-search {
-  margin-bottom: 40px;
-}
-
-.visa-info-details-search-box {
-  position: relative;
-}
-
-.visa-info-details-search-box input {
-  width: 100%;
-  padding: 14px 42px 14px 16px;
-  font-size: 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
-
-.visa-info-details-search-box input:focus {
-  border-color: #001f3f;
-}
-
-.visa-info-details-search-icon {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #777;
-}
-
-/* ----- Popular Posts ----- */
-.visa-info-details-popular {
-  margin-bottom: 45px;
-  position: relative;
-}
-
-.visa-info-details-popular-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-
-.visa-info-details-popular-controls button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #444;
-  padding: 4px;
-  transition: color 0.3s;
-}
-
-.visa-info-details-popular-controls button:hover {
-  color: #001f3f;
-}
-
-.visa-info-details-popular-slider {
-  position: relative;
-  overflow: hidden;
+/* ==== OVERVIEW QUOTE ==== */
+.visa-info-overview {
+  background: #fff8f8;
+  border-left: 5px solid #e94e77;
+  padding: 25px;
+  margin: 25px 0;
   border-radius: 8px;
-}
-
-.visa-info-details-popular-card {
   position: relative;
-  border-radius: 8px;
-  overflow: hidden;
 }
 
-.visa-info-details-popular-img {
-  width: 100%;
-  height: 230px;
-  object-fit: cover;
-  display: block;
-}
-
-.visa-info-details-popular-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  padding: 18px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  color: #fff;
-  width: 100%;
-}
-
-.visa-info-details-popular-category {
-  color: #ff5a5f;
-  font-size: 13px;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.visa-info-details-popular-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.visa-info-details-popular-icons {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.visa-info-details-icon-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: #fff;
-}
-
-/* ----- Categories ----- */
-.visa-info-details-categories {
-  margin-bottom: 45px;
-}
-
-.visa-info-details-categories ul {
-  list-style: none;
-  padding: 0;
-}
-
-.visa-info-details-categories li {
-  display: flex;
-  justify-content: space-between;
-  padding: 12px 18px;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  margin-bottom: 10px;
-  color: #333;
-  transition: all 0.3s ease;
-  background: #fafafa;
-}
-
-.visa-info-details-categories li:hover {
-  background: #001f3f;
-  color: #fff;
-}
-
-/* ----- Gallery ----- */
-.visa-info-details-gallery {
-  margin-bottom: 20px;
-}
-
-.visa-info-details-gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.visa-info-details-gallery-grid img {
-  width: 100%;
-  height: 95px;
-  border-radius: 6px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.visa-info-details-gallery-grid img:hover {
-  transform: scale(1.06);
-}
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-.fade-in {
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* =========================================================
-   LEFT SIDE CONTENT SECTIONS
-   ========================================================= */
-
-/* ----- Points Section ----- */
-.visa-info-details-points {
-  margin-top: 40px;
-}
-
-.visa-info-details-point {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 28px;
-}
-
-.visa-info-details-bullet {
-  width: 14px;
-  height: 14px;
-  background: #e63946;
-  border-radius: 50%;
-  margin-top: 8px;
-  flex-shrink: 0;
-}
-
-.visa-info-details-point h4 {
-  color: #001f3f;
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.visa-info-details-point p {
-  font-size: 15px;
-  color: #444;
-  line-height: 1.7;
-}
-
-.visa-info-details-point ul {
-  margin-top: 12px;
-  padding-left: 24px;
-}
-
-.visa-info-details-point ul li {
-  list-style: none;
-  position: relative;
-  color: #555;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-
-.visa-info-details-point ul li::before {
-  content: "○";
-  position: absolute;
-  left: -18px;
-  top: 0;
-  color: #e63946;
+.visa-info-quote-top,
+.visa-info-quote-bottom {
+  font-size: 30px;
+  color: #e94e77;
   font-weight: bold;
 }
 
-/* ----- Requirements Section ----- */
-.visa-info-details-req {
-  margin-top: 40px;
-}
-
-.visa-info-details-req h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #001f3f;
-  margin-bottom: 16px;
-}
-
-.visa-info-details-req p {
-  color: #444;
-  line-height: 1.8;
-  font-size: 15px;
-  margin-bottom: 16px;
-}
-
-/* =========================================================
-   QUOTE + TAG + SHARE SECTION
-   ========================================================= */
-.visa-info-quote-section {
-  margin-top: 50px;
-  color: #1e293b;
-  font-family: "Poppins", sans-serif;
-}
-
-/* ----- Quote Box ----- */
-.quote-box {
-  position: relative;
-  border: 2px solid #ef4444;
-  padding: 40px 30px;
-  background-color: #fff;
-  text-align: center;
-  margin-bottom: 40px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-}
-
-.quote-icon-left,
-.quote-icon-right {
-  position: absolute;
-  font-size: 40px;
-  color: #ef4444;
-  background: #fff;
-  padding: 0 5px;
-}
-
-.quote-icon-left {
-  top: -15px;
-  left: 15px;
-}
-
-.quote-icon-right {
-  bottom: -25px;
-  right: 20px;
-}
-
-.quote-text {
-  font-size: 22px;
+.visa-info-overview-text {
+  font-size: 17px;
+  color: #111;
   font-weight: 500;
-  color: #0f172a;
-  line-height: 1.5;
-  margin-bottom: 15px;
+  margin: 10px 0;
 }
 
-.quote-author {
-  font-size: 18px;
-  font-weight: 600;
-  color: #ef4444;
+.visa-info-overview-author {
+  text-align: right;
+  color: #666;
+  font-style: italic;
+}
+/* ==== CONSULTANT SECTION ==== */
+.consultant-section {
+  padding: 10px;
+  border-radius: 12px;
 }
 
-/* ----- Quote Description ----- */
-/* ============================= */
-/* QUOTE BOX DESIGN (exact look) */
-/* ============================= */
 
-.visa-info-quote-box {
+.consultant-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e94e77;
+  margin-bottom: 25px;
+  text-transform: uppercase;
   position: relative;
-  background: #faf9f9;
-  padding: 60px 40px;
-  margin: 60px 0;
-  border: 2px solid #e63946;
-  border-left: none;
-  border-right: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.visa-info-quote-content {
-  background: #f8f8f8;
-  padding: 60px 40px;
-  text-align: center;
-  width: 90%;
-  position: relative;
-  border: 2px solid #e63946;
-}
-
-/* Top quote and bottom quote */
-.quote-mark {
-  position: absolute;
-  font-size: 38px;
-  color: #e63946;
-  font-weight: bold;
-}
-
-.quote-top {
-  top: -28px;
-  left: 30px;
-}
-
-.quote-bottom {
-  bottom: -28px;
-  right: 30px;
-  transform: rotate(180deg);
-}
-
-/* Quote Text */
-.visa-info-quote-text {
-  font-size: 22px;
-  line-height: 1.6;
-  color: #0b2239;
-  font-weight: 600;
-  margin-bottom: 18px;
-}
-
-/* Author Name */
-.visa-info-quote-author {
-  color: #e63946;
-  font-weight: 700;
-  font-size: 18px;
-  margin-top: 5px;
-}
-
-/* Decorative border lines (open corner style) */
-.visa-info-quote-content::before,
-.visa-info-quote-content::after {
-  content: "";
-  position: absolute;
-  height: 2px;
-  width: 60px;
-  background-color: #e63946;
-}
-
-.visa-info-quote-content::before {
-  top: -2px;
-  left: 0;
-}
-
-.visa-info-quote-content::after {
-  bottom: -2px;
-  right: 0;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .visa-info-quote-content {
-    padding: 40px 20px;
-  }
-
-  .visa-info-quote-text {
-    font-size: 18px;
-  }
-
-  .quote-top,
-  .quote-bottom {
-    font-size: 30px;
-  }
-}
-
-/* ----- Tags + Share Bottom Section ----- */
-.bottom-section {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.tags h4,
-.share h4 {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 12px;
-}
-
-.tag-list {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.tag-list span {
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  padding: 10px 18px;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #1f2937;
-  transition: all 0.3s ease;
-}
-
-.tag-list span:hover {
-  background-color: #ef4444;
-  color: #fff;
-}
-
-.social-icons {
-  display: flex;
-  gap: 12px;
-}
-
-.social-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 4px;
-  color: #fff;
-  font-size: 16px;
-}
-
-.social-icons a:nth-child(1) {
-  background-color: #3b5998;
-}
-.social-icons a:nth-child(2) {
-  background-color: #1da1f2;
-}
-.social-icons a:nth-child(3) {
-  background-color: #1ab7ea;
-}
-.social-icons a:nth-child(4) {
-  background-color: #ff0000;
-}
-
-/* =========================================================
-   TAGS + SHARE BLOCK
-   ========================================================= */
-.visa-info-tags-share {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  background: #f9fafb;
-  padding: 22px 26px;
-  border-radius: 8px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-  gap: 20px;
-  border: 1px solid #eee;
-}
-
-.visa-info-tags-share h4 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #001f3f;
-  margin-bottom: 10px;
   letter-spacing: 0.5px;
 }
 
-.tags-section {
-  flex: 1;
+.consultant-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: #e94e77;
+  border-radius: 3px;
 }
 
-.tags-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.tags-list span {
-  background: #e6f0ff;
-  color: #001f3f;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.tags-list span:hover {
-  background: #001f3f;
-  color: #fff;
-}
-
-.share-section {
-  flex: 1;
-  text-align: right;
-}
-
-.share-icons {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-}
-
-.share-icons a {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #001f3f;
+/* ==== CARD LAYOUT ==== */
+.consultant-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 15px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 25px;
+  gap: 20px;
   transition: all 0.3s ease;
 }
 
-.share-icons a:hover {
-  background: #e63946;
-  transform: translateY(-2px);
+.consultant-card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
-/* =========================================================
-   AUTHOR SECTION
-   ========================================================= */
-.author-section {
-  margin-top: 60px;
+/* ==== IMAGE ==== */
+.consultant-image-wrapper {
+  flex-shrink: 0;
+  position: relative;
 }
 
-.author-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #0b0f19;
-  margin-bottom: 30px;
-}
-
-.author-card {
-  display: flex;
-  align-items: center;
-  background: #fff;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
-
-.author-avatar {
+.consultant-avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 25px;
+  border: 4px solid #e94e77;
+  transition: 0.4s ease;
 }
 
-.author-details {
+.consultant-card:hover .consultant-avatar {
+  transform: scale(1.05);
+}
+
+/* ==== INFO ==== */
+.consultant-info {
   flex: 1;
 }
 
-.author-name {
-  font-size: 20px;
+.consultant-name {
+  font-size: 22px;
   font-weight: 600;
-  color: #111827;
+  color: #1c1c1e;
   margin-bottom: 10px;
 }
 
-.author-bio {
-  color: #4b5563;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  font-size: 15px;
-}
-
-.author-social {
-  display: flex;
-  gap: 18px;
-}
-
-.author-social a {
-  color: #6b7280;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.author-social a:hover {
-  color: #dc2626;
-}
-
-/* =========================================================
-   COMMENTS SECTION
-   ========================================================= */
-.comments-section {
-  margin-top: 60px;
-}
-
-.comments-title {
-  font-size: 26px;
-  font-weight: 700;
-  color: #0b2239;
-  margin-bottom: 25px;
-}
-
-.comment-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-  margin-bottom: 30px;
-}
-
-.comment-avatar {
-  width: 70px;
-  height: 70px;
-  border-radius: 4px;
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.comment-content {
-  flex: 1;
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.comment-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0b2239;
-  margin: 0;
-}
-
-.comment-date {
-  font-size: 13px;
-  font-weight: 600;
-  color: #ef4444;
-  letter-spacing: 0.3px;
-}
-
-.comment-text {
+.consultant-about {
   font-size: 15px;
   color: #555;
   line-height: 1.6;
-  margin: 0 0 10px;
+  margin-bottom: 18px;
 }
 
-.comment-reply {
-  background: none;
-  border: none;
-  color: #ef4444;
-  font-weight: 700;
-  cursor: pointer;
-  font-size: 14px;
-  letter-spacing: 0.4px;
+/* ==== SOCIAL ICONS ==== */
+.consultant-social {
+  display: flex;
+  gap: 12px;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  background: #f1f1f1;
+  color: #e94e77;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.comment-reply span {
-  font-size: 18px;
-  line-height: 0;
+.social-link:hover {
+  background: #e94e77;
+  color: #fff;
+  transform: scale(1.1);
 }
 
-.comment-divider {
-  border: none;
-  border-top: 1px solid #e4e4e4;
-  margin: 20px 0;
+/* Specific brand colors (optional) */
+.social-link.facebook:hover {
+  background: #3b5998;
 }
 
-/* =========================================================
-   LEAVE COMMENT SECTION
-   ========================================================= */
-.leave-comment {
-  background: #f9f9f9;
-  padding: 50px;
-  border-radius: 6px;
-  margin-top: 60px;
+.social-link.twitter:hover {
+  background: #1da1f2;
 }
 
-.leave-comment-title {
-  font-size: 26px;
-  font-weight: 700;
-  color: #0b2239;
-  margin-bottom: 10px;
+.social-link.linkedin:hover {
+  background: #0077b5;
+}
+/* ==== SIDEBAR ==== */
+.visa-info-sidebar h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-.leave-comment-text {
-  font-size: 15px;
-  color: #6b7280;
+.visa-info-search-box {
+  position: relative;
   margin-bottom: 30px;
 }
 
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.comment-form-row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.comment-form-row input {
-  flex: 1;
-  padding: 14px 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
-  font-size: 15px;
-  color: #111827;
-  background: #fff;
-}
-
-.comment-form textarea {
+.visa-info-search-box input {
   width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 4px;
+  padding: 14px 42px 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   font-size: 15px;
-  color: #111827;
-  background: #fff;
-  resize: none;
-  min-height: 140px;
 }
 
-.comment-form textarea:focus,
-.comment-form input:focus {
-  outline: none;
-  border-color: #ef4444;
+.visa-info-search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
 }
 
-.comment-form button {
-  align-self: flex-start;
-  background-color: #ef4444;
+/* ==== POPULAR ==== */
+.visa-info-popular {
+  margin-bottom: 40px;
+}
+
+.visa-info-popular-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.visa-info-popular-controls button {
+  background: #e94e77;
   color: #fff;
-  font-weight: 600;
-  padding: 12px 28px;
-  border-radius: 4px;
   border: none;
-  font-size: 15px;
+  border-radius: 4px;
+  padding: 6px 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  margin-left: 6px;
 }
 
-.comment-form button:hover {
-  background-color: #dc2626;
-  transform: translateY(-2px);
-}
-
-
-
-/* =========================================================
-   POPULAR TAGS SECTION
-   ========================================================= */
-.visa-info-details-tags {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  padding: 28px 26px;
+.visa-info-popular-card {
+  position: relative;
+  overflow: hidden;
   border-radius: 8px;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
-.visa-info-details-tags h3 {
-  font-size: 20px;
+.visa-info-popular-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+
+.visa-info-popular-overlay {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: #fff;
+  padding: 15px;
+  width: 100%;
+}
+/* ==== VISA CATEGORIES SECTION ==== */
+.categories-section {
+  margin-top: 50px;
+  padding: 25px;
+  background: linear-gradient(145deg, #ffffff, #fafafa);
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.categories-section:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ==== TITLE ==== */
+.categories-title {
+  font-size: 22px;
   font-weight: 700;
-  color: #111827;
-  margin-bottom: 18px;
+  color: #e94e77;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   position: relative;
 }
 
-.visa-info-details-tags h3::after {
+.categories-title::after {
   content: "";
   position: absolute;
-  bottom: -6px;
+  bottom: -8px;
   left: 0;
-  width: 40px;
+  width: 60px;
   height: 3px;
-  background: #ef4444;
-  border-radius: 2px;
+  border-radius: 3px;
+  background: #e94e77;
 }
 
-.visa-info-details-tags-list {
+/* ==== CATEGORY LIST ==== */
+.categories-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.visa-info-details-tags-list span {
-  background-color: #f3f4f6;
-  color: #111827;
-  font-size: 14px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
   font-weight: 500;
-  padding: 8px 14px;
-  border-radius: 6px;
+  color: #333;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.visa-info-details-tags-list span:hover {
-  background-color: #ef4444;
+.category-item:hover {
+  background: linear-gradient(135deg, #e94e77, #ff678e);
   color: #fff;
-  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(233, 78, 119, 0.3);
+  transform: translateX(5px);
 }
 
-/* =========================================================
-   SUBSCRIBE US SECTION
-   ========================================================= */
-.visa-info-details-subscribe {
-  background-color: #fef2f2;
-  border: 1px solid #fee2e2;
+/* Small dot before name */
+.category-dot {
+  width: 10px;
+  height: 10px;
+  background: #e94e77;
+  border-radius: 50%;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.category-item:hover .category-dot {
+  background: #fff;
+  transform: scale(1.2);
+}
+
+/* Category name */
+.category-name {
+  flex: 1;
+}
+
+/* Active state (for later use if needed) */
+.category-item.active {
+  background: linear-gradient(135deg, #e94e77, #ff678e);
+  color: #fff;
+  box-shadow: 0 5px 12px rgba(233, 78, 119, 0.3);
+}
+/* ==== ENQUIRY FORM ==== */
+.visa-info-enquiry {
+  background: #fff;
+  padding: 20px;
   border-radius: 10px;
-  padding: 30px 26px;
-  margin-top: 40px;
-  text-align: center;
+  border: 1px solid #eee;
+  margin-top: 30px;
 }
 
-.visa-info-details-subscribe h3 {
-  font-size: 20px;
-  font-weight: 700;
-  color: #111827;
+.visa-info-enquiry h2 {
+  font-size: 22px;
+  color: #111;
   margin-bottom: 10px;
 }
 
-.visa-info-details-subscribe p {
-  font-size: 15px;
-  color: #6b7280;
-  margin-bottom: 18px;
-  line-height: 1.6;
+.visa-info-form-group {
+  margin-bottom: 15px;
 }
 
-.visa-info-details-subscribe input {
+.visa-info-form-group input,
+.visa-info-form-group textarea {
   width: 100%;
-  padding: 12px 14px;
+  padding: 14px;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  border: 1px solid #e5e7eb;
   font-size: 15px;
-  margin-bottom: 14px;
-  outline: none;
-  transition: all 0.3s ease;
 }
 
-.visa-info-details-subscribe input:focus {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
-}
-
-.visa-info-details-subscribe button {
-  width: 100%;
-  background-color: #ef4444;
+.visa-info-btn {
+  background: #e94e77;
   color: #fff;
-  font-weight: 600;
   border: none;
+  padding: 14px;
+  width: 100%;
   border-radius: 6px;
-  padding: 12px;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.visa-info-btn:hover {
+  background: #c63d63;
+}
+
+/* ==== VISA PROCESS SECTION ==== */
+.visa-process-section {
+  margin-top: 50px;
+  padding: 25px;
+  background: linear-gradient(145deg, #fff, #fafafa);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: 0.3s ease;
+}
+
+.visa-process-section:hover {
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.visa-process-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e94e77;
+  margin-bottom: 18px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.visa-process-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  border-radius: 3px;
+  background: #e94e77;
+}
+
+.visa-process-content {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.8;
+}
+/* ==== VISA FEATURES SECTION ==== */
+.visa-features-section {
+  margin-top: 40px;
+  padding: 25px 30px;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #f2f2f2;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(233, 78, 119, 0.05);
+}
+
+.visa-features-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(233, 78, 119, 0.12);
+}
+
+/* ==== TITLE ==== */
+.visa-features-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e94e77;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.visa-features-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  background: #e94e77;
+  border-radius: 3px;
+}
+
+/* ==== FEATURE GRID ==== */
+.visa-features-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px 25px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ==== INDIVIDUAL FEATURE ITEM ==== */
+.visa-feature-item {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fdfdfd, #f9fafb);
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 15.5px;
+  color: #444;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.visa-feature-item:hover {
+  background: linear-gradient(135deg, #fff2f6, #ffe6ed);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(233, 78, 119, 0.15);
+  color: #e94e77;
+}
+
+/* ==== FEATURE ICON ==== */
+.visa-feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e94e77;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  margin-right: 12px;
   transition: all 0.3s ease;
 }
 
-.visa-info-details-subscribe button:hover {
-  background-color: #dc2626;
-  transform: translateY(-2px);
+.visa-feature-item:hover .visa-feature-icon {
+  background: #fff;
+  color: #e94e77;
+  border: 1px solid #e94e77;
 }
 
-/* =========================================================
-   RESPONSIVE STYLES
-   ========================================================= */
+/* ==== GLOBAL SECTION ==== */
+.visa-info-section {
+  padding: 0;
+  background: #f7f9fc;
+  font-family: "Poppins", sans-serif;
+}
 
+/* ==== MAIN CONTAINER ==== */
+.visa-info-container {
+  display: flex;
+  max-width: 1500px;
+  margin: auto;
+  padding: 40px 20px;
+  gap: 40px;
+  position: relative;
+}
+
+/* ==== LEFT SIDE (SCROLLABLE) ==== */
+.visa-info-left {
+  flex: 2;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  height: 200vh; /* fixed height for scroll effect */
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+
+
+.visa-info-left::-webkit-scrollbar-thumb:hover {
+  background: #c13a61;
+}
+
+/* ==== RIGHT SIDE (FIXED SIDEBAR) ==== */
+.visa-info-sidebar {
+  flex: 1;
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 25px;
+  height: fit-content;
+}
+
+/* Sidebar sections spacing */
+.visa-info-sidebar > * {
+  margin-bottom: 35px;
+}
+
+/* ==== LEFT SIDE CONTENT IMPROVEMENTS ==== */
+.visa-info-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e94e77;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.visa-info-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 80px;
+  height: 3px;
+  border-radius: 2px;
+  background: #e94e77;
+}
+
+/* Add slight fade animation when scrolling */
+.visa-info-left {
+  animation: fadeSlide 0.5s ease-in;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ==== SPECIAL TOP FEATURES SECTION ==== */
+.special-features-section {
+  margin-top: 60px;
+  background: linear-gradient(135deg, #e94e77, #ff6a95);
+  color: #fff;
+  border-radius: 16px;
+  padding: 35px 30px;
+  box-shadow: 0 8px 24px rgba(233, 78, 119, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft glossy overlay effect */
+.special-features-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255, 255, 255, 0.25),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.special-features-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(233, 78, 119, 0.4);
+}
+
+/* ==== TITLE ==== */
+.special-features-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.special-features-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  border-radius: 3px;
+  background: #fff;
+  opacity: 0.9;
+}
+
+/* ==== LIST STYLE ==== */
+.special-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px 20px;
+}
+
+/* ==== FEATURE ITEM ==== */
+.special-feature-item {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.special-feature-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(6px);
+}
+
+/* ==== ICON (STAR) ==== */
+.special-feature-star {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.special-feature-item:hover .special-feature-star {
+  background: #fff;
+  color: #e94e77;
+  transform: rotate(15deg) scale(1.1);
+}
+
+
+/* ========================================= */
+/* ==== RESPONSIVE DESIGN (MEDIA QUERIES) ==== */
+/* ========================================= */
+
+/* ==== LARGE TABLETS (max-width: 1200px) ==== */
 @media (max-width: 1200px) {
-  .visa-info-details-container {
-    grid-template-columns: 1.8fr 1fr;
+  .visa-info-container {
     gap: 30px;
-  }
-
-  .visa-info-details-title {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 992px) {
-  .visa-info-details-container {
-    grid-template-columns: 1fr;
-  }
-
-  .visa-info-details-sidebar {
-    margin-top: 60px;
-  }
-
-  .quote-text {
-    font-size: 20px;
-  }
-
-  .author-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .author-avatar {
-    margin: 0 0 20px 0;
-  }
-
-  .share-section {
-    text-align: left;
-  }
-
-  .share-icons {
-    justify-content: flex-start;
-  }
-}
-
-@media (max-width: 768px) {
-  .visa-info-details {
-    padding: 40px 0;
-  }
-
-  .visa-info-details-title {
-    font-size: 24px;
-  }
-
-  .visa-info-details-text {
-    font-size: 15px;
-  }
-
-  .quote-box {
     padding: 30px 20px;
   }
 
-  .quote-text {
-    font-size: 18px;
+  .visa-info-title {
+    font-size: 28px;
   }
 
-  .quote-author {
-    font-size: 16px;
+  .consultant-avatar {
+    width: 100px;
+    height: 100px;
   }
 
-  .tag-list span {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-
-  .comment-form button {
-    width: 100%;
-  }
-
-  .comment-form-row {
-    flex-direction: column;
+  .visa-feature-item,
+  .special-feature-item {
+    font-size: 15px;
   }
 }
 
-@media (max-width: 576px) {
-  .visa-info-details {
-    padding: 30px 0;
+/* ==== TABLETS (max-width: 992px) ==== */
+@media (max-width: 992px) {
+  .visa-info-container {
+    grid-template-columns: 1fr;
+    flex-direction: column;
   }
 
-  .visa-info-details-container {
-    padding: 0 16px;
+  .visa-info-sidebar {
+    position: static;
+    top: auto;
+    order: 2;
+    margin-top: 30px;
   }
 
-  .visa-info-details-title {
-    font-size: 22px;
+  .visa-info-left {
+    order: 1;
+    height: auto;
+    overflow: visible;
   }
 
-  .quote-box {
-    padding: 25px 18px;
+  .visa-info-image {
+    height: 100%;
   }
 
-  .quote-text {
-    font-size: 17px;
+  .visa-info-title {
+    font-size: 26px;
   }
 
-  .quote-author {
+  .consultant-card {
+    display: block;
+  }
+
+  .consultant-image-wrapper {
+    margin-bottom: 15px;
+  }
+
+  .consultant-social {
+    justify-content: center;
+  }
+
+  .visa-features-list,
+  .special-features-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ==== SMALL TABLETS & LARGE PHONES (max-width: 768px) ==== */
+@media (max-width: 768px) {
+  .visa-info-container {
+    padding: 25px 15px;
+    gap: 25px;
+  }
+
+  .visa-info-left {
+    padding: 10px;
+    text-align: start;
+  }
+
+  .visa-info-title {
+    font-size: 24px;
+  }
+
+  .visa-info-description {
     font-size: 15px;
+    line-height: 1.7;
   }
 
-  .tags-list span {
-    font-size: 13px;
+  .consultant-avatar {
+    width: 90px;
+    height: 90px;
   }
 
-  .social-icons a {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
+  .consultant-title {
+    font-size: 20px;
   }
 
-  .author-card {
+  .categories-section {
     padding: 20px;
   }
 
-  .author-name {
-    font-size: 18px;
-  }
-
-  .author-bio {
+  .category-item {
+    padding: 12px 14px;
     font-size: 14px;
   }
 
-  .comment-item {
-    flex-direction: column;
+  .visa-features-list,
+  .special-features-list {
+    grid-template-columns: 1fr;
   }
 
-  .comment-avatar {
-    width: 60px;
-    height: 60px;
+  .visa-feature-item {
+    padding: 10px 12px;
+  }
+
+  .special-features-section {
+    padding: 25px 20px;
+  }
+  .visa-process-section{
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .visa-info-overview{
+    padding: 10px;
+  }
+  .visa-features-section{
+    padding: 10px;
   }
 }
 
-@media (max-width: 400px) {
-  .quote-box {
-    padding: 20px 14px;
+/* ==== SMALL PHONES (max-width: 576px) ==== */
+@media (max-width: 576px) {
+  .visa-info-section {
+    padding: 10px 0;
   }
 
-  .quote-text {
-    font-size: 16px;
+  .visa-info-title {
+    font-size: 22px;
+    text-align: center;
   }
 
-  .bottom-section {
-    flex-direction: column;
-    align-items: flex-start;
+  .visa-info-image {
+    height: 100%;
   }
 
-  .tags h4,
-  .share h4 {
+  .consultant-card {
+    padding: 10px 15px;
+  }
+
+  .consultant-name {
+    font-size: 18px;
+  }
+
+  .consultant-about {
+    font-size: 14px;
+  }
+
+  .visa-info-sidebar {
+    padding: 0px;
+  }
+
+  .visa-info-enquiry h2 {
+    font-size: 18px;
+  }
+
+  .visa-info-btn {
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .special-features-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .special-feature-item {
+    justify-content: center;
+  }
+
+  .special-feature-star {
+    width: 22px;
+    height: 22px;
     font-size: 13px;
   }
 
-  .tag-list span {
-    padding: 6px 10px;
+  .visa-feature-item {
+    font-size: 14px;
   }
 }
 
+/* ==== EXTRA SMALL DEVICES (max-width: 400px) ==== */
+@media (max-width: 400px) {
+  .visa-info-title {
+    font-size: 20px;
+  }
 
+  .visa-info-container {
+    gap: 20px;
+    padding: 15px;
+  }
 
+  .consultant-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .consultant-name {
+    font-size: 16px;
+  }
+
+  .visa-feature-item {
+    padding: 8px 10px;
+  }
+
+  .visa-feature-icon {
+    width: 22px;
+    height: 22px;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+
+  .category-item {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+}

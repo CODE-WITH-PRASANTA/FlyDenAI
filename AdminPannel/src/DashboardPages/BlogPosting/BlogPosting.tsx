@@ -1,23 +1,33 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import "./BlogPosting.css";
+import { useTheme } from "../../context/ThemeContext";
+import { FaSun, FaMoon, FaEdit, FaTrash } from "react-icons/fa";
+import { Editor } from "@tinymce/tinymce-react";
+import axios from "axios";
+import BASE_URL from "../../Api";
 
 interface Blog {
-  id: number;
+  _id?: string;
   title: string;
   desc: string;
   author: string;
   category: string;
-  tags: string;
+  tags: string | string[]; 
   popularLine: string;
   image?: File | null;
   imageUrl?: string;
-  published: boolean;
+  published?: boolean;
 }
 
 const BlogPosting: React.FC = () => {
+  const { theme, toggleTheme } = useTheme();
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [tagInput, setTagInput] = useState("");
-  const [newBlog, setNewBlog] = useState<Omit<Blog, "id" | "published" | "imageUrl">>({
+  const [loading, setLoading] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
+
+  const [newBlog, setNewBlog] = useState<Omit<Blog, "_id">>({
     title: "",
     desc: "",
     author: "",
@@ -27,8 +37,29 @@ const BlogPosting: React.FC = () => {
     image: null,
   });
 
-  const categories = ["Technology", "Web Development", "Design", "Marketing", "Business"];
+  const categories = [
+    "Technology",
+    "Web Development",
+    "Design",
+    "Marketing",
+    "Business",
+  ];
 
+  // ✅ Fetch all blogs
+  const fetchBlogs = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/blogs`);
+      setBlogs(res.data);
+    } catch (err) {
+      console.error("Fetch blogs failed:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // ✅ Handle input change
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -40,21 +71,81 @@ const BlogPosting: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  // ✅ Submit or Update blog
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!newBlog.title || !newBlog.desc) {
       alert("Please fill all required fields!");
       return;
     }
 
-    const newEntry: Blog = {
-      ...newBlog,
-      id: Date.now(),
-      published: false,
-      imageUrl: newBlog.image ? URL.createObjectURL(newBlog.image) : "",
-    };
+    const formData = new FormData();
+    formData.append("title", newBlog.title);
+    formData.append("desc", newBlog.desc);
+    formData.append("author", newBlog.author);
+    formData.append("category", newBlog.category);
+    formData.append(
+      "tags",
+      typeof newBlog.tags === "string" ? newBlog.tags : newBlog.tags.join(",")
+    );
+    formData.append("popularLine", newBlog.popularLine);
+    if (newBlog.image) formData.append("image", newBlog.image);
 
-    setBlogs((prev) => [...prev, newEntry]);
+    try {
+      setLoading(true);
+      if (editMode && editId) {
+        await axios.put(`${BASE_URL}/blogs/${editId}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        alert("✅ Blog updated successfully!");
+      } else {
+        await axios.post(`${BASE_URL}/blogs`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        alert("✅ Blog created successfully!");
+      }
+
+      setNewBlog({
+        title: "",
+        desc: "",
+        author: "",
+        category: "",
+        tags: "",
+        popularLine: "",
+        image: null,
+      });
+      setEditMode(false);
+      setEditId(null);
+      fetchBlogs();
+    } catch (err) {
+      console.error("Blog submission failed:", err);
+      alert("❌ Failed to submit blog!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ✅ Edit blog
+  const handleEdit = (blog: Blog) => {
+    setEditMode(true);
+    setEditId(blog._id || null);
+    setNewBlog({
+      title: blog.title,
+      desc: blog.desc,
+      author: blog.author,
+      category: blog.category,
+      // ✅ Fix: safely convert array → string
+      tags: Array.isArray(blog.tags) ? blog.tags.join(",") : blog.tags || "",
+      popularLine: blog.popularLine,
+      image: null,
+    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  // ✅ Cancel edit
+  const cancelEdit = () => {
+    setEditMode(false);
+    setEditId(null);
     setNewBlog({
       title: "",
       desc: "",
@@ -66,23 +157,51 @@ const BlogPosting: React.FC = () => {
     });
   };
 
-  const togglePublish = (id: number) => {
-    setBlogs((prev) =>
-      prev.map((b) => (b.id === id ? { ...b, published: !b.published } : b))
-    );
+  // ✅ Toggle publish/unpublish
+  const togglePublish = async (id?: string) => {
+    if (!id) return;
+    try {
+      const res = await axios.patch(`${BASE_URL}/blogs/${id}/publish`);
+      setBlogs((prev) =>
+        prev.map((b) =>
+          b._id === id ? { ...b, published: res.data.published } : b
+        )
+      );
+    } catch (err) {
+      console.error("Toggle publish failed:", err);
+    }
   };
 
-  const deleteBlog = (id: number) => {
-    setBlogs((prev) => prev.filter((b) => b.id !== id));
+  // ✅ Delete blog
+  const deleteBlog = async (id?: string) => {
+    if (!id) return;
+    if (!window.confirm("Are you sure you want to delete this blog?")) return;
+
+    try {
+      await axios.delete(`${BASE_URL}/blogs/${id}`);
+      setBlogs((prev) => prev.filter((b) => b._id !== id));
+    } catch (err) {
+      console.error("Delete blog failed:", err);
+    }
   };
 
   return (
-    <div className="blogAdmin-container">
-      {/* Left Side - Create Blog */}
+    <div className={`blogAdmin-container ${theme}`}>
+      {/* Theme Toggle */}
+      <div className="theme-toggle-container">
+        <button className="theme-toggle-btn" onClick={toggleTheme}>
+          {theme === "light" ? <FaMoon /> : <FaSun />}
+        </button>
+      </div>
+
+      {/* Left Side: Blog Creation / Edit */}
       <div className="blogAdmin-leftPanel">
-        <h2 className="blogAdmin-heading">📝 Create a New Blog</h2>
+        <h2 className="blogAdmin-heading">
+          {editMode ? "✏️ Edit Blog" : "📝 Create a New Blog"}
+        </h2>
+
         <form className="blogAdmin-form" onSubmit={handleSubmit}>
-          {/* Blog Title */}
+          {/* Title */}
           <div className="form-group">
             <label>Blog Title *</label>
             <input
@@ -98,13 +217,41 @@ const BlogPosting: React.FC = () => {
           {/* Description */}
           <div className="form-group">
             <label>Blog Description *</label>
-            <textarea
-              name="desc"
+            <Editor
+              apiKey="osnm6yw158o1eaimm0d04yws6sueiubjcuj4i4axh4ulv81i"
               value={newBlog.desc}
-              onChange={handleChange}
-              placeholder="Write an engaging description..."
-              rows={5}
-              required
+              onEditorChange={(newValue) =>
+                setNewBlog({ ...newBlog, desc: newValue })
+              }
+              init={{
+                height: 400,
+                menubar: true,
+                branding: false,
+                toolbar_sticky: true,
+                plugins: [
+                  "advlist",
+                  "autolink",
+                  "lists",
+                  "link",
+                  "image",
+                  "charmap",
+                  "preview",
+                  "anchor",
+                  "searchreplace",
+                  "visualblocks",
+                  "code",
+                  "fullscreen",
+                  "insertdatetime",
+                  "media",
+                  "table",
+                  "help",
+                  "wordcount",
+                ],
+                toolbar:
+                  "undo redo | blocks | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help",
+                skin: theme === "dark" ? "oxide-dark" : "oxide",
+                content_css: theme === "dark" ? "dark" : "default",
+              }}
             />
           </div>
 
@@ -130,8 +277,8 @@ const BlogPosting: React.FC = () => {
               className="blogAdmin-select"
             >
               <option value="">-- Choose Category --</option>
-              {categories.map((cat, index) => (
-                <option key={index} value={cat}>
+              {categories.map((cat, i) => (
+                <option key={i} value={cat}>
                   {cat}
                 </option>
               ))}
@@ -139,72 +286,80 @@ const BlogPosting: React.FC = () => {
           </div>
 
           {/* Tags */}
-         <div className="form-group">
-          <label>Tags</label>
-          <div className="tags-input-container">
-            {newBlog.tags
-              .split(",")
-              .filter((tag) => tag.trim() !== "")
-              .map((tag, index) => (
-                <span key={index} className="tag-item">
-                  {tag.trim()}
-                  <button
-                    type="button"
-                    className="tag-remove-btn"
-                    onClick={() => {
-                      const updatedTags = newBlog.tags
-                        .split(",")
-                        .filter((t) => t.trim() !== tag.trim())
-                        .join(",");
-                      setNewBlog({ ...newBlog, tags: updatedTags });
-                    }}
-                  >
-                    ×
-                  </button>
-                </span>
-              ))}
-
-            {/* Editable input for typing new tags */}
-            <input
-              type="text"
-              value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "," || e.key === "Enter") {
-                  e.preventDefault();
-                  const newTag = tagInput.trim();
-                  if (newTag && !newBlog.tags.split(",").includes(newTag)) {
-                    setNewBlog({
-                      ...newBlog,
-                      tags: newBlog.tags
-                        ? `${newBlog.tags},${newTag}`
-                        : newTag,
-                    });
+          <div className="form-group">
+            <label>Tags</label>
+            <div className="tags-input-container">
+              {(typeof newBlog.tags === "string"
+                ? newBlog.tags
+                : newBlog.tags.join(",")
+              )
+                .split(",")
+                .filter((tag) => tag.trim() !== "")
+                .map((tag, index) => (
+                  <span key={index} className="tag-item">
+                    {tag.trim()}
+                    <button
+                      type="button"
+                      className="tag-remove-btn"
+                      onClick={() => {
+                        const updatedTags = (
+                          typeof newBlog.tags === "string"
+                            ? newBlog.tags
+                            : newBlog.tags.join(",")
+                        )
+                          .split(",")
+                          .filter((t) => t.trim() !== tag.trim())
+                          .join(",");
+                        setNewBlog({ ...newBlog, tags: updatedTags });
+                      }}
+                    >
+                      ×
+                    </button>
+                  </span>
+                ))}
+              <input
+                type="text"
+                value={tagInput}
+                onChange={(e) => setTagInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "," || e.key === "Enter") {
+                    e.preventDefault();
+                    const newTag = tagInput.trim();
+                    const currentTags =
+                      typeof newBlog.tags === "string"
+                        ? newBlog.tags
+                        : newBlog.tags.join(",");
+                    if (newTag && !currentTags.split(",").includes(newTag)) {
+                      setNewBlog({
+                        ...newBlog,
+                        tags: currentTags
+                          ? `${currentTags},${newTag}`
+                          : newTag,
+                      });
+                    }
+                    setTagInput("");
                   }
-                  setTagInput("");
-                }
-              }}
-              placeholder="Type a tag and press Enter or comma"
-              className="tags-input"
-            />
+                }}
+                placeholder="Type a tag and press Enter or comma"
+                className="tags-input"
+              />
+            </div>
           </div>
-        </div>
 
-
-          {/* Popular Line */}
+          {/* Popular line */}
           <div className="form-group">
             <label>Popular Line</label>
             <textarea
               name="popularLine"
               value={newBlog.popularLine}
               onChange={handleChange}
-              placeholder="Enter catchy one-liner or short intro..."
+              placeholder="Enter catchy one-liner..."
               rows={3}
               className="popular-textarea"
             />
           </div>
 
-          {/* Image Upload */}
+          {/* Image */}
           <div className="form-group">
             <label>Upload Image</label>
             <input
@@ -215,21 +370,41 @@ const BlogPosting: React.FC = () => {
             />
           </div>
 
-          {/* Submit Button */}
-          <button type="submit" className="blogAdmin-submitBtn">
-            🚀 Publish Blog
-          </button>
+         <div className="form-buttons">
+  <button
+    type="submit"
+    className={`blogAdmin-submitBtn ${editMode ? "update-mode" : ""}`}
+    disabled={loading}
+  >
+    {loading
+      ? editMode
+        ? "Updating..."
+        : "Posting..."
+      : editMode
+      ? "💾 Update Blog"
+      : "🚀 Publish Blog"}
+  </button>
+
+  {editMode && (
+    <button
+      type="button"
+      className="cancel-edit-btn"
+      onClick={cancelEdit}
+    >
+      ❌ Cancel Edit
+    </button>
+  )}
+</div>
+
         </form>
       </div>
 
-      {/* Right Side - Manage Blogs */}
+      {/* Right Side: Manage Blogs */}
       <div className="blogAdmin-rightPanel">
         <h2 className="blogAdmin-heading">📚 Manage Blogs</h2>
         <div className="blogAdmin-tableWrapper">
           {blogs.length === 0 ? (
-            <p className="noData">
-              No blogs posted yet. Start writing your first one ✍️
-            </p>
+            <p className="noData">No blogs yet. Start writing ✍️</p>
           ) : (
             <table className="blogAdmin-table">
               <thead>
@@ -239,17 +414,14 @@ const BlogPosting: React.FC = () => {
                   <th>Author</th>
                   <th>Category</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {blogs.map((blog, index) => (
-                  <tr key={blog.id}>
+                  <tr key={blog._id}>
                     <td>{index + 1}</td>
-                 <td>
-                    {blog.title.length > 60 ? blog.title.slice(0, 60) + "..." : blog.title}
-                  </td>
-
+                    <td>{blog.title}</td>
                     <td>{blog.author || "N/A"}</td>
                     <td>{blog.category || "N/A"}</td>
                     <td>
@@ -261,22 +433,30 @@ const BlogPosting: React.FC = () => {
                         {blog.published ? "Published" : "Draft"}
                       </span>
                     </td>
-                    <td className="actions">
-                      <button
-                        className={`action-btn ${
-                          blog.published ? "unpublish" : "publish"
-                        }`}
-                        onClick={() => togglePublish(blog.id)}
-                      >
-                        {blog.published ? "Unpublish" : "Publish"}
-                      </button>
-                      <button
-                        className="action-btn delete"
-                        onClick={() => deleteBlog(blog.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+                   <td className="actions">
+                        <button
+                          className="action-btn edit-btn"
+                          onClick={() => handleEdit(blog)}
+                          title="Edit Blog"
+                        >
+                          <FaEdit />
+                        </button>
+                        <button
+                          className={`action-btn ${
+                            blog.published ? "unpublish-btn" : "publish-btn"
+                          }`}
+                          onClick={() => togglePublish(blog._id)}
+                        >
+                          {blog.published ? "Unpublish" : "Publish"}
+                        </button>
+                        <button
+                          className="action-btn delete-btn"
+                          onClick={() => deleteBlog(blog._id)}
+                          title="Delete Blog"
+                        >
+                          <FaTrash />
+                        </button>
+                      </td>
                   </tr>
                 ))}
               </tbody>

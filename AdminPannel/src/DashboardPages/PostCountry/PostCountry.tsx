@@ -1,32 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./PostCountry.css";
+import { useTheme } from "../../context/ThemeContext";
+import BASE_URL from "../../Api"; // ✅ import base URL
 
 interface Country {
-  id: number;
-  logo: string;
+  _id: string;
   countryName: string;
   placeName: string;
+  logoUrl: string;
 }
-import { useTheme } from "../../context/ThemeContext";  // ✅ import theme
 
-
-
-const PostCountry = () => {
-  const { theme } = useTheme();  // ✅ access theme
+const PostCountry: React.FC = () => {
+  const { theme } = useTheme();
   const [countryData, setCountryData] = useState({
     placeName: "",
     countryName: "",
     countryLogo: null as File | null,
   });
 
-  const [tableData, setTableData] = useState<Country[]>([
-    { id: 1, logo: "https://flagcdn.com/w40/in.png", countryName: "India", placeName: "Bhubaneswar" },
-    { id: 2, logo: "https://flagcdn.com/w40/gb.png", countryName: "United Kingdom", placeName: "London" },
-  ]);
-
+  const [tableData, setTableData] = useState<Country[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [editId, setEditId] = useState<number | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
   const [previewCountry, setPreviewCountry] = useState<Country | null>(null);
+
+  // ✅ Use BASE_URL instead of hardcoding
+  const API_URL = `${BASE_URL}/countries`;
+
+  // ✅ Fetch all countries on mount
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  const fetchCountries = async () => {
+    try {
+      const res = await axios.get(API_URL);
+      setTableData(res.data);
+    } catch (error) {
+      console.error("❌ Error fetching countries:", error);
+    }
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
@@ -37,67 +50,81 @@ const PostCountry = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (editId !== null) {
-      const updatedData = tableData.map(item =>
-        item.id === editId
-          ? {
-              ...item,
-              countryName: countryData.countryName,
-              placeName: countryData.placeName,
-              logo: countryData.countryLogo ? URL.createObjectURL(countryData.countryLogo) : item.logo,
-            }
-          : item
-      );
-      setTableData(updatedData);
-      setEditId(null);
-    } else {
-      const newEntry: Country = {
-        id: tableData.length + 1,
-        logo: countryData.countryLogo ? URL.createObjectURL(countryData.countryLogo) : "",
-        countryName: countryData.countryName,
-        placeName: countryData.placeName,
-      };
-      setTableData([...tableData, newEntry]);
+    const formData = new FormData();
+    formData.append("countryName", countryData.countryName);
+    formData.append("placeName", countryData.placeName);
+    if (countryData.countryLogo) {
+      formData.append("countryLogo", countryData.countryLogo);
     }
-    setCountryData({ placeName: "", countryName: "", countryLogo: null });
+
+    try {
+      if (editId) {
+        // ✅ Update country
+        await axios.put(`${API_URL}/${editId}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        setEditId(null);
+      } else {
+        // ✅ Add new country
+        await axios.post(API_URL, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+      }
+
+      // Refresh and reset
+      fetchCountries();
+      setCountryData({ placeName: "", countryName: "", countryLogo: null });
+    } catch (error) {
+      console.error("❌ Error submitting country:", error);
+    }
   };
 
-  const handleEdit = (id: number) => {
-    const country = tableData.find(item => item.id === id);
+  const handleEdit = (id: string) => {
+    const country = tableData.find((item) => item._id === id);
     if (country) {
-      setCountryData({ placeName: country.placeName, countryName: country.countryName, countryLogo: null });
+      setCountryData({
+        placeName: country.placeName,
+        countryName: country.countryName,
+        countryLogo: null,
+      });
       setEditId(id);
     }
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this country?")) {
-      setTableData(tableData.filter(item => item.id !== id));
+      try {
+        await axios.delete(`${API_URL}/${id}`);
+        fetchCountries();
+      } catch (error) {
+        console.error("❌ Error deleting country:", error);
+      }
     }
   };
 
-  const handlePreview = (id: number) => {
-    const country = tableData.find(item => item.id === id);
+  const handlePreview = (id: string) => {
+    const country = tableData.find((item) => item._id === id);
     if (country) {
-      setPreviewCountry(country); // Open modal with country data
+      setPreviewCountry(country);
     }
   };
 
-  const closePreview = () => {
-    setPreviewCountry(null);
-  };
+  const closePreview = () => setPreviewCountry(null);
 
   const filteredData = tableData.filter(
-    item =>
+    (item) =>
       item.countryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       item.placeName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
-       <div className={`post-country-container ${theme === "dark" ? "dark-mode" : "light-mode"}`}>
-    <div className="post-country-container">
+    <div
+      className={`post-country-container ${
+        theme === "dark" ? "dark-mode" : "light-mode"
+      }`}
+    >
       <h2 className="post-country-title">🌍 Post Country Details</h2>
 
       <div className="post-country-search">
@@ -149,7 +176,7 @@ const PostCountry = () => {
         </div>
 
         <button type="submit" className="post-country-submit-btn">
-          {editId !== null ? "💾 Update Country" : "➕ Add Country"}
+          {editId ? "💾 Update Country" : "➕ Add Country"}
         </button>
       </form>
 
@@ -165,45 +192,74 @@ const PostCountry = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {filteredData.map((item, index) => (
-              <tr key={item.id} className="post-country-table-row">
-                <td>{index + 1}</td>
-                <td>
-                  <img src={item.logo} alt="logo" className="post-country-logo-img" />
-                </td>
-                <td>{item.countryName}</td>
-                <td>{item.placeName}</td>
-                <td>
-                  <button className="post-country-action-btn edit" onClick={() => handleEdit(item.id)}>✏️ Edit</button>
-                  <button className="post-country-action-btn delete" onClick={() => handleDelete(item.id)}>🗑️ Delete</button>
-                  <button className="post-country-action-btn preview" onClick={() => handlePreview(item.id)}>👁️ Preview</button>
-                </td>
-              </tr>
-            ))}
-            {filteredData.length === 0 && (
-              <tr>
-                <td colSpan={5} style={{ textAlign: "center", padding: "12px" }}>
-                  No countries found.
-                </td>
-              </tr>
-            )}
-          </tbody>
+         <tbody>
+  {filteredData.map((item, index) => (
+    <tr key={item._id}>
+      <td>{index + 1}</td>
+      <td>
+        {item.logoUrl && (
+          <img
+            src={`${BASE_URL.replace("/api", "")}${item.logoUrl}`}
+            alt="Country Logo"
+            className="table-img"
+          />
+        )}
+      </td>
+      <td>{item.countryName}</td>
+      <td>{item.placeName}</td>
+      <td>
+        <button
+          className="post-country-action-btn edit"
+          onClick={() => handleEdit(item._id)}
+        >
+          ✏️ Edit
+        </button>
+        <button
+          className="post-country-action-btn delete"
+          onClick={() => handleDelete(item._id)}
+        >
+          🗑️ Delete
+        </button>
+        <button
+          className="post-country-action-btn preview"
+          onClick={() => handlePreview(item._id)}
+        >
+          👁️ Preview
+        </button>
+      </td>
+    </tr>
+  ))}
+  {filteredData.length === 0 && (
+    <tr>
+      <td colSpan={5} style={{ textAlign: "center", padding: "12px" }}>
+        No countries found.
+      </td>
+    </tr>
+  )}
+</tbody>
+
         </table>
       </div>
 
-      {/* Preview Modal */}
       {previewCountry && (
         <div className="post-country-modal-backdrop" onClick={closePreview}>
-          <div className="post-country-modal" onClick={e => e.stopPropagation()}>
-            <span className="post-country-modal-close" onClick={closePreview}>×</span>
-            <img src={previewCountry.logo} alt="logo" className="post-country-modal-logo" />
+          <div
+            className="post-country-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <span className="post-country-modal-close" onClick={closePreview}>
+              ×
+            </span>
+            <img
+              src={`${BASE_URL.replace("/api", "")}${previewCountry.logoUrl}`}
+              alt="logo"
+              className="post-country-modal-logo"
+            />
             <h2>{previewCountry.countryName}</h2>
             <p>{previewCountry.placeName}</p>
           </div>
         </div>
       )}
-    </div>
     </div>
   );
 };

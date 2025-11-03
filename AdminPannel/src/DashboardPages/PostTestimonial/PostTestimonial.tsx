@@ -1,28 +1,44 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
 import "./PostTestimonial.css";
+import { useTheme } from "../../context/ThemeContext";
+import BASE_URL from "../../Api";
 
 interface Testimonial {
-  id: number;
+  _id?: string;
   name: string;
   rating: number;
   message: string;
-  image?: File | null;
   imageUrl?: string;
   published: boolean;
 }
 
 const PostTestimonial: React.FC = () => {
+  const { theme } = useTheme();
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [newTestimonial, setNewTestimonial] = useState<
-    Omit<Testimonial, "id" | "published" | "imageUrl">
-  >({
+  const [newTestimonial, setNewTestimonial] = useState({
     name: "",
     rating: 0,
     message: "",
-    image: null,
+    image: null as File | null,
   });
+  const [loading, setLoading] = useState(false);
 
-  // Handle input changes
+  // ✅ Fetch all testimonials
+  const fetchTestimonials = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/testimonials`);
+      if (res.data.success) setTestimonials(res.data.data);
+    } catch (err) {
+      console.error("❌ Fetch Error:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
+
+  // ✅ Handle Input
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, files } = e.target as HTMLInputElement;
     if (name === "image" && files) {
@@ -32,54 +48,78 @@ const PostTestimonial: React.FC = () => {
     }
   };
 
-  // Handle star rating
+  // ✅ Handle Rating
   const handleRating = (rating: number) => {
     setNewTestimonial({ ...newTestimonial, rating });
   };
 
-  // Handle submit
-  const handleSubmit = (e: FormEvent) => {
+  // ✅ Submit Form (POST)
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!newTestimonial.name || !newTestimonial.message) {
       alert("Please fill all fields!");
       return;
     }
 
-    const newEntry: Testimonial = {
-      ...newTestimonial,
-      id: Date.now(),
-      published: false,
-      imageUrl: newTestimonial.image ? URL.createObjectURL(newTestimonial.image) : "",
-    };
+    const formData = new FormData();
+    formData.append("name", newTestimonial.name);
+    formData.append("rating", String(newTestimonial.rating));
+    formData.append("message", newTestimonial.message);
+    if (newTestimonial.image) formData.append("image", newTestimonial.image);
 
-    setTestimonials((prev) => [...prev, newEntry]);
-    setNewTestimonial({
-      name: "",
-      rating: 0,
-      message: "",
-      image: null,
-    });
+    try {
+      setLoading(true);
+      const res = await axios.post(`${BASE_URL}/testimonials`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      if (res.data.success) {
+        alert("✅ Testimonial posted successfully!");
+        setNewTestimonial({ name: "", rating: 0, message: "", image: null });
+        fetchTestimonials();
+      }
+    } catch (err) {
+      console.error("❌ Post Error:", err);
+      alert("Failed to post testimonial!");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Toggle publish
-  const togglePublish = (id: number) => {
-    setTestimonials((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, published: !t.published } : t))
-    );
+  // ✅ Toggle Publish
+  const togglePublish = async (id?: string) => {
+    if (!id) return;
+    try {
+      const res = await axios.patch(`${BASE_URL}/testimonials/${id}/publish`);
+      if (res.data.success) {
+        fetchTestimonials();
+      }
+    } catch (err) {
+      console.error("❌ Toggle Error:", err);
+    }
   };
 
-  // Delete testimonial
-  const deleteTestimonial = (id: number) => {
-    setTestimonials((prev) => prev.filter((t) => t.id !== id));
+  // ✅ Delete Testimonial
+  const deleteTestimonial = async (id?: string) => {
+    if (!id) return;
+    if (!window.confirm("Are you sure to delete this testimonial?")) return;
+
+    try {
+      const res = await axios.delete(`${BASE_URL}/testimonials/${id}`);
+      if (res.data.success) {
+        fetchTestimonials();
+      }
+    } catch (err) {
+      console.error("❌ Delete Error:", err);
+    }
   };
 
   return (
-    <div className="postTestimonial-container">
+    <div className={`postTestimonial-container ${theme}`}>
       {/* Left Panel */}
       <div className="postTestimonial-left">
         <h2 className="postTestimonial-title">💬 Post a New Testimonial</h2>
         <form className="postTestimonial-form" onSubmit={handleSubmit}>
-          {/* Name */}
           <div className="postTestimonial-formGroup">
             <label className="postTestimonial-label">Name *</label>
             <input
@@ -93,7 +133,6 @@ const PostTestimonial: React.FC = () => {
             />
           </div>
 
-          {/* Upload Photo */}
           <div className="postTestimonial-formGroup">
             <label className="postTestimonial-label">Upload Photo</label>
             <input
@@ -105,7 +144,6 @@ const PostTestimonial: React.FC = () => {
             />
           </div>
 
-          {/* Star Rating */}
           <div className="postTestimonial-formGroup">
             <label className="postTestimonial-label">Rating</label>
             <div className="postTestimonial-starRating">
@@ -123,7 +161,6 @@ const PostTestimonial: React.FC = () => {
             </div>
           </div>
 
-          {/* Message */}
           <div className="postTestimonial-formGroup">
             <label className="postTestimonial-label">Your Message *</label>
             <textarea
@@ -137,9 +174,8 @@ const PostTestimonial: React.FC = () => {
             />
           </div>
 
-          {/* Submit */}
-          <button type="submit" className="postTestimonial-submitBtn">
-            🚀 Post Testimonial
+          <button type="submit" className="postTestimonial-submitBtn" disabled={loading}>
+            {loading ? "⏳ Posting..." : "🚀 Post Testimonial"}
           </button>
         </form>
       </div>
@@ -164,12 +200,12 @@ const PostTestimonial: React.FC = () => {
               </thead>
               <tbody>
                 {testimonials.map((t, index) => (
-                  <tr key={t.id}>
+                  <tr key={t._id}>
                     <td>{index + 1}</td>
                     <td>
                       {t.imageUrl ? (
                         <img
-                          src={t.imageUrl}
+                          src={`${BASE_URL.replace("/api", "")}${t.imageUrl}`}
                           alt={t.name}
                           className="postTestimonial-photo"
                         />
@@ -196,13 +232,13 @@ const PostTestimonial: React.FC = () => {
                         className={`postTestimonial-btn ${
                           t.published ? "unpublish" : "publish"
                         }`}
-                        onClick={() => togglePublish(t.id)}
+                        onClick={() => togglePublish(t._id)}
                       >
                         {t.published ? "Unpublish" : "Publish"}
                       </button>
                       <button
                         className="postTestimonial-btn delete"
-                        onClick={() => deleteTestimonial(t.id)}
+                        onClick={() => deleteTestimonial(t._id)}
                       >
                         🗑
                       </button>

@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Editor } from "@tinymce/tinymce-react";
+import axios from "axios";
 import "./VisaType.css";
-import { useTheme } from "../../context/ThemeContext"; 
+import { useTheme } from "../../context/ThemeContext";
+import BASE_URL from "../../Api"; // ✅ http://localhost:5000/api
 
 interface Consultant {
   name: string;
@@ -9,19 +12,23 @@ interface Consultant {
 }
 
 interface VisaEntry {
-  id: number;
+  _id?: string;
   visaName: string;
   visaDesc: string;
   visaOverview: string;
   visaProcess: string;
   features: string[];
   specialFeatures: string[];
-  visaImage: string | null;
-  consultant: Consultant;
+  visaImageUrl?: string;
+  consultant: {
+    name: string;
+    about: string;
+    imageUrl?: string;
+  };
 }
 
-const VisaType = () => {
-  const { theme } = useTheme(); // ✅ get theme (dark or light)
+const VisaType: React.FC = () => {
+  const { theme } = useTheme();
 
   const [visaName, setVisaName] = useState("");
   const [visaDesc, setVisaDesc] = useState("");
@@ -36,61 +43,65 @@ const VisaType = () => {
     image: null,
   });
   const [postedVisas, setPostedVisas] = useState<VisaEntry[]>([]);
-
   const [isEditing, setIsEditing] = useState(false);
-  const [editId, setEditId] = useState<number | null>(null);
+  const [editId, setEditId] = useState<string | null>(null);
 
-  // Features handlers
-  const handleAddFeature = () => setFeatures([...features, ""]);
-  const handleFeatureChange = (index: number, value: string) => {
-    const updated = [...features];
-    updated[index] = value;
-    setFeatures(updated);
-  };
+  // ✅ Fetch visa data
+  useEffect(() => {
+    fetchVisaTypes();
+  }, []);
 
-  const handleAddSpecialFeature = () =>
-    setSpecialFeatures([...specialFeatures, ""]);
-  const handleSpecialFeatureChange = (index: number, value: string) => {
-    const updated = [...specialFeatures];
-    updated[index] = value;
-    setSpecialFeatures(updated);
-  };
-
-  // Submit or Update
-  const handleSubmit = () => {
-    if (isEditing && editId !== null) {
-      const updatedData: VisaEntry = {
-        id: editId,
-        visaName,
-        visaDesc,
-        visaOverview,
-        visaProcess,
-        features,
-        specialFeatures,
-        visaImage: visaImage ? URL.createObjectURL(visaImage) : null,
-        consultant,
-      };
-      setPostedVisas(
-        postedVisas.map((v) => (v.id === editId ? updatedData : v))
-      );
-      setIsEditing(false);
-      setEditId(null);
-    } else {
-      const newEntry: VisaEntry = {
-        id: postedVisas.length + 1,
-        visaName,
-        visaDesc,
-        visaOverview,
-        visaProcess,
-        features,
-        specialFeatures,
-        visaImage: visaImage ? URL.createObjectURL(visaImage) : null,
-        consultant,
-      };
-      setPostedVisas([...postedVisas, newEntry]);
+  const fetchVisaTypes = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/visatypes`);
+      if (res.data.success) setPostedVisas(res.data.data);
+    } catch (error) {
+      console.error("❌ Error fetching visa data:", error);
     }
+  };
 
-    // Reset form
+  // ✅ Submit / Update Visa
+  const handleSubmit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("visaName", visaName);
+      formData.append("visaDesc", visaDesc);
+      formData.append("visaOverview", visaOverview);
+      formData.append("visaProcess", visaProcess);
+      formData.append("features", JSON.stringify(features));
+      formData.append("specialFeatures", JSON.stringify(specialFeatures));
+      formData.append("consultantName", consultant.name);
+      formData.append("consultantAbout", consultant.about);
+      if (visaImage) formData.append("visaImage", visaImage);
+      if (consultant.image) formData.append("consultantImage", consultant.image);
+
+      if (isEditing && editId) {
+        const res = await axios.put(`${BASE_URL}/visatypes/${editId}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        if (res.data.success) {
+          alert("✅ Visa updated successfully");
+          fetchVisaTypes();
+          resetForm();
+        }
+      } else {
+        const res = await axios.post(`${BASE_URL}/visatypes`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        if (res.data.success) {
+          alert("✅ Visa added successfully");
+          fetchVisaTypes();
+          resetForm();
+        }
+      }
+    } catch (error) {
+      console.error("❌ Error saving visa:", error);
+      alert("Failed to save visa data ❌");
+    }
+  };
+
+  // ✅ Reset Form
+  const resetForm = () => {
     setVisaName("");
     setVisaDesc("");
     setVisaOverview("");
@@ -99,38 +110,53 @@ const VisaType = () => {
     setSpecialFeatures([""]);
     setVisaImage(null);
     setConsultant({ name: "", about: "", image: null });
+    setIsEditing(false);
+    setEditId(null);
   };
 
-  // Edit handler
-  const handleEdit = (id: number) => {
-    const visaToEdit = postedVisas.find((v) => v.id === id);
-    if (visaToEdit) {
-      setVisaName(visaToEdit.visaName);
-      setVisaDesc(visaToEdit.visaDesc);
-      setVisaOverview(visaToEdit.visaOverview);
-      setVisaProcess(visaToEdit.visaProcess);
-      setFeatures(visaToEdit.features);
-      setSpecialFeatures(visaToEdit.specialFeatures);
-      setVisaImage(null);
-      setConsultant(visaToEdit.consultant);
-      setIsEditing(true);
-      setEditId(id);
-    }
+  // ✅ Edit Handler
+  const handleEdit = (visa: VisaEntry) => {
+    setVisaName(visa.visaName);
+    setVisaDesc(visa.visaDesc);
+    setVisaOverview(visa.visaOverview);
+    setVisaProcess(visa.visaProcess);
+    setFeatures(visa.features);
+    setSpecialFeatures(visa.specialFeatures);
+    setConsultant({
+      name: visa.consultant.name,
+      about: visa.consultant.about,
+      image: null,
+    });
+    setIsEditing(true);
+    setEditId(visa._id || null);
   };
 
-  // Delete handler
-  const handleDelete = (id: number) => {
+  // ✅ Delete Visa
+  const handleDelete = async (id: string) => {
     if (window.confirm("Are you sure you want to delete this visa entry?")) {
-      setPostedVisas(postedVisas.filter((v) => v.id !== id));
+      try {
+        const res = await axios.delete(`${BASE_URL}/visatypes/${id}`);
+        if (res.data.success) {
+          alert("🗑️ Visa deleted successfully");
+          fetchVisaTypes();
+        }
+      } catch (error) {
+        console.error("❌ Error deleting visa:", error);
+      }
     }
+  };
+
+  // ✅ Clean Image URL (remove `/api` only for images)
+  const getImageUrl = (path: string) => {
+    return `${BASE_URL.replace("/api", "")}${path}`;
   };
 
   return (
-    <div className={`visa-type-wrapper ${theme === "dark" ? "dark" : "light"}`}>
-      {/* Left Section - Form */}
+    <div className={`visa-type-wrapper ${theme}`}>
+      {/* ===== Left Section (Form) ===== */}
       <div className="visa-type-container">
         <h2 className="visa-type-title">
-          {isEditing ? "Edit Visa Type" : "Add Visa Type"}
+          {isEditing ? "✏️ Edit Visa Type" : "➕ Add Visa Type"}
         </h2>
 
         <div className="visa-type-form">
@@ -147,30 +173,52 @@ const VisaType = () => {
           </div>
 
           {/* Visa Description */}
-          <div className="visa-input-group">
+          <div className="visa-input-group-desc full-editor">
             <label>Visa Description</label>
-            <textarea
+            <Editor
+              apiKey="osnm6yw158o1eaimm0d04yws6sueiubjcuj4i4axh4ulv81i"
               value={visaDesc}
-              onChange={(e) => setVisaDesc(e.target.value)}
-              placeholder="Enter Visa Description"
-              className={`textarea-field ${theme === "dark" ? "dark-input" : ""}`}
+              onEditorChange={(newValue) => setVisaDesc(newValue)}
+              init={{
+                height: 400,
+                menubar: true,
+                branding: false,
+                toolbar_sticky: true,
+                plugins: [
+                  "advlist autolink lists link image charmap preview anchor",
+                  "searchreplace visualblocks code fullscreen",
+                  "insertdatetime media table help wordcount",
+                ],
+                toolbar:
+                  "undo redo | blocks | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help",
+                skin: theme === "dark" ? "oxide-dark" : "oxide",
+                content_css: theme === "dark" ? "dark" : "default",
+              }}
             />
           </div>
 
-          {/* Visa Features */}
+          {/* Features */}
           <div className="visa-input-group">
             <label>Visa Features</label>
-            {features.map((feature, index) => (
+            {features.map((f, i) => (
               <input
-                key={index}
+                key={i}
                 type="text"
-                value={feature}
-                placeholder={`Feature ${index + 1}`}
-                onChange={(e) => handleFeatureChange(index, e.target.value)}
+                value={f}
+                placeholder={`Feature ${i + 1}`}
+                onChange={(e) => {
+                  const updated = [...features];
+                  updated[i] = e.target.value;
+                  setFeatures(updated);
+                }}
                 className={`input-field ${theme === "dark" ? "dark-input" : ""}`}
               />
             ))}
-            <button type="button" className="add-btn" onClick={handleAddFeature}>
+            <button
+              type="button"
+              className="add-btn"
+              onClick={() => setFeatures([...features, ""])}
+            >
               + Add Feature
             </button>
           </div>
@@ -188,7 +236,7 @@ const VisaType = () => {
             />
           </div>
 
-          {/* Visa Overview */}
+          {/* Overview */}
           <div className="visa-input-group">
             <label>Visa Overview</label>
             <textarea
@@ -199,7 +247,7 @@ const VisaType = () => {
             />
           </div>
 
-          {/* Visa Process */}
+          {/* Process */}
           <div className="visa-input-group">
             <label>Visa Process</label>
             <textarea
@@ -255,13 +303,17 @@ const VisaType = () => {
           {/* Special Features */}
           <div className="visa-input-group">
             <label>Special Features (Top 3)</label>
-            {specialFeatures.map((feature, index) => (
+            {specialFeatures.map((f, i) => (
               <input
-                key={index}
+                key={i}
                 type="text"
-                value={feature}
-                placeholder={`Special Feature ${index + 1}`}
-                onChange={(e) => handleSpecialFeatureChange(index, e.target.value)}
+                value={f}
+                placeholder={`Special Feature ${i + 1}`}
+                onChange={(e) => {
+                  const updated = [...specialFeatures];
+                  updated[i] = e.target.value;
+                  setSpecialFeatures(updated);
+                }}
                 className={`input-field ${theme === "dark" ? "dark-input" : ""}`}
               />
             ))}
@@ -269,21 +321,21 @@ const VisaType = () => {
               <button
                 type="button"
                 className="add-btn"
-                onClick={handleAddSpecialFeature}
+                onClick={() => setSpecialFeatures([...specialFeatures, ""])}
               >
                 + Add Special Feature
               </button>
             )}
           </div>
 
-          {/* Submit / Update */}
+          {/* Submit Button */}
           <button className="submit-btn" onClick={handleSubmit}>
             {isEditing ? "Update Visa Details" : "Submit Visa Details"}
           </button>
         </div>
       </div>
 
-      {/* Right Section - Table */}
+      {/* ===== Right Section (Data Table) ===== */}
       <aside className="visa-aside">
         <h2>Visa Records</h2>
         {postedVisas.length === 0 ? (
@@ -300,30 +352,33 @@ const VisaType = () => {
               </tr>
             </thead>
             <tbody>
-              {postedVisas.map((item, index) => (
-                <tr key={item.id}>
+              {postedVisas.map((visa, index) => (
+                <tr key={visa._id}>
                   <td>{index + 1}</td>
                   <td>
-                    {item.visaImage && (
-                      <img src={item.visaImage} alt="Visa" className="table-img" />
+                    {visa.visaImageUrl && (
+                      <img
+                        src={getImageUrl(visa.visaImageUrl)}
+                        alt="Visa"
+                        className="table-img"
+                      />
                     )}
                   </td>
-                  <td>{item.visaName}</td>
-                  <td>{item.consultant.name}</td>
+                  <td>{visa.visaName}</td>
+                  <td>{visa.consultant?.name}</td>
                   <td className="action-buttons">
                     <button
                       className="visatype-edit-btn"
-                      onClick={() => handleEdit(item.id)}
+                      onClick={() => handleEdit(visa)}
                     >
                       Edit
                     </button>
                     <button
                       className="visatype-delete-btn"
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(visa._id!)}
                     >
                       Delete
                     </button>
-                    <button className="visatype-preview-btn">Preview</button>
                   </td>
                 </tr>
               ))}

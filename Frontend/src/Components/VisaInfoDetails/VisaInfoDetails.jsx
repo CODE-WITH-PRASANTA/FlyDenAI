@@ -1,403 +1,280 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import DOMPurify from "dompurify";
 import "./VisaInfoDetails.css";
-import {
-  Search,
-  Heart,
-  MessageCircle,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-
-import { 
-  FaFacebookF, 
-  FaTwitter, 
-  FaVimeoV, 
-  FaYoutube,
-  FaGooglePlusG, 
-  FaLinkedinIn 
-} from "react-icons/fa";
-
-import visaMain from "../../assets/visa-info-main.webp";
-import authorImg from "../../assets/ts2.webp";
-import popular1 from "../../assets/ts7.webp";
-import popular2 from "../../assets/ts6.webp";
-import popular3 from "../../assets/ts5.webp";
-import popular4 from "../../assets/ts4.webp";
-
-import gallery1 from "../../assets/pp.webp";
-import gallery2 from "../../assets/pp2.webp";
-import gallery3 from "../../assets/pp3.webp";
-import gallery4 from "../../assets/pp4.webp";
-import gallery5 from "../../assets/have.webp";
-import gallery6 from "../../assets/have2.webp";
-
-import commentImg1 from "../../assets/test1.webp";
-import commentImg2 from "../../assets/test2.webp";
-
-const popularPosts = [
-  {
-    img: popular1,
-    category: "IMMIGRATION",
-    title: "Citizenship Concept on How to Become a UK Citizen.",
-    likes: 12,
-    comments: 3,
-  },
-  {
-    img: popular2,
-    category: "TOURIST",
-    title: "Top 10 Travel Destinations for 2025 You Must Visit.",
-    likes: 18,
-    comments: 6,
-  },
-  {
-    img: popular3,
-    category: "NEWS & TIPS",
-    title: "Important Visa Updates for International Students.",
-    likes: 25,
-    comments: 10,
-  },
-  {
-    img: popular4,
-    category: "RESIDENT",
-    title: "How to Get Long-Term Residency in the UK Easily.",
-    likes: 15,
-    comments: 5,
-  },
-];
-
-const galleryImages = [gallery1, gallery2, gallery3, gallery4, gallery5, gallery6];
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
+import { FaFacebookF, FaTwitter, FaLinkedinIn } from "react-icons/fa";
+import BASE_URL from "../../Api";
 
 const VisaInfoDetails = () => {
+  const [visaList, setVisaList] = useState([]);
+  const [filteredVisas, setFilteredVisas] = useState([]);
+  const [selectedVisa, setSelectedVisa] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const [index, setIndex] = useState(0);
+  const [comments, setComments] = useState([]);
+  const [commentInput, setCommentInput] = useState("");
 
+  // ✅ Fetch visa data
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % popularPosts.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [popularPosts.length]);
+    const fetchVisas = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/visatypes`);
+        if (res.data.success) {
+          setVisaList(res.data.data);
+          setFilteredVisas(res.data.data);
+          setSelectedVisa(res.data.data[0]);
+        }
+      } catch (err) {
+        console.error("Error fetching visa data", err);
+      }
+    };
+    fetchVisas();
+  }, []);
 
-  const nextSlide = () => setIndex((prev) => (prev + 1) % popularPosts.length);
-  const prevSlide = () => setIndex((prev) => (prev - 1 + popularPosts.length) % popularPosts.length);
+  // ✅ Filter by search term
+  useEffect(() => {
+    const filtered = visaList.filter((visa) =>
+      visa.visaName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredVisas(filtered);
+  }, [searchTerm, visaList]);
+
+  // ✅ Filter by category click
+  const handleCategoryClick = (name) => {
+    const filtered = visaList.filter(
+      (visa) => visa.visaName.toLowerCase() === name.toLowerCase()
+    );
+    setFilteredVisas(filtered);
+    if (filtered.length > 0) setSelectedVisa(filtered[0]);
+  };
+
+  // ✅ Popular visa slider
+  const latestVisas = visaList.slice(0, 4);
+  const nextSlide = () => setIndex((prev) => (prev + 1) % latestVisas.length);
+  const prevSlide = () => setIndex((prev) => (prev - 1 + latestVisas.length) % latestVisas.length);
+
+  // ✅ Handle comment
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (!commentInput.trim()) return;
+    const newComment = {
+      id: Date.now(),
+      text: commentInput,
+      date: new Date().toLocaleString(),
+    };
+    setComments([newComment, ...comments]);
+    setCommentInput("");
+  };
+
+  if (!selectedVisa)
+    return <div className="visa-info-loading">Loading visa details...</div>;
+
+  const { visaName, visaDesc, visaOverview, visaImageUrl, consultant } = selectedVisa;
 
   return (
-    <section className="visa-info-details">
-      <div className="visa-info-details-container">
-        {/* LEFT SIDE CONTENT */}
-        <div className="visa-info-details-left">
-          <div className="visa-info-details-author">
-            <img src={authorImg} alt="Author" className="visa-info-details-author-img" />
-            <div>
-              <p className="visa-info-details-author-category">
-                <span className="visa-info-details-dot"></span> IMMIGRATION
+    <section className="visa-info-section">
+      <div className="visa-info-container">
+        {/* LEFT SIDE */}
+        <div className="visa-info-left">
+          <h2 className="visa-info-title">{visaName}</h2>
+
+          <div className="visa-info-image-wrapper">
+            <img
+              src={`${BASE_URL.replace("/api", "")}${visaImageUrl}`}
+              alt={visaName}
+              className="visa-info-image"
+            />
+          </div>
+
+          {/* DESCRIPTION */}
+          <div
+            className="visa-info-description"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(visaDesc || ""),
+            }}
+          />
+
+          
+           {/* ==== VISA PROCESS ==== */}
+        {selectedVisa?.visaProcess && (
+          <div className="visa-process-section">
+            <h3 className="visa-process-title">Visa Process</h3>
+            <div
+              className="visa-process-content"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(selectedVisa.visaProcess),
+              }}
+            />
+          </div>
+        )}
+
+          {/* OVERVIEW */}
+          {visaOverview && (
+            <div className="visa-info-overview">
+              <span className="visa-info-quote-top">❝</span>
+              <p
+                className="visa-info-overview-text"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(visaOverview),
+                }}
+              />
+              <p className="visa-info-overview-author">
+                ~ {consultant?.name || "Our Consultant"}
               </p>
-              <p className="visa-info-details-author-name">
-                Post By: <strong>Colmin O'Neill</strong>
-              </p>
+              <span className="visa-info-quote-bottom">❞</span>
             </div>
-          </div>
+          )}
 
-          <h2 className="visa-info-details-title">
-            Citizenship Concept on How to Become a UK Citizen
-          </h2>
+        {/* ==== VISA FEATURES ==== */}
+        {selectedVisa?.features && selectedVisa.features.length > 0 && (
+                  <div className="visa-features-section">
+                    <h3 className="visa-features-title">Visa Features</h3>
+                    <ul className="visa-features-list">
+                      {selectedVisa.features.map((feature, idx) => (
+                        <li key={idx} className="visa-feature-item">
+                          <span className="visa-feature-icon">✔</span>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+        )}
+                
+        {/* ==== CONSULTANT SECTION ==== */}
+          {consultant && (
+            <div className="consultant-section">
+              <h3 className="consultant-title">Meet Our Consultant</h3>
 
-          <div className="visa-info-details-image-wrapper">
-            <img src={visaMain} alt="Visa Info" className="visa-info-details-image" />
-          </div>
-
-          <p className="visa-info-details-text">
-            Laborious physical exercise excepts obtain some advantage from in which toil and pain procure him some great foresee the pain and trouble that are bound not know how to pursue pleasure rationally encounter consequences that extremely painful or again is there anyone who loves or pursues or desires these cases are perfectly simple and easy to distinguish. In a free hours when our power choice is untrammelled and when nothing prevents righteous indignation and dislike men who are so beguiled and demoralized by that charms of pleasure of the moment so blinded by desire.
-            <br /> <br />
-            Toil and pain procure him some great foresee the pain and trouble that are bound not know how to pursue pleasure rationally encounter consequences that extremely painful or again is there anyone who loves or pursues or desires these cases are perfectly simple and easy to distinguish in a free hours when our power choice is untrammelled and when nothing prevents righteous indignation.
-          </p>
-
-          {/* ADDITIONAL DETAILS SECTION */}
-          <div className="visa-info-details-points">
-            <div className="visa-info-details-point">
-              <div className="visa-info-details-bullet"></div>
-              <div>
-                <h4>Know Your Occupation</h4>
-                <p>
-                  Untrammelled and when nothing prevent work being able to do what we like
-                  best every pleasures is all but in certain duty one who avoids a pain
-                  that of the moment.
-                </p>
-              </div>
-            </div>
-
-            <div className="visa-info-details-point">
-              <div className="visa-info-details-bullet"></div>
-              <div>
-                <h4>No Language Requirement</h4>
-                <p>
-                  Indignation and dislike men who are beguiled and demoralized by the
-                  charms all pleasure the moment foresee occasionally circumstances occur
-                  in demoralized by the charms.
-                </p>
-                <ul>
-                  <li>That extremely painful or again is there anyone.</li>
-                  <li>Indignation and dislike men who are so beguiled and demoralized.</li>
-                  <li>Desires these cases are perfectly simple easy distinguish.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="visa-info-details-req">
-              <h3>Requirements for Citizenship</h3>
-              <p>
-                Idea of denouncing pleasure and praising pain was born and will give you
-                complete account of the system and expound the actual teachings of the
-                great explorer of the truth the master builder of human happiness one
-                rejects dislikes pleasure undertakes laborious physical exercise.
-              </p>
-              <p>
-                Praising pain was born and will give you complete account of the system
-                and expound the actual teachings of the great explorer of the truth the
-                master builder.
-              </p>
-            </div>
-          </div>
-
-          {/* ====== QUOTE + TAGS + SHARE SECTION ====== */}
-       <div className="visa-info-quote-wrapper">
-  {/* Quote Box */}
-<div className="visa-info-quote-box">
-  <span className="quote-mark quote-top">❝</span>
-  <div className="visa-info-quote-content">
-    <p className="visa-info-quote-text">
-      UK is the most popular study destination in the world because of it’s modern learning environment.
-    </p>
-    <p className="visa-info-quote-author">~ Silvester Scott</p>
-  </div>
-  <span className="quote-mark quote-bottom">❝</span>
-</div>
-
-
-  {/* Description */}
-  <div className="visa-info-quote-desc">
-    <p>
-      Beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire,
-      that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs
-      to those who fail in their duty through weakness of will, which is the same as saying through
-      shrinking from toil and pain.
-    </p>
-    <p>
-      In a free hour, when our power of choice is untrammelled and when nothing prevents our being
-      able to do what we like best.
-    </p>
-  </div>
-
-            {/* Tags + Share Row */}
-            <div className="visa-info-tags-share">
-              <div className="tags-section">
-                <h4>TAGS</h4>
-                <div className="tags-list">
-                  <span># Agents</span>
-                  <span># Business</span>
-                  <span># Career</span>
+              <div className="consultant-card">
+                <div className="consultant-image-wrapper">
+                  <img
+                    src={
+                      consultant.imageUrl
+                        ? `${BASE_URL.replace("/api", "")}${consultant.imageUrl}`
+                        : "https://via.placeholder.com/150"
+                    }
+                    alt={consultant.name}
+                    className="consultant-avatar"
+                  />
                 </div>
-              </div>
 
-              <div className="share-section">
-                <h4>SHARE</h4>
-                <div className="share-icons">
-                  <a href="#"><FaFacebookF /></a>
-                  <a href="#"><FaTwitter /></a>
-                  <a href="#"><FaVimeoV /></a>
-                  <a href="#"><FaYoutube /></a>
-                </div>
-              </div>
-            </div>
-          </div>
+                <div className="consultant-info">
+                  <h4 className="consultant-name">{consultant.name}</h4>
+                  <p className="consultant-about">{consultant.about}</p>
 
-          {/* About Author Section */}
-          <div className="author-section">
-            <h3 className="author-title">About Author</h3>
-
-            <div className="author-card">
-              <img src={authorImg} alt="Author" className="author-avatar" />
-
-              <div className="author-details">
-                <h4 className="author-name">Paul Anderson</h4>
-                <p className="author-bio">
-                  Undertakes laborious physical exercise, except to obtain some advantage
-                  from it but who has any right to find fault with man who chooses to
-                  enjoy a pleasure that has no annoying consequences.
-                </p>
-
-                <div className="author-social">
-                  <a href="#"><FaFacebookF /></a>
-                  <a href="#"><FaTwitter /></a>
-                  <a href="#"><FaGooglePlusG /></a>
-                  <a href="#"><FaLinkedinIn /></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* ===== Comments Section ===== */}
-          <div className="comments-section">
-            <h3 className="comments-title">Comments</h3>
-
-            {/* Comment 1 */}
-            <div className="comment-item">
-              <img src={commentImg1} alt="Isaac Herman" className="comment-avatar" />
-              <div className="comment-content">
-                <div className="comment-header">
-                  <h4 className="comment-name">Isaac Herman</h4>
-                  <span className="comment-date">JUNE 14, 2021 [11.00AM]</span>
-                </div>
-                <p className="comment-text">
-                  How all this mistaken idea of denouncing pleasure and praising pain was
-                  born and I will give you a complete account of the system.
-                </p>
-                <button className="comment-reply">
-                  REPLY <span>&#8594;</span>
-                </button>
-              </div>
-            </div>
-
-            <hr className="comment-divider" />
-
-            {/* Comment 2 */}
-            <div className="comment-item">
-              <img src={commentImg2} alt="William Cobus" className="comment-avatar" />
-              <div className="comment-content">
-                <div className="comment-header">
-                  <h4 className="comment-name">William Cobus</h4>
-                  <span className="comment-date">JUNE 14, 2021 [11.20AM]</span>
-                </div>
-                <p className="comment-text">
-                  Undertakes laborious physical exercise, except to obtain some advantage
-                  from it but who has any right to find fault desires to obtain pain.
-                </p>
-                <button className="comment-reply">
-                  REPLY <span>&#8594;</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* ===== Leave Comment Section ===== */}
-          <div className="leave-comment">
-            <h3 className="leave-comment-title">Send Your Comment</h3>
-            <p className="leave-comment-text">
-              Your email address will not be published. Required fields are marked *
-            </p>
-
-            <form className="comment-form">
-              <div className="comment-form-row">
-                <input type="text" placeholder="Your Name *" required />
-                <input type="email" placeholder="Email Address *" required />
-              </div>
-
-              <textarea placeholder="Comment ..." rows="5" required></textarea>
-
-              <button type="submit" className="comment-submit">
-                POST COMMENT <span>&#8594;</span>
-              </button>
-            </form>
-          </div>
-        </div>
-
-        {/* RIGHT SIDEBAR */}
-        <div className="visa-info-details-sidebar">
-          {/* SEARCH BOX */}
-          <div className="visa-info-details-search">
-            <h3>Search</h3>
-            <div className="visa-info-details-search-box">
-              <input type="text" placeholder="Keyword..." />
-              <Search className="visa-info-details-search-icon" size={18} />
-            </div>
-          </div>
-
-          {/* POPULAR POST */}
-          <div className="visa-info-details-popular">
-            <div className="visa-info-details-popular-header">
-              <h3>Popular Post</h3>
-              <div className="visa-info-details-popular-controls">
-                <button onClick={prevSlide}>
-                  <ChevronLeft size={18} />
-                </button>
-                <button onClick={nextSlide}>
-                  <ChevronRight size={18} />
-                </button>
-              </div>
-            </div>
-
-            <div className="visa-info-details-popular-slider">
-              <div className="visa-info-details-popular-card fade-in">
-                <img
-                  src={popularPosts[index].img}
-                  alt="Popular Post"
-                  className="visa-info-details-popular-img"
-                />
-                <div className="visa-info-details-popular-overlay">
-                  <p className="visa-info-details-popular-category">
-                    <span className="visa-info-details-dot"></span> {popularPosts[index].category}
-                  </p>
-                  <h4 className="visa-info-details-popular-title">{popularPosts[index].title}</h4>
-                  <div className="visa-info-details-popular-icons">
-                    <div className="visa-info-details-icon-item">
-                      <Heart size={16} />
-                      <span>{popularPosts[index].likes}</span>
-                    </div>
-                    <div className="visa-info-details-icon-item">
-                      <MessageCircle size={16} />
-                      <span>{popularPosts[index].comments}</span>
-                    </div>
+                  <div className="consultant-social">
+                    <a href="#" className="social-link facebook"><FaFacebookF /></a>
+                    <a href="#" className="social-link twitter"><FaTwitter /></a>
+                    <a href="#" className="social-link linkedin"><FaLinkedinIn /></a>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
+        </div>
 
-          {/* CATEGORIES */}
-          <div className="visa-info-details-categories">
-            <h3>Categories</h3>
-            <ul>
-              <li><span>IMMIGRATION</span> <span>(24)</span></li>
-              <li><span>RESIDENT</span> <span>(10)</span></li>
-              <li><span>STUDENT</span> <span>(06)</span></li>
-              <li><span>TOURIST</span> <span>(15)</span></li>
-              <li><span>NEWS & TIPS</span> <span>(09)</span></li>
-              <li><span>COUNTRY</span> <span>(11)</span></li>
-            </ul>
-          </div>
-
-          {/* GALLERY */}
-          <div className="visa-info-details-gallery">
-            <h3>Gallery</h3>
-            <div className="visa-info-details-gallery-grid">
-              {galleryImages.map((img, i) => (
-                <img key={i} src={img} alt={`Gallery ${i + 1}`} />
-              ))}
+        {/* RIGHT SIDE */}
+        <div className="visa-info-sidebar">
+          {/* SEARCH BOX */}
+          <div className="visa-info-search">
+            <h3>Search</h3>
+            <div className="visa-info-search-box">
+              <input
+                type="text"
+                placeholder="Search visa..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <Search className="visa-info-search-icon" />
             </div>
           </div>
 
-        
+          {/* POPULAR POSTS */}
+          <div className="visa-info-popular">
+            <div className="visa-info-popular-header">
+              <h3>Popular Posts</h3>
+              <div className="visa-info-popular-controls">
+                <button onClick={prevSlide}>
+                  <ChevronLeft />
+                </button>
+                <button onClick={nextSlide}>
+                  <ChevronRight />
+                </button>
+              </div>
+            </div>
+            {latestVisas.length > 0 && (
+              <div className="visa-info-popular-card">
+                <img
+                  src={`${BASE_URL.replace("/api", "")}${latestVisas[index].visaImageUrl}`}
+                  alt={latestVisas[index].visaName}
+                />
+                <div className="visa-info-popular-overlay">
+                  <h4>{latestVisas[index].visaName}</h4>
+                </div>
+              </div>
+            )}
+          </div>
 
-{/* Popular Tags */}
-<div className="visa-info-details-tags">
-  <h3>Popular Tags</h3>
-  <div className="visa-info-details-tags-list">
-    <span>#Travel</span>
-    <span>#Visa</span>
-    <span>#Immigration</span>
-    <span>#Study</span>
-    <span>#Tour</span>
-    <span>#Business</span>
-    <span>#Career</span>
-  </div>
-</div>
+            {/* ==== VISA CATEGORIES SECTION ==== */}
+            <div className="categories-section">
+              <h3 className="categories-title">Visa Categories</h3>
 
-{/* Subscribe Us */}
-<div className="visa-info-details-subscribe">
-  <h3>Subscribe Us</h3>
-  <p>Get the latest visa updates, news & tips delivered to your inbox.</p>
-  <input type="email" placeholder="Enter your email" />
-  <button>Subscribe</button>
-</div>
+              <ul className="categories-list">
+                {visaList.map((visa, i) => (
+                  <li
+                    key={i}
+                    className="category-item"
+                    onClick={() => handleCategoryClick(visa.visaName)}
+                  >
+                    <span className="category-dot"></span>
+                    <span className="category-name">{visa.visaName}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+
+          {/* ENQUIRY FORM */}
+          <div className="visa-info-enquiry">
+            <h2>Quick Enquiry</h2>
+            <p>
+              Have questions about visa processing? Fill the form and our team
+              will respond soon.
+            </p>
+            <form>
+              <div className="visa-info-form-group">
+                <input type="text" placeholder="Full Name" required />
+              </div>
+              <div className="visa-info-form-group">
+                <input type="email" placeholder="Email Address" required />
+              </div>
+              <div className="visa-info-form-group">
+                <input type="tel" placeholder="Phone Number" required />
+              </div>
+              <div className="visa-info-form-group">
+                <textarea rows="4" placeholder="Your Message" required></textarea>
+              </div>
+              <button type="submit" className="visa-info-btn">
+                Submit Enquiry
+              </button>
+            </form>
+          </div>
+
+          {/* ==== SPECIAL TOP FEATURES ==== */}
+            {selectedVisa?.specialFeatures && selectedVisa.specialFeatures.length > 0 && (
+              <div className="special-features-section">
+                <h3 className="special-features-title">Special Top Features</h3>
+                <ul className="special-features-list">
+                  {selectedVisa.specialFeatures.map((feature, idx) => (
+                    <li key={idx} className="special-feature-item">
+                      <span className="special-feature-star">★</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
         </div>
       </div>

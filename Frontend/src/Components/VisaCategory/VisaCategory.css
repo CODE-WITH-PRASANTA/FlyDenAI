@@ -1,11 +1,11 @@
 /* ---------- Section Container ---------- */
 .visa-category-section {
-  margin: 60px auto;
-  padding: 20px 25px;
+  margin: 10px auto;
+  padding: 40px 25px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #f9fbff 0%, #eef6ff 100%);
-  border: 1.5px solid rgba(0, 102, 204, 0.1);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, #f8fbff 0%, #f1f5ff 100%);
+  border: 1.5px solid rgba(0, 102, 204, 0.08);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
   overflow: hidden;
 }
 
@@ -19,6 +19,19 @@
   font-size: 2.4rem;
   color: #0f172a;
   font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.visa-category-header h2::after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #e94e77, #ff7ca3);
+  bottom: -10px;
+  left: 20%;
+  border-radius: 4px;
 }
 
 .highlight {
@@ -26,8 +39,8 @@
 }
 
 .visa-category-header p {
-  max-width: 680px;
-  margin: 12px auto 0;
+  max-width: 1400px;
+  margin: 18px auto 0;
   color: #475569;
   font-size: 1rem;
   line-height: 1.7;
@@ -39,18 +52,18 @@
   overflow-x: auto;
   gap: 25px;
   scroll-behavior: smooth;
-  padding: 10px 5px 15px;
+  padding: 10px 5px 25px;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Hide scrollbar in Chrome/Safari/Edge */
+/* ---------- Scrollbar ---------- */
 .visa-category-scroll::-webkit-scrollbar {
   height: 6px;
 }
 
 .visa-category-scroll::-webkit-scrollbar-track {
-  background: #f3f4f6;
+  background: #f1f5f9;
   border-radius: 10px;
 }
 
@@ -60,40 +73,57 @@
   transition: background 0.3s ease;
 }
 
-.visa-category-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #d63b67, #e94e77);
-}
-
 /* ---------- Card ---------- */
 .VisaCategory-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
-  background: #fff;
-  border-radius: 18px;
+  background: #ffffff;
+  border-radius: 20px;
   text-align: center;
-  padding: 25px 20px;
-  border: 1px solid rgba(233, 78, 119, 0.1);
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
+  padding: 25px 22px;
+  border: 1.5px solid rgba(233, 78, 119, 0.2);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.VisaCategory-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 25px rgba(233, 78, 119, 0.15);
-  border-color: #e94e77;
+.VisaCategory-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at top right,
+    rgba(233, 78, 119, 0.06),
+    transparent 60%
+  );
+  z-index: 0;
 }
 
 /* ---------- Image ---------- */
+.visa-img-wrapper {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fdf6f9 0%, #fff8fa 100%);
+  border: 1px solid rgba(233, 78, 119, 0.1);
+  overflow: hidden;
+}
+
 .VisaCategory-image {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: contain;
-  margin-bottom: 12px;
   transition: transform 0.35s ease;
 }
 
 .VisaCategory-card:hover .VisaCategory-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 /* ---------- Text ---------- */
@@ -101,15 +131,27 @@
   font-size: 1.25rem;
   font-weight: 700;
   color: #0f172a;
-  margin-bottom: 8px;
+  margin: 12px 0 10px;
+  position: relative;
 }
 
-.visa-description {
+.visa-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #e94e77, #ff8aa9);
+  margin: 6px auto;
+  border-radius: 3px;
+}
+
+.visacategory-description {
   font-size: 0.95rem;
   color: #475569;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
   line-height: 1.6;
-  min-height: 70px;
+  min-height: 75px;
+  text-align: justify;
 }
 
 /* ---------- Button ---------- */
@@ -117,27 +159,52 @@
   background: linear-gradient(135deg, #e94e77 0%, #d63b67 100%);
   color: #fff;
   border: none;
-  padding: 9px 24px;
+  padding: 10px 26px;
   border-radius: 25px;
   font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(233, 78, 119, 0.25);
+  transition: all 0.35s ease;
+  box-shadow: 0 3px 12px rgba(233, 78, 119, 0.25);
+  position: relative;
+  z-index: 1;
 }
 
 .visa-btn:hover {
   background: linear-gradient(135deg, #d63b67 0%, #e94e77 100%);
   transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(233, 78, 119, 0.35);
 }
 
-/* ---------- Responsive Design ---------- */
+/* ---------- Loading ---------- */
+.visa-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+}
+
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #e94e77;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Responsive ---------- */
 @media (max-width: 992px) {
   .visa-category-header h2 {
     font-size: 2rem;
-  }
-
-  .visa-category-scroll {
-    gap: 20px;
   }
 
   .VisaCategory-card {
@@ -147,7 +214,7 @@
 
 @media (max-width: 768px) {
   .visa-category-section {
-    padding: 15px;
+    padding: 20px;
     margin: 0px;
   }
 
@@ -155,13 +222,13 @@
     font-size: 1.8rem;
   }
 
-  .visa-description {
+  .visacategory-description {
     font-size: 0.9rem;
   }
 
   .VisaCategory-card {
     flex: 0 0 240px;
-    padding: 18px 15px;
+    padding: 20px 16px;
   }
 
   .VisaCategory-image {
@@ -188,7 +255,7 @@
   }
 
   .visa-btn {
-    padding: 8px 20px;
+    padding: 8px 18px;
     font-size: 0.9rem;
   }
 }

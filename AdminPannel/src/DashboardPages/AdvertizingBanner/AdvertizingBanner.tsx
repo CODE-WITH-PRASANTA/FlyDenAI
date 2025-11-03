@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import "./AdvertizingBanner.css";
+import { useTheme } from "../../context/ThemeContext";
 
 interface BannerData {
   id?: number;
@@ -11,6 +12,8 @@ interface BannerData {
 }
 
 const AdvertizingBanner: React.FC = () => {
+  const { theme } = useTheme(); // ✅ get current theme ("light" or "dark")
+
   const [bannerData, setBannerData] = useState<BannerData>({
     headline: "",
     subline: "",
@@ -63,7 +66,7 @@ const AdvertizingBanner: React.FC = () => {
   };
 
   return (
-    <div className="Advertizing-Banner-container">
+    <div className={`Advertizing-Banner-container ${theme}`}>
       {/* LEFT SECTION */}
       <div className="Advertizing-Banner-left">
         <h2 className="Advertizing-Banner-heading">🎯 Upload Advertisement Banner</h2>
@@ -152,9 +155,7 @@ const AdvertizingBanner: React.FC = () => {
                   <h3>{banner.headline}</h3>
                   <p>{banner.subline}</p>
                   <ul>
-                    {banner.points.map(
-                      (p, i) => p && <li key={i}>{p}</li>
-                    )}
+                    {banner.points.map((p, i) => p && <li key={i}>{p}</li>)}
                   </ul>
                   <div className="Advertizing-Banner-actions">
                     <button onClick={() => handleDelete(banner.id!)} className="delete">

@@ -22,6 +22,7 @@ import PostTestimonial from "./DashboardPages/PostTestimonial/PostTestimonial";
 import ClientAction from "./DashboardPages/ClientAction/ClientAction";
 import FaqPosting from "./DashboardPages/FaqPosting/FaqPosting";
 import AdvertizingBanner from "./DashboardPages/AdvertizingBanner/AdvertizingBanner";
+import DirectorandAchivmentManage from "./DashboardPages/DirectorandAchivmentManage/DirectorandAchivmentManage";
 
 export default function App() {
   return (
@@ -61,6 +62,7 @@ export default function App() {
           <Route path="/testimonial/client-action" element={<ClientAction />} />
           <Route path="/faq/post-faq" element={<FaqPosting />} />
           <Route path="/advertise/banner" element={<AdvertizingBanner />} />
+          <Route path="/director-achievement-manage" element={<DirectorandAchivmentManage />} />
           
           </Route>
 

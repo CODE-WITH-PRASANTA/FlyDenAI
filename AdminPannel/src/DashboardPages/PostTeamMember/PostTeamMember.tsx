@@ -1,10 +1,12 @@
-import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
+import React, { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
 import "./PostTeamMember.css";
-import { useTheme } from "../../context/ThemeContext"; // theme context
+import { useTheme } from "../../context/ThemeContext";
+import BASE_URL from "../../Api"; // ✅ Example: "http://localhost:5000/api"
 
 interface TeamMember {
-  id: number;
-  profilePicture: string;
+  _id?: string;
+  imageUrl?: string;
   name: string;
   designation: string;
   experience: string;
@@ -14,13 +16,12 @@ interface TeamMember {
   whatsapp: string;
   phone: string;
   email: string;
+  published?: boolean;
 }
 
 const PostTeamMember: React.FC = () => {
-  const { theme } = useTheme(); // get current theme
+  const { theme } = useTheme();
   const [memberData, setMemberData] = useState<TeamMember>({
-    id: 0,
-    profilePicture: "",
     name: "",
     designation: "",
     experience: "",
@@ -31,65 +32,137 @@ const PostTeamMember: React.FC = () => {
     phone: "",
     email: "",
   });
-
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [tableData, setTableData] = useState<TeamMember[]>([]);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState<string | null>(null);
 
+  // ✅ Fetch all team members on load
+  const fetchMembers = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/teammembers`);
+      setTableData(res.data.data || []);
+    } catch (error) {
+      console.error("❌ Error fetching members:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMembers();
+  }, []);
+
+  // ✅ Handle input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value, files } = e.target;
-    if (name === "profilePicture" && files) {
-      setMemberData({ ...memberData, profilePicture: URL.createObjectURL(files[0]) });
+    if (name === "profilePicture" && files && files[0]) {
+      setImageFile(files[0]);
     } else {
       setMemberData({ ...memberData, [name]: value });
     }
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  // ✅ Submit or Update Member
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!memberData.name || !memberData.designation) return;
+    if (!memberData.name || !memberData.designation) {
+      alert("Name and Designation are required!");
+      return;
+    }
 
-    const newEntry: TeamMember = { ...memberData, id: tableData.length + 1 };
-    setTableData([...tableData, newEntry]);
+    const formData = new FormData();
+    formData.append("name", memberData.name);
+    formData.append("designation", memberData.designation);
+    formData.append("experience", memberData.experience);
+    formData.append("instagram", memberData.instagram);
+    formData.append("facebook", memberData.facebook);
+    formData.append("twitter", memberData.twitter);
+    formData.append("whatsapp", memberData.whatsapp);
+    formData.append("phone", memberData.phone);
+    formData.append("email", memberData.email);
+    if (imageFile) formData.append("image", imageFile);
 
-    setMemberData({
-      id: 0,
-      profilePicture: "",
-      name: "",
-      designation: "",
-      experience: "",
-      instagram: "",
-      facebook: "",
-      twitter: "",
-      whatsapp: "",
-      phone: "",
-      email: "",
-    });
-  };
+    try {
+      if (isEditing && editId) {
+        await axios.put(`${BASE_URL}/teammembers/${editId}`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        alert("✅ Member updated successfully!");
+      } else {
+        await axios.post(`${BASE_URL}/teammembers`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
+        alert("✅ Member added successfully!");
+      }
 
-  const handleDelete = (id: number) => {
-    setTableData(tableData.filter((item) => item.id !== id));
-  };
-
-  const handleEdit = (id: number) => {
-    const editItem = tableData.find((item) => item.id === id);
-    if (editItem) {
-      setMemberData(editItem);
-      setTableData(tableData.filter((item) => item.id !== id));
+      setMemberData({
+        name: "",
+        designation: "",
+        experience: "",
+        instagram: "",
+        facebook: "",
+        twitter: "",
+        whatsapp: "",
+        phone: "",
+        email: "",
+      });
+      setImageFile(null);
+      setIsEditing(false);
+      setEditId(null);
+      fetchMembers();
+    } catch (error) {
+      console.error("❌ Error saving member:", error);
     }
   };
+
+  // ✅ Delete member
+  const handleDelete = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this member?")) return;
+    try {
+      await axios.delete(`${BASE_URL}/teammembers/${id}`);
+      alert("🗑️ Member deleted successfully!");
+      fetchMembers();
+    } catch (error) {
+      console.error("❌ Error deleting member:", error);
+    }
+  };
+
+  // ✅ Edit member
+  const handleEdit = (member: TeamMember) => {
+    setMemberData(member);
+    setIsEditing(true);
+    setEditId(member._id || null);
+  };
+
+  // ✅ Toggle Publish / Unpublish
+  const handleTogglePublish = async (id: string) => {
+    try {
+      await axios.patch(`${BASE_URL}/teammembers/${id}/publish`);
+      fetchMembers();
+    } catch (error) {
+      console.error("❌ Error toggling publish:", error);
+    }
+  };
+
+
+  // ✅ Clean Image URL (remove `/api` only for images)
+  const getImageUrl = (path: string) => {
+    return `${BASE_URL.replace("/api", "")}${path}`;
+  };
+
 
   return (
     <div className={`PostTeamMember-container ${theme === "dark" ? "dark" : "light"}`}>
       {/* Left Side: Form */}
       <div className="PostTeamMember-form-section">
-        <h2 className="PostTeamMember-heading">Add Team Member</h2>
+        <h2 className="PostTeamMember-heading">
+          {isEditing ? "Edit Team Member" : "Add Team Member"}
+        </h2>
         <form className="PostTeamMember-form" onSubmit={handleSubmit}>
-          {/* Profile */}
           <div className="PostTeamMember-box">
             <h4>Profile</h4>
             <input type="file" name="profilePicture" accept="image/*" onChange={handleChange} />
           </div>
 
-          {/* Name & Phone */}
           <div className="PostTeamMember-box-row">
             <div className="PostTeamMember-box-item">
               <label>Name</label>
@@ -114,7 +187,6 @@ const PostTeamMember: React.FC = () => {
             </div>
           </div>
 
-          {/* Email & Designation */}
           <div className="PostTeamMember-box-row">
             <div className="PostTeamMember-box-item">
               <label>Email</label>
@@ -138,7 +210,6 @@ const PostTeamMember: React.FC = () => {
             </div>
           </div>
 
-          {/* Experience */}
           <div className="PostTeamMember-box">
             <label>Experience</label>
             <input
@@ -150,53 +221,44 @@ const PostTeamMember: React.FC = () => {
             />
           </div>
 
-          {/* Social Media */}
           <div className="PostTeamMember-box">
             <h4>Social Media</h4>
             <div className="PostTeamMember-box-row">
-              <div className="PostTeamMember-box-item">
-                <input
-                  type="text"
-                  name="instagram"
-                  value={memberData.instagram}
-                  onChange={handleChange}
-                  placeholder="Instagram"
-                />
-              </div>
-              <div className="PostTeamMember-box-item">
-                <input
-                  type="text"
-                  name="facebook"
-                  value={memberData.facebook}
-                  onChange={handleChange}
-                  placeholder="Facebook"
-                />
-              </div>
+              <input
+                type="text"
+                name="instagram"
+                value={memberData.instagram}
+                onChange={handleChange}
+                placeholder="Instagram"
+              />
+              <input
+                type="text"
+                name="facebook"
+                value={memberData.facebook}
+                onChange={handleChange}
+                placeholder="Facebook"
+              />
             </div>
             <div className="PostTeamMember-box-row">
-              <div className="PostTeamMember-box-item">
-                <input
-                  type="text"
-                  name="twitter"
-                  value={memberData.twitter}
-                  onChange={handleChange}
-                  placeholder="Twitter"
-                />
-              </div>
-              <div className="PostTeamMember-box-item">
-                <input
-                  type="text"
-                  name="whatsapp"
-                  value={memberData.whatsapp}
-                  onChange={handleChange}
-                  placeholder="WhatsApp"
-                />
-              </div>
+              <input
+                type="text"
+                name="twitter"
+                value={memberData.twitter}
+                onChange={handleChange}
+                placeholder="Twitter"
+              />
+              <input
+                type="text"
+                name="whatsapp"
+                value={memberData.whatsapp}
+                onChange={handleChange}
+                placeholder="WhatsApp"
+              />
             </div>
           </div>
 
           <button type="submit" className="PostTeamMember-submit-btn">
-            Add Member
+            {isEditing ? "Update Member" : "Add Member"}
           </button>
         </form>
       </div>
@@ -215,22 +277,23 @@ const PostTeamMember: React.FC = () => {
                 <th>Experience</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((item, index) => (
-                <tr key={item.id}>
+                <tr key={item._id}>
                   <td>{index + 1}</td>
                   <td>
-                    {item.profilePicture ? (
-                      <img
-                        src={item.profilePicture}
-                        alt="Profile"
-                        className="PostTeamMember-profile-img"
-                      />
-                    ) : (
-                      "N/A"
+                   {item.imageUrl ? (
+                          <img
+                            src={getImageUrl(item.imageUrl)}
+                            alt="Profile"
+                            className="PostTeamMember-profile-img"
+                          />
+                        ) : (
+                          "N/A"
                     )}
                   </td>
                   <td>{item.name}</td>
@@ -238,14 +301,29 @@ const PostTeamMember: React.FC = () => {
                   <td>{item.experience}</td>
                   <td>{item.phone}</td>
                   <td>{item.email}</td>
+                  <td>
+                    <button
+                      className={`PostTeamMember-publish-btn ${
+                        item.published ? "published" : "unpublished"
+                      }`}
+                      onClick={() => handleTogglePublish(item._id!)}
+                    >
+                      {item.published ? "Published" : "Unpublished"}
+                    </button>
+                  </td>
                   <td className="PostTeamMember-action-buttons">
-                    <button onClick={() => handleEdit(item.id)} className="PostTeamMember-edit-btn">
+                    <button
+                      onClick={() => handleEdit(item)}
+                      className="PostTeamMember-edit-btn"
+                    >
                       Edit
                     </button>
-                    <button onClick={() => handleDelete(item.id)} className="PostTeamMember-delete-btn">
+                    <button
+                      onClick={() => handleDelete(item._id!)}
+                      className="PostTeamMember-delete-btn"
+                    >
                       Delete
                     </button>
-                    <button className="PostTeamMember-preview-btn">Preview</button>
                   </td>
                 </tr>
               ))}

@@ -1,11 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ContactSection.css";
 import { FaPhoneAlt, FaEnvelope, FaClock, FaMapMarkerAlt, FaShareAlt } from "react-icons/fa";
+import axios from "axios";
+import BASE_URL from "../../Api"; // Example: http://localhost:5000/api
 
 // Assets
-import contactbg from '../../assets/Contact-bg.webp'
+import contactbg from "../../assets/Contact-bg.webp";
 
 const ContactSection = () => {
+  const [contactData, setContactData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  // ✅ Fetch contact details from backend
+  useEffect(() => {
+    const fetchContactData = async () => {
+      try {
+        const response = await axios.get(`${BASE_URL}/contacts`);
+        if (response.data.success && response.data.data.length > 0) {
+          // Assuming first contact document is the one to display
+          setContactData(response.data.data[0]);
+        }
+        setLoading(false);
+      } catch (err) {
+        console.error("Error fetching contact data:", err);
+        setError("Failed to load contact information.");
+        setLoading(false);
+      }
+    };
+    fetchContactData();
+  }, []);
+
+  if (loading) {
+    return (
+      <section className="contact-section loading-section">
+        <p>Loading contact information...</p>
+      </section>
+    );
+  }
+
+  if (error || !contactData) {
+    return (
+      <section className="contact-section error-section">
+        <p>{error || "No contact details available."}</p>
+      </section>
+    );
+  }
+
+  const { email, phone, whatsapp, social, openHours, addresses } = contactData;
+
   return (
     <>
       {/* ====== Contact Form Section ====== */}
@@ -38,42 +81,73 @@ const ContactSection = () => {
         </div>
       </section>
 
-      {/* ====== Contact Info Section ====== */}
-      <section className="contact-info-section">
-        <div className="contact-info-box">
-          <div className="contact-icons"><FaPhoneAlt /></div>
-          <h3>Call Us</h3>
-          <p>+91 990 533 7044</p>
-        </div>
+   {/* ====== Contact Info Section ====== */}
+        <section className="contact-info-section">
+          {/* Call Us */}
+          <div className="contact-info-box enhanced-box">
+            <div className="contact-icons"><FaPhoneAlt /></div>
+            <h3>Call Us</h3>
+            <p className="contact-highlight">{phone || "N/A"}</p>
+            {whatsapp && <p className="contact-subtext">WhatsApp: {whatsapp}</p>}
+          </div>
 
-        <div className="contact-info-box">
-          <div className="contact-icons"><FaEnvelope /></div>
-          <h3>Email</h3>
-          <p>infoflydenai@gmail.com</p>
-        </div>
+          {/* Email */}
+          <div className="contact-info-box enhanced-box">
+            <div className="contact-icons"><FaEnvelope /></div>
+            <h3>Email</h3>
+            <p className="contact-highlight">{email || "N/A"}</p>
+          </div>
 
-        <div className="contact-info-box">
-          <div className="contact-icons"><FaClock /></div>
-          <h3>Opening Hours</h3>
-          <p>Monday – Saturday: 09:00 AM – 07:00 PM</p>
-        </div>
+          {/* Opening Hours */}
+          <div className="contact-info-box enhanced-box">
+            <div className="contact-icons"><FaClock /></div>
+            <h3>Opening Hours</h3>
+            <div className="opening-hours">
+              {Object.entries(openHours).map(([day, time]) => (
+                <div className="hours-row" key={day}>
+                  <span className="day-label">{day}</span>
+                  <span className="time-label">{time || "Closed"}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div className="contact-info-box">
-          <div className="contact-icons"><FaMapMarkerAlt /></div>
-          <h3>Address</h3>
-          <p>
-            FlyDenAi Consultancy Pvt. Ltd.<br />
-            2nd Floor, ABC Tower,<br />
-            Sector 14, Dwarka, New Delhi – 110075, India
-          </p>
-        </div>
+          {/* Address */}
+          <div className="contact-info-box enhanced-box">
+            <div className="contact-icons"><FaMapMarkerAlt /></div>
+            <h3>Address</h3>
+            {addresses && addresses.length > 0 ? (
+              <ul className="address-list">
+                {addresses.map((addr, idx) => (
+                  <li key={idx}>{addr}</li>
+                ))}
+              </ul>
+            ) : (
+              <p>No address provided</p>
+            )}
+          </div>
 
-        <div className="contact-info-box">
-          <div className="contact-icons"><FaShareAlt /></div>
-          <h3>Follow Us</h3>
-          <p>Facebook, Twitter, Instagram, LinkedIn</p>
-        </div>
-      </section>
+          {/* Follow Us */}
+          <div className="contact-info-box enhanced-box">
+            <div className="contact-icons"><FaShareAlt /></div>
+            <h3>Follow Us</h3>
+            <div className="social-links-modern">
+              {social?.facebook && (
+                <a href={social.facebook} className="fb" target="_blank" rel="noopener noreferrer">Facebook</a>
+              )}
+              {social?.twitter && (
+                <a href={social.twitter} className="tw" target="_blank" rel="noopener noreferrer">Twitter</a>
+              )}
+              {social?.instagram && (
+                <a href={social.instagram} className="ig" target="_blank" rel="noopener noreferrer">Instagram</a>
+              )}
+              {social?.linkedin && (
+                <a href={social.linkedin} className="ln" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              )}
+            </div>
+          </div>
+        </section>
+
     </>
   );
 };

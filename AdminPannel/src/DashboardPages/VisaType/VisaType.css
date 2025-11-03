@@ -386,3 +386,57 @@ textarea {
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
+
+
+.full-editor .tox-tinymce {
+  border-radius: 10px !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  width: 100% !important;
+  border: none !important;
+}
+
+.visa-type-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.visa-type-container {
+  flex: 2;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.visa-aside {
+  flex: 1;
+  background: var(--aside-bg);
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.visa-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.visa-table th,
+.visa-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.dark .visa-table th,
+.dark .visa-table td {
+  border-bottom: 1px solid #444;
+  color: #eee;
+}
+
+.table-img {
+  width: 60px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 5px;
+}
