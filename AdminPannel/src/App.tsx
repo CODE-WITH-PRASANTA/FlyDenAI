@@ -23,6 +23,11 @@ import ClientAction from "./DashboardPages/ClientAction/ClientAction";
 import FaqPosting from "./DashboardPages/FaqPosting/FaqPosting";
 import AdvertizingBanner from "./DashboardPages/AdvertizingBanner/AdvertizingBanner";
 import DirectorandAchivmentManage from "./DashboardPages/DirectorandAchivmentManage/DirectorandAchivmentManage";
+import FaqPreview from "./DashboardPages/FaqPreview/FaqPreview";
+import MediaUpload from "./DashboardPages/MediaUpload/MediaUpload";
+import BlogPreview from "./DashboardPages/BlogPreview/BlogPreview";
+import OurSuccessfulClients from "./DashboardPages/OurSuccessfulClients/OurSuccessfulClients";
+import TeamPreview from "./DashboardPages/TeamPreview/TeamPreview";
 
 export default function App() {
   return (
@@ -54,13 +59,26 @@ export default function App() {
           <Route path="/country/manage" element={<PostCountry />} />
           <Route path="/country/visa-type" element={<VisaType />} />
           <Route path="/team/post-member" element={<PostTeamMember />} />
+          <Route path="/team/preview" element={<TeamPreview />} />
+          
           <Route path="/contact/manage" element={<ContactManagemenet />} />
+
+
           <Route path="/visa/post-visa" element={<VisaPosting />} />
           <Route path="/visa/preview" element={<PreviewVisa />} />
+
           <Route path="/blog/post" element={<BlogPosting />} />
+          <Route path="/blog/preview" element={<BlogPreview />} />
+
           <Route path="/testimonial/post" element={<PostTestimonial />} />
           <Route path="/testimonial/client-action" element={<ClientAction />} />
           <Route path="/faq/post-faq" element={<FaqPosting />} />
+          <Route path="/faq/preview" element={<FaqPreview/>} />
+          <Route path="/media/upload" element={<MediaUpload/>} />
+          
+          <Route path="/clients/successful" element={<OurSuccessfulClients/>} />
+
+
           <Route path="/advertise/banner" element={<AdvertizingBanner />} />
           <Route path="/director-achievement-manage" element={<DirectorandAchivmentManage />} />
           
