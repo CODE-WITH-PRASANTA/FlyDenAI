@@ -20,11 +20,11 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 25, 55, 0.5),
-    rgba(0, 0, 0, 0.5)
+    rgba(0, 25, 55, 0.6),
+    rgba(0, 0, 0, 0.8)
   );
   z-index: 1;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
 }
 
 /* 🎖 Top Badge */

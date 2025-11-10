@@ -4,7 +4,7 @@ import { FaSearchLocation, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import bannerBg from "../../assets/ab1.webp";
+import bannerBg from "../../assets/Visa Search Sec.webp";
 import BASE_URL from "../../Api"; // e.g., "http://localhost:5000/api"
 
 const AllCountryBanner = () => {
@@ -59,7 +59,7 @@ const AllCountryBanner = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        🌍 Trusted by <span>1000+ Travelers</span> Worldwide
+        🌍 Trusted by <span>900+ Travelers</span> Worldwide
       </motion.div>
 
       <div className="allcountry-content">

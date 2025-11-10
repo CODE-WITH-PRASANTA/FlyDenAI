@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import DOMPurify from "dompurify";
 import "./PopularDestinations.css";
 import BASE_URL from "../../Api";
 
@@ -44,14 +43,6 @@ const PopularDestinations = () => {
     return () => cancelAnimationFrame(animationFrame);
   }, [isDragging]);
 
-  // ✅ Truncate long descriptions
-  const truncateText = (text, wordLimit = 20) => {
-    const words = text.split(" ");
-    return words.length > wordLimit
-      ? words.slice(0, wordLimit).join(" ") + "..."
-      : text;
-  };
-
   return (
     <section className="PopularDestination-section">
       <h2 className="PopularDestination-title">🌍 Popular Visa Destinations</h2>
@@ -59,65 +50,74 @@ const PopularDestinations = () => {
         Discover our most loved travel destinations with easy visa processing and affordable pricing.
       </p>
 
-    <div
-  className="PopularDestination-slider"
-  ref={sliderRef}
-  onMouseEnter={() => setIsDragging(true)}
-  onMouseLeave={() => setIsDragging(false)}
-  onTouchStart={() => setIsDragging(true)}
-  onTouchEnd={() => setIsDragging(false)}
->
-  {destinations.map((dest, index) => (
-    <div key={index} className="PopularDestination-card">
-      <div className="PopularDestination-imageWrapper">
-        <img
-          src={
-            dest.bannerUrl
-              ? `${BASE_URL.replace("/api", "")}${dest.bannerUrl}`
-              : "/default-banner.jpg"
-          }
-          alt={dest.country}
-          loading="lazy"
-          className="PopularDestination-image"
-        />
-        <div className="PopularDestination-priceTag">
-          <span>BOOKING</span>
-          <span className="PopularDestination-price">
-            ₹ {parseFloat(
-              dest.startingPrice?.replace(/[^\d.]/g, "") ||
-              dest.fees?.replace(/[^\d.]/g, "") ||
-              dest.visaTypes?.[0]?.fees ||
-              0
-            ).toFixed(2)} /-
-          </span>
-          <span>ONLY</span>
-        </div>
+      <div
+        className="PopularDestination-slider"
+        ref={sliderRef}
+        onMouseEnter={() => setIsDragging(true)}
+        onMouseLeave={() => setIsDragging(false)}
+        onTouchStart={() => setIsDragging(true)}
+        onTouchEnd={() => setIsDragging(false)}
+      >
+        {destinations.map((dest, index) => (
+          <div key={index} className="PopularDestination-card">
+            <div className="PopularDestination-imageWrapper">
+              <img
+                src={
+                  dest.bannerUrl
+                    ? `${BASE_URL.replace("/api", "")}${dest.bannerUrl}`
+                    : "/default-banner.jpg"
+                }
+                alt={dest.country}
+                loading="lazy"
+                className="PopularDestination-image"
+              />
+              <div className="PopularDestination-priceTag">
+                <span>BOOKING</span>
+                <span className="PopularDestination-price">
+                  ₹{" "}
+                  {parseFloat(
+                    dest.startingPrice?.replace(/[^\d.]/g, "") ||
+                      dest.visaTypes?.[0]?.fees ||
+                      0
+                  ).toFixed(2)}{" "}
+                  /-
+                </span>
+                <span>ONLY</span>
+              </div>
+            </div>
+
+            <div className="PopularDestination-info">
+              <h3 className="PopularDestination-country">{dest.country}</h3>
+              <p className="PopularDestination-duration">
+                ⏳ Processing Time: <strong>{dest.processingTime}</strong>
+              </p>
+
+              {/* ✅ Expert / Consultant Section */}
+              {dest.expert && (
+                <div className="PopularDestination-expert">
+                  <h4>Consultant:</h4>
+                  <p>{dest.expert}</p>
+                </div>
+              )}
+
+              {/* ✅ Approval Tagline Section */}
+              {dest.approvalTagline && (
+                <div className="PopularDestination-approval">
+                  <h4>Note :</h4>
+                  <p>{dest.approvalTagline}</p>
+                </div>
+              )}
+
+              <button
+                className="PopularDestination-btn"
+                onClick={() => navigate(`/Visa/Details/${dest._id}`)}
+              >
+                Explore Now →
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <div className="PopularDestination-info">
-        <h3 className="PopularDestination-country">{dest.country}</h3>
-        <p className="PopularDestination-duration">
-          ⏳ Processing Time: <strong>{dest.processingTime}</strong>
-        </p>
-
-        <p
-          className="PopularDestination-description"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(truncateText(dest.description || "")),
-          }}
-        ></p>
-
-        <button
-          className="PopularDestination-btn"
-          onClick={() => navigate(`/Visa/Details/${dest._id}`)}
-        >
-          Explore Now →
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-
     </section>
   );
 };
