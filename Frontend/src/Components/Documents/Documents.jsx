@@ -1,148 +1,163 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import "./Documents.css";
-
-import i1 from "../../assets/sc1.webp";
-import i2 from "../../assets/sc2.webp";
-import i3 from "../../assets/sc3.webp";
-import i4 from "../../assets/sc4.webp";
-import i5 from "../../assets/sc5.webp";
-import i6 from "../../assets/sc6.webp";
-
-const teamMembers = [
-  { name: "Sakshi Jambekar", img: i1, exp: "2 Years" },
-  { name: "Airaf Shaikh", img: i2, exp: "2 Years" },
-  { name: "Purva Sawant", img: i3, exp: "3 Years" },
-  { name: "Mehul Jain", img: i4, exp: "4 Years" },
-  { name: "Ritika Sharma", img: i5, exp: "5 Years" },
-  { name: "Rahul Singh", img: i6, exp: "3 Years" },
-];
-
-const documentData = {
-  online: [
-    "Valid Passport with minimum 6 months validity",
-    "Recent Passport-sized photograph with white background",
-    "Confirmed return flight tickets",
-    "Proof of accommodation in Malaysia",
-    "Proof of sufficient funds",
-    "Completed online visa application form",
-    "Copy of PAN card or Aadhar card",
-  ],
-  sticker: [
-    "Valid Passport with minimum 6 months validity",
-    "Recent Passport-sized photograph with white background",
-    "Confirmed return flight tickets",
-    "Proof of accommodation in Malaysia",
-    "Proof of sufficient funds",
-    "Completed visa application form (hard copy)",
-    "Covering letter explaining purpose of visit",
-    "Invitation letter from Malaysia (if applicable)",
-    "Copy of PAN card or Aadhar card",
-  ],
-};
+import BASE_URL from "../../Api";
 
 const Documents = () => {
-  const [openSection, setOpenSection] = useState(null);
+  const { id } = useParams();
+  const [visa, setVisa] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [teamMembers, setTeamMembers] = useState([]);
+  const [openSection, setOpenSection] = useState(true);
   const carouselRef = useRef(null);
 
-  const toggleSection = (section) => {
-    setOpenSection(openSection === section ? null : section);
-  };
-
-  // Auto scroll carousel
+  // ✅ Fetch Visa Details by ID
   useEffect(() => {
-    const scrollAmount = 1; // px per tick
-    const speed = 20; // ms interval
-    const carousel = carouselRef.current;
-
-    const interval = setInterval(() => {
-      if (carousel) {
-        if (
-          carousel.scrollLeft >=
-          carousel.scrollWidth - carousel.clientWidth
-        ) {
-          carousel.scrollLeft = 0; // loop back
-        } else {
-          carousel.scrollLeft += scrollAmount;
-        }
+    if (!id) return;
+    const fetchVisa = async () => {
+      try {
+        const { data } = await axios.get(`${BASE_URL}/visas/published/${id}`);
+        setVisa(data.data);
+      } catch (err) {
+        console.error("❌ Error fetching visa details:", err);
+      } finally {
+        setLoading(false);
       }
-    }, speed);
+    };
+    fetchVisa();
+  }, [id]);
 
-    return () => clearInterval(interval);
+  // ✅ Fetch Team Members (only once)
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const { data } = await axios.get(`${BASE_URL}/teammembers`);
+        const base = BASE_URL.replace("/api", "");
+
+        // Filter only published members
+        const publishedMembers = data.data.filter((m) => m.published);
+
+        // Attach absolute image URLs
+        const updatedMembers = publishedMembers.map((m) => ({
+          ...m,
+          imageUrl: m.imageUrl?.startsWith("http")
+            ? m.imageUrl
+            : `${base}${m.imageUrl}`,
+        }));
+
+        setTeamMembers(updatedMembers);
+      } catch (err) {
+        console.error("❌ Error fetching team members:", err);
+      }
+    };
+    fetchTeam();
   }, []);
+
+  // ✅ Smooth infinite scrolling for the team carousel
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    let requestId;
+    const scrollStep = () => {
+      if (carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth) {
+        carousel.scrollLeft = 0;
+      } else {
+        carousel.scrollLeft += 0.8;
+      }
+      requestId = requestAnimationFrame(scrollStep);
+    };
+
+    requestId = requestAnimationFrame(scrollStep);
+    return () => cancelAnimationFrame(requestId);
+  }, [teamMembers]);
+
+  if (loading) return <p className="loading-text">Loading documents...</p>;
+  if (!visa) return <p className="error-text">No visa data found.</p>;
 
   return (
     <section id="documents" className="documents-wrapper">
       <div className="documents-container">
         <div className="documents-left">
           <h2 className="documents-title">
-            Documents required for Malaysia Visa for Indians
+            Documents required for {visa.country} Visa
           </h2>
 
-          {/* Toggle Sections */}
-          {["online", "sticker"].map((type) => (
-            <div key={type} className="document-section">
-              <button
-                className="document-toggle-btn"
-                onClick={() => toggleSection(type)}
-                aria-expanded={openSection === type}
-              >
-                {type === "online"
-                  ? "Must have Documents for Malaysia Visa Online"
-                  : "Must have Documents for Malaysia Sticker Visa"}
-                <span className={`Document-arrow ${openSection === type ? "open" : ""}`}>▼</span>
-              </button>
+          {/* ✅ Documents Section */}
+          <div className="document-section">
+            <button
+              className="document-toggle-btn"
+              onClick={() => setOpenSection(!openSection)}
+              aria-expanded={openSection}
+            >
+              Must have Documents for {visa.country} Visa
+              <span className={`Document-arrow ${openSection ? "open" : ""}`}>
+                ▼
+              </span>
+            </button>
 
-              <div
-                className={`documents-list ${openSection === type ? "open" : ""}`}
-              >
-                <ul>
-                  {documentData[type].map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+            <div className={`documents-list ${openSection ? "open" : ""}`}>
+              <ul>
+                {visa.documents && visa.documents.length > 0 ? (
+                  visa.documents.map((doc, index) => (
+                    <li key={index}>📄 {doc}</li>
+                  ))
+                ) : (
+                  <li>No documents listed for this visa.</li>
+                )}
+              </ul>
             </div>
-          ))}
+          </div>
 
-          {/* Team Carousel */}
+          {/* ✅ Team Members Section */}
           <div className="Document-team-section">
             <h3>Meet Our Team Of Visa Experts</h3>
             <div className="team-carousel" ref={carouselRef}>
               {teamMembers.map((member, i) => (
                 <div className="Document-TeamCard" key={i}>
-                  <img src={member.img} alt={member.name} className="team-photo" />
+                  <img
+                    src={member.imageUrl}
+                    alt={member.name}
+                    className="team-photo"
+                  />
                   <div className="team-info">
-                    <strong>{member.name}</strong>
-                    <div>Senior Visa Officer</div>
-                    <div>{member.exp} of Experience</div>
-                  </div>
-                </div>
-              ))}
-              {/* Duplicate cards for infinite feel */}
-              {teamMembers.map((member, i) => (
-                <div className="Document-TeamCard" key={`dup-${i}`}>
-                  <img src={member.img} alt={member.name} className="team-photo" />
-                  <div className="team-info">
-                    <strong>{member.name}</strong>
-                    <div>Senior Visa Officer</div>
-                    <div>{member.exp} of Experience</div>
+                    <strong className="team-name">{member.name}</strong>
+                    <div className="team-designation">{member.designation}</div>
+                    {member.experience && (
+                      <div className="doc-team-exp">
+                        🧠 {member.experience} years of experience
+                      </div>
+                    )}
+                    {member.email && (
+                      <div className="team-email">📧 {member.email}</div>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Visa Process Banner */}
-          <div className="visa-process-banner">
-            <strong>Malaysia Visa process and requirements</strong>
-            <button className="click-here-btn">Click Here</button>
-          </div>
-
-          {/* Sample Visa Card */}
+          {/* ✅ Sample Visa Card */}
           <div className="sample-visa-card">
             <div className="sample-visa-icon">📄</div>
             <div className="sample-visa-text">View Sample Visa Copy</div>
             <button className="sample-visa-btn">View Now</button>
+          </div>
+
+          {/* ✅ Last Updated */}
+          <div className="last-updated">
+            🕒 Last Updated:{" "}
+            <strong>
+              {new Date(visa.updatedAt).toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+              })}
+            </strong>
           </div>
         </div>
       </div>

@@ -86,11 +86,11 @@ const VisaDetails = () => {
             </div>
           </section>
 
-          <section id="visit-us" className="section-wrapper">
+          {/* <section id="visit-us" className="section-wrapper">
             <div className="section-container">
               <VisitUs />
             </div>
-          </section>
+          </section> */}
         </div>
 
         {/* Floating VisaForm */}

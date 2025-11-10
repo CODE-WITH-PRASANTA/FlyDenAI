@@ -1,31 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AllCountryBanner.css";
 import { FaSearchLocation, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import bannerBg from "../../assets/ab1.webp";
+import BASE_URL from "../../Api"; // e.g., "http://localhost:5000/api"
 
 const AllCountryBanner = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [filteredCountries, setFilteredCountries] = useState([]);
+  const navigate = useNavigate();
 
-  const countries = [
-    "USA",
-    "United Kingdom",
-    "Canada",
-    "Australia",
-    "Dubai",
-    "Singapore",
-    "France",
-    "Germany",
-    "Thailand",
-    "Japan",
-  ];
+  // 🔹 Fetch published visas (only country + id)
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/visas/published`);
+        const visaData = res.data.data || [];
+        setCountries(visaData);
+      } catch (err) {
+        console.error("❌ Error fetching countries:", err);
+      }
+    };
+    fetchCountries();
+  }, []);
 
-  const filteredCountries = countries.filter((country) =>
-    country.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // 🔹 Filter countries dynamically
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setFilteredCountries([]);
+      return;
+    }
 
-  const handleCountryClick = (country) => {
-    setSearchTerm(country);
+    const filtered = countries.filter((visa) =>
+      visa.country.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredCountries(filtered);
+  }, [searchTerm, countries]);
+
+  // 🔹 Navigate to visa details
+  const handleCountryClick = (visaId) => {
+    navigate(`/Visa/Details/${visaId}`);
   };
 
   return (
@@ -35,28 +52,26 @@ const AllCountryBanner = () => {
     >
       <div className="allcountry-overlay"></div>
 
-      {/* 🌍 Animated Badge */}
+      {/* 🌍 Top Badge */}
       <motion.div
         className="allcountry-badge"
         initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1 }}
       >
-        🌍 Trusted by <span>50L+ Travelers</span> Worldwide
+        🌍 Trusted by <span>1000+ Travelers</span> Worldwide
       </motion.div>
 
       <div className="allcountry-content">
-        {/* ✨ Animated Title */}
         <motion.h1
           className="allcountry-title"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 1 }}
         >
           <span>Fast, Reliable</span> & Hassle-Free Visa Services
         </motion.h1>
 
-        {/* 📝 Animated Subtitle */}
         <motion.p
           className="allcountry-subtitle"
           initial={{ opacity: 0, y: 20 }}
@@ -67,12 +82,12 @@ const AllCountryBanner = () => {
           expert assistance for any destination — anytime, anywhere.
         </motion.p>
 
-        {/* 🔍 Animated Search Box */}
+        {/* 🔍 Search Box */}
         <motion.div
           className="allcountry-searchbox"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
           <FaSearchLocation className="allcountry-icon left" />
           <input
@@ -85,33 +100,27 @@ const AllCountryBanner = () => {
           <FaArrowRight className="allcountry-icon right" />
         </motion.div>
 
-        {/* 🌎 Animated Suggestions */}
-        {searchTerm && (
+        {/* 🌎 Search Suggestions */}
+        {filteredCountries.length > 0 && (
           <motion.div
             className="allcountry-suggestions"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
           >
-            {filteredCountries.length > 0 ? (
-              filteredCountries.map((country, index) => (
-                <motion.div
-                  key={index}
-                  className="allcountry-country"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleCountryClick(country)}
-                >
-                  {country}
-                </motion.div>
-              ))
-            ) : (
-              <p className="allcountry-nodata">No country found.</p>
-            )}
+            {filteredCountries.map((visa) => (
+              <motion.div
+                key={visa._id}
+                className="allcountry-country"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => handleCountryClick(visa._id)}
+              >
+                {visa.country}
+              </motion.div>
+            ))}
           </motion.div>
         )}
 
-        {/* 🎖️ Animated Ribbon */}
         <motion.div
           className="allcountry-ribbon"
           initial={{ opacity: 0, y: 30 }}

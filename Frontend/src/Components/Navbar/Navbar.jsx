@@ -88,7 +88,7 @@ const Navbar = () => {
       path: "/StudyAbroad",
       sub: [
         { name: "Study Abroad", path: "/StudyAbroad" },
-        { name: "Intern Abroad", path: "/InternsAbroad" },
+        // { name: "Intern Abroad", path: "/InternsAbroad" },
       ],
     },
     { name: "Blog", path: "/blog" },
@@ -122,12 +122,12 @@ const Navbar = () => {
             </div>
 
             <div className="topbar-right">
-              <Link to="/ComingSoon" className="topbar-login">
+              {/* <Link to="/ComingSoon" className="topbar-login">
                 📄 Check Your Status
               </Link>
               <Link to="/Apply/Now" className="topbar-cta">
                 🚀 Apply Now
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

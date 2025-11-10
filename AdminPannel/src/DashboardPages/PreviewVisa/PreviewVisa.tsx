@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./PreviewVisa.css";
 import {
   MoreVertical,
@@ -10,6 +11,7 @@ import {
   User,
   Globe2,
 } from "lucide-react";
+import BASE_URL from "../../Api"; // ✅ your API base URL, e.g. "http://localhost:5000/api"
 
 interface VisaType {
   name: string;
@@ -18,150 +20,176 @@ interface VisaType {
   entryType: string;
 }
 
-interface VisaPost {
+interface Visa {
+  _id: string;
   country: string;
   processingTime: string;
   startingPrice: string;
-  approvalTime: string;
-  date: string;
+  approvalTagline: string;
   expert: string;
-  isPopular: boolean; // kept in data but not shown as badge
+  isPopular: boolean;
+  isNormal: boolean;
   visaTypes: VisaType[];
-  flag?: string;
+  bannerUrl?: string;
+  specialImageUrl?: string;
+  createdAt: string;
+  published: boolean;
 }
 
-const demoVisas: VisaPost[] = [
-  {
-    country: "Dubai",
-    processingTime: "7-10 Days",
-    startingPrice: "₹4999",
-    approvalTime: "Get Approved in 3 Days!",
-    date: "2025-11-04",
-    expert: "John Doe",
-    isPopular: true,
-    flag: "https://flagcdn.com/w40/ae.png",
-    visaTypes: [
-      { name: "Tourist Visa", fees: "4999", category: "Visit", entryType: "Single" },
-    ],
-  },
-  {
-    country: "Singapore",
-    processingTime: "5-7 Days",
-    startingPrice: "₹5999",
-    approvalTime: "Get Approved in 2 Days!",
-    date: "2025-10-30",
-    expert: "Emily Smith",
-    isPopular: false,
-    flag: "https://flagcdn.com/w40/sg.png",
-    visaTypes: [
-      { name: "Business Visa", fees: "5999", category: "Business", entryType: "Multiple" },
-    ],
-  },
-  {
-    country: "Thailand",
-    processingTime: "3-5 Days",
-    startingPrice: "₹3999",
-    approvalTime: "Get Approved in 24 Hours!",
-    date: "2025-11-01",
-    expert: "David Lee",
-    isPopular: false,
-    flag: "https://flagcdn.com/w40/th.png",
-    visaTypes: [
-      { name: "Tourist Visa", fees: "3999", category: "Visit", entryType: "Single" },
-    ],
-  },
-  {
-    country: "Malaysia",
-    processingTime: "6-9 Days",
-    startingPrice: "₹4599",
-    approvalTime: "Get Approved in 2 Days!",
-    date: "2025-10-28",
-    expert: "Sophia Johnson",
-    isPopular: false,
-    flag: "https://flagcdn.com/w40/my.png",
-    visaTypes: [
-      { name: "Tourist Visa", fees: "4599", category: "Visit", entryType: "Single" },
-    ],
-  },
-];
-
 const PreviewVisa: React.FC = () => {
-  const [openMenu, setOpenMenu] = useState<number | null>(null);
+  const [visas, setVisas] = useState<Visa[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
 
-  const toggleMenu = (i: number) => setOpenMenu(openMenu === i ? null : i);
+  // ✅ Fetch all visas on mount
+  useEffect(() => {
+    fetchVisas();
+  }, []);
 
-  const handleDelete = (country: string) => {
-    // demo action
-    alert(`Demo: delete ${country}`);
-    setOpenMenu(null);
+  const fetchVisas = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(`${BASE_URL}/visas`);
+      if (data.success) {
+        setVisas(data.data);
+      } else {
+        setError("No visa data found");
+      }
+    } catch (err) {
+      console.error("❌ Error fetching visas:", err);
+      setError("Failed to load visa data");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handlePublish = (country: string) => {
-    // demo action
-    alert(`Demo: publish ${country}`);
-    setOpenMenu(null);
+  const toggleMenu = (id: string) => setOpenMenu(openMenu === id ? null : id);
+
+  // ✅ Delete visa
+  const handleDelete = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this visa?")) return;
+    try {
+      await axios.delete(`${BASE_URL}/visas/${id}`);
+      setVisas(visas.filter((v) => v._id !== id));
+    } catch (err) {
+      alert("Error deleting visa");
+    } finally {
+      setOpenMenu(null);
+    }
   };
+
+  // ✅ Publish / Unpublish
+  const handlePublishToggle = async (id: string) => {
+    try {
+      const { data } = await axios.patch(`${BASE_URL}/visas/publish/${id}`);
+      if (data.success) {
+        setVisas((prev) =>
+          prev.map((v) => (v._id === id ? { ...v, published: data.data.published } : v))
+        );
+      }
+    } catch (err) {
+      alert("Error updating publish status");
+    } finally {
+      setOpenMenu(null);
+    }
+  };
+
+  // ✅ Loading state
+  if (loading) {
+    return (
+      <section className="pv-wrapper">
+        <div className="pv-loading">Loading visa data...</div>
+      </section>
+    );
+  }
+
+  // ✅ Error state
+  if (error) {
+    return (
+      <section className="pv-wrapper">
+        <div className="pv-error">{error}</div>
+      </section>
+    );
+  }
 
   return (
     <section className="pv-wrapper">
       <div className="pv-header">
         <div className="pv-header-left">
-          <h1>Visa Management <span className="pv-sub">Preview</span></h1>
+          <h1>
+            Visa Management <span className="pv-sub">Preview</span>
+          </h1>
         </div>
         <div className="pv-header-right">
-          {/* Demo controls placeholder (non-functional) */}
-          <button className="pv-btn">New Preview</button>
+          <button className="pv-btn" onClick={fetchVisas}>
+            Refresh Data
+          </button>
         </div>
       </div>
 
       <div className="pv-grid">
-        {demoVisas.map((visa, idx) => (
-          <article className="pv-card" key={idx} aria-labelledby={`visa-${idx}-title`}>
-            {/* top row */}
+        {visas.map((visa) => (
+          <article className="pv-card" key={visa._id}>
+            {/* ✅ top row */}
             <div className="pv-card-top">
               <div className="pv-country">
-                {visa.flag ? (
-                  <img src={visa.flag} alt={`${visa.country} flag`} className="pv-flag" />
+                {visa.bannerUrl ? (
+                  <img
+                    src={`${BASE_URL.replace("/api", "")}${visa.bannerUrl}`}
+                    alt={`${visa.country} banner`}
+                    className="pv-flag"
+                  />
                 ) : (
                   <Globe2 className="pv-ico-globe" />
                 )}
-                <h2 id={`visa-${idx}-title`} className="pv-country-name">{visa.country}</h2>
+                <h2 className="pv-country-name">{visa.country}</h2>
               </div>
 
               <div className="pv-menu">
                 <button
-                  aria-label={`Open menu for ${visa.country}`}
                   className="pv-menu-btn"
-                  onClick={() => toggleMenu(idx)}
+                  onClick={() => toggleMenu(visa._id)}
                 >
                   <MoreVertical />
                 </button>
 
-                {openMenu === idx && (
+                {openMenu === visa._id && (
                   <div className="pv-dropdown" role="menu">
-                    <button className="pv-dropdown-item pv-delete" onClick={() => handleDelete(visa.country)}>
+                    <button
+                      className="pv-dropdown-item pv-delete"
+                      onClick={() => handleDelete(visa._id)}
+                    >
                       <Trash2 className="pv-icon pv-icon-red" /> Delete
                     </button>
-                    <button className="pv-dropdown-item pv-publish" onClick={() => handlePublish(visa.country)}>
-                      <CheckCircle2 className="pv-icon pv-icon-green" /> Publish
+                    <button
+                      className="pv-dropdown-item pv-publish"
+                      onClick={() => handlePublishToggle(visa._id)}
+                    >
+                      <CheckCircle2
+                        className={`pv-icon ${
+                          visa.published ? "pv-icon-green" : "pv-icon-gray"
+                        }`}
+                      />{" "}
+                      {visa.published ? "Unpublish" : "Publish"}
                     </button>
                   </div>
                 )}
               </div>
             </div>
 
-            {/* approval tagline */}
+            {/* ✅ approval tagline */}
             <div className="pv-approval">
-              <span className="pv-approval-dot" /> {visa.approvalTime}
+              <span className="pv-approval-dot" /> {visa.approvalTagline}
             </div>
 
-            {/* details grid */}
+            {/* ✅ details grid */}
             <div className="pv-details">
               <div className="pv-detail">
                 <DollarSign className="pv-ico pv-ico-price" />
                 <div>
                   <div className="pv-detail-label">Starting From</div>
-                  <div className="pv-detail-value">{visa.startingPrice}</div>
+                  <div className="pv-detail-value">₹{visa.startingPrice}</div>
                 </div>
               </div>
 
@@ -177,7 +205,9 @@ const PreviewVisa: React.FC = () => {
                 <CalendarDays className="pv-ico pv-ico-date" />
                 <div>
                   <div className="pv-detail-label">Posted On</div>
-                  <div className="pv-detail-value">{visa.date}</div>
+                  <div className="pv-detail-value">
+                    {new Date(visa.createdAt).toLocaleDateString()}
+                  </div>
                 </div>
               </div>
 
@@ -185,31 +215,41 @@ const PreviewVisa: React.FC = () => {
                 <User className="pv-ico pv-ico-user" />
                 <div>
                   <div className="pv-detail-label">Expert</div>
-                  <div className="pv-detail-value">{visa.expert}</div>
+                  <div className="pv-detail-value">
+                    {visa.expert || "N/A"}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* visa types */}
-            <div className="pv-type-wrap">
-              <h3 className="pv-type-title"><Globe2 className="pv-ico pv-ico-globe-small" /> Visa Type(s)</h3>
+            {/* ✅ visa types */}
+            {visa.visaTypes.length > 0 && (
+              <div className="pv-type-wrap">
+                <h3 className="pv-type-title">
+                  <Globe2 className="pv-ico pv-ico-globe-small" /> Visa Type(s)
+                </h3>
 
-              <div className="pv-type-list">
-                {visa.visaTypes.map((vt, i) => (
-                  <div className="pv-type-card" key={i}>
-                    <div className="pv-type-top">
-                      <div className="pv-type-name">{vt.name}</div>
-                      <div className="pv-type-fees">₹{vt.fees}</div>
-                    </div>
+                <div className="pv-type-list">
+                  {visa.visaTypes.map((vt, i) => (
+                    <div className="pv-type-card" key={i}>
+                      <div className="pv-type-top">
+                        <div className="pv-type-name">{vt.name}</div>
+                        <div className="pv-type-fees">₹{vt.fees}</div>
+                      </div>
 
-                    <div className="pv-type-meta">
-                      <span className="pv-chip pv-chip-cat">{vt.category}</span>
-                      <span className="pv-chip pv-chip-entry">{vt.entryType}</span>
+                      <div className="pv-type-meta">
+                        <span className="pv-chip pv-chip-cat">
+                          {vt.category}
+                        </span>
+                        <span className="pv-chip pv-chip-entry">
+                          {vt.entryType}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </article>
         ))}
       </div>

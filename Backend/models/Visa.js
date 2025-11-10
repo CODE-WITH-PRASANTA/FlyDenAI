@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const visaTypeSchema = new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   processingTime: String,
   stayPeriod: String,
   validity: String,
@@ -10,35 +10,33 @@ const visaTypeSchema = new mongoose.Schema({
   fees: String,
 });
 
-const documentSchema = new mongoose.Schema({
-  text: String,
-});
-
 const faqSchema = new mongoose.Schema({
-  question: String,
-  answer: String,
+  q: { type: String, required: true },
+  a: { type: String, required: true },
 });
 
 const infoSchema = new mongoose.Schema({
-  title: String,
-  content: String,
+  title: { type: String, required: true },
+  content: { type: String, required: true },
 });
 
 const visaSchema = new mongoose.Schema(
   {
     country: { type: String, required: true },
-    processingTime: String,
-    startingPrice: String,
-    approvalTime: String,
-    description: String,
-    isPopular: { type: Boolean, default: false },
-    isNormal: { type: Boolean, default: false },
-    expert: { type: [String] },
     bannerUrl: { type: String },
+    specialImageUrl: { type: String },
+    processingTime: { type: String, required: true },
+    startingPrice: { type: String, required: true },
+    approvalTagline: { type: String, required: true },
+    isPopular: { type: Boolean, default: false },
+    isNormal: { type: Boolean, default: true },
     visaTypes: [visaTypeSchema],
-    documents: [documentSchema],
+    documents: [String],
     faqs: [faqSchema],
     infos: [infoSchema],
+    description: { type: String, required: true },
+    expert: { type: String },
+    published: { type: Boolean, default: false },
   },
   { timestamps: true }
 );

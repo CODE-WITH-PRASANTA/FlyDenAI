@@ -12,7 +12,7 @@ const CustomerReviews = () => {
     {
       name: "Dr Poonam Bharti",
       stars: 5,
-      text: "I have processed visas thrice through Akbar travels. Acknowledge the efficient and prompt service by...",
+      text: "I have processed visas thrice through FlyDenAi. Acknowledge the efficient and prompt service by...",
       img: reviewer1,
       link: "#",
     },

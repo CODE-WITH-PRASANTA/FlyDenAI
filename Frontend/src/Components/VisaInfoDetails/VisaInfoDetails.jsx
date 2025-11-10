@@ -129,7 +129,7 @@ const VisaInfoDetails = () => {
         {/* ==== VISA FEATURES ==== */}
         {selectedVisa?.features && selectedVisa.features.length > 0 && (
                   <div className="visa-features-section">
-                    <h3 className="visa-features-title">Visa Features</h3>
+                    <h3 className="visa-features-title">Visa Approval Steps</h3>
                     <ul className="visa-features-list">
                       {selectedVisa.features.map((feature, idx) => (
                         <li key={idx} className="visa-feature-item">

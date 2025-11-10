@@ -56,16 +56,18 @@ function App() {
           <Route path="/blog/details/:id" element={<BlogDetails />} />
 
           <Route path="/visa/overview" element={<AllVisaOverView />} />
-          <Route path="/AllCountry" element={<AllCountry />} />
-          <Route path="/GetaQuotes" element={<GetAQuotes />} />
+       
+          <Route path="/AllCountry" element={<AllCountry />} /> 
+            <Route path="/GetaQuotes" element={<GetAQuotes />} />
           <Route path="/FreeVisaQuotes" element={<FreeVisaQuotes />} />
 
           <Route path="/TouristVisa" element={<TouristVisa />} />
           <Route path="/ComingSoon" element={<ComingSoon />} />
-          <Route path="/Visa/Details" element={<VisaDetails />} />
+          <Route path="/Visa/Details/:id" element={<VisaDetails />} />
+          <Route path="/AllCountry" element={<AllCountry />} />  
 
           {/* Apply To the Visa Page */}
-          <Route path="/Apply/Now" element={<ApplyNow />} />
+          {/* <Route path="/Apply/Now" element={<ApplyNow />} /> */}
           <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition  */}
@@ -74,7 +76,7 @@ function App() {
 
           {/* Study Abroad & Interns Abroad */}
           <Route path="/StudyAbroad" element={<StudyAbroad />} />
-          <Route path="/InternsAbroad" element={<InternsAbroad />} />
+          {/* <Route path="/InternsAbroad" element={<InternsAbroad />} /> */}
 
           {/* Apply To the Intern Abroad Service */}
          <Route path="/InternAbroad/Apply" element={<MultiStepForm />} />

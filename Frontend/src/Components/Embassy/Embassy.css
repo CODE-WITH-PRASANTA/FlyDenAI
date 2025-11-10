@@ -1,462 +1,229 @@
-/* ================================
-   🎨 General Wrapper
-================================= */
+/* === MAIN CONTAINER === */
 .embassy-wrapper {
-  font-family: 'Poppins', sans-serif;
-  padding: 50px 5%;
-  background: #f4f7fc;
-  color: #333;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 40px;
+  padding: 60px 25px;
+  max-width: 1100px;
+  margin: 50px auto;
+  font-family: "Poppins", sans-serif;
+  color: #2d2d2d;
+  background: linear-gradient(180deg, #ffffff 0%, #fff9fb 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
+  animation: fadeInPage 0.8s ease-in-out;
 }
 
-/* ================================
-   🎯 Malaysia Visa Steps Section
-================================= */
-.visa-steps-container {
-  background: #fff;
-  padding: 45px 35px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
-  margin-bottom: 50px;
-  transition: all 0.4s ease;
+/* === HEADER SECTION === */
+.embassy-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.visa-steps-container:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
-}
-
-.visa-steps-container h2 {
-  font-size: 30px;
+.embassy-title {
+  font-size: 2.6rem;
+  color: #e94e77;
   font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 20px;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
 }
 
-.visa-steps-container p {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.visa-steps-container h3 {
-  font-size: 22px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-  color: #0770d9;
-}
-
-.visa-steps-container ul {
-  list-style: disc inside;
-  margin-bottom: 15px;
-}
-
-.visa-steps-container ul li {
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: #555;
-}
-
-.toggle-btn {
-  background: linear-gradient(135deg, #e40046, #ff3b5c);
-  color: #fff;
-  border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
-  cursor: pointer;
+.embassy-title span {
+  color: #222;
   font-weight: 600;
-  transition: all 0.3s ease;
 }
 
-.toggle-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(255, 59, 92, 0.5);
+.embassy-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  margin-top: 10px;
+  letter-spacing: 0.3px;
 }
 
-/* ================================
-   🎯 Basic Requirements
-================================= */
-.embassy-req {
-  background: #fff;
-  padding: 45px 35px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-  margin-bottom: 50px;
+.embassy-divider {
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, #e94e77, #ff6b6b);
+  margin: 15px auto;
+  border-radius: 5px;
 }
 
-.embassy-req h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #1a1a1a;
-}
-
-.embassy-req ul {
-  list-style: disc inside;
-  margin-bottom: 20px;
-}
-
-.embassy-req ul li {
-  margin-bottom: 12px;
-  font-size: 16px;
-  color: #555;
-}
-
-.read-more {
-  color: #e40046;
-  cursor: pointer;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.read-more:hover {
-  color: #ff3b5c;
-  text-decoration: underline;
-}
-
-/* ================================
-   🎯 Tourist Attractions Cards
-================================= */
-.embassy-attractions h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: #1a1a1a;
-}
-
-.embassy-grid-vertical {
-  display: flex;
-  flex-direction: column;
-  gap: 35px;
-}
-
-.embassy-card-vertical {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  background: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-  transition: all 0.4s ease;
-}
-
-.embassy-card-vertical:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.12);
-}
-
-.embassy-card-text {
-  flex: 1;
+/* === DESCRIPTION === */
+.embassy-description {
+  background: #ffffff;
   padding: 30px 35px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(233, 78, 119, 0.1);
+  margin-bottom: 55px;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #333;
 }
 
-.embassy-card-text h3 {
-  font-size: 22px;
-  color: #0770d9;
-  margin-bottom: 15px;
+.embassy-description h2,
+.embassy-description h3 {
+  color: #e94e77;
+  margin-top: 25px;
   font-weight: 600;
 }
 
-.embassy-card-text p {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 15px;
-  color: #555;
+.embassy-description ul {
+  margin: 15px 0 15px 25px;
+  list-style: disc;
 }
 
-.price {
-  font-weight: 700;
-  color: #e40046;
-  display: block;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.enquire-btn {
-  background: linear-gradient(135deg, #0770d9, #00c6ff);
-  color: #fff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.enquire-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(7,112,217,0.5);
-}
-
-.embassy-card-image {
-  flex: 1;
-  max-width: 50%;
-  overflow: hidden;
-}
-
-.embassy-card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.embassy-card-vertical:hover .embassy-card-image img {
-  transform: scale(1.05);
-}
-
-/* ================================
-   🎯 Arrival & Travel Info
-================================= */
+/* === INFO SECTION === */
 .embassy-info {
   background: #fff;
-  padding: 45px 35px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-  margin-bottom: 50px;
-  margin-top: 10px;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.embassy-info h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #1a1a1a;
+.embassy-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 25px rgba(233, 78, 119, 0.1);
 }
 
-.embassy-info p, .embassy-info li {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #555;
-  margin-bottom: 12px;
-}
-
-.embassy-info table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.embassy-info table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-.embassy-info table td:first-child {
+.info-title {
+  font-size: 1.6rem;
   font-weight: 600;
-  color: #0770d9;
+  color: #e94e77;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-/* ================================
-   🎯 Malaysia Info Links
-================================= */
-.embassy-links {
-  background: #fff;
-  padding: 45px 35px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
-.embassy-links h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #1a1a1a;
+.info-box {
+  background: linear-gradient(145deg, #fff6f8 0%, #ffffff 100%);
+  border: 1px solid #ffd1db;
+  border-radius: 14px;
+  padding: 25px 20px;
+  text-align: center;
+  transition: all 0.35s ease;
 }
 
-.embassy-links ul {
-  list-style: disc inside;
+.info-box:hover {
+  background: linear-gradient(145deg, #e94e77 0%, #ff6b6b 100%);
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(233, 78, 119, 0.2);
 }
 
-.embassy-links ul li {
+.info-box h3 {
+  font-size: 1.1rem;
   margin-bottom: 12px;
-  font-size: 16px;
-  line-height: 1.8;
-  color: #555;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: inherit;
 }
 
-.embassy-links ul li:hover {
-  color: #e40046;
-  transform: translateX(5px);
+.info-box p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* === LAST UPDATED === */
+.last-updated {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1rem;
+  color: #555;
+  padding-top: 10px;
+  border-top: 1px dashed #ffc2d1;
+}
+
+.last-updated strong {
+  color: #e94e77;
   font-weight: 600;
 }
 
+.update-icon {
+  font-size: 1.1rem;
+  margin-right: 5px;
+  animation: pulse 2s infinite;
+}
 
-/* ==============================
-   🎯 Responsive Media Queries
-================================ */
+/* === LOADER === */
+.embassy-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  color: #444;
+}
 
-/* Mobile Devices (up to 480px) */
-@media (max-width: 480px) {
-  .embassy-wrapper {
-    padding: 30px 5%;
-    gap: 30px;
-  }
+.spinner {
+  width: 65px;
+  height: 65px;
+  border: 5px solid #f0f0f0;
+  border-top: 5px solid #e94e77;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
 
-  .visa-steps-container,
-  .embassy-req,
-  .embassy-attractions,
-  .embassy-info,
-  .embassy-links {
-    padding: 30px 20px;
-  }
+.loading-text {
+  margin-top: 15px;
+  color: #e94e77;
+  font-weight: 600;
+}
 
-  .visa-steps-container h2,
-  .embassy-req h2,
-  .embassy-attractions h2,
-  .embassy-info h2,
-  .embassy-links h2 {
-    font-size: 24px;
-  }
+.error-text {
+  text-align: center;
+  color: #ff4d4d;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 120px;
+}
 
-  .embassy-card-vertical {
-    flex-direction: column;
-  }
-
-  .embassy-card-image {
-    max-width: 100%;
-    margin-top: 15px;
-  }
-
-  .embassy-card-text h3 {
-    font-size: 20px;
-  }
-
-  .price {
-    font-size: 15px;
-  }
-
-  .enquire-btn {
-    padding: 10px 18px;
-    font-size: 14px;
-  }
-
-  .embassy-info table td {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .embassy-links ul li {
-    font-size: 15px;
+/* === ANIMATIONS === */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/* Small Tablets (481px – 768px) */
-@media (min-width: 481px) and (max-width: 768px) {
-  .embassy-wrapper {
-    padding: 35px 5%;
-    gap: 35px;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
   }
-
-  .visa-steps-container h2,
-  .embassy-req h2,
-  .embassy-attractions h2,
-  .embassy-info h2,
-  .embassy-links h2 {
-    font-size: 26px;
-  }
-
-  .embassy-card-vertical {
-    flex-direction: column;
-  }
-
-  .embassy-card-image {
-    max-width: 100%;
-    margin-top: 15px;
-  }
-
-  .embassy-card-text h3 {
-    font-size: 21px;
-  }
-
-  .price {
-    font-size: 16px;
-  }
-
-  .enquire-btn {
-    padding: 10px 20px;
-  }
-
-  .embassy-info table td {
-    font-size: 15px;
-    padding: 10px;
-  }
-
-  .embassy-links ul li {
-    font-size: 16px;
+  50% {
+    opacity: 0.6;
   }
 }
 
-/* Medium Tablets / Small Laptops (769px – 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .embassy-wrapper {
-    padding: 40px 5%;
-    gap: 40px;
+@keyframes fadeInPage {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  .visa-steps-container h2,
-  .embassy-req h2,
-  .embassy-attractions h2,
-  .embassy-info h2,
-  .embassy-links h2 {
-    font-size: 28px;
-  }
-
-  .embassy-card-vertical {
-    flex-direction: row;
-  }
-
-  .embassy-card-image {
-    max-width: 50%;
-    margin-top: 0;
-  }
-
-  .embassy-card-text h3 {
-    font-size: 22px;
-  }
-
-  .price {
-    font-size: 16px;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-/* Large Desktops (>1024px) */
-@media (min-width: 1025px) {
-  .embassy-wrapper {
-    padding: 50px 5%;
-    gap: 40px;
+.fade-in {
+  animation: fadeInPage 0.9s ease-in-out;
+}
+
+.fade-up {
+  animation: fadeInPage 1s ease-in-out;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .embassy-title {
+    font-size: 2rem;
   }
 
-  .visa-steps-container h2,
-  .embassy-req h2,
-  .embassy-attractions h2,
-  .embassy-info h2,
-  .embassy-links h2 {
-    font-size: 30px;
+  .embassy-description {
+    padding: 20px;
   }
 
-  .embassy-card-vertical {
-    flex-direction: row;
-  }
-
-  .embassy-card-image {
-    max-width: 50%;
-  }
-
-  .embassy-card-text h3 {
-    font-size: 22px;
-  }
-
-  .price {
-    font-size: 16px;
+  .info-grid {
+    grid-template-columns: 1fr;
   }
 }

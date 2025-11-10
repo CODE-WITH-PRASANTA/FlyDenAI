@@ -15,7 +15,6 @@
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
-
 .VisaService-tittle {
   font-size: 36px;
   font-weight: 700;
@@ -37,13 +36,23 @@
   margin: 12px auto 0 auto;
   border-radius: 2px;
 }
-
 /* ------------------- Scrollable Container ------------------- */
 .visa-scroll-container {
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 20px;
+}
+
+/* Use flexbox for horizontal card layout */
+.visaServicesec-card-grid {
+  display: flex;
+  gap: 25px;
+  justify-content: flex-start;
+  align-items: stretch;
+  width: max-content; /* ensures scroll instead of wrap */
+  padding: 10px 10px;
 }
 
 .visa-scroll-container::-webkit-scrollbar {
@@ -58,6 +67,7 @@
 .visa-scroll-container::-webkit-scrollbar-track {
   background: #f0f0f0;
 }
+
 /* ------------------- Card Style ------------------- */
 .visaServicesec-card {
   background: linear-gradient(145deg, #ffffff, #fdfbfb);

@@ -81,17 +81,18 @@ function VisaCategory() {
 
               <h3 className="visa-title">{category.visaName}</h3>
 
-              {/* 🧩 Display visaProcess instead of visaDesc */}
+             {/* 🧩 Display visaOverview instead of visaOverview */}
               <p
                 className="visacategory-description"
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(
-                    category.visaProcess
-                      ? category.visaProcess.slice(0, 180) + "..."
+                    category.visaOverview
+                      ? category.visaOverview.slice(0, 180) + "..."
                       : "Visa process information coming soon..."
                   ),
                 }}
               ></p>
+
 
               <button
                 className="visa-btn"

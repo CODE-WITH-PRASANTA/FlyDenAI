@@ -1,277 +1,340 @@
-/* PreviewVisa.css
-   Colorful, modern, fully responsive layout
-   Uses CSS variables for accent colors for easy tweaking
-*/
-
-:root{
+:root {
   --bg-1: #eef2ff;
   --bg-2: #f8fafc;
-  --card-bg: rgba(255,255,255,0.95);
-  --glass-border: rgba(255,255,255,0.6);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.6);
   --muted: #64748b;
   --text: #0f172a;
-
   --accent-green: #10b981;
-  --accent-blue:  #2563eb;
-  --accent-yellow:#f59e0b;
-  --accent-red:   #ef4444;
-  --accent-purple:#7c3aed;
+  --accent-blue: #2563eb;
+  --accent-yellow: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #7c3aed;
 }
 
 /* Layout */
-.pv-wrapper{
+.pv-wrapper {
   padding: 28px;
   min-height: 100vh;
   background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
-  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
   color: var(--text);
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
-.pv-header{
-  display:flex;
-  gap:16px;
-  align-items:center;
-  justify-content:space-between;
+.pv-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 22px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 
-.pv-header-left h1{
-  margin:0;
+.pv-header-left h1 {
+  margin: 0;
   font-size: 1.45rem;
-  letter-spacing:0.2px;
-  display:flex;
-  align-items:baseline;
-  gap:8px;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
-.pv-sub{
-  font-weight:600;
-  color:var(--accent-blue);
-  font-size:0.95rem;
-}
-
-.pv-lead{
-  margin:6px 0 0;
-  color:var(--muted);
-  font-size:0.95rem;
-}
-
-.pv-header-right .pv-btn{
-  background: linear-gradient(90deg, rgba(37,99,235,0.12), rgba(124,58,237,0.06));
-  border: 1px solid rgba(37,99,235,0.14);
+.pv-sub {
+  font-weight: 600;
   color: var(--accent-blue);
-  padding:8px 14px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:600;
-  box-shadow: 0 4px 12px rgba(37,99,235,0.06);
+  font-size: 0.95rem;
 }
 
-/* Grid */
-.pv-grid{
-  display:grid;
-  grid-template-columns: repeat( auto-fit, minmax(280px, 1fr) );
-  gap:18px;
+.pv-header-right .pv-btn {
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.12),
+    rgba(124, 58, 237, 0.06)
+  );
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  color: var(--accent-blue);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.06);
+  transition: all 0.25s ease;
 }
 
-/* Card */
-.pv-card{
+.pv-header-right .pv-btn:hover {
+  background: var(--accent-blue);
+  color: white;
+}
+
+/* Grid layout (main fix here) */
+.pv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+  justify-items: center;
+  width: 100%;
+}
+
+/* Each Card */
+.pv-card {
   background: var(--card-bg);
-  border-radius:14px;
-  padding:16px;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  border-radius: 14px;
+  padding: 18px;
+  width: 100%;
+  max-width: 370px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
   border: 1px solid var(--glass-border);
-  transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
-  display:flex;
-  flex-direction:column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.pv-card:hover{
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(2,6,23,0.12);
+.pv-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.12);
 }
 
-/* Top row */
-.pv-card-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
+/* Card Top */
+.pv-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.pv-country{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.pv-country {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.pv-flag{
-  width:36px;
-  height:24px;
-  object-fit:cover;
-  border-radius:4px;
-  box-shadow: 0 1px 6px rgba(2,6,23,0.12);
-  border: 1px solid rgba(15,23,42,0.04);
+.pv-flag {
+  width: 36px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 1px 6px rgba(2, 6, 23, 0.12);
+  border: 1px solid rgba(15, 23, 42, 0.04);
 }
 
-.pv-country-name{
-  margin:0;
-  font-size:1.05rem;
-  font-weight:700;
-  color:var(--text);
+.pv-country-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
 }
 
-/* menu */
-.pv-menu{
-  position:relative;
+/* Dropdown Menu */
+.pv-menu {
+  position: relative;
 }
 
-.pv-menu-btn{
+.pv-menu-btn {
   background: transparent;
   border: none;
-  cursor:pointer;
-  padding:8px;
-  border-radius:8px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
   color: #475569;
-  transition: background .18s, color .18s, transform .12s;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
 }
-.pv-menu-btn:hover{
-  background: rgba(37,99,235,0.08);
+.pv-menu-btn:hover {
+  background: rgba(37, 99, 235, 0.08);
   color: var(--accent-blue);
   transform: translateY(-1px);
 }
 
-/* dropdown with pop animation */
-.pv-dropdown{
-  position:absolute;
-  top:44px;
-  right:0;
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow: 0 14px 40px rgba(2,6,23,0.12);
-  border: 1px solid rgba(15,23,42,0.04);
-  animation: pv-pop .18s ease-out;
-  z-index:40;
-}
-@keyframes pv-pop{
-  from { opacity:0; transform: translateY(-6px) scale(.98); }
-  to   { opacity:1; transform: translateY(0) scale(1); }
-}
-.pv-dropdown-item{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  padding:10px 14px;
-  font-size:0.95rem;
-  background:none;
-  border:none;
-  width:160px;
-  text-align:left;
-  cursor:pointer;
-  color:var(--text);
-}
-.pv-dropdown-item:hover{ background:#f1f5f9; }
-.pv-dropdown-item .pv-icon{ width:16px; height:16px; }
-.pv-dropdown-item.pv-delete .pv-icon-red{ color:var(--accent-red); }
-.pv-dropdown-item.pv-publish .pv-icon-green{ color:var(--accent-green); }
-
-/* approval tagline */
-.pv-approval{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:12px;
-  font-weight:600;
-  color:var(--accent-green);
-  font-size:0.95rem;
-}
-.pv-approval-dot{
-  width:10px; height:10px; background:linear-gradient(135deg,var(--accent-green), #34d399);
-  border-radius:50%;
-  box-shadow: 0 3px 10px rgba(16,185,129,0.18);
+.pv-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 14px 40px rgba(2, 6, 23, 0.12);
+  border: 1px solid rgba(15, 23, 42, 0.04);
+  animation: pv-pop 0.18s ease-out;
+  z-index: 40;
 }
 
-/* details area (two columns on wide screens) */
-.pv-details{
-  display:grid;
+@keyframes pv-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.pv-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  background: none;
+  border: none;
+  width: 160px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--text);
+}
+.pv-dropdown-item:hover {
+  background: #f1f5f9;
+}
+.pv-dropdown-item .pv-icon {
+  width: 16px;
+  height: 16px;
+}
+.pv-dropdown-item.pv-delete .pv-icon-red {
+  color: var(--accent-red);
+}
+.pv-dropdown-item.pv-publish .pv-icon-green {
+  color: var(--accent-green);
+}
+
+/* Approval Tagline */
+.pv-approval {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 600;
+  color: var(--accent-green);
+  font-size: 0.95rem;
+}
+.pv-approval-dot {
+  width: 10px;
+  height: 10px;
+  background: linear-gradient(135deg, var(--accent-green), #34d399);
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.18);
+}
+
+/* Visa Details */
+.pv-details {
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  gap:12px;
-  margin-top:12px;
-}
-@media (max-width:640px){
-  .pv-details{ grid-template-columns: 1fr; }
+  gap: 12px;
+  margin-top: 12px;
 }
 
-.pv-detail{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,250,0.98));
-  padding:10px;
-  border-radius:10px;
-  border:1px solid rgba(15,23,42,0.03);
+@media (max-width: 640px) {
+  .pv-details {
+    grid-template-columns: 1fr;
+  }
 }
-.pv-ico{ width:20px; height:20px; flex-shrink:0; }
 
-.pv-ico-price{ color: var(--accent-yellow); }
-.pv-ico-time { color: var(--accent-purple); }
-.pv-ico-date { color: var(--accent-blue); }
-.pv-ico-user { color: var(--accent-green); }
-.pv-ico-globe-small { color: var(--accent-blue); }
+.pv-detail {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(250, 250, 250, 0.98)
+  );
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.03);
+}
 
-.pv-detail-label{ font-size:0.8rem; color:var(--muted); margin-bottom:4px; }
-.pv-detail-value{ font-weight:700; color:var(--text); font-size:0.97rem; }
+.pv-detail-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.pv-detail-value {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.97rem;
+}
 
-/* visa type section */
-.pv-type-wrap{ margin-top:14px; }
-.pv-type-title{ display:flex; align-items:center; gap:8px; margin:0 0 8px; font-size:0.98rem; color:var(--text); }
-.pv-type-list{ display:flex; gap:10px; flex-direction:column; }
+/* Visa Type Section */
+.pv-type-wrap {
+  margin-top: 14px;
+}
+.pv-type-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+.pv-type-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-/* each type card */
-.pv-type-card{
+.pv-type-card {
   background: linear-gradient(180deg, #ffffff, #fbfdff);
-  border-radius:10px;
-  padding:10px;
-  border:1px solid rgba(2,6,23,0.03);
-  box-shadow: 0 6px 18px rgba(2,6,23,0.04);
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-.pv-type-top{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
-.pv-type-name{ font-weight:700; color:var(--text); }
-.pv-type-fees{ font-weight:700; color:var(--accent-blue); }
-
-.pv-type-meta{ display:flex; gap:8px; flex-wrap:wrap; margin-top:4px; }
-.pv-chip{
-  font-size:0.82rem;
-  padding:6px 8px;
-  border-radius:999px;
-  font-weight:600;
-}
-.pv-chip-cat{ background: rgba(34,197,94,0.08); color: #166534; border:1px solid rgba(34,197,94,0.06); }
-.pv-chip-entry{ background: rgba(59,130,246,0.06); color:#1e40af; border:1px solid rgba(59,130,246,0.06); }
-
-/* responsive tweaks */
-@media (max-width:1024px){
-  .pv-wrapper{ padding:20px; }
-  .pv-header{ gap:12px; }
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(2, 6, 23, 0.03);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.04);
 }
 
-@media (max-width:640px){
-  .pv-wrapper{ padding:14px; }
-  .pv-header{ flex-direction:column; align-items:flex-start; gap:8px; }
-  .pv-header-right .pv-btn{ align-self:flex-end; }
-  .pv-card{ padding:12px; border-radius:12px; }
-  .pv-country-name{ font-size:1rem; }
-  .pv-type-list{ gap:8px; }
+.pv-type-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* small UI niceties */
-.pv-flag, .pv-menu-btn svg { display:block; }
+.pv-type-name {
+  font-weight: 700;
+}
+.pv-type-fees {
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.pv-type-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.pv-chip {
+  font-size: 0.82rem;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.pv-chip-cat {
+  background: rgba(34, 197, 94, 0.08);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.06);
+}
+.pv-chip-entry {
+  background: rgba(59, 130, 246, 0.06);
+  color: #1e40af;
+  border: 1px solid rgba(59, 130, 246, 0.06);
+}
+
+/* Responsive tweaks */
+@media (max-width: 1024px) {
+  .pv-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pv-wrapper {
+    padding: 14px;
+  }
+  .pv-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pv-card {
+    max-width: 100%;
+  }
+}

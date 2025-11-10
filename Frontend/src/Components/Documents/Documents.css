@@ -14,9 +14,11 @@
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 35px;
+  padding-top: 20px;
   color: #0f172a;
   text-align: center;
   position: relative;
+ 
 }
 
 .documents-title::after {
@@ -251,7 +253,7 @@
   flex: 1;
   font-size: 18px;
   font-weight: 700;
-  text-align: center;
+  text-align: start;
 }
 
 .sample-visa-btn {
@@ -298,3 +300,17 @@
     width: 100%;
   }
 }
+
+.team-carousel {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto; /* ✅ allow scroll movement */
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  scrollbar-width: none; /* ✅ hide scrollbar */
+}
+
+.team-carousel::-webkit-scrollbar {
+  display: none; /* ✅ hide scrollbar for Chrome/Safari */
+}
+

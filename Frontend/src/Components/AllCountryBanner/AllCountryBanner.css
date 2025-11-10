@@ -20,8 +20,8 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 25, 55, 0.6),
-    rgba(0, 0, 0, 0.8)
+    rgba(0, 25, 55, 0.5),
+    rgba(0, 0, 0, 0.5)
   );
   z-index: 1;
   backdrop-filter: blur(2px);

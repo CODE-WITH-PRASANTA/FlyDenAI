@@ -17,7 +17,7 @@ const AllCountry = () => {
       <Team/>
       <WhyChooseUsSection/>
       <CustomerReviews/>
-      <VisitUsSection/>
+      {/* <VisitUsSection/> */}
     </div>
   )
 }
