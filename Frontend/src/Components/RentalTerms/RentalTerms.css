@@ -174,3 +174,24 @@ body {
     max-width: 250px;
   }
 }
+
+.ownership-section {
+  background: #f8f8f8;
+  padding: 30px;
+  border-radius: 12px;
+  margin: 40px auto;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.ownership-section h3 {
+  color: #E94e77;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.ownership-section p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
