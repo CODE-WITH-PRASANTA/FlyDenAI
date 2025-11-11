@@ -58,9 +58,9 @@ const ImmigrationSection = () => {
 
           {/* Button + avatars */}
           <div className="immigrationsec-action-row">
-            <button className="immigrationsec-btn-explore">
+            {/* <button className="immigrationsec-btn-explore">
               Explore Services <FaArrowRight />
-            </button>
+            </button> */}
             <div className="immigrationsec-avatars">
               <img src={agent1} alt="agent1" className="immigrationsec-avatar" />
               <img src={agent2} alt="agent2" className="immigrationsec-avatar" />

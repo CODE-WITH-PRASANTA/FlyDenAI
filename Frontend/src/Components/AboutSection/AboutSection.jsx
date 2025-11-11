@@ -78,9 +78,9 @@ const AboutSection = () => {
           </div>
         </div>
 
-        <div className="aboutsec-footer">
+        {/* <div className="aboutsec-footer">
           <button className="aboutsec-learn-more">Learn More About FlyDenAI &gt;</button>
-        </div>
+        </div> */}
       </div>
     </section>
   );

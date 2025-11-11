@@ -97,7 +97,7 @@ const VisaServices = () => {
             renewing your visa, our expert team ensures personalized support and guidance 
             tailored to your needs.
           </p>
-          <button className="vs-btn">Explore More</button>
+          {/* <button className="vs-btn">Explore More</button> */}
         </div>
 
         </div>

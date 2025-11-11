@@ -48,7 +48,7 @@ const Welcome = () => {
           </li>
         </ul>
 
-        <button className="btn-primary">Watch How FlyDenAI Works</button>
+        {/* <button className="btn-primary">Watch How FlyDenAI Works</button> */}
       </div>
     </section>
   );

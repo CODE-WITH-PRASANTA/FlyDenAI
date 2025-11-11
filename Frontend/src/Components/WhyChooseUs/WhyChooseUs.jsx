@@ -122,14 +122,14 @@ const WhyChooseUs = () => {
             <span className="highlight">eligibility exams to visa</span>{" "}
             assistance.
           </motion.p>
-          <motion.button
+          {/* <motion.button
             className="whychooseus-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ duration: 0.3 }}
           >
             GET ASSISTANCE ›
-          </motion.button>
+          </motion.button> */}
         </motion.div>
       </div>
     </section>

@@ -66,14 +66,14 @@ const VisaOffer = () => {
           </motion.div>
 
           {/* CALL TO ACTION BUTTON */}
-          <motion.a
+          {/* <motion.a
             href="#"
             className="visa-offer-btn"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Get Consultation
-          </motion.a>
+          </motion.a> */}
         </motion.div>
       </div>
     </section>
