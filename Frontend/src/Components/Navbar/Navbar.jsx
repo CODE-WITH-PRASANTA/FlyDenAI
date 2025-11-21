@@ -1,26 +1,25 @@
+// Updated Navbar.js with DummyTicket section added
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/Logo.png";
-import BASE_URL from "../../Api"; // Example: http://localhost:5000/api
+import BASE_URL from "../../Api";
 import axios from "axios";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
   const [showNavbar, setShowNavbar] = useState(true);
-  const [contactInfo, setContactInfo] = useState(null); // ✅ Dynamic Contact State
+  const [contactInfo, setContactInfo] = useState(null);
 
   const menuRef = useRef();
   const lastScrollY = useRef(0);
 
-  // ✅ Fetch Contact Info from Backend
   useEffect(() => {
     const fetchContactInfo = async () => {
       try {
         const response = await axios.get(`${BASE_URL}/contacts`);
         if (response.data.success && response.data.data.length > 0) {
-          // Assuming the latest contact info is the first one
           setContactInfo(response.data.data[0]);
         }
       } catch (error) {
@@ -31,7 +30,6 @@ const Navbar = () => {
     fetchContactInfo();
   }, []);
 
-  // ✅ Detect scroll for Navbar only
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY.current) {
@@ -45,7 +43,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -61,7 +58,6 @@ const Navbar = () => {
     setMobileDropdownOpen(mobileDropdownOpen === index ? null : index);
   };
 
-  // ✅ Menu Items
   const menuItems = [
     { name: "Home", path: "/home" },
     {
@@ -70,8 +66,7 @@ const Navbar = () => {
       sub: [
         { name: "About Us", path: "/about" },
         { name: "Services", path: "/services" },
-        { name: "Our Team", path: "/team/member" },
-        // { name: "Team Details", path: "/team/details" },
+        { name: "Our Team", path: "/team/member" }
       ],
     },
     {
@@ -83,12 +78,15 @@ const Navbar = () => {
       ],
     },
     { name: "Country", path: "/AllCountry" },
+
+    // ✅ Added DummyTicket section here
+    { name: "Dummy Ticket", path: "/DummyTicket" },
+
     {
       name: "Program Type",
       path: "/StudyAbroad",
       sub: [
-        { name: "Study Abroad", path: "/StudyAbroad" },
-        // { name: "Intern Abroad", path: "/InternsAbroad" },
+        { name: "Study Abroad", path: "/StudyAbroad" }
       ],
     },
     { name: "Blog", path: "/blog" },
