@@ -743,3 +743,59 @@
     font-size: 18px;
   }
 }
+.VisaApplicationForm__upi-box {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  border-left: 5px solid #5b2cff;
+}
+
+.VisaApplicationForm__upi-header {
+  font-size: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: #2a2a2a;
+}
+
+.VisaApplicationForm__upi-desc {
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.VisaApplicationForm__upi-summary {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  background: #f3f0ff;
+  padding: 12px;
+  border-radius: 8px;
+  color: #4a278f;
+}
+
+.VisaApplicationForm__upi-coupon {
+  font-size: 14px;
+  margin: 8px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #008f4c;
+}
+
+.VisaApplicationForm__btn--pay {
+  width: 100%;
+  padding: 14px;
+  background: #5b2cff;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+.VisaApplicationForm__btn--pay:hover {
+  opacity: 0.8;
+}

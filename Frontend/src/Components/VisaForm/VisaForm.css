@@ -1,4 +1,4 @@
-.visa-card {
+.visa-form-card {
   width: 100%;
   max-width: 340px;
   background: #ffffff;
@@ -8,14 +8,14 @@
   font-family: "Poppins", sans-serif;
 }
 
-.visa-card-header h3 {
+.visa-form-card-header h3 {
   margin: 0;
   color: #1b1f3b;
   font-size: 1.1rem;
   font-weight: 700;
 }
 
-.visa-card-header p {
+.visa-form-card-header p {
   font-size: 0.85rem;
   color: #475569;
   margin-top: 4px;
@@ -101,7 +101,7 @@
 }
 
 @media(max-width: 480px) {
-  .visa-card {
+  .visa-form-card {
     max-width: 94vw;
   }
 }

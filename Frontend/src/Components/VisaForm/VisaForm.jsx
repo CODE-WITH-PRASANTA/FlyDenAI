@@ -70,16 +70,24 @@ const VisaForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!selectedType) return alert("Please select a visa type.");
 
     navigate(`/Apply/Now/${id}`, {
-      state: { email, phone, selectedType, travellers, totalPrice },
+      state: {
+        email,
+        phone,
+        selectedType,
+        travellers,
+        totalPrice
+      }
     });
   };
 
+
   return (
-    <div className="visa-card">
-      <div className="visa-card-header">
+    <div className="visa-form-card">
+      <div className="visa-form-card-header">
         <h3>Quick Visa Application</h3>
         <p><strong>Fast & Hassle-Free</strong> – Takes under 2 minutes</p>
       </div>

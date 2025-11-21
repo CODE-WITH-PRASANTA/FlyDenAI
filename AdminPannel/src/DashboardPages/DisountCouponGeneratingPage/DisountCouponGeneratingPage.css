@@ -1,0 +1,294 @@
+/* -------------------------------------------- */
+/* PAGE LAYOUT */
+/* -------------------------------------------- */
+
+.coupon-page {
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
+  background: #f6f7fa;
+  min-height: 100vh;
+}
+
+/* -------------------------------------------- */
+/* PAGE HEADER */
+/* -------------------------------------------- */
+
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.coupon-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #232a35;
+}
+
+.coupon-header-controls {
+  position: relative;
+}
+
+.coupon-search {
+  width: 280px;
+  padding: 10px 12px;
+  background: #fff;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #dce3eb;
+  font-size: 14px;
+}
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* -------------------------------------------- */
+/* GRID LAYOUT */
+/* -------------------------------------------- */
+
+.coupon-grid {
+  display: grid;
+  grid-template-columns: 35% 63%;
+  gap: 20px;
+}
+
+/* -------------------------------------------- */
+/* LEFT - Form Card */
+/* -------------------------------------------- */
+
+.coupon-form-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.section-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #2b3a51;
+}
+
+.coupon-form-group {
+  margin-bottom: 15px;
+}
+
+.coupon-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ced6e0;
+  font-size: 14px;
+  outline: none;
+  background: #fafbff;
+}
+
+.coupon-input:focus {
+  border-color: #4285f4;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: #4285f4;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #2466d8;
+}
+
+/* -------------------------------------------- */
+/* RIGHT - Table Styling */
+/* -------------------------------------------- */
+
+.coupon-table-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.coupon-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.coupon-table th,
+.coupon-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #e2e6ed;
+}
+
+.coupon-table th {
+  background: #eef3f9;
+  font-weight: 600;
+  text-align: left;
+  color: #2b3a51;
+}
+
+.code-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* -------------------------------------------- */
+/* ICON STYLING */
+/* -------------------------------------------- */
+
+.icon {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.copy-icon {
+  color: #666;
+}
+
+.copy-icon:hover {
+  color: #000;
+}
+
+.edit-icon {
+  color: #4285f4;
+  margin-right: 10px;
+}
+
+.edit-icon:hover {
+  color: #1c54b2;
+}
+
+.delete-icon {
+  color: #e74c3c;
+}
+
+.delete-icon:hover {
+  color: #c0392b;
+}
+
+/* -------------------------------------------- */
+/* STATUS BADGES */
+/* -------------------------------------------- */
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.badge-pending {
+  background: #ffda79;
+  color: #856404;
+}
+
+.badge-active {
+  background: #23d160;
+  color: #fff;
+}
+
+.badge-expired {
+  background: #cb4335;
+  color: #fff;
+}
+
+.badge-used {
+  background: #7f8c8d;
+  color: #fff;
+}
+
+/* -------------------------------------------- */
+/* NO DATA TEXT */
+/* -------------------------------------------- */
+
+.no-data {
+  text-align: center;
+  padding: 15px;
+  color: #6a798a;
+  font-size: 14px;
+}
+/* -------------------------------------------- */
+/* EXTRA RESPONSIVE FIXES (Mobile Friendly) */
+/* -------------------------------------------- */
+
+@media (max-width: 992px) {
+  .coupon-header {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+
+  .coupon-search {
+    width: 100%;
+  }
+
+  .coupon-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .coupon-table-card {
+    overflow-x: auto; /* Scroll for small devices */
+  }
+
+  .coupon-table {
+    min-width: 600px; /* Table stays wide & scrollable */
+  }
+
+  .coupon-header-controls {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .coupon-title {
+    font-size: 22px;
+  }
+
+  .btn-primary {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .coupon-table th,
+  .coupon-table td {
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 400px) {
+  .coupon-page {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+}

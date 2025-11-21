@@ -28,6 +28,7 @@ import MediaUpload from "./DashboardPages/MediaUpload/MediaUpload";
 import BlogPreview from "./DashboardPages/BlogPreview/BlogPreview";
 import OurSuccessfulClients from "./DashboardPages/OurSuccessfulClients/OurSuccessfulClients";
 import TeamPreview from "./DashboardPages/TeamPreview/TeamPreview";
+import DisountCouponGeneratingPage from "./DashboardPages/DisountCouponGeneratingPage/DisountCouponGeneratingPage";
 
 export default function App() {
   return (
@@ -81,6 +82,7 @@ export default function App() {
 
           <Route path="/advertise/banner" element={<AdvertizingBanner />} />
           <Route path="/director-achievement-manage" element={<DirectorandAchivmentManage />} />
+          <Route path="/discount-coupon/generate" element={<DisountCouponGeneratingPage />} />
           
           </Route>
 

@@ -29,6 +29,8 @@ const teamMemberRoutes = require("./routes/teamMemberRoutes");
 const visaRoutes = require("./routes/visaRoutes");
 const DirectorRoutes = require("./routes/DirectorRoutes");
 const blogRoutes = require("./routes/blogRoutes");
+const paymentRoutes = require("./routes/paymentRoutes");
+const couponRoutes = require("./routes/couponRoutes");
 
 
 
@@ -41,8 +43,8 @@ app.use("/api/teammembers", teamMemberRoutes);
 app.use("/api/visas", visaRoutes);
 app.use("/api/director", DirectorRoutes);
 app.use('/api/blogs', blogRoutes);
-
-
+app.use("/api/payment", paymentRoutes);
+app.use("/api/coupons", couponRoutes);
 
 
 // Default route

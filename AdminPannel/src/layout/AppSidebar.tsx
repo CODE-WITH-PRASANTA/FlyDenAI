@@ -58,6 +58,7 @@ const navItems: NavItem[] = [
       { name: "Intern Abroad Clients", path: "/client/intern-abroad" },
     ],
   },
+
   {
     icon: <TableIcon />,
     name: "Team Management",
@@ -66,6 +67,7 @@ const navItems: NavItem[] = [
       { name: "Preview", path: "/team/preview" },
     ],
   },
+
   {
     icon: <PageIcon />,
     name: "Testimonial",
@@ -74,6 +76,7 @@ const navItems: NavItem[] = [
       { name: "Post Testimonial", path: "/testimonial/post" },
     ],
   },
+
   {
     icon: <ListIcon />,
     name: "Blog Management",
@@ -82,6 +85,7 @@ const navItems: NavItem[] = [
       { name: "Preview", path: "/blog/preview" },
     ],
   },
+
   {
     icon: <BoxCubeIcon />,
     name: "Manage Advertise",
@@ -90,23 +94,34 @@ const navItems: NavItem[] = [
       { name: "Post Milestone", path: "/advertise/post-milestone" },
     ],
   },
+
   { icon: <PlugInIcon />, name: "Contact Management", path: "/contact/manage" },
+
   { icon: <BoxCubeIcon />, name: "Media Upload", path: "/media/upload" },
 
-  
   {
     icon: <UserCircleIcon />,
     name: "Our Successful Clients",
     path: "/clients/successful",
   },
 
-    {
+  {
     icon: <UserCircleIcon />,
     name: "Director & Achievement Manage",
     path: "/director-achievement-manage",
   },
 
-  // ✅ NEW SECTION: FAQ MANAGEMENT
+  // 🎟 **New Discount Coupon Section**
+  {
+    icon: <BoxCubeIcon />,
+    name: "Discount Coupon",
+    subItems: [
+      { name: "Generate Coupon", path: "/discount-coupon/generate" },
+      { name: "View Coupons", path: "/discount-coupon/preview" },
+    ],
+  },
+
+  // FAQ MANAGEMENT
   {
     icon: <PageIcon />,
     name: "FAQ Management",
@@ -116,6 +131,7 @@ const navItems: NavItem[] = [
     ],
   },
 ];
+
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
