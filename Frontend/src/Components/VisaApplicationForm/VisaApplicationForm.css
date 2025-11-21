@@ -1,825 +1,745 @@
-/* ======================================
-   RESET & BASE
-====================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+
+
+/********************
+   WRAPPER
+*********************/
+.VisaApplicationForm__wrapper {
+  width: 100%;
+  max-width: 1300px;
+  margin: 28px auto;
+  padding: 20px;
+  background: linear-gradient(180deg, #ffffffb2, #f8faff8c);
+  border-radius: 16px;
+  border: 2px solid rgba(37, 99, 235, 0.06);
+  overflow: hidden;
 }
 
-:root {
-  --primary: #2563eb;
-  --secondary: #3b82f6;
-  --success: #10b981;
-  --muted: #64748b;
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-  --radius: 12px;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background: var(--bg);
-  color: #111827;
-}
-
-/* ======================================
-   MAIN WRAPPER
-====================================== */
-.visa-app-wrapper {
-  padding: 20px 50px;
-  background: linear-gradient(135deg, #f0f7ff 0%, #eaf2ff 100%);
-  min-height: 100vh;
-}
-
-/* ======================================
-   PROGRESS BAR (Elegant Modern Look)
-====================================== */
-.visa-progress-container {
+/********************
+   PROGRESS BAR
+*********************/
+.VisaApplicationForm__progress {
+  padding: 20px 0 10px;
+  width: 100%;
+  overflow: hidden;
   position: relative;
-  max-width: 950px;
-  margin: 0 auto 40px;
-  background: var(--card);
-  padding: 35px 45px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+}
+
+.VisaApplicationForm__progress-fill {
+  position: absolute;
+  top: 36px;
+  left: 8%;
+  right: 8%;
+  height: 6px;
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  border-radius: 6px;
+  z-index: 1;
+  transition: width 0.4s ease;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.18);
+}
+
+.VisaApplicationForm__progress-steps {
+  width: 100%;
+  padding: 0 2%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  overflow: visible;
-}
-
-.visa-progress-fill {
-  position: absolute;
-  top: 50%;
-  left: 45px;
-  right: 45px;
-  height: 6px;
-  transform: translateY(-50%);
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border-radius: 999px;
-  transition: width 0.6s ease;
-  z-index: 1;
-}
-
-.progress-edge {
-  position: absolute;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #dbeafe;
-  border: 2px solid var(--primary);
-  transform: translateY(-50%);
   z-index: 2;
-}
-
-.left-edge {
-  left: 30px;
-}
-
-.right-edge {
-  right: 30px;
-}
-
-.progress-step {
-  position: relative;
-  z-index: 3;
-  flex: 1;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.progress-icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
-  font-size: 15px;
-  margin-bottom: 5px;
-  transition: all 0.3s ease;
-}
-
-.progress-label {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--muted);
-}
-
-/* Active + Completed States */
-.progress-step.active .progress-icon {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
-  transform: scale(1.1);
-}
-
-.progress-step.completed .progress-icon {
-  background: linear-gradient(135deg, var(--success), #34d399);
-  color: #fff;
-  transform: scale(1.05);
-}
-
-.progress-step.active .progress-label,
-.progress-step.completed .progress-label {
-  color: #1e293b;
-}
-
-
-/* ---------- Mobile (≤768px) ---------- */
-@media (max-width: 768px) {
-  .visa-progress-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar (Chrome/Safari) */
-  }
-
-  .visa-progress-fill {
-    display: none; /* hide background fill on scroll view */
-  }
-  .progress-edge {
-    display: none;
-  }
-}
-
-
-/* ======================================
-   FORM LAYOUT
-====================================== */
-.visa-form-layout {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 30px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.visa-step {
-  animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.visa-step-subtitle {
-  font-size: 0.95rem;
-  color: var(--muted);
-  margin-bottom: 25px;
-}
-
-/* ======================================
-   FORM FIELDS
-====================================== */
-.visa-form-group,
-.visa-row {
-  margin-bottom: 18px;
-}
-
-.visa-row {
-  display: flex;
-  gap: 20px;
-}
-
-.visa-col {
-  flex: 1;
-}
-
-.visa-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #1e293b;
-  margin-bottom: 6px;
-}
-
-.visa-input-wrapper {
   position: relative;
 }
 
-.visa-input-icon {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  color: var(--primary);
-}
-
-.visa-input {
-  width: 100%;
-  padding: 10px 12px 10px 35px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #f9fafb;
-  font-size: 0.9rem;
-  transition: 0.3s;
-}
-
-.visa-input:focus {
-  outline: none;
-  border-color: var(--primary);
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-/* ======================================
-   BUTTONS
-====================================== */
-.visaapplication-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 0.95rem;
+.VisaApplicationForm__progress-step {
+  flex: 1;
+  min-width: 80px;
   cursor: pointer;
-  transition: 0.3s;
-  border: none;
-  margin-top: 10px;
+  text-align: center;
+  color: #94a3b8;
+  transition: 0.2s ease;
 }
 
-.visaapplication-btn.primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: #fff;
+.VisaApplicationForm__progress-step:hover {
+  transform: translateY(-4px);
 }
 
-.visaapplication-btn.primary:hover {
+.VisaApplicationForm__progress-step--active {
+  color: #0f172a;
+  transform: translateY(-6px);
+}
+
+.VisaApplicationForm__progress-step--completed {
+  color: #0f172a;
   opacity: 0.9;
 }
 
-.visaapplication-btn.outline {
-  border: 1.5px solid var(--primary);
+.VisaApplicationForm__progress-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff99, #ffffff55);
+  border: 2px solid rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+  margin: 0 auto;
+}
+
+/********************
+   GRID
+*********************/
+.VisaApplicationForm__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 22px;
+  padding: 18px;
+}
+
+/********************
+   SIDEBAR
+*********************/
+.VisaApplicationForm__sidebar {
+  position: sticky;
+  top: 28px;
+}
+/***************************
+  HELP CARD - ENHANCED
+****************************/
+.VisaApplicationForm__help-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #e0f2fe, #f8fbff);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.1);
+  box-shadow: 0 6px 16px rgba(14, 165, 233, 0.15);
+  transition: 0.3s ease-in-out;
+}
+
+.VisaApplicationForm__help-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(14, 165, 233, 0.25);
+  background: linear-gradient(180deg, #dbeafe, #e7f3ff);
+}
+
+.VisaApplicationForm__help-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.VisaApplicationForm__help-title::before {
+  content: "🛟";
+  font-size: 20px;
+  display: inline-block;
+}
+
+.VisaApplicationForm__help-text {
+  font-size: 14px;
+  color: #475569;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.VisaApplicationForm__help-card .VisaApplicationForm__btn--outline {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: 1px solid #2563eb;
+  color: #2563eb;
   background: transparent;
-  color: var(--primary);
-}
-
-.visaapplication-btn.outline:hover {
-  background: var(--primary);
-  color: #fff;
-}
-
-.visaapplication-btn.pay {
-  background: linear-gradient(135deg, var(--success), #34d399);
-  color: #fff;
+  border-radius: 8px;
   font-weight: 600;
-  padding: 10px 25px;
+  transition: 0.25s ease;
 }
 
-.visa-actions {
-  margin-top: 25px;
+.VisaApplicationForm__help-card .VisaApplicationForm__btn--outline:hover {
+  background: #2563eb;
+  color: white;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.2);
+}
+
+
+.VisaApplicationForm__fare-row,
+.VisaApplicationForm__fare-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  color: #475569;
+}
+
+.VisaApplicationForm__fare-total {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/********************
+   STEP SECTIONS
+*********************/
+.VisaApplicationForm__step {
+  background: #ffffffd6;
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(37, 99, 235, 0.05);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  animation: fadeInUp 0.35s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.VisaApplicationForm__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.VisaApplicationForm__subtitle {
+  font-size: 15px;
+  color: #475569;
+  margin: 6px 0 18px;
+}
+
+.VisaApplicationForm__title--center,
+.VisaApplicationForm__subtitle--center {
+  text-align: center;
+}
+
+/********************
+   FORMS — UNIVERSAL
+*********************/
+.VisaApplicationForm__form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.VisaApplicationForm__form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.VisaApplicationForm__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.VisaApplicationForm__input,
+.VisaApplicationForm__select,
+.VisaApplicationForm__file {
+  height: 50px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 15px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__input:hover,
+.VisaApplicationForm__select:hover,
+.VisaApplicationForm__file:hover {
+  border-color: #2563eb;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+.VisaApplicationForm__input:focus,
+.VisaApplicationForm__select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px #2563eb42;
+}
+
+.VisaApplicationForm__input-with-icon {
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+.VisaApplicationForm__input-icon {
+  font-size: 18px;
+  color: #2563eb;
+  opacity: 0.85;
+}
+
+.VisaApplicationForm__input--readonly {
+  background: #f8fafc;
+}
+/* Enhanced Price Box */
+.VisaApplicationForm__price-box {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 16px 0 24px;
+  background: linear-gradient(135deg, #e6f2ff 0%, #f8fbff 100%);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+  transition: 0.25s ease-in-out;
+}
+
+.VisaApplicationForm__price-box:hover {
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.18);
+}
+
+.VisaApplicationForm__price-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* ======================================
-   PAYMENT SECTION
-====================================== */
-.payment-options {
+.VisaApplicationForm__price-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e40af;
+}
+
+.VisaApplicationForm__price-main {
+  background: #2563eb;
+  border-radius: 8px;
+  padding: 8px 14px;
+}
+
+.VisaApplicationForm__price-amount {
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+}
+
+.VisaApplicationForm__price-breakdown {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.VisaApplicationForm__price-breakdown span {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.VisaApplicationForm__discount {
+  color: #22c55e;
+  font-weight: 600;
+}
+
+/********************
+   TRAVELLER CARDS
+*********************/
+.VisaApplicationForm__traveller-list {
+  max-height: 540px;
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: thin;
+}
+
+.VisaApplicationForm__traveller-card {
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #ffffff, #f7faff);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__traveller-card:hover {
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.18);
+}
+
+.VisaApplicationForm__traveller-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.VisaApplicationForm__traveller-icon {
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
+  border-radius: 50%;
+  background: #dbe8ff;
+  color: #1e40af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.VisaApplicationForm__traveller-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/********************
+   PAYMENT
+*********************/
+.VisaApplicationForm__payment-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 12px;
 }
 
-.payment-option {
-  padding: 8px 16px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+.VisaApplicationForm__payment-option {
+  min-width: 120px;
+  padding: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
-  font-size: 0.9rem;
-  color: var(--muted);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  transition: 0.2s ease;
 }
 
-.payment-option.active {
-  background: var(--primary);
-  color: #fff;
-  border-color: var(--primary);
+.VisaApplicationForm__payment-option--active {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
 }
 
-.payment-option:hover {
-  border-color: var(--primary);
+.VisaApplicationForm__payment-box {
+  margin-top: 8px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #ffffffdf;
+  border: 1px solid rgba(37, 99, 235, 0.08);
+  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.04);
 }
 
-.payment-box {
-  padding: 20px;
-  background: #f9fafb;
-  border-radius: var(--radius);
-}
-
-.payment-footer {
-  margin-top: 15px;
+.VisaApplicationForm__payment-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* ======================================
-   UPLOAD SECTION
-====================================== */
-.VisaApplicationForm-uploadgrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.upload-box {
-  background: #f1f5f9;
-  border-radius: 8px;
-  padding: 15px;
-  border: 1px dashed #cbd5e1;
-}
-
-.upload-box label {
-  display: block;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
-
-.upload-input {
-  width: 100%;
-  padding: 8px;
-  font-size: 0.9rem;
-}
-
-/* ======================================
-   THANK YOU SECTION
-====================================== */
-.thankyou-section {
-  text-align: center;
-  padding: 60px 0;
-}
-
-.thank-icon {
-  font-size: 70px;
-  color: var(--success);
-  margin-bottom: 15px;
-}
-
-/* ======================================
-   RIGHT SIDEBAR (Fare Summary)
-====================================== */
-.visa-right-panel {
-  position: sticky;
-  top: 20px;
-}
-
-.fare-summary-card {
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 25px;
-}
-
-.fare-summary-card h4 {
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-
-.fare-item,
-.fare-total {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.95rem;
-  padding: 5px 0;
-}
-
-.fare-total {
-  font-weight: 600;
-  border-top: 1px solid #e2e8f0;
-  margin-top: 10px;
-  padding-top: 10px;
-}
-/* ======================================
-   STEP SECTIONS – Ultra Premium Look
-====================================== */
-.visa-step {
-  position: relative;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 40px 45px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.5s ease;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* 🎨 Add beautiful gradient border around step box */
-.visa-step::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed, #3b82f6);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  transition: all 0.5s ease;
-  opacity: 0.6;
-}
-
-/* ✨ Glowing hover effect with lift */
-.visa-step:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25);
-}
-
-.visa-step:hover::before {
-  opacity: 1;
-  background: linear-gradient(135deg, #3b82f6, #7c3aed, #2563eb);
-}
-/* ======================================
-   STEP SECTIONS – Ultra Premium Look
-====================================== */
-.visa-step {
-  position: relative;
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 40px 45px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  transition: all 0.5s ease;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* 🎨 Add beautiful gradient border around step box */
-.visa-step::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  padding: 2px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed, #3b82f6);
-  -webkit-mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  transition: all 0.5s ease;
-  opacity: 0.6;
-}
-
-/* ✨ Glowing hover effect with lift */
-.visa-step:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.25);
-}
-
-.visa-step:hover::before {
-  opacity: 1;
-  background: linear-gradient(135deg, #3b82f6, #7c3aed, #2563eb);
-}
-
-/* ======================================
-   STEP TITLE – Elegant Gradient Text
-====================================== */
-.visa-step-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, #2563eb, #7c3aed, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 12px;
-  letter-spacing: 0.3px;
-  text-transform: capitalize;
-  position: relative;
-}
-
-/* Decorative underline */
-.visa-step-title::after {
-  content: "";
-  position: absolute;
-  bottom: -6px;
-  left: 0;
-  width: 55px;
-  height: 3px;
-  border-radius: 5px;
-  background: linear-gradient(90deg, #2563eb, #7c3aed);
-  transition: width 0.3s ease;
-}
-
-.visa-step:hover .visa-step-title::after {
-  width: 80px;
-}
-
-/* ======================================
-   STEP SUBTITLE – Minimal Muted Tone
-====================================== */
-.visa-step-subtitle {
-  font-size: 1rem;
-  color: #475569;
-  margin-bottom: 30px;
-  line-height: 1.6;
-  font-weight: 500;
-}
-
-
-/* ======================================
-   FORM INPUTS – Modern Glass Style
-====================================== */
-.visa-input {
-  width: 100%;
-  padding: 12px 15px 12px 38px;
-  background: rgba(248, 250, 252, 0.8);
-  border: 1px solid #dbeafe;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-  color: #1e293b;
-}
-
-.visa-input:focus {
-  border-color: var(--primary);
-  background: #fff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
-}
-
-.visa-input-icon {
-  color: var(--primary);
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-
-/* ======================================
-   PAYMENT BOX – Elegant Card Look
-====================================== */
-.payment-box {
-  padding: 25px;
-  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
-  border-radius: var(--radius);
-  border: 1px solid #dbeafe;
-  box-shadow: inset 0 0 12px rgba(37, 99, 235, 0.05);
-  transition: all 0.3s ease;
-}
-
-.payment-box:hover {
-  box-shadow: inset 0 0 18px rgba(37, 99, 235, 0.1);
-}
-
-.payment-box h4 {
-  color: var(--primary);
-  margin-bottom: 6px;
-}
-
-.payment-footer {
+/********************
+   BUTTONS
+*********************/
+.VisaApplicationForm__actions {
   margin-top: 20px;
   display: flex;
+  gap: 12px;
+}
+
+.VisaApplicationForm__actions--center {
+  justify-content: center;
+}
+
+.VisaApplicationForm__actions--split {
+  justify-content: space-between;
+}
+
+.VisaApplicationForm__btn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  border: none;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__btn--primary {
+  background: linear-gradient(90deg, #2563eb, #1e40af);
+  color: white;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+.VisaApplicationForm__btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.3);
+}
+
+.VisaApplicationForm__btn--outline {
+  margin-top: 20px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: transparent;
+}
+
+.VisaApplicationForm__btn--outline:hover {
+  background: rgba(37, 99, 235, 0.04);
+  transform: translateY(-2px);
+}
+
+/***********************************************
+   PREMIUM UPLOAD DOCUMENTS — UPGRADE
+***********************************************/
+
+.VisaApplicationForm__upload-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.VisaApplicationForm__upload-card {
+  background: linear-gradient(180deg, #ffffff, #f5f8ff);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__upload-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.18);
+}
+
+.VisaApplicationForm__upload-card .VisaApplicationForm__label {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.VisaApplicationForm__file {
+  height: 55px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #eef4ff;
+  font-size: 16px;
+  border: 2px dashed rgba(37, 99, 235, 0.35);
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__file:hover {
+  background: #e3ecff;
+  border-color: #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+/***********************************************
+   PREMIUM TRAVELLER INPUT UPGRADE
+***********************************************/
+
+.VisaApplicationForm__traveller-card {
+  padding: 28px !important;
+  border-radius: 16px !important;
+}
+
+.VisaApplicationForm__traveller-header {
+  margin-bottom: 20px !important;
+}
+
+.VisaApplicationForm__traveller-title {
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #0f172a;
+}
+
+.VisaApplicationForm__label {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+}
+
+.VisaApplicationForm__form-row {
+  margin-bottom: 24px !important;
+  gap: 20px !important;
+}
+
+.VisaApplicationForm__input,
+.VisaApplicationForm__select {
+  height: 58px !important;
+  font-size: 17px !important;
+  padding: 14px 18px !important;
+  border-radius: 14px !important;
+  border: 2px solid #cbd5e1 !important;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__input:hover,
+.VisaApplicationForm__select:hover {
+  border-color: #2563eb !important;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.15) !important;
+}
+
+.VisaApplicationForm__input:focus,
+.VisaApplicationForm__select:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25) !important;
+}
+
+.VisaApplicationForm__input-icon {
+  font-size: 22px !important;
+  color: #2563eb !important;
+}
+
+/***********************************************
+   UPLOAD DOCUMENTS — SECTION TITLE UPGRADE
+***********************************************/
+
+.VisaApplicationForm__step--upload .VisaApplicationForm__title {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #1e40af !important;
+}
+
+.VisaApplicationForm__step--upload .VisaApplicationForm__subtitle {
+  font-size: 17px !important;
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+
+.VisaApplicationForm__price-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.VisaApplicationForm__fare-total span:last-child {
+  font-weight: bold;
+  color: #d9534f;
+}
+
+/* Coupon Card */
+.VisaApplicationForm__coupon-card {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 10px;
+}
+
+.VisaApplicationForm__coupon-header {
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-
-.upload-box {
-  background: #f9fafb;
-  border: 1px dashed #cbd5e1;
-  border-radius: 10px;
-  padding: 20px;
-  transition: all 0.3s ease;
+.VisaApplicationForm__btn--icon {
+  background-color: #dbeafe;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.upload-box:hover {
-  background: #eef2ff;
-  border-color: var(--primary);
-  transform: scale(1.02);
+.VisaApplicationForm__coupon-body {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
 }
 
-.upload-box label {
-  font-weight: 600;
-  color: #1e293b;
+.VisaApplicationForm__input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
 }
 
-/* ======================================
-   THANK YOU SECTION – Celebration Style
-====================================== */
-.thankyou-section {
-  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 100%);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-  padding: 60px 30px;
-  animation: fadeIn 0.8s ease;
+.VisaApplicationForm__btn--apply {
+  background-color: #34d399;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
 }
 
-.thank-icon {
-  font-size: 80px;
-  color: var(--success);
-  margin-bottom: 20px;
-  animation: pop 0.6s ease;
+.VisaApplicationForm__btn--apply:hover {
+  background-color: #10b981;
 }
 
-@keyframes pop {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
+/**************************************
+   RESPONSIVE MEDIA QUERIES
+**************************************/
 
-/* ======================================
-   RESPONSIVE DESIGN (All Devices)
-====================================== */
-
-/* ---------- Large Desktop (1440px & up) ---------- */
-@media (min-width: 1440px) {
- 
-
-  .visa-form-layout {
-    max-width: 1400px;
-  }
-
-  .visa-step {
-    padding: 50px 60px;
+/* Up to 1200px – Slight layout tweak for smaller desktops */
+@media (max-width: 1200px) {
+  .VisaApplicationForm__grid {
+    grid-template-columns: 2fr 1fr;
   }
 }
 
-/* ---------- Laptops & Desktops (1025px–1439px) ---------- */
-@media (max-width: 1439px) and (min-width: 1025px) {
-
-
-  .visa-form-layout {
-    gap: 25px;
+/* Up to 992px – Tablet landscape: stack columns */
+@media (max-width: 992px) {
+  .VisaApplicationForm__grid {
+   display: block;
+   padding: 0px;
   }
-
-  .fare-summary-card {
-    padding: 20px;
-  }
-}
-
-/* ---------- Tablets (769px–1024px) ---------- */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .visa-form-layout {
-    grid-template-columns: 1.5fr 1fr;
-    gap: 20px;
-  }
-
-  .visa-progress-container {
-    padding: 25px 30px;
-  }
-
-  .visa-step {
-    padding: 35px 30px;
-  }
-
-  .visa-step-title {
-    font-size: 1.4rem;
-  }
-
-  .visa-step-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .payment-option {
-    font-size: 0.85rem;
-    padding: 6px 12px;
-  }
-}
-
-/* ---------- Mobile (Max 768px) ---------- */
-@media (max-width: 768px) {
-  .visa-app-wrapper {
-    padding: 25px 20px;
-  }
-
-  .visa-form-layout {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .visa-right-panel {
+  .VisaApplicationForm__sidebar {
     position: relative;
-    top: auto;
+    top: 0;
   }
+  .VisaApplicationForm__wrapper {
+    padding: 15px;
+  }
+  .VisaApplicationForm__progress-fill {
+    left: 5%;
+    right: 5%;
+  }
+}
 
-  .visa-progress-container {
+/* Up to 768px – Tablet portrait: form elements stack properly */
+@media (max-width: 768px) {
+  .VisaApplicationForm__form-row {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 20px;
-    gap: 15px;
   }
-
-  .progress-step {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .progress-icon {
-    width: 32px;
-    height: 32px;
-    font-size: 13px;
-  }
-
-  .progress-label {
-    font-size: 0.85rem;
-  }
-
-  .visa-step {
-    padding: 25px 20px;
-    border-radius: 14px;
-  }
-
-  .visa-step-title {
-    font-size: 1.3rem;
-  }
-
-  .visa-step-subtitle {
-    font-size: 0.9rem;
-  }
-
-  .visa-row {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .visa-input {
-    padding: 10px 12px 10px 35px;
-  }
-
-  .payment-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .VisaApplicationForm-uploadgrid {
+  .VisaApplicationForm__upload-grid {
     grid-template-columns: 1fr;
   }
-
-  .visa-actions {
+  .VisaApplicationForm__traveller-list {
+    max-height: none;
+  }
+  .VisaApplicationForm__payment-grid {
     flex-direction: column;
-    gap: 12px;
   }
-
-  .visaapplication-btn {
-    width: 100%;
-    text-align: center;
+  .VisaApplicationForm__progress-label {
+    display: none;
+  }
+  .VisaApplicationForm__progress-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
   }
 }
 
-/* ---------- Small Devices (≤480px – iPhones etc.) ---------- */
+/* Up to 480px – Mobile phones */
 @media (max-width: 480px) {
-  .visa-progress-container {
-    padding: 15px;
+  .VisaApplicationForm__wrapper {
+    padding: 10px;
   }
 
-  .progress-icon {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+  .VisaApplicationForm__title {
+    font-size: 20px;
   }
-
-  .visa-step-title {
-    font-size: 1.2rem;
+  .VisaApplicationForm__step {
+    padding: 18px;
   }
-
-  .visa-step-subtitle {
-    font-size: 0.85rem;
+  .VisaApplicationForm__fare-card,
+  .VisaApplicationForm__help-card {
+    padding: 14px;
   }
-
-  .visa-input {
-    font-size: 0.85rem;
-  }
-
-  .payment-option {
-    font-size: 0.8rem;
-    padding: 5px 10px;
-  }
-
-  .fare-summary-card {
-    padding: 15px;
-  }
-
-  .thank-icon {
-    font-size: 60px;
-  }
-}
-
-/* ---------- Ultra-Small Screens (≤360px) ---------- */
-@media (max-width: 360px) {
-  .visa-app-wrapper {
-    padding: 15px 10px;
-  }
-
-  .visa-step {
-    padding: 20px 15px;
-  }
-
-  .visa-step-title {
-    font-size: 1.1rem;
-  }
-
-  .visa-step-subtitle {
-    font-size: 0.8rem;
-  }
-
-  .visaapplication-btn {
-    font-size: 0.85rem;
-    padding: 8px 12px;
+  .VisaApplicationForm__price-amount {
+    font-size: 18px;
   }
 }

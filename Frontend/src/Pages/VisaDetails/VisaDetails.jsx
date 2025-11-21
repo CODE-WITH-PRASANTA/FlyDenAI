@@ -14,13 +14,13 @@ import VisitUs from "../../Components/VisitUs/VisitUs";
 import VisaDetailsFaq from '../../Components/VisaDetailsFaq/VisaDetailsFaq';
 
 const VisaDetails = () => {
-  const [isFormOpen, setIsFormOpen] = useState(false);
+   const [isFormOpen, setIsFormOpen] = useState(true); // ⭐ default OPEN
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   const toggleForm = () => {
     setIsFormOpen(prev => !prev);
   };
-
+  
   // ✅ Show "Back to Top" button on scroll
   useEffect(() => {
     const handleScroll = () => {

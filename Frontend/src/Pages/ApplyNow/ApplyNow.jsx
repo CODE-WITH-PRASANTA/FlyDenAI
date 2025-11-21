@@ -9,7 +9,6 @@ const ApplyNow = () => {
     <div>
       <ApplyNowBanner />
       <VisaApplicationForm/>
-     
     </div>
   )
 }

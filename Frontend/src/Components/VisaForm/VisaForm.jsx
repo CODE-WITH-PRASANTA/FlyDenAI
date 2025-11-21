@@ -1,93 +1,149 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./VisaForm.css";
+import BASE_URL from "../../Api";
+import { useParams, useNavigate } from "react-router-dom";
 
 const VisaForm = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const [contact, setContact] = useState(null);
+  const [visa, setVisa] = useState(null);
+
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const [selectedType, setSelectedType] = useState("");
+  const [travellers, setTravellers] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const cleanNumber = (value) =>
+    value ? Number(String(value).replace(/[^0-9.]/g, "")) : 0;
+
+  const openWhatsApp = () => {
+    if (!contact?.whatsapp) return;
+    const number = contact.whatsapp.replace(/[^0-9]/g, "");
+    window.open(`https://wa.me/91${number}`, "_blank");
+  };
+
+  const callPhone = () => {
+    if (!contact?.phone) return;
+    const number = contact.phone.replace(/[^0-9]/g, "");
+    window.location.href = `tel:${number}`;
+  };
+
+  useEffect(() => {
+    const fetchContact = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/contacts`);
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          setContact(data.data.find((c) => c.published) || data.data[0]);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchContact();
+  }, []);
+
+  useEffect(() => {
+    const fetchVisa = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/visas/published/${id}`);
+        const data = await res.json();
+        if (data.success) setVisa(data.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchVisa();
+  }, [id]);
+
+  useEffect(() => {
+    if (selectedType && visa?.visaTypes?.length > 0) {
+      const typeObj = visa.visaTypes.find((t) => t.name === selectedType);
+      const price = cleanNumber(typeObj.fees);
+      setTotalPrice(price * travellers);
+    }
+  }, [selectedType, travellers, visa]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!selectedType) return alert("Please select a visa type.");
+
+    navigate(`/Apply/Now/${id}`, {
+      state: { email, phone, selectedType, travellers, totalPrice },
+    });
+  };
+
   return (
-    <div className="float-contact-form-wrapper">
-      {/* Form Header */}
-      <div className="float-contact-form-header">
-        ⏱️ It takes less than <strong>2 minutes</strong> to Apply
+    <div className="visa-card">
+      <div className="visa-card-header">
+        <h3>Quick Visa Application</h3>
+        <p><strong>Fast & Hassle-Free</strong> – Takes under 2 minutes</p>
       </div>
 
-      {/* Form Inputs */}
-      <form className="float-contact-form">
+      <form className="visa-form" onSubmit={handleSubmit}>
         <input
           type="email"
-          className="float-contact-form-input"
-          placeholder="Email ID"
+          placeholder="Email Address"
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
+        
         <input
           type="tel"
-          className="float-contact-form-input"
-          placeholder="Contact No"
+          placeholder="Contact Number"
           required
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
         />
-        <select className="float-contact-form-select" required>
-          <option value="">Select Visa Type</option>
-          <option value="mdac">Digital Arrival Card</option>
-          <option value="sticker">Sticker Visa</option>
-        </select>
-        <select className="float-contact-form-select" required>
-          <option value="">Travellers</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3+">3+</option>
+
+        <select
+          required
+          onChange={(e) => setSelectedType(e.target.value)}
+        >
+          <option value="">Choose Visa Type</option>
+          {visa?.visaTypes?.map((type, i) => (
+            <option key={i} value={type.name}>
+              {type.name} — ₹{cleanNumber(type.fees)}
+            </option>
+          ))}
         </select>
 
-        {/* Form Footer */}
-        <div className="float-contact-form-footer">
-          <span className="float-contact-form-price">₹0</span>
-          <button type="submit" className="float-contact-form-button">
-            APPLY NOW
-          </button>
+        <select
+          required
+          onChange={(e) => setTravellers(Number(e.target.value))}
+        >
+          {[1,2,3,4,5].map(num => (
+            <option key={num} value={num}>{num} Traveller{num > 1 ? "s" : ""}</option>
+          ))}
+        </select>
+
+        <div className="visa-price-box">
+          <span>Total</span>
+          <strong>₹ {totalPrice}</strong>
         </div>
 
-        {/* Contact Options Grid */}
-        <div className="float-contact-form-grid">
-          <div className="float-contact-card">
-            <div className="float-contact-card-header">
-              <span className="float-contact-icon">📱</span>
-              <div className="float-contact-info">
-                <span className="float-contact-title">Visa on WhatsApp</span>
-                <span className="float-contact-desc">+91 7506865623</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="float-contact-card">
-            <div className="float-contact-card-header">
-              <span className="float-contact-icon">📞</span>
-              <div className="float-contact-info">
-                <span className="float-contact-title">Call Us</span>
-                <span className="float-contact-desc">02240666444</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="float-contact-card">
-            <div className="float-contact-card-header">
-              <span className="float-contact-icon">⏰</span>
-              <div className="float-contact-info">
-                <span className="float-contact-title">Timing</span>
-                <span className="float-contact-desc">9am to 9pm</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="float-contact-card">
-            <div className="float-contact-card-header">
-              <span className="float-contact-icon">📍</span>
-              <div className="float-contact-info">
-                <span className="float-contact-title">Visit Office</span>
-                <span className="float-contact-desc">
-                  Near Crawford Market, Mumbai
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button type="submit" className="visa-submit-btn">
+          Apply Now
+        </button>
       </form>
+
+      {/* Contact Box */}
+      <div className="contact-box">
+        <div onClick={openWhatsApp}>
+          <span>📱 WhatsApp</span>
+          <p>+91 {contact?.whatsapp || "---"}</p>
+        </div>
+
+        <div onClick={callPhone}>
+          <span>📞 Call Us</span>
+          <p>{contact?.phone || "---"}</p>
+        </div>
+      </div>
     </div>
   );
 };
