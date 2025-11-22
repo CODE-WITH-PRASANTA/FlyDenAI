@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./VisaApplicationForm.css";
 import Swal from "sweetalert2";
 import { FaPlaneDeparture, FaUser, FaCreditCard, FaFileUpload } from "react-icons/fa";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation  } from "react-router-dom";
 import BASE_URL from "../../Api";
 
 import Step1Itinerary from "./Steps/Step1Itinerary";
@@ -13,8 +13,8 @@ import Step5Success from "./Steps/Step5Success";
 import SummarySidebar from "./SummarySidebar";
 
 const DEFAULT_PRICE_PER_TRAVELLER = 748;
-export const SERVICE_CHARGE = 200;
-export const TAX_RATE = 0.18;
+export const SERVICE_CHARGE = 1;
+export const TAX_RATE = 0.0;
 
 const emptyTraveller = () => ({
   title: "Mr",
@@ -49,6 +49,43 @@ const VisaApplicationForm = () => {
   const [discountPercent, setDiscountPercent] = useState(0);
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [showCouponInput, setShowCouponInput] = useState(false);
+
+  const applyCoupon = async () => {
+  if (!couponCode) {
+    return Swal.fire("Enter a coupon!", "", "warning");
+  }
+
+  try {
+    const res = await fetch(`${BASE_URL}/coupons/apply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: couponCode.toUpperCase(),
+        amount: baseFare,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      return Swal.fire("Invalid Coupon ❌", data.message, "error");
+    }
+
+    const { discountAmount, finalAmount } = data.amountDetails;
+
+    setAppliedCoupon(data.coupon.code);
+    setDiscountPercent(data.coupon.discount);
+
+    Swal.fire(
+      "Coupon Applied! 🎉",
+      `You saved ₹${discountAmount}\nNew Total: ₹${finalAmount}`,
+      "success"
+    );
+  } catch (err) {
+    Swal.fire("Error", "Server issue, try later", "error");
+  }
+};
+
 
   const [globalDocs, setGlobalDocs] = useState({
     passportCopy: null,
@@ -350,15 +387,19 @@ const handlePayment = async () => {
         </main>
 
         {/* Sidebar */}
-        <SummarySidebar
-          baseFare={baseFare}
-          taxAmount={taxAmount}
-          discountAmount={discountAmount}
-          totalPayable={totalPayable}
-          couponCode={couponCode}
-          setCouponCode={setCouponCode}
-          appliedCoupon={appliedCoupon}
-        />
+       <SummarySidebar
+            baseFare={baseFare}
+            taxAmount={taxAmount}
+            discountAmount={discountAmount}
+            totalPayable={totalPayable}
+            couponCode={couponCode}
+            setCouponCode={setCouponCode}
+            appliedCoupon={appliedCoupon}
+            applyCoupon={applyCoupon}
+            showCouponInput={showCouponInput}
+            setShowCouponInput={setShowCouponInput}
+          />
+
 
       </div>
     </div>
