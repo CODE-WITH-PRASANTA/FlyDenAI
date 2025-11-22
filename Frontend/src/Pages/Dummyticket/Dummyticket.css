@@ -142,9 +142,7 @@ body, html, #root {
   }
 }
 
-.dt-hero-wrap.active-slide {
-  animation: slideIn 1s ease-in-out;
-}
+
 
 .dt-main { 
   width: 100%; 
@@ -1149,11 +1147,26 @@ body, html, #root {
   }
   
   .dt-tabs {
-    flex-direction: column;
+      /* row layout instead of column */
+    flex-direction: row;
     width: 100%;
+    gap: 8px;
+
+    /* allow horizontal scrolling if screen is narrow */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+
+    /* keep the pill background and centered look */
+    padding: 6px;
+    justify-content: center;
+    align-items: center;
   }
   
   .dt-tab {
+    flex: 0 0 auto;        /* do not stretch to full width */
+    min-width: 110px;      /* ensures tap targets remain comfortably wide */
+    padding: 10px 14px;
+    font-size: 15px;
     justify-content: center;
   }
   
@@ -1172,6 +1185,7 @@ body, html, #root {
   .dt-nav-link {
     font-size: 14px;
   }
+  
 }
 
 @media (max-width: 480px) {

@@ -334,7 +334,7 @@ const Dummyticket = () => {
       <div ref={triggerRef} className={`dt-purpose-display`} onClick={() => setOpen(v=>!v)} aria-expanded={open} role="button" tabIndex={0} onKeyDown={(e)=> { if(e.key==='Enter') setOpen(v=>!v); }}>
         <div className="dt-label">Purpose</div>
         <div className="dt-values"><div className="dt-main">{value}</div><div className="dt-sub">Select your purpose</div></div>
-        <div style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(-50%)' }}><FaChevronDown/></div>
+        
       </div>
     );
 
@@ -398,6 +398,8 @@ const Dummyticket = () => {
         <div className="dt-insurance-badge"><FaShieldAlt style={{ marginRight: 6 }} /> Protected</div>
         <div className="dt-selector-title-row"><div/> <div className="dt-flight-title">Comprehensive Travel Insurance - Peace of Mind Guaranteed</div></div>
 
+      {/* Purpose dropdown rendered inline trigger, dropdown lives in portal to avoid clipping */}
+        
         {/* Use the shared grid class for consistent behavior */}
         <div className="dt-insurance-form" style={{ gap: 16, alignItems: 'center' }}>
           <div className="dt-input-advanced" onClick={()=>{ setCurrentCityField('from'); setCityModalOwner('insurance'); setCitySearchQuery(''); setShowCityModal(true); }}>
@@ -421,16 +423,16 @@ const Dummyticket = () => {
             <div className="dt-label">End Date</div>
             <div className="dt-values"><div className="dt-main">{insuranceData.endDate}</div><div className="dt-sub">{insuranceData.endDay}</div></div>
           </div>
+          <div style={{ marginTop: 16 }}>
+          <PurposeDropdownPortal value={insuranceData.purpose} onSelect={(val) => setInsuranceData(prev=>({...prev, purpose: val}))} />
+        </div>
 
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <button className={`dt-search-btn ${isLoading? 'loading':''}`} onClick={handleInsuranceSearch} disabled={isLoading}>{isLoading?'Processing...':'Get Quote'}</button>
           </div>
         </div>
 
-        {/* Purpose dropdown rendered inline trigger, dropdown lives in portal to avoid clipping */}
-        <div style={{ marginTop: 16 }}>
-          <PurposeDropdownPortal value={insuranceData.purpose} onSelect={(val) => setInsuranceData(prev=>({...prev, purpose: val}))} />
-        </div>
+        
 
       </div>
     )
