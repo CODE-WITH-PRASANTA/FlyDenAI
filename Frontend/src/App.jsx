@@ -50,7 +50,7 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
           <Route path="/team" element={<OurTeam />} />
-          {/* <Route path="/team/details" element={<TeamDetails />} /> */}
+          <Route path="/team/details" element={<TeamDetails />} />
           <Route path="/team/member" element={<TeamMembers />} />
           <Route path="/contact" element={<ContactPage />} />
          <Route path="/blog" element={<BlogSec />} />
@@ -70,7 +70,7 @@ function App() {
           <Route path="/AllCountry" element={<AllCountry />} />  
 
           {/* Apply To the Visa Page */}
-          {/* <Route path="/Apply/Now" element={<ApplyNow />} /> */}
+          <Route path="/Apply/Now/:id" element={<ApplyNow />} />
           <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition  */}
