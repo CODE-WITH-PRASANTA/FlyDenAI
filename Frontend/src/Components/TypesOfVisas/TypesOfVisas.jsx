@@ -1,29 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./TypesOfVisas.css";
 import { ChevronRight } from "lucide-react";
 import BASE_URL from "../../Api";
 
-import defaultProfile from "../../assets/avatar-5.webp"; // ✅ Add a professional profile icon in assets
+import defaultProfile from "../../assets/avatar-5.webp";
 import au2 from "../../assets/r1.webp";
 import au3 from "../../assets/au3.webp";
 import au4 from "../../assets/r2.webp";
 import go from "../../assets/go.webp";
 
 const TypesOfVisas = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const [visa, setVisa] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Fetch visa data from backend
+  // Fetch Visa Data
   useEffect(() => {
     const fetchVisa = async () => {
       try {
         const { data } = await axios.get(`${BASE_URL}/visas/published/${id}`);
         setVisa(data.data);
-      } catch (err) {
-        console.error("❌ Error fetching visa:", err);
+      } catch (error) {
+        console.error("❌ Error fetching visa:", error);
       } finally {
         setLoading(false);
       }
@@ -38,15 +39,13 @@ const TypesOfVisas = () => {
   if (loading) return <div className="visa-loading">Loading...</div>;
   if (!visa) return <div className="visa-error">Visa not found</div>;
 
-  // ✅ Construct image URL safely
   const base = BASE_URL.replace("/api", "");
   const authorImage = visa.specialImageUrl
     ? `${base}${visa.specialImageUrl}`
-    : defaultProfile; // 👈 use default profile photo if not provided
+    : defaultProfile;
 
   return (
     <div className="types-visa-page">
-      {/* Left Content */}
       <div className="left-content">
         <h2 className="types-title">Types of {visa.country} Visas</h2>
 
@@ -54,7 +53,19 @@ const TypesOfVisas = () => {
         <div className="TypesVisa-cards">
           {visa.visaTypes?.length > 0 ? (
             visa.visaTypes.map((type, index) => (
-              <div className="TypesVisa-card" key={index}>
+              <div
+                className="TypesVisa-card"
+                key={index}
+                onClick={() =>
+                  navigate(`/Apply/Now/${id}`, {
+                    state: {
+                      selectedType: type.name,
+                      travellers: 1,
+                    },
+                  })
+                }
+                style={{ cursor: "pointer" }}
+              >
                 <div className="TypesVisa-card-header">{type.name}</div>
                 <div className="TypesVisa-card-details">
                   {type.processingTime && (
@@ -95,7 +106,7 @@ const TypesOfVisas = () => {
           )}
         </div>
 
-        {/* Author & Last Updated */}
+        {/* Author Info */}
         <div className="author-update">
           <div className="author-info">
             <img
@@ -108,7 +119,8 @@ const TypesOfVisas = () => {
               <div className="author-role">Author</div>
             </div>
           </div>
-         <div className="last-updated">
+
+          <div className="last-updated">
             <span>🕒 Last Updated:</span>
             <strong>
               {new Date(visa.updatedAt).toLocaleString("en-IN", {
@@ -121,10 +133,9 @@ const TypesOfVisas = () => {
               })}
             </strong>
           </div>
-
         </div>
 
-        {/* Reviews Banner */}
+        {/* Reviews Google Banner */}
         <div className="reviews-banner" onClick={handleGoogleRedirect}>
           <div className="review-avatars">
             <img src={au2} alt="reviewer1" />

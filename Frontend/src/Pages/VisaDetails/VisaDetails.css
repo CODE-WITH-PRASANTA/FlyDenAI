@@ -51,7 +51,7 @@
   max-height: 90vh;
   background: #fff;
   border-radius: 18px;
-  padding: 25px;
+  padding: 0px;
   box-shadow: 0 14px 35px rgba(0, 0, 0, 0.2);
   transition: all 0.45s ease;
   overflow-y: auto;
@@ -106,7 +106,7 @@
 @media (max-width: 768px) {
   .floating-form-content {
     width: 90vw;
-    padding: 20px;
+    padding: 0px;
   }
 
   .floating-form-toggle {
@@ -117,10 +117,7 @@
 }
 
 @media (max-width: 480px) {
-  .floating-form-content {
-    width: 95vw;
-    padding: 18px;
-  }
+ 
 
   .floating-form-toggle {
     width: 50px;

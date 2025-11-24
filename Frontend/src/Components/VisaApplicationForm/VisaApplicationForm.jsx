@@ -1,317 +1,406 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./VisaApplicationForm.css";
-import {
-  FaUser,
-  FaCalendarAlt,
-  FaArrowRight,
-  FaPlaneDeparture,
-  FaCreditCard,
-  FaCheckCircle,
-  FaFileUpload,
-} from "react-icons/fa";
+import Swal from "sweetalert2";
+import { FaPlaneDeparture, FaUser, FaCreditCard, FaFileUpload } from "react-icons/fa";
+import { useParams, useLocation  } from "react-router-dom";
+import BASE_URL from "../../Api";
+
+import Step1Itinerary from "./Steps/Step1Itinerary";
+import Step2Traveller from "./Steps/Step2Traveller";
+import Step3Payment from "./Steps/Step3Payment";
+import Step4UploadDocs from "./Steps/Step4UploadDocs";
+import Step5Success from "./Steps/Step5Success";
+import SummarySidebar from "./SummarySidebar";
+
+const DEFAULT_PRICE_PER_TRAVELLER = 748;
+export const SERVICE_CHARGE = 1;
+export const TAX_RATE = 0.0;
+
+const emptyTraveller = () => ({
+  title: "Mr",
+  firstName: "",
+  lastName: "",
+  dob: "",
+  nationality: "Indian",
+  passportNo: "",
+  contactNumber: "",
+  files: {
+    passportCopy: null,
+    photo: null,
+  },
+});
 
 const VisaApplicationForm = () => {
-  const [step, setStep] = useState(1);
-  const [activePayment, setActivePayment] = useState("UPI");
+  const { id } = useParams();
+  const location = useLocation();
+  const userRequest = location.state || {};
+  const { selectedType, travellers: selectedTravellers } = userRequest;
 
-  const paymentOptions = [
-    "UPI",
-    "Credit Card",
-    "Debit Card",
-    "Net Banking",
-    "Wallet",
-    "PhonePe",
-    "Google Pay",
-    "AMEX",
-  ];
+  const [step, setStep] = useState(1);
+  const [visaTypes, setVisaTypes] = useState([]);
+  const [selectedVisaTypeIndex, setSelectedVisaTypeIndex] = useState(0);
+  const [visaType, setVisaType] = useState("");
+  const [travellers, setTravellers] = useState(1);
+  const [onwardDate, setOnwardDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [travellerData, setTravellerData] = useState([emptyTraveller()]);
+
+  const [couponCode, setCouponCode] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [appliedCoupon, setAppliedCoupon] = useState(null);
+  const [showCouponInput, setShowCouponInput] = useState(false);
+
+  const applyCoupon = async () => {
+  if (!couponCode) {
+    return Swal.fire("Enter a coupon!", "", "warning");
+  }
+
+  try {
+    const res = await fetch(`${BASE_URL}/coupons/apply`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code: couponCode.toUpperCase(),
+        amount: baseFare,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      return Swal.fire("Invalid Coupon ❌", data.message, "error");
+    }
+
+    const { discountAmount, finalAmount } = data.amountDetails;
+
+    setAppliedCoupon(data.coupon.code);
+    setDiscountPercent(data.coupon.discount);
+
+    Swal.fire(
+      "Coupon Applied! 🎉",
+      `You saved ₹${discountAmount}\nNew Total: ₹${finalAmount}`,
+      "success"
+    );
+  } catch (err) {
+    Swal.fire("Error", "Server issue, try later", "error");
+  }
+};
+
+
+  const [globalDocs, setGlobalDocs] = useState({
+    passportCopy: null,
+    photo: null,
+    travelItinerary: null,
+    additionalDocument: null,
+  });
 
   const progressSteps = [
     { label: "Itinerary", icon: <FaPlaneDeparture /> },
     { label: "Traveller Details", icon: <FaUser /> },
     { label: "Make Payment", icon: <FaCreditCard /> },
-    { label: "Upload Documents", icon: <FaFileUpload /> },
+    { label: "Documents", icon: <FaFileUpload /> },
   ];
 
-  const handleNext = () => step < 5 && setStep(step + 1);
-  const handlePrev = () => step > 1 && setStep(step - 1);
+  // ================== FETCH VISA TYPE ==================
+  useEffect(() => {
+    const fetchVisa = async () => {
+      try {
+        const res = await fetch(`${BASE_URL}/visas/published/${id}`);
+        const data = await res.json();
+        if (!data.success) return;
+        setVisaTypes(data.data?.visaTypes || []);
+      } catch (err) {
+        console.error("Error fetching visas:", err);
+      }
+    };
+    if (id) fetchVisa();
+  }, [id]);
+
+  useEffect(() => {
+    if (selectedTravellers) setTravellers(selectedTravellers);
+  }, [selectedTravellers]);
+
+  useEffect(() => {
+    if (visaTypes.length > 0) {
+      if (selectedType) {
+        const index = visaTypes.findIndex((v) => v.name === selectedType);
+        if (index !== -1) {
+          setSelectedVisaTypeIndex(index);
+          setVisaType(selectedType);
+          return;
+        }
+      }
+      setVisaType(visaTypes[0].name);
+    }
+  }, [selectedType, visaTypes]);
+
+  // ================== AUTO PAYMENT VERIFICATION ==================
+    useEffect(() => {
+      const params = new URLSearchParams(window.location.search);
+      const orderId = params.get("orderId");
+      if (!orderId) return; // user came normally, not from PhonePe
+
+      const verifyPayment = async () => {
+        try {
+          const res = await fetch(
+            `${BASE_URL}/payment/verify-payment?orderId=${orderId}`
+          );
+          const data = await res.json();
+
+          if (!data.success) {
+            return Swal.fire(
+              "Verification Failed ❌",
+              "Unable to verify your payment. Please contact support.",
+              "error"
+            );
+          }
+
+          const status = data.status;
+
+          if (status === "COMPLETED") {
+            setStep(4);
+            Swal.fire(
+              "Payment Successful 🎉",
+              "Upload your documents to complete your visa application.",
+              "success"
+            );
+          } else if (status === "PENDING") {
+            Swal.fire(
+              "Payment Pending ⏳",
+              "We are still waiting for confirmation. Please refresh after a few seconds.",
+              "info"
+            );
+          } else {
+            Swal.fire(
+              "Payment Failed ❌",
+              "Your payment could not be completed. Please try again.",
+              "error"
+            );
+          }
+        } catch (err) {
+          console.error("Verification failed:", err);
+          Swal.fire(
+            "Server Error ❌",
+            "Something went wrong while verifying the payment.",
+            "error"
+          );
+        }
+      };
+
+      verifyPayment();
+    }, []);
+
+
+  // Sync travellers on count change
+  useEffect(() => {
+    setTravellerData((prev) => {
+      const arr = [...prev];
+      if (travellers > prev.length) {
+        for (let i = prev.length; i < travellers; i++) arr.push(emptyTraveller());
+      } else {
+        arr.length = travellers;
+      }
+      return arr;
+    });
+  }, [travellers]);
+
+  // ================== TRAVELLER HANDLERS ==================
+  const updateTravellerField = (index, field, value) => {
+    setTravellerData((prev) => {
+      const updated = [...prev];
+      updated[index] = { ...updated[index], [field]: value };
+      return updated;
+    });
+  };
+
+  const handleTravellerFile = (index, key, file) => {
+    setTravellerData((prev) => {
+      const updated = [...prev];
+      updated[index] = {
+        ...updated[index],
+        files: { ...updated[index].files, [key]: file },
+      };
+      return updated;
+    });
+  };
+
+  // Pricing
+  const pricePerTraveller =
+    Number(visaTypes[selectedVisaTypeIndex]?.fees?.replace(/[^\d]/g, "")) ||
+    DEFAULT_PRICE_PER_TRAVELLER;
+  const baseFare = travellers * pricePerTraveller;
+  const taxAmount = Math.round(baseFare * TAX_RATE);
+  const discountAmount = Math.round((baseFare * discountPercent) / 100);
+  const totalPayable = baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
+
+  // ================== PAYMENT CALL ==================
+  // ================== PAYMENT CALL ==================
+const handlePayment = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/payment/create-order`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ amount: totalPayable }),
+    });
+
+    const data = await res.json();
+
+    if (!data.success || !data.redirectUrl) {
+      return Swal.fire(
+        "Payment Error ❌",
+        data.message || "Unable to initiate payment.",
+        "error"
+      );
+    }
+
+    // Redirect user to PhonePe PayPage
+    window.location.href = data.redirectUrl;
+  } catch (err) {
+    Swal.fire(
+      "Server Error ❌",
+      "Unable to connect to payment server. Try again later.",
+      "error"
+    );
+    console.log("Payment Failed:", err);
+  }
+};
+
+
+  // Reset Everything
+  const resetForm = () => {
+    setStep(1);
+    setTravellerData([emptyTraveller()]);
+    setTravellers(1);
+    setOnwardDate("");
+    setReturnDate("");
+    setCouponCode("");
+    setAppliedCoupon(null);
+    setDiscountPercent(0);
+    setGlobalDocs({
+      passportCopy: null,
+      photo: null,
+      travelItinerary: null,
+      additionalDocument: null,
+    });
+  };
+
+  const handleNext = () => {
+    if (step === 1 && (!visaType || !onwardDate || !returnDate)) {
+      return Swal.fire("Missing Fields!", "Fill all required details.", "warning");
+    }
+    if (step === 2) {
+      for (let i = 0; i < travellerData.length; i++) {
+        const t = travellerData[i];
+        if (!t.firstName || !t.lastName || !t.passportNo) {
+          return Swal.fire(
+            "Missing Traveller Details ❌",
+            `Fill details for Traveller ${i + 1}`,
+            "error"
+          );
+        }
+      }
+    }
+    setStep(step + 1);
+  };
 
   return (
-    <div className="visa-app-wrapper">
-      {/* ====================== PROGRESS BAR ====================== */}
-      <div className="visa-progress-container">
-        <div className="progress-edge left-edge"></div>
+    <div className="VisaApplicationForm__wrapper">
 
+      {/* PROGRESS BAR */}
+      <div className="VisaApplicationForm__progress">
         <div
-          className="visa-progress-fill"
-          style={{
-            width:
-              (step - 1) / (progressSteps.length - 1) < 1
-                ? `${(step - 1) / (progressSteps.length - 1) * 100}%`
-                : "auto",
-          }}
-        ></div>
-
-        {progressSteps.map((item, index) => {
-          const current = index + 1;
-          return (
-            <div
-              key={index}
-              className={`progress-step ${
-                step === current
-                  ? "active"
-                  : step > current
-                  ? "completed"
-                  : ""
-              }`}
-            >
-              <div className="progress-icon">{item.icon}</div>
-              <span className="progress-label">{item.label}</span>
-            </div>
-          );
-        })}
-
-        <div className="progress-edge right-edge"></div>
+          className="VisaApplicationForm__progress-fill"
+          style={{ width: `${((step - 1) / (progressSteps.length - 1)) * 100}%` }}
+        />
+        <div className="VisaApplicationForm__progress-steps">
+          {progressSteps.map((p, i) => {
+            const state =
+              step === i + 1 ? "active" : step > i + 1 ? "completed" : "inactive";
+            return (
+              <div
+                key={i}
+                className={`VisaApplicationForm__progress-step VisaApplicationForm__progress-step--${state}`}
+              >
+                <div className="VisaApplicationForm__progress-icon">{p.icon}</div>
+                <div className="VisaApplicationForm__progress-label">{p.label}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      {/* ====================== MAIN FORM SECTION ====================== */}
-      <div className="visa-form-layout">
-        <div className="visa-left-panel">
-          {/* ========== STEP 1: Itinerary ========== */}
+      {/* MAIN FORM GRID */}
+      <div className="VisaApplicationForm__grid">
+        <main className="VisaApplicationForm__main">
+          
           {step === 1 && (
-            <section className="visa-step fade-in">
-              <h3 className="visa-step-title">Travel Itinerary</h3>
-              <p className="visa-step-subtitle">
-                Plan your travel dates and choose your visa type.
-              </p>
-
-              <div className="visa-form-group">
-                <label>Visa Type</label>
-                <select className="visa-input">
-                  <option>Malaysia Digital Arrival Card (MDAC)</option>
-                </select>
-              </div>
-
-              <div className="visa-row">
-                <div className="visa-col">
-                  <label>Onward Date</label>
-                  <div className="visa-input-wrapper">
-                    <FaCalendarAlt className="visa-input-icon" />
-                    <input
-                      type="text"
-                      placeholder="dd/mm/yyyy"
-                      className="visa-input"
-                    />
-                  </div>
-                </div>
-
-                <div className="visa-col">
-                  <label>Return Date</label>
-                  <div className="visa-input-wrapper">
-                    <FaCalendarAlt className="visa-input-icon" />
-                    <input
-                      type="text"
-                      placeholder="dd/mm/yyyy"
-                      className="visa-input"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="visa-actions">
-                <button className="visaapplication-btn primary" onClick={handleNext}>
-                  Continue <FaArrowRight />
-                </button>
-              </div>
-            </section>
+            <Step1Itinerary
+              visaTypes={visaTypes}
+              selectedVisaTypeIndex={selectedVisaTypeIndex}
+              setSelectedVisaTypeIndex={setSelectedVisaTypeIndex}
+              setVisaType={setVisaType}
+              travellers={travellers}
+              setTravellers={setTravellers}
+              baseFare={baseFare}
+              taxAmount={taxAmount}
+              discountAmount={discountAmount}
+              totalPayable={totalPayable}
+              onwardDate={onwardDate}
+              setOnwardDate={setOnwardDate}
+              returnDate={returnDate}
+              setReturnDate={setReturnDate}
+              handleNext={handleNext}
+            />
           )}
 
-          {/* ========== STEP 2: Traveller Details ========== */}
           {step === 2 && (
-            <section className="visa-step fade-in">
-              <h3 className="visa-step-title">Traveller Details</h3>
-              <p className="visa-step-subtitle">
-                Enter your personal and passport details carefully.
-              </p>
-
-              <div className="traveller-header">
-                <FaUser /> <span>Primary Applicant</span>
-              </div>
-
-              <div className="visa-row">
-                <div className="visa-col small">
-                  <label>Title</label>
-                  <select className="visa-input">
-                    <option>Mr</option>
-                    <option>Mrs</option>
-                    <option>Ms</option>
-                  </select>
-                </div>
-                <div className="visa-col">
-                  <label>First Name</label>
-                  <input type="text" className="visa-input" />
-                </div>
-                <div className="visa-col">
-                  <label>Last Name</label>
-                  <input type="text" className="visa-input" />
-                </div>
-              </div>
-
-              <div className="visa-row">
-                <div className="visa-col">
-                  <label>Date of Birth</label>
-                  <div className="visa-input-wrapper">
-                    <FaCalendarAlt className="visa-input-icon" />
-                    <input
-                      type="text"
-                      placeholder="dd/mm/yyyy"
-                      className="visa-input"
-                    />
-                  </div>
-                </div>
-                <div className="visa-col">
-                  <label>Nationality</label>
-                  <input
-                    type="text"
-                    className="visa-input readonly"
-                    value="Indian"
-                    readOnly
-                  />
-                </div>
-              </div>
-
-              <div className="visa-row">
-                <div className="visa-col">
-                  <label>Passport No</label>
-                  <input type="text" className="visa-input" />
-                </div>
-                <div className="visa-col">
-                  <label>Contact Number</label>
-                  <input type="text" className="visa-input" />
-                </div>
-              </div>
-
-              <div className="visa-actions">
-                <button className="visaapplication-btn outline" onClick={handlePrev}>
-                  Back
-                </button>
-                <button className="visaapplication-btn primary" onClick={handleNext}>
-                  Continue <FaArrowRight />
-                </button>
-              </div>
-            </section>
+            <Step2Traveller
+              travellerData={travellerData}
+              updateTravellerField={updateTravellerField}
+              handleTravellerFile={handleTravellerFile}
+              handlePrev={() => setStep(step - 1)}
+              handleNext={handleNext}
+            />
           )}
 
-          {/* ========== STEP 3: Payment ========== */}
           {step === 3 && (
-            <section className="visa-step fade-in">
-              <h3 className="visa-step-title">Make Payment</h3>
-              <p className="visa-step-subtitle">
-                Choose your preferred payment method.
-              </p>
-
-              <div className="payment-options">
-                {paymentOptions.map((option) => (
-                  <div
-                    key={option}
-                    className={`payment-option ${
-                      activePayment === option ? "active" : ""
-                    }`}
-                    onClick={() => setActivePayment(option)}
-                  >
-                    {option}
-                  </div>
-                ))}
-              </div>
-
-              <div className="payment-box">
-                <h4>{activePayment} Payment</h4>
-                <p>
-                  {activePayment === "UPI"
-                    ? "Scan the QR code or enter your Virtual Payment Address."
-                    : `Enter your ${activePayment} details to proceed.`}
-                </p>
-
-                <div className="payment-footer">
-                  <span>
-                    Total payable amount: <strong>₹748</strong>
-                  </span>
-                 <button className="visaapplication-btn pay" onClick={handleNext}>
-                    Pay Now <FaArrowRight />
-                  </button>
-
-                </div>
-              </div>
-            </section>
+            <Step3Payment
+              totalPayable={totalPayable}
+              handlePayment={handlePayment}
+              handlePrev={() => setStep(step - 1)}
+            />
           )}
 
-          {/* ========== STEP 4: Upload Documents ========== */}
           {step === 4 && (
-            <section className="visa-step fade-in">
-              <h3 className="visa-step-title">Upload Documents</h3>
-              <p className="visa-step-subtitle">
-                Upload clear scanned copies of your required documents.
-              </p>
-
-              <div className="VisaApplicationForm-uploadgrid">
-                {[
-                  "Passport Copy",
-                  "Photo",
-                  "Travel Itinerary",
-                  "Additional Document",
-                ].map((label) => (
-                  <div key={label} className="upload-box">
-                    <label>{label}</label>
-                    <input type="file" className="upload-input" />
-                  </div>
-                ))}
-              </div>
-
-              <div className="visa-actions">
-                <button className="visaapplication-btn outline" onClick={handlePrev}>
-                  Back
-                </button>
-                <button className="visaapplication-btn primary" onClick={handleNext}>
-                  Submit Documents
-                </button>
-              </div>
-            </section>
+            <Step4UploadDocs
+              handleGlobalFile={(key, file) =>
+                setGlobalDocs((prev) => ({ ...prev, [key]: file }))
+              }
+              handlePrev={() => setStep(step - 1)}
+              handleSubmitApplication={() => setStep(5)}
+            />
           )}
 
-          {/* ========== STEP 5: Thank You ========== */}
           {step === 5 && (
-            <section className="visa-step fade-in thankyou-section">
-              <FaCheckCircle className="thank-icon" />
-              <h2>Thank You! 🎉</h2>
-              <p>Your Malaysia Visa Application has been submitted successfully.</p>
-              <button className="visaapplication-btn primary" onClick={() => setStep(1)}>
-                Apply Another Visa
-              </button>
-            </section>
+            <Step5Success resetForm={resetForm} />
           )}
-        </div>
+        </main>
 
-        {/* ====================== RIGHT SIDEBAR ====================== */}
-        <aside className="visa-right-panel">
-          <div className="fare-summary-card">
-            <h4>Fare Details</h4>
-            <div className="fare-item">
-              <span>Base Fare</span>
-              <span>₹249.00</span>
-            </div>
-            <div className="fare-item">
-              <span>Service Charges</span>
-              <span>₹250.00</span>
-            </div>
-            <div className="fare-item">
-              <span>Taxes</span>
-              <span>₹249.00</span>
-            </div>
-            <div className="fare-total">
-              <span>Total</span>
-              <span>₹748.00</span>
-            </div>
-          </div>
-        </aside>
+        {/* Sidebar */}
+       <SummarySidebar
+            baseFare={baseFare}
+            taxAmount={taxAmount}
+            discountAmount={discountAmount}
+            totalPayable={totalPayable}
+            couponCode={couponCode}
+            setCouponCode={setCouponCode}
+            appliedCoupon={appliedCoupon}
+            applyCoupon={applyCoupon}
+            showCouponInput={showCouponInput}
+            setShowCouponInput={setShowCouponInput}
+          />
+
+
       </div>
     </div>
   );

@@ -1,165 +1,107 @@
-/* ===========================
-   FLOATING VISA FORM WRAPPER
-=========================== */
-.float-contact-form-wrapper {
-  background-color: #ffffff;
-  color: #222;
-  border-radius: 12px;
+.visa-form-card {
   width: 100%;
-  max-width: 320px;
-  overflow: hidden;
-  font-family: 'Poppins', sans-serif;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s ease;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.14);
+  font-family: "Poppins", sans-serif;
 }
 
-/* ===========================
-   FORM HEADER
-=========================== */
-.float-contact-form-header {
-  background-color: #eef2ff;
-  color: #1d4ed8;
-  font-weight: 600;
-  font-size: 0.88rem;
-  text-align: center;
-  padding: 0.6rem 1rem;
-  border-bottom: 1px solid #dbeafe;
+.visa-form-card-header h3 {
+  margin: 0;
+  color: #1b1f3b;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-/* ===========================
-   FORM INPUTS
-=========================== */
-.float-contact-form {
+.visa-form-card-header p {
+  font-size: 0.85rem;
+  color: #475569;
+  margin-top: 4px;
+}
+
+.visa-form {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.8rem;
-}
-
-.float-contact-form-input,
-.float-contact-form-select {
-  padding: 0.5rem 0.65rem;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  font-size: 0.9rem;
-  width: 100%;
-  outline: none;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-.float-contact-form-input:focus,
-.float-contact-form-select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 5px rgba(37, 99, 235, 0.25);
-}
-
-/* ===========================
-   FORM FOOTER
-=========================== */
-.float-contact-form-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.float-contact-form-price {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #1d4ed8;
-}
-
-.float-contact-form-button {
-  background-color: #2563eb;
-  color: #fff;
-  padding: 0.55rem 1rem;
-  border: none;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 0.92rem;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-
-
-
-/* ===========================
-   CONTACT OPTIONS GRID
-=========================== */
-.float-contact-form-grid {
-  display: grid;
-  gap: 20px;
+  gap: 10px;
   margin-top: 14px;
 }
 
-/* ===========================
-   INDIVIDUAL CONTACT CARD
-=========================== */
-.float-contact-card {
-  background-color: #f8fafc;
-  color: #222;
-  padding: 8px 10px;
+.visa-form input,
+.visa-form select {
+  border: 1px solid #cbd5e1;
   border-radius: 6px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
+  padding: 12px;
   font-size: 0.88rem;
+  outline: none;
+  transition: 0.3s;
 }
 
+.visa-form input:focus,
+.visa-form select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 6px rgba(59,130,246,0.35);
+}
 
-/* CARD HEADER: ICON + INFO */
-.float-contact-card-header {
+.visa-price-box {
+  background: #f1f5ff;
+  border-radius: 6px;
+  padding: 10px;
   display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* ICON */
-.float-contact-icon {
-  font-size: 1.35rem;
-  flex-shrink: 0;
-  color: #2563eb;
-}
-
-/* INFO */
-.float-contact-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.float-contact-title {
+  justify-content: space-between;
+  color: #1d4ed8;
   font-weight: 600;
-  font-size: 0.88rem;
-  color: #222;
 }
 
-.float-contact-desc {
-  font-size: 0.8rem;
-  color: #555;
+.visa-submit-btn {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s;
+}
+
+.visa-submit-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+.contact-box {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.contact-box div {
+  background: #eef2ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact-box div:hover {
+  background: #dbeafe;
+}
+
+.contact-box span {
+  font-weight: 600;
+  color: #1d4ed8;
+}
+
+.contact-box p {
   margin-top: 2px;
-  word-break: break-word;
+  font-size: 0.82rem;
+  color: #475569;
 }
 
-/* ===========================
-   RESPONSIVE ADJUSTMENTS
-=========================== */
-@media (max-width: 768px) {
-  .float-contact-form-wrapper {
-    max-width: 85vw;
-  }
-}
-
-@media (max-width: 480px) {
-  .float-contact-form-wrapper {
-    max-width: 95vw;
-    border-radius: 10px;
-  }
-
-  .float-contact-form-button {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.88rem;
-  }
-
-  .float-contact-form-grid {
-    gap: 8px;
+@media(max-width: 480px) {
+  .visa-form-card {
+    max-width: 94vw;
   }
 }
