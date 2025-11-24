@@ -2,7 +2,7 @@ import React from 'react'
 import './FreeVisaQuotes.css'
 import TrainingSection from '../../Components/TrainingSection/TrainingSection'
 import TopSection from '../../Components/TopSection/TopSection'
-import AboutSection from '../../Components/AboutSection/AboutSection'
+// import AboutSection from '../../Components/AboutSection/AboutSection'
 import VisaServiceSection from '../../Components/VisaServiceSection/VisaServiceSection'
 import ImmigrationOverview from '../../Components/ImmigrationOverview/ImmigrationOverview'
 import ChooseUsSection from '../../Components/ChooseUsSection/ChooseUsSection'
@@ -18,7 +18,7 @@ const FreeVisaQuotes = () => {
       <FreeVisaQuotesBanner/>
       <TrainingSection/>
       <TopSection/>
-      <AboutSection/>
+      {/* <AboutSection/> */}
       <ImmigrationOverview/>
       <VisaStepsSection/>
       <VisaServiceSection/>

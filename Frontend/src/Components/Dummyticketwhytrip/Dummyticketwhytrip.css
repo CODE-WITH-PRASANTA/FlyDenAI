@@ -1,0 +1,140 @@
+/* WhyTripCafeHolidays.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --text-dark: #111111;
+  --text-body: #333333;
+  --accent-red: #ff4b4b;
+}
+
+/* ===== SECTION WRAPPER (full width) ===== */
+.why-trip {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 110px 0 120px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== INNER CONTAINER (same style as your other sections) ===== */
+.why-trip__container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+/* ===== LEFT IMAGE ===== */
+.why-trip__image-wrap {
+  flex: 0 0 330px; /* fixed-ish size like reference */
+  display: flex;
+  justify-content: center;
+}
+
+.why-trip__image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== RIGHT CONTENT ===== */
+.why-trip__content {
+  flex: 1;
+}
+
+.why-trip__heading {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+}
+
+.why-trip__intro {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--text-body);
+  margin-bottom: 22px;
+}
+
+/* ===== BULLET LIST ===== */
+.why-trip__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.why-trip__list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 10px;
+}
+
+/* plane icon SVG */
+.plane-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: var(--accent-red);
+  margin-top: 6px; /* aligns icon with first text line */
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .why-trip__container {
+    padding: 0 32px;
+    gap: 40px;
+  }
+
+  .why-trip__heading {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .why-trip {
+    padding: 90px 0 100px;
+  }
+
+  .why-trip__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .why-trip__content {
+    width: 100%;
+  }
+
+  .why-trip__heading {
+    text-align: center;
+  }
+
+  .why-trip__intro,
+  .why-trip__list {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 520px) {
+  .why-trip__container {
+    padding: 0 18px;
+  }
+
+  .why-trip__heading {
+    font-size: 2rem;
+    text-align: left;
+  }
+
+  .why-trip__intro,
+  .why-trip__list {
+    max-width: 100%;
+  }
+}
