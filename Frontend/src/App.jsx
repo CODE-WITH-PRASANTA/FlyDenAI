@@ -57,7 +57,7 @@ function App() {
           <Route path="/blog/details/:id" element={<BlogDetails />} />
 
           <Route path="/visa/overview" element={<AllVisaOverView />} />
-          <Route path="/dummyticket" element={<DummyTicket />} />
+          <Route path="/Dummyticket" element={<DummyTicket />} />
 
        
           <Route path="/AllCountry" element={<AllCountry />} /> 
@@ -70,7 +70,7 @@ function App() {
           <Route path="/AllCountry" element={<AllCountry />} />  
 
           {/* Apply To the Visa Page */}
-          <Route path="/Apply/Now/:id" element={<ApplyNow />} />
+            <Route path="/apply/now/:id" element={<ApplyNow />} />
           <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition  */}
