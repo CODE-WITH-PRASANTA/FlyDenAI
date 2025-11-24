@@ -18,7 +18,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center top;
-  padding: 110px 0 130px;
+  padding: 60px 0 30px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -160,7 +160,7 @@
 
 @media (max-width: 1024px) {
   .pricing {
-    padding: 90px 0 110px;
+    padding: 60px 0 30px;
   }
 
   .pricing__grid {

@@ -32,27 +32,48 @@ const testimonials = [
   },
 ];
 
-// helper: group array into chunks of 2 (for 2 cards per slide)
-const chunkByTwo = (arr) => {
-  const result = [];
-  for (let i = 0; i < arr.length; i += 2) {
-    result.push(arr.slice(i, i + 2));
-  }
-  return result;
-};
-
-const slides = chunkByTwo(testimonials); // 3 slides, each with 2 cards
-
 const ClientsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // auto-move every 2 seconds
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      // Reset to first slide when switching between mobile/desktop
+      setCurrentSlide(0);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Group testimonials based on screen size
+  const getSlides = () => {
+    if (isMobile) {
+      // For mobile: each slide contains one testimonial
+      return testimonials.map(testimonial => [testimonial]);
+    } else {
+      // For desktop: group into pairs of 2
+      const result = [];
+      for (let i = 0; i < testimonials.length; i += 2) {
+        result.push(testimonials.slice(i, i + 2));
+      }
+      return result;
+    }
+  };
+
+  const slides = getSlides();
+
+  // Auto-slide configuration
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 2000);
+    }, isMobile ? 5000 : 2000); // 5 seconds for mobile, 2 seconds for desktop
+    
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length, isMobile]);
 
   return (
     <section
@@ -68,13 +89,13 @@ const ClientsSection = () => {
               className="slider-track"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {slides.map((pair, index) => (
+              {slides.map((slideTestimonials, index) => (
                 <div className="slider-slide" key={index}>
-                  {pair.map((t, i) => (
+                  {slideTestimonials.map((testimonial, i) => (
                     <article className="client-card" key={i}>
                       <div className="client-quote-icon">❝</div>
 
-                      <p className="client-text">{t.quote}</p>
+                      <p className="client-text">{testimonial.quote}</p>
 
                       <div className="client-stars">
                         <span>★</span>
@@ -84,7 +105,7 @@ const ClientsSection = () => {
                         <span>★</span>
                       </div>
 
-                      <p className="client-name">– {t.name}</p>
+                      <p className="client-name">– {testimonial.name}</p>
                     </article>
                   ))}
                 </div>

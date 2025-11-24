@@ -1,8 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Dummtticketnews.css"; // <-- import the file you just saved
+import "./Dummtticketnews.css";
+import LOGO_PATH from '../../assets/dummyticket/dummyticketcompany.png'
+import LOGO_PATH1 from '../../assets/dummyticket/dummyticketcompany1.png'
+import LOGO_PATH2 from '../../assets/dummyticket/dummyticketcompany2.png'
+import LOGO_PATH3 from '../../assets/dummyticket/dummyticketcompany3.png'
+import LOGO_PATH4 from '../../assets/dummyticket/dummyticketcompany4.png'
+import LOGO_PATH5 from '../../assets/dummyticket/dummyticketcompany5.png'
+import LOGO_PATH6 from '../../assets/dummyticket/dummyticketcompany6.png'
+import LOGO_PATH7 from '../../assets/dummyticket/dummyticketcompany7.png'
+import LOGO_PATH8 from '../../assets/dummyticket/dummyticketcompany8.png'
+import LOGO_PATH9 from '../../assets/dummyticket/dummyticketcompany9.png'
+import LOGO_PATH10 from '../../assets/dummyticket/dummyticketcompany10.png'
 
-const LOGO_PATH = "https://tripcafe.net/images/KZR.png";
-const logos = [LOGO_PATH, LOGO_PATH, LOGO_PATH, LOGO_PATH, LOGO_PATH, LOGO_PATH];
+const logos = [LOGO_PATH, LOGO_PATH1, LOGO_PATH2, LOGO_PATH3, LOGO_PATH4, LOGO_PATH5, LOGO_PATH6, LOGO_PATH7, LOGO_PATH8, LOGO_PATH9, LOGO_PATH10];
 
 export default function Dummtticketnews() {
   const trackRef = useRef(null);
@@ -12,17 +22,17 @@ export default function Dummtticketnews() {
   const slideWidthRef = useRef(200);
   const intervalRef = useRef(null);
 
-  // Announcer for screen readers - updates when autoplay toggles
+  // Announcer for screen readers
   const announcerRef = useRef(null);
   useEffect(() => {
     if (announcerRef.current) announcerRef.current.textContent = `Autoplay ${playing ? "on" : "off"}`;
   }, [playing]);
 
-  // compute slide width dynamically
+  // Compute slide width dynamically based on screen size
   useEffect(() => {
     function calc() {
       const slide = trackRef.current && trackRef.current.querySelector('.dt-slide');
-      const gap = trackRef.current ? parseInt(getComputedStyle(trackRef.current).gap || 20) : 20;
+      const gap = trackRef.current ? parseInt(getComputedStyle(trackRef.current).gap || 16) : 16;
       if (slide) slideWidthRef.current = slide.offsetWidth + gap;
     }
     calc();
@@ -30,19 +40,19 @@ export default function Dummtticketnews() {
     return () => window.removeEventListener('resize', calc);
   }, []);
 
-  // autoplay logic
+  // Autoplay logic
   useEffect(() => {
     function start() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       intervalRef.current = setInterval(() => {
         setIndex(prev => prev + 1);
-      }, 3200);
+      }, 2000);
     }
     if (playing) start();
     return () => clearInterval(intervalRef.current);
   }, [playing]);
 
-  // handle index wrapping for seamless loop
+  // Handle index wrapping for seamless loop
   useEffect(() => {
     const n = logos.length;
     if (index >= n) {
@@ -53,29 +63,29 @@ export default function Dummtticketnews() {
         trackRef.current.style.transform = `translateX(0px)`;
         void trackRef.current.offsetWidth;
         trackRef.current.style.transition = '';
-      }, 520);
+      }, 500);
       return () => clearTimeout(timeout);
     }
   }, [index]);
 
-  // update transform whenever index changes
+  // Update transform whenever index changes
   useEffect(() => {
     if (!trackRef.current) return;
     const w = slideWidthRef.current || 200;
     trackRef.current.style.transform = `translateX(${-index * w}px)`;
   }, [index]);
 
-  // pause/resume handlers
+  // Pause/resume handlers
   function handleMouseEnter() { setPlaying(false); }
   function handleMouseLeave() { setPlaying(true); }
   function handleFocus() { setPlaying(false); }
   function handleBlur() { setPlaying(true); }
 
-  // manual controls
+  // Manual controls
   function next() { setPlaying(false); setIndex(i => i + 1); }
   function prev() { setPlaying(false); setIndex(i => (i - 1 < 0 ? logos.length - 1 : i - 1)); }
 
-  // touch swipe
+  // Touch swipe
   useEffect(() => {
     let startX = null;
     const c = containerRef.current;
@@ -92,7 +102,7 @@ export default function Dummtticketnews() {
     return () => { c.removeEventListener('touchstart', onTouchStart); c.removeEventListener('touchend', onTouchEnd); };
   }, []);
 
-  // keyboard navigation (on focused container)
+  // Keyboard navigation
   useEffect(() => {
     function onKey(e) {
       if (e.key === 'ArrowRight') next();
@@ -120,24 +130,6 @@ export default function Dummtticketnews() {
         aria-label="Trusted company logos"
         aria-describedby="carousel-desc"
       >
-        <div className="dt-header">
-          <div>
-            <div className="dt-title">Trusted by leading companies</div>
-            <div id="carousel-desc" className="dt-sub">Premium-quality logo strip — auto-sliding, responsive and accessible.</div>
-          </div>
-
-          <div className="dt-controls" aria-hidden={false}>
-            <button className="dt-btn" onClick={prev} aria-label="Previous logo">◀</button>
-            <button className="dt-btn" onClick={next} aria-label="Next logo">▶</button>
-
-            <div className="dt-autoplay">
-              <span className="dt-ribbon" aria-hidden="true">Premium</span>
-              <span>Autoplay:</span>
-              <strong aria-live="polite" style={{marginLeft:6}}>{playing ? 'On' : 'Off'}</strong>
-            </div>
-          </div>
-        </div>
-
         <div className="dt-carousel" aria-live="off">
           <div className="dt-track" ref={trackRef}>
             {display.map((src, i) => (
@@ -147,7 +139,9 @@ export default function Dummtticketnews() {
                 role="group"
                 aria-label={`Brand ${ (i % logos.length) + 1 } of ${logos.length}`}
               >
-                <img src={src} alt={`Brand ${(i % logos.length) + 1} logo`} />
+                <div className="dt-slide-inner">
+                  <img src={src} alt={`Brand ${(i % logos.length) + 1} logo`} />
+                </div>
               </div>
             ))}
           </div>

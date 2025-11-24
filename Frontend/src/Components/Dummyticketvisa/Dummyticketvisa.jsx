@@ -1,10 +1,10 @@
 import React from "react";
 import "./Dummyticketvisa.css";
 
-// ✅ Import background image
-import bgImage from "../../assets/af-img.webp";
+// note: using the local path you uploaded as the background image URL
+const bgImageUrl = "../../assets/af-img.webp";
 
-// ✅ Import step illustrations/icons
+// example step images (keep your existing imports or replace with your own URLs)
 import searchImg from "../../assets/cf-img.webp";
 import selectImg from "../../assets/df-img.webp";
 import confirmImg from "../../assets/ef-img.webp";
@@ -45,7 +45,9 @@ const Dummyticketvisa = () => {
   return (
     <section
       className="visa-bg"
-      style={{ backgroundImage: `url(${bgImage})` }} // ✅ imported background
+      style={{
+        backgroundImage: `url(${bgImageUrl})`,
+      }}
     >
       <div className="visa-container">
         <h2 className="visa-heading">
@@ -55,10 +57,10 @@ const Dummyticketvisa = () => {
 
         <div className="steps-grid">
           {steps.map((step) => (
-            <div className="step-card" key={step.id}>
+            <article className="step-card" key={step.id}>
               <img src={step.img} alt={step.title[1]} className="step-img" />
 
-              <h3 className="step-title">
+              <h3 className="step-title" aria-hidden="false">
                 <span>{step.title[0]}</span>
                 <span>{step.title[1]}</span>
               </h3>
@@ -66,7 +68,7 @@ const Dummyticketvisa = () => {
               <div className="divider" />
 
               <p className="step-text">{step.description}</p>
-            </div>
+            </article>
           ))}
         </div>
       </div>

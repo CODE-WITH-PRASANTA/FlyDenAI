@@ -11,7 +11,7 @@
 .why-trip {
   width: 100%;
   background-color: #ffffff;
-  padding: 110px 0 120px;
+  padding: 0px 0 20px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -99,7 +99,7 @@
 
 @media (max-width: 850px) {
   .why-trip {
-    padding: 90px 0 100px;
+    padding: 0px 0 20px;
   }
 
   .why-trip__container {
@@ -113,6 +113,7 @@
 
   .why-trip__heading {
     text-align: center;
+    
   }
 
   .why-trip__intro,
@@ -129,7 +130,7 @@
   }
 
   .why-trip__heading {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: left;
   }
 

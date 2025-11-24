@@ -10,13 +10,13 @@
 .why-booking {
   width: 100%;
   background: #ffffff;
-  padding: 110px 0 130px;
+  padding: 30px 0 10px;
   font-family: "Poppins", sans-serif;
 }
 
 /* ====== PAGE WIDTH + MARGINS LIKE REFERENCE ====== */
 .why-booking__container {
-  max-width: 1180px; /* matches screenshot layout size */
+  max-width: 1280px; /* matches screenshot layout size */
   margin: 0 auto;
   padding: 0 40px; /* strong left margin feel */
   display: flex;
@@ -37,6 +37,7 @@
   font-weight: 800;
   color: var(--text-dark);
   margin-bottom: 28px;
+  text-align: center;
 }
 
 .why-booking__text {
@@ -44,6 +45,7 @@
   line-height: 1.85;
   color: var(--text-body);
   margin-bottom: 20px;
+  text-align: justify;
 }
 
 /* ====== RIGHT IMAGE COLUMN ====== */
@@ -91,7 +93,7 @@
 
 @media (max-width: 520px) {
   .why-booking {
-    padding: 80px 0 90px;
+    padding: 0px 0 90px;
   }
 
   .why-booking__container {

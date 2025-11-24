@@ -1,4 +1,3 @@
-// src/components/DummyTicket/InsuranceBooking.jsx
 import React, { useState } from "react";
 import Dropdown from "./Dropdown";
 import { FaExchangeAlt } from "react-icons/fa";
@@ -41,29 +40,20 @@ const InsuranceBooking = () => {
         </div>
 
         <div className="DummyTicket-insurance-rows">
-
-          <Dropdown
-            label="From"
-            value={from}
-            setValue={setFrom}
-            options={COUNTRIES}
-          />
+          <Dropdown label="From" value={from} setValue={setFrom} options={COUNTRIES} />
 
           <div className="DummyTicket-swap-wrapper">
             <button
               className={`DummyTicket-swap-btn ${swapAnimated ? "rotating" : ""}`}
               onClick={handleSwap}
+              aria-label="Swap from and to"
+              type="button"
             >
               <FaExchangeAlt />
             </button>
           </div>
 
-          <Dropdown
-            label="To"
-            value={to}
-            setValue={setTo}
-            options={COUNTRIES}
-          />
+          <Dropdown label="To" value={to} setValue={setTo} options={COUNTRIES} />
 
           {/* START DATE */}
           <div className="DummyTicket-grid-item">
@@ -121,7 +111,7 @@ const InsuranceBooking = () => {
       </div>
 
       <div className="DummyTicket-insurance-right">
-        <button className="DummyTicket-action-btn DummyTicket-insurance-get">
+        <button className="DummyTicket-action-btn DummyTicket-insurance-get" type="button">
           Get Insurance
         </button>
       </div>

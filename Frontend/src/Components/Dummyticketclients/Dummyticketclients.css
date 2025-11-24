@@ -55,7 +55,7 @@
   transition: transform 0.6s ease-in-out;
 }
 
-/* each slide holds 2 cards side-by-side */
+/* each slide holds cards */
 .slider-slide {
   min-width: 100%;
   display: grid;
@@ -70,6 +70,9 @@
   box-shadow: var(--card-shadow);
   padding: 40px 50px 35px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .client-quote-icon {
@@ -83,6 +86,7 @@
   line-height: 1.7;
   color: var(--text-body);
   margin-bottom: 18px;
+  flex-grow: 1;
 }
 
 .client-stars {
@@ -136,24 +140,54 @@
 @media (max-width: 768px) {
   .slider-slide {
     grid-template-columns: 1fr; /* one card per row on small screens */
+    gap: 20px;
   }
 
   .client-card {
     max-width: 620px;
     margin: 0 auto;
+    width: 100%;
+    padding: 30px 25px;
   }
 
   .clients-section {
     padding: 90px 0 120px;
+  }
+
+  .client-quote-icon {
+    font-size: 2.5rem;
+  }
+
+  .client-text {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 520px) {
   .clients-heading {
     font-size: 1.9rem;
+    margin-bottom: 40px;
   }
 
   .clients-container {
     padding: 0 16px;
+  }
+
+  .client-card {
+    padding: 25px 20px;
+  }
+
+  .client-quote-icon {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .clients-heading {
+    font-size: 1.7rem;
+  }
+  
+  .client-text {
+    font-size: 0.95rem;
   }
 }
