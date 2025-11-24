@@ -1,0 +1,391 @@
+/* ==========================================================================
+   DummyTicket.css  — Light Premium Theme
+   - White card, subtle colors, soft shadows, refined spacing
+   - Accent color per tab header (flights/hotels/insurance)
+   - Uses uploaded header images (local paths)
+   ========================================================================== */
+
+/* ---------- Theme variables ---------- */
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6f7a8c;
+  --text: #122033;
+  --accent-flight: #2b8ff0;     /* blue */
+  --accent-hotel: #9b6be0;      /* purple */
+  --accent-insurance: #2fa56a;  /* green */
+  --danger: #e84c3d;
+  --glass: rgba(255,255,255,0.65);
+  --soft-shadow: 0 12px 36px rgba(15,24,40,0.06);
+  --deep-shadow: 0 28px 60px rgba(15,24,40,0.10);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --transition: 180ms cubic-bezier(.2,.9,.28, 1);
+  font-size: 16px;
+}
+
+/* ---------- Reset / wrapper ---------- */
+* { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.DummyTicket-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: "Inter", "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: var(--text);
+  padding-bottom: 80px;
+  position: relative;
+}
+
+/* ---------- Header section (big hero) ---------- */
+.DummyTicket-header-section {
+  position: relative;
+  height: 380px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  border-bottom-left-radius: calc(var(--radius-lg) + 8px);
+  border-bottom-right-radius: calc(var(--radius-lg) + 8px);
+  background-size: cover;
+  background-position: center;
+}
+
+/* background images per tab - using uploaded local files */
+.DummyTicket-header-section.flights-bg {
+  background-image: url("https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+}
+.DummyTicket-header-section.hotels-bg {
+  background-image: url("https://images.unsplash.com/photo-1506929562872-bb421503ef21?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+}
+.DummyTicket-header-section.insurance-bg {
+  background-image: url("https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80");
+}
+
+/* subtle darkening overlay to improve legibility */
+.DummyTicket-overlay {
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, rgba(6,12,20,0.18), rgba(6,12,20,0.52));
+  z-index:1;
+}
+
+/* inner header content */
+.DummyTicket-head-inner{
+  position: relative;
+  z-index:2;
+  text-align:center;
+  max-width:980px;
+  padding: 22px;
+  color: #fff;
+}
+.DummyTicket-head-inner h1{
+  font-size: clamp(22px, 3.4vw, 40px);
+  margin: 0 0 8px;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  text-shadow: 0 10px 30px rgba(6,12,20,0.32);
+}
+.DummyTicket-head-inner p{
+  margin:0 0 16px;
+  font-size: 15px;
+  color: rgba(255,255,255,0.92);
+  opacity:0.95;
+}
+
+/* ---------- Category tabs inside hero ---------- */
+.DummyTicket-category-tabs{
+  display:inline-flex;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+  margin-top:8px;
+}
+.DummyTicket-category-tabs button{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.12);
+  color:#fff;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  backdrop-filter: blur(6px);
+  transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+.DummyTicket-category-tabs button:hover{ transform: translateY(-2px); }
+
+/* active style changes color - per tab we use color tokens by parent */
+.DummyTicket-category-tabs button.active{
+  background: #fff;
+  color: var(--text);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 48px rgba(10,20,40,0.12);
+}
+
+/* tint the active button icon color according to active tab (via header class) */
+.DummyTicket-header-section.flights-bg .DummyTicket-category-tabs button.active{ color: var(--accent-flight); }
+.DummyTicket-header-section.hotels-bg   .DummyTicket-category-tabs button.active{ color: var(--accent-hotel); }
+.DummyTicket-header-section.insurance-bg .DummyTicket-category-tabs button.active{ color: var(--accent-insurance); }
+
+/* ---------- Main card ---------- */
+.DummyTicket-card{
+  width: 88%;
+  max-width: 1220px;
+  margin: -74px auto 20px;
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--deep-shadow);
+  position:relative;
+  z-index:6;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+.DummyTicket-card:hover{ box-shadow: 0 36px 90px rgba(12,20,36,0.12); }
+
+/* ---------- Top row (trip types + mini text) ---------- */
+.DummyTicket-top-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:10px;
+}
+.DummyTicket-trip-types label{
+  margin-right:14px;
+  color:var(--muted);
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+}
+.DummyTicket-right-mini{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ---------- Grid layouts (flights default) ---------- */
+.DummyTicket-grid-box{
+  display:grid;
+  grid-template-columns: 1.4fr 0.26fr 1.4fr 1fr auto;
+  gap:16px;
+  align-items:center;
+}
+
+/* Re-used grid item */
+.DummyTicket-grid-item{
+  padding:12px 14px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #fff, #fbfdff);
+  border: 1px solid rgba(14,22,34,0.04);
+  min-height:72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  transition: transform var(--transition), border-color var(--transition);
+}
+.DummyTicket-grid-item:hover{ transform: translateY(-4px); border-color: rgba(14,22,34,0.06); }
+
+/* small labels inside */
+.DummyTicket-grid-item label{
+  font-size:12px;
+  color:#8b97ab;
+  margin-bottom:6px;
+  font-weight:700;
+}
+
+/* field helpers */
+.DummyTicket-field{ display:flex; flex-direction:column; gap:4px; }
+.DummyTicket-main-text{ font-weight:800; font-size:18px; color:var(--text); }
+.DummyTicket-sub-text{ font-size:13px; color:var(--muted); }
+
+/* clickable look */
+.clickable{ cursor:pointer; }
+
+/* ---------- Swap button (round) ---------- */
+.DummyTicket-swap-wrapper{ display:flex; align-items:center; justify-content:center; }
+.DummyTicket-swap-btn{
+  width:52px; height:52px; border-radius:50%;
+  border:none;
+  background: linear-gradient(180deg,#fff0ef,#fff7f6);
+  color:var(--danger);
+  font-size:18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 12px 32px rgba(232,76,61,0.08);
+  transition: transform 420ms cubic-bezier(.2,.9,.28,1);
+}
+.DummyTicket-swap-btn:hover{ transform: scale(1.06); }
+.DummyTicket-swap-btn.rotating{ transform: rotate(180deg); }
+
+/* ---------- Action column and button ---------- */
+.DummyTicket-action-col{ display:flex; align-items:center; justify-content:center; }
+.DummyTicket-action-btn{
+  padding:12px 22px;
+  border-radius:12px;
+  border:none;
+  background: linear-gradient(135deg, var(--accent-flight), #d94d2f);
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow: 0 12px 36px rgba(217,77,47,0.16);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.DummyTicket-action-btn:hover{ transform: translateY(-3px); }
+
+/* make action button accent switch depending on header background */
+.DummyTicket-header-section.hotels-bg ~ .DummyTicket-card .DummyTicket-action-btn,
+.DummyTicket-card:has(.DummyTicket-hotel-grid) .DummyTicket-action-btn{
+  background: linear-gradient(135deg, var(--accent-hotel), #7f45d4);
+  box-shadow: 0 12px 36px rgba(124,79,207,0.14);
+}
+.DummyTicket-header-section.insurance-bg ~ .DummyTicket-card .DummyTicket-action-btn,
+.DummyTicket-card:has(.DummyTicket-insurance-grid) .DummyTicket-action-btn{
+  background: linear-gradient(135deg, var(--accent-insurance), #2f9e6a);
+  box-shadow: 0 12px 36px rgba(47,158,106,0.14);
+}
+
+/* ---------- Dropdown (floating) ---------- */
+.DummyTicket-dropdown{
+  margin-top:10px;
+  background:#fff;
+  border-radius:12px;
+  border: 1px solid rgba(14,22,34,0.04);
+  padding:10px;
+  box-shadow: 0 18px 46px rgba(12,20,36,0.06);
+  z-index:300;
+  width:360px;
+}
+.DummyTicket-search{
+  width:100%;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(14,22,34,0.04);
+  margin-bottom:8px;
+  font-size:14px;
+}
+.DummyTicket-dropdown-list{ max-height:210px; overflow:auto; }
+.DummyTicket-dropdown-item{ padding:10px 12px; border-radius:8px; cursor:pointer; transition: background var(--transition); }
+.DummyTicket-dropdown-item:hover{ background:#f4f8ff; }
+.DummyTicket-empty{ color: #9aa6b8; padding:8px; }
+
+/* ---------- Date input style ---------- */
+.DummyTicket-date-input{
+  border:none;
+  background:transparent;
+  font-weight:700;
+  font-size:15px;
+  color:var(--text);
+  padding:6px 0;
+  cursor:pointer;
+}
+
+/* ---------- Hotel layout styles ---------- */
+.DummyTicket-hotel-grid{
+  display:grid;
+  grid-template-columns: 1fr 160px;
+  gap:18px;
+  align-items:center;
+}
+.DummyTicket-hotel-left{ display:flex; flex-direction:column; gap:12px; }
+.DummyTicket-hotel-title{ font-weight:800; font-size:16px; color:var(--text); }
+.DummyTicket-hotel-inputs{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap:12px;
+}
+.DummyTicket-hotel-item{
+  padding:12px; border-radius:12px; background:#fff; border:1px solid rgba(14,22,34,0.04);
+  min-height:84px; display:flex; flex-direction:column; justify-content:center;
+}
+.DummyTicket-price-select{
+  margin-top:8px; padding:8px 10px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); background:#fff;
+}
+
+/* hotel right/search button */
+.DummyTicket-hotel-right{ display:flex; align-items:center; justify-content:center; }
+.DummyTicket-hotel-search{
+  width:100%; height:56px; border-radius:12px; font-weight:700; font-size:15px;
+}
+
+/* ---------- Insurance layout ---------- */
+.DummyTicket-insurance-grid{
+  display:grid;
+  grid-template-columns: 1fr 160px;
+  gap:18px;
+  align-items:center;
+}
+.DummyTicket-insurance-left{ display:flex; flex-direction:column; gap:12px; }
+.DummyTicket-insurance-title{ font-weight:800; font-size:16px; color:var(--text); }
+.DummyTicket-insurance-rows{
+  display:grid;
+  grid-template-columns: 1.3fr 0.26fr 1.3fr 1fr 1fr;
+  gap:12px;
+  align-items:center;
+}
+.DummyTicket-purpose-select{ margin-top:8px; padding:9px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); }
+
+/* insurance right action button */
+.DummyTicket-insurance-get{ width:100%; height:56px; border-radius:12px; font-weight:700; font-size:15px; }
+
+/* ---------- Travellers modal ---------- */
+.DummyTicket-modal-backdrop{
+  position:fixed; inset:0;
+  background: rgba(9,14,25,0.45); backdrop-filter: blur(4px);
+  display:flex; align-items:flex-start; justify-content:center; padding-top:80px; z-index:800;
+}
+.DummyTicket-modal{
+  width:760px; background:#fff; border-radius:14px; padding:22px; box-shadow:0 30px 80px rgba(6,14,30,0.22);
+}
+.DummyTicket-modal h3{ margin:0 0 12px; font-size:18px; font-weight:800; color:#0f2633; }
+.DummyTicket-modal-section{ border:1px solid rgba(14,22,34,0.04); border-radius:10px; padding:12px; margin-bottom:12px; }
+.DummyTicket-modal-row-title{ font-weight:700; color:#263847; margin-bottom:10px; }
+
+/* counters */
+.DummyTicket-counter-row{ display:flex; gap:14px; align-items:center; }
+.DummyTicket-counter{ flex:1; }
+.DummyTicket-counter-title{ color:var(--muted); margin-bottom:8px; font-size:13px; }
+.DummyTicket-counter-controls{ display:flex; align-items:center; gap:10px; }
+.DummyTicket-counter-controls button{
+  width:40px; height:40px; border-radius:50%; border:none; background:#f3f6fb; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  box-shadow: 0 8px 20px rgba(10,18,30,0.06);
+}
+.DummyTicket-counter-value{ min-width:44px; text-align:center; font-weight:800; font-size:16px; }
+
+/* classes selector */
+.DummyTicket-class-row{ display:flex; gap:10px; flex-wrap:wrap; padding:6px 2px; }
+.DummyTicket-class-item{ padding:8px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
+.DummyTicket-class-item.selected{ background:#fff8f6; border-color:#ffd6cf; color:var(--danger); }
+
+/* modal actions */
+.DummyTicket-modal-actions{ display:flex; justify-content:flex-end; gap:12px; margin-top:8px; }
+.DummyTicket-primary{ padding:10px 14px; border-radius:8px; border:none; color:#fff; background: linear-gradient(135deg, var(--accent-flight), #d94d2f); cursor:pointer; }
+.DummyTicket-secondary{ padding:10px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.05); background:#fff; cursor:pointer; }
+
+/* ---------- small helpers ---------- */
+.DummyTicket-badge{ display:inline-block; padding:6px 12px; border-radius:999px; font-weight:700; font-size:13px; }
+.DummyTicket-empty{ color: #8f99ab; padding:8px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px){
+  .DummyTicket-grid-box{ grid-template-columns: 1fr 0.26fr 1fr 1fr; }
+  .DummyTicket-hotel-inputs{ grid-template-columns: repeat(3, 1fr); }
+  .DummyTicket-insurance-rows{ grid-template-columns: 1fr 0.26fr 1fr 1fr; }
+  .DummyTicket-dropdown{ width: 320px; }
+  .DummyTicket-modal{ width: 92%; }
+}
+
+@media (max-width: 700px){
+  .DummyTicket-card{ width: 94%; padding:16px; margin-top:-56px; }
+  .DummyTicket-grid-box, .DummyTicket-hotel-inputs, .DummyTicket-insurance-rows { grid-template-columns: 1fr; gap:12px; }
+  .DummyTicket-hotel-grid, .DummyTicket-insurance-grid { grid-template-columns: 1fr; }
+  .DummyTicket-action-btn, .DummyTicket-hotel-search, .DummyTicket-insurance-get{ width:100%; }
+  .DummyTicket-dropdown{ width: 92vw; left:4vw; right:4vw; }
+  .DummyTicket-header-section{ height: 260px; }
+  .DummyTicket-head-inner h1{ font-size:20px; }
+}
