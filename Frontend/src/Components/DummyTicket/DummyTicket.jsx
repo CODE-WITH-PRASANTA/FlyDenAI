@@ -1,4 +1,3 @@
-// src/components/DummyTicket/DummyTicket.jsx
 import React, { useState } from "react";
 import "./DummyTicket.css";
 

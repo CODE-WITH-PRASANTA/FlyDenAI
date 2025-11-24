@@ -175,8 +175,9 @@
   align-items:center;
 }
 
-/* Re-used grid item */
+/* Re-used grid item - UPDATED: Added position relative for dropdown */
 .DummyTicket-grid-item{
+  position: relative;
   padding:12px 14px;
   border-radius: var(--radius-md);
   background: linear-gradient(180deg, #fff, #fbfdff);
@@ -250,29 +251,126 @@
   box-shadow: 0 12px 36px rgba(47,158,106,0.14);
 }
 
-/* ---------- Dropdown (floating) ---------- */
+/* ---------- Dropdown (floating) - UPDATED FOR TWO-LINE DESIGN ---------- */
 .DummyTicket-dropdown{
-  margin-top:10px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 8px;
   background:#fff;
-  border-radius:12px;
-  border: 1px solid rgba(14,22,34,0.04);
-  padding:10px;
-  box-shadow: 0 18px 46px rgba(12,20,36,0.06);
-  z-index:300;
-  width:360px;
+  border-radius: 14px;
+  border: 1px solid rgba(14,22,34,0.08);
+  padding: 0;
+  box-shadow: 0 20px 50px rgba(12,20,36,0.15);
+  z-index: 1000;
+  animation: dropdownSlideIn 0.25s ease-out;
+  overflow: hidden;
 }
+
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.DummyTicket-dropdown-header {
+  padding: 16px 18px 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px solid rgba(14,22,34,0.06);
+  background: #fafbfd;
+}
+
 .DummyTicket-search{
-  width:100%;
-  padding:10px 12px;
-  border-radius:8px;
-  border:1px solid rgba(14,22,34,0.04);
-  margin-bottom:8px;
-  font-size:14px;
+  width: 100%;
+  padding: 14px 18px;
+  border: none;
+  border-bottom: 1px solid rgba(14,22,34,0.06);
+  margin: 0;
+  font-size: 15px;
+  background: #fff;
+  transition: all var(--transition);
+  outline: none;
 }
-.DummyTicket-dropdown-list{ max-height:210px; overflow:auto; }
-.DummyTicket-dropdown-item{ padding:10px 12px; border-radius:8px; cursor:pointer; transition: background var(--transition); }
-.DummyTicket-dropdown-item:hover{ background:#f4f8ff; }
-.DummyTicket-empty{ color: #9aa6b8; padding:8px; }
+
+.DummyTicket-search:focus{
+  background: #f8fafc;
+}
+
+.DummyTicket-search::placeholder {
+  color: #9aa6b8;
+}
+
+.DummyTicket-dropdown-list{ 
+  max-height: 280px; 
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(14,22,34,0.1) transparent;
+}
+
+.DummyTicket-dropdown-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.DummyTicket-dropdown-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.DummyTicket-dropdown-list::-webkit-scrollbar-thumb {
+  background: rgba(14,22,34,0.1);
+  border-radius: 3px;
+}
+
+.DummyTicket-dropdown-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(14,22,34,0.2);
+}
+
+/* Two-line dropdown items */
+.DummyTicket-dropdown-item{ 
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(14,22,34,0.04);
+  cursor: pointer;
+  transition: all var(--transition);
+  background: #fff;
+}
+
+.DummyTicket-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.DummyTicket-dropdown-item:hover{ 
+  background: #f0f4ff;
+  transform: translateX(4px);
+}
+
+.DummyTicket-dropdown-city {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.DummyTicket-dropdown-airport {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+/* Empty state */
+.DummyTicket-empty{ 
+  color: #9aa6b8; 
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 14px;
+}
 
 /* ---------- Date input style ---------- */
 .DummyTicket-date-input{
@@ -283,6 +381,10 @@
   color:var(--text);
   padding:6px 0;
   cursor:pointer;
+  width: 100%;
+}
+.DummyTicket-date-input:focus{
+  outline: none;
 }
 
 /* ---------- Hotel layout styles ---------- */
@@ -300,17 +402,47 @@
   gap:12px;
 }
 .DummyTicket-hotel-item{
-  padding:12px; border-radius:12px; background:#fff; border:1px solid rgba(14,22,34,0.04);
-  min-height:84px; display:flex; flex-direction:column; justify-content:center;
+  position: relative;
+  padding:12px; 
+  border-radius:12px; 
+  background:#fff; 
+  border:1px solid rgba(14,22,34,0.04);
+  min-height:84px; 
+  display:flex; 
+  flex-direction:column; 
+  justify-content:center;
+  transition: all var(--transition);
 }
+.DummyTicket-hotel-item:hover{
+  border-color: rgba(14,22,34,0.08);
+  transform: translateY(-2px);
+}
+
 .DummyTicket-price-select{
-  margin-top:8px; padding:8px 10px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); background:#fff;
+  margin-top:8px; 
+  padding:10px 12px; 
+  border-radius:8px; 
+  border:1px solid rgba(14,22,34,0.08); 
+  background:#fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.DummyTicket-price-select:focus{
+  outline: none;
+  border-color: var(--accent-hotel);
 }
 
 /* hotel right/search button */
 .DummyTicket-hotel-right{ display:flex; align-items:center; justify-content:center; }
 .DummyTicket-hotel-search{
-  width:100%; height:56px; border-radius:12px; font-weight:700; font-size:15px;
+  width:100%; 
+  height:56px; 
+  border-radius:12px; 
+  font-weight:700; 
+  font-size:15px;
+  border: none;
+  cursor: pointer;
 }
 
 /* ---------- Insurance layout ---------- */
@@ -328,64 +460,379 @@
   gap:12px;
   align-items:center;
 }
-.DummyTicket-purpose-select{ margin-top:8px; padding:9px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); }
+
+.DummyTicket-purpose-select{ 
+  margin-top:8px; 
+  padding:10px 12px; 
+  border-radius:8px; 
+  border:1px solid rgba(14,22,34,0.08); 
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color var(--transition);
+}
+.DummyTicket-purpose-select:focus{
+  outline: none;
+  border-color: var(--accent-insurance);
+}
 
 /* insurance right action button */
-.DummyTicket-insurance-get{ width:100%; height:56px; border-radius:12px; font-weight:700; font-size:15px; }
+.DummyTicket-insurance-get{ 
+  width:100%; 
+  height:56px; 
+  border-radius:12px; 
+  font-weight:700; 
+  font-size:15px;
+  border: none;
+  cursor: pointer;
+}
 
 /* ---------- Travellers modal ---------- */
 .DummyTicket-modal-backdrop{
-  position:fixed; inset:0;
-  background: rgba(9,14,25,0.45); backdrop-filter: blur(4px);
-  display:flex; align-items:flex-start; justify-content:center; padding-top:80px; z-index:800;
+  position:fixed; 
+  inset:0;
+  background: rgba(9,14,25,0.45); 
+  backdrop-filter: blur(4px);
+  display:flex; 
+  align-items:flex-start; 
+  justify-content:center; 
+  padding-top:80px; 
+  z-index:2000;
 }
 .DummyTicket-modal{
-  width:760px; background:#fff; border-radius:14px; padding:22px; box-shadow:0 30px 80px rgba(6,14,30,0.22);
+  width:760px; 
+  background:#fff; 
+  border-radius:18px; 
+  padding:28px; 
+  box-shadow:0 30px 80px rgba(6,14,30,0.22);
+  animation: modalSlideIn 0.3s ease-out;
 }
-.DummyTicket-modal h3{ margin:0 0 12px; font-size:18px; font-weight:800; color:#0f2633; }
-.DummyTicket-modal-section{ border:1px solid rgba(14,22,34,0.04); border-radius:10px; padding:12px; margin-bottom:12px; }
-.DummyTicket-modal-row-title{ font-weight:700; color:#263847; margin-bottom:10px; }
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.DummyTicket-modal h3{ 
+  margin:0 0 20px; 
+  font-size:20px; 
+  font-weight:800; 
+  color:#0f2633; 
+}
+.DummyTicket-modal-section{ 
+  border:1px solid rgba(14,22,34,0.06); 
+  border-radius:12px; 
+  padding:18px; 
+  margin-bottom:18px;
+  background: #fafbfd;
+}
+.DummyTicket-modal-row-title{ 
+  font-weight:700; 
+  color:#263847; 
+  margin-bottom:14px;
+  font-size: 15px;
+}
 
 /* counters */
-.DummyTicket-counter-row{ display:flex; gap:14px; align-items:center; }
-.DummyTicket-counter{ flex:1; }
-.DummyTicket-counter-title{ color:var(--muted); margin-bottom:8px; font-size:13px; }
-.DummyTicket-counter-controls{ display:flex; align-items:center; gap:10px; }
-.DummyTicket-counter-controls button{
-  width:40px; height:40px; border-radius:50%; border:none; background:#f3f6fb; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  box-shadow: 0 8px 20px rgba(10,18,30,0.06);
+.DummyTicket-counter-row{ 
+  display:flex; 
+  gap:20px; 
+  align-items:center;
+  flex-wrap: wrap;
 }
-.DummyTicket-counter-value{ min-width:44px; text-align:center; font-weight:800; font-size:16px; }
+.DummyTicket-counter{ 
+  flex:1;
+  min-width: 120px;
+}
+.DummyTicket-counter-title{ 
+  color:var(--muted); 
+  margin-bottom:12px; 
+  font-size:14px;
+  font-weight: 600;
+}
+.DummyTicket-counter-controls{ 
+  display:flex; 
+  align-items:center; 
+  gap:14px;
+  justify-content: space-between;
+}
+.DummyTicket-counter-controls button{
+  width:44px; 
+  height:44px; 
+  border-radius:50%; 
+  border:none; 
+  background:#f3f6fb; 
+  cursor:pointer; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  box-shadow: 0 8px 20px rgba(10,18,30,0.08);
+  transition: all var(--transition);
+  color: var(--text);
+}
+.DummyTicket-counter-controls button:hover{ 
+  background: #e8edf8;
+  transform: scale(1.08);
+}
+.DummyTicket-counter-controls button:active{
+  transform: scale(0.95);
+}
+.DummyTicket-counter-value{ 
+  min-width:50px; 
+  text-align:center; 
+  font-weight:800; 
+  font-size:18px;
+  color: var(--text);
+}
 
 /* classes selector */
-.DummyTicket-class-row{ display:flex; gap:10px; flex-wrap:wrap; padding:6px 2px; }
-.DummyTicket-class-item{ padding:8px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.04); cursor:pointer; display:inline-flex; align-items:center; gap:8px; }
-.DummyTicket-class-item.selected{ background:#fff8f6; border-color:#ffd6cf; color:var(--danger); }
+.DummyTicket-class-row{ 
+  display:flex; 
+  gap:12px; 
+  flex-wrap:wrap; 
+  padding:8px 4px;
+}
+.DummyTicket-class-item{ 
+  padding:12px 18px; 
+  border-radius:10px; 
+  border:1px solid rgba(14,22,34,0.08); 
+  cursor:pointer; 
+  display:inline-flex; 
+  align-items:center; 
+  gap:10px;
+  transition: all var(--transition);
+  background: #fff;
+  font-weight: 500;
+}
+.DummyTicket-class-item:hover{
+  border-color: rgba(232, 76, 61, 0.3);
+  transform: translateY(-2px);
+}
+.DummyTicket-class-item.selected{ 
+  background:#fff8f6; 
+  border-color:#ff6b55; 
+  color:var(--danger);
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(232, 76, 61, 0.15);
+}
 
 /* modal actions */
-.DummyTicket-modal-actions{ display:flex; justify-content:flex-end; gap:12px; margin-top:8px; }
-.DummyTicket-primary{ padding:10px 14px; border-radius:8px; border:none; color:#fff; background: linear-gradient(135deg, var(--accent-flight), #d94d2f); cursor:pointer; }
-.DummyTicket-secondary{ padding:10px 12px; border-radius:8px; border:1px solid rgba(14,22,34,0.05); background:#fff; cursor:pointer; }
+.DummyTicket-modal-actions{ 
+  display:flex; 
+  justify-content:flex-end; 
+  gap:14px; 
+  margin-top:24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(14,22,34,0.06);
+}
+.DummyTicket-primary{ 
+  padding:12px 24px; 
+  border-radius:10px; 
+  border:none; 
+  color:#fff; 
+  background: linear-gradient(135deg, var(--accent-flight), #d94d2f); 
+  cursor:pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all var(--transition);
+}
+.DummyTicket-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(217,77,47,0.25);
+}
+.DummyTicket-secondary{ 
+  padding:12px 22px; 
+  border-radius:10px; 
+  border:1px solid rgba(14,22,34,0.08); 
+  background:#fff; 
+  cursor:pointer;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  transition: all var(--transition);
+}
+.DummyTicket-secondary:hover{
+  background: #f8fafc;
+  border-color: rgba(14,22,34,0.12);
+  transform: translateY(-2px);
+}
 
 /* ---------- small helpers ---------- */
-.DummyTicket-badge{ display:inline-block; padding:6px 12px; border-radius:999px; font-weight:700; font-size:13px; }
-.DummyTicket-empty{ color: #8f99ab; padding:8px; }
+.DummyTicket-badge{ 
+  display:inline-block; 
+  padding:6px 12px; 
+  border-radius:999px; 
+  font-weight:700; 
+  font-size:13px; 
+}
+
+/* Trip type radio buttons */
+.DummyTicket-trip-types {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.DummyTicket-trip-types label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.DummyTicket-trip-types label:hover {
+  color: var(--accent-flight);
+}
+
+.DummyTicket-trip-types input[type="radio"] {
+  margin: 0;
+  accent-color: var(--accent-flight);
+}
+
+/* Flight booking specific styles */
+.DummyTicket-flight-booking {
+  width: 100%;
+}
+
+/* Enhanced focus states for accessibility */
+.DummyTicket-grid-item:focus-within {
+  border-color: var(--accent-flight);
+  box-shadow: 0 0 0 3px rgba(43, 143, 240, 0.1);
+}
+
+.DummyTicket-hotel-item:focus-within {
+  border-color: var(--accent-hotel);
+  box-shadow: 0 0 0 3px rgba(155, 107, 224, 0.1);
+}
+
+.DummyTicket-dropdown-item:focus {
+  outline: 2px solid var(--accent-flight);
+  outline-offset: -2px;
+}
+
+/* Selection styles */
+.DummyTicket-class-item input[type="radio"] {
+  margin: 0;
+  accent-color: var(--danger);
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px){
-  .DummyTicket-grid-box{ grid-template-columns: 1fr 0.26fr 1fr 1fr; }
-  .DummyTicket-hotel-inputs{ grid-template-columns: repeat(3, 1fr); }
-  .DummyTicket-insurance-rows{ grid-template-columns: 1fr 0.26fr 1fr 1fr; }
-  .DummyTicket-dropdown{ width: 320px; }
-  .DummyTicket-modal{ width: 92%; }
+  .DummyTicket-grid-box{ 
+    grid-template-columns: 1fr 0.26fr 1fr 1fr; 
+  }
+  .DummyTicket-hotel-inputs{ 
+    grid-template-columns: repeat(3, 1fr); 
+  }
+  .DummyTicket-insurance-rows{ 
+    grid-template-columns: 1fr 0.26fr 1fr 1fr; 
+  }
+  .DummyTicket-dropdown{ 
+    width: 100%; 
+    left: 0;
+    right: 0;
+  }
+  .DummyTicket-modal{ 
+    width: 90%; 
+    padding: 22px; 
+  }
+  .DummyTicket-counter-row{ 
+    gap: 16px; 
+  }
 }
 
 @media (max-width: 700px){
-  .DummyTicket-card{ width: 94%; padding:16px; margin-top:-56px; }
-  .DummyTicket-grid-box, .DummyTicket-hotel-inputs, .DummyTicket-insurance-rows { grid-template-columns: 1fr; gap:12px; }
-  .DummyTicket-hotel-grid, .DummyTicket-insurance-grid { grid-template-columns: 1fr; }
-  .DummyTicket-action-btn, .DummyTicket-hotel-search, .DummyTicket-insurance-get{ width:100%; }
-  .DummyTicket-dropdown{ width: 92vw; left:4vw; right:4vw; }
-  .DummyTicket-header-section{ height: 260px; }
-  .DummyTicket-head-inner h1{ font-size:20px; }
+  .DummyTicket-card{ 
+    width: 94%; 
+    padding:18px; 
+    margin-top:-56px; 
+    border-radius: 16px;
+  }
+  .DummyTicket-grid-box, 
+  .DummyTicket-hotel-inputs, 
+  .DummyTicket-insurance-rows { 
+    grid-template-columns: 1fr; 
+    gap:14px; 
+  }
+  .DummyTicket-hotel-grid, 
+  .DummyTicket-insurance-grid { 
+    grid-template-columns: 1fr; 
+    gap: 16px;
+  }
+  .DummyTicket-action-btn, 
+  .DummyTicket-hotel-search, 
+  .DummyTicket-insurance-get{ 
+    width:100%; 
+    height: 52px;
+  }
+  .DummyTicket-header-section{ 
+    height: 280px; 
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+  .DummyTicket-head-inner h1{ 
+    font-size:22px; 
+    margin-bottom: 12px;
+  }
+  .DummyTicket-head-inner p{
+    font-size: 14px;
+  }
+  .DummyTicket-category-tabs{
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .DummyTicket-category-tabs button{
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  .DummyTicket-modal-backdrop{
+    padding: 20px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  .DummyTicket-modal{
+    width: 100%;
+    margin: 0;
+    border-radius: 16px;
+  }
+  .DummyTicket-counter-row{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .DummyTicket-counter{
+    min-width: auto;
+  }
+  .DummyTicket-modal-actions{
+    flex-direction: column-reverse;
+  }
+  .DummyTicket-trip-types {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .DummyTicket-dropdown{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 400px;
+    max-height: 70vh;
+  }
+  .DummyTicket-swap-wrapper {
+    order: -1;
+    margin-bottom: 10px;
+  }
+  .DummyTicket-swap-btn {
+    transform: rotate(90deg);
+  }
+  .DummyTicket-swap-btn.rotating {
+    transform: rotate(270deg);
+  }
 }
