@@ -1,0 +1,72 @@
+/* FeaturesStrip.css */
+
+.features-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 32px 60px;
+  gap: 20px;
+  background: #fff;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 18px;
+  text-align: center;
+  position: relative;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.06);
+  transition: 0.25s all ease-in-out;
+}
+
+/* Orange rounded line on top */
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 16px 16px 0 0;
+  background: #ff7a1a;
+}
+
+.feature-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: rgba(255, 122, 26, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon {
+  font-size: 30px;
+}
+
+.feature-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #172b4d;
+  margin-top: 6px;
+}
+
+/* Hover lift */
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .features-container {
+    justify-content: center;
+    padding: 20px;
+  }
+}

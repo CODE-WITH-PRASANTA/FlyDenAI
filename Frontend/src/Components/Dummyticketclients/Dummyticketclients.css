@@ -1,0 +1,159 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --accent-red: #f74b4b;
+  --text-dark: #111111;
+  --text-body: #444444;
+  --card-shadow: 0 16px 45px rgba(15, 23, 42, 0.12);
+  --radius: 22px;
+}
+
+/* whole section with background image */
+.clients-section {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom center;
+  padding: 110px 0 140px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* subtle white overlay so text is readable */
+.clients-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 255, 255, 0.96) 40%,
+    rgba(255, 255, 255, 0.94) 100%
+  );
+}
+
+.clients-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.clients-heading {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 50px;
+}
+
+/* === SLIDER LAYOUT === */
+
+.slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+
+/* each slide holds 2 cards side-by-side */
+.slider-slide {
+  min-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* card styling */
+.client-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+  padding: 40px 50px 35px;
+  text-align: center;
+}
+
+.client-quote-icon {
+  font-size: 3rem;
+  color: var(--accent-red);
+  margin-bottom: 16px;
+}
+
+.client-text {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 18px;
+}
+
+.client-stars {
+  color: #ffb800;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.client-name {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* button */
+.clients-button {
+  border: none;
+  background: #ff4b4b;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 13px 38px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.clients-button:hover {
+  background: #e63636;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(220, 38, 38, 0.45);
+}
+
+/* === RESPONSIVE === */
+
+@media (max-width: 1024px) {
+  .clients-container {
+    padding: 0 24px;
+  }
+
+  .client-card {
+    padding: 32px 30px;
+  }
+
+  .clients-heading {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider-slide {
+    grid-template-columns: 1fr; /* one card per row on small screens */
+  }
+
+  .client-card {
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .clients-section {
+    padding: 90px 0 120px;
+  }
+}
+
+@media (max-width: 520px) {
+  .clients-heading {
+    font-size: 1.9rem;
+  }
+
+  .clients-container {
+    padding: 0 16px;
+  }
+}

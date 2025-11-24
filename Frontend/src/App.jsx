@@ -29,7 +29,11 @@ import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
 import MultiStepForm from "./Components/MultiStepForm/MultiStepForm";
 import ExecutiveTeam from "./Components/ExecutiveTeam/ExecutiveTeam";
 import VisaInfo from "./Pages/VisaInfo/VisaInfo";
+<<<<<<< HEAD
 import DummyTicket from "./Components/DummyTicket/DummyTicket";
+=======
+import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
+>>>>>>> 52c379c3696d5e865f7cf09b92b9601e40e11c49
 
 function App() {
   const navigate = useNavigate();
@@ -57,7 +61,11 @@ function App() {
           <Route path="/blog/details/:id" element={<BlogDetails />} />
 
           <Route path="/visa/overview" element={<AllVisaOverView />} />
+<<<<<<< HEAD
           <Route path="/dummyticket" element={<DummyTicket />} />
+=======
+          <Route path="/dummyticket" element={<Dummyticketsection />} />
+>>>>>>> 52c379c3696d5e865f7cf09b92b9601e40e11c49
 
        
           <Route path="/AllCountry" element={<AllCountry />} /> 
