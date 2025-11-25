@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+:root {
+  --accent: #ff6b3d;
+  --text-dark: #111111;
+  --text-body: #555555;
+  --card-border: #ecd9c9f0;
+  --shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+  --radius: 20px;
+  --container-max: 1280px;
+  --gap: 30px;
+  --break-sm: 480px;
+  --break-md: 768px;
+  --break-lg: 1024px;
+}
+
+/* ========= SECTION (full width like reference) ========= */
+.visa-bg {
+  width: 100%;
+  padding: clamp(40px, 6vw, 0px) 0 clamp(60px, 8vw, 0px);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+}
+
+/* center content to a fixed width like in screenshot */
+.visa-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+/* ========= HEADING ========= */
+/* fluid heading with clamp: min 1.6rem, preferred 3.2vw, max 2.7rem */
+.visa-heading {
+  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+  line-height: 1.18;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: clamp(24px, 4vw, 60px);
+  padding: 0 8px;
+}
+
+.visa-heading .brand {
+  color: var(--accent);
+}
+
+.visa-heading .highlight {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+/* ========= GRID LAYOUT ========= */
+/* Use auto-fit so it adapts: 4 columns on wide, fewer on narrower screens */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap);
+  align-items: start;
+}
+
+/* ========= CARD ========= */
+.step-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  padding: clamp(20px, 2.6vw, 34px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+/* nice lift on hover/focus (desktop only) */
+@media (hover: hover) {
+  .step-card:hover,
+  .step-card:focus-within {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.10);
+  }
+}
+
+/* keep cards visually consistent but let them flow naturally */
+.step-card {
+  min-height: auto;
+}
+
+/* illustration image — responsive and capped */
+.step-img {
+  width: clamp(120px, 20vw, 210px);
+  height: auto;
+  margin-bottom: clamp(12px, 2vw, 24px);
+  display: block;
+  object-fit: contain;
+}
+
+/* title styling: use clamp for size */
+.step-title {
+  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* make each span a block for the two-line look */
+.step-title span {
+  display: block;
+}
+
+/* dotted orange divider under title */
+.divider {
+  width: 60%;
+  max-width: 240px;
+  margin: 0 auto 16px;
+  border-bottom: 2px dashed var(--accent);
+}
+
+/* body text */
+.step-text {
+  font-size: clamp(0.92rem, 1.6vw, 0.97rem);
+  color: var(--text-body);
+  line-height: 1.7;
+  max-width: 92%;
+  margin: 0 auto;
+}
+
+/* small screens — adjust spacing and set single-column layout */
+@media (max-width: 900px) {
+  :root {
+    --gap: 20px;
+  }
+
+  .visa-bg {
+    padding: clamp(28px, 8vw, 90px) 0 clamp(40px, 8vw, 90px);
+  }
+
+  .visa-container {
+    padding: 0 16px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .visa-heading {
+    margin-bottom: 28px;
+  }
+
+  .step-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .divider {
+    margin-bottom: 14px;
+  }
+}
+
+/* medium tablets */
+@media (min-width: 901px) and (max-width: 1199px) {
+  .steps-grid {
+    gap: 22px;
+  }
+
+  /* 2 columns or 3 depending on width — auto-fit handles it */
+}
+
+/* very wide screens — increase gaps and max card image size */
+@media (min-width: 1400px) {
+  :root {
+    --gap: 36px;
+  }
+
+  .step-img {
+    width: clamp(160px, 12vw, 260px);
+  }
+
+  .step-card {
+    padding: 36px;
+    border-radius: 22px;
+  }
+}
+
+/* accessibility: focus styles for keyboard users */
+.step-card:focus-within {
+  outline: 3px solid rgba(255, 107, 61, 0.12);
+  outline-offset: 6px;
+}
+
+/* ensure images and text don't exceed container on tiny screens */
+@media (max-width: 360px) {
+  .visa-heading {
+    font-size: clamp(1.4rem, 6vw, 1.6rem);
+  }
+
+  .step-img {
+    width: clamp(100px, 24vw, 140px);
+  }
+
+  .step-text {
+    font-size: 0.9rem;
+  }
+}

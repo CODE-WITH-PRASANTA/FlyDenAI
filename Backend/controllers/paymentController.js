@@ -1,146 +1,193 @@
 // controllers/paymentController.js
 const axios = require("axios");
-const Payment = require("../models/paymentModel");
+const qs = require("querystring");
 
-const CLIENT_ID = process.env.PHONEPE_CLIENT_ID;
-const CLIENT_SECRET = process.env.PHONEPE_CLIENT_SECRET;
-const CLIENT_VERSION = process.env.PHONEPE_CLIENT_VERSION || "1";
+const {
+  PHONEPE_CLIENT_ID,
+  PHONEPE_CLIENT_SECRET,
+  PHONEPE_CLIENT_VERSION = "1",
+  PHONEPE_ENV = "sandbox",
+  FRONTEND_URL,
+} = process.env;
 
-const OAUTH_URL = process.env.PHONEPE_OAUTH_URL;
-const PAY_URL = process.env.PHONEPE_PAY_URL;
-const STATUS_BASE_URL = process.env.PHONEPE_STATUS_BASE_URL;
-const FRONTEND_URL = process.env.FRONTEND_URL;
+const isSandbox = PHONEPE_ENV === "sandbox";
 
-let cachedToken = null;
-let tokenExpiry = 0;
+const AUTH_URL = isSandbox
+  ? "https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token"
+  : "https://api.phonepe.com/apis/identity-manager/v1/oauth/token";
 
-// GET AUTH TOKEN
-async function getAuthToken() {
-  const now = Date.now();
-  if (cachedToken && tokenExpiry && now < tokenExpiry - 60000) {
-    return cachedToken;
+const CREATE_PAYMENT_URL = isSandbox
+  ? "https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay"
+  : "https://api.phonepe.com/apis/pg/checkout/v2/pay";
+
+const ORDER_STATUS_URL = isSandbox
+  ? "https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order"
+  : "https://api.phonepe.com/apis/pg/checkout/v2/order";
+
+/**
+ * Simple in-memory token cache. For production use a proper cache (Redis) and handle concurrency.
+ */
+let tokenCache = { token: null, expiresAt: 0 };
+
+async function getPhonePeAuthToken() {
+  const now = Date.now() / 1000;
+  if (tokenCache.token && tokenCache.expiresAt - 30 > now) {
+    return tokenCache.token;
   }
 
-  const params = new URLSearchParams();
-  params.append("client_id", CLIENT_ID);
-  params.append("client_version", CLIENT_VERSION);
-  params.append("client_secret", CLIENT_SECRET);
-  params.append("grant_type", "client_credentials");
+  const body = {
+    client_id: PHONEPE_CLIENT_ID,
+    client_version: PHONEPE_CLIENT_VERSION,
+    client_secret: PHONEPE_CLIENT_SECRET,
+    grant_type: "client_credentials",
+  };
 
-  const { data } = await axios.post(OAUTH_URL, params.toString(), {
+  const res = await axios.post(AUTH_URL, qs.stringify(body), {
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
 
-  cachedToken = data.access_token;
-  if (data.expires_at) tokenExpiry = data.expires_at * 1000;
-
-  return cachedToken;
+  const data = res.data;
+  const accessToken = data.access_token;
+  const expiresAt = data.expires_at || (Math.floor(Date.now() / 1000) + (data.expires_in || 3600));
+  tokenCache = { token: accessToken, expiresAt };
+  return accessToken;
 }
 
-// CREATE ORDER
+/**
+ * POST /payment/create-order
+ * body: { amount: number (INR or rupees) , visaId?, meta? }
+ * Returns: { success: true, redirectUrl, merchantOrderId }
+ */
 exports.createOrder = async (req, res) => {
   try {
-    const { amount, visaId } = req.body;
+    const { amount, meta = {} } = req.body;
+    if (!amount || amount <= 0) return res.status(400).json({ success: false, message: "Invalid amount" });
 
-    if (!amount || !visaId)
-      return res.status(400).json({ success: false, message: "Amount & visaId required" });
+    // PhonePe expects amount in paisa (i.e., rupees * 100)
+    const amountPaisa = Math.round(Number(amount) * 100); // e.g. 100.50 -> 10050
 
-    const merchantOrderId = "FD_" + Date.now();
+    // generate unique merchantOrderId (keep <= 63 chars)
+    const merchantOrderId = `VISA-${Date.now()}`;
 
-    await Payment.create({
-      orderId: merchantOrderId,
-      amount,
-      status: "CREATED",
-    });
+    const token = await getPhonePeAuthToken();
 
-    const token = await getAuthToken();
+    // redirectUrl: where PhonePe sends user back (include merchantOrderId so frontend can verify)
+    const redirectUrl = `${FRONTEND_URL}/apply/now/${req.body.visaId}?merchantOrderId=${merchantOrderId}`;
 
-   const redirectBackURL = `${FRONTEND_URL}/apply/now/${visaId}?orderId=${merchantOrderId}`;
+    const payload = {
+      merchantOrderId,
+      amount: amountPaisa,
+      expireAfter: 1200,
+      metaInfo: {
+        udf1: JSON.stringify(meta || {}),
+      },
+      paymentFlow: {
+        type: "PG_CHECKOUT",
+        merchantUrls: { redirectUrl },
+      },
+    };
 
-      const payload = {
-          merchantOrderId,
-          amount: Math.round(amount * 100),
-          paymentFlow: {
-              type: "PG_CHECKOUT",
-              redirectMode: "GET",  
-              redirectUrl: redirectBackURL,
-          }
-      };
-
-
-
-    const pgRes = await axios.post(PAY_URL, payload, {
+    const createRes = await axios.post(CREATE_PAYMENT_URL, payload, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `O-Bearer ${token}`,
       },
+      timeout: 15000,
     });
 
-    const { orderId: phonepeOrderId, state, redirectUrl } = pgRes.data;
+    // save order to DB as PENDING if you want (not implemented here)
+    // e.g., save merchantOrderId, amount, meta, state: 'PENDING'
 
-    await Payment.findOneAndUpdate(
-      { orderId: merchantOrderId },
-      {
-        gatewayOrderId: phonepeOrderId,
-        gatewayInitialState: state,
-      }
-    );
-
-    res.status(200).json({
+    const data = createRes.data;
+    return res.json({
       success: true,
-      orderId: merchantOrderId,
-      redirectUrl,
+      orderId: data.orderId,
+      state: data.state,
+      redirectUrl: data.redirectUrl,
+      merchantOrderId,
     });
-
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: "Failed to initiate payment",
-      error: error.message,
-    });
+  } catch (err) {
+    console.error("createOrder error:", err.response?.data || err.message);
+    return res.status(500).json({ success: false, message: "Failed to create order", error: err.response?.data || err.message });
   }
 };
 
-// VERIFY PAYMENT
-exports.verifyPayment = async (req, res) => {
+/**
+ * Helper to normalize PhonePe states to a simple status
+ */
+function normalizePhonePeState(rawState) {
+  if (!rawState) return "PENDING";
+
+  const s = String(rawState).toUpperCase();
+
+  // treat any of these as success
+  const successStates = ["COMPLETED", "SUCCESS", "CHARGED", "CAPTURED", "SETTLED"];
+  if (successStates.includes(s)) return "SUCCESS";
+
+  // treat known pending-ish states as pending
+  const pendingStates = ["PENDING", "INITIATED", "CREATED", "INPROGRESS"];
+  if (pendingStates.includes(s)) return "PENDING";
+
+  // otherwise treat as failed (DECLINED, FAILED, CANCELLED, EXPIRED, REFUNDED, etc.)
+  return "FAILED";
+}
+
+/**
+ * GET /payment/verify-payment?merchantOrderId=...
+ * Calls PhonePe Order Status API and returns the state.
+ * Returns { success: true, paymentStatus: "SUCCESS"|"FAILED"|"PENDING", data: <PhonePe raw response> }
+ */
+exports.verifyOrder = async (req, res) => {
   try {
-    const { orderId } = req.query;
+    const { merchantOrderId } = req.query;
+    if (!merchantOrderId) return res.status(400).json({ success: false, message: "merchantOrderId required" });
 
-    if (!orderId)
-      return res.status(400).json({ success: false, message: "orderId required" });
+    const token = await getPhonePeAuthToken();
 
-    const token = await getAuthToken();
+    const url = `${ORDER_STATUS_URL}/${encodeURIComponent(merchantOrderId)}/status?details=false`;
 
-    const statusUrl = `${STATUS_BASE_URL}/${orderId}/status?details=false`;
-
-    const statusRes = await axios.get(statusUrl, {
+    const statusRes = await axios.get(url, {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `O-Bearer ${token}`,
       },
+      timeout: 15000,
     });
 
-    const status = statusRes.data.state || "FAILED";
+    const data = statusRes.data;
 
-    const updated = await Payment.findOneAndUpdate(
-      { orderId },
-      {
-        status,
-        gatewayStatusResponse: statusRes.data,
-      },
-      { new: true }
-    );
+    // PhonePe raw state (may be nested in different shapes depending on version)
+    // try multiple likely locations:
+    const rawState = data?.state || data?.data?.state || data?.orderStatus || null;
 
-    res.status(200).json({
-      success: true,
-      orderId,
-      status,
-      payment: updated,
-    });
+    const paymentStatus = normalizePhonePeState(rawState);
 
+    // Optionally update your DB record with final state/paymentDetails
+    // e.g., if paymentStatus === 'SUCCESS' mark payment success.
+
+    return res.json({ success: true, paymentStatus, rawState, data });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Could not verify payment",
-    });
+    console.error("verifyOrder error:", err.response?.data || err.message);
+    return res.status(500).json({ success: false, message: "Failed to verify order", error: err.response?.data || err.message });
+  }
+};
+
+/**
+ * POST /payment/webhook
+ * PhonePe may call your webhook when order reaches terminal state.
+ * Implement verification (X-VERIFY / X-MERCHANT-ID, etc.) per PhonePe docs if required.
+ */
+exports.webhookHandler = async (req, res) => {
+  try {
+    // phonepe will send a signed payload / headers. Validate as per your PhonePe onboarding docs.
+    console.log("phonepe webhook payload:", req.headers, req.body);
+
+    // TODO: verify signature here (X-VERIFY or similar)
+    // update your DB with payment details
+
+    res.status(200).send({ success: true });
+  } catch (err) {
+    console.error("webhook error", err);
+    res.status(500).send({ success: false });
   }
 };

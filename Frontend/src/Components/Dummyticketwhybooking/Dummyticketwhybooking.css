@@ -1,0 +1,110 @@
+/* WhyBookingDocument.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --text-dark: #111111;
+  --text-body: #3a3a3a;
+}
+
+/* ====== FULL SECTION ====== */
+.why-booking {
+  width: 100%;
+  background: #ffffff;
+  padding: 30px 0 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ====== PAGE WIDTH + MARGINS LIKE REFERENCE ====== */
+.why-booking__container {
+  max-width: 1280px; /* matches screenshot layout size */
+  margin: 0 auto;
+  padding: 0 40px; /* strong left margin feel */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* ====== LEFT TEXT COLUMN ====== */
+.why-booking__content {
+  flex: 1.3;
+  max-width: 620px; /* limits text width like reference */
+}
+
+.why-booking__title {
+  font-size: 2.8rem;
+  line-height: 1.22;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.why-booking__text {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: var(--text-body);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* ====== RIGHT IMAGE COLUMN ====== */
+.why-booking__image-wrap {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.why-booking__image {
+  width: 460px; /* slightly smaller to match reference */
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ====== RESPONSIVE ====== */
+
+@media (max-width: 1024px) {
+  .why-booking__container {
+    padding: 0 32px;
+    gap: 40px;
+  }
+
+  .why-booking__title {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .why-booking__container {
+    flex-direction: column;
+    text-align: left;
+    gap: 32px;
+  }
+
+  .why-booking__image-wrap {
+    justify-content: center;
+  }
+
+  .why-booking__image {
+    width: 380px;
+  }
+}
+
+@media (max-width: 520px) {
+  .why-booking {
+    padding: 0px 0 90px;
+  }
+
+  .why-booking__container {
+    padding: 0 18px;
+  }
+
+  .why-booking__title {
+    font-size: 1.9rem;
+  }
+
+  .why-booking__text {
+    font-size: 0.95rem;
+  }
+}

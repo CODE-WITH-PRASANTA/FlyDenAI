@@ -38,7 +38,6 @@ const VisaApplicationForm = () => {
   const { selectedType, travellers: selectedTravellers } = userRequest;
 
   const [step, setStep] = useState(1);
-
   const [visaTypes, setVisaTypes] = useState([]);
   const [selectedVisaTypeIndex, setSelectedVisaTypeIndex] = useState(0);
   const [visaType, setVisaType] = useState("");
@@ -56,6 +55,9 @@ const VisaApplicationForm = () => {
 
   const [showCouponInput, setShowCouponInput] = useState(false);
   const [isInitiatingPayment, setIsInitiatingPayment] = useState(false);
+
+  // paymentStatus → "PENDING" | "SUCCESS" | "FAILED"
+  const [paymentStatus, setPaymentStatus] = useState("PENDING");
 
   const [globalDocs, setGlobalDocs] = useState({
     passportCopy: null,
@@ -81,7 +83,7 @@ const VisaApplicationForm = () => {
   useEffect(() => {
     if (visaTypes.length > 0) {
       if (selectedType) {
-        const idx = visaTypes.findIndex(v => v.name === selectedType);
+        const idx = visaTypes.findIndex((v) => v.name === selectedType);
         if (idx !== -1) {
           setSelectedVisaTypeIndex(idx);
           setVisaType(selectedType);
@@ -92,57 +94,9 @@ const VisaApplicationForm = () => {
     }
   }, [visaTypes, selectedType]);
 
-  // AUTO PAYMENT VERIFICATION
+  // SYNC TRAVELLER COUNT
   useEffect(() => {
-    const paid = localStorage.getItem("visaPaymentStatus");
-    if (paid === "PAID") {
-      setStep(4);
-      return;
-    }
-
-    const orderId = new URLSearchParams(window.location.search).get("orderId");
-    if (!orderId) return;
-
-    const verify = async () => {
-      Swal.fire({ title: "Verifying Payment...", didOpen: () => Swal.showLoading() });
-
-      const res = await fetch(`${BASE_URL}/payment/verify-payment?orderId=${orderId}`);
-      const data = await res.json();
-
-      Swal.close();
-
-      if (!data.success) {
-        Swal.fire("Payment Verification Failed", "", "error");
-        setStep(3);
-        return;
-      }
-
-      if (data.status === "COMPLETED") {
-        Swal.fire({
-          title: "Payment Successful!",
-          text: "Redirecting...",
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-
-        localStorage.setItem("visaPaymentStatus", "PAID");
-
-        setTimeout(() => setStep(4), 1500);
-
-        window.history.replaceState({}, "", window.location.pathname);
-      } else {
-        Swal.fire("Payment Failed!", "", "error");
-        setStep(3);
-      }
-    };
-
-    verify();
-  }, []);
-
-  // SYNC TRAVELLERS
-  useEffect(() => {
-    setTravellerData(prev => {
+    setTravellerData((prev) => {
       let arr = [...prev];
       if (travellers > prev.length) {
         for (let i = prev.length; i < travellers; i++) arr.push(emptyTraveller());
@@ -160,33 +114,114 @@ const VisaApplicationForm = () => {
 
   const baseFare = travellers * pricePerTraveller;
   const taxAmount = Math.round(baseFare * TAX_RATE);
-  const discountAmount = Math.round(baseFare * discountPercent / 100);
+  const discountAmount = Math.round((baseFare * discountPercent) / 100);
 
-  const totalPayable = Math.round(baseFare + SERVICE_CHARGE + taxAmount - discountAmount);
+  const totalPayable = Math.round(
+    baseFare + SERVICE_CHARGE + taxAmount - discountAmount
+  );
+
+  // AUTO VERIFY PHONEPE RESPONSE
+  useEffect(() => {
+    const merchantOrderId = new URLSearchParams(window.location.search).get(
+      "merchantOrderId"
+    );
+    if (!merchantOrderId) return;
+
+    Swal.fire({
+      title: "Verifying Payment...",
+      didOpen: () => Swal.showLoading(),
+    });
+
+    const verifyPayment = async () => {
+      try {
+        const res = await fetch(
+          `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}`
+        );
+        const data = await res.json();
+
+        Swal.close();
+
+        if (!data.success) {
+          setPaymentStatus("FAILED");
+          Swal.fire("Verification Failed", "", "error");
+          setStep(3);
+          return;
+        }
+
+        const status = data.paymentStatus; // SUCCESS | FAILED | PENDING
+
+        if (status === "SUCCESS") {
+          setPaymentStatus("SUCCESS");
+          Swal.fire({
+            title: "Payment Successful!",
+            icon: "success",
+            timer: 1200,
+            showConfirmButton: false,
+          });
+
+          // clean URL
+          window.history.replaceState({}, "", window.location.pathname);
+
+          setTimeout(() => setStep(4), 1000);
+          return;
+        }
+
+        if (status === "PENDING") {
+          setPaymentStatus("PENDING");
+          Swal.fire("Payment Pending", "", "info");
+          setStep(3);
+          return;
+        }
+
+        setPaymentStatus("FAILED");
+        Swal.fire("Payment Failed or Cancelled", "", "error");
+        setStep(3);
+      } catch (err) {
+        Swal.close();
+        setPaymentStatus("FAILED");
+        Swal.fire("Error verifying payment", "", "error");
+        setStep(3);
+      }
+    };
+
+    verifyPayment();
+  }, []);
 
   // HANDLE PAYMENT
   const handlePayment = async () => {
+    if (paymentStatus === "SUCCESS") return;
+
     setIsInitiatingPayment(true);
 
-    Swal.fire({ title: "Initiating Payment...", didOpen: () => Swal.showLoading() });
-
-    const res = await fetch(`${BASE_URL}/payment/create-order`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount: totalPayable,
-        visaId: id,
-      }),
+    Swal.fire({
+      title: "Initiating Payment...",
+      didOpen: () => Swal.showLoading(),
     });
 
-    const data = await res.json();
-    Swal.close();
-    setIsInitiatingPayment(false);
+    try {
+      const res = await fetch(`${BASE_URL}/payment/create-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: totalPayable,
+          visaId: id,
+          meta: { visaType: visaType, travellers },
+        }),
+      });
 
-    if (data.success && data.redirectUrl) {
-      window.location.href = data.redirectUrl;
-    } else {
-      Swal.fire("Payment can't be initiated", "", "error");
+      const data = await res.json();
+      setIsInitiatingPayment(false);
+      Swal.close();
+
+      if (data.success && data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        Swal.fire("Could not initiate payment", data.message || "", "error");
+      }
+    } catch (err) {
+      Swal.close();
+      setIsInitiatingPayment(false);
+      Swal.fire("Server error while initiating payment", "", "error");
     }
   };
 
@@ -226,7 +261,6 @@ const VisaApplicationForm = () => {
   };
 
   const handleSubmitApplication = () => {
-    localStorage.removeItem("visaPaymentStatus");
     setStep(5);
   };
 
@@ -234,7 +268,6 @@ const VisaApplicationForm = () => {
     <div className="VisaApplicationForm__wrapper">
       <div className="VisaApplicationForm__grid">
         <main className="VisaApplicationForm__main">
-
           {step === 1 && (
             <Step1Itinerary
               visaTypes={visaTypes}
@@ -259,14 +292,14 @@ const VisaApplicationForm = () => {
             <Step2Traveller
               travellerData={travellerData}
               updateTravellerField={(i, f, v) =>
-                setTravellerData(prev => {
+                setTravellerData((prev) => {
                   const upd = [...prev];
                   upd[i][f] = v;
                   return upd;
                 })
               }
               handleTravellerFile={(i, key, file) =>
-                setTravellerData(prev => {
+                setTravellerData((prev) => {
                   const upd = [...prev];
                   upd[i].files[key] = file;
                   return upd;
@@ -280,9 +313,10 @@ const VisaApplicationForm = () => {
           {step === 3 && (
             <Step3Payment
               totalPayable={totalPayable}
+              paymentStatus={paymentStatus}
+              isInitiatingPayment={isInitiatingPayment}
               handlePayment={handlePayment}
               handlePrev={() => setStep(2)}
-              isInitiatingPayment={isInitiatingPayment}
             />
           )}
 
@@ -290,14 +324,16 @@ const VisaApplicationForm = () => {
             <Step4UploadDocs
               globalDocs={globalDocs}
               handleGlobalFile={(key, file) =>
-                setGlobalDocs(prev => ({ ...prev, [key]: file }))
+                setGlobalDocs((prev) => ({ ...prev, [key]: file }))
               }
               handlePrev={() => setStep(3)}
               handleSubmitApplication={handleSubmitApplication}
             />
           )}
 
-          {step === 5 && <Step5Success resetForm={() => window.location.reload()} />}
+          {step === 5 && (
+            <Step5Success resetForm={() => window.location.reload()} />
+          )}
         </main>
 
         <SummarySidebar

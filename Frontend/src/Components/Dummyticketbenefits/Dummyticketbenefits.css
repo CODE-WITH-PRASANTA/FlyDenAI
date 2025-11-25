@@ -1,0 +1,128 @@
+/* BenefitsSection.css */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+
+:root {
+  --accent: #ff6b3d;
+  --text-dark: #111111;
+  --text-body: #4b5563;
+  --card-border: #f2f2f2;
+  --card-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  --radius: 22px;
+}
+
+/* ===== SECTION (full width) ===== */
+.benefits {
+  width: 100%;
+  padding: 60px 0 120px;
+  background: #fdfdfd;
+  font-family: "Poppins", sans-serif;
+}
+
+/* center content like your other sections */
+.benefits__container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* ===== HEADING ===== */
+.benefits__heading {
+  font-size: 2.6rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--text-dark);
+  margin-bottom: 56px;
+}
+
+/* ===== GRID (3 x 2 on desktop) ===== */
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px 30px;
+}
+
+/* ===== CARD ===== */
+.benefit-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  padding: 40px 32px 42px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 230px; /* keeps all cards looking same height */
+}
+
+/* icon circle */
+.benefit-card__icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: rgba(255, 107, 61, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.benefit-card__icon {
+  font-size: 32px;
+}
+
+/* title */
+.benefit-card__title {
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+/* text */
+.benefit-card__text {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 320px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1024px) {
+  .benefits {
+    padding: 30px 0 100px;
+  }
+
+  .benefits__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .benefit-card {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 640px) {
+  .benefits__container {
+    padding: 0 18px;
+  }
+
+  .benefits__heading {
+    font-size: 2.1rem;
+    margin-bottom: 40px;
+  }
+
+  .benefits__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .benefit-card {
+    padding: 32px 24px 34px;
+  }
+}

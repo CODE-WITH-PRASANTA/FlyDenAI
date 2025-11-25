@@ -1,0 +1,199 @@
+/* Dummtticketnews.css */
+:root {
+  --bg-1: #f8f9fa;
+  --bg-2: #ffffff;
+  --glass: rgba(255,255,255,0.85);
+  --muted: #6c757d;
+  --accent-from: #4a6cf7;
+  --accent-to: #6a93ff;
+  --card-radius: 16px;
+  --gap: 16px;
+  --focus: 3px solid rgba(74, 108, 247, 0.2);
+  --shadow-1: 0 8px 30px rgba(0,0,0,0.08);
+  --shadow-2: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Layout */
+.dt-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 4px 16px;
+  background: rgb(250, 241, 224);
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dt-card {
+  width: 100%;
+  backdrop-filter: blur(10px);
+  border-radius: var(--card-radius);
+  padding: 24px;
+}
+
+/* Carousel */
+.dt-carousel {
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.dt-track {
+  display: flex;
+  gap: var(--gap);
+  align-items: center;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+/* Mobile: Show 2 logos */
+.dt-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(50% - 8px); /* 2 images with gap */
+  min-width: calc(50% - 8px);
+  max-width: calc(50% - 8px);
+  padding: 4px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: var(--shadow-2);
+  transition: all 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
+}
+
+.dt-slide-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.dt-slide:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.dt-slide:focus-within {
+  outline: none;
+  box-shadow: var(--focus);
+}
+
+/* Logo images - Full width display */
+.dt-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 35px;
+  object-fit: contain;
+  object-position: center;
+  filter: brightness(1.1) contrast(1.05);
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+
+.dt-slide:hover img {
+  opacity: 1;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+/* Tablet: Show 3-4 logos */
+@media (min-width: 768px) {
+  .dt-slide {
+    width: calc(33.333% - 11px); /* 3 images */
+    min-width: calc(33.333% - 11px);
+    max-width: calc(33.333% - 11px);
+    padding: 6px;
+  }
+  
+  .dt-slide img {
+    max-height: 40px;
+  }
+}
+
+/* Small Laptop: Show 5 logos */
+@media (min-width: 1024px) {
+  .dt-slide {
+    width: calc(20% - 13px); /* 5 images */
+    min-width: calc(20% - 13px);
+    max-width: calc(20% - 13px);
+    padding: 8px;
+  }
+  
+  .dt-slide img {
+    max-height: 45px;
+  }
+}
+
+/* Large Laptop/Desktop: Show 6 logos */
+@media (min-width: 1200px) {
+  .dt-slide {
+    width: calc(16.666% - 14px); /* 6 images */
+    min-width: calc(16.666% - 14px);
+    max-width: calc(16.666% - 14px);
+    padding: 10px;
+  }
+  
+  .dt-slide img {
+    max-height: 50px;
+  }
+}
+
+/* Extra Large Screens */
+@media (min-width: 1536px) {
+  .dt-slide {
+    padding: 12px;
+  }
+  
+  .dt-slide img {
+    max-height: 55px;
+  }
+}
+
+/* Small Mobile Adjustments */
+@media (max-width: 359px) {
+  .dt-slide {
+    width: calc(50% - 6px);
+    min-width: calc(50% - 6px);
+    max-width: calc(50% - 6px);
+    padding: 3px;
+  }
+  
+  .dt-slide-inner {
+    padding: 6px;
+  }
+  
+  .dt-slide img {
+    max-height: 30px;
+  }
+}
+
+/* Ensure no cutting on any device */
+.dt-slide,
+.dt-slide-inner,
+.dt-slide img {
+  overflow: visible !important;
+}
+
+.dt-carousel {
+  overflow: visible !important;
+}
+
+.dt-track {
+  overflow: visible !important;
+}
