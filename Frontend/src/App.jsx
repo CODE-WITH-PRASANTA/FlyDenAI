@@ -79,7 +79,7 @@ function App() {
 
           {/* Study Abroad & Interns Abroad */}
           <Route path="/StudyAbroad" element={<StudyAbroad />} />
-          {/* <Route path="/InternsAbroad" element={<InternsAbroad />} /> */}
+          <Route path="/InternsAbroad" element={<InternsAbroad />} />
 
           {/* Apply To the Intern Abroad Service */}
          <Route path="/InternAbroad/Apply" element={<MultiStepForm />} />

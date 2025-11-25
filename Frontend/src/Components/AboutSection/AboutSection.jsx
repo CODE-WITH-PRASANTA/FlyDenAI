@@ -2,9 +2,6 @@ import React from "react";
 import "./AboutSection.css";
 import mainImage from "../../assets/about1.webp"; 
 import personImage from "../../assets/newsblog2.webp"; 
-import avatar1 from "../../assets/avatar-1.webp";
-import avatar2 from "../../assets/avatar-2.webp"; 
-import avatar3 from "../../assets/avatar-3.webp"; 
 
 const AboutSection = () => {
   return (

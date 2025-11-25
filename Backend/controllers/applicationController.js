@@ -60,6 +60,8 @@ exports.createApplication = async (req, res) => {
 /**
  * Upload Docs
  */
+// Upload Docs
+
 exports.uploadFiles = async (req, res) => {
   try {
     const { id } = req.params;
@@ -76,13 +78,19 @@ exports.uploadFiles = async (req, res) => {
 
     const files = req.files || {};
 
-    // Helper
     const get = (f) => (files[f] && files[f][0] ? files[f][0] : null);
 
-    // Update travellers files
+    // FIXED: Safe update for travellers
     for (let i = 0; i < app.travellers.length; i++) {
+
+      // safely merge traveller data (not replacing object)
       if (jsonData.travellers && jsonData.travellers[i]) {
-        app.travellers[i] = { ...app.travellers[i]._doc, ...jsonData.travellers[i] };
+        Object.assign(app.travellers[i], jsonData.travellers[i]);
+      }
+
+      // ensure files object exists
+      if (!app.travellers[i].files) {
+        app.travellers[i].files = {};
       }
 
       const pass = get(`traveller_${i}_passportCopy`);
@@ -92,18 +100,22 @@ exports.uploadFiles = async (req, res) => {
       if (photo) app.travellers[i].files.photo = buildFileObject(photo);
     }
 
-    // Global Docs
-    if (get("global_passportCopy"))
-      app.globalDocs.passportCopy = buildFileObject(get("global_passportCopy"));
+    // Global files
+    if (!app.globalDocs) app.globalDocs = {};
 
-    if (get("global_photo"))
-      app.globalDocs.photo = buildFileObject(get("global_photo"));
+    const globalFields = [
+      "global_passportCopy",
+      "global_photo",
+      "travelItinerary",
+      "additionalDocument",
+    ];
 
-    if (get("travelItinerary"))
-      app.globalDocs.travelItinerary = buildFileObject(get("travelItinerary"));
-
-    if (get("additionalDocument"))
-      app.globalDocs.additionalDocument = buildFileObject(get("additionalDocument"));
+    globalFields.forEach((field) => {
+      const file = get(field);
+      if (file) {
+        app.globalDocs[field.replace("global_", "")] = buildFileObject(file);
+      }
+    });
 
     app.status = "DOCUMENTS_UPLOADED";
     await app.save();

@@ -7,13 +7,16 @@ function generateApplicationId() {
   return `FlyDen-${year}-${random}`;
 }
 
-const FileSchema = new mongoose.Schema({
-  fieldname: String,
-  originalName: String,
-  filename: String,
-  path: String,
-  url: String,
-});
+const FileSchema = new mongoose.Schema(
+  {
+    fieldname: String,
+    originalName: String,
+    filename: String,
+    path: String,
+    url: String,
+  },
+  { _id: false }    // ⭐ Required
+);
 
 const TravellerSchema = new mongoose.Schema({
   title: String,
@@ -28,6 +31,7 @@ const TravellerSchema = new mongoose.Schema({
     photo: { type: FileSchema, default: null },
   },
 });
+
 
 const PaymentSchema = new mongoose.Schema({
   amount: { type: Number, default: 0 },

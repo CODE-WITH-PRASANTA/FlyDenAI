@@ -303,57 +303,63 @@ const VisaApplicationForm = () => {
   };
 
   // ⭐ FINAL SUBMIT — UPLOAD FILES
-  const handleSubmitApplication = async () => {
-    if (!applicationId) {
-      Swal.fire("Error", "Application ID missing", "error");
-      return;
-    }
+    const handleSubmitApplication = async () => {
+      if (!applicationId) {
+        Swal.fire("Error", "Application ID missing", "error");
+        return;
+      }
 
-    const fd = new FormData();
-    fd.append("data", JSON.stringify({ travellers: travellerData }));
+      const fd = new FormData();
 
-    travellerData.forEach((trav, i) => {
-      if (trav.files.passportCopy)
-        fd.append(`traveller_${i}_passportCopy`, trav.files.passportCopy);
+      // Safe merge traveller text data
+      fd.append("data", JSON.stringify({ travellers: travellerData }));
 
-      if (trav.files.photo)
-        fd.append(`traveller_${i}_photo`, trav.files.photo);
-    });
+      // ⭐ Correct dynamic traveller file upload
+      travellerData.forEach((trav, i) => {
+        if (trav.files && trav.files.passportCopy instanceof File) {
+          fd.append(`traveller_${i}_passportCopy`, trav.files.passportCopy);
+        }
+        if (trav.files && trav.files.photo instanceof File) {
+          fd.append(`traveller_${i}_photo`, trav.files.photo);
+        }
+      });
 
-    if (globalDocs.passportCopy)
-      fd.append("global_passportCopy", globalDocs.passportCopy);
+      // ⭐ Upload Global Docs ONLY If File Exists
+      if (globalDocs.passportCopy instanceof File)
+        fd.append("global_passportCopy", globalDocs.passportCopy);
 
-    if (globalDocs.photo)
-      fd.append("global_photo", globalDocs.photo);
+      if (globalDocs.photo instanceof File)
+        fd.append("global_photo", globalDocs.photo);
 
-    if (globalDocs.travelItinerary)
-      fd.append("travelItinerary", globalDocs.travelItinerary);
+      if (globalDocs.travelItinerary instanceof File)
+        fd.append("travelItinerary", globalDocs.travelItinerary);
 
-    if (globalDocs.additionalDocument)
-      fd.append("additionalDocument", globalDocs.additionalDocument);
+      if (globalDocs.additionalDocument instanceof File)
+        fd.append("additionalDocument", globalDocs.additionalDocument);
 
-    Swal.fire({ title: "Uploading...", didOpen: () => Swal.showLoading() });
+      Swal.fire({ title: "Uploading...", didOpen: () => Swal.showLoading() });
 
-    const res = await fetch(
-      `${BASE_URL}/applications/${applicationId}/upload`,
-      { method: "POST", body: fd }
-    );
+      const res = await fetch(`${BASE_URL}/applications/${applicationId}/upload`, {
+        method: "POST",
+        body: fd,
+      });
 
-    const result = await res.json();
-    Swal.close();
+      const result = await res.json();
+      Swal.close();
 
-    if (!result.success) {
-      Swal.fire("Upload Failed", result.message, "error");
-      return;
-    }
+      if (!result.success) {
+        Swal.fire("Upload Failed", result.message, "error");
+        return;
+      }
 
-    Swal.fire("Success!", "Application Submitted Successfully.", "success");
+      Swal.fire("Success!", "Application Submitted Successfully.", "success");
 
-    // ⭐ Clear applicationId after finish
-    localStorage.removeItem("applicationId");
+      // ⭐ Clear ID after success
+      localStorage.removeItem("applicationId");
 
-    setStep(5);
-  };
+      setStep(5);
+    };
+
 
   return (
     <div className="VisaApplicationForm__wrapper">
