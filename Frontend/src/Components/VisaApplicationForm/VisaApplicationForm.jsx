@@ -1,3 +1,5 @@
+// src/components/VisaApplicationForm/VisaApplicationForm.jsx
+
 import React, { useState, useEffect } from "react";
 import "./VisaApplicationForm.css";
 import Swal from "sweetalert2";
@@ -67,6 +69,12 @@ const VisaApplicationForm = () => {
     additionalDocument: null,
   });
 
+  // ⭐ Load stored applicationId when page reloads / PhonePe redirect
+  useEffect(() => {
+    const savedId = localStorage.getItem("applicationId");
+    if (savedId) setApplicationId(savedId);
+  }, []);
+
   // Load Visa Types
   useEffect(() => {
     const load = async () => {
@@ -117,11 +125,12 @@ const VisaApplicationForm = () => {
   const taxAmount = Math.round(baseFare * TAX_RATE);
   const discountAmount = Math.round((baseFare * discountPercent) / 100);
 
-  const totalPayable =
-    baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
+  const totalPayable = baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
 
-  // AUTO VERIFIED PAYMENT
+  // ⭐ AUTO VERIFIED PAYMENT — only after applicationId is available
   useEffect(() => {
+    if (!applicationId) return;
+
     const merchantOrderId = new URLSearchParams(window.location.search).get(
       "merchantOrderId"
     );
@@ -150,7 +159,6 @@ const VisaApplicationForm = () => {
         if (status === "SUCCESS") {
           setPaymentStatus("SUCCESS");
 
-          // ⭐ Update payment in backend using Application ID
           await fetch(`${BASE_URL}/applications/${applicationId}/payment`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -162,7 +170,12 @@ const VisaApplicationForm = () => {
             }),
           });
 
-          Swal.fire({ title: "Payment Successful!", icon: "success", timer: 1000, showConfirmButton: false });
+          Swal.fire({
+            title: "Payment Successful!",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false,
+          });
 
           window.history.replaceState({}, "", window.location.pathname);
           setTimeout(() => setStep(4), 800);
@@ -189,12 +202,11 @@ const VisaApplicationForm = () => {
     verifyPayment();
   }, [applicationId]);
 
-  // HANDLE PAYMENT
+  // ⭐ HANDLE PAYMENT INIT
   const handlePayment = async () => {
     if (paymentStatus === "SUCCESS") return;
 
     try {
-      // ⭐ CREATE APPLICATION FIRST
       if (!applicationId) {
         const createRes = await fetch(`${BASE_URL}/applications`, {
           method: "POST",
@@ -223,7 +235,8 @@ const VisaApplicationForm = () => {
           return;
         }
 
-        setApplicationId(created.applicationId); // ⭐ custom ID like FlyDen-2025-123456
+        setApplicationId(created.applicationId);
+        localStorage.setItem("applicationId", created.applicationId);
       }
 
       setIsInitiatingPayment(true);
@@ -297,7 +310,6 @@ const VisaApplicationForm = () => {
     }
 
     const fd = new FormData();
-
     fd.append("data", JSON.stringify({ travellers: travellerData }));
 
     travellerData.forEach((trav, i) => {
@@ -323,7 +335,7 @@ const VisaApplicationForm = () => {
     Swal.fire({ title: "Uploading...", didOpen: () => Swal.showLoading() });
 
     const res = await fetch(
-      `${BASE_URL}/applications/${applicationId}/upload`, // ⭐ using readable ID
+      `${BASE_URL}/applications/${applicationId}/upload`,
       { method: "POST", body: fd }
     );
 
@@ -336,6 +348,10 @@ const VisaApplicationForm = () => {
     }
 
     Swal.fire("Success!", "Application Submitted Successfully.", "success");
+
+    // ⭐ Clear applicationId after finish
+    localStorage.removeItem("applicationId");
+
     setStep(5);
   };
 
