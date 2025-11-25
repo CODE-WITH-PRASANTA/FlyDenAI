@@ -31,6 +31,7 @@ const DirectorRoutes = require("./routes/DirectorRoutes");
 const blogRoutes = require("./routes/blogRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const couponRoutes = require("./routes/couponRoutes");
+const applicationRoutes = require("./routes/applicationRoutes");
 
 
 
@@ -45,6 +46,7 @@ app.use("/api/director", DirectorRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/coupons", couponRoutes);
+app.use("/api/applications", applicationRoutes);
 
 
 // Default route
