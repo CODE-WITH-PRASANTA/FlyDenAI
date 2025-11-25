@@ -1,4 +1,3 @@
-// src/components/VisaApplicationForm/VisaApplicationForm.jsx
 import React, { useState, useEffect } from "react";
 import "./VisaApplicationForm.css";
 import Swal from "sweetalert2";
@@ -37,7 +36,7 @@ const VisaApplicationForm = () => {
   const userRequest = location.state || {};
   const { selectedType, travellers: selectedTravellers } = userRequest;
 
-  // ⭐ NEW — Store MongoDB Application ID in state
+  // ⭐ Custom Application ID (FlyDen-2025-xxxxx)
   const [applicationId, setApplicationId] = useState(null);
 
   const [step, setStep] = useState(1);
@@ -68,7 +67,7 @@ const VisaApplicationForm = () => {
     additionalDocument: null,
   });
 
-  // LOAD VISA TYPES
+  // Load Visa Types
   useEffect(() => {
     const load = async () => {
       const res = await fetch(`${BASE_URL}/visas/published/${id}`);
@@ -96,7 +95,7 @@ const VisaApplicationForm = () => {
     }
   }, [visaTypes, selectedType]);
 
-  // SYNC TRAVELLER COUNT
+  // Sync Traveller Count
   useEffect(() => {
     setTravellerData((prev) => {
       let arr = [...prev];
@@ -109,7 +108,7 @@ const VisaApplicationForm = () => {
     });
   }, [travellers]);
 
-  // PRICING
+  // Pricing
   const pricePerTraveller =
     Number(visaTypes[selectedVisaTypeIndex]?.fees?.replace(/[^\d]/g, "")) ||
     DEFAULT_PRICE_PER_TRAVELLER;
@@ -118,27 +117,24 @@ const VisaApplicationForm = () => {
   const taxAmount = Math.round(baseFare * TAX_RATE);
   const discountAmount = Math.round((baseFare * discountPercent) / 100);
 
-  const totalPayable = Math.round(
-    baseFare + SERVICE_CHARGE + taxAmount - discountAmount
-  );
+  const totalPayable =
+    baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
 
-  // AUTO VERIFY PHONEPE RESPONSE
+  // AUTO VERIFIED PAYMENT
   useEffect(() => {
     const merchantOrderId = new URLSearchParams(window.location.search).get(
       "merchantOrderId"
     );
     if (!merchantOrderId) return;
 
-    Swal.fire({
-      title: "Verifying Payment...",
-      didOpen: () => Swal.showLoading(),
-    });
+    Swal.fire({ title: "Verifying Payment...", didOpen: () => Swal.showLoading() });
 
     const verifyPayment = async () => {
       try {
         const res = await fetch(
           `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}`
         );
+
         const data = await res.json();
         Swal.close();
 
@@ -154,41 +150,33 @@ const VisaApplicationForm = () => {
         if (status === "SUCCESS") {
           setPaymentStatus("SUCCESS");
 
-          // ⭐ UPDATE PAYMENT IN BACKEND
-          if (applicationId) {
-            await fetch(`${BASE_URL}/applications/${applicationId}/payment`, {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                merchantOrderId,
-                status: "SUCCESS",
-                transactionId: data?.data?.transactionId || "",
-                rawResponse: data,
-              }),
-            });
-          }
-
-          Swal.fire({
-            title: "Payment Successful!",
-            icon: "success",
-            timer: 1200,
-            showConfirmButton: false,
+          // ⭐ Update payment in backend using Application ID
+          await fetch(`${BASE_URL}/applications/${applicationId}/payment`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              merchantOrderId,
+              status: "SUCCESS",
+              transactionId: data?.data?.transactionId || "",
+              rawResponse: data,
+            }),
           });
 
+          Swal.fire({ title: "Payment Successful!", icon: "success", timer: 1000, showConfirmButton: false });
+
           window.history.replaceState({}, "", window.location.pathname);
-          setTimeout(() => setStep(4), 1000);
+          setTimeout(() => setStep(4), 800);
           return;
         }
 
         if (status === "PENDING") {
           setPaymentStatus("PENDING");
           Swal.fire("Payment Pending", "", "info");
-          setStep(3);
-          return;
+        } else {
+          setPaymentStatus("FAILED");
+          Swal.fire("Payment Failed", "", "error");
         }
 
-        setPaymentStatus("FAILED");
-        Swal.fire("Payment Failed or Cancelled", "", "error");
         setStep(3);
       } catch (err) {
         Swal.close();
@@ -206,7 +194,7 @@ const VisaApplicationForm = () => {
     if (paymentStatus === "SUCCESS") return;
 
     try {
-      // ⭐ CREATE APPLICATION BEFORE PAYMENT
+      // ⭐ CREATE APPLICATION FIRST
       if (!applicationId) {
         const createRes = await fetch(`${BASE_URL}/applications`, {
           method: "POST",
@@ -235,15 +223,11 @@ const VisaApplicationForm = () => {
           return;
         }
 
-        setApplicationId(created.applicationId);
+        setApplicationId(created.applicationId); // ⭐ custom ID like FlyDen-2025-123456
       }
 
       setIsInitiatingPayment(true);
-
-      Swal.fire({
-        title: "Initiating Payment...",
-        didOpen: () => Swal.showLoading(),
-      });
+      Swal.fire({ title: "Initiating Payment...", didOpen: () => Swal.showLoading() });
 
       const res = await fetch(`${BASE_URL}/payment/create-order`, {
         method: "POST",
@@ -256,8 +240,8 @@ const VisaApplicationForm = () => {
       });
 
       const data = await res.json();
-      setIsInitiatingPayment(false);
       Swal.close();
+      setIsInitiatingPayment(false);
 
       if (data.success && data.redirectUrl) {
         window.location.href = data.redirectUrl;
@@ -267,11 +251,11 @@ const VisaApplicationForm = () => {
     } catch (err) {
       Swal.close();
       setIsInitiatingPayment(false);
-      Swal.fire("Server error while initiating payment", "", "error");
+      Swal.fire("Server error initiating payment", "", "error");
     }
   };
 
-  // APPLY COUPON (unchanged)
+  // APPLY COUPON
   const applyCoupon = async () => {
     if (!couponCode) return Swal.fire("Enter a coupon!", "", "warning");
     try {
@@ -287,25 +271,25 @@ const VisaApplicationForm = () => {
       const data = await res.json();
 
       if (!data.success) {
-        return Swal.fire("Invalid Coupon ❌", data.message || "Invalid coupon");
+        return Swal.fire("Invalid Coupon", data.message, "error");
       }
 
-      const { discountAmount, finalAmount } = data.amountDetails || {};
+      const { discountAmount, finalAmount } = data.amountDetails;
 
       setAppliedCoupon(data.coupon?.code || couponCode.toUpperCase());
       setDiscountPercent(data.coupon?.discount || 0);
 
       Swal.fire(
-        "Coupon Applied! 🎉",
-        `You saved ₹${discountAmount}\nNew Total: ₹${finalAmount}`,
+        "Coupon Applied 🎉",
+        `Saved ₹${discountAmount} — New Total: ₹${finalAmount}`,
         "success"
       );
     } catch (err) {
-      Swal.fire("Error", "Server error", "error");
+      Swal.fire("Server Error", "", "error");
     }
   };
 
-  // ⭐ FINAL SUBMIT — UPLOAD DOCUMENTS
+  // ⭐ FINAL SUBMIT — UPLOAD FILES
   const handleSubmitApplication = async () => {
     if (!applicationId) {
       Swal.fire("Error", "Application ID missing", "error");
@@ -319,36 +303,39 @@ const VisaApplicationForm = () => {
     travellerData.forEach((trav, i) => {
       if (trav.files.passportCopy)
         fd.append(`traveller_${i}_passportCopy`, trav.files.passportCopy);
+
       if (trav.files.photo)
         fd.append(`traveller_${i}_photo`, trav.files.photo);
     });
 
     if (globalDocs.passportCopy)
       fd.append("global_passportCopy", globalDocs.passportCopy);
+
     if (globalDocs.photo)
       fd.append("global_photo", globalDocs.photo);
+
     if (globalDocs.travelItinerary)
       fd.append("travelItinerary", globalDocs.travelItinerary);
+
     if (globalDocs.additionalDocument)
       fd.append("additionalDocument", globalDocs.additionalDocument);
 
     Swal.fire({ title: "Uploading...", didOpen: () => Swal.showLoading() });
 
-    const uploadRes = await fetch(
-      `${BASE_URL}/applications/${applicationId}/upload`,
+    const res = await fetch(
+      `${BASE_URL}/applications/${applicationId}/upload`, // ⭐ using readable ID
       { method: "POST", body: fd }
     );
 
+    const result = await res.json();
     Swal.close();
-
-    const result = await uploadRes.json();
 
     if (!result.success) {
       Swal.fire("Upload Failed", result.message, "error");
       return;
     }
 
-    Swal.fire("Application Submitted!", "Your visa application is completed.", "success");
+    Swal.fire("Success!", "Application Submitted Successfully.", "success");
     setStep(5);
   };
 
@@ -379,10 +366,10 @@ const VisaApplicationForm = () => {
           {step === 2 && (
             <Step2Traveller
               travellerData={travellerData}
-              updateTravellerField={(i, f, v) =>
+              updateTravellerField={(i, field, value) =>
                 setTravellerData((prev) => {
                   const upd = [...prev];
-                  upd[i][f] = v;
+                  upd[i][field] = value;
                   return upd;
                 })
               }

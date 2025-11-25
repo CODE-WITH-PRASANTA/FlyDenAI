@@ -1,23 +1,28 @@
-// models/VisaApplication.js
 const mongoose = require("mongoose");
+
+// Generate readable application ID
+function generateApplicationId() {
+  const year = new Date().getFullYear();
+  const random = Math.floor(100000 + Math.random() * 900000);
+  return `FlyDen-${year}-${random}`;
+}
 
 const FileSchema = new mongoose.Schema({
   fieldname: String,
   originalName: String,
   filename: String,
   path: String,
-  url: String, // e.g. /uploads/xxx.webp
+  url: String,
 });
 
 const TravellerSchema = new mongoose.Schema({
-  title: { type: String },
-  firstName: { type: String },
-  lastName: { type: String },
-  dob: { type: String },
-  nationality: { type: String },
-  passportNo: { type: String },
-  contactNumber: { type: String },
-  // store files related to this traveller (passportCopy, photo)
+  title: String,
+  firstName: String,
+  lastName: String,
+  dob: String,
+  nationality: String,
+  passportNo: String,
+  contactNumber: String,
   files: {
     passportCopy: { type: FileSchema, default: null },
     photo: { type: FileSchema, default: null },
@@ -25,59 +30,52 @@ const TravellerSchema = new mongoose.Schema({
 });
 
 const PaymentSchema = new mongoose.Schema({
-  amount: { type: Number, default: 0 }, // in rupees
+  amount: { type: Number, default: 0 },
   currency: { type: String, default: "INR" },
-  merchantOrderId: { type: String }, // your generated order id
-  transactionId: { type: String }, // payment provider txn id
+  merchantOrderId: String,
+  transactionId: String,
   status: { type: String, enum: ["PENDING", "SUCCESS", "FAILED"], default: "PENDING" },
-  rawResponse: { type: Object }, // store phonepe raw response if desired
-  updatedAt: { type: Date },
+  rawResponse: Object,
+  updatedAt: Date,
 });
 
 const VisaApplicationSchema = new mongoose.Schema(
   {
-    // reference to which visa listing (frontend passed id)
+    applicationId: { type: String, unique: true, required: true }, // ⭐ Custom ID
+
     visaId: { type: String, required: true },
-    visaType: { type: String },
+    visaType: String,
 
-    // traveler count & details
-    travellersCount: { type: Number, default: 1 },
-    travellers: { type: [TravellerSchema], default: [] },
+    travellersCount: Number,
+    travellers: [TravellerSchema],
 
-    // itinerary / dates
-    onwardDate: { type: String },
-    returnDate: { type: String },
+    onwardDate: String,
+    returnDate: String,
 
-    // global documents uploaded at step 4
     globalDocs: {
-      passportCopy: { type: FileSchema, default: null },
-      photo: { type: FileSchema, default: null },
-      travelItinerary: { type: FileSchema, default: null },
-      additionalDocument: { type: FileSchema, default: null },
+      passportCopy: FileSchema,
+      photo: FileSchema,
+      travelItinerary: FileSchema,
+      additionalDocument: FileSchema,
     },
 
-    // coupon / discounts
-    couponCode: { type: String },
-    discountPercent: { type: Number, default: 0 },
+    couponCode: String,
+    discountPercent: Number,
 
-    // pricing & breakdown
-    baseFare: { type: Number, default: 0 },
-    taxAmount: { type: Number, default: 0 },
-    serviceCharge: { type: Number, default: 0 },
-    discountAmount: { type: Number, default: 0 },
-    totalPayable: { type: Number, default: 0 },
+    baseFare: Number,
+    taxAmount: Number,
+    serviceCharge: Number,
+    discountAmount: Number,
+    totalPayable: Number,
 
-    // payment block
-    payment: { type: PaymentSchema },
+    payment: PaymentSchema,
 
-    // application state: INITIATED -> PAYMENT_PENDING -> DOCUMENTS_UPLOADED -> COMPLETED
     status: {
       type: String,
       enum: ["INITIATED", "PAYMENT_PENDING", "DOCUMENTS_UPLOADED", "COMPLETED", "CANCELLED"],
       default: "INITIATED",
     },
 
-    // metadata
     createdByIp: String,
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
@@ -85,7 +83,15 @@ const VisaApplicationSchema = new mongoose.Schema(
   { strict: false }
 );
 
-// update updatedAt
+// Auto-generate readable application ID
+VisaApplicationSchema.pre("validate", function (next) {
+  if (!this.applicationId) {
+    this.applicationId = generateApplicationId();
+  }
+  next();
+});
+
+// Auto update timestamp
 VisaApplicationSchema.pre("save", function (next) {
   this.updatedAt = Date.now();
   next();

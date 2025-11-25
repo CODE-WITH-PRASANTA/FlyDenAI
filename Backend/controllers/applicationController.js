@@ -1,190 +1,166 @@
-// controllers/applicationController.js
 const VisaApplication = require("../models/VisaApplication");
-const path = require("path");
 
-// helper to build file metadata object
-const buildFileObject = (file, req) => {
+// helper to build file metadata
+const buildFileObject = (file) => {
   if (!file) return null;
-  const url = `/uploads/${file.filename}`; // served statically from server
   return {
     fieldname: file.fieldname,
     originalName: file.originalname,
     filename: file.filename,
     path: file.path,
-    url,
+    url: `/uploads/${file.filename}`,
   };
 };
 
 /**
- * POST /api/applications
- * Create a new application record from JSON payload (no files).
- * Frontend should create application before initiating payment.
- * Body expected: {
- *   visaId, visaType, travellersCount, travellers: [{title,firstName,...}], onwardDate, returnDate, pricing...
- * }
+ * Create application before payment
  */
 exports.createApplication = async (req, res) => {
   try {
-    const payload = req.body || {};
-    // parse numeric fields if they arrive as strings
-    if (payload.travellersCount) payload.travellersCount = Number(payload.travellersCount);
+    const payload = req.body;
 
     const app = new VisaApplication({
+      applicationId: undefined, // triggers auto-generate
       visaId: payload.visaId,
       visaType: payload.visaType,
-      travellersCount: payload.travellersCount || (payload.travellers ? payload.travellers.length : 1),
-      travellers: payload.travellers || [],
+      travellersCount: payload.travellersCount,
+      travellers: payload.travellers,
       onwardDate: payload.onwardDate,
       returnDate: payload.returnDate,
       couponCode: payload.couponCode,
-      discountPercent: payload.discountPercent || 0,
-      baseFare: payload.baseFare || 0,
-      taxAmount: payload.taxAmount || 0,
-      serviceCharge: payload.serviceCharge || 0,
-      discountAmount: payload.discountAmount || 0,
-      totalPayable: payload.totalPayable || 0,
-      // payment will be updated later
+      discountPercent: payload.discountPercent,
+      baseFare: payload.baseFare,
+      taxAmount: payload.taxAmount,
+      serviceCharge: payload.serviceCharge,
+      discountAmount: payload.discountAmount,
+      totalPayable: payload.totalPayable,
+
       payment: {
-        amount: payload.totalPayable || 0,
+        amount: payload.totalPayable,
         status: "PENDING",
       },
+
       status: "PAYMENT_PENDING",
       createdByIp: req.ip,
     });
 
     await app.save();
 
-    return res.json({ success: true, applicationId: app._id, data: app });
+    return res.json({
+      success: true,
+      applicationId: app.applicationId,
+      data: app,
+    });
   } catch (err) {
-    console.error("createApplication error:", err);
-    return res.status(500).json({ success: false, message: "Failed to create application", error: err.message });
+    console.error(err);
+    return res.status(500).json({ success: false, message: err.message });
   }
 };
 
 /**
- * POST /api/applications/:id/upload
- * Accepts multipart/form-data for traveller files and global docs.
- *
- * Expectation:
- * - A text field 'data' containing JSON string with optional travellers metadata.
- * - Files named in this convention:
- *    traveller_0_passportCopy, traveller_0_photo,
- *    traveller_1_passportCopy, traveller_1_photo, ...
- *    global_passportCopy, global_photo, travelItinerary, additionalDocument
- *
- * The route will map uploaded files into the respective traveller/global slots.
+ * Upload Docs
  */
 exports.uploadFiles = async (req, res) => {
   try {
     const { id } = req.params;
-    const app = await VisaApplication.findById(id);
+
+    const app = await VisaApplication.findOne({ applicationId: id });
     if (!app) return res.status(404).json({ success: false, message: "Application not found" });
 
-    // optional JSON data (e.g., updated traveller fields)
     let jsonData = {};
-    if (req.body?.data) {
+    if (req.body.data) {
       try {
         jsonData = JSON.parse(req.body.data);
-      } catch (e) {
-        // ignore parse errors; we continue with files only
-      }
+      } catch {}
     }
 
-    // map req.files into application model
-    // req.files is an object: { fieldname: [fileObj, ...], ... } (because upload.fields used)
-    const filesObj = req.files || {};
+    const files = req.files || {};
 
-    // helper to pick file by name
-    const getFirstFile = (field) => {
-      const arr = filesObj[field];
-      return Array.isArray(arr) && arr.length > 0 ? arr[0] : null;
-    };
+    // Helper
+    const get = (f) => (files[f] && files[f][0] ? files[f][0] : null);
 
-    // update travellers files
-    for (let i = 0; i < (app.travellers.length || 0); i++) {
-      // if frontend sent updated traveller data in request.data, merge it
+    // Update travellers files
+    for (let i = 0; i < app.travellers.length; i++) {
       if (jsonData.travellers && jsonData.travellers[i]) {
         app.travellers[i] = { ...app.travellers[i]._doc, ...jsonData.travellers[i] };
       }
 
-      const passportFile = getFirstFile(`traveller_${i}_passportCopy`);
-      const photoFile = getFirstFile(`traveller_${i}_photo`);
+      const pass = get(`traveller_${i}_passportCopy`);
+      const photo = get(`traveller_${i}_photo`);
 
-      if (passportFile) app.travellers[i].files.passportCopy = buildFileObject(passportFile, req);
-      if (photoFile) app.travellers[i].files.photo = buildFileObject(photoFile, req);
+      if (pass) app.travellers[i].files.passportCopy = buildFileObject(pass);
+      if (photo) app.travellers[i].files.photo = buildFileObject(photo);
     }
 
-    // Global docs
-    const g_passport = getFirstFile("global_passportCopy");
-    const g_photo = getFirstFile("global_photo");
-    const g_itinerary = getFirstFile("travelItinerary");
-    const g_add = getFirstFile("additionalDocument");
+    // Global Docs
+    if (get("global_passportCopy"))
+      app.globalDocs.passportCopy = buildFileObject(get("global_passportCopy"));
 
-    if (g_passport) app.globalDocs.passportCopy = buildFileObject(g_passport, req);
-    if (g_photo) app.globalDocs.photo = buildFileObject(g_photo, req);
-    if (g_itinerary) app.globalDocs.travelItinerary = buildFileObject(g_itinerary, req);
-    if (g_add) app.globalDocs.additionalDocument = buildFileObject(g_add, req);
+    if (get("global_photo"))
+      app.globalDocs.photo = buildFileObject(get("global_photo"));
 
-    // If frontend indicates documents uploaded, update status
+    if (get("travelItinerary"))
+      app.globalDocs.travelItinerary = buildFileObject(get("travelItinerary"));
+
+    if (get("additionalDocument"))
+      app.globalDocs.additionalDocument = buildFileObject(get("additionalDocument"));
+
     app.status = "DOCUMENTS_UPLOADED";
     await app.save();
 
-    return res.json({ success: true, message: "Files uploaded and application updated", data: app });
+    return res.json({ success: true, data: app });
   } catch (err) {
-    console.error("uploadFiles error:", err);
-    return res.status(500).json({ success: false, message: "Failed to upload files", error: err.message });
+    console.error(err);
+    return res.status(500).json({ success: false, message: err.message });
   }
 };
 
 /**
- * PUT /api/applications/:id/payment
- * Update payment details after successful payment (frontend or webhook can call)
- * body: { merchantOrderId, transactionId, status, rawResponse }
+ * Update Payment Status
  */
 exports.updatePayment = async (req, res) => {
   try {
     const { id } = req.params;
-    const { merchantOrderId, transactionId, status, rawResponse } = req.body;
 
-    const app = await VisaApplication.findById(id);
+    const app = await VisaApplication.findOne({ applicationId: id });
     if (!app) return res.status(404).json({ success: false, message: "Application not found" });
+
+    const { merchantOrderId, transactionId, status, rawResponse } = req.body;
 
     app.payment = {
       ...app.payment,
-      merchantOrderId: merchantOrderId || app.payment.merchantOrderId,
-      transactionId: transactionId || app.payment.transactionId,
-      status: status || app.payment.status,
-      rawResponse: rawResponse || app.payment.rawResponse,
+      merchantOrderId,
+      transactionId,
+      status,
+      rawResponse,
       updatedAt: new Date(),
     };
 
-    // If payment success and docs already uploaded -> finalize
-    if (app.payment.status === "SUCCESS") {
-      // if docs already uploaded - mark completed, else PAYMENT_PENDING until docs uploaded
+    if (status === "SUCCESS") {
       app.status = app.status === "DOCUMENTS_UPLOADED" ? "COMPLETED" : "PAYMENT_PENDING";
-    } else if (app.payment.status === "FAILED") {
+    } else if (status === "FAILED") {
       app.status = "CANCELLED";
     }
 
     await app.save();
-    return res.json({ success: true, message: "Payment updated", data: app });
+    return res.json({ success: true, data: app });
   } catch (err) {
-    console.error("updatePayment error:", err);
-    return res.status(500).json({ success: false, message: "Failed to update payment", error: err.message });
+    console.error(err);
+    return res.status(500).json({ success: false, message: err.message });
   }
 };
 
 /**
- * GET /api/applications/:id
+ * Get Application
  */
 exports.getApplication = async (req, res) => {
   try {
     const { id } = req.params;
-    const app = await VisaApplication.findById(id);
+    const app = await VisaApplication.findOne({ applicationId: id });
     if (!app) return res.status(404).json({ success: false, message: "Application not found" });
+
     return res.json({ success: true, data: app });
   } catch (err) {
-    console.error("getApplication error:", err);
-    return res.status(500).json({ success: false, message: "Failed to fetch application", error: err.message });
+    return res.status(500).json({ success: false, message: err.message });
   }
 };
