@@ -133,29 +133,29 @@ const Step2Traveller = ({
                     Passport Copy
                   </label>
                   <input
-                    className="VisaApplicationForm__file"
-                    type="file"
-                    accept="image/*,.pdf"
-                    onChange={(e) =>
-                      handleTravellerFile(
-                        idx,
-                        "passportCopy",
-                        e.target.files?.[0]
-                      )
-                    }
-                  />
+                      className="VisaApplicationForm__file"
+                      type="file"
+                      accept="image/*,.pdf"
+                      name={`traveller_${idx}_passportCopy`}   // ✅ REQUIRED
+                      onChange={(e) =>
+                        handleTravellerFile(idx, "passportCopy", e.target.files?.[0])
+                      }
+                    />
+
                 </div>
 
                 <div className="VisaApplicationForm__form-group VisaApplicationForm__form-group--file">
                   <label className="VisaApplicationForm__label">Photo</label>
                   <input
-                    className="VisaApplicationForm__file"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) =>
-                      handleTravellerFile(idx, "photo", e.target.files?.[0])
-                    }
-                  />
+                      className="VisaApplicationForm__file"
+                      type="file"
+                      accept="image/*"
+                      name={`traveller_${idx}_photo`}   // ✅ REQUIRED
+                      onChange={(e) =>
+                        handleTravellerFile(idx, "photo", e.target.files?.[0])
+                      }
+                    />
+
                 </div>
               </div>
             </div>

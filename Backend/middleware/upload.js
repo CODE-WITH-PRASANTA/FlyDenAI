@@ -27,46 +27,28 @@ const upload = multer({ storage });
 // ✅ Convert uploaded image(s) to WebP (skip if already .webp)
 const convertToWebp = async (req, res, next) => {
   try {
-    // SINGLE upload case
-    if (req.file) {
-      const inputPath = path.join(uploadDir, req.file.filename);
-      const ext = path.extname(req.file.filename).toLowerCase();
+    if (!req.files || req.files.length === 0) return next();
 
-      // ⛔ Skip conversion if already WebP
-      if (ext === ".webp") {
-        return next();
-      }
+    for (const file of req.files) {
+      const ext = path.extname(file.originalname).toLowerCase();
 
-      const outputFilename = `${path.parse(req.file.filename).name}.webp`;
+      // Skip PDFs
+      if (ext === ".pdf" || file.mimetype === "application/pdf") continue;
+
+      const inputPath = file.path;
+      const outputFilename = `${path.parse(file.filename).name}.webp`;
       const outputPath = path.join(uploadDir, outputFilename);
 
       await sharp(inputPath).webp({ quality: 80 }).toFile(outputPath);
-      await fs.remove(inputPath); // delete old file
+      await fs.remove(inputPath);
 
-      req.file.filename = outputFilename;
-      req.file.path = outputPath;
-    }
+      file.filename = outputFilename;
+      file.path = outputPath;
+      file.originalname = outputFilename;
+      file.mimetype = "image/webp";
 
-    // MULTIPLE upload case
-    if (req.files && Object.keys(req.files).length > 0) {
-      for (const field in req.files) {
-        for (const file of req.files[field]) {
-          const inputPath = path.join(uploadDir, file.filename);
-          const ext = path.extname(file.filename).toLowerCase();
-
-          // ⛔ Skip conversion if already WebP
-          if (ext === ".webp") continue;
-
-          const outputFilename = `${path.parse(file.filename).name}.webp`;
-          const outputPath = path.join(uploadDir, outputFilename);
-
-          await sharp(inputPath).webp({ quality: 80 }).toFile(outputPath);
-          await fs.remove(inputPath);
-
-          file.filename = outputFilename;
-          file.path = outputPath;
-        }
-      }
+      const stat = await fs.stat(outputPath);
+      file.size = stat.size;
     }
 
     next();
@@ -75,5 +57,9 @@ const convertToWebp = async (req, res, next) => {
     next(err);
   }
 };
+
+
+
+
 
 module.exports = { upload, convertToWebp };
