@@ -95,11 +95,18 @@ exports.uploadGlobalDocs = async (req, res) => {
     const app = await VisaApplication.findOne({ applicationId: req.params.id });
 
     for (let key in req.files) {
-      app.globalFiles[key] = {
-        ...req.files[key][0],
-        url: `/uploads/${req.files[key][0].filename}`,
-      };
+        const file = req.files[key][0];
+
+        app.globalFiles[key] = {
+          fieldname: file.fieldname,
+          filename: file.filename,
+          path: file.path,
+          url: `/uploads/${file.filename}`,
+          size: file.size,
+          mimeType: file.mimetype,
+        };
     }
+
 
     app.stepCompleted = 4;
     await app.save();

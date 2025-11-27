@@ -190,7 +190,7 @@ const VisaApplicationForm = () => {
           Swal.fire("Payment Successful!", "", "success");
 
           window.history.replaceState({}, "", window.location.pathname);
-          return setStep(5);
+          return setStep(4);
         }
 
         Swal.fire("Payment Pending", "", "info");
@@ -308,30 +308,31 @@ const VisaApplicationForm = () => {
   };
 
   // ---------------- STEP 4 → GLOBAL DOCS UPLOAD ----------------
-  const handleSubmitApplication = async () => {
-    try {
-      const appId = localStorage.getItem("applicationId");
+const handleSubmitApplication = async () => {
+  try {
+    const appId = localStorage.getItem("applicationId");
 
-      const form = new FormData();
-      Object.keys(globalFiles).forEach((key) => {
-        form.append(key, globalFiles[key]);
-      });
+    const form = new FormData();
+    Object.keys(globalFiles).forEach((key) => {
+      form.append(key, globalFiles[key]);
+    });
 
-      const res = await fetch(
-        `${BASE_URL}/applications/${appId}/global-docs`,
-        {
-          method: "PUT",
-          body: form,
-        }
-      );
+    const res = await fetch(`${BASE_URL}/applications/${appId}/global-docs`, {
+      method: "PUT",
+      body: form,
+    });
 
-      const data = await res.json();
-      if (data.success) next();
-      else Swal.fire("Document Upload Failed", "", "error");
-    } catch (err) {
-      Swal.fire("Server Error", err.message, "error");
+    const data = await res.json();
+    if (data.success) {
+      setStep(5); // <-- final success
+    } else {
+      Swal.fire("Document Upload Failed", "", "error");
     }
-  };
+  } catch (err) {
+    Swal.fire("Server Error", err.message, "error");
+  }
+};
+
 
   // ---------------- RENDER UI ----------------
   return (
