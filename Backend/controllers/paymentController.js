@@ -1,6 +1,8 @@
 // controllers/paymentController.js
 const axios = require("axios");
 const qs = require("querystring");
+const VisaApplication = require("../models/VisaApplication");
+
 
 const {
   PHONEPE_CLIENT_ID,
@@ -139,11 +141,11 @@ function normalizePhonePeState(rawState) {
  */
 exports.verifyOrder = async (req, res) => {
   try {
-    const { merchantOrderId } = req.query;
-    if (!merchantOrderId)
-      return res
-        .status(400)
-        .json({ success: false, message: "merchantOrderId required" });
+    const { merchantOrderId, applicationId } = req.query;
+
+    if (!merchantOrderId) {
+      return res.status(400).json({ success: false, message: "merchantOrderId required" });
+    }
 
     const token = await getPhonePeAuthToken();
 
@@ -161,25 +163,37 @@ exports.verifyOrder = async (req, res) => {
 
     const data = statusRes.data;
 
-    // PhonePe raw state
+    // RAW PhonePe state
     const rawState =
       data?.state || data?.data?.state || data?.orderStatus || null;
 
     const paymentStatus = normalizePhonePeState(rawState);
 
-    // ⭐ FIX 3 — ALWAYS ENSURE transactionId IS AVAILABLE
+    // transactionId
     const transactionId =
       data?.transactionId ||
       data?.data?.transactionId ||
       data?.orderId ||
-      merchantOrderId; // fallback → guaranteed
+      merchantOrderId;
+
+    // ⭐ IMPORTANT: UPDATE DATABASE
+    if (applicationId) {
+      await VisaApplication.findOneAndUpdate(
+        { applicationId },
+        {
+          paymentStatus,
+          transactionId,
+          stepCompleted: paymentStatus === "SUCCESS" ? 3 : 2,
+        }
+      );
+    }
 
     return res.json({
       success: true,
       paymentStatus,
       rawState,
-      transactionId, // ⭐ FRONTEND WILL USE THIS
-      data, // full PhonePe response
+      transactionId,
+      data,
     });
   } catch (err) {
     console.error("verifyOrder error:", err.response?.data || err.message);
@@ -190,6 +204,7 @@ exports.verifyOrder = async (req, res) => {
     });
   }
 };
+
 
 /**
  * POST /payment/webhook

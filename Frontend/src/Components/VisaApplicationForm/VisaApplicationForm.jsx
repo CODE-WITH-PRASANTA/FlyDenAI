@@ -158,50 +158,55 @@ const VisaApplicationForm = () => {
   };
 
   // ---------------- VERIFY PAYMENT AFTER REDIRECT ----------------
-  useEffect(() => {
-    const merchantOrderId = new URLSearchParams(
-      window.location.search
-    ).get("merchantOrderId");
+ useEffect(() => {
+  const merchantOrderId = new URLSearchParams(
+    window.location.search
+  ).get("merchantOrderId");
 
-    if (!merchantOrderId) return;
+  if (!merchantOrderId) return;
 
-    Swal.fire({
-      title: "Verifying Payment...",
-      didOpen: () => Swal.showLoading(),
-    });
+  Swal.fire({
+    title: "Verifying Payment...",
+    didOpen: () => Swal.showLoading(),
+  });
 
-    const verify = async () => {
-      try {
-        const res = await fetch(
-          `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}`
-        );
-        const data = await res.json();
+  const verify = async () => {
+    try {
+      const appId = localStorage.getItem("applicationId");
 
-        Swal.close();
+      const res = await fetch(
+        `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}&applicationId=${appId}`
+      );
 
-        if (!data.success) {
-          setPaymentStatus("FAILED");
-          Swal.fire("Payment Verification Failed", "", "error");
-          return setStep(3);
-        }
+      const data = await res.json();
 
-        if (data.paymentStatus === "SUCCESS") {
-          setPaymentStatus("SUCCESS");
-          Swal.fire("Payment Successful!", "", "success");
+      Swal.close();
 
-          window.history.replaceState({}, "", window.location.pathname);
-          return setStep(4);
-        }
-
-        Swal.fire("Payment Pending", "", "info");
-        setStep(3);
-      } catch (err) {
-        Swal.fire("Verification Error", "", "error");
+      if (!data.success) {
+        setPaymentStatus("FAILED");
+        Swal.fire("Payment Verification Failed", "", "error");
+        return setStep(3);
       }
-    };
 
-    verify();
+      if (data.paymentStatus === "SUCCESS") {
+        setPaymentStatus("SUCCESS");
+        Swal.fire("Payment Successful!", "", "success");
+
+        window.history.replaceState({}, "", window.location.pathname);
+        return setStep(4);
+      }
+
+      Swal.fire("Payment Pending", "", "info");
+      setStep(3);
+
+    } catch (err) {
+      Swal.fire("Verification Error", "", "error");
+    }
+  };
+
+  verify();
   }, []);
+
 
   // ---------------- INITIATE PAYMENT (FINAL) ----------------
   const handlePayment = async () => {
