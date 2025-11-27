@@ -7,59 +7,28 @@ const Step3Payment = ({
   handlePrev,
   paymentStatus,
   isInitiatingPayment,
+  handleNext, // in case you want a "Save & Pay" flow
 }) => {
   return (
     <section className="VisaApplicationForm__step VisaApplicationForm__step--payment">
       <div className="VisaApplicationForm__section-head">
         <h3 className="VisaApplicationForm__title">Secure Payment via PhonePe</h3>
-        <p className="VisaApplicationForm__subtitle">
-          You will be redirected to PhonePe to complete your UPI payment.
-        </p>
+        <p className="VisaApplicationForm__subtitle">You will be redirected to complete payment.</p>
       </div>
 
-      {/* Payment Status Messages */}
       <div style={{ marginBottom: "15px" }}>
         {paymentStatus === "SUCCESS" && (
-          <div
-            style={{
-              background: "#e6ffef",
-              padding: "12px",
-              borderRadius: "6px",
-              color: "#0f7a35",
-              marginBottom: "10px",
-              fontWeight: "600",
-            }}
-          >
+          <div style={{ background: "#e6ffef", padding: "12px", borderRadius: "6px", color: "#0f7a35", marginBottom: "10px", fontWeight: 600 }}>
             ✅ Payment Completed Successfully!
           </div>
         )}
-
         {paymentStatus === "FAILED" && (
-          <div
-            style={{
-              background: "#ffe8e8",
-              padding: "12px",
-              borderRadius: "6px",
-              color: "#a12626",
-              marginBottom: "10px",
-              fontWeight: "600",
-            }}
-          >
+          <div style={{ background: "#ffe8e8", padding: "12px", borderRadius: "6px", color: "#a12626", marginBottom: "10px", fontWeight: 600 }}>
             ❌ Payment Failed. Please try again.
           </div>
         )}
-
         {paymentStatus === "PENDING" && (
-          <div
-            style={{
-              background: "#fff8e1",
-              padding: "12px",
-              borderRadius: "6px",
-              color: "#7f6000",
-              marginBottom: "10px",
-              fontWeight: "600",
-            }}
-          >
+          <div style={{ background: "#fff8e1", padding: "12px", borderRadius: "6px", color: "#7f6000", marginBottom: "10px", fontWeight: 600 }}>
             ⚠ Payment Pending. Please complete the payment.
           </div>
         )}
@@ -82,20 +51,13 @@ const Step3Payment = ({
               ? "Already Paid"
               : isInitiatingPayment
               ? "Processing..."
-              : (
-                  <>
-                    Pay Now <FaArrowRight />
-                  </>
-                )}
+              : <>Pay Now <FaArrowRight /></>}
           </button>
         </div>
       </div>
 
       <div className="VisaApplicationForm__actions">
-        <button
-          className="VisaApplicationForm__btn VisaApplicationForm__btn--outline"
-          onClick={handlePrev}
-        >
+        <button className="VisaApplicationForm__btn VisaApplicationForm__btn--outline" onClick={handlePrev}>
           Back
         </button>
       </div>

@@ -1,4 +1,5 @@
 // src/components/VisaApplicationForm/VisaApplicationForm.jsx
+
 import React, { useState, useEffect } from "react";
 import "./VisaApplicationForm.css";
 import Swal from "sweetalert2";
@@ -12,10 +13,12 @@ import Step4UploadDocs from "./Steps/Step4UploadDocs";
 import Step5Success from "./Steps/Step5Success";
 import SummarySidebar from "./SummarySidebar";
 
+// DEFAULT CONSTANTS
 const DEFAULT_PRICE_PER_TRAVELLER = 748;
 export const SERVICE_CHARGE = 1;
 export const TAX_RATE = 0.0;
 
+// TRAVELLER DEFAULT STRUCTURE
 const emptyTraveller = () => ({
   title: "Mr",
   firstName: "",
@@ -24,85 +27,58 @@ const emptyTraveller = () => ({
   nationality: "Indian",
   passportNo: "",
   contactNumber: "",
-  files: {
-    passportCopy: null,
-    photo: null,
-  },
+  files: { passportCopy: null, photo: null },
 });
 
 const VisaApplicationForm = () => {
   const { id } = useParams();
   const location = useLocation();
-
   const userRequest = location.state || {};
+
   const { selectedType, travellers: selectedTravellers } = userRequest;
 
-  // ⭐ Custom Application ID (FlyDen-2025-xxxxx)
-  const [applicationId, setApplicationId] = useState(null);
-
+  // ---------------- LOCAL STATE ----------------
   const [step, setStep] = useState(1);
   const [visaTypes, setVisaTypes] = useState([]);
   const [selectedVisaTypeIndex, setSelectedVisaTypeIndex] = useState(0);
   const [visaType, setVisaType] = useState("");
-
   const [travellers, setTravellers] = useState(1);
-
   const [onwardDate, setOnwardDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
 
   const [travellerData, setTravellerData] = useState([emptyTraveller()]);
+  const [globalFiles, setGlobalFiles] = useState({});
 
   const [couponCode, setCouponCode] = useState("");
   const [discountPercent, setDiscountPercent] = useState(0);
   const [appliedCoupon, setAppliedCoupon] = useState(null);
-
   const [showCouponInput, setShowCouponInput] = useState(false);
-  const [isInitiatingPayment, setIsInitiatingPayment] = useState(false);
 
+  const [isInitiatingPayment] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("PENDING");
 
-  const [globalDocs, setGlobalDocs] = useState({
-    passportCopy: null,
-    photo: null,
-    travelItinerary: null,
-    additionalDocument: null,
-  });
-
- useEffect(() => {
-  const merchantOrderId = new URLSearchParams(window.location.search).get(
-    "merchantOrderId"
-  );
-
-  if (merchantOrderId) {
-    // 🔥 Returning from payment → need applicationId for verification
-    const stored = localStorage.getItem("applicationId");
-    if (stored) setApplicationId(stored);
-  } else {
-    // 🔥 Starting a new application → clear previous ID
-    localStorage.removeItem("applicationId");
-    setApplicationId(null);
-  }
-}, []);
-
-
-  // Load Visa Types
+  // ---------------- LOAD VISA TYPES ----------------
   useEffect(() => {
     const load = async () => {
       try {
         const res = await fetch(`${BASE_URL}/visas/published/${id}`);
         const data = await res.json();
-        if (data.success) setVisaTypes(data.data?.visaTypes || []);
+        if (data.success) {
+          setVisaTypes(data.data?.visaTypes || []);
+        }
       } catch (err) {
-        console.error("Error loading visa types", err);
+        console.error("load visa types err:", err);
       }
     };
     load();
   }, [id]);
 
+  // PREFILL TRAVELLERS COUNT FROM HOME PAGE
   useEffect(() => {
     if (selectedTravellers) setTravellers(selectedTravellers);
   }, [selectedTravellers]);
 
+  // PREFILL VISA TYPE
   useEffect(() => {
     if (visaTypes.length > 0) {
       if (selectedType) {
@@ -117,31 +93,23 @@ const VisaApplicationForm = () => {
     }
   }, [visaTypes, selectedType]);
 
-  // Sync Traveller Count
-    useEffect(() => {
-      setTravellerData((prev) => {
-        // if same count, DO NOTHING — keep existing files
-        if (prev.length === travellers) return prev;
+  // UPDATE TRAVELLER ARRAY LENGTH
+  useEffect(() => {
+    setTravellerData((prev) => {
+      if (prev.length < travellers) {
+        return [
+          ...prev,
+          ...Array.from({ length: travellers - prev.length }, () =>
+            emptyTraveller()
+          ),
+        ];
+      }
+      if (prev.length > travellers) return prev.slice(0, travellers);
+      return prev;
+    });
+  }, [travellers]);
 
-        let arr = [...prev];
-
-        if (travellers > prev.length) {
-          for (let i = prev.length; i < travellers; i++) {
-            arr.push(emptyTraveller());
-          }
-        } 
-        
-        if (travellers < prev.length) {
-          arr = arr.slice(0, travellers);
-        }
-
-        return arr;
-      });
-    }, [travellers]);
-
-
-
-  // Pricing
+  // ---------------- PRICING ----------------
   const pricePerTraveller =
     Number(visaTypes[selectedVisaTypeIndex]?.fees?.replace(/[^\d]/g, "")) ||
     DEFAULT_PRICE_PER_TRAVELLER;
@@ -149,207 +117,14 @@ const VisaApplicationForm = () => {
   const baseFare = travellers * pricePerTraveller;
   const taxAmount = Math.round(baseFare * TAX_RATE);
   const discountAmount = Math.round((baseFare * discountPercent) / 100);
+  const totalPayable =
+    baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
 
-  const totalPayable = baseFare + SERVICE_CHARGE + taxAmount - discountAmount;
-
-  // -------------- Backend integration helpers ----------------
-
-  // Create application on server
-  const createApplicationOnServer = async (overrides = {}) => {
-    try {
-      const payload = {
-        visaId: id || null,
-        visaType: visaType || "",
-        travellers: travellers || 1,
-        meta: {
-          onwardDate,
-          returnDate,
-          ...overrides,
-        },
-      };
-
-      const res = await fetch(`${BASE_URL}/applications/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      const data = await res.json();
-      if (!data.success) throw new Error(data.message || "Failed to create application");
-
-      // store app id
-      const appId = data.applicationId || data.data?.applicationId || data.data?._id;
-      if (appId) {
-        setApplicationId(appId);
-        localStorage.setItem("applicationId", appId);
-      }
-      return { success: true, appId, data: data.data || null };
-    } catch (err) {
-      console.error("createApplicationOnServer error:", err);
-      return { success: false, message: err.message || "Server error" };
-    }
-  };
-
-  // Update step data (text fields) on server
-  const saveStepToServer = async (appId, stepNumber, data) => {
-    if (!appId) return { success: false, message: "Missing applicationId" };
-    try {
-      const res = await fetch(`${BASE_URL}/applications/${appId}/step`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ step: stepNumber, data }),
-      });
-      const resp = await res.json();
-      if (!resp.success) throw new Error(resp.message || "Failed to save step");
-      return { success: true, data: resp.data };
-    } catch (err) {
-      console.error("saveStepToServer error:", err);
-      return { success: false, message: err.message || "Server error" };
-    }
-  };
-
-  // Ensure application exists (create if missing). Returns applicationId on success.
-  const ensureApplicationExists = async () => {
-    if (applicationId) return applicationId;
-    const result = await createApplicationOnServer();
-    if (result.success) return result.appId;
-    throw new Error(result.message || "Unable to create application");
-  };
-
-  // ---------------- Auto verified payment — only after applicationId is available ------------
-  useEffect(() => {
-    if (!applicationId) return;
-
-    const merchantOrderId = new URLSearchParams(window.location.search).get(
-      "merchantOrderId"
-    );
-    if (!merchantOrderId) return;
-
-    Swal.fire({ title: "Verifying Payment...", didOpen: () => Swal.showLoading() });
-
-    const verifyPayment = async () => {
-      try {
-        const res = await fetch(
-          `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}`
-        );
-
-        const data = await res.json();
-        Swal.close();
-
-        if (!data.success) {
-          setPaymentStatus("FAILED");
-          Swal.fire("Verification Failed", "", "error");
-          setStep(3);
-          return;
-        }
-
-        const status = data.paymentStatus;
-
-        if (status === "SUCCESS") {
-          setPaymentStatus("SUCCESS");
-
-          await fetch(`${BASE_URL}/applications/${applicationId}/payment`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              merchantOrderId,
-              status: "SUCCESS",
-              transactionId: data?.data?.transactionId || "",
-              rawResponse: data,
-            }),
-          });
-
-          Swal.fire({
-            title: "Payment Successful!",
-            icon: "success",
-            timer: 1000,
-            showConfirmButton: false,
-          });
-
-          window.history.replaceState({}, "", window.location.pathname);
-          setTimeout(() => setStep(4), 800);
-          return;
-        }
-
-        if (status === "PENDING") {
-          setPaymentStatus("PENDING");
-          Swal.fire("Payment Pending", "", "info");
-        } else {
-          setPaymentStatus("FAILED");
-          Swal.fire("Payment Failed", "", "error");
-        }
-
-        setStep(3);
-      } catch (err) {
-        Swal.close();
-        setPaymentStatus("FAILED");
-        Swal.fire("Error verifying payment", "", "error");
-        setStep(3);
-      }
-    };
-
-    verifyPayment();
-  }, [applicationId]);
-
-  // ----------------- HANDLE PAYMENT INIT -------------------------
-  const handlePayment = async () => {
-    if (paymentStatus === "SUCCESS") return;
-
-    try {
-      setIsInitiatingPayment(true);
-      Swal.fire({
-        title: "Initiating Payment...",
-        didOpen: () => Swal.showLoading(),
-      });
-
-      // Ensure app exists before creating payment order, and include applicationId in meta
-      let appId = applicationId;
-      if (!appId) {
-        const created = await createApplicationOnServer({
-          createdFrom: "frontend_initiate_payment",
-        });
-        if (!created.success) {
-          Swal.close();
-          setIsInitiatingPayment(false);
-          return Swal.fire("Could not create application", created.message || "", "error");
-        }
-        appId = created.appId;
-      }
-
-      const res = await fetch(`${BASE_URL}/payment/create-order`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: totalPayable,
-          visaId: id,
-          meta: {
-            visaType,
-            travellers,
-            applicationId: appId, // include so backend/payment provider can map
-          },
-        }),
-      });
-
-      const data = await res.json();
-      Swal.close();
-      setIsInitiatingPayment(false);
-
-      if (data.success && data.redirectUrl) {
-        // redirect to payment provider
-        window.location.href = data.redirectUrl;
-      } else {
-        Swal.fire("Could not initiate payment", data.message || "", "error");
-      }
-    } catch (err) {
-      Swal.close();
-      setIsInitiatingPayment(false);
-      console.error("handlePayment error:", err);
-      Swal.fire("Server error initiating payment", "", "error");
-    }
-  };
-
-  // ----------------- APPLY COUPON ---------------------------
+  // ---------------- APPLY COUPON ----------------
   const applyCoupon = async () => {
-    if (!couponCode) return Swal.fire("Enter a coupon!", "", "warning");
+    if (!couponCode)
+      return Swal.fire("Enter a coupon!", "", "warning");
+
     try {
       const res = await fetch(`${BASE_URL}/coupons/apply`, {
         method: "POST",
@@ -361,174 +136,217 @@ const VisaApplicationForm = () => {
       });
 
       const data = await res.json();
-
       if (!data.success) {
-        return Swal.fire("Invalid Coupon", data.message, "error");
+        return Swal.fire(
+          "Invalid Coupon",
+          data.message || "",
+          "error"
+        );
       }
-
-      const { discountAmount, finalAmount } = data.amountDetails;
 
       setAppliedCoupon(data.coupon?.code || couponCode.toUpperCase());
       setDiscountPercent(data.coupon?.discount || 0);
 
       Swal.fire(
         "Coupon Applied 🎉",
-        `Saved ₹${discountAmount} — New Total: ₹${finalAmount}`,
+        `Saved ₹${data.amountDetails.discountAmount}`,
         "success"
       );
     } catch (err) {
-      console.error("applyCoupon error:", err);
       Swal.fire("Server Error", "", "error");
     }
   };
 
-  // ----------------- FINAL SUBMIT — UPLOAD FILES -------------------
-  const handleSubmitApplication = async () => {
-    if (!applicationId) {
-      // shouldn't happen because we create before upload in flow, but guard
-      Swal.fire("Error", "Application ID missing", "error");
-      return;
-    }
+  // ---------------- VERIFY PAYMENT AFTER REDIRECT ----------------
+  useEffect(() => {
+    const merchantOrderId = new URLSearchParams(
+      window.location.search
+    ).get("merchantOrderId");
 
-    // Save textual traveller data to server BEFORE uploading files so server has full traveller data
-    const saveResp = await saveStepToServer(applicationId, 4, {
-      travellers: travellerData,
-      globalDocsMeta: {
-        onwardDate,
-        returnDate,
-      },
+    if (!merchantOrderId) return;
+
+    Swal.fire({
+      title: "Verifying Payment...",
+      didOpen: () => Swal.showLoading(),
     });
 
-    if (!saveResp.success) {
-      Swal.fire("Error", "Could not save application data before upload", "error");
-      return;
-    }
-
-    const fd = new FormData();
-
-    // Although controller.uploadFiles currently only processes files, keep "data" for future use
-    fd.append("data", JSON.stringify({ travellers: travellerData }));
-
-    // Traveller files
-    travellerData.forEach((trav, i) => {
-        if (trav.files?.passportCopy) {
-          fd.append(`traveller_${i}_passportCopy`, trav.files.passportCopy);
-        }
-        if (trav.files?.photo) {
-          fd.append(`traveller_${i}_photo`, trav.files.photo);
-        }
-      });
-
-
-    // Global Docs ONLY If File Exists
-    if (globalDocs.passportCopy instanceof File)
-      fd.append("global_passportCopy", globalDocs.passportCopy);
-
-    if (globalDocs.photo instanceof File) fd.append("global_photo", globalDocs.photo);
-
-    if (globalDocs.travelItinerary instanceof File)
-      fd.append("travelItinerary", globalDocs.travelItinerary);
-
-    if (globalDocs.additionalDocument instanceof File)
-      fd.append("additionalDocument", globalDocs.additionalDocument);
-
-    Swal.fire({ title: "Uploading...", didOpen: () => Swal.showLoading() });
-
-    try {
-     // DEBUG — Check what files are being sent
-      for (var p of fd.entries()) {
-        console.log("FD:", p[0], p[1]);
-      }
-
-      const res = await fetch(`${BASE_URL}/applications/${applicationId}/upload`, {
-        method: "POST",
-        body: fd,
-      });
-
-
-      const result = await res.json();
-      Swal.close();
-
-      if (!result.success) {
-        Swal.fire("Upload Failed", result.message, "error");
-        return;
-      }
-
-      Swal.fire("Success!", "Application Submitted Successfully.", "success");
-
-      // Clear ID after success
-      localStorage.removeItem("applicationId");
-
-      setStep(5);
-    } catch (err) {
-      Swal.close();
-      console.error("handleSubmitApplication error:", err);
-      Swal.fire("Upload Failed", "", "error");
-    }
-  };
-
-  // ------------------- Wrapped step transitions that sync with backend -------------------
-
-  // When moving from Step 1 -> 2: ensure application exists and save itinerary/top-level details
-    const handleNextFromStep1 = async () => {
+    const verify = async () => {
       try {
-        Swal.fire({ title: "Saving...", didOpen: () => Swal.showLoading() });
+        const res = await fetch(
+          `${BASE_URL}/payment/verify-payment?merchantOrderId=${merchantOrderId}`
+        );
+        const data = await res.json();
 
-        // Step 1: Create application if missing
-        let appId = applicationId;
-        if (!appId) {
-          const created = await createApplicationOnServer();
-          if (!created.success) throw new Error("Could not create application");
-          appId = created.appId;
+        Swal.close();
+
+        if (!data.success) {
+          setPaymentStatus("FAILED");
+          Swal.fire("Payment Verification Failed", "", "error");
+          return setStep(3);
         }
 
-        // Step 2: Update step AFTER creation
-        const saved = await saveStepToServer(appId, 1, {
-          visaType,
-          travellers,
-          onwardDate,
-          returnDate
-        });
+        if (data.paymentStatus === "SUCCESS") {
+          setPaymentStatus("SUCCESS");
+          Swal.fire("Payment Successful!", "", "success");
 
-        if (!saved.success) throw new Error("Could not save step 1");
+          window.history.replaceState({}, "", window.location.pathname);
+          return setStep(5);
+        }
 
-        setStep(2);
+        Swal.fire("Payment Pending", "", "info");
+        setStep(3);
       } catch (err) {
-        Swal.fire("Error", err.message, "error");
-      } finally {
-        Swal.close();
+        Swal.fire("Verification Error", "", "error");
       }
     };
 
+    verify();
+  }, []);
 
-  // When moving from Step 2 -> 3: save travellers textual data
-  const handleNextFromStep2 = async () => {
+  // ---------------- INITIATE PAYMENT (FINAL) ----------------
+  const handlePayment = async () => {
     try {
-      const appId = await ensureApplicationExists();
-      await saveStepToServer(appId, 2, { travellers: travellerData });
-      setStep(3);
+      const appId = localStorage.getItem("applicationId");
+
+      // Save payment info before redirect
+      await fetch(`${BASE_URL}/applications/${appId}/payment`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ totalAmount: totalPayable }),
+      });
+
+      Swal.fire({
+        title: "Redirecting to payment...",
+        didOpen: () => Swal.showLoading(),
+      });
+
+      const res = await fetch(`${BASE_URL}/payment/create-order`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: totalPayable,
+          visaId: id,
+        }),
+      });
+
+      const data = await res.json();
+      Swal.close();
+
+      if (data.success && data.redirectUrl) {
+        window.location.href = data.redirectUrl;
+      } else {
+        Swal.fire("Payment Error", data.message || "", "error");
+      }
     } catch (err) {
-      console.error("handleNextFromStep2 error:", err);
-      Swal.fire("Error", "Could not save traveller data. Try again.", "error");
+      Swal.fire("Payment Server Error", "", "error");
     }
   };
 
-  // When moving back or forward, we can optionally save step
-  const handlePrevFromStep2 = () => setStep(1);
-  const handlePrevFromStep3 = () => setStep(2);
-  const handlePrevFromStep4 = () => setStep(3);
+  // ---------------- STEP FUNCTIONS ----------------
+  const next = () => setStep(step + 1);
+  const prev = () => setStep(step - 1);
 
-  // ---------------- Render ----------------
+  // ---------------- STEP 1 → SEND DATA TO BACKEND ----------------
+  const handleStep1Next = async () => {
+    try {
+      if (!visaType || !onwardDate || !returnDate)
+        return Swal.fire("Fill all fields");
+
+      const res = await fetch(`${BASE_URL}/applications/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          visaType,
+          onwardDate,
+          returnDate,
+          travellersCount: travellers,
+        }),
+      });
+
+      const data = await res.json();
+      if (!data.success)
+        return Swal.fire("Step 1 Failed", data.msg, "error");
+
+      localStorage.setItem("applicationId", data.data.applicationId);
+
+      next();
+    } catch (err) {
+      Swal.fire("Server Error", err.message, "error");
+    }
+  };
+
+  // ---------------- STEP 2 → SEND TRAVELLERS ----------------
+  const handleSaveTravellers = async () => {
+    try {
+      const appId = localStorage.getItem("applicationId");
+      if (!appId) return Swal.fire("Application missing");
+
+      const form = new FormData();
+      form.append("travellers", JSON.stringify(travellerData));
+
+      travellerData.forEach((t, i) => {
+        if (t.files.passportCopy)
+          form.append(`passportCopy_${i}`, t.files.passportCopy);
+        if (t.files.photo)
+          form.append(`photo_${i}`, t.files.photo);
+      });
+
+      const res = await fetch(
+        `${BASE_URL}/applications/${appId}/travellers`,
+        {
+          method: "PUT",
+          body: form,
+        }
+      );
+
+      const data = await res.json();
+      if (data.success) next();
+      else Swal.fire("Traveller Upload Failed", "", "error");
+    } catch (err) {
+      Swal.fire("Server Error", err.message, "error");
+    }
+  };
+
+  // ---------------- STEP 4 → GLOBAL DOCS UPLOAD ----------------
+  const handleSubmitApplication = async () => {
+    try {
+      const appId = localStorage.getItem("applicationId");
+
+      const form = new FormData();
+      Object.keys(globalFiles).forEach((key) => {
+        form.append(key, globalFiles[key]);
+      });
+
+      const res = await fetch(
+        `${BASE_URL}/applications/${appId}/global-docs`,
+        {
+          method: "PUT",
+          body: form,
+        }
+      );
+
+      const data = await res.json();
+      if (data.success) next();
+      else Swal.fire("Document Upload Failed", "", "error");
+    } catch (err) {
+      Swal.fire("Server Error", err.message, "error");
+    }
+  };
+
+  // ---------------- RENDER UI ----------------
   return (
     <div className="VisaApplicationForm__wrapper">
       <div className="VisaApplicationForm__grid">
         <main className="VisaApplicationForm__main">
+          {/* STEP 1 */}
           {step === 1 && (
             <Step1Itinerary
               visaTypes={visaTypes}
               selectedVisaTypeIndex={selectedVisaTypeIndex}
-              setSelectedVisaTypeIndex={setSelectedVisaTypeIndex}
-              setVisaType={setVisaType}
+              setSelectedVisaTypeIndex={(i) => {
+                setSelectedVisaTypeIndex(i);
+                setVisaType(visaTypes[i]?.name || "");
+              }}
               travellers={travellers}
               setTravellers={setTravellers}
               onwardDate={onwardDate}
@@ -539,79 +357,71 @@ const VisaApplicationForm = () => {
               discountAmount={discountAmount}
               taxAmount={taxAmount}
               totalPayable={totalPayable}
-              // wrapped: ensure application created and saved
-              handleNext={handleNextFromStep1}
+              handleNext={handleStep1Next}
             />
           )}
 
+          {/* STEP 2 */}
           {step === 2 && (
             <Step2Traveller
               travellerData={travellerData}
-              updateTravellerField={(i, field, value) =>
-                  setTravellerData((prev) => {
-                    const upd = [...prev];
-                    if (!upd[i]) upd[i] = emptyTraveller();
-                    upd[i][field] = value;
-                    return upd;
-                  })
-                }
-
-              handleTravellerFile={(i, key, file) =>
+              updateTravellerField={(i, f, v) =>
                 setTravellerData((prev) => {
-                  const upd = [...prev];
-                  if (!upd[i]) upd[i] = emptyTraveller();
-                  upd[i].files[key] = file;
-                  return upd;
+                  const u = [...prev];
+                  if (!u[i]) u[i] = emptyTraveller();
+                  u[i][f] = v;
+                  return u;
                 })
               }
-              handlePrev={handlePrevFromStep2}
-              // wrapped: save travellers then move on
-              handleNext={handleNextFromStep2}
+              handleTravellerFile={(i, key, file) =>
+                setTravellerData((prev) => {
+                  const u = [...prev];
+                  if (!u[i]) u[i] = emptyTraveller();
+                  u[i].files[key] = file;
+                  return u;
+                })
+              }
+              handlePrev={prev}
+              handleNext={handleSaveTravellers}
             />
           )}
 
+          {/* STEP 3 */}
           {step === 3 && (
             <Step3Payment
               totalPayable={totalPayable}
               paymentStatus={paymentStatus}
-              isInitiatingPayment={isInitiatingPayment}
-              handlePayment={async () => {
-                // ensure application exists and save current travellers text before initiating payment
-                try {
-                  const appId = await ensureApplicationExists();
-                  await saveStepToServer(appId, 3, {
-                    travellers: travellerData,
-                    meta: { initiatedAt: new Date().toISOString() },
-                  });
-                } catch (err) {
-                  console.error("Pre-payment save failed:", err);
-                  // still attempt payment, but notify user
-                  Swal.fire(
-                    "Warning",
-                    "Could not save application before payment. Payment will still proceed but data may not be persisted.",
-                    "warning"
-                  );
-                }
-                handlePayment();
-              }}
-              handlePrev={handlePrevFromStep3}
+              handlePayment={handlePayment}
+              handlePrev={prev}
             />
           )}
 
+          {/* STEP 4 */}
           {step === 4 && (
             <Step4UploadDocs
-              globalDocs={globalDocs}
+              handlePrev={prev}
               handleGlobalFile={(key, file) =>
-                setGlobalDocs((prev) => ({ ...prev, [key]: file }))
+                setGlobalFiles((prev) => ({
+                  ...prev,
+                  [key]: file,
+                }))
               }
-              handlePrev={handlePrevFromStep4}
               handleSubmitApplication={handleSubmitApplication}
             />
           )}
 
-          {step === 5 && <Step5Success resetForm={() => window.location.reload()} />}
+          {/* STEP 5 */}
+          {step === 5 && (
+            <Step5Success
+              resetForm={() => {
+                localStorage.removeItem("applicationId");
+                window.location.reload();
+              }}
+            />
+          )}
         </main>
 
+        {/* RIGHT SIDEBAR */}
         <SummarySidebar
           baseFare={baseFare}
           taxAmount={taxAmount}

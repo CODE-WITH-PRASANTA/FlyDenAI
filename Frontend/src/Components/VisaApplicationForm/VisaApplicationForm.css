@@ -798,3 +798,85 @@
 .VisaApplicationForm__btn--pay:hover {
   opacity: 0.8;
 }
+/* Modern Date Input */
+.VisaApplicationForm__date-modern {
+  width: 100%;
+  height: 52px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #dce3f1;
+  background: #ffffff;
+  font-size: 16px;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__date-modern:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  outline: none;
+}
+
+/* Modern Calendar Popup */
+.VisaDatePopper {
+  z-index: 9999 !important;
+}
+
+.react-datepicker {
+  border-radius: 14px !important;
+  border: 1px solid #e2e8f0 !important;
+  background: #ffffff !important;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.15) !important;
+}
+
+.react-datepicker__header {
+  background: #f0f6ff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding-top: 10px !important;
+}
+
+.react-datepicker__current-month {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: #2563eb !important;
+  border-radius: 8px !important;
+  color: white !important;
+}
+
+.react-datepicker__day--today {
+  background: rgba(37, 99, 235, 0.15) !important;
+  border-radius: 8px !important;
+  color: #2563eb !important;
+  font-weight: 700 !important;
+}
+
+.react-datepicker__day:hover {
+  background: #e3ecff !important;
+  border-radius: 8px !important;
+}
+
+.VisaApplicationForm__date-modern {
+  width: 100%;
+  height: 52px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid #dce3f1;
+  background: #ffffff;
+  font-size: 16px;
+  transition: 0.25s ease;
+}
+
+.VisaApplicationForm__date-modern:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  outline: none;
+}
+
+.react-datepicker {
+  border-radius: 12px !important;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12) !important;
+}
