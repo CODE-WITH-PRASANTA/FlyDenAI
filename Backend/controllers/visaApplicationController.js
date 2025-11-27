@@ -64,7 +64,14 @@ exports.createApplication = async (req, res) => {
 
     await app.save();
 
-    return res.json({ success: true, applicationId, data: app });
+    return res.json({
+  success: true,
+  message: "Application created",
+  data: {
+    _id: app._id,
+    applicationId: app.applicationId, // readable ID
+  }
+});
   } catch (err) {
     console.error("createApplication error:", err);
     return res.status(500).json({ success: false, message: "Server error" });

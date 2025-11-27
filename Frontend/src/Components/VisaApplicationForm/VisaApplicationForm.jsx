@@ -69,10 +69,20 @@ const VisaApplicationForm = () => {
   });
 
  useEffect(() => {
-  localStorage.removeItem("applicationId");
-  setApplicationId(null);
-  }, []);
+  const merchantOrderId = new URLSearchParams(window.location.search).get(
+    "merchantOrderId"
+  );
 
+  if (merchantOrderId) {
+    // 🔥 Returning from payment → need applicationId for verification
+    const stored = localStorage.getItem("applicationId");
+    if (stored) setApplicationId(stored);
+  } else {
+    // 🔥 Starting a new application → clear previous ID
+    localStorage.removeItem("applicationId");
+    setApplicationId(null);
+  }
+}, []);
 
 
   // Load Visa Types

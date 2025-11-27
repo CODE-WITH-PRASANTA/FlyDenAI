@@ -140,11 +140,16 @@ function normalizePhonePeState(rawState) {
 exports.verifyOrder = async (req, res) => {
   try {
     const { merchantOrderId } = req.query;
-    if (!merchantOrderId) return res.status(400).json({ success: false, message: "merchantOrderId required" });
+    if (!merchantOrderId)
+      return res
+        .status(400)
+        .json({ success: false, message: "merchantOrderId required" });
 
     const token = await getPhonePeAuthToken();
 
-    const url = `${ORDER_STATUS_URL}/${encodeURIComponent(merchantOrderId)}/status?details=false`;
+    const url = `${ORDER_STATUS_URL}/${encodeURIComponent(
+      merchantOrderId
+    )}/status?details=false`;
 
     const statusRes = await axios.get(url, {
       headers: {
@@ -156,19 +161,33 @@ exports.verifyOrder = async (req, res) => {
 
     const data = statusRes.data;
 
-    // PhonePe raw state (may be nested in different shapes depending on version)
-    // try multiple likely locations:
-    const rawState = data?.state || data?.data?.state || data?.orderStatus || null;
+    // PhonePe raw state
+    const rawState =
+      data?.state || data?.data?.state || data?.orderStatus || null;
 
     const paymentStatus = normalizePhonePeState(rawState);
 
-    // Optionally update your DB record with final state/paymentDetails
-    // e.g., if paymentStatus === 'SUCCESS' mark payment success.
+    // ⭐ FIX 3 — ALWAYS ENSURE transactionId IS AVAILABLE
+    const transactionId =
+      data?.transactionId ||
+      data?.data?.transactionId ||
+      data?.orderId ||
+      merchantOrderId; // fallback → guaranteed
 
-    return res.json({ success: true, paymentStatus, rawState, data });
+    return res.json({
+      success: true,
+      paymentStatus,
+      rawState,
+      transactionId, // ⭐ FRONTEND WILL USE THIS
+      data, // full PhonePe response
+    });
   } catch (err) {
     console.error("verifyOrder error:", err.response?.data || err.message);
-    return res.status(500).json({ success: false, message: "Failed to verify order", error: err.response?.data || err.message });
+    return res.status(500).json({
+      success: false,
+      message: "Failed to verify order",
+      error: err.response?.data || err.message,
+    });
   }
 };
 
