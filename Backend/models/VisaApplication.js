@@ -44,11 +44,12 @@ const ApplicationSchema = new mongoose.Schema({
   },
 
   // Step 4 - global files
-  globalFiles: {
-    ticket: FileSchema,
-    hotel: FileSchema,
-    others: FileSchema,
-  },
+ globalFiles: {
+  passportCopy: FileSchema,
+  photo: FileSchema,
+  travelItinerary: FileSchema,
+  additionalDocument: FileSchema,
+},
 
   stepCompleted: {
     type: Number,

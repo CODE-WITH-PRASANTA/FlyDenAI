@@ -20,9 +20,15 @@ router.put("/:id/payment", savePaymentInfo);
 // STEP 4 GLOBAL DOCS
 router.put(
   "/:id/global-docs",
-  upload.fields([{ name: "ticket" }, { name: "hotel" }, { name: "others" }]),
+  upload.fields([
+    { name: "passportCopy" },
+    { name: "photo" },
+    { name: "travelItinerary" },
+    { name: "additionalDocument" }
+  ]),
   convertToWebp,
   uploadGlobalDocs
 );
+
 
 module.exports = router;

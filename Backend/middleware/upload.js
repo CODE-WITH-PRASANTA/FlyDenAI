@@ -16,46 +16,61 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-/**
- * SAFE WebP converter — 100% compatible with upload.any()
- */
+// ----------------------------
+// FINAL STABLE WEBP CONVERTER
+// ----------------------------
 const convertToWebp = async (req, res, next) => {
   try {
-    // If no files at all → skip
-    if (!req.files || req.files.length === 0) return next();
+    if (!req.files) return next();
 
-    for (const file of req.files) {
-      if (!file) continue;
+    // normalise files → ARRAY
+    let files = [];
 
-      // Extract extension safely
-      const ext = path.extname(file.originalname || "").toLowerCase();
+    if (Array.isArray(req.files)) {
+      files = req.files; // upload.any()
+    } else {
+      Object.keys(req.files).forEach((key) => {
+        files.push(...req.files[key]); // upload.fields()
+      });
+    }
 
-      // Skip PDFs, docs, mp4 etc
-      if (![".jpg", ".jpeg", ".png"].includes(ext)) {
-        continue;
-      }
-
-      const newFilename = file.filename.replace(ext, ".webp");
-      const newPath = path.join(uploadDir, newFilename);
-
-      await sharp(file.path)
-        .webp({ quality: 80 })
-        .toFile(newPath);
-
-      // Remove original file
-      await fs.remove(file.path);
-
-      // Update multer file object
-      file.filename = newFilename;
-      file.path = newPath;
-      file.mimetype = "image/webp";
+    for (const file of files) {
+      await processSingleFile(file);
     }
 
     next();
-  } catch (e) {
-    console.log("WebP Error:", e);
-    next(); // do NOT break application
+  } catch (err) {
+    console.log("WEBP ERROR:", err);
+    next();
   }
 };
+
+// ----------------------------
+// SINGLE FILE PROCESSOR
+// ----------------------------
+async function processSingleFile(file) {
+  if (!file) return;
+
+  const originalExt = path.extname(file.originalname || "").toLowerCase();
+
+  // IF PDF, DOCX — skip
+  if (![".png", ".jpg", ".jpeg"].includes(originalExt)) {
+    return;
+  }
+
+  const newFilename = `${file.filename}.webp`; // add .webp
+  const newPath = path.join(uploadDir, newFilename);
+
+  await sharp(file.path)
+    .webp({ quality: 80 })
+    .toFile(newPath);
+
+  await fs.remove(file.path);
+
+  // update multer object
+  file.filename = newFilename;
+  file.path = newPath;
+  file.mimetype = "image/webp";
+}
 
 module.exports = { upload, convertToWebp };
