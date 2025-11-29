@@ -1,6 +1,10 @@
 const VisaApplication = require("../models/VisaApplication");
 const { generateApplicationId } = require("../middleware/generateId");
 
+const fs = require("fs");
+const path = require("path");
+
+
 exports.createApplication = async (req, res) => {
   try {
     const applicationId = generateApplicationId();
@@ -117,4 +121,161 @@ exports.uploadGlobalDocs = async (req, res) => {
   }
 };
 
+// 1. Get all applications
+exports.getAllApplications = async (req, res) => {
+  try {
+    const apps = await VisaApplication.find().sort({ createdAt: -1 });
+    res.json({ success: true, data: apps });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
 
+// 2. Get single application by ID
+exports.getApplicationById = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne({ applicationId: req.params.id });
+    if (!app) return res.status(404).json({ success: false, msg: "Not found" });
+
+    res.json({ success: true, data: app });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 3. Filter by payment status
+exports.getByPaymentStatus = async (req, res) => {
+  try {
+    const apps = await VisaApplication.find({ paymentStatus: req.params.status.toUpperCase() });
+    res.json({ success: true, data: apps });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 4. Get ONLY completed applications (step 4 done)
+exports.getCompletedApplications = async (req, res) => {
+  try {
+    const apps = await VisaApplication.find({ stepCompleted: 4 });
+    res.json({ success: true, data: apps });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 5. Get ONLY in-progress applications (< step 4)
+exports.getInProgressApplications = async (req, res) => {
+  try {
+    const apps = await VisaApplication.find({ stepCompleted: { $lt: 4 } });
+    res.json({ success: true, data: apps });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 6. Fetch only travellers data
+exports.getTravellers = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne(
+      { applicationId: req.params.id },
+      { travellers: 1, _id: 0 }
+    );
+    res.json({ success: true, data: app.travellers });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 7. Fetch only global documents
+exports.getGlobalDocs = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne(
+      { applicationId: req.params.id },
+      { globalFiles: 1, _id: 0 }
+    );
+    res.json({ success: true, data: app.globalFiles });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+// 8. Fetch only payment info
+exports.getPaymentInfo = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne(
+      { applicationId: req.params.id },
+      { totalAmount: 1, paymentStatus: 1, stepCompleted: 1 }
+    );
+    res.json({ success: true, data: app });
+  } catch (err) {
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+
+exports.approveApplication = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne({ applicationId: req.params.id });
+
+    if (!app)
+      return res.status(404).json({ success: false, msg: "Application not found" });
+
+    app.approved = true;
+    app.approvedAt = new Date();
+    app.stepCompleted = 4; // Final step
+    app.paymentStatus = "SUCCESS"; // Optional but recommended
+
+    await app.save();
+
+    return res.json({
+      success: true,
+      msg: "Application Approved Successfully",
+      data: app,
+    });
+
+  } catch (err) {
+    return res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+exports.deleteApplication = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne({ applicationId: req.params.id });
+
+    if (!app)
+      return res.status(404).json({ success: false, msg: "Application not found" });
+
+    // Utility function to delete a file
+    const deleteFile = (fileObj) => {
+      if (fileObj && fileObj.path) {
+        const filePath = path.join(__dirname, "..", fileObj.path);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      }
+    };
+
+    // Delete Traveller Files
+    app.travellers.forEach((t) => {
+      deleteFile(t.files?.passportCopy);
+      deleteFile(t.files?.photo);
+    });
+
+    // Delete Global Documents
+    deleteFile(app.globalFiles?.passportCopy);
+    deleteFile(app.globalFiles?.photo);
+    deleteFile(app.globalFiles?.travelItinerary);
+    deleteFile(app.globalFiles?.additionalDocument);
+
+    // Delete the DB document
+    await VisaApplication.deleteOne({ applicationId: req.params.id });
+
+    return res.json({
+      success: true,
+      msg: "Application deleted successfully",
+    });
+
+  } catch (err) {
+    return res.status(500).json({ success: false, msg: err.message });
+  }
+};

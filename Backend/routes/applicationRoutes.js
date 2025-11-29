@@ -5,6 +5,16 @@ const {
   saveTravellers,
   savePaymentInfo,
   uploadGlobalDocs,
+  getAllApplications,
+  getApplicationById,
+  getByPaymentStatus,
+  getCompletedApplications,
+  getInProgressApplications,
+  getTravellers,
+  getGlobalDocs,
+  getPaymentInfo,
+  approveApplication,
+  deleteApplication
 } = require("../controllers/applicationController");
 const { upload, convertToWebp } = require("../middleware/upload");
 
@@ -29,6 +39,36 @@ router.put(
   convertToWebp,
   uploadGlobalDocs
 );
+
+// Fetch All
+router.get("/all", getAllApplications);
+
+// Fetch Single
+router.get("/:id", getApplicationById);
+
+// Filter by payment status
+router.get("/payment/status/:status", getByPaymentStatus);
+
+// Completed apps
+router.get("/status/completed/all", getCompletedApplications);
+
+// In-progress apps
+router.get("/status/in-progress/all", getInProgressApplications);
+
+// Only travellers
+router.get("/:id/travellers", getTravellers);
+
+// Only global docs
+router.get("/:id/global-docs", getGlobalDocs);
+
+// Only payment info
+router.get("/:id/payment-info", getPaymentInfo);
+
+// APPROVE APPLICATION
+router.put("/:id/approve", approveApplication);
+
+// DELETE APPLICATION
+router.delete("/:id/delete", deleteApplication);
 
 
 module.exports = router;

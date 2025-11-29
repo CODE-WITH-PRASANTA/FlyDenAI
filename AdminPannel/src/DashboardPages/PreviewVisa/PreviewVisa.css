@@ -338,3 +338,394 @@
     max-width: 100%;
   }
 }
+
+
+/* Drawer Overlay */
+.pv-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 999;
+}
+
+
+
+@keyframes pvSlide {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Drawer Header */
+.pv-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.pv-drawer-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.pv-drawer-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Sections */
+.pv-drawer-section {
+  margin-bottom: 18px;
+}
+
+.pv-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.pv-label-small {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+/* Input */
+.pv-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cfcfcf;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.3s;
+}
+
+.pv-input:focus {
+  border-color: #007bff;
+}
+
+/* Visa Type Editing */
+.pv-type-edit-box {
+  padding: 12px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.pv-drawer-subtitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Save Button */
+.pv-save-btn {
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.pv-save-btn:hover {
+  background: #0060d8;
+}
+
+/* EDIT BUTTON STYLE */
+.pv-edit {
+  color: #007bff;
+}
+
+
+/* ROW → 2 items per line */
+.pv-row {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 15px;
+}
+
+/* Each column */
+.pv-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section spacing */
+.pv-section {
+  margin-bottom: 15px;
+}
+
+/* Smaller file input */
+.pv-input-file {
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* Drawer Typography */
+.pv-type-heading {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+/* Clean + Modern Card */
+.pv-type-edit-box {
+  background: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: 0.25s;
+}
+
+.pv-type-edit-box:hover {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border-color: #d7d7d7;
+}
+
+/* All inputs */
+.pv-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cfcfcf;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.pv-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.15);
+}
+
+.pv-label,
+.pv-label-small {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+/* Save button */
+.pv-save-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #007bff, #005dcc);
+  border: none;
+  font-size: 16px;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.pv-save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .pv-row {
+    flex-direction: column;
+  }
+}
+
+/* Drawer Overlay - Fullscreen dim background */
+.pv-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Drawer Box - Center */
+.pv-drawer {
+  width: 420px;
+  max-width: 94vw;
+  height: 70vh;
+  background: #ffffff;
+  padding: 22px 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  animation: fadeInScale 0.25s ease-out;
+}
+
+/* Animation (smooth popup) */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Header inside popup */
+.pv-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.pv-drawer-close {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #475569;
+}
+
+
+/* Title Row */
+.pv-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.pv-drawer-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Inputs */
+.pv-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pv-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pv-label,
+.pv-label-small {
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #334155;
+  font-size: 13.5px;
+}
+
+/* Input Box */
+.pv-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d8dce3;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+.pv-input:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* File Input */
+.pv-input-file {
+  padding: 7px;
+  font-size: 13.5px;
+  border-radius: 6px;
+  border: 1px solid #d8dce3;
+  background: #fafafa;
+}
+
+/* Visa Type Edit Section Card */
+.pv-type-edit-box {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  transition: box-shadow 0.2s ease;
+}
+
+.pv-type-edit-box:hover {
+  box-shadow: 0 4px 14px rgba(148, 163, 184, 0.2);
+}
+
+.pv-type-heading {
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Subtitle */
+.pv-drawer-subtitle {
+  font-size: 16px;
+  margin: 20px 0 12px;
+  font-weight: 700;
+}
+
+/* Save Button */
+.pv-save-btn {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(120deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  font-size: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: 0.25s ease-in-out;
+}
+
+.pv-save-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(37, 99, 235, 0.28);
+}
+
+/* Mobile Fix */
+@media (max-width: 768px) {
+  .pv-drawer {
+    width: 100%;
+    padding: 16px;
+  }
+  .pv-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* Smaller mobile */
+@media (max-width: 480px) {
+  .pv-drawer {
+    padding: 14px;
+  }
+  .pv-input,
+  .pv-input-file {
+    padding: 8px;
+  }
+  .pv-type-edit-box {
+    padding: 12px;
+  }
+}

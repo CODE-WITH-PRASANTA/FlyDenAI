@@ -4,7 +4,7 @@ import { FaSearchLocation, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import bannerBg from "../../assets/Visa Search Sec.webp";
+import bannerBg from "../../assets/Visa Bg.webp";
 import BASE_URL from "../../Api"; // e.g., "http://localhost:5000/api"
 
 const AllCountryBanner = () => {

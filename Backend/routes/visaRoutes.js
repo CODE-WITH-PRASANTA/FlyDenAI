@@ -8,6 +8,7 @@ const {
   getVisaById,
   deleteVisa,
   togglePublishVisa,
+  updateVisa
 } = require("../controllers/visaController");
 
 // Create Visa
@@ -35,5 +36,17 @@ router.delete("/:id", deleteVisa);
 
 // Publish / Unpublish Visa
 router.patch("/publish/:id", togglePublishVisa);
+
+// UPDATE VISA (Admin)
+router.patch(
+  "/:id",
+  upload.fields([
+    { name: "banner", maxCount: 1 },
+    { name: "specialImage", maxCount: 1 }
+  ]),
+  convertToWebp,
+  updateVisa
+);
+
 
 module.exports = router;

@@ -56,6 +56,17 @@ const ApplicationSchema = new mongoose.Schema({
     default: 1,
   },
 
+  approved: {
+  type: Boolean,
+  default: false,
+},
+
+approvedAt: {
+  type: Date,
+  default: null,
+},
+
+
 }, { timestamps: true });
 
 module.exports = mongoose.model("VisaApplication", ApplicationSchema);

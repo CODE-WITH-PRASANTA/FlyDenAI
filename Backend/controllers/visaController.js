@@ -161,11 +161,98 @@ const togglePublishVisa = async (req, res) => {
   };
 
 
+  // UPDATE VISA (Admin)
+const updateVisa = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const visa = await Visa.findById(id);
+    if (!visa) {
+      return res.status(404).json({ success: false, message: "Visa not found" });
+    }
+
+    // Extract simple text fields
+    const {
+      country,
+      processingTime,
+      startingPrice,
+      approvalTagline,
+      isPopular,
+      isNormal,
+      visaTypes,
+      documents,
+      faqs,
+      infos,
+      description,
+      expert
+    } = req.body;
+
+    // Update simple fields
+    if (country) visa.country = country;
+    if (processingTime) visa.processingTime = processingTime;
+    if (startingPrice) visa.startingPrice = startingPrice;
+    if (approvalTagline) visa.approvalTagline = approvalTagline;
+    if (description) visa.description = description;
+    if (expert) visa.expert = expert;
+
+    if (isPopular !== undefined) {
+      visa.isPopular = isPopular === "true" || isPopular === true;
+    }
+    if (isNormal !== undefined) {
+      visa.isNormal = isNormal === "true" || isNormal === true;
+    }
+
+    // Handle JSON fields
+    if (visaTypes) visa.visaTypes = safeJSONParse(visaTypes);
+    if (documents) visa.documents = safeJSONParse(documents);
+    if (faqs) visa.faqs = safeJSONParse(faqs);
+    if (infos) visa.infos = safeJSONParse(infos);
+
+    // FILE UPDATES
+    const bannerFile = req.files?.banner ? req.files.banner[0] : null;
+    const specialImageFile = req.files?.specialImage ? req.files.specialImage[0] : null;
+
+    const deleteOldFile = (oldPath) => {
+      if (oldPath) {
+        const fullPath = path.join(__dirname, "..", oldPath);
+        if (fs.existsSync(fullPath)) fs.removeSync(fullPath);
+      }
+    };
+
+    // Update Banner
+    if (bannerFile) {
+      deleteOldFile(visa.bannerUrl);
+      visa.bannerUrl = `/uploads/${bannerFile.filename}`;
+    }
+
+    // Update Special Image
+    if (specialImageFile) {
+      deleteOldFile(visa.specialImageUrl);
+      visa.specialImageUrl = `/uploads/${specialImageFile.filename}`;
+    }
+
+    await visa.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Visa updated successfully",
+      data: visa
+    });
+  } catch (err) {
+    console.error("❌ Error updating visa:", err);
+    res.status(500).json({
+      success: false,
+      message: "Server error while updating visa"
+    });
+  }
+};
+
 module.exports = {
   createVisa,
   getAllVisas,
   getPublishedVisas,
   deleteVisa,
   togglePublishVisa,
-  getVisaById
+  getVisaById ,
+  updateVisa
 };
