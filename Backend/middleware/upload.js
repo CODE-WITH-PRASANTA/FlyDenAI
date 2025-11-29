@@ -53,12 +53,12 @@ async function processSingleFile(file) {
 
   const originalExt = path.extname(file.originalname || "").toLowerCase();
 
-  // IF PDF, DOCX — skip
   if (![".png", ".jpg", ".jpeg"].includes(originalExt)) {
     return;
   }
 
-  const newFilename = `${file.filename}.webp`; // add .webp
+  const baseName = file.filename.replace(path.extname(file.filename), "");
+  const newFilename = `${baseName}.webp`;
   const newPath = path.join(uploadDir, newFilename);
 
   await sharp(file.path)
@@ -67,10 +67,10 @@ async function processSingleFile(file) {
 
   await fs.remove(file.path);
 
-  // update multer object
   file.filename = newFilename;
   file.path = newPath;
   file.mimetype = "image/webp";
 }
+
 
 module.exports = { upload, convertToWebp };
