@@ -14,7 +14,8 @@ const {
   getGlobalDocs,
   getPaymentInfo,
   approveApplication,
-  deleteApplication
+  deleteApplication,
+  getApplicationStatus
 } = require("../controllers/applicationController");
 const { upload, convertToWebp } = require("../middleware/upload");
 
@@ -69,6 +70,9 @@ router.put("/:id/approve", approveApplication);
 
 // DELETE APPLICATION
 router.delete("/:id/delete", deleteApplication);
+
+router.get("/:id/status", getApplicationStatus);
+
 
 
 module.exports = router;

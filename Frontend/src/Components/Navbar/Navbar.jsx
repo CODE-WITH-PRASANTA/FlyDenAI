@@ -1,16 +1,19 @@
-// Updated Navbar.js with DummyTicket section added
+// Updated Navbar.js with CheckStatus Popup Integrated
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/Logo.png";
 import BASE_URL from "../../Api";
 import axios from "axios";
+import CheckStatus from "../CheckStatus/CheckStatus"; // ✅ Import Popup
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const [contactInfo, setContactInfo] = useState(null);
+
+  const [openStatusPopup, setOpenStatusPopup] = useState(false); // ✅ STATUS POPUP STATE
 
   const menuRef = useRef();
   const lastScrollY = useRef(0);
@@ -66,7 +69,7 @@ const Navbar = () => {
       sub: [
         { name: "About Us", path: "/about" },
         { name: "Services", path: "/services" },
-        { name: "Our Team", path: "/team/member" }
+        { name: "Our Team", path: "/team/member" },
       ],
     },
     {
@@ -78,16 +81,11 @@ const Navbar = () => {
       ],
     },
     { name: "Country", path: "/AllCountry" },
-
-    // ✅ Added DummyTicket section here
-    { name: "Dummy Ticket", path: "/DummyTicket" },
-
+    // { name: "Dummy Ticket", path: "/DummyTicket" },
     {
       name: "Program Type",
       path: "/StudyAbroad",
-      sub: [
-        { name: "Study Abroad", path: "/StudyAbroad" }
-      ],
+      sub: [{ name: "Study Abroad", path: "/StudyAbroad" }],
     },
     { name: "Blog", path: "/blog" },
     { name: "Contact Us", path: "/contact" },
@@ -101,11 +99,10 @@ const Navbar = () => {
         <div className="topbar-container">
           <div className="topbar-content">
             <div className="topbar-left">
-              {/* ✅ Dynamically Display Contact Info */}
               {contactInfo ? (
                 <>
                   <a href={`tel:${contactInfo.phone}`} className="topbar-item">
-                    📞 <span>{contactInfo.phone}</span>
+                    📞+91 <span>{contactInfo.phone}</span>
                   </a>
                   <a
                     href={`mailto:${contactInfo.email}`}
@@ -120,21 +117,20 @@ const Navbar = () => {
             </div>
 
             <div className="topbar-right">
-              {/* <Link to="/ComingSoon" className="topbar-login">
+              {/* ✅ OPEN CHECK STATUS POPUP */}
+              <button
+                className="topbar-login"
+                onClick={() => setOpenStatusPopup(true)}
+              >
                 📄 Check Your Status
-              </Link>
-              <Link to="/Apply/Now" className="topbar-cta">
-                🚀 Apply Now
-              </Link> */}
+              </button>
             </div>
           </div>
         </div>
       </div>
 
       {/* ===== Navbar ===== */}
-      <header
-        className={`Nav-navbar-wrapper ${showNavbar ? "show" : "hide"}`}
-      >
+      <header className={`Nav-navbar-wrapper ${showNavbar ? "show" : "hide"}`}>
         <nav className="Nav-navbar">
           <div className="Nav-container Nav-navbar-inner">
             <div className="Nav-logo-wrapper">
@@ -142,6 +138,7 @@ const Navbar = () => {
                 <img src={logo} alt="EduBlink" />
               </Link>
             </div>
+
             <button
               className="Nav-toggler"
               onClick={() => setMobileMenuOpen(true)}
@@ -218,6 +215,7 @@ const Navbar = () => {
                           {mobileDropdownOpen === i ? "▲" : "▼"}
                         </span>
                       </div>
+
                       <ul
                         className={`mobile-dropdown ${
                           mobileDropdownOpen === i ? "open" : ""
@@ -250,6 +248,11 @@ const Navbar = () => {
           </div>
         </div>
       </header>
+
+      {/* ✅ RENDER CHECK STATUS POPUP HERE */}
+      {openStatusPopup && (
+        <CheckStatus onClose={() => setOpenStatusPopup(false)} />
+      )}
     </>
   );
 };

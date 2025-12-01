@@ -17,11 +17,13 @@ const TravellerSchema = new mongoose.Schema({
   nationality: String,
   passportNo: String,
   contactNumber: String,
+  email: String,   // ✅ Added Email Field
   files: {
     passportCopy: FileSchema,
     photo: FileSchema,
   }
 });
+
 
 const ApplicationSchema = new mongoose.Schema({
   applicationId: { type: String, unique: true },

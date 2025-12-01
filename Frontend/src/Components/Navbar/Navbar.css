@@ -232,6 +232,15 @@
   transform: translateY(-2px);
 }
 
+.topbar-item,
+.topbar-item:hover,
+.topbar-item:focus,
+.topbar-item:active,
+.topbar-item:visited {
+  text-decoration: none !important;
+}
+
+
 /* Right Side */
 .topbar-right {
   display: flex;
@@ -817,3 +826,4 @@
   color: #007bff; /* ✅ hover effect */
   transform: scale(1.1);
 }
+

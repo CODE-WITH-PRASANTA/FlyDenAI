@@ -78,12 +78,11 @@
   justify-items: center;
   width: 100%;
 }
-
 /* Each Card */
 .pv-card {
   background: var(--card-bg);
   border-radius: 14px;
-  padding: 18px;
+  padding: 10px;
   width: 100%;
   max-width: 370px;
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.06);
@@ -91,8 +90,15 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   display: flex;
   flex-direction: column;
+
+  /* 🔥 Added height + scroll */
+  height: 500px;                /* Set card height */
+  overflow-y: auto;             /* Enable vertical scroll */
+  scrollbar-width: thin;        /* Firefox */
+  scrollbar-color: #c1c1c1 transparent;
 }
 
+/* Hover Effect */
 .pv-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 50px rgba(2, 6, 23, 0.12);
@@ -104,6 +110,25 @@
   align-items: center;
   justify-content: space-between;
 }
+
+/* 🔥 Custom scroll style (Chrome + Edge + Safari) */
+.pv-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pv-card::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pv-card::-webkit-scrollbar-thumb {
+  background: #b9b9b9;
+  border-radius: 10px;
+}
+
+.pv-card::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 
 .pv-country {
   display: flex;

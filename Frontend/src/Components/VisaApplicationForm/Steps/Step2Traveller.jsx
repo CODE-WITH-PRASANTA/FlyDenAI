@@ -97,8 +97,10 @@ const Step2Traveller = ({
                 </div>
               </div>
 
-              {/* PASSPORT + CONTACT */}
+              {/* PASSPORT + CONTACT + EMAIL */}
               <div className="VisaApplicationForm__form-row">
+
+                {/* PASSPORT */}
                 <div className="VisaApplicationForm__form-group">
                   <label className="VisaApplicationForm__label">Passport No</label>
                   <input
@@ -109,6 +111,7 @@ const Step2Traveller = ({
                   />
                 </div>
 
+                {/* CONTACT */}
                 <div className="VisaApplicationForm__form-group">
                   <label className="VisaApplicationForm__label">Contact Number</label>
                   <input
@@ -118,6 +121,19 @@ const Step2Traveller = ({
                     onChange={(e) => updateTravellerField(idx, "contactNumber", e.target.value)}
                   />
                 </div>
+
+                {/* ✅ EMAIL FIELD (NEW FIELD) */}
+                <div className="VisaApplicationForm__form-group">
+                  <label className="VisaApplicationForm__label">Email Address</label>
+                  <input
+                    className="VisaApplicationForm__input"
+                    type="email"
+                    value={t.email}
+                    placeholder="Enter email"
+                    onChange={(e) => updateTravellerField(idx, "email", e.target.value)}
+                  />
+                </div>
+
               </div>
 
               {/* FILE UPLOADS */}

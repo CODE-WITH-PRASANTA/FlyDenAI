@@ -27,8 +27,10 @@ const emptyTraveller = () => ({
   nationality: "Indian",
   passportNo: "",
   contactNumber: "",
+  email: "",          // ✅ ADD EMAIL INPUT
   files: { passportCopy: null, photo: null },
 });
+
 
 const VisaApplicationForm = () => {
   const { id } = useParams();
@@ -286,6 +288,31 @@ const VisaApplicationForm = () => {
       const appId = localStorage.getItem("applicationId");
       if (!appId) return Swal.fire("Application missing");
 
+      // 🔔 SHOW WAITING ALERT (Auto-close + Loading)
+      let timerInterval;
+      Swal.fire({
+        title: "Please Wait...",
+        html: `
+          Your traveller details are being verified.<br/>
+          Your Application ID has also been sent to your email.<br/><br/>
+          Auto closing in <b></b> ms...
+        `,
+        timer: 3000,
+        timerProgressBar: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        didOpen: () => {
+          Swal.showLoading();
+          const timer = Swal.getPopup().querySelector("b");
+          timerInterval = setInterval(() => {
+            timer.textContent = Swal.getTimerLeft();
+          }, 100);
+        },
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      });
+
       const form = new FormData();
       form.append("travellers", JSON.stringify(travellerData));
 
@@ -305,12 +332,15 @@ const VisaApplicationForm = () => {
       );
 
       const data = await res.json();
+
       if (data.success) next();
       else Swal.fire("Traveller Upload Failed", "", "error");
+
     } catch (err) {
       Swal.fire("Server Error", err.message, "error");
     }
   };
+
 
   // ---------------- STEP 4 → GLOBAL DOCS UPLOAD ----------------
 const handleSubmitApplication = async () => {

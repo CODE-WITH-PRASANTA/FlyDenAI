@@ -1,8 +1,13 @@
 const VisaApplication = require("../models/VisaApplication");
 const { generateApplicationId } = require("../middleware/generateId");
-
 const fs = require("fs");
 const path = require("path");
+
+const transporter = require("../emails/emailTransporter");
+const applicationEmailTemplate = require("../emails/templates/applicationEmail");
+const paymentSuccessEmail = require("../emails/templates/paymentSuccessEmail");
+const visaApprovedEmailTemplate = require("../emails/templates/visaApprovedEmail");
+
 
 
 exports.createApplication = async (req, res) => {
@@ -15,31 +20,29 @@ exports.createApplication = async (req, res) => {
       onwardDate: req.body.onwardDate,
       returnDate: req.body.returnDate,
       travellersCount: req.body.travellersCount,
+      travellers: [],
       stepCompleted: 1
     });
 
-    res.json({ success: true, data: app });
-  } catch (err) {
-    res.status(500).json({ success: false, msg: err.message });
-  }
-};
+    res.json({
+      success: true,
+      message: "Application ID generated successfully!",
+      data: app,
+    });
+const transporter = require("../emails/emailTransporter");
+const applicationEmailTemplate = require("../emails/templates/applicationEmail");
 
 exports.saveTravellers = async (req, res) => {
   try {
     const app = await VisaApplication.findOne({ applicationId: req.params.id });
     if (!app) return res.status(404).json({ success: false, msg: "Not found" });
 
-    // travellers sent as JSON string → parse it
+    // Parse travellers JSON
     const travellersArray = JSON.parse(req.body.travellers);
 
     const updatedTravellers = travellersArray.map((t, i) => {
-      // find files from multer.any() array
-      const passportFile = req.files.find(
-        (file) => file.fieldname === `passportCopy_${i}`
-      );
-      const photoFile = req.files.find(
-        (file) => file.fieldname === `photo_${i}`
-      );
+      const passportFile = req.files.find(file => file.fieldname === `passportCopy_${i}`);
+      const photoFile = req.files.find(file => file.fieldname === `photo_${i}`);
 
       return {
         ...t,
@@ -53,7 +56,7 @@ exports.saveTravellers = async (req, res) => {
                 size: passportFile.size,
                 mimeType: passportFile.mimetype,
               }
-            : app.travellers[i]?.files?.passportCopy || null,
+            : null,
 
           photo: photoFile
             ? {
@@ -64,16 +67,115 @@ exports.saveTravellers = async (req, res) => {
                 size: photoFile.size,
                 mimeType: photoFile.mimetype,
               }
-            : app.travellers[i]?.files?.photo || null,
+            : null,
         },
       };
     });
 
     app.travellers = updatedTravellers;
-    app.stepCompleted = Math.max(app.stepCompleted, 2);
+    app.stepCompleted = 2;
     await app.save();
 
+    // -----------------------------
+    // SEND EMAIL AFTER STEP 2 DONE
+    // -----------------------------
+    for (const traveller of updatedTravellers) {
+      if (!traveller.email || traveller.email.trim() === "") continue;
+      await transporter.sendMail({
+        from: `"FlyDenAi Visa Team" <${process.env.EMAIL_USER}>`,
+        to: traveller.email,
+        subject: `Application Submitted – Your FlyDenAi Application ID: ${app.applicationId}`,
+        html: applicationEmailTemplate(
+          traveller.firstName,
+          app.applicationId,
+          app.visaType,
+          app.onwardDate,
+          app.returnDate,
+          updatedTravellers
+        ),
+      });
+    }
+
     res.json({ success: true, data: app });
+
+  } catch (error) {
+    console.log("Traveller Upload Error:", error);
+    res.status(500).json({ success: false, msg: error.message });
+  }
+};
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+exports.saveTravellers = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne({ applicationId: req.params.id });
+    if (!app) return res.status(404).json({ success: false, msg: "Not found" });
+
+    // Parse travellers JSON
+    const travellersArray = JSON.parse(req.body.travellers);
+
+    const updatedTravellers = travellersArray.map((t, i) => {
+      const passportFile = req.files.find(file => file.fieldname === `passportCopy_${i}`);
+      const photoFile = req.files.find(file => file.fieldname === `photo_${i}`);
+
+      return {
+        ...t,
+        files: {
+          passportCopy: passportFile
+            ? {
+                fieldname: passportFile.fieldname,
+                filename: passportFile.filename,
+                path: passportFile.path,
+                url: `/uploads/${passportFile.filename}`,
+                size: passportFile.size,
+                mimeType: passportFile.mimetype,
+              }
+            : null,
+
+          photo: photoFile
+            ? {
+                fieldname: photoFile.fieldname,
+                filename: photoFile.filename,
+                path: photoFile.path,
+                url: `/uploads/${photoFile.filename}`,
+                size: photoFile.size,
+                mimeType: photoFile.mimetype,
+              }
+            : null,
+        },
+      };
+    });
+
+    app.travellers = updatedTravellers;
+    app.stepCompleted = 2;
+    await app.save();
+
+    // -----------------------------
+    // SEND EMAIL AFTER STEP 2 DONE
+    // -----------------------------
+    for (const traveller of updatedTravellers) {
+      if (!traveller.email || traveller.email.trim() === "") continue;
+      await transporter.sendMail({
+        from: `"FlyDenAi Visa Team" <${process.env.EMAIL_USER}>`,
+        to: traveller.email,
+        subject: `Application Submitted – Your FlyDenAi Application ID: ${app.applicationId}`,
+        html: applicationEmailTemplate(
+          traveller.firstName,
+          app.applicationId,
+          app.visaType,
+          app.onwardDate,
+          app.returnDate,
+          updatedTravellers
+        ),
+      });
+    }
+
+    res.json({ success: true, data: app });
+
   } catch (error) {
     console.log("Traveller Upload Error:", error);
     res.status(500).json({ success: false, msg: error.message });
@@ -87,6 +189,23 @@ exports.savePaymentInfo = async (req, res) => {
     app.totalAmount = req.body.totalAmount;
     app.stepCompleted = Math.max(app.stepCompleted, 3);
     await app.save();
+
+    // Send Payment Success Email to all travellers with email
+    for (const traveller of app.travellers) {
+      if (!traveller.email || traveller.email.trim() === "") continue;
+
+      await transporter.sendMail({
+        from: `"FlyDenAi Visa Team" <${process.env.EMAIL_USER}>`,
+        to: traveller.email,
+        subject: `Payment Successful – FlyDenAi Visa Application ${app.applicationId}`,
+        html: paymentSuccessEmail(
+          traveller.firstName,
+          app.applicationId,
+          app.visaType,
+          app.totalAmount
+        )
+      });
+    }
 
     res.json({ success: true });
   } catch (err) {
@@ -109,9 +228,6 @@ exports.uploadGlobalDocs = async (req, res) => {
     mimeType: file.mimetype,
   };
   }
-
-
-
     app.stepCompleted = 4;
     await app.save();
 
@@ -212,30 +328,47 @@ exports.getPaymentInfo = async (req, res) => {
   }
 };
 
-
 exports.approveApplication = async (req, res) => {
-  try {
-    const app = await VisaApplication.findOne({ applicationId: req.params.id });
+    try {
+      const app = await VisaApplication.findOne({ applicationId: req.params.id });
 
-    if (!app)
-      return res.status(404).json({ success: false, msg: "Application not found" });
+      if (!app)
+        return res.status(404).json({ success: false, msg: "Application not found" });
 
-    app.approved = true;
-    app.approvedAt = new Date();
-    app.stepCompleted = 4; // Final step
-    app.paymentStatus = "SUCCESS"; // Optional but recommended
+      app.approved = true;
+      app.approvedAt = new Date();
+      app.stepCompleted = 4;
+      app.paymentStatus = "SUCCESS";
 
-    await app.save();
+      await app.save();
 
-    return res.json({
-      success: true,
-      msg: "Application Approved Successfully",
-      data: app,
-    });
+      // -----------------------------
+      // SEND VISA APPROVED EMAIL
+      // -----------------------------
+      for (const traveller of app.travellers) {
+        if (!traveller.email || traveller.email.trim() === "") continue;
 
-  } catch (err) {
-    return res.status(500).json({ success: false, msg: err.message });
-  }
+        await transporter.sendMail({
+          from: `"FlyDenAi Visa Team" <${process.env.EMAIL_USER}>`,
+          to: traveller.email,
+          subject: `🎉 Visa Approved – FlyDenAi Application ${app.applicationId}`,
+          html: visaApprovedEmailTemplate(
+            traveller.firstName,
+            app.applicationId,
+            app.visaType
+          ),
+        });
+      }
+
+      return res.json({
+        success: true,
+        msg: "Application Approved Successfully & Email Sent",
+        data: app,
+      });
+
+    } catch (err) {
+      return res.status(500).json({ success: false, msg: err.message });
+    }
 };
 
 exports.deleteApplication = async (req, res) => {
@@ -277,5 +410,70 @@ exports.deleteApplication = async (req, res) => {
 
   } catch (err) {
     return res.status(500).json({ success: false, msg: err.message });
+  }
+};
+
+exports.getApplicationStatus = async (req, res) => {
+  try {
+    const app = await VisaApplication.findOne(
+      { applicationId: req.params.id },
+      {
+        applicationId: 1,
+        stepCompleted: 1,
+        paymentStatus: 1,
+        approved: 1,
+        approvedAt: 1,
+        travellers: 1,
+        globalFiles: 1,
+        createdAt: 1,
+      }
+    );
+
+    if (!app) {
+      return res.status(404).json({
+        success: false,
+        message: "Invalid Application ID",
+      });
+    }
+
+    // ⭐ If documents approved (step 4), automatically approve visa too
+    if (app.stepCompleted >= 4 && !app.approved) {
+      app.approved = true;
+      app.approvedAt = new Date();
+      await app.save();
+    }
+
+    const steps = [
+      { id: 1, name: "Application Created" },
+      { id: 2, name: "Documents Submitted" },
+      { id: 3, name: "Payment Verified" },
+      { id: 4, name: "Documents Approved" },
+      { id: 5, name: "Visa Approved" },
+    ];
+
+    // ⭐ Final status logic
+    let finalStatus = app.approved ? "APPROVED"
+                     : app.stepCompleted >= 3 ? "UNDER REVIEW"
+                     : "IN PROGRESS";
+
+    // ⭐ If approved automatically, stepCompleted = 5
+    const finalStep = app.approved ? 5 : app.stepCompleted;
+
+    res.json({
+      success: true,
+      applicationId: app.applicationId,
+      email: app.travellers?.[0]?.contactNumber || "N/A",
+      stepCompleted: finalStep,
+      paymentStatus: app.paymentStatus,
+      approved: app.approved,
+      approvedAt: app.approvedAt,
+      visaStatus: finalStatus,
+      steps,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
