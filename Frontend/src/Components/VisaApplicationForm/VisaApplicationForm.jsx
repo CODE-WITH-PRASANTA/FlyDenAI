@@ -15,8 +15,8 @@ import SummarySidebar from "./SummarySidebar";
 
 // DEFAULT CONSTANTS
 const DEFAULT_PRICE_PER_TRAVELLER = 748;
-export const SERVICE_CHARGE = 1;
-export const TAX_RATE = 0.0;
+export const SERVICE_CHARGE = 200;
+export const TAX_RATE = 0.18;
 
 // TRAVELLER DEFAULT STRUCTURE
 const emptyTraveller = () => ({
