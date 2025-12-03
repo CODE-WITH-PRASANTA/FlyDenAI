@@ -51,6 +51,9 @@ import OurSuccessfulClients from "./DashboardPages/OurSuccessfulClients/OurSucce
 import DisountCouponGeneratingPage from "./DashboardPages/DisountCouponGeneratingPage/DisountCouponGeneratingPage";
 import VisaPayments from "./DashboardPages/VisaPayments/VisaPayments";
 
+// 🔐 IMPORT PROTECTED ROUTE
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 export default function App() {
   return (
     <Router>
@@ -58,9 +61,16 @@ export default function App() {
 
       <Routes>
         {/* ----------------------------------------------------
-         *  DASHBOARD LAYOUT (Protected Area)
+         *  DASHBOARD LAYOUT (PROTECTED AREA)
          * -------------------------------------------------- */}
-        <Route path="/" element={<AppLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           {/* Default Dashboard */}
           <Route index element={<Home />} />
 
@@ -135,10 +145,7 @@ export default function App() {
           {/* ----------------------------------------------------
            *  ADVERTISING
            * -------------------------------------------------- */}
-          <Route
-            path="/advertise/banner"
-            element={<AdvertizingBanner />}
-          />
+          <Route path="/advertise/banner" element={<AdvertizingBanner />} />
 
           {/* ----------------------------------------------------
            *  DIRECTOR & ACHIEVEMENT
@@ -156,16 +163,14 @@ export default function App() {
             element={<DisountCouponGeneratingPage />}
           />
 
-          <Route
-            path="/visa-notes/payment"
-            element={<VisaPayments />}
-          />
-
-
+          {/* ----------------------------------------------------
+           *  VISA PAYMENTS
+           * -------------------------------------------------- */}
+          <Route path="/visa-notes/payment" element={<VisaPayments />} />
         </Route>
 
         {/* ----------------------------------------------------
-         *  AUTH ROUTES
+         *  AUTH ROUTES (PUBLIC)
          * -------------------------------------------------- */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
