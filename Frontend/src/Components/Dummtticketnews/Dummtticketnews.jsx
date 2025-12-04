@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Dummtticketnews.css";
-import LOGO_PATH from '../../assets/dummyticket/dummyticketcompany.png'
-import LOGO_PATH1 from '../../assets/dummyticket/dummyticketcompany1.png'
-import LOGO_PATH2 from '../../assets/dummyticket/dummyticketcompany2.png'
-import LOGO_PATH3 from '../../assets/dummyticket/dummyticketcompany3.png'
-import LOGO_PATH4 from '../../assets/dummyticket/dummyticketcompany4.png'
-import LOGO_PATH5 from '../../assets/dummyticket/dummyticketcompany5.png'
-import LOGO_PATH6 from '../../assets/dummyticket/dummyticketcompany6.png'
-import LOGO_PATH7 from '../../assets/dummyticket/dummyticketcompany7.png'
-import LOGO_PATH8 from '../../assets/dummyticket/dummyticketcompany8.png'
-import LOGO_PATH9 from '../../assets/dummyticket/dummyticketcompany9.png'
-import LOGO_PATH10 from '../../assets/dummyticket/dummyticketcompany10.png'
+import LOGO_PATH from '../../assets/dummyticketcompany.png'
+import LOGO_PATH1 from '../../assets/dummyticketcompany1.png'
+import LOGO_PATH2 from '../../assets/dummyticketcompany2.png'
+import LOGO_PATH3 from '../../assets/dummyticketcompany3.png'
+import LOGO_PATH4 from '../../assets/dummyticketcompany4.png'
+import LOGO_PATH5 from '../../assets/dummyticketcompany5.png'
+import LOGO_PATH6 from '../../assets/dummyticketcompany6.png'
+import LOGO_PATH7 from '../../assets/dummyticketcompany7.png'
+import LOGO_PATH8 from '../../assets/dummyticketcompany8.png'
+import LOGO_PATH9 from '../../assets/dummyticketcompany9.png'
+import LOGO_PATH10 from '../../assets/dummyticketcompany10.png'
 
 const logos = [LOGO_PATH, LOGO_PATH1, LOGO_PATH2, LOGO_PATH3, LOGO_PATH4, LOGO_PATH5, LOGO_PATH6, LOGO_PATH7, LOGO_PATH8, LOGO_PATH9, LOGO_PATH10];
 

@@ -1,0 +1,583 @@
+/* ❇ MAIN WRAPPER */
+.BookingDetails-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* LEFT PORTION */
+.BookingForm-wrapper {
+  flex: 3;
+  padding: 2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+
+  /* ⭐ Matching, clean, normal border */
+  border: 1px solid #ffe1cc;
+}
+
+
+/* MAIN TITLE */
+.BookingForm-mainTitle {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  color: #ff5c1f;
+}
+
+/* SECTION HEADER */
+.BookingForm-sectionHead {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding-left: 10px;
+  border-left: 4px solid #ff5c1f;
+  margin-bottom: 1.3rem;
+  color: #222;
+}
+
+/* GRID */
+.BookingForm-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 1.4rem;
+}
+
+/* LABEL */
+.BookingForm-group label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #333;
+  margin-bottom: .35rem;
+}
+
+/* INPUT WRAPPER */
+.BookingForm-inputWrapper {
+  background: #fafafa;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.BookingForm-inputWrapper:hover {
+  border-color: #ff7e45;
+}
+
+.BookingForm-inputWrapper input,
+.BookingForm-inputWrapper select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: .95rem;
+  outline: none;
+}
+
+/* PASSENGER BOX */
+.BookingForm-passengerBox {
+  border-radius: 16px;
+  border: 1px solid #ffe1cd;
+  background: linear-gradient(180deg, #fff9f4, #fff);
+  padding: 1.6rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(255, 120, 55, 0.08);
+  margin-top: 20px;
+}
+
+/* PASSENGER HEADER */
+.BookingForm-passengerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ffd1bb;
+  padding-bottom: .8rem;
+  margin-bottom: 1.3rem;
+}
+
+.BookingForm-passengerTitle {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: #ff5c1f;
+}
+
+/* REMOVE ICON */
+.BookingForm-removeIcon {
+  cursor: pointer;
+  color: #ff3b30;
+  transition: .25s;
+}
+
+.BookingForm-removeIcon:hover {
+  transform: scale(1.2);
+  color: #ff0000;
+}
+
+/* ADD PASSENGER BUTTON */
+.BookingForm-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff5c1f;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  margin-top: .5rem;
+  box-shadow: 0 3px 10px rgba(255, 95, 31, 0.3);
+}
+
+.BookingForm-add:hover {
+  opacity: .9;
+}
+/* SIDEBAR FLIGHT CARD */
+.BookingSidebar-flightCard {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid #ffe5d6;
+  margin-bottom: 1.4rem;
+  box-shadow: 0 4px 10px rgba(255, 120, 55, 0.12);
+}
+
+.BookingSidebar-subTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ff5c1f;
+  margin-bottom: .7rem;
+}
+/* ROUTE ROW — Premium Airline Style */
+.BookingSidebar-route {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+
+  background: #fff7f2;
+  padding: 1rem 1.4rem;
+  border-radius: 12px;
+  border: 1px dashed #ffc7a4;
+
+  position: relative;
+}
+
+/* Each Side */
+.BookingSidebar-route div {
+  text-align: center;
+}
+
+/* Forces long airport text to wrap cleanly */
+.BookingSidebar-value {
+  white-space: normal;      /* Allow wrapping */
+  word-wrap: break-word;    /* Break long words */
+  overflow-wrap: break-word;
+  text-align: center;
+  line-height: 1.4;
+  display: block;
+  max-width: 80px;         /* Controls width for clean alignment */
+  margin: 0 auto;           /* Centers the text */
+}
+
+/* Prevents the route flex from stretching too wide */
+.BookingSidebar-route {
+  flex-wrap: wrap;
+  text-align: center;
+}
+ 
+/* Labels */
+.BookingSidebar-label {
+  font-size: .75rem;
+  color: #777;
+  margin-bottom: 2px;
+}
+
+/* Values */
+.BookingSidebar-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.3;
+}
+
+/* Center Arrow */
+.BookingSidebar-arrow {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ff5c1f;
+  margin: 0 0.5rem;
+}
+
+
+/* DATE BOX */
+.BookingSidebar-dateBox {
+  margin-top: 1rem;
+  background: #fff8f3;
+  border: 1px solid #ffd9c1;
+  padding: .9rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.BookingSidebar-dateBox p {
+  font-size: .82rem;
+  color: #777;
+}
+
+.BookingSidebar-dateBox strong {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #222;
+}
+
+/* DEPARTURE - ARRIVAL TIMES */
+.BookingSidebar-timeBox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  background: #fff8f3;
+  border: 1px solid #ffd9c1;
+  padding: .9rem;
+  border-radius: 10px;
+}
+
+.BookingSidebar-timeBox p {
+  font-size: .8rem;
+  color: #777;
+  margin-bottom: .2rem;
+}
+
+.BookingSidebar-timeBox strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+/* ==============================
+   ✈ TRAVELLERS INFO CARD
+   ============================== */
+.BookingSidebar-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.6rem;
+  margin-top: 1.4rem;
+  border: 1px solid #ffe1cc;
+  box-shadow: 0 4px 14px rgba(255, 95, 31, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+/* SECTION TITLES */
+.BookingSidebar-sectionTitle {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: #ff5c1f;
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ROWS INSIDE CARD */
+.BookingSidebar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 0;
+  font-size: .94rem;
+  color: #444;
+}
+
+.BookingSidebar-row.amount {
+  padding: .4rem 0 .7rem;
+}
+
+.BookingSidebar-row span {
+  color: #777;
+}
+
+/* DIVIDER LINE */
+.BookingSidebar-line {
+  width: 100%;
+  height: 1px;
+  background: #f2d3c1;
+  margin: 1rem 0;
+  border-radius: 20px;
+}
+
+/* PRICE */
+.BookingSidebar-price {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #222;
+}
+
+/* PAYMENT BUTTON */
+.BookingSidebar-payBtn {
+  width: 100%;
+  padding: 14px 0;
+  background: #ff5c1f;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  margin-top: 1.4rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(255, 95, 31, 0.35);
+}
+
+.BookingSidebar-payBtn:hover {
+  background: #ff4a05;
+  box-shadow: 0 6px 20px rgba(255, 95, 31, 0.45);
+  transform: translateY(-2px);
+}
+
+/* FADE-IN ANIMATION */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   ✈ SIDEBAR TITLE (Booking Summary)
+   =============================== */
+.BookingSidebar-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.4rem;
+
+  background: #fff4ec;
+  border: 1px solid #ffd7c1;
+  border-radius: 14px;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ff5c1f;
+
+  box-shadow: 0 3px 10px rgba(255, 120, 55, 0.18);
+  letter-spacing: 0.4px;
+}
+
+/* Make Left Side Scrollable */
+.BookingForm-scrollArea {
+  max-height: 85vh;       /* Take 85% of screen height */
+  overflow-y: auto;        /* Vertical scroll */
+  padding-right: 10px;     /* Avoid scrollbar overlapping */
+}
+
+/* Smooth scrollbar styling (optional) */
+.BookingForm-scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.BookingForm-scrollArea::-webkit-scrollbar-thumb {
+  background: #ffb28a;
+  border-radius: 10px;
+}
+
+.BookingForm-scrollArea::-webkit-scrollbar-thumb:hover {
+  background: #ff8a54;
+}
+
+/* ============================
+   COUPON CARD
+============================ */
+.BookingSidebar-couponCard {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.BookingSidebar-couponRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.BookingSidebar-couponInput {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d7dce5;
+  font-size: 14px;
+}
+
+.BookingSidebar-couponBtn {
+  background: #1e88e5;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.BookingSidebar-couponBtn:hover {
+  background: #156dc3;
+}
+
+.BookingSidebar-couponMsg {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #1e88e5;
+  font-weight: 500;
+}
+
+/* Discount row */
+.discountRow strong {
+  color: #d32f2f;
+}
+
+/* =====================================
+   📱 RESPONSIVE DESIGN (MOBILE + TABLET)
+===================================== */
+
+/* ---------- Large Tablets (max-width: 1024px) ---------- */
+@media (max-width: 1024px) {
+  .BookingDetails-container {
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .BookingForm-wrapper {
+    padding: 1.5rem;
+  }
+
+  .BookingSidebar-wrapper {
+    padding: 0 0.5rem;
+  }
+}
+
+/* ---------- Tablets (max-width: 900px) ---------- */
+@media (max-width: 900px) {
+  .BookingDetails-container {
+    flex-direction: column;
+  }
+
+  /* Sidebar moves below form */
+  .BookingSidebar-wrapper {
+    width: 100%;
+  }
+
+  .BookingForm-wrapper {
+    width: 100%;
+  }
+}
+
+/* ---------- Mobile Landscape (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+
+  .BookingDetails-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .BookingForm-wrapper {
+    padding: 1.2rem;
+  }
+
+  /* 2-column grid becomes 1-column */
+  .BookingForm-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .BookingSidebar-flightCard,
+  .BookingSidebar-card,
+  .BookingSidebar-couponCard {
+    padding: 1.2rem;
+  }
+
+  /* Reduce side padding but do NOT reduce font size */
+  .BookingSidebar-title {
+    padding: 0.7rem 1rem;
+  }
+}
+
+/* ---------- Mobile Portrait (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+
+  .BookingDetails-container {
+    padding: 0.8rem;
+  }
+
+  .BookingForm-wrapper {
+    padding: 1rem;
+  }
+
+  .BookingForm-passengerBox {
+    padding: 1.2rem;
+  }
+
+  /* Make coupon & payment buttons full-width with clean spacing */
+  .BookingSidebar-couponBtn,
+  .BookingSidebar-payBtn {
+    width: 100%;
+  }
+
+  .BookingSidebar-couponRow {
+    flex-direction: column;
+  }
+
+  /* Reduce inner card padding (NOT font) */
+  .BookingSidebar-flightCard,
+  .BookingSidebar-card,
+  .BookingSidebar-couponCard {
+    padding: 1rem;
+  }
+}
+
+/* ---------- Very Small Devices (max-width: 360px) ---------- */
+@media (max-width: 360px) {
+  .BookingDetails-container {
+    padding: 0.5rem;
+  }
+
+  .BookingForm-wrapper {
+    padding: 0.8rem;
+  }
+
+  .BookingSidebar-wrapper {
+    padding: 0;
+  }
+}
+/* ===========================
+   MEDIA QUERIES
+=========================== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+  .BookingForm-mainTitle {
+    font-size: 1.4rem;
+  }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+  .BookingForm-mainTitle {
+  
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+}
+

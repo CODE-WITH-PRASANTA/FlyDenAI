@@ -1,0 +1,326 @@
+/* ================================================
+   GLOBAL CONTAINER
+================================================ */
+.ticketManage-container {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: #f5f7fb;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ================================================
+   CARD WRAPPER
+================================================ */
+.ticketManage-card {
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  width: 100%;
+  transition: 0.3s ease;
+  overflow-x: hidden;
+}
+
+.ticketManage-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+/* ================================================
+   TITLES
+================================================ */
+.ticketManage-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1c2c54;
+  margin-bottom: 1.4rem;
+}
+
+/* ================================================
+   FORM & INPUTS
+================================================ */
+.ticketManage-form,
+.ticketManage-priceForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.ticketManage-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #233767;
+}
+
+.ticketManage-input {
+  padding: 0.9rem 1rem;
+  border: 1px solid #d7dce5;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s;
+  background: #fdfdfd;
+}
+
+.ticketManage-input:focus {
+  border-color: #5577ff;
+  box-shadow: 0 0 0 3px rgba(85, 119, 255, 0.2);
+}
+
+/* ================================================
+   BUTTONS
+================================================ */
+.ticketManage-btn {
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: #5577ff;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ticketManage-btn:hover {
+  background: #3e5ee8;
+}
+
+.ticketManage-editBtn {
+  padding: 0.6rem 1rem;
+  border: none;
+  background: #ff8e3c;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+
+.ticketManage-editBtn:hover {
+  background: #ff7a14;
+}
+
+/* ================================================
+   PRICE BOX
+================================================ */
+.ticketManage-priceBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #f0f4ff;
+  border-radius: 10px;
+}
+
+.ticketManage-priceText {
+  font-size: 1.8rem;
+  color: #1a2a4e;
+  font-weight: 700;
+}
+
+/* ================================================
+   GRID
+================================================ */
+.ticketManage-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr;
+  gap: 2rem;
+}
+
+@media (max-width: 900px) {
+  .ticketManage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================
+   TABLE SECTION
+================================================ */
+.ticketManage-tableHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.ticketManage-search {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d7dce5;
+  width: 220px;
+  transition: 0.3s;
+}
+
+.ticketManage-search:focus {
+  border-color: #5577ff;
+  box-shadow: 0 0 0 3px rgba(85, 119, 255, 0.25);
+}
+
+/* ================================================
+   TABLE WRAPPER (SCROLLABLE ONLY BODY)
+================================================ */
+.ticketManage-tableWrapper {
+  max-height: 340px;      /* scroll height */
+  overflow-y: auto;       /* scroll enabled */
+  border-radius: 10px;
+  border: 1px solid #d7dce5;
+  background: #ffffff;
+}
+
+.ticketManage-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ticketManage-table thead {
+  background: #eef2ff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.ticketManage-table th,
+.ticketManage-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-size: 0.92rem;
+  border-bottom: 1px solid #ededed;
+}
+
+.ticketManage-center {
+  text-align: center;
+}
+
+/* ================================================
+   TABLE BUTTONS
+================================================ */
+.ticketManage-tableEdit {
+  padding: 0.45rem 0.9rem;
+  background: #2d8cff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-right: 6px;
+}
+
+.ticketManage-tableEdit:hover {
+  background: #1c6cdf;
+}
+
+.ticketManage-tableDelete {
+  padding: 0.45rem 0.9rem;
+  background: #ff4b4b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ticketManage-tableDelete:hover {
+  background: #d93838;
+}
+
+/* ================================================
+   EMPTY STATE
+================================================ */
+.ticketManage-empty {
+  text-align: center;
+  padding: 1rem;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* ================================================
+   PAGINATION
+================================================ */
+.ticketManage-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+.ticketManage-pageBtn {
+  padding: 0.6rem 1rem;
+  background: #5577ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ticketManage-pageBtn:disabled {
+  background: #b6c0e9;
+  cursor: not-allowed;
+}
+
+.ticketManage-pageBtn:hover:not(:disabled) {
+  background: #3e5ee8;
+}
+
+.ticketManage-pageInfo {
+  color: #2b3d65;
+  font-weight: 500;
+}
+
+/* ================================================
+   RESPONSIVE IMPROVEMENTS (MOBILE)
+================================================ */
+@media (max-width: 768px) {
+
+  /* Reduce card padding */
+  .ticketManage-card {
+    padding: 1.2rem;
+  }
+
+  /* Reduce title size */
+  .ticketManage-title {
+    font-size: 1.2rem;
+  }
+
+  /* Reduce grid to 1 column */
+  .ticketManage-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  /* Inputs full width */
+  .ticketManage-input,
+  .ticketManage-search {
+    width: 100% !important;
+  }
+
+  /* Price Box stack vertically */
+  .ticketManage-priceBox {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* ================================================
+     TABLE MOBILE SCROLL (Horizontal Scroll)
+     Only table scrolls — not whole container
+  ================================================ */
+  .ticketManage-tableWrapper {
+    overflow-x: auto;        /* horizontal scroll */
+    overflow-y: auto;        /* keep vertical scroll */
+    width: 100%;
+  }
+
+  .ticketManage-table {
+    min-width: 600px;        /* ensures columns don't shrink */
+  }
+}

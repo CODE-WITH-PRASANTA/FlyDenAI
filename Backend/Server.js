@@ -32,6 +32,10 @@ const blogRoutes = require("./routes/blogRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const couponRoutes = require("./routes/couponRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const airportRoutes = require("./routes/airportRoutes");
+const priceRoutes = require("./routes/priceRoutes");
+const ticketPaymentRoutes = require("./routes/ticketPaymentRoutes");
+const TicketBookingRoutes = require("./routes/TicketBookingRoutes");
 
 
 // ✅ Use routes
@@ -46,6 +50,12 @@ app.use('/api/blogs', blogRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/applications", applicationRoutes);
+app.use("/api/airports", airportRoutes);
+app.use("/api/price", priceRoutes);
+app.use("/api/ticket-payment", ticketPaymentRoutes);
+app.use("/api/ticket-booking", TicketBookingRoutes);
+
+
 
 // Default route
 app.get("/", (req, res) => {

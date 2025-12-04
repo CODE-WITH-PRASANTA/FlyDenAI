@@ -50,6 +50,8 @@ import OurSuccessfulClients from "./DashboardPages/OurSuccessfulClients/OurSucce
 
 import DisountCouponGeneratingPage from "./DashboardPages/DisountCouponGeneratingPage/DisountCouponGeneratingPage";
 import VisaPayments from "./DashboardPages/VisaPayments/VisaPayments";
+import DummmyTicketManage from "./DashboardPages/DummmyTicketManage/DummmyTicketManage";
+import DummyTicketHolder from "./DashboardPages/DummyTicketHolder/DummyTicketHolder";
 
 export default function App() {
   return (
@@ -159,6 +161,16 @@ export default function App() {
           <Route
             path="/visa-notes/payment"
             element={<VisaPayments />}
+          />
+
+          <Route
+            path="/dummy-ticket/manage"
+            element={<DummmyTicketManage />}
+          />
+
+          <Route
+            path="/dummy-ticket/holder"
+            element={<DummyTicketHolder />}
           />
 
 

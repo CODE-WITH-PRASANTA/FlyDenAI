@@ -1,0 +1,130 @@
+.Success-wrapper {
+  width: 100%;
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.Success-card {
+  background: #fff;
+  width: 100%;
+  max-width: 480px;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.Success-icon {
+  width: 80px;
+  height: 80px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+.Success-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.Success-message {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.5rem;
+}
+
+.Success-btn {
+  margin-top: 25px;
+  background: #ff5c1f;
+  color: #fff;
+  padding: 12px 20px;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.Success-btn:hover {
+  background: #e34e18;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+      RESPONSIVE DESIGN
+============================ */
+
+/* For tablets and medium screens */
+@media (max-width: 768px) {
+  .Success-card {
+    max-width: 90%;
+    padding: 28px;
+  }
+
+  .Success-title {
+    font-size: 22px;
+  }
+
+  .Success-message {
+    font-size: 15px;
+  }
+
+  .Success-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 34px;
+  }
+}
+
+/* For mobile screens */
+@media (max-width: 480px) {
+  .Success-wrapper {
+    padding: 15px;
+  }
+
+  .Success-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+
+  .Success-title {
+    font-size: 20px;
+  }
+
+  .Success-message {
+    font-size: 14px;
+    line-height: 1.4rem;
+  }
+
+  .Success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+
+  .Success-btn {
+    padding: 10px 18px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+}

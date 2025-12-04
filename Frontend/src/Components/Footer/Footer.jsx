@@ -45,7 +45,7 @@ const Footer = () => {
         <p>
           Developed by{" "}
           <a
-            href="https://prwebstock.com"
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="developer-link"

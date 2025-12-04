@@ -81,7 +81,7 @@ const Navbar = () => {
       ],
     },
     { name: "Country", path: "/AllCountry" },
-    // { name: "Dummy Ticket", path: "/DummyTicket" },
+    { name: "Dummy Ticket", path: "/DummyTicket" },
     {
       name: "Program Type",
       path: "/StudyAbroad",

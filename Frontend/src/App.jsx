@@ -29,7 +29,9 @@ import InternAbroadApply from "./Pages/InternAbroadApply/InternAbroadApply";
 import MultiStepForm from "./Components/MultiStepForm/MultiStepForm";
 import ExecutiveTeam from "./Components/ExecutiveTeam/ExecutiveTeam";
 import VisaInfo from "./Pages/VisaInfo/VisaInfo";
-// import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
+import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
+import DummyTicketBooking from "./Pages/DummyTicketBooking/DummyTicketBooking";
+import DummyTicketSuccess from "./Components/DummyTicketSuccess/DummyTicketSuccess";
 
 function App() {
   const navigate = useNavigate();
@@ -57,11 +59,11 @@ function App() {
           <Route path="/blog/details/:id" element={<BlogDetails />} />
 
           <Route path="/visa/overview" element={<AllVisaOverView />} />
-          {/* <Route path="/dummyticket" element={<Dummyticketsection />} /> */}
+          <Route path="/dummyticket" element={<Dummyticketsection />} />
 
        
           <Route path="/AllCountry" element={<AllCountry />} /> 
-            <Route path="/GetaQuotes" element={<GetAQuotes />} />
+          <Route path="/GetaQuotes" element={<GetAQuotes />} />
           <Route path="/FreeVisaQuotes" element={<FreeVisaQuotes />} />
 
           <Route path="/TouristVisa" element={<TouristVisa />} />
@@ -70,7 +72,7 @@ function App() {
           <Route path="/AllCountry" element={<AllCountry />} />  
 
           {/* Apply To the Visa Page */}
-            <Route path="/apply/now/:id" element={<ApplyNow />} />
+          <Route path="/apply/now/:id" element={<ApplyNow />} />
           <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition  */}
@@ -86,7 +88,11 @@ function App() {
 
 
         <Route path="/ExecutiveTeam" element={<ExecutiveTeam />} />
-        <Route path="/visa-info/:id" element={<VisaInfo />} /> {/* ✅ Dynamic route */}
+        <Route path="/visa-info/:id" element={<VisaInfo />} /> 
+
+        <Route path="/dummyticket/booking/:id" element={<DummyTicketBooking />} />
+        <Route path="/dummyticket/success/:id" element={<DummyTicketSuccess />} />
+
 
         </Routes>
         <Footer />

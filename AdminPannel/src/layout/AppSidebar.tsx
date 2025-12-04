@@ -32,6 +32,7 @@ const navItems: NavItem[] = [
       { name: "Preview", path: "/visa/preview" },
     ],
   },
+
   {
     icon: <TableIcon />,
     name: "Country Manage",
@@ -49,6 +50,26 @@ const navItems: NavItem[] = [
       { name: "Delivered", path: "/visa-notes/delivered" },
     ],
   },
+
+  // ⭐ NEW SECTION — Dummy Ticket (as requested)
+  {
+    icon: <BoxCubeIcon />,
+    name: "Dummy Ticket",
+    subItems: [
+      { name: "Manage Ticket", path: "/dummy-ticket/manage" },
+      { name: "Booking Holder", path: "/dummy-ticket/holder" }
+    ],
+  },
+
+  // ⭐ Discount Coupon MOVED BELOW Dummy Ticket
+  {
+    icon: <BoxCubeIcon />,
+    name: "Discount Coupon",
+    subItems: [
+      { name: "Generate Coupon", path: "/discount-coupon/generate" },
+    ],
+  },
+
   {
     icon: <UserCircleIcon />,
     name: "Client Enquiry",
@@ -111,16 +132,6 @@ const navItems: NavItem[] = [
     path: "/director-achievement-manage",
   },
 
-  // 🎟 **New Discount Coupon Section**
-  {
-    icon: <BoxCubeIcon />,
-    name: "Discount Coupon",
-    subItems: [
-      { name: "Generate Coupon", path: "/discount-coupon/generate" },
-      { name: "View Coupons", path: "/discount-coupon/preview" },
-    ],
-  },
-
   // FAQ MANAGEMENT
   {
     icon: <PageIcon />,
@@ -131,6 +142,7 @@ const navItems: NavItem[] = [
     ],
   },
 ];
+
 
 
 const AppSidebar: React.FC = () => {
