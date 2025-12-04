@@ -55,6 +55,7 @@ import DummyTicketHolder from "./DashboardPages/DummyTicketHolder/DummyTicketHol
 
 // 🔐 IMPORT PROTECTED ROUTE
 import ProtectedRoute from "./routes/ProtectedRoute";
+import DummyTicketManage from "./DashboardPages/DummmyTicketManage/DummmyTicketManage";
 
 export default function App() {
   return (
@@ -164,30 +165,19 @@ export default function App() {
             path="/discount-coupon/generate"
             element={<DisountCouponGeneratingPage />}
           />
-
-<<<<<<< HEAD
-          <Route
-            path="/visa-notes/payment"
-            element={<VisaPayments />}
-          />
-
           <Route
             path="/dummy-ticket/manage"
-            element={<DummmyTicketManage />}
+            element={<DummyTicketManage />}
           />
-
           <Route
             path="/dummy-ticket/holder"
             element={<DummyTicketHolder />}
           />
 
-
-=======
           {/* ----------------------------------------------------
            *  VISA PAYMENTS
            * -------------------------------------------------- */}
           <Route path="/visa-notes/payment" element={<VisaPayments />} />
->>>>>>> 3988ea67ad3fbe9b4fd86025bb5ab3d1fb223456
         </Route>
 
         {/* ----------------------------------------------------

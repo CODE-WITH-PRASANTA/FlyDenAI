@@ -16,7 +16,7 @@ const app = express();
 // ---------- GLOBAL MIDDLEWARE ----------
 app.use(
   cors({
-    origin: ["http://localhost:5173"], // your frontend domain
+    origin: ["http://localhost:5174"], // your frontend domain
     credentials: true,
   })
 );
