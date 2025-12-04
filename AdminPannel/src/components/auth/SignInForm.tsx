@@ -1,151 +1,312 @@
-import { useState } from "react";
-import { Link } from "react-router";
-import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "../../icons";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+// src/icons/index.ts
+import EyeIcon  from "../../icons/EyeIcon";
+import EyeCloseIcon  from "../../icons/EyeCloseIcon";
+// export { default as ChevronLeftIcon } from "./ChevronLeftIcon";
+
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Checkbox from "../form/input/Checkbox";
 import Button from "../ui/button/Button";
+import BASE_URL from "../../Api";
 
-export default function SignInForm() {
+/**
+ * NOTE on security:
+ * - We first try to use the browser's Credential Management API (recommended).
+ * - If unavailable, we fall back to storing credentials encrypted in localStorage using Web Crypto.
+ *   This fallback can be less secure than a true password manager (because the encryption key must
+ *   be stored somewhere accessible to the client). I implemented a safer approach than plain text
+ *   (AES-GCM), but for production prefer relying on browser password managers / Credential API and HTTPS.
+ *
+ * You asked explicitly for autofill on next open after signing out — this will happen because:
+ * - credentials are stored on successful login with "Keep me logged in" checked,
+ * - when the sign-in form mounts again, we attempt to restore and prefill email/password.
+ */
+
+const FALLBACK_KEY_NAME = "fd_saved_creds_v1"; // localStorage key for encrypted backup
+
+// A static application secret used for fallback key derivation.
+// WARNING: using a hardcoded secret in client JS is not fully secure — this is a fallback only.
+// For better security in production, remove fallback and rely on Credential Management API / browser password manager.
+const APP_FALLBACK_SECRET = "replace-with-your-app-specific-secret-or-make-dynamic";
+
+async function deriveKeyFromSecret(secret: string): Promise<CryptoKey> {
+  const enc = new TextEncoder();
+  const salt = enc.encode("fd-app-salt-v1"); // static salt; you may change but must remain same across sessions
+  const keyMaterial = await window.crypto.subtle.importKey(
+    "raw",
+    enc.encode(secret),
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+  const key = await window.crypto.subtle.deriveKey(
+    {
+      name: "PBKDF2",
+      salt,
+      iterations: 100_000,
+      hash: "SHA-256",
+    },
+    keyMaterial,
+    { name: "AES-GCM", length: 256 },
+    true,
+    ["encrypt", "decrypt"]
+  );
+  return key;
+}
+
+async function encryptObject(obj: object, secret: string): Promise<string> {
+  const enc = new TextEncoder();
+  const iv = window.crypto.getRandomValues(new Uint8Array(12)); // AES-GCM recommended IV size
+  const key = await deriveKeyFromSecret(secret);
+  const plaintext = enc.encode(JSON.stringify(obj));
+  const cipher = await window.crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, plaintext);
+
+  // store iv + cipher as base64 JSON
+  const ivB64 = btoa(String.fromCharCode(...iv));
+  const cipherB64 = btoa(String.fromCharCode(...new Uint8Array(cipher)));
+  return JSON.stringify({ iv: ivB64, data: cipherB64 });
+}
+
+async function decryptObject(payload: string, secret: string): Promise<any | null> {
+  try {
+    const parsed = JSON.parse(payload);
+    const iv = Uint8Array.from(atob(parsed.iv), (c: string) => c.charCodeAt(0));
+    const cipher = Uint8Array.from(atob(parsed.data), (c: string) => c.charCodeAt(0));
+    const key = await deriveKeyFromSecret(secret);
+    const plain = await window.crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, cipher);
+    const dec = new TextDecoder().decode(plain);
+    return JSON.parse(dec);
+  } catch (err) {
+    // decryption failed or malformed data
+    return null;
+  }
+}
+
+export default function SignInForm(): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+
+  // Helper - Set Cookie
+  const setCookie = (name: string, value: string, seconds: number) => {
+    const d = new Date(Date.now() + seconds * 1000);
+    document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/; SameSite=Lax;`;
+  };
+
+  // Attempt to restore credentials on mount:
+  useEffect(() => {
+    let cancelled = false;
+
+    async function restore() {
+      // 1) Try Credential Management API first
+      try {
+        if ("credentials" in navigator) {
+          const cred: any = await (navigator as any).credentials.get?.({
+            password: true,
+            mediation: "optional",
+          });
+
+          if (cred && !cancelled) {
+            if (cred.id) setEmail(cred.id);
+            if (cred.password) setPassword(cred.password);
+            setIsChecked(true);
+            return; // credential restored; done
+          }
+        }
+      } catch {
+        // ignore errors and try fallback
+      }
+
+      // 2) Fallback: try encrypted localStorage
+      try {
+        const saved = localStorage.getItem(FALLBACK_KEY_NAME);
+        if (saved) {
+          const restored = await decryptObject(saved, APP_FALLBACK_SECRET);
+          if (restored && !cancelled) {
+            if (restored.email) setEmail(restored.email);
+            if (restored.password) setPassword(restored.password);
+            setIsChecked(true);
+            return;
+          }
+        }
+      } catch {
+        // ignore fallback errors
+      }
+    }
+
+    restore();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // -------------------------
+  // ON SUBMIT
+  // -------------------------
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setError(null);
+
+    if (!email.trim() || !password.trim()) {
+      setError("Please fill all required fields.");
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await resp.json();
+
+      if (!resp.ok) {
+        setError(data.message || "Invalid email or password");
+        return;
+      }
+
+      // Save token in cookie
+      setCookie("fd_token", data.token, data.expiresIn);
+      setCookie(
+        "fd_token_expiry",
+        (Date.now() + data.expiresIn * 1000).toString(),
+        data.expiresIn
+      );
+
+      // Set login flag
+      localStorage.setItem("isLoggedIn", "1");
+
+      // -------------------------
+      // Save credentials if "Keep me logged in" checked
+      // -------------------------
+      if (isChecked) {
+        // 1) Try Credential Management API
+        try {
+          if ("credentials" in navigator) {
+            // The best/standard approach: store a PasswordCredential
+            // PasswordCredential constructor signature can vary; use feature-detect
+            try {
+              const PasswordCredConstructor = (window as any).PasswordCredential;
+              if (typeof PasswordCredConstructor === "function") {
+                // Some browsers accept an object
+                const pc = new PasswordCredConstructor({
+                  id: email,
+                  password: password,
+                  name: email,
+                });
+                await (navigator as any).credentials.store(pc);
+              } else {
+                // Some variants accept a FormData where keys match form fields' names
+                const fd = new FormData();
+                fd.append("id", email);
+                fd.append("password", password);
+                try {
+                  const pc2 = new (window as any).PasswordCredential(fd);
+                  await (navigator as any).credentials.store(pc2);
+                } catch {
+                  // ignore
+                }
+              }
+            } catch {
+              // ignore
+            }
+          }
+        } catch {
+          // ignore Credential API store errors and fall through to fallback
+        }
+
+        // 2) Fallback: encrypted localStorage (only if Credential API not present / store failed)
+        try {
+          // We still write the fallback so that users without Credential API get the autofill behavior.
+          // encryptObject is asynchronous and uses Web Crypto.
+          const encrypted = await encryptObject({ email, password }, APP_FALLBACK_SECRET);
+          localStorage.setItem(FALLBACK_KEY_NAME, encrypted);
+        } catch {
+          // swallow fallback errors
+        }
+      } else {
+        // If the user did NOT check "Keep me logged in", remove fallback storage (if any)
+        try {
+          localStorage.removeItem(FALLBACK_KEY_NAME);
+        } catch {}
+      }
+
+      navigate("/"); // redirect to admin dashboard
+    } catch (err) {
+      setError("Network error");
+    }
+  };
+
   return (
     <div className="flex flex-col flex-1">
-      <div className="w-full max-w-md pt-10 mx-auto">
-        <Link
-          to="/TailAdmin/"
-          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-        >
-          <ChevronLeftIcon className="size-5" />
-          Back to dashboard
-        </Link>
-      </div>
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
-          <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
-              Sign In
-            </h1>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Enter your email and password to sign in!
-            </p>
-          </div>
-          <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M18.7511 10.1944C18.7511 9.47495 18.6915 8.94995 18.5626 8.40552H10.1797V11.6527H15.1003C15.0011 12.4597 14.4654 13.675 13.2749 14.4916L13.2582 14.6003L15.9087 16.6126L16.0924 16.6305C17.7788 15.1041 18.7511 12.8583 18.7511 10.1944Z"
-                    fill="#4285F4"
-                  />
-                  <path
-                    d="M10.1788 18.75C12.5895 18.75 14.6133 17.9722 16.0915 16.6305L13.274 14.4916C12.5201 15.0068 11.5081 15.3666 10.1788 15.3666C7.81773 15.3666 5.81379 13.8402 5.09944 11.7305L4.99473 11.7392L2.23868 13.8295L2.20264 13.9277C3.67087 16.786 6.68674 18.75 10.1788 18.75Z"
-                    fill="#34A853"
-                  />
-                  <path
-                    d="M5.10014 11.7305C4.91165 11.186 4.80257 10.6027 4.80257 9.99992C4.80257 9.3971 4.91165 8.81379 5.09022 8.26935L5.08523 8.1534L2.29464 6.02954L2.20333 6.0721C1.5982 7.25823 1.25098 8.5902 1.25098 9.99992C1.25098 11.4096 1.5982 12.7415 2.20333 13.9277L5.10014 11.7305Z"
-                    fill="#FBBC05"
-                  />
-                  <path
-                    d="M10.1789 4.63331C11.8554 4.63331 12.9864 5.34303 13.6312 5.93612L16.1511 3.525C14.6035 2.11528 12.5895 1.25 10.1789 1.25C6.68676 1.25 3.67088 3.21387 2.20264 6.07218L5.08953 8.26943C5.81381 6.15972 7.81776 4.63331 10.1789 4.63331Z"
-                    fill="#EB4335"
-                  />
-                </svg>
-                Sign in with Google
-              </button>
-              <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
-                <svg
-                  width="21"
-                  className="fill-current"
-                  height="20"
-                  viewBox="0 0 21 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M15.6705 1.875H18.4272L12.4047 8.75833L19.4897 18.125H13.9422L9.59717 12.4442L4.62554 18.125H1.86721L8.30887 10.7625L1.51221 1.875H7.20054L11.128 7.0675L15.6705 1.875ZM14.703 16.475H16.2305L6.37054 3.43833H4.73137L14.703 16.475Z" />
-                </svg>
-                Sign in with X
-              </button>
-            </div>
-            <div className="relative py-3 sm:py-5">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
+          {/* FORM */}
+          <form onSubmit={onSubmit}>
+            <div className="space-y-6">
+              <div>
+                <Label>Email *</Label>
+                {/* Add name and autocomplete so Browser password managers can detect fields */}
+                <Input
+                  name="email"
+                  autoComplete="username"
+                  placeholder="info@gmail.com"
+                  value={email}
+                  onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                />
               </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="p-2 text-gray-400 bg-white dark:bg-gray-900 sm:px-5 sm:py-2">
-                  Or
-                </span>
-              </div>
-            </div>
-            <form>
-              <div className="space-y-6">
-                <div>
-                  <Label>
-                    Email <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <Input placeholder="info@gmail.com" />
-                </div>
-                <div>
-                  <Label>
-                    Password <span className="text-error-500">*</span>{" "}
-                  </Label>
-                  <div className="relative">
-                    <Input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="Enter your password"
-                    />
-                    <span
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
-                    >
-                      {showPassword ? (
-                        <EyeIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      ) : (
-                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400 size-5" />
-                      )}
-                    </span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <Checkbox checked={isChecked} onChange={setIsChecked} />
-                    <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
-                      Keep me logged in
-                    </span>
-                  </div>
-                  <Link
-                    to="#!"
-                    className="text-sm text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-                <div>
-                  <Button className="w-full" size="sm">
-                    Sign in
-                  </Button>
-                </div>
-              </div>
-            </form>
 
-            <div className="mt-5">
-              <p className="text-sm font-normal text-center text-gray-700 dark:text-gray-400 sm:text-start">
-                Don&apos;t have an account? {""}
-                <Link
-                  to="/TailAdmin/signup"
-                  className="text-brand-500 hover:text-brand-600 dark:text-brand-400"
-                >
-                  Sign Up
+              <div>
+                <Label>Password *</Label>
+                <div className="relative">
+                  <Input
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                    className="pr-12" // ensure input has right padding so icon is visible
+                  />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 p-1"
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    style={{ color: "#000" }} // force black color for currentColor-based svgs
+                  >
+                    {showPassword ? <EyeIcon className="size-5" /> : <EyeCloseIcon className="size-5" />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Checkbox checked={isChecked} onChange={(checked) => setIsChecked(checked)} />
+                  <span>Keep me logged in</span>
+                </div>
+
+                <Link to="#" className="text-sm text-brand-500">
+                  Forgot password?
                 </Link>
-              </p>
+              </div>
+
+              {error && <p className="text-sm text-red-500">{error}</p>}
+
+              <Button className="w-full" size="sm" type="submit">
+                Sign In
+              </Button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

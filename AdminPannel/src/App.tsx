@@ -53,6 +53,9 @@ import VisaPayments from "./DashboardPages/VisaPayments/VisaPayments";
 import DummmyTicketManage from "./DashboardPages/DummmyTicketManage/DummmyTicketManage";
 import DummyTicketHolder from "./DashboardPages/DummyTicketHolder/DummyTicketHolder";
 
+// 🔐 IMPORT PROTECTED ROUTE
+import ProtectedRoute from "./routes/ProtectedRoute";
+
 export default function App() {
   return (
     <Router>
@@ -60,9 +63,16 @@ export default function App() {
 
       <Routes>
         {/* ----------------------------------------------------
-         *  DASHBOARD LAYOUT (Protected Area)
+         *  DASHBOARD LAYOUT (PROTECTED AREA)
          * -------------------------------------------------- */}
-        <Route path="/" element={<AppLayout />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AppLayout />
+            </ProtectedRoute>
+          }
+        >
           {/* Default Dashboard */}
           <Route index element={<Home />} />
 
@@ -137,10 +147,7 @@ export default function App() {
           {/* ----------------------------------------------------
            *  ADVERTISING
            * -------------------------------------------------- */}
-          <Route
-            path="/advertise/banner"
-            element={<AdvertizingBanner />}
-          />
+          <Route path="/advertise/banner" element={<AdvertizingBanner />} />
 
           {/* ----------------------------------------------------
            *  DIRECTOR & ACHIEVEMENT
@@ -158,6 +165,7 @@ export default function App() {
             element={<DisountCouponGeneratingPage />}
           />
 
+<<<<<<< HEAD
           <Route
             path="/visa-notes/payment"
             element={<VisaPayments />}
@@ -174,10 +182,16 @@ export default function App() {
           />
 
 
+=======
+          {/* ----------------------------------------------------
+           *  VISA PAYMENTS
+           * -------------------------------------------------- */}
+          <Route path="/visa-notes/payment" element={<VisaPayments />} />
+>>>>>>> 3988ea67ad3fbe9b4fd86025bb5ab3d1fb223456
         </Route>
 
         {/* ----------------------------------------------------
-         *  AUTH ROUTES
+         *  AUTH ROUTES (PUBLIC)
          * -------------------------------------------------- */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
