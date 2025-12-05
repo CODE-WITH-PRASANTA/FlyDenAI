@@ -208,14 +208,17 @@ const DummyTicketBookingForm = ({ bookingData }) => {
     localStorage.setItem("bookingId", bookingId);
 
     // 2️⃣ CREATE PAYMENT ORDER
-    const createRes = await axios.post(`${BASE_URL}/ticket-payment/order/create`, {
-      amount: baseAmount,
-      finalAmount: totalToPay,
-      discountAmount,
-      couponCode,
-      customer,
-      bookingId
-    });
+        const createRes = await axios.post(`${BASE_URL}/ticket-payment/order/create`, {
+        amount: totalToPay,
+        finalAmount: totalToPay,
+        discountAmount,
+        couponCode,
+        customer,
+        bookingId,
+        bookingData: sidebarData
+      });
+
+
 
     // 3️⃣ REDIRECT TO PAYMENT PAGE
     if (createRes.data.success) {

@@ -83,7 +83,11 @@ exports.createTicketOrder = async (req, res) => {
       amount: amountPaisa,
       expireAfter: 900,
       metaInfo: {
-        udf1: JSON.stringify({ bookingData, customer }),
+        udf1: JSON.stringify({
+  bookingData: bookingData || {},
+  customer: customer || {}
+}),
+
       },
       paymentFlow: {
         type: "PG_CHECKOUT",
