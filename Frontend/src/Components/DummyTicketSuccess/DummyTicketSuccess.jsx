@@ -11,49 +11,58 @@ const DummyTicketSuccess = () => {
 
   // 🔍 VERIFY PAYMENT STATUS
   useEffect(() => {
-    const verifyPayment = async () => {
-      try {
-        const res = await axios.get(
-          `${BASE_URL}/ticket-payment/order/verify?orderId=${id}`
-        );
+  const verifyPayment = async () => {
+    try {
+      const res = await axios.get(
+        `${BASE_URL}/ticket-payment/order/verify?orderId=${id}`
+      );
 
-        const status = res.data.paymentStatus;
+      const status = res.data.paymentStatus;
 
-        // 1️⃣ SUCCESS → update DB + show success page
-        if (status === "SUCCESS") {
-          await axios.post(`${BASE_URL}/ticket-booking/payment/success`, {
-            bookingId: res.data.bookingId,
-            transactionId: res.data.transactionId,
-            providerReferenceId: res.data.providerReferenceId
-          });
+      // Extract bookingId + txnId from verify API response
+      const bookingId =
+        res?.data?.data?.data?.metaInfo?.udf1 ||
+        localStorage.getItem("bookingId");
 
-          setLoading(false);
-          return;
-        }
+      const transactionId = res?.data?.data?.data?.transactionId || "";
+      const providerReferenceId =
+        res?.data?.data?.data?.providerReferenceId || "";
 
-        // 2️⃣ FAILED → update DB + redirect failed page
-        if (status === "FAILED") {
-          const bookingId = localStorage.getItem("bookingId");
+      console.log("Extracted bookingId:", bookingId);
 
-          await axios.post(`${BASE_URL}/ticket-booking/payment/failed`, {
-            bookingId
-          });
+      // 1️⃣ PAYMENT SUCCESS
+      if (status === "SUCCESS") {
+        await axios.post(`${BASE_URL}/ticket-booking/payment/success`, {
+          bookingId,
+          transactionId,
+          providerReferenceId,
+        });
 
-          navigate("/dummyticket/payment-failed");
-          return;
-        }
-
-        // 3️⃣ CANCELLED or UNKNOWN → back to booking page
-        navigate(`/dummyticket/booking/${id}`);
-
-      } catch (error) {
-        console.error("Payment verification failed:", error);
-        navigate(`/dummyticket/booking/${id}`);
+        setLoading(false);
+        return;
       }
-    };
 
-    verifyPayment();
-  }, [id]);
+      // 2️⃣ PAYMENT FAILED
+      if (status === "FAILED") {
+        await axios.post(`${BASE_URL}/ticket-booking/payment/failed`, {
+          bookingId,
+        });
+
+        navigate("/dummyticket/payment-failed");
+        return;
+      }
+
+      // 3️⃣ UNKNOWN → Back to booking
+      navigate(`/dummyticket/booking/${id}`);
+    } catch (error) {
+      console.error("Payment verification failed:", error);
+      navigate(`/dummyticket/booking/${id}`);
+    }
+  };
+
+  verifyPayment();
+}, [id]);
+
 
   const handleGoToDashboard = () => {
     navigate("/DummyTicket");
