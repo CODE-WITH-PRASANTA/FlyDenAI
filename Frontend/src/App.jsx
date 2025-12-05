@@ -32,6 +32,7 @@ import VisaInfo from "./Pages/VisaInfo/VisaInfo";
 import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
 import DummyTicketBooking from "./Pages/DummyTicketBooking/DummyTicketBooking";
 import DummyTicketSuccess from "./Components/DummyTicketSuccess/DummyTicketSuccess";
+import PaymentFailed from "./Components/PaymentFailed/PaymentFailed";
 
 function App() {
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ function App() {
 
           <Route path="/visa/overview" element={<AllVisaOverView />} />
           <Route path="/dummyticket" element={<Dummyticketsection />} />
+          <Route path="/dummyticket/payment-failed" element={<PaymentFailed />} />
 
        
           <Route path="/AllCountry" element={<AllCountry />} /> 

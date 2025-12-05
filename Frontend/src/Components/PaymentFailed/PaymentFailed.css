@@ -1,0 +1,152 @@
+/* Wrapper */
+.PaymentFailed-wrapper {
+  width: 100%;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Card */
+.PaymentFailed-card {
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Icon */
+.PaymentFailed-icon {
+  width: 90px;
+  height: 90px;
+  background: #ffe6e6;
+  color: #d93636;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+  box-shadow: 0 6px 16px rgba(255, 0, 0, 0.25);
+}
+
+/* Title */
+.PaymentFailed-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #d93636;
+  margin-bottom: 12px;
+}
+
+/* Messages */
+.PaymentFailed-message {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.PaymentFailed-message.small {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Retry Button */
+.PaymentFailed-btn {
+  margin-top: 22px;
+  padding: 12px 22px;
+  width: 100%;
+  max-width: 260px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #1f2937;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.PaymentFailed-btn:hover {
+  background: #111827;
+  transform: translateY(-2px);
+}
+
+
+/* ============================
+   RESPONSIVE DESIGN (ONLY MQ)
+=============================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .PaymentFailed-card {
+    padding: 30px 20px;
+    max-width: 380px;
+  }
+
+  .PaymentFailed-title {
+    font-size: 24px;
+  }
+
+  .PaymentFailed-message {
+    font-size: 14px;
+  }
+
+  .PaymentFailed-btn {
+    max-width: 220px;
+    font-size: 15px;
+  }
+
+  .PaymentFailed-icon {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .PaymentFailed-wrapper {
+    padding: 10px;
+  }
+
+  .PaymentFailed-card {
+    padding: 25px 18px;
+    max-width: 100%;
+  }
+
+  .PaymentFailed-title {
+    font-size: 22px;
+  }
+
+  .PaymentFailed-message {
+    font-size: 13px;
+  }
+
+  .PaymentFailed-btn {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .PaymentFailed-icon {
+    width: 65px;
+    height: 65px;
+  }
+}

@@ -169,60 +169,64 @@ const DummyTicketBookingForm = ({ bookingData }) => {
       HANDLE PAYMENT + STORE BOOKING DATA
   ------------------------------------ */
   const handlePayment = async () => {
-    try {
-      const totalToPay = isCouponApplied ? finalAmount : baseAmount;
+  try {
+    const totalToPay = isCouponApplied ? finalAmount : baseAmount;
 
-      if (totalToPay <= 0) {
-        alert("Invalid payment amount");
-        return;
-      }
-
-      // Prepare customer info
-      const customer = {
-        phone: document.querySelector("input[placeholder='Enter your phone number']")?.value || "",
-        purpose: document.querySelector("select")?.value || "",
-        name: document.querySelector("input[placeholder='Enter your full name']")?.value || "",
-        email: document.querySelector("input[placeholder='Enter your email address']")?.value || ""
-      };
-
-      // 1️⃣ SEND BOOKING DATA TO BACKEND FIRST
-      const bookingSaveRes = await axios.post(
-        `${BASE_URL}/ticket-booking/create`,
-        {
-          customer,
-          passengers,
-          bookingData: sidebarData,
-          priceDetails: {
-            baseAmount,
-            discountAmount,
-            finalAmount: totalToPay,
-            couponCode,
-            isCouponApplied,
-          },
-        }
-      );
-
-      const bookingId = bookingSaveRes.data.bookingId;
-
-      // 2️⃣ NOW INITIATE PAYMENT (NO CHANGE IN YOUR GATEWAY LOGIC)
-      const createRes = await axios.post(`${BASE_URL}/ticket-payment/order/create`, {
-            amount: baseAmount,
-            finalAmount: totalToPay,
-            discountAmount,
-            couponCode,
-            customer,
-            bookingId
-          });
-
-
-      if (createRes.data.success) {
-        window.location.href = createRes.data.redirectUrl;
-      }
-    } catch (err) {
-      console.error("Payment Initiation Error:", err);
-      alert("Failed to initiate payment!");
+    if (totalToPay <= 0) {
+      alert("Invalid payment amount");
+      return;
     }
-  };
+
+    // Prepare customer info
+    const customer = {
+      phone: document.querySelector("input[placeholder='Enter your phone number']")?.value || "",
+      purpose: document.querySelector("select")?.value || "",
+      name: document.querySelector("input[placeholder='Enter your full name']")?.value || "",
+      email: document.querySelector("input[placeholder='Enter your email address']")?.value || ""
+    };
+
+    // 1️⃣ STORE BOOKING IN DATABASE
+    const bookingSaveRes = await axios.post(
+      `${BASE_URL}/ticket-booking/create`,
+      {
+        customer,
+        passengers,
+        bookingData: sidebarData,
+        priceDetails: {
+          baseAmount,
+          discountAmount,
+          finalAmount: totalToPay,
+          couponCode,
+          isCouponApplied,
+        },
+      }
+    );
+
+    const bookingId = bookingSaveRes.data.bookingId;
+
+    // ⭐ SAVE BOOKING ID LOCALLY (IMPORTANT!)
+    localStorage.setItem("bookingId", bookingId);
+
+    // 2️⃣ CREATE PAYMENT ORDER
+    const createRes = await axios.post(`${BASE_URL}/ticket-payment/order/create`, {
+      amount: baseAmount,
+      finalAmount: totalToPay,
+      discountAmount,
+      couponCode,
+      customer,
+      bookingId
+    });
+
+    // 3️⃣ REDIRECT TO PAYMENT PAGE
+    if (createRes.data.success) {
+      window.location.href = createRes.data.redirectUrl;
+    }
+  } catch (err) {
+    console.error("Payment Initiation Error:", err);
+    alert("Failed to initiate payment!");
+  }
+};
+
 
   /* ------------------------------------
         JSX RETURN
