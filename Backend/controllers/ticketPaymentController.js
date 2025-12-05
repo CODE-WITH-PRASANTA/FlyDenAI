@@ -79,25 +79,21 @@ exports.createTicketOrder = async (req, res) => {
     const failureUrl = `${FRONTEND_URL}/dummyticket/booking/${merchantOrderId}`;
 
     const payload = {
-      merchantOrderId,
-      amount: amountPaisa,
-      expireAfter: 900,
-      metaInfo: {
-        udf1: JSON.stringify({
-  bookingData: bookingData || {},
-  customer: customer || {}
-}),
-
-      },
-      paymentFlow: {
-        type: "PG_CHECKOUT",
-        merchantUrls: {
-          redirectUrl: successUrl,    // USER RETURNS HERE AFTER SUCCESS
-          failureUrl: failureUrl,     // IF FAILED
-          cancelUrl: failureUrl,      // IF CANCELLED
-        },
-      },
-    };
+  merchantOrderId,
+  amount: amountPaisa,
+  expireAfter: 900,
+  metaInfo: {
+    udf1: bookingId.toString()   // 🔥 SAFE, always < 256 chars
+  },
+  paymentFlow: {
+    type: "PG_CHECKOUT",
+    merchantUrls: {
+      redirectUrl: successUrl,
+      failureUrl: failureUrl,
+      cancelUrl: failureUrl,
+    },
+  },
+};
 
     const createRes = await axios.post(CREATE_PAYMENT_URL, payload, {
       headers: {
