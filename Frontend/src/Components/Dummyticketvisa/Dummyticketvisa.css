@@ -13,7 +13,6 @@
   --break-md: 768px;
   --break-lg: 1024px;
 }
-
 /* ========= SECTION (full width like reference) ========= */
 .visa-bg {
   width: 100%;
@@ -23,7 +22,17 @@
   background-position: top center;
   font-family: "Poppins", sans-serif;
   box-sizing: border-box;
+
+  /* 🔥 Added subtle premium border + shadow */
+  border-top: 2px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+
+  /* Smooth ambient shadow */
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.08),
+    0 -6px 20px rgba(0, 0, 0, 0.04);
 }
+
 
 /* center content to a fixed width like in screenshot */
 .visa-container {

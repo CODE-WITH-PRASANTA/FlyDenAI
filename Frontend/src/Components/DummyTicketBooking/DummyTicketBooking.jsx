@@ -1,99 +1,149 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import './DummyTicketBooking.css'
+import "./DummyTicketBooking.css";
 import { PlaneTakeoff, Hotel, ShieldCheck } from "lucide-react";
+import BASE_URL from "../../Api";
+import Swal from "sweetalert2";
 
-// IMPORT CUSTOM COMPONENTS
+
+// CUSTOM COMPONENTS
 import AirportDropdown from "./AirportDropdown";
 import TravellerModal from "./TravellerModal";
 import DatePicker from "./DatePicker";
 
-// BG IMAGES
+// BACKGROUND IMAGES
 import bg1 from "../../assets/banner-01.webp";
 import bg2 from "../../assets/banner-02.webp";
 import bg3 from "../../assets/banner-03.webp";
 import bg4 from "../../assets/banner-01.webp";
 
 const DummyTicketBooking = () => {
-
   const navigate = useNavigate();
 
-  /* -------------------------------------
-          HANDLE SEARCH
-  -------------------------------------- */
-  const handleSearch = () => {
 
-    const bookingId = `${Date.now()}`;
+/* ===============================================================
+                      HANDLE SEARCH FUNCTION
+=============================================================== */
+const handleSearch = async () => {
+  const bookingId = `${Date.now()}`;
 
-    // FLIGHT SEARCH
-    if (activeTab === "flight") {
-      if (!fromAirport || !toAirport || !departDate) {
-        alert("Please complete Flight fields!");
-        return;
-      }
+  // -------- FLIGHT SEARCH --------
+  if (activeTab === "flight") {
+    if (!fromAirport || !toAirport || !departDate) {
+      return Swal.fire("Missing Fields", "Please complete flight fields!", "warning");
+    }
 
-      navigate(`/DummyTicket/booking/${bookingId}`, {
-        state: {
-          type: "flight",
+    navigate(`/DummyTicket/booking/${bookingId}`, {
+      state: {
+        type: "flight",
+        fromAirport,
+        toAirport,
+        departDate,
+        returnDate,
+        tripType,
+        adults,
+        children,
+        infants,
+        travelClass,
+      },
+    });
+
+    return;
+  }
+
+  // -------- HOTEL SEARCH --------
+  if (activeTab === "hotel") {
+    if (!hotelLocation || !checkInDate || !checkOutDate) {
+      return Swal.fire("Missing Fields", "Please complete hotel fields!", "warning");
+    }
+
+    navigate(`/DummyTicket/booking/${bookingId}`, {
+      state: {
+        type: "hotel",
+        hotelLocation,
+        checkInDate,
+        checkOutDate,
+        adults,
+      },
+    });
+
+    return;
+  }
+
+  // -------- INSURANCE SUBMIT (SEND TO BACKEND) --------
+  if (activeTab === "insurance") {
+    if (
+      !fullName ||
+      !email ||
+      !phone ||
+      !whatsapp ||
+      !fromAirport ||
+      !toAirport ||
+      !insuranceStartDate ||
+      !insuranceEndDate ||
+      !travelPurpose
+    ) {
+      return Swal.fire("Missing Fields", "Please complete insurance form!", "warning");
+    }
+
+    try {
+      const response = await fetch(`${BASE_URL}/insurance/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          fullName,
+          email,
+          phone,
+          whatsapp,
           fromAirport,
           toAirport,
-          departDate,
-          returnDate,
-          tripType,
-          adults,
-          children,
-          infants,
-          travelClass
-        }
+          insuranceStartDate,
+          insuranceEndDate,
+          travelPurpose,
+          bookingId,
+        }),
       });
-      return;
-    }
 
-    // HOTEL SEARCH
-    if (activeTab === "hotel") {
-      if (!hotelLocation || !checkInDate || !checkOutDate) {
-        alert("Please complete Hotel fields!");
-        return;
-      }
+      const data = await response.json();
 
-      navigate(`/DummyTicket/booking/${bookingId}`, {
-        state: {
-          type: "hotel",
-          hotelLocation,
-          checkInDate,
-          checkOutDate,
-          adults,
-        }
-      });
-      return;
-    }
-
-    // INSURANCE SEARCH
-      if (activeTab === "insurance") {
-        if (!fromAirport || !toAirport || !insuranceStartDate || !insuranceEndDate) {
-          alert("Please complete Insurance fields!");
-          return;
-        }
-
-        navigate(`/`, {
-          state: {
-            type: "insurance",
-            fromAirport,
-            toAirport,
-            insuranceStartDate,
-            insuranceEndDate,
-            adults,
-          }
+      if (data.success) {
+        // 🔥 SUCCESS ALERT ONLY – NO ROUTE CHANGE
+        Swal.fire({
+          icon: "success",
+          title: "Insurance Submitted!",
+          text: "Your insurance request has been successfully submitted.",
+          timer: 2000,
+          showConfirmButton: false,
         });
-        return;
-      }
 
+        // 🔥 Clear form after success (optional)
+        setFullName("");
+        setEmail("");
+        setPhone("");
+        setWhatsapp("");
+        setFromAirport(null);
+        setToAirport(null);
+        setInsuranceStartDate("");
+        setInsuranceEndDate("");
+        setTravelPurpose("");
+        
+      } else {
+        Swal.fire("Error", data.message, "error");
+      }
+    } catch (error) {
+      Swal.fire("Error", "Something went wrong!", "error");
+      console.error("INSURANCE ERROR:", error);
+    }
+    return;
+  }
   };
 
 
-  /* -------------------------------------
-        BACKGROUND SLIDER
-  -------------------------------------- */
+  /* ===============================================================
+                          BACKGROUND SLIDER
+  =============================================================== */
   const bgImages = [bg1, bg2, bg3, bg4];
   const [bgIndex, setBgIndex] = useState(0);
 
@@ -104,73 +154,93 @@ const DummyTicketBooking = () => {
     return () => clearInterval(interval);
   }, []);
 
+  /* ===============================================================
+                            ALL STATE VALUES
+  =============================================================== */
 
-  /* -------------------------------------
-              STATE
-  -------------------------------------- */
   const [activeTab, setActiveTab] = useState("flight");
 
+  // FLIGHT & INSURANCE COMMON FIELDS
   const [fromAirport, setFromAirport] = useState(null);
   const [toAirport, setToAirport] = useState(null);
+
+  // HOTEL FIELD
   const [hotelLocation, setHotelLocation] = useState(null);
 
+  // TRAVELLERS
   const [travModal, setTravModal] = useState(false);
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [travelClass, setTravelClass] = useState("Economy");
 
+  // FLIGHT DATES
   const [departDate, setDepartDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [tripType, setTripType] = useState("roundTrip");
 
+  // HOTEL DATES
   const [checkInDate, setCheckInDate] = useState("");
   const [checkOutDate, setCheckOutDate] = useState("");
 
+  // INSURANCE FIELDS
   const [insuranceStartDate, setInsuranceStartDate] = useState("");
   const [insuranceEndDate, setInsuranceEndDate] = useState("");
 
-  const [tripType, setTripType] = useState("roundTrip");
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [travelPurpose, setTravelPurpose] = useState("");
 
-
+  /* ===============================================================
+                              UI RETURN
+  =============================================================== */
   return (
     <div
       className="DummyTicket-banner slider-bg"
       style={{ backgroundImage: `url(${bgImages[bgIndex]})` }}
     >
       <div className="DummyTicket-container">
-
         {/* -------------------- TABS -------------------- */}
         <div className="DummyTicket-tabs">
           <button
             onClick={() => setActiveTab("flight")}
-            className={`DummyTicket-tab ${activeTab === "flight" ? "active" : ""}`}
+            className={`DummyTicket-tab ${
+              activeTab === "flight" ? "active" : ""
+            }`}
           >
             <PlaneTakeoff size={18} /> Flight
           </button>
 
           <button
             onClick={() => setActiveTab("hotel")}
-            className={`DummyTicket-tab ${activeTab === "hotel" ? "active" : ""}`}
+            className={`DummyTicket-tab ${
+              activeTab === "hotel" ? "active" : ""
+            }`}
           >
             <Hotel size={18} /> Hotels
           </button>
 
           <button
             onClick={() => setActiveTab("insurance")}
-            className={`DummyTicket-tab ${activeTab === "insurance" ? "active" : ""}`}
+            className={`DummyTicket-tab ${
+              activeTab === "insurance" ? "active" : ""
+            }`}
           >
             <ShieldCheck size={18} /> Insurance
           </button>
         </div>
 
-        {/* -------------------- FLIGHT TAB -------------------- */}
+        {/* ===============================================================
+                            FLIGHT TAB SECTION
+        =============================================================== */}
         {activeTab === "flight" && (
           <div className="DummyTicket-panel">
             <div className="DummyTicket-radioRow">
               <label>
                 <input
                   type="radio"
-                  name="trip"
                   checked={tripType === "oneWay"}
                   onChange={() => setTripType("oneWay")}
                 />
@@ -179,7 +249,6 @@ const DummyTicketBooking = () => {
               <label>
                 <input
                   type="radio"
-                  name="trip"
                   checked={tripType === "roundTrip"}
                   onChange={() => setTripType("roundTrip")}
                 />
@@ -188,15 +257,37 @@ const DummyTicketBooking = () => {
             </div>
 
             <div className="DummyTicket-grid">
-              <AirportDropdown label="From" value={fromAirport} onSelect={setFromAirport} />
-              <AirportDropdown label="To" value={toAirport} onSelect={setToAirport} />
-              <DatePicker label="Departure" value={departDate} onSelect={setDepartDate} />
+              <AirportDropdown
+                label="From"
+                value={fromAirport}
+                onSelect={setFromAirport}
+              />
+
+              <AirportDropdown
+                label="To"
+                value={toAirport}
+                onSelect={setToAirport}
+              />
+
+              <DatePicker
+                label="Departure"
+                value={departDate}
+                onSelect={setDepartDate}
+              />
 
               {tripType === "roundTrip" && (
-                <DatePicker label="Return" value={returnDate} onSelect={setReturnDate} />
+                <DatePicker
+                  label="Return"
+                  value={returnDate}
+                  onSelect={setReturnDate}
+                />
               )}
 
-              <div className="DummyTicket-field" onClick={() => setTravModal(true)}>
+              {/* TRAVELLERS FIELD */}
+              <div
+                className="DummyTicket-field"
+                onClick={() => setTravModal(true)}
+              >
                 <p className="DummyTicket-label">Travellers & Class</p>
                 <h3 className="DummyTicket-value">
                   {adults + children + infants} Persons
@@ -213,17 +304,34 @@ const DummyTicketBooking = () => {
           </div>
         )}
 
-        {/* -------------------- HOTEL TAB -------------------- */}
+        {/* ===============================================================
+                              HOTEL TAB
+        =============================================================== */}
         {activeTab === "hotel" && (
           <div className="DummyTicket-panel">
-
             <div className="DummyTicket-gridHotel">
-              <AirportDropdown label="Location" value={hotelLocation} onSelect={setHotelLocation} />
+              <AirportDropdown
+                label="Location"
+                value={hotelLocation}
+                onSelect={setHotelLocation}
+              />
 
-              <DatePicker label="Check In" value={checkInDate} onSelect={setCheckInDate} />
-              <DatePicker label="Check Out" value={checkOutDate} onSelect={setCheckOutDate} />
+              <DatePicker
+                label="Check In"
+                value={checkInDate}
+                onSelect={setCheckInDate}
+              />
 
-              <div className="DummyTicket-field" onClick={() => setTravModal(true)}>
+              <DatePicker
+                label="Check Out"
+                value={checkOutDate}
+                onSelect={setCheckOutDate}
+              />
+
+              <div
+                className="DummyTicket-field"
+                onClick={() => setTravModal(true)}
+              >
                 <p className="DummyTicket-label">Guests</p>
                 <h3 className="DummyTicket-value">{adults} Persons</h3>
                 <span className="DummyTicket-small">{adults} Adult</span>
@@ -233,56 +341,142 @@ const DummyTicketBooking = () => {
                 Search
               </button>
             </div>
-
           </div>
         )}
 
-        {/* -------------------- INSURANCE TAB -------------------- */}
+        {/* ===============================================================
+                          INSURANCE TAB
+        =============================================================== */}
         {activeTab === "insurance" && (
           <div className="DummyTicket-panel">
-
             <div className="DummyTicket-insuranceGrid">
-
-              <div className="DummyTicket-inputWrap">
-                <p className="DummyTicket-label">From</p>
-                <AirportDropdown value={fromAirport} onSelect={setFromAirport} />
+              {/* FULL NAME */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">Full Name</label>
+                <input
+                  type="text"
+                  className="DummyTicket-inputField"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Enter your full name"
+                />
               </div>
 
-              <div className="DummyTicket-inputWrap">
-                <p className="DummyTicket-label">To</p>
+              {/* EMAIL */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">Email Address</label>
+                <input
+                  type="email"
+                  className="DummyTicket-inputField"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              {/* PHONE */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">Phone Number</label>
+                <input
+                  type="tel"
+                  className="DummyTicket-inputField"
+                  maxLength={10}
+                  value={phone}
+                  onChange={(e) =>
+                    setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
+                  }
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              {/* WHATSAPP */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">
+                  WhatsApp Number
+                </label>
+                <input
+                  type="tel"
+                  className="DummyTicket-inputField"
+                  maxLength={10}
+                  value={whatsapp}
+                  onChange={(e) =>
+                    setWhatsapp(e.target.value.replace(/\D/g, "").slice(0, 10))
+                  }
+                  placeholder="Enter WhatsApp number"
+                />
+              </div>
+
+              {/* FROM AIRPORT */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">From</label>
+                <AirportDropdown
+                  value={fromAirport}
+                  onSelect={setFromAirport}
+                />
+              </div>
+
+              {/* TO AIRPORT */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">To</label>
                 <AirportDropdown value={toAirport} onSelect={setToAirport} />
               </div>
 
-              <div className="DummyTicket-inputWrap">
-                <p className="DummyTicket-label">Start Date</p>
-                <DatePicker value={insuranceStartDate} onSelect={setInsuranceStartDate} />
+              {/* INSURANCE START DATE */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">
+                  Insurance Start Date
+                </label>
+                <DatePicker
+                  value={insuranceStartDate}
+                  onSelect={setInsuranceStartDate}
+                />
               </div>
 
-              <div className="DummyTicket-inputWrap">
-                <p className="DummyTicket-label">End Date</p>
-                <DatePicker value={insuranceEndDate} onSelect={setInsuranceEndDate} />
+              {/* INSURANCE END DATE */}
+              <div className="DummyTicket-inputGroup">
+                <label className="DummyTicket-inputLabel">
+                  Insurance End Date
+                </label>
+                <DatePicker
+                  value={insuranceEndDate}
+                  onSelect={setInsuranceEndDate}
+                />
               </div>
 
-              <div className="DummyTicket-full DummyTicket-inputWrap">
-                <p className="DummyTicket-label">Purpose</p>
-                <select className="DummyTicket-input">
-                  <option>Select Purpose</option>
-                  <option>Holiday</option>
+              {/* PURPOSE */}
+              <div className="DummyTicket-inputGroup DummyTicket-fullWidth">
+                <label className="DummyTicket-inputLabel">
+                  Purpose of Travel
+                </label>
+                <select
+                  className="DummyTicket-inputField"
+                  value={travelPurpose}
+                  onChange={(e) => setTravelPurpose(e.target.value)}
+                >
+                  <option value="">Select Travel Purpose</option>
+                  <option>Tourism / Vacation</option>
                   <option>Business Trip</option>
+                  <option>Study Visa Travel</option>
+                  <option>Family Visit</option>
+                  <option>Medical Travel</option>
+                  <option>Transit Travel</option>
+                  <option>Conference / Event</option>
+                  <option>Work Permit Travel</option>
+                  <option>Migrate / Permanent Residency</option>
+                  <option>Religious or Pilgrimage Trip</option>
                 </select>
               </div>
 
+              {/* SUBMIT BUTTON */}
               <button className="DummyTicket-primaryBtn" onClick={handleSearch}>
                 Get Insurance
               </button>
             </div>
-
           </div>
         )}
-
       </div>
 
-      {/* TRAVELLER MODAL */}
+      {/* TRAVELLERS POPUP */}
       <TravellerModal
         open={travModal}
         close={() => setTravModal(false)}
@@ -295,7 +489,6 @@ const DummyTicketBooking = () => {
         travelClass={travelClass}
         setTravelClass={setTravelClass}
       />
-
     </div>
   );
 };

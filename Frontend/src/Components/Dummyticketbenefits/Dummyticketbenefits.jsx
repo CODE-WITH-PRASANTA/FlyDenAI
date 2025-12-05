@@ -6,37 +6,37 @@ const benefits = [
   {
     id: 1,
     title: "WE WORK 24/7",
-    text: "Our dedicated team is available around the clock to assist you with your ticket reservations whenever you need us.",
+    text: "FlyDenAi operates round the clock to ensure your flight and hotel reservations are processed anytime you need—day or night.",
     icon: "🕒",
   },
   {
     id: 2,
     title: "TIME SAVING",
-    text: "Enjoy a hassle-free experience with our quick and efficient ticket booking process that saves you valuable time.",
+    text: "Our streamlined reservation process helps you save valuable time, making visa documentation and travel planning faster and easier.",
     icon: "🌍",
   },
   {
     id: 3,
-    title: "BEST VALUE",
-    text: "We offer competitive pricing and exclusive deals to ensure you get the best value for your ticket purchases.",
+    title: "BEST VALUE GUARANTEED",
+    text: "FlyDenAi offers competitive pricing and transparent charges—ensuring you get premium service at the most affordable rates.",
     icon: "💲",
   },
   {
     id: 4,
-    title: "PROMPT RESPONSE",
-    text: "Our customer support team is committed to responding quickly to your queries and concerns.",
+    title: "FAST SUPPORT RESPONSE",
+    text: "Our dedicated support team responds quickly to all queries, giving you a smooth and stress-free experience.",
     icon: "💬",
   },
   {
     id: 5,
-    title: "GET CONFIRMATION WITHIN 30 MIN",
-    text: "Experience peace of mind with instant or near-instant confirmation for your bookings.",
+    title: "CONFIRMATION WITHIN 30 MINUTES",
+    text: "Receive your dummy ticket or reservation confirmation typically within 10–30 minutes, perfect for urgent visa submissions.",
     icon: "📩",
   },
   {
     id: 6,
-    title: "TRUSTED TRAVEL PARTNERS",
-    text: "We collaborate with trusted airlines and travel partners to ensure a reliable booking experience.",
+    title: "TRUSTED BY THOUSANDS",
+    text: "FlyDenAi partners with reliable travel networks to deliver secure, accurate, and embassy-accepted travel reservations.",
     icon: "✔️",
   },
 ];
@@ -45,7 +45,7 @@ const BenefitsSection = () => {
   return (
     <section className="benefits">
       <div className="benefits__container">
-        <h2 className="benefits__heading">Benefits: Why Choose TripCafe</h2>
+        <h2 className="benefits__heading">Benefits: Why Choose FlyDenAi</h2>
 
         <div className="benefits__grid">
           {benefits.map((item) => (

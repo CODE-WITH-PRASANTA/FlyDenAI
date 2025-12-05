@@ -57,7 +57,8 @@ const navItems: NavItem[] = [
     name: "Dummy Ticket",
     subItems: [
       { name: "Manage Ticket", path: "/dummy-ticket/manage" },
-      { name: "Booking Holder", path: "/dummy-ticket/holder" }
+      { name: "Booking Holder", path: "/dummy-ticket/holder" },
+      { name: "Insurance Lead", path: "/dummy-ticket/insurance" }
     ],
   },
 

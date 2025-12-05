@@ -1,0 +1,232 @@
+/* MAIN */
+.Insurance-booking-container {
+  padding: 40px;
+  background: #f2f5fc;
+  min-height: 100vh;
+}
+
+.Insurance-booking-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #202020;
+  margin-bottom: 25px;
+}
+
+/* SEARCH & FILTER BAR */
+.Insurance-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* SEARCH BOX */
+.Insurance-search {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 10px 15px;
+  width: 350px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.Insurance-search-icon {
+  margin-right: 10px;
+  color: #6c6c6c;
+}
+
+.Insurance-search input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* FILTER DROPDOWN */
+.Insurance-filter {
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* GRID */
+.Insurance-booking-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+}
+
+/* CARD */
+.Insurance-booking-card {
+  background: white;
+  border-radius: 18px;
+  padding: 26px;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transition: 0.25s ease;
+}
+
+.Insurance-booking-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+}
+
+/* HEADER */
+.Insurance-booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Insurance-booking-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #333;
+}
+
+.Insurance-booking-subtitle {
+  font-size: 14px;
+  color: #7a7a7a;
+  margin-top: 4px;
+}
+
+/* MENU */
+.Insurance-booking-menu-icon {
+  position: relative;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.2s;
+}
+
+.Insurance-booking-menu-icon:hover {
+  background: #f0f0f0;
+}
+
+.Insurance-booking-dropdown {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  width: 150px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  animation: fadeMenu 0.2s ease;
+}
+
+@keyframes fadeMenu {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.Insurance-booking-option {
+  padding: 12px 16px;
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.Insurance-booking-option:hover {
+  background: #f3f3f3;
+}
+
+.delete {
+  color: #d93636;
+}
+
+/* DETAILS */
+.Insurance-booking-details {
+  margin-top: 18px;
+  background: #fafcff;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #eaeaea;
+}
+
+.Insurance-details-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.Insurance-booking-id {
+  margin-top: 12px;
+  font-weight: 600;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+  color: #444;
+}
+
+/* EMPTY RESULT */
+.Insurance-no-results {
+  padding: 40px;
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+}
+
+/* STATUS BADGES */
+.Insurance-status-label {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.Insurance-status {
+  margin-left: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.Insurance-status.Pending {
+  background: #fff4d6;
+  color: #c28a00;
+}
+
+.Insurance-status.Finalized {
+  background: #d9ffe4;
+  color: #0c7d34;
+}
+
+/* PAGINATION */
+.Insurance-pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Insurance-page-btn,
+.Insurance-page-number {
+  padding: 10px 16px;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+}
+
+.Insurance-page-number.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.Insurance-page-btn:hover,
+.Insurance-page-number:hover {
+  background: #f0f0f0;
+}

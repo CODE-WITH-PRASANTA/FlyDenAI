@@ -16,10 +16,24 @@ const app = express();
 // ---------- GLOBAL MIDDLEWARE ----------
 app.use(
   cors({
-    origin: ["http://localhost:5174"], // your frontend domain
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173",
+        "http://localhost:5174",
+        undefined, // allows Postman, Thunderclient, direct browser hits
+      ];
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log("❌ BLOCKED ORIGIN:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 
@@ -49,6 +63,7 @@ const airportRoutes = require("./routes/airportRoutes");
 const priceRoutes = require("./routes/priceRoutes");
 const ticketPaymentRoutes = require("./routes/ticketPaymentRoutes");
 const TicketBookingRoutes = require("./routes/TicketBookingRoutes");
+const insuranceRoutes = require("./routes/insuranceRoutes");
 
 // -----------------------------------------
 // USE ROUTES
@@ -73,6 +88,7 @@ app.use("/api/airports", airportRoutes);
 app.use("/api/price", priceRoutes);
 app.use("/api/ticket-payment", ticketPaymentRoutes);
 app.use("/api/ticket-booking", TicketBookingRoutes);
+app.use("/api/insurance", insuranceRoutes);
 
 
 

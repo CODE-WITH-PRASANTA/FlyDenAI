@@ -56,6 +56,7 @@ import DummyTicketHolder from "./DashboardPages/DummyTicketHolder/DummyTicketHol
 // 🔐 IMPORT PROTECTED ROUTE
 import ProtectedRoute from "./routes/ProtectedRoute";
 import DummyTicketManage from "./DashboardPages/DummmyTicketManage/DummmyTicketManage";
+import InsuranceData from "./DashboardPages/InsuranceData/InsuranceData";
 
 export default function App() {
   return (
@@ -172,6 +173,10 @@ export default function App() {
           <Route
             path="/dummy-ticket/holder"
             element={<DummyTicketHolder />}
+          />
+          <Route
+            path="/dummy-ticket/insurance"
+            element={<InsuranceData />}
           />
 
           {/* ----------------------------------------------------

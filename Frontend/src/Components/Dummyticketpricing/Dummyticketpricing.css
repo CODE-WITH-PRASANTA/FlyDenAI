@@ -1,69 +1,114 @@
-/* PricingPlans.css */
+/* -------------------------------------------------
+   🌟 PREMIUM MODERN UI – FLYDENAI PRICING SECTION
+-------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
-  --pricing-bg: #fffaf3;
-  --accent: #ff6b3d;
-  --text-dark: #111111;
-  --text-body: #4b5563;
-  --card-border: #f2e4d5;
-  --card-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
-  --radius: 26px;
+  --bg-light: #ffffff;
+  --bg-gradient: linear-gradient(135deg, #fff7ef00, #ffe9d6);
+  --accent: #ff6a3d;
+  --accent-hover: #ff5520;
+  --dark: #0f172a;
+  --muted: #475569;
+  --border-light: rgba(0, 0, 0, 0.08);
+
+  --radius: 24px;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-strong: 0 18px 48px rgba(0, 0, 0, 0.12);
 }
 
-/* ===== SECTION ===== */
+/* -----------------------------
+   SECTION 
+----------------------------- */
 .pricing {
   width: 100%;
-  background-color: var(--pricing-bg);
-  background-repeat: no-repeat;
+  background: var(--bg-gradient);
+  background-image: url("../../assets/jf-img.webp");
   background-size: cover;
-  background-position: center top;
-  padding: 60px 0 30px;
+  background-position: center;
+  padding: 20px 0 10px;
   font-family: "Poppins", sans-serif;
+  position: relative;
+
+  /* NEW simple border + shadow */
+  border-top: 2px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    0 -4px 12px rgba(0, 0, 0, 0.04);
 }
 
+/* container */
 .pricing__container {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 0 32px;
+  position: relative;
+  z-index: 10;
+  max-width: 1480px;
+  margin: auto;
+  padding: 0 30px;
 }
 
+/* heading */
 .pricing__heading {
-  font-size: 2.7rem;
+  font-size: 2.8rem;
   font-weight: 800;
   text-align: center;
-  color: var(--text-dark);
-  margin-bottom: 60px;
+  color: var(--dark);
+  margin-bottom: 10px;
 }
 
-/* ===== GRID ===== */
+.pricing__subheading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin-bottom: 55px;
+}
+
+/* -----------------------------
+   GRID
+----------------------------- */
 .pricing__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 30px;
-  align-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 
-/* ===== CARD ===== */
+/* -----------------------------
+   CARD
+----------------------------- */
 .plan-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: var(--radius);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
-  padding: 32px 30px 30px;
+  padding: 34px 30px 30px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  transition: 0.35s ease;
+  backdrop-filter: blur(8px);
 }
 
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-strong);
+}
+
+.plan-card:hover::before {
+  opacity: 1;
+}
+
+/* title */
 .plan-card__title {
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  margin-bottom: 22px;
-  color: var(--text-dark);
+  color: var(--dark);
+  margin-bottom: 20px;
+  line-height: 1.4;
 }
 
+/* image */
 .plan-card__image-wrap {
   display: flex;
   justify-content: center;
@@ -71,116 +116,239 @@
 }
 
 .plan-card__image {
-  max-width: 260px;
+  max-width: 250px;
   width: 100%;
-  height: auto;
-  display: block;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
+  transition: 0.3s ease;
+}
+
+.plan-card:hover .plan-card__image {
+  transform: scale(1.05);
 }
 
 /* price block */
 .plan-card__price-block {
-  margin-top: 4px;
-  margin-bottom: 18px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  gap: 5px;
+  margin-bottom: 18px;
 }
 
 .plan-card__price {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 800;
-  color: var(--text-dark);
+  color: var(--dark);
 }
 
-.plan-card__per {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--text-dark);
-}
-
+.plan-card__per,
 .plan-card__extra {
-  margin-top: 4px;
   font-size: 0.95rem;
+  color: var(--muted);
   font-weight: 600;
-  color: var(--text-dark);
 }
 
+/* divider */
 .plan-card__divider {
   width: 100%;
   height: 1px;
-  background: #e5e7eb;
-  margin-bottom: 20px;
+  background: var(--border-light);
+  margin: 20px 0;
 }
 
-/* feature list */
+/* features */
 .plan-card__features {
-  list-style: none;
   padding: 0;
-  margin: 0 0 28px;
-  flex: 1;
+  margin: 0;
+  list-style: none;
 }
 
 .plan-card__feature {
-  font-size: 0.98rem;
-  color: var(--text-body);
-  line-height: 1.7;
   padding: 10px 0;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.7;
+  position: relative;
 }
 
+/* inner divider */
 .plan-card__inner-divider {
   width: 100%;
   height: 1px;
-  background: #e5e7eb;
+  background: var(--border-light);
   margin-top: 10px;
 }
 
-/* button */
+/* -----------------------------
+   BUTTON
+----------------------------- */
 .plan-card__btn {
+  margin-top: 22px;
   width: 100%;
+  padding: 15px 0;
+  border-radius: 50px;
   border: none;
-  border-radius: 999px;
-  padding: 14px 0;
-  font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
+  font-size: 1rem;
   background: var(--accent);
+  color: white;
   cursor: pointer;
-  margin-top: 10px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: 0.25s ease;
+  box-shadow: 0 12px 25px rgba(255, 101, 40, 0.35);
 }
 
 .plan-card__btn:hover {
-  background: #ff5a23;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.4);
+  background: var(--accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px rgba(255, 101, 40, 0.5);
 }
 
-/* ===== RESPONSIVE ===== */
+/* ============================================
+   📌 RESPONSIVE DESIGN (Professional + Clean)
+============================================ */
 
+/* 🖥️ Large Laptop Screens */
+@media (max-width: 1200px) {
+  .pricing__grid {
+    gap: 28px;
+  }
+  .plan-card {
+    padding: 30px 26px;
+  }
+}
+
+/* 📱 Tablets (1024px) */
 @media (max-width: 1024px) {
-  .pricing {
-    padding: 60px 0 30px;
+  .pricing__container {
+    padding: 0 20px;
+  }
+
+  .pricing__heading {
+    font-size: 2.4rem;
   }
 
   .pricing__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 28px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+
+  .plan-card {
+    padding: 28px 24px;
+  }
+
+  .plan-card__title {
+    font-size: 1.3rem;
+  }
+
+  .plan-card__price {
+    font-size: 2rem;
   }
 }
 
+/* 📱 Large Mobile (768px) */
 @media (max-width: 768px) {
   .pricing__heading {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
+    font-size: 2.1rem;
+    margin-bottom: 8px;
+  }
+
+  .pricing__subheading {
+    font-size: 1rem;
+    margin-bottom: 35px;
   }
 
   .pricing__grid {
     grid-template-columns: 1fr;
+    gap: 26px;
   }
 
   .plan-card {
-    max-width: 420px;
+    max-width: 480px;
     margin: 0 auto;
+  }
+}
+
+/* 📱 Medium Mobile (576px) */
+@media (max-width: 576px) {
+  .pricing {
+    padding: 30px 0 20px;
+  }
+
+  .pricing__heading {
+    font-size: 1.9rem;
+  }
+
+  .plan-card {
+    padding: 26px 20px;
+    border-radius: 20px;
+  }
+
+  .plan-card__title {
+    font-size: 1.25rem;
+  }
+
+  .plan-card__price {
+    font-size: 1.8rem;
+  }
+
+  .plan-card__feature {
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+}
+
+/* 📱 Small Mobile (420px) */
+@media (max-width: 420px) {
+  .pricing__container {
+    padding: 0 16px;
+  }
+
+  .pricing__heading {
+    font-size: 1.7rem;
+  }
+
+  .pricing__subheading {
+    font-size: 0.95rem;
+  }
+
+  .plan-card {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .plan-card__price {
+    font-size: 1.6rem;
+  }
+
+  .plan-card__btn {
+    padding: 12px 0;
+    font-size: 0.95rem;
+  }
+}
+
+/* 📱 Extra Small Mobile (360px and below) */
+@media (max-width: 360px) {
+  .pricing__heading {
+    font-size: 1.55rem;
+  }
+
+  .pricing__subheading {
+    font-size: 0.9rem;
+  }
+
+  .plan-card {
+    padding: 20px 16px;
+  }
+
+  .plan-card__title {
+    font-size: 1.15rem;
+  }
+
+  .plan-card__price {
+    font-size: 1.45rem;
+  }
+
+  .plan-card__btn {
+    padding: 10px 0;
+    font-size: 0.9rem;
   }
 }

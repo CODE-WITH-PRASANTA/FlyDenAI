@@ -1,10 +1,10 @@
 import React from "react";
 import "./Dummyticketvisa.css";
 
-// note: using the local path you uploaded as the background image URL
+// background image
 const bgImageUrl = "../../assets/af-img.webp";
 
-// example step images (keep your existing imports or replace with your own URLs)
+// step images
 import searchImg from "../../assets/cf-img.webp";
 import selectImg from "../../assets/df-img.webp";
 import confirmImg from "../../assets/ef-img.webp";
@@ -14,30 +14,30 @@ const steps = [
   {
     id: 1,
     img: searchImg,
-    title: ["SEARCH FOR", "FLIGHT/HOTEL"],
+    title: ["SEARCH FOR", "FLIGHT / HOTEL"],
     description:
-      "Provide details and run the flight or hotel search query to pull out available results.",
+      "Enter your travel details and let FlyDenAi instantly fetch the best dummy flight or hotel options for visa purposes.",
   },
   {
     id: 2,
     img: selectImg,
-    title: ["SELECT", "FLIGHT/HOTEL"],
+    title: ["CHOOSE YOUR", "ITINERARY"],
     description:
-      "View available flight or hotel details and select the most relevant travel itinerary.",
+      "Review flight or hotel options and pick the travel itinerary that best fits your visa requirements.",
   },
   {
     id: 3,
     img: confirmImg,
-    title: ["CONFIRM YOUR", "FLIGHT/HOTEL BOOKING"],
+    title: ["CONFIRM YOUR", "BOOKING"],
     description:
-      "Enter traveler/guest information and make the payment to confirm your booking.",
+      "Fill in basic traveler information and proceed with secure payment to generate your visa-ready booking document.",
   },
   {
     id: 4,
     img: downloadImg,
-    title: ["DOWNLOAD", "YOUR BOOKING"],
+    title: ["DOWNLOAD YOUR", "VISA DOCUMENT"],
     description:
-      "Your flight or hotel booking confirmation receipt is available for download or print.",
+      "Your dummy flight ticket or hotel booking PDF will be instantly ready to download and submit to the embassy.",
   },
 ];
 
@@ -50,9 +50,10 @@ const Dummyticketvisa = () => {
       }}
     >
       <div className="visa-container">
+
         <h2 className="visa-heading">
-          With <span className="brand">TripCafe</span>, getting a flight or hotel ticket
-          for your visa is as <span className="highlight">EASY as 1–2–3!</span>
+          With <span className="brand">FlyDenAi</span>, getting a dummy flight or hotel booking 
+          for your visa is <span className="highlight">EASIER than ever!</span>
         </h2>
 
         <div className="steps-grid">
@@ -60,7 +61,7 @@ const Dummyticketvisa = () => {
             <article className="step-card" key={step.id}>
               <img src={step.img} alt={step.title[1]} className="step-img" />
 
-              <h3 className="step-title" aria-hidden="false">
+              <h3 className="step-title">
                 <span>{step.title[0]}</span>
                 <span>{step.title[1]}</span>
               </h3>
@@ -71,6 +72,7 @@ const Dummyticketvisa = () => {
             </article>
           ))}
         </div>
+
       </div>
     </section>
   );

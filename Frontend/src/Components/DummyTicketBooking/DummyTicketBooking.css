@@ -70,16 +70,6 @@
   gap: 20px;
 }
 
-.DummyTicket-insuranceGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  padding: 40px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .DummyTicket-full {
   grid-column: span 2;
 }
@@ -811,7 +801,6 @@
 
 .slider-bg {
   position: relative;
-  max-height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -864,4 +853,186 @@
   color: #666;
   margin-top: 2px;
   padding: 0;
+}
+
+/* Input Group */
+.DummyTicket-inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.DummyTicket-inputLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.DummyTicket-inputField {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  transition: 0.2s ease;
+  background: #ffffff;
+}
+
+.DummyTicket-inputField:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Full Width Field */
+.DummyTicket-fullWidth {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .DummyTicket-fullWidth {
+    grid-column: span 1;
+  }
+}
+/* ============================================================
+   ✨ INSURANCE SECTION — PREMIUM MODERN UI
+============================================================ */
+
+/* Main Insurance Grid */
+.DummyTicket-insuranceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  padding: 32px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f1f1;
+  transition: 0.3s ease-in-out;
+}
+
+/* On hover — subtle lift */
+.DummyTicket-insuranceGrid:hover {
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* Input Group */
+.DummyTicket-inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.DummyTicket-inputLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151; /* Neutral Gray */
+}
+
+.DummyTicket-inputField {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid #d4d7dd;
+  font-size: 15px;
+  background: #fafafa;
+  transition: all 0.25s ease;
+}
+
+.DummyTicket-inputField:focus {
+  background: #ffffff;
+  border-color: #2563eb; /* BLUE HIGHLIGHT */
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+/* Full width item inside grid */
+.DummyTicket-fullWidth {
+  grid-column: span 2;
+}
+
+/* Submit Button */
+.DummyTicket-primaryBtn {
+  grid-column: span 2;
+  padding: 14px 18px;
+  background: #ff6a3d;
+  border-radius: 50px;
+  border: none;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: 0.28s ease;
+  box-shadow: 0 12px 25px rgba(255, 106, 61, 0.35);
+}
+
+.DummyTicket-primaryBtn:hover {
+  background: #ff5a23;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(255, 90, 35, 0.45);
+}
+
+/* ==========================================
+   ✨ RESPONSIVE DESIGN — TABLET & MOBILE
+========================================== */
+
+/* Tablets & Medium Devices */
+@media (max-width: 900px) {
+  .DummyTicket-insuranceGrid {
+    grid-template-columns: 1fr;
+    padding: 26px 22px;
+  }
+
+  .DummyTicket-primaryBtn {
+    grid-column: span 1;
+    width: 100%;
+  }
+
+  .DummyTicket-fullWidth {
+    grid-column: span 1;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .DummyTicket-insuranceGrid {
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
+  .DummyTicket-inputField {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .DummyTicket-inputLabel {
+    font-size: 13px;
+  }
+
+  .DummyTicket-primaryBtn {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}
+
+/* Very Small Phones */
+@media (max-width: 380px) {
+  .DummyTicket-insuranceGrid {
+    padding: 14px 12px;
+  }
+
+  .DummyTicket-inputField {
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .DummyTicket-primaryBtn {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .DummyTicket-inputLabel {
+    font-size: 12px;
+  }
 }
