@@ -57,13 +57,15 @@ async function getPhonePeAuthToken() {
 exports.createTicketOrder = async (req, res) => {
   try {
     const {
-      amount,
-      finalAmount,
-      discountAmount,
-      couponCode,
-      bookingData,
-      customer,
-    } = req.body;
+        amount,
+        finalAmount,
+        discountAmount,
+        couponCode,
+        bookingData,
+        customer,
+        bookingId     // 🔥 FIXED
+      } = req.body;
+
 
     if (!finalAmount) {
       return res.status(400).json({ success: false, message: "Final amount required" });
@@ -78,22 +80,23 @@ exports.createTicketOrder = async (req, res) => {
     const successUrl = `${FRONTEND_URL}/dummyticket/success/${merchantOrderId}`;
     const failureUrl = `${FRONTEND_URL}/dummyticket/booking/${merchantOrderId}`;
 
-    const payload = {
-  merchantOrderId,
-  amount: amountPaisa,
-  expireAfter: 900,
-  metaInfo: {
-    udf1: bookingId.toString()   // 🔥 SAFE, always < 256 chars
-  },
-  paymentFlow: {
-    type: "PG_CHECKOUT",
-    merchantUrls: {
-      redirectUrl: successUrl,
-      failureUrl: failureUrl,
-      cancelUrl: failureUrl,
-    },
-  },
-};
+      const payload = {
+        merchantOrderId,
+        amount: amountPaisa,
+        expireAfter: 900,
+        metaInfo: {
+          udf1: String(bookingId || "")  // 🔥 ALWAYS < 256 chars
+        },
+        paymentFlow: {
+          type: "PG_CHECKOUT",
+          merchantUrls: {
+            redirectUrl: successUrl,
+            failureUrl: failureUrl,
+            cancelUrl: failureUrl,
+          },
+        },
+      };
+
 
     const createRes = await axios.post(CREATE_PAYMENT_URL, payload, {
       headers: {
