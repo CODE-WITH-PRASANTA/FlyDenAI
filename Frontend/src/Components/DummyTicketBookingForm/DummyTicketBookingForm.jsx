@@ -265,12 +265,13 @@ const DummyTicketBookingForm = ({ bookingData }) => {
                 <Briefcase size={16} /> Purpose
               </label>
               <div className="BookingForm-inputWrapper">
-                <select>
-                  <option>Select Purpose</option>
-                  <option>Business</option>
-                  <option>Travel</option>
-                  <option>Work</option>
-                </select>
+              <select>
+              <option value="">Select Purpose</option>
+              <option value="Business">Business</option>
+              <option value="Travel">Travel</option>
+              <option value="Work">Work</option>
+            </select>
+
               </div>
             </div>
 
