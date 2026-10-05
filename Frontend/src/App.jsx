@@ -33,6 +33,7 @@ import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
 import DummyTicketBooking from "./Pages/DummyTicketBooking/DummyTicketBooking";
 import DummyTicketSuccess from "./Components/DummyTicketSuccess/DummyTicketSuccess";
 import PaymentFailed from "./Components/PaymentFailed/PaymentFailed";
+import Topbar from "./Components/Topbar/Topbar";
 
 function App() {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function App() {
   return (
     <>
       <PageWrapper>
+      <Topbar />
         <Navbar />
         <Routes>
           <Route path="/home" element={<Home />} />

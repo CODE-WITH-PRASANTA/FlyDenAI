@@ -1,271 +1,995 @@
-/* =========================
-   Container & Layout
-========================= */
-.immigration-container {
-  display: flex;
-  flex-wrap: wrap;
-  min-height: 90vh;
-  font-family: "Poppins", sans-serif;
-  background: #f0f4f8; /* subtle professional background */
-  padding: 50px 20px;
-  gap: 30px;
-  border-radius: 14px;
 
-  /* Added border */
-  border: 1.5px solid rgba(0, 119, 182, 0.3); /* soft blue semi-transparent */
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.03); /* subtle inner shadow for depth */
-}
+/* ======================================================
+   FLYIXO IMMIGRATION SERVICES
+====================================================== */
 
+.immigrationservices-section {
+  --im-navy: #10233d;
+  --im-dark: #071525;
+  --im-blue: #246b9e;
+  --im-pink: #e63975;
+  --im-pink-light: #ff759d;
+  --im-white: #ffffff;
+  --im-text: #26364a;
+  --im-muted: #667085;
+  --im-green: #28b463;
 
-/* =========================
-   Left Content
-========================= */
-.immigration-left {
-  flex: 1;
-  padding: 40px 30px;
-  background: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: slideInLeft 0.8s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.immigration-left:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-}
-
-.immigration-left header h4 {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #0077b6; /* professional blue */
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.immigration-left header h2 {
-  font-size: 28px;
-  color: #1a3a5f;
-  margin-bottom: 25px;
-  line-height: 1.3;
-}
-
-.immigration-left header h2 span {
-  color: #e63946; /* accent red */
-  font-weight: 700;
-  background: linear-gradient(90deg, #ff758c, #e63946);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Services Cards */
-.services {
-  display: grid;
-  gap: 20px;
-}
-
-.service {
-  padding: 20px;
-  background: linear-gradient(145deg, #ffffff, #f0f4f9);
-  border-radius: 12px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-  cursor: pointer;
   position: relative;
+  width: 100%;
+  padding: 100px 20px;
   overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #f9fbfd 0%,
+    #eef3f8 55%,
+    #ffffff 100%
+  );
+  font-family: "Poppins", sans-serif;
 }
 
-.service::before {
-  content: "";
+.immigrationservices-section *,
+.immigrationservices-section *::before,
+.immigrationservices-section *::after {
+  box-sizing: border-box;
+}
+
+/* ======================================================
+   BACKGROUND
+====================================================== */
+
+.immigrationservices-background {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at top left, rgba(230, 57, 70, 0.08), transparent 70%);
-  opacity: 0;
-  transition: all 0.3s ease;
+  overflow: hidden;
+  pointer-events: none;
 }
 
-.service:hover::before {
-  opacity: 1;
-  transform: scale(1.1);
+.immigrationservices-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.3;
 }
 
-.service:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 18px 38px rgba(0,0,0,0.15);
-  background: linear-gradient(145deg, #e3f2fd, #fce4ec);
+.immigrationservices-blob-one {
+  width: 450px;
+  height: 450px;
+  top: -180px;
+  left: -180px;
+  background: rgba(230, 57, 117, 0.3);
 }
 
-.service h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  color: #0077b6;
+.immigrationservices-blob-two {
+  width: 500px;
+  height: 500px;
+  right: -200px;
+  bottom: -200px;
+  background: rgba(36, 107, 158, 0.25);
+}
+
+.immigrationservices-circle {
+  position: absolute;
+  border: 1px solid rgba(16, 35, 61, 0.07);
+  border-radius: 50%;
+}
+
+.immigrationservices-circle-one {
+  width: 320px;
+  height: 320px;
+  top: 10%;
+  right: 5%;
+}
+
+.immigrationservices-circle-two {
+  width: 200px;
+  height: 200px;
+  bottom: 10%;
+  left: 5%;
+}
+
+/* ======================================================
+   MAIN CONTAINER
+====================================================== */
+
+.immigrationservices-container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  gap: 45px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ======================================================
+   LEFT SECTION
+====================================================== */
+
+.immigrationservices-left {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 10px 0;
+  animation: immigrationservicesSlideLeft 0.8s ease both;
+}
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.immigrationservices-header {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.immigrationservices-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 20px;
+  padding: 10px 17px;
+  border: 1px solid rgba(230, 57, 117, 0.16);
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--im-pink);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  box-shadow: 0 8px 25px rgba(16, 35, 61, 0.05);
+}
+
+.immigrationservices-badge svg {
+  font-size: 14px;
+}
+
+.immigrationservices-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.immigrationservices-subtitle-line {
+  width: 36px;
+  height: 3px;
+  border-radius: 10px;
+  background: var(--im-pink);
+}
+
+.immigrationservices-subtitle h4 {
+  margin: 0;
+  color: var(--im-pink);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.immigrationservices-title {
+  max-width: 720px;
+  margin: 0 0 20px;
+  color: var(--im-navy);
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+}
+
+.immigrationservices-title span {
+  color: var(--im-pink);
+}
+
+.immigrationservices-intro {
+  max-width: 620px;
+  margin: 0;
+  color: var(--im-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* ======================================================
+   SERVICES CONTAINER
+====================================================== */
+
+.immigrationservices-services {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  width: 100%;
+}
+
+/* ======================================================
+   SERVICE CARD
+====================================================== */
+
+.immigrationservices-service {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding: 23px;
+  overflow: hidden;
+  border: 1px solid rgba(16, 35, 61, 0.07);
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(16, 35, 61, 0.055);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.immigrationservices-service::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--im-pink);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.4s ease;
+}
+
+.immigrationservices-service:hover {
+  transform: translateY(-5px);
+  border-color: rgba(230, 57, 117, 0.2);
+  box-shadow: 0 20px 45px rgba(16, 35, 61, 0.12);
+}
+
+.immigrationservices-service:hover::before {
+  transform: scaleY(1);
+}
+
+/* ======================================================
+   SERVICE ICON
+====================================================== */
+
+.immigrationservices-service-icon {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  flex-shrink: 0;
+  border-radius: 17px;
+  background: rgba(230, 57, 117, 0.1);
+  color: var(--im-pink);
+  font-size: 25px;
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+.immigrationservices-study .immigrationservices-service-icon {
+  background: rgba(36, 107, 158, 0.1);
+  color: var(--im-blue);
+}
+
+.immigrationservices-intern .immigrationservices-service-icon {
+  background: rgba(40, 180, 99, 0.1);
+  color: var(--im-green);
+}
+
+.immigrationservices-service:hover
+.immigrationservices-service-icon {
+  transform: rotate(-5deg) scale(1.07);
+  background: var(--im-pink);
+  color: #ffffff;
+}
+
+.immigrationservices-study:hover
+.immigrationservices-service-icon {
+  background: var(--im-blue);
+}
+
+.immigrationservices-intern:hover
+.immigrationservices-service-icon {
+  background: var(--im-green);
+}
+
+/* ======================================================
+   SERVICE CONTENT
+====================================================== */
+
+.immigrationservices-service-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-width: 0;
+}
+
+.immigrationservices-service-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.immigrationservices-service-number {
+  color: var(--im-pink);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.immigrationservices-study
+.immigrationservices-service-number {
+  color: var(--im-blue);
+}
+
+.immigrationservices-intern
+.immigrationservices-service-number {
+  color: var(--im-green);
+}
+
+.immigrationservices-service-line {
+  width: 30px;
+  height: 1px;
+  background: rgba(16, 35, 61, 0.2);
+}
+
+.immigrationservices-service-content h3 {
+  margin: 0 0 8px;
+  color: var(--im-navy);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.35;
   transition: color 0.3s ease;
 }
 
-.service:hover h3 {
-  color: #e63946;
+.immigrationservices-service:hover
+.immigrationservices-service-content h3 {
+  color: var(--im-pink);
 }
 
-.service p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
+.immigrationservices-study:hover
+.immigrationservices-service-content h3 {
+  color: var(--im-blue);
 }
-/* =========================
-   Right Image Section
-========================= */
-.immigration-right {
-  flex: 1;
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  animation: slideInRight 0.8s ease forwards;
+
+.immigrationservices-intern:hover
+.immigrationservices-service-content h3 {
+  color: var(--im-green);
+}
+
+.immigrationservices-service-content p {
+  margin: 0;
+  color: var(--im-muted);
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.immigrationservices-service-decoration {
+  position: absolute;
+  right: -50px;
+  bottom: -65px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: rgba(230, 57, 117, 0.04);
   transition: transform 0.4s ease;
-  min-height: 450px; /* ensures the image has enough height */
 }
 
-.immigration-right img {
+.immigrationservices-service:hover
+.immigrationservices-service-decoration {
+  transform: scale(1.5);
+}
+
+/* ======================================================
+   BOTTOM FEATURES
+====================================================== */
+
+.immigrationservices-features {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 27px;
+}
+
+.immigrationservices-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--im-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.immigrationservices-feature svg {
+  color: var(--im-green);
+  font-size: 16px;
+}
+
+/* ======================================================
+   RIGHT SECTION
+====================================================== */
+
+.immigrationservices-right {
+  position: relative;
+  min-width: 0;
+  animation: immigrationservicesSlideRight 0.8s ease both;
+}
+
+.immigrationservices-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 660px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--im-navy);
+  box-shadow: 0 25px 65px rgba(16, 35, 61, 0.2);
+  isolation: isolate;
+}
+
+.immigrationservices-image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 14px;
+  object-position: center;
   transition: transform 0.8s ease;
 }
 
-.immigration-right::before {
-  content: "";
+.immigrationservices-image-wrapper:hover
+.immigrationservices-image {
+  transform: scale(1.06);
+}
+
+.immigrationservices-image-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 119, 182, 0.5), rgba(230, 57, 70, 0.4));
-  opacity: 0.7;
-  transition: all 0.3s ease;
+  background: linear-gradient(
+    180deg,
+    rgba(7, 21, 37, 0.18) 0%,
+    rgba(7, 21, 37, 0.28) 35%,
+    rgba(7, 21, 37, 0.92) 100%
+  );
 }
 
-/* Overlay Content */
-.immigration-overlay {
+/* ======================================================
+   FLOATING BADGE
+====================================================== */
+
+.immigrationservices-floating-badge {
   position: absolute;
-  top: 50%;  /* center vertically */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #fff;
-  padding: 25px 20px;
-  max-width: 90%;
+  z-index: 3;
+  top: 28px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: calc(100% - 56px);
+  padding: 13px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  backdrop-filter: blur(15px);
+}
+
+.immigrationservices-floating-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.25); /* subtle dark background for readability */
+  background: var(--im-pink);
+  font-size: 18px;
 }
 
-.immigration-overlay h2 {
-  font-size: 26px;
-  font-weight: 700;
-  margin-bottom: 20px;
+.immigrationservices-floating-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.immigrationservices-floating-text strong {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.immigrationservices-floating-text span {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 10px;
   line-height: 1.4;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
-.consult-btn {
-  background: #e63946;
-  border: none;
-  color: #fff;
-  padding: 14px 30px;
-  border-radius: 28px;
-  font-size: 16px;
-  font-weight: 700;
+/* ======================================================
+   IMAGE OVERLAY
+====================================================== */
+
+.immigrationservices-overlay {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 45px 38px 65px;
+  color: #ffffff;
+}
+
+.immigrationservices-overlay-line {
+  width: 48px;
+  height: 4px;
+  margin-bottom: 17px;
+  border-radius: 10px;
+  background: var(--im-pink);
+}
+
+.immigrationservices-overlay-label {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--im-pink-light);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.immigrationservices-overlay h2 {
+  max-width: 500px;
+  margin: 0 0 17px;
+  color: #ffffff;
+  font-size: clamp(27px, 3vw, 40px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+}
+
+.immigrationservices-overlay h2 span {
+  color: #ff85ac;
+}
+
+.immigrationservices-overlay p {
+  max-width: 440px;
+  margin: 0 0 26px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ======================================================
+   CONSULTATION BUTTON
+====================================================== */
+
+.immigrationservices-consult-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+  min-height: 51px;
+  padding: 14px 22px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--im-pink),
+    var(--im-pink-light)
+  );
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 28px rgba(230, 57, 117, 0.3);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.consult-btn:hover {
-  background: #0077b6;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.3);
+.immigrationservices-consult-btn svg {
+  font-size: 12px;
+  transition: transform 0.3s ease;
 }
 
-/* =========================
-   Responsive Adjustments
-========================= */
-@media (max-width: 1024px) {
-  .immigration-overlay {
-    top: 55%;
-    padding: 20px 15px;
+.immigrationservices-consult-btn:hover {
+  transform: translateY(-3px);
+  background: linear-gradient(
+    135deg,
+    #c9255d,
+    var(--im-pink)
+  );
+  box-shadow: 0 16px 35px rgba(230, 57, 117, 0.4);
+}
+
+.immigrationservices-consult-btn:hover svg {
+  transform: translateX(5px);
+}
+
+.immigrationservices-consult-btn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+/* ======================================================
+   IMAGE BOTTOM
+====================================================== */
+
+.immigrationservices-image-bottom {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 10px 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(7, 21, 37, 0.4);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.immigrationservices-image-bottom-dot {
+  width: 6px;
+  height: 6px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--im-pink);
+}
+
+/* ======================================================
+   ANIMATIONS
+====================================================== */
+
+@keyframes immigrationservicesSlideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-35px);
   }
-  .immigration-overlay h2 { font-size: 22px; }
-  .consult-btn { font-size: 15px; padding: 12px 25px; }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
+
+@keyframes immigrationservicesSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ======================================================
+   LARGE LAPTOP
+====================================================== */
+
+@media (max-width: 1250px) {
+  .immigrationservices-section {
+    padding: 85px 20px;
+  }
+
+  .immigrationservices-container {
+    gap: 30px;
+  }
+
+  .immigrationservices-title {
+    font-size: 37px;
+  }
+
+  .immigrationservices-service {
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .immigrationservices-service-icon {
+    width: 58px;
+    height: 58px;
+    font-size: 22px;
+  }
+
+  .immigrationservices-overlay {
+    padding: 35px 28px 65px;
+  }
+}
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media (max-width: 992px) {
+  .immigrationservices-section {
+    padding: 75px 18px;
+  }
+
+  .immigrationservices-container {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    max-width: 760px;
+  }
+
+  .immigrationservices-left {
+    padding: 0;
+  }
+
+  .immigrationservices-title {
+    max-width: 650px;
+    font-size: 38px;
+  }
+
+  .immigrationservices-intro {
+    max-width: 650px;
+  }
+
+  .immigrationservices-image-wrapper {
+    height: 590px;
+    min-height: 0;
+  }
+
+  .immigrationservices-overlay h2 {
+    max-width: 550px;
+    font-size: 37px;
+  }
+}
+
+/* ======================================================
+   SMALL TABLET
+====================================================== */
 
 @media (max-width: 768px) {
-  .immigration-overlay {
-    top: 50%;
-    padding: 18px 15px;
+  .immigrationservices-section {
+    padding: 65px 15px;
   }
-  .immigration-overlay h2 { font-size: 20px; }
-  .consult-btn { font-size: 14px; padding: 10px 22px; }
+
+  .immigrationservices-container {
+    gap: 30px;
+  }
+
+  .immigrationservices-title {
+    font-size: 33px;
+  }
+
+  .immigrationservices-intro {
+    font-size: 14px;
+  }
+
+  .immigrationservices-service {
+    border-radius: 17px;
+  }
+
+  .immigrationservices-service-content h3 {
+    font-size: 18px;
+  }
+
+  .immigrationservices-service-content p {
+    font-size: 12px;
+  }
+
+  .immigrationservices-image-wrapper {
+    height: 530px;
+    border-radius: 22px;
+  }
+
+  .immigrationservices-overlay h2 {
+    font-size: 32px;
+  }
 }
 
-@media (max-width: 480px) {
-  .immigration-overlay {
-    top: 50%;
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 576px) {
+  .immigrationservices-section {
+    padding: 55px 12px;
+  }
+
+  .immigrationservices-badge {
+    padding: 8px 12px;
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .immigrationservices-subtitle h4 {
+    font-size: 10px;
+  }
+
+  .immigrationservices-title {
+    margin-bottom: 15px;
+    font-size: 28px;
+    line-height: 1.25;
+  }
+
+  .immigrationservices-intro {
+    font-size: 12px;
+    line-height: 1.75;
+  }
+
+  .immigrationservices-header {
+    margin-bottom: 23px;
+  }
+
+  .immigrationservices-services {
+    gap: 13px;
+  }
+
+  .immigrationservices-service {
+    gap: 13px;
+    padding: 17px 14px;
+    border-radius: 15px;
+  }
+
+  .immigrationservices-service-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    font-size: 19px;
+  }
+
+  .immigrationservices-service-content h3 {
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  .immigrationservices-service-content p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .immigrationservices-features {
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .immigrationservices-feature {
+    font-size: 10px;
+  }
+
+  .immigrationservices-feature svg {
+    font-size: 13px;
+  }
+
+  .immigrationservices-image-wrapper {
+    height: 510px;
+    border-radius: 18px;
+  }
+
+  .immigrationservices-floating-badge {
+    top: 17px;
+    left: 17px;
+    max-width: calc(100% - 34px);
+    padding: 10px 12px;
+    border-radius: 13px;
+  }
+
+  .immigrationservices-floating-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+  }
+
+  .immigrationservices-floating-text strong {
+    font-size: 11px;
+  }
+
+  .immigrationservices-floating-text span {
+    font-size: 9px;
+  }
+
+  .immigrationservices-overlay {
+    padding: 25px 20px 62px;
+  }
+
+  .immigrationservices-overlay-label {
+    font-size: 9px;
+  }
+
+  .immigrationservices-overlay h2 {
+    font-size: 27px;
+  }
+
+  .immigrationservices-overlay p {
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .immigrationservices-consult-btn {
+    min-height: 45px;
+    padding: 12px 17px;
+    font-size: 11px;
+  }
+
+  .immigrationservices-image-bottom {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+}
+
+/* ======================================================
+   EXTRA SMALL MOBILE
+====================================================== */
+
+@media (max-width: 380px) {
+  .immigrationservices-section {
+    padding: 45px 10px;
+  }
+
+  .immigrationservices-title {
+    font-size: 25px;
+  }
+
+  .immigrationservices-service {
+    gap: 10px;
     padding: 15px 12px;
   }
-  .immigration-overlay h2 { font-size: 18px; }
-  .consult-btn { font-size: 13px; padding: 10px 20px; }
+
+  .immigrationservices-service-icon {
+    width: 43px;
+    height: 43px;
+    font-size: 17px;
+  }
+
+  .immigrationservices-service-content h3 {
+    font-size: 15px;
+  }
+
+  .immigrationservices-service-content p {
+    font-size: 10px;
+  }
+
+  .immigrationservices-image-wrapper {
+    height: 480px;
+  }
+
+  .immigrationservices-overlay {
+    padding: 20px 16px 57px;
+  }
+
+  .immigrationservices-overlay h2 {
+    font-size: 24px;
+  }
+
+  .immigrationservices-overlay p {
+    font-size: 10px;
+  }
+
+  .immigrationservices-consult-btn {
+    font-size: 10px;
+  }
 }
 
+/* ======================================================
+   REDUCED MOTION
+====================================================== */
 
-.consult-btn {
-  background: #e63946;
-  border: none;
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: 28px;
-  font-size: 15px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-}
+@media (prefers-reduced-motion: reduce) {
+  .immigrationservices-left,
+  .immigrationservices-right {
+    animation: none;
+  }
 
-.consult-btn:hover {
-  background: #0077b6;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-}
-
-/* =========================
-   Animations
-========================= */
-@keyframes slideInLeft {
-  0% { opacity: 0; transform: translateX(-50px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-  0% { opacity: 0; transform: translateX(50px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 1024px) {
-  .immigration-container { flex-direction: column; gap: 25px; }
-  .immigration-left, .immigration-right { padding: 30px 20px; }
-  .immigration-overlay h2 { font-size: 20px; }
-}
-
-@media (max-width: 768px) {
-  .immigration-left h2 { font-size: 22px; }
-  .service h3 { font-size: 16px; }
-  .service p { font-size: 13px; }
-}
-
-@media (max-width: 480px) {
-  .immigration-left h2 { font-size: 20px; }
-  .immigration-overlay h2 { font-size: 18px; }
-  .consult-btn { font-size: 13px; padding: 10px 22px; }
+  .immigrationservices-service,
+  .immigrationservices-service-icon,
+  .immigrationservices-image,
+  .immigrationservices-consult-btn,
+  .immigrationservices-consult-btn svg {
+    transition: none;
+  }
 }

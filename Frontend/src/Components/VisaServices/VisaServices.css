@@ -1,352 +1,1488 @@
-/* =========================
-   Visa Services Section
-========================= */
+/* =========================================================
+   FLYIXO VISA SERVICES
+   Complete Responsive Styling
+========================================================= */
+
+:root {
+  --vs-navy: #10233d;
+  --vs-navy-dark: #071525;
+  --vs-navy-light: #193b63;
+
+  --vs-pink: #e63975;
+  --vs-pink-dark: #c9255d;
+  --vs-pink-light: #ff6fa3;
+
+  --vs-blue: #246b9e;
+  --vs-blue-light: #4aa3df;
+
+  --vs-green: #28b463;
+  --vs-white: #ffffff;
+  --vs-black: #111827;
+
+  --vs-text: #26364a;
+  --vs-muted: #667085;
+
+  --vs-bg: #f4f7fb;
+  --vs-border: rgba(16, 35, 61, 0.1);
+
+  --vs-shadow: 0 25px 60px rgba(16, 35, 61, 0.12);
+  --vs-shadow-hover: 0 35px 80px rgba(16, 35, 61, 0.2);
+
+  --vs-radius: 24px;
+  --vs-transition: 0.4s ease;
+}
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
 .vs-section {
-  padding: 30px 20px;
-  background: linear-gradient(135deg, #eef2f3, #dfe9f3, #fdfbfb);
-  font-family: "Poppins", sans-serif;
   position: relative;
+  width: 100%;
+  padding: 100px 20px;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(230, 57, 117, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(36, 107, 158, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f9fbfd 0%,
+      #eef3f8 50%,
+      #fdfefe 100%
+    );
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.vs-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   overflow: hidden;
 }
 
-/* Decorative Background Gradient Blobs */
-.vs-section::before,
-.vs-section::after {
-  content: "";
+.vs-bg-shape {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.6;
-  z-index: 0;
+  filter: blur(90px);
+  opacity: 0.35;
 }
 
-.vs-section::before {
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, #e94e77 0%, transparent 70%);
-  top: -100px;
-  left: -100px;
+.vs-bg-shape-one {
+  width: 420px;
+  height: 420px;
+  top: -180px;
+  left: -180px;
+  background: rgba(230, 57, 117, 0.25);
 }
 
-.vs-section::after {
-  width: 350px;
-  height: 350px;
-  background: radial-gradient(circle, #6a11cb 0%, transparent 70%);
-  bottom: -120px;
-  right: -120px;
+.vs-bg-shape-two {
+  width: 500px;
+  height: 500px;
+  right: -220px;
+  bottom: -220px;
+  background: rgba(36, 107, 158, 0.25);
 }
+
+.vs-bg-circle {
+  position: absolute;
+  border: 1px solid rgba(16, 35, 61, 0.08);
+  border-radius: 50%;
+}
+
+.vs-bg-circle-one {
+  width: 280px;
+  height: 280px;
+  top: 18%;
+  right: 7%;
+}
+
+.vs-bg-circle-two {
+  width: 180px;
+  height: 180px;
+  bottom: 12%;
+  left: 5%;
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .vs-container {
-  max-width: 1400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
   position: relative;
   z-index: 2;
-}
 
-/* =========================
-   Layout Rows
-========================= */
-.vs-row {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-}
+  width: 100%;
+  max-width: 1450px;
 
-/* =========================
-   Header
-========================= */
-.vs-header {
-  font-size: 16px;
-  font-weight: 700;
-  color: #e94e77;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  position: relative;
-}
+  margin: 0 auto;
 
-.vs-header::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #e94e77, #6a11cb);
-  margin-top: 8px;
-  border-radius: 2px;
-}
-
-/* =========================
-   Big Box
-========================= */
-.vs-bigbox,
-.vs-card,
-.vs-info {
-  flex: 1;
-  min-width: 320px;
-  position: relative;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease-in-out;
-  min-height: 380px;
-}
-
-.vs-bigbox:hover,
-.vs-card:hover,
-.vs-info:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.2);
-}
-
-/* =========================
-   Big Title Box
-========================= */
-.vs-bigbox {
-  background: linear-gradient(135deg, #fdfbfb, #ebedee, #f7f8fa);
-  color: #2c3e50;
-  padding: 40px;
   display: flex;
   flex-direction: column;
+
+  gap: 55px;
+}
+
+/* =========================================================
+   SECTION INTRO
+========================================================= */
+
+.vs-section-intro {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.vs-intro-badge {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  text-align: left;
+
+  gap: 9px;
+
+  padding: 9px 18px;
+
+  margin-bottom: 15px;
+
+  border: 1px solid rgba(230, 57, 117, 0.2);
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.8);
+
+  color: var(--vs-pink);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+
+  box-shadow: 0 8px 25px rgba(16, 35, 61, 0.06);
+
+  backdrop-filter: blur(10px);
+}
+
+.vs-intro-badge svg {
+  font-size: 13px;
+}
+
+.vs-intro-small {
+  margin: 0 0 10px;
+
+  color: var(--vs-muted);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+}
+
+.vs-main-heading {
+  margin: 0;
+
+  color: var(--vs-navy);
+
+  font-size: clamp(34px, 4vw, 58px);
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -1.5px;
+}
+
+.vs-main-heading span {
+  color: var(--vs-pink);
+}
+
+.vs-main-description {
+  max-width: 760px;
+
+  margin: 18px auto 0;
+
+  color: var(--vs-muted);
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+.vs-heading-line {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 25px;
+}
+
+.vs-heading-line span {
+  width: 42px;
+
+  height: 2px;
+
+  border-radius: 20px;
+
+  background: var(--vs-pink);
+}
+
+.vs-heading-line i {
+  width: 8px;
+
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: var(--vs-navy);
+}
+
+/* =========================================================
+   ROW
+========================================================= */
+
+.vs-row {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 28px;
+
+  width: 100%;
+}
+
+/* =========================================================
+   BIG BOX
+========================================================= */
+
+.vs-bigbox {
+  position: relative;
+
+  min-height: 470px;
+
+  overflow: hidden;
+
+  border-radius: var(--vs-radius);
+
+  padding: 45px;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(230, 57, 117, 0.18),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #eef4f8
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  box-shadow: var(--vs-shadow);
+
+  transition:
+    transform var(--vs-transition),
+    box-shadow var(--vs-transition);
+}
+
+.vs-bigbox:hover {
+  transform: translateY(-8px);
+
+  box-shadow: var(--vs-shadow-hover);
+}
+
+.vs-bigbox-glow {
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  right: -100px;
+  bottom: -100px;
+
+  border-radius: 50%;
+
+  background: rgba(230, 57, 117, 0.15);
+
+  filter: blur(30px);
+}
+
+.vs-bigbox-content {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+.vs-small-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+
+  color: var(--vs-pink);
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.vs-small-label span {
+  width: 35px;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: var(--vs-pink);
 }
 
 .vs-bigtitle {
-  font-size: 36px;
+  max-width: 450px;
+
   margin: 0 0 20px;
-  color: #1b2b57;
-  font-weight: 700;
-  line-height: 1.2;
+
+  color: var(--vs-navy);
+
+  font-size: clamp(30px, 3vw, 44px);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: -1px;
 }
 
 .vs-bigtitle span {
-  color: #e94e77;
+  color: var(--vs-pink);
+
   font-style: italic;
 }
 
 .vs-bigdesc {
-  font-size: 17px;
-  line-height: 1.7;
-  color: #444;
+  max-width: 500px;
+
+  margin: 0;
+
+  color: var(--vs-muted);
+
+  font-size: 15px;
+
+  line-height: 1.8;
 }
 
-/* =========================
-   Cards
-========================= */
-.vs-card img {
+/* =========================================================
+   BIG BOX FEATURES
+========================================================= */
+
+.vs-bigbox-features {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.vs-mini-feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--vs-text);
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.vs-mini-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: rgba(40, 180, 99, 0.12);
+
+  color: var(--vs-green);
+
+  font-size: 11px;
+}
+
+.vs-brand-mark {
+  margin-top: 35px;
+
+  color: var(--vs-navy);
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  opacity: 0.9;
+}
+
+.vs-brand-mark span {
+  color: var(--vs-pink);
+}
+
+/* =========================================================
+   VISA CARD
+========================================================= */
+
+.vs-card {
+  position: relative;
+
+  min-height: 470px;
+
+  overflow: hidden;
+
+  border-radius: var(--vs-radius);
+
+  background: var(--vs-navy);
+
+  box-shadow: var(--vs-shadow);
+
+  transition:
+    transform var(--vs-transition),
+    box-shadow var(--vs-transition);
+}
+
+.vs-card:hover {
+  transform: translateY(-10px);
+
+  box-shadow: var(--vs-shadow-hover);
+}
+
+.vs-card-image-wrapper {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+}
+
+.vs-card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
   display: block;
-  border-radius: 18px;
-  transition: transform 0.6s ease-in-out;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.5s ease;
 }
 
-.vs-card:hover img {
-  transform: scale(1.15) rotate(2deg);
+.vs-card:hover .vs-card-image {
+  transform: scale(1.1);
+
+  filter: saturate(1.12);
 }
+
+.vs-card-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7, 21, 37, 0.05) 20%,
+      rgba(7, 21, 37, 0.25) 42%,
+      rgba(7, 21, 37, 0.95) 100%
+    );
+}
+
+.vs-card-number {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  border-radius: 14px;
+
+  background: rgba(7, 21, 37, 0.45);
+
+  color: #fff;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  backdrop-filter: blur(10px);
+}
+
+.vs-card-top-badge {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  padding: 8px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  backdrop-filter: blur(10px);
+}
+
+/* =========================================================
+   CARD OVERLAY
+========================================================= */
 
 .vs-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 25px;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(8px);
+
+  inset: auto 0 0;
+
+  padding: 30px;
+
   color: #fff;
-  border-radius: 0 0 18px 18px;
-  transition: all 0.4s ease-in-out;
 }
 
-.vs-card:hover .vs-overlay {
-  background: rgba(0, 0, 0, 0.7);
+.vs-overlay-content {
+  position: relative;
+
+  z-index: 3;
+}
+
+.vs-card-line {
+  width: 42px;
+  height: 3px;
+
+  margin-bottom: 13px;
+
+  border-radius: 20px;
+
+  background: var(--vs-pink);
 }
 
 .vs-overlay h3 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
+  margin: 0 0 10px;
+
+  color: #fff;
+
+  font-size: 27px;
+
+  font-weight: 800;
+
+  line-height: 1.2;
 }
 
 .vs-overlay p {
-  margin-top: 8px;
-  font-size: 15px;
-  line-height: 1.6;
-  color: #f1f1f1;
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
-/* =========================
-   Info Box
-========================= */
+/* =========================================================
+   READ MORE
+========================================================= */
+
+.vs-read-more {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 18px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+}
+
+.vs-read-more svg {
+  font-size: 11px;
+
+  transition: transform var(--vs-transition);
+}
+
+.vs-read-more:hover svg {
+  transform: translateX(6px);
+}
+
+/* =========================================================
+   SECOND ROW
+========================================================= */
+
+.vs-row-second {
+  align-items: stretch;
+}
+
+/* =========================================================
+   INFO BOX
+========================================================= */
+
 .vs-info {
-  background: linear-gradient(135deg, #ffffff, #f5f7fa);
-  padding: 35px;
+  min-height: 470px;
+
+  padding: 38px;
+
+  border-radius: var(--vs-radius);
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f2f6fa
+    );
+
+  border: 1px solid rgba(16, 35, 61, 0.06);
+
+  box-shadow: var(--vs-shadow);
+
+  transition:
+    transform var(--vs-transition),
+    box-shadow var(--vs-transition);
+}
+
+.vs-info:hover {
+  transform: translateY(-8px);
+
+  box-shadow: var(--vs-shadow-hover);
+}
+
+.vs-info-top {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: left;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.vs-info-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 55px;
+
+  flex-shrink: 0;
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--vs-pink),
+      var(--vs-pink-light)
+    );
+
+  color: #fff;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 12px 25px rgba(230, 57, 117, 0.25);
+}
+
+.vs-info-label {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--vs-pink);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
 }
 
 .vs-infotitle {
-  font-size: 28px;
-  margin-bottom: 20px;
-  color: #1b2b57;
-  font-weight: 700;
+  margin: 0;
+
+  color: var(--vs-navy);
+
+  font-size: 27px;
+
+  font-weight: 800;
 }
 
+/* =========================================================
+   LIST
+========================================================= */
+
 .vs-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+
   list-style: none;
+
   padding: 0;
-  margin: 0 0 25px;
+
+  margin: 0 0 23px;
 }
 
 .vs-list li {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 14px;
-  font-size: 16px;
-  color: #333;
+
+  align-items: flex-start;
+
+  gap: 11px;
+
+  color: var(--vs-text);
+
+  font-size: 13px;
+
   font-weight: 500;
+
+  line-height: 1.5;
 }
 
-.vs-list li svg {
-  color: #27ae60;
-  font-size: 16px;
+.vs-check-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  flex-shrink: 0;
+
+  margin-top: 1px;
+
+  border-radius: 50%;
+
+  background: rgba(40, 180, 99, 0.12);
+
+  color: var(--vs-green);
+
+  font-size: 9px;
 }
+
+.vs-list-text {
+  padding-top: 1px;
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .vs-desc {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 25px;
+  margin: 0;
+
+  color: var(--vs-muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
 }
 
-/* =========================
-   Button
-========================= */
-.vs-btn {
-  background: linear-gradient(135deg, #e94e77, #6a11cb);
-  border: none;
-  color: #fff;
-  padding: 15px 34px;
-  border-radius: 50px;
-  font-weight: 600;
-  cursor: pointer;
-  width: fit-content;
+/* =========================================================
+   INFO FOOTER
+========================================================= */
+
+.vs-info-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
   margin-top: auto;
-  transition: all 0.4s ease;
-  box-shadow: 0px 8px 25px rgba(233, 78, 119, 0.4);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--vs-border);
 }
 
-.vs-btn:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: linear-gradient(135deg, #6a11cb, #e94e77);
-  box-shadow: 0px 12px 35px rgba(233, 78, 119, 0.55);
+.vs-info-footer-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
 }
 
-/* =========================
-   Responsive Design
-========================= */
+.vs-info-footer-text strong {
+  color: var(--vs-navy);
 
-/* Large Tablets / Small Laptops (max-width: 1200px) */
-@media (max-width: 1200px) {
-  .vs-bigtitle {
-    font-size: 32px;
+  font-size: 13px;
+}
+
+.vs-info-footer-text span {
+  color: var(--vs-muted);
+
+  font-size: 11px;
+}
+
+.vs-info-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--vs-navy);
+
+  color: #fff;
+
+  font-size: 12px;
+
+  transition:
+    transform var(--vs-transition),
+    background var(--vs-transition);
+}
+
+.vs-info:hover .vs-info-arrow {
+  transform: translateX(5px);
+
+  background: var(--vs-pink);
+}
+
+/* =========================================================
+   BOTTOM TRUST
+========================================================= */
+
+.vs-bottom {
+  display: flex;
+
+  align-items: center;
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.vs-bottom-line {
+  flex: 1;
+
+  height: 1px;
+
+  background: rgba(16, 35, 61, 0.1);
+}
+
+.vs-bottom-content {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 25px;
+}
+
+.vs-bottom-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--vs-muted);
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.vs-bottom-item svg {
+  color: var(--vs-green);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1250px) {
+  .vs-section {
+    padding: 85px 20px;
   }
+
   .vs-container {
-    gap: 50px;
-  }
-  .vs-row {
-    gap: 25px;
-  }
-}
+    max-width: 1150px;
 
-/* Tablets (max-width: 992px) */
-@media (max-width: 992px) {
-  .vs-row {
-    flex-direction: column;
+    gap: 45px;
   }
+
+  .vs-row {
+    gap: 22px;
+  }
+
   .vs-bigbox,
   .vs-card,
   .vs-info {
-    min-width: 100%;
-    min-height: auto;
+    min-height: 440px;
   }
-  .vs-bigtitle {
-    font-size: 28px;
-  }
-  .vs-bigdesc,
-  .vs-overlay p,
-  .vs-desc {
-    font-size: 15px;
-  }
-  .vs-infotitle {
-    font-size: 24px;
-  }
-}
 
-/* Mobile Landscape (max-width: 768px) */
-@media (max-width: 768px) {
-  .vs-section {
-    padding: 70px 15px;
+  .vs-bigbox {
+    padding: 35px;
   }
+
   .vs-info {
+    padding: 32px;
+  }
+
+  .vs-overlay {
     padding: 25px;
   }
-  .vs-infotitle {
-    text-align: center;
+
+  .vs-overlay h3 {
+    font-size: 24px;
   }
-  .vs-list li {
-    font-size: 14px;
-  }
-  .vs-btn {
-    margin: 0 auto;
+
+  .vs-bigtitle {
+    font-size: 34px;
   }
 }
 
-/* Mobile Portrait (max-width: 576px) */
+/* =========================================================
+   TABLET / SMALL LAPTOP
+========================================================= */
+
+@media (max-width: 1050px) {
+  .vs-section {
+    padding: 75px 18px;
+  }
+
+  .vs-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vs-bigbox {
+    grid-column: span 2;
+
+    min-height: 380px;
+  }
+
+  .vs-card,
+  .vs-info {
+    min-height: 420px;
+  }
+
+  .vs-main-heading {
+    font-size: 42px;
+  }
+
+  .vs-bottom-content {
+    flex-wrap: wrap;
+
+    gap: 14px 20px;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+  .vs-section {
+    padding: 65px 15px;
+  }
+
+  .vs-container {
+    gap: 35px;
+  }
+
+  .vs-section-intro {
+    max-width: 650px;
+  }
+
+  .vs-intro-small {
+    font-size: 11px;
+
+    letter-spacing: 2px;
+  }
+
+  .vs-main-heading {
+    font-size: 34px;
+
+    letter-spacing: -0.8px;
+  }
+
+  .vs-main-description {
+    font-size: 14px;
+
+    line-height: 1.7;
+  }
+
+  .vs-row {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+  .vs-bigbox {
+    grid-column: auto;
+
+    min-height: 390px;
+
+    padding: 32px;
+  }
+
+  .vs-card,
+  .vs-info {
+    min-height: 430px;
+  }
+
+  .vs-info {
+    padding: 30px;
+  }
+
+  .vs-bottom {
+    flex-direction: column;
+  }
+
+  .vs-bottom-line {
+    width: 100%;
+  }
+
+  .vs-bottom-content {
+    width: 100%;
+
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 576px) {
+  .vs-section {
+    padding: 55px 12px;
+  }
+
+  .vs-container {
+    gap: 30px;
+  }
+
+  .vs-intro-badge {
+    padding: 8px 14px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.2px;
+  }
+
+  .vs-intro-small {
+    margin-bottom: 8px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .vs-main-heading {
+    font-size: 29px;
+
+    line-height: 1.15;
+  }
+
+  .vs-main-description {
+    margin-top: 14px;
+
+    font-size: 13px;
+  }
+
+  .vs-heading-line {
+    margin-top: 18px;
+  }
+
+  .vs-heading-line span {
+    width: 28px;
+  }
+
+  .vs-bigbox {
+    min-height: 390px;
+
+    padding: 27px 22px;
+
+    border-radius: 20px;
+  }
+
+  .vs-small-label {
+    font-size: 10px;
+
+    letter-spacing: 1.4px;
+  }
+
   .vs-bigtitle {
+    font-size: 29px;
+
+    line-height: 1.18;
+  }
+
+  .vs-bigdesc {
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  .vs-mini-feature {
+    font-size: 12px;
+  }
+
+  .vs-brand-mark {
+    margin-top: 27px;
+
+    font-size: 21px;
+  }
+
+  .vs-card {
+    min-height: 420px;
+
+    border-radius: 20px;
+  }
+
+  .vs-card-number {
+    top: 15px;
+    left: 15px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+  }
+
+  .vs-card-top-badge {
+    top: 15px;
+    right: 15px;
+
+    padding: 7px 10px;
+
+    font-size: 8px;
+  }
+
+  .vs-overlay {
+    padding: 22px 20px;
+  }
+
+  .vs-overlay h3 {
     font-size: 22px;
   }
-  .vs-bigdesc {
-    font-size: 14px;
+
+  .vs-overlay p {
+    font-size: 12px;
+
+    line-height: 1.65;
   }
+
+  .vs-read-more {
+    margin-top: 14px;
+
+    font-size: 11px;
+  }
+
+  .vs-info {
+    min-height: auto;
+
+    padding: 25px 20px;
+
+    border-radius: 20px;
+  }
+
+  .vs-info-top {
+    margin-bottom: 20px;
+  }
+
+  .vs-info-icon {
+    width: 47px;
+    height: 47px;
+
+    border-radius: 14px;
+
+    font-size: 17px;
+  }
+
+  .vs-info-label {
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .vs-infotitle {
+    font-size: 23px;
+  }
+
+  .vs-list {
+    gap: 11px;
+
+    margin-bottom: 20px;
+  }
+
+  .vs-list li {
+    gap: 9px;
+
+    font-size: 12px;
+  }
+
+  .vs-check-icon {
+    width: 20px;
+    height: 20px;
+
+    font-size: 8px;
+  }
+
+  .vs-desc {
+    font-size: 12px;
+
+    line-height: 1.65;
+  }
+
+  .vs-info-footer {
+    margin-top: 20px;
+
+    padding-top: 17px;
+  }
+
+  .vs-info-footer-text strong {
+    font-size: 11px;
+  }
+
+  .vs-info-footer-text span {
+    font-size: 9px;
+  }
+
+  .vs-info-arrow {
+    width: 34px;
+    height: 34px;
+
+    font-size: 10px;
+  }
+
+  .vs-bottom-content {
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .vs-bottom-item {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .vs-section {
+    padding: 45px 10px;
+  }
+
+  .vs-main-heading {
+    font-size: 25px;
+  }
+
+  .vs-main-description {
+    font-size: 12px;
+  }
+
+  .vs-bigbox {
+    min-height: 400px;
+
+    padding: 23px 18px;
+  }
+
+  .vs-bigtitle {
+    font-size: 25px;
+  }
+
+  .vs-bigdesc {
+    font-size: 12px;
+  }
+
+  .vs-mini-feature {
+    font-size: 11px;
+  }
+
+  .vs-card {
+    min-height: 400px;
+  }
+
+  .vs-overlay {
+    padding: 19px 17px;
+  }
+
+  .vs-overlay h3 {
+    font-size: 20px;
+  }
+
+  .vs-overlay p {
+    font-size: 11px;
+  }
+
+  .vs-info {
+    padding: 22px 17px;
+  }
+
+  .vs-infotitle {
+    font-size: 20px;
+  }
+
+  .vs-list li {
+    font-size: 11px;
+  }
+
+  .vs-desc {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 340px) {
+  .vs-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .vs-main-heading {
+    font-size: 23px;
+  }
+
+  .vs-intro-badge {
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+  }
+
+  .vs-bigtitle {
+    font-size: 23px;
+  }
+
+  .vs-card {
+    min-height: 380px;
+  }
+
   .vs-overlay h3 {
     font-size: 18px;
   }
-  .vs-overlay p {
-    font-size: 13px;
-  }
-  .vs-infotitle {
-    font-size: 20px;
-  }
-  .vs-btn {
-    padding: 12px 28px;
-    font-size: 14px;
+
+  .vs-info {
+    padding: 20px 15px;
   }
 }
 
-/* Extra Small Devices (max-width: 400px) */
-@media (max-width: 400px) {
-  .vs-bigtitle {
-    font-size: 20px;
-  }
-  .vs-overlay p,
-  .vs-desc {
-    font-size: 12px;
-  }
-  .vs-btn {
-    padding: 10px 24px;
-    font-size: 13px;
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .vs-bigbox,
+  .vs-card,
+  .vs-info,
+  .vs-card-image,
+  .vs-read-more svg,
+  .vs-info-arrow {
+    transition: none;
   }
 }

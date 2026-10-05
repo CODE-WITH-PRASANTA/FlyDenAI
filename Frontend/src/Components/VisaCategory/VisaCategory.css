@@ -1,261 +1,1497 @@
-/* ---------- Section Container ---------- */
+/* =========================================================
+   VISA CATEGORY SECTION
+   ========================================================= */
+
 .visa-category-section {
-  margin: 10px auto;
-  padding: 40px 25px;
-  border-radius: 24px;
-  background: linear-gradient(135deg, #f8fbff 0%, #f1f5ff 100%);
-  border: 1.5px solid rgba(0, 102, 204, 0.08);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+  width: 100%;
+
+  position: relative;
+
+  margin: 30px auto;
+
+  padding: 80px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f9fbff 0%,
+      #ffffff 45%,
+      #fff7fa 100%
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.08);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 15px 50px
+    rgba(15, 23, 42, 0.06);
+
   overflow: hidden;
 }
 
-/* ---------- Header ---------- */
-.visa-category-header {
-  text-align: center;
-  margin-bottom: 45px;
-}
 
-.visa-category-header h2 {
-  font-size: 2.4rem;
-  color: #0f172a;
-  font-weight: 700;
-  position: relative;
-  display: inline-block;
-}
+/* =========================================================
+   BACKGROUND DECORATION
+   ========================================================= */
 
-.visa-category-header h2::after {
-  content: "";
+.visa-bg-circle {
   position: absolute;
-  width: 60%;
-  height: 4px;
-  background: linear-gradient(90deg, #e94e77, #ff7ca3);
-  bottom: -10px;
-  left: 20%;
-  border-radius: 4px;
-}
 
-.highlight {
-  color: #e94e77;
-}
+  border-radius: 50%;
 
-.visa-category-header p {
-  max-width: 1400px;
-  margin: 18px auto 0;
-  color: #475569;
-  font-size: 1rem;
-  line-height: 1.7;
-}
+  pointer-events: none;
 
-/* ---------- Scroll Layout ---------- */
-.visa-category-scroll {
-  display: flex;
-  overflow-x: auto;
-  gap: 25px;
-  scroll-behavior: smooth;
-  padding: 10px 5px 25px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* ---------- Scrollbar ---------- */
-.visa-category-scroll::-webkit-scrollbar {
-  height: 6px;
-}
-
-.visa-category-scroll::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 10px;
-}
-
-.visa-category-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #e94e77, #d63b67);
-  border-radius: 10px;
-  transition: background 0.3s ease;
-}
-
-/* ---------- Card ---------- */
-.VisaCategory-card {
-  flex: 0 0 300px;
-  scroll-snap-align: start;
-  background: #ffffff;
-  border-radius: 20px;
-  text-align: center;
-  padding: 25px 22px;
-  border: 1.5px solid rgba(233, 78, 119, 0.2);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.05);
-  transition: all 0.35s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.VisaCategory-card::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at top right,
-    rgba(233, 78, 119, 0.06),
-    transparent 60%
-  );
   z-index: 0;
 }
 
-/* ---------- Image ---------- */
-.visa-img-wrapper {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #fdf6f9 0%, #fff8fa 100%);
-  border: 1px solid rgba(233, 78, 119, 0.1);
-  overflow: hidden;
+
+/* =========================================================
+   CIRCLE ONE
+   ========================================================= */
+
+.visa-bg-circle-one {
+  width: 450px;
+
+  height: 450px;
+
+  top: -260px;
+
+  left: -200px;
+
+  background:
+    rgba(233, 78, 119, 0.055);
 }
+
+
+/* =========================================================
+   CIRCLE TWO
+   ========================================================= */
+
+.visa-bg-circle-two {
+  width: 500px;
+
+  height: 500px;
+
+  right: -300px;
+
+  bottom: -300px;
+
+  background:
+    rgba(255, 202, 40, 0.07);
+}
+
+
+/* =========================================================
+   BACKGROUND DOTS
+   ========================================================= */
+
+.visa-bg-dot {
+  position: absolute;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #e94e77;
+
+  opacity: 0.45;
+
+  animation:
+    visaDotFloat 4s ease-in-out infinite;
+}
+
+
+.visa-bg-dot-one {
+  top: 18%;
+
+  left: 6%;
+}
+
+
+.visa-bg-dot-two {
+  right: 8%;
+
+  bottom: 22%;
+
+  animation-delay: 1.5s;
+}
+
+
+@keyframes visaDotFloat {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-12px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.visa-category-header {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin: 0 auto 50px;
+
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   SECTION BADGE
+   ========================================================= */
+
+.visa-section-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 18px;
+
+  padding: 8px 15px;
+
+  color: #d73c66;
+
+  background:
+    rgba(233, 78, 119, 0.08);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-radius: 50px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BADGE ICON
+   ========================================================= */
+
+.visa-badge-icon {
+  width: 22px;
+
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 50%;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   HEADER TITLE
+   ========================================================= */
+
+.visa-category-header h2 {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size:
+    clamp(
+      30px,
+      4vw,
+      46px
+    );
+
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: -1px;
+}
+
+
+/* =========================================================
+   HIGHLIGHT
+   ========================================================= */
+
+.visa-category-header .highlight {
+  color: #e94e77;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   HEADING DECORATION
+   ========================================================= */
+
+.visa-heading-decoration {
+  margin:
+    18px auto 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+}
+
+
+.visa-heading-decoration span {
+  display: block;
+
+  height: 4px;
+
+  border-radius: 10px;
+}
+
+
+.visa-heading-decoration span:nth-child(1) {
+  width: 42px;
+
+  background: #e94e77;
+}
+
+
+.visa-heading-decoration span:nth-child(2) {
+  width: 22px;
+
+  background: #ffca28;
+}
+
+
+.visa-heading-decoration span:nth-child(3) {
+  width: 8px;
+
+  background: #e94e77;
+}
+
+
+/* =========================================================
+   HEADER DESCRIPTION
+   ========================================================= */
+
+.visa-category-header p {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  color: #64748b;
+
+  font-size: 15px;
+
+  font-weight: 450;
+
+  line-height: 1.8;
+}
+
+
+.visa-category-header p strong {
+  color: #334155;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   SCROLL CONTAINER
+   ========================================================= */
+
+.visa-category-scroll {
+  width: 100%;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 24px;
+
+  padding:
+    8px
+    8px
+    28px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.visa-category-scroll {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #e94e77
+    #f1f5f9;
+}
+
+
+.visa-category-scroll::-webkit-scrollbar {
+  height: 7px;
+}
+
+
+.visa-category-scroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+
+  border-radius: 20px;
+}
+
+
+.visa-category-scroll::-webkit-scrollbar-thumb {
+  background:
+    linear-gradient(
+      90deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 20px;
+}
+
+
+.visa-category-scroll::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      90deg,
+      #d63b67,
+      #e94e77
+    );
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.VisaCategory-card {
+  flex:
+    0 0 310px;
+
+  min-width: 0;
+
+  min-height: 455px;
+
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  scroll-snap-align: start;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.13);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 35px
+    rgba(15, 23, 42, 0.07);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+
+/* =========================================================
+   CARD TOP BORDER
+   ========================================================= */
+
+.VisaCategory-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e94e77,
+      #ffca28,
+      #e94e77
+    );
+
+  opacity: 0.9;
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   CARD GLOW
+   ========================================================= */
+
+.visa-card-glow {
+  position: absolute;
+
+  width: 230px;
+
+  height: 230px;
+
+  top: -130px;
+
+  right: -100px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  pointer-events: none;
+
+  transition:
+    transform 0.5s ease;
+}
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.VisaCategory-card:hover {
+  transform:
+    translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.28);
+
+  box-shadow:
+    0 22px 50px
+    rgba(15, 23, 42, 0.12);
+}
+
+
+.VisaCategory-card:hover
+.visa-card-glow {
+  transform:
+    scale(1.3);
+}
+
+
+/* =========================================================
+   IMAGE WRAPPER
+   ========================================================= */
+
+.visa-img-wrapper {
+  width: calc(100% - 28px);
+
+  height: 190px;
+
+  margin:
+    14px auto 0;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fdf6f9 0%,
+      #fff8fa 50%,
+      #f8fbff 100%
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.1);
+
+  border-radius: 16px;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
 
 .VisaCategory-image {
   width: 100%;
+
   height: 100%;
-  object-fit: contain;
-  transition: transform 0.35s ease;
-}
 
-.VisaCategory-card:hover .VisaCategory-image {
-  transform: scale(1.08);
-}
-
-/* ---------- Text ---------- */
-.visa-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 12px 0 10px;
-  position: relative;
-}
-
-.visa-title::after {
-  content: "";
   display: block;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #e94e77, #ff8aa9);
-  margin: 6px auto;
-  border-radius: 3px;
+
+  object-fit: contain;
+
+  padding: 8px;
+
+  transition:
+    transform 0.5s ease;
 }
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.VisaCategory-card:hover
+.VisaCategory-image {
+  transform:
+    scale(1.07);
+}
+
+
+/* =========================================================
+   PLACEHOLDER
+   ========================================================= */
+
+.visa-image-placeholder {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #e94e77;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff5f8,
+      #f8fbff
+    );
+
+  font-size: 50px;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.visa-card-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding:
+    18px
+    22px
+    22px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  position: relative;
+
+  z-index: 3;
+}
+
+
+/* =========================================================
+   CARD LABEL
+   ========================================================= */
+
+.visa-card-label {
+  width: fit-content;
+
+  margin-bottom: 8px;
+
+  padding: 5px 9px;
+
+  color: #d63b67;
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border-radius: 5px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.visa-title {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size: 20px;
+
+  font-weight: 750;
+
+  line-height: 1.3;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+.visa-title-line {
+  width: 100%;
+
+  height: 3px;
+
+  margin:
+    9px 0 12px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.visa-title-line span {
+  width: 38px;
+
+  height: 3px;
+
+  display: block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e94e77,
+      #ffca28
+    );
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
 
 .visacategory-description {
-  font-size: 0.95rem;
-  color: #475569;
-  margin-bottom: 20px;
-  line-height: 1.6;
-  min-height: 75px;
-  text-align: justify;
+  min-height: 80px;
+
+  margin:
+    0 0 18px;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  font-weight: 450;
+
+  line-height: 1.65;
+
+  text-align: left;
+
+  overflow: hidden;
+
+  display:
+    -webkit-box;
+
+  -webkit-line-clamp: 4;
+
+  -webkit-box-orient: vertical;
 }
 
-/* ---------- Button ---------- */
-.visa-btn {
-  background: linear-gradient(135deg, #e94e77 0%, #d63b67 100%);
-  color: #fff;
-  border: none;
-  padding: 10px 26px;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  box-shadow: 0 3px 12px rgba(233, 78, 119, 0.25);
-  position: relative;
-  z-index: 1;
+
+.visacategory-description strong {
+  color: #334155;
 }
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.visa-btn {
+  width: 100%;
+
+  min-height: 45px;
+
+  margin-top: auto;
+
+  padding:
+    10px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77 0%,
+      #d63b67 100%
+    );
+
+  border: none;
+
+  border-radius: 12px;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 7px 18px
+    rgba(233, 78, 119, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+
+/* =========================================================
+   BUTTON HOVER
+   ========================================================= */
 
 .visa-btn:hover {
-  background: linear-gradient(135deg, #d63b67 0%, #e94e77 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(233, 78, 119, 0.35);
+  background:
+    linear-gradient(
+      135deg,
+      #d63b67 0%,
+      #e94e77 100%
+    );
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 10px 24px
+    rgba(233, 78, 119, 0.3);
 }
 
-/* ---------- Loading ---------- */
-.visa-loading {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 0;
+
+/* =========================================================
+   BUTTON ACTIVE
+   ========================================================= */
+
+.visa-btn:active {
+  transform:
+    translateY(0);
 }
+
+
+/* =========================================================
+   BUTTON ARROW
+   ========================================================= */
+
+.visa-btn-arrow {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+.visa-btn:hover
+.visa-btn-arrow {
+  transform:
+    translateX(4px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.visa-empty-state {
+  width: 100%;
+
+  min-height: 300px;
+
+  padding: 40px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, 0.8);
+
+  border:
+    1px dashed
+    rgba(233, 78, 119, 0.25);
+
+  border-radius: 18px;
+}
+
+
+/* =========================================================
+   EMPTY ICON
+   ========================================================= */
+
+.visa-empty-icon {
+  width: 65px;
+
+  height: 65px;
+
+  margin-bottom: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 50%;
+
+  font-size: 28px;
+}
+
+
+/* =========================================================
+   EMPTY TITLE
+   ========================================================= */
+
+.visa-empty-state h3 {
+  margin: 0 0 8px;
+
+  color: #0f172a;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY TEXT
+   ========================================================= */
+
+.visa-empty-state p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.visa-loading {
+  min-height: 400px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+   ========================================================= */
 
 .loading-spinner {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #e94e77;
+  width: 52px;
+
+  height: 52px;
+
+  margin-bottom: 18px;
+
+  padding: 4px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    4px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-top-color:
+    #e94e77;
+
+  border-right-color:
+    #ffca28;
+
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 10px;
+
+  animation:
+    visaSpinner 0.8s
+    linear infinite;
 }
 
-@keyframes spin {
+
+.loading-spinner span {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.04);
+}
+
+
+@keyframes visaSpinner {
+
   to {
-    transform: rotate(360deg);
+    transform:
+      rotate(360deg);
   }
+
 }
 
-/* ---------- Responsive ---------- */
-@media (max-width: 992px) {
-  .visa-category-header h2 {
-    font-size: 2rem;
-  }
 
-  .VisaCategory-card {
-    flex: 0 0 270px;
-  }
+/* =========================================================
+   LOADING TITLE
+   ========================================================= */
+
+.visa-loading h2 {
+  margin: 0 0 8px;
+
+  color: #0f172a;
+
+  font-size: 22px;
+
+  font-weight: 700;
 }
 
-@media (max-width: 768px) {
+
+/* =========================================================
+   LOADING DESCRIPTION
+   ========================================================= */
+
+.visa-loading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   LARGE TABLETS
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
   .visa-category-section {
-    padding: 20px;
-    margin: 0px;
+    padding:
+      70px 25px;
   }
 
-  .visa-category-header h2 {
-    font-size: 1.8rem;
-  }
-
-  .visacategory-description {
-    font-size: 0.9rem;
-  }
 
   .VisaCategory-card {
-    flex: 0 0 240px;
-    padding: 20px 16px;
+    flex-basis: 290px;
   }
 
-  .VisaCategory-image {
-    height: 160px;
-  }
 }
 
-@media (max-width: 480px) {
-  .visa-category-header h2 {
-    font-size: 1.6rem;
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+  .visa-category-section {
+    margin:
+      25px 15px;
+
+    padding:
+      60px 20px;
+
+    border-radius: 22px;
   }
+
+
+  .visa-category-header {
+    margin-bottom: 40px;
+  }
+
+
+  .visa-category-header h2 {
+    font-size: 34px;
+  }
+
 
   .visa-category-header p {
-    font-size: 0.9rem;
+    font-size: 14px;
   }
 
-  .visa-category-scroll {
-    gap: 15px;
-  }
 
   .VisaCategory-card {
-    flex: 0 0 85%;
-    margin-right: 10px;
+    flex-basis: 275px;
+
+    min-height: 440px;
   }
 
-  .visa-btn {
-    padding: 8px 18px;
-    font-size: 0.9rem;
+
+  .visa-img-wrapper {
+    height: 175px;
   }
+
+}
+
+
+/* =========================================================
+   SMALL TABLETS
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .visa-category-section {
+    margin:
+      20px 10px;
+
+    padding:
+      50px 15px;
+
+    border-radius: 20px;
+  }
+
+
+  .visa-category-header {
+    margin-bottom: 35px;
+  }
+
+
+  .visa-section-badge {
+    font-size: 9px;
+  }
+
+
+  .visa-category-header h2 {
+    font-size: 29px;
+
+    line-height: 1.2;
+  }
+
+
+  .visa-category-header p {
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+
+  .visa-category-scroll {
+    gap: 18px;
+
+    padding:
+      5px
+      5px
+      23px;
+  }
+
+
+  .VisaCategory-card {
+    flex-basis: 255px;
+
+    min-height: 425px;
+
+    border-radius: 18px;
+  }
+
+
+  .visa-img-wrapper {
+    height: 165px;
+
+    border-radius: 13px;
+  }
+
+
+  .visa-card-content {
+    padding:
+      16px
+      18px
+      18px;
+  }
+
+
+  .visa-title {
+    font-size: 18px;
+  }
+
+
+  .visacategory-description {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+  .visa-category-section {
+    width: calc(100% - 20px);
+
+    margin:
+      15px auto;
+
+    padding:
+      45px 12px;
+
+    border-radius: 18px;
+  }
+
+
+  .visa-category-header {
+    margin-bottom: 30px;
+  }
+
+
+  .visa-section-badge {
+    margin-bottom: 14px;
+
+    padding:
+      7px 11px;
+
+    font-size: 8.5px;
+
+    letter-spacing: 0.5px;
+  }
+
+
+  .visa-badge-icon {
+    width: 19px;
+
+    height: 19px;
+
+    font-size: 9px;
+  }
+
+
+  .visa-category-header h2 {
+    font-size: 26px;
+
+    letter-spacing: -0.5px;
+  }
+
+
+  .visa-heading-decoration {
+    margin:
+      13px auto 16px;
+  }
+
+
+  .visa-category-header p {
+    font-size: 12px;
+
+    line-height: 1.7;
+  }
+
+
+  .visa-category-scroll {
+    gap: 14px;
+
+    padding:
+      5px
+      4px
+      20px;
+  }
+
+
+  .VisaCategory-card {
+    flex:
+      0 0 82%;
+
+    min-height: 420px;
+
+    border-radius: 17px;
+  }
+
+
+  .visa-img-wrapper {
+    width: calc(100% - 22px);
+
+    height: 170px;
+
+    margin-top: 11px;
+  }
+
+
+  .visa-card-content {
+    padding:
+      15px
+      16px
+      16px;
+  }
+
+
+  .visa-card-label {
+    font-size: 8px;
+  }
+
+
+  .visa-title {
+    font-size: 18px;
+  }
+
+
+  .visacategory-description {
+    min-height: 76px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+  }
+
+
+  .visa-btn {
+    min-height: 42px;
+
+    font-size: 12px;
+
+    border-radius: 10px;
+  }
+
+
+  .visa-btn-arrow {
+    font-size: 16px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .visa-category-section {
+    width: calc(100% - 14px);
+
+    padding:
+      38px 10px;
+  }
+
+
+  .visa-category-header h2 {
+    font-size: 23px;
+  }
+
+
+  .visa-category-header p {
+    font-size: 11.5px;
+  }
+
+
+  .VisaCategory-card {
+    flex:
+      0 0 88%;
+
+    min-height: 405px;
+  }
+
+
+  .visa-img-wrapper {
+    height: 155px;
+  }
+
+
+  .visa-title {
+    font-size: 17px;
+  }
+
+
+  .visacategory-description {
+    font-size: 11.5px;
+  }
+
+
+  .visa-btn {
+    min-height: 40px;
+
+    padding:
+      8px 14px;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+  .visa-category-header h2 {
+    font-size: 21px;
+  }
+
+
+  .VisaCategory-card {
+    flex-basis: 91%;
+  }
+
+
+  .visa-img-wrapper {
+    height: 145px;
+  }
+
+
+  .visa-card-content {
+    padding:
+      13px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .VisaCategory-card,
+  .VisaCategory-image,
+  .visa-card-glow,
+  .visa-btn,
+  .visa-btn-arrow {
+    transition: none !important;
+  }
+
+
+  .visa-bg-dot,
+  .loading-spinner {
+    animation: none !important;
+  }
+
 }

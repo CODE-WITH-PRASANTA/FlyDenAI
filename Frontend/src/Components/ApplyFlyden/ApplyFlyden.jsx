@@ -1,7 +1,12 @@
 import React from "react";
 import "./ApplyFlyden.css";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaCheckCircle, FaThumbsUp } from "react-icons/fa";
+import {
+  FaLaptopCode,
+  FaCheckCircle,
+  FaThumbsUp,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const steps = [
   {
@@ -21,67 +26,205 @@ const steps = [
   },
 ];
 
-const ApplyFlyden = () => {
+const ApplyFlyixo = () => {
   return (
-    <motion.div
-      className="ApplyFlyden-section"
+    <motion.section
+      className="apply-flyixo-section"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.8,
+        ease: "easeOut",
+      }}
     >
-      <motion.h2
-        className="ApplyFlyden-title"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        Applying With FlyDenAi Is This Simple
-      </motion.h2>
+      {/* Background Decorations */}
+      <div className="apply-flyixo-bg apply-flyixo-bg-one"></div>
+      <div className="apply-flyixo-bg apply-flyixo-bg-two"></div>
+      <div className="apply-flyixo-grid"></div>
 
-      <div className="ApplyFlyden-timeline">
-        {steps.map((step, index) => (
-          <motion.div
-            key={index}
-            className="ApplyFlyden-timeline-step"
-            initial={{ opacity: 0, scale: 0.8, y: 50 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: index * 0.2, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            <motion.div
-              className="ApplyFlyden-step-card"
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 12px 30px rgba(233, 78, 119, 0.25)",
-              }}
-              transition={{ type: "spring", stiffness: 200, damping: 10 }}
-            >
-              <div className="ApplyFlyden-step-icon">
-                <div className="ApplyFlyden-step-ring"></div>
-                {step.icon}
-                <div className="ApplyFlyden-step-count">{index + 1}</div>
-              </div>
+      <div className="apply-flyixo-container">
+        {/* ================= HEADER ================= */}
+        <motion.div
+          className="apply-flyixo-header"
+          initial={{
+            opacity: 0,
+            y: -30,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.7,
+            ease: "easeOut",
+          }}
+        >
+          <div className="apply-flyixo-eyebrow">
+            <span className="apply-flyixo-eyebrow-line"></span>
 
-              <div className="ApplyFlyden-step-content">
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
-              </div>
-            </motion.div>
+            <span>FLYIXO VISA PROCESS</span>
 
-            {index !== steps.length - 1 && (
+            <span className="apply-flyixo-eyebrow-line"></span>
+          </div>
+
+          <h2 className="apply-flyixo-title">
+            Applying With <span>Flyixo</span> Is This Simple
+          </h2>
+
+          <p className="apply-flyixo-description">
+            Complete your visa application through our simple, secure and
+            professionally guided process.
+          </p>
+        </motion.div>
+
+        {/* ================= TIMELINE ================= */}
+        <div className="apply-flyixo-timeline">
+          {steps.map((step, index) => (
+            <React.Fragment key={index}>
               <motion.div
-                className="ApplyFlyden-timeline-line"
-                initial={{ width: 0 }}
-                whileInView={{ width: "120px" }}
-                transition={{ duration: 1, delay: index * 0.3 }}
-              ></motion.div>
-            )}
-          </motion.div>
-        ))}
+                className="apply-flyixo-timeline-step"
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
+                  y: 50,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.2,
+                }}
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.2,
+                  ease: "easeOut",
+                }}
+              >
+                <motion.div
+                  className="apply-flyixo-step-card"
+                  whileHover={{
+                    y: -8,
+                    scale: 1.02,
+                    boxShadow:
+                      "0 20px 45px rgba(233, 78, 119, 0.20)",
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 200,
+                    damping: 15,
+                  }}
+                >
+                  {/* Step Icon */}
+                  <div className="apply-flyixo-step-icon">
+                    <div className="apply-flyixo-step-glow"></div>
+
+                    <div
+                      className={`apply-flyixo-step-ring apply-flyixo-ring-${index + 1}`}
+                    >
+                      {step.icon}
+                    </div>
+
+                    <div className="apply-flyixo-step-count">
+                      {index + 1}
+                    </div>
+                  </div>
+
+                  {/* Step Content */}
+                  <div className="apply-flyixo-step-content">
+                    <span className="apply-flyixo-step-label">
+                      STEP {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <h3>{step.title}</h3>
+
+                    <p>{step.desc}</p>
+
+                    <div className="apply-flyixo-content-line"></div>
+
+                    <div className="apply-flyixo-step-footer">
+                      <span>Flyixo Support</span>
+
+                      <FaArrowRight />
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              {/* Connector */}
+              {index !== steps.length - 1 && (
+                <motion.div
+                  className="apply-flyixo-timeline-connector"
+                  initial={{
+                    scaleX: 0,
+                    opacity: 0,
+                  }}
+                  whileInView={{
+                    scaleX: 1,
+                    opacity: 1,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.8,
+                    delay: index * 0.3,
+                  }}
+                >
+                  <span className="apply-flyixo-connector-line"></span>
+
+                  <span className="apply-flyixo-connector-dot"></span>
+
+                  <span className="apply-flyixo-connector-arrow">
+                    <FaArrowRight />
+                  </span>
+                </motion.div>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        {/* ================= TRUST AREA ================= */}
+        <motion.div
+          className="apply-flyixo-trust"
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.7,
+            delay: 0.4,
+          }}
+        >
+          <div className="apply-flyixo-trust-item">
+            <FaCheckCircle />
+            <span>Secure Process</span>
+          </div>
+
+          <span className="apply-flyixo-trust-divider"></span>
+
+          <div className="apply-flyixo-trust-item">
+            <FaCheckCircle />
+            <span>Expert Guidance</span>
+          </div>
+
+          <span className="apply-flyixo-trust-divider"></span>
+
+          <div className="apply-flyixo-trust-item">
+            <FaCheckCircle />
+            <span>Fast Processing</span>
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </motion.section>
   );
 };
 
-export default ApplyFlyden;
+export default ApplyFlyixo;

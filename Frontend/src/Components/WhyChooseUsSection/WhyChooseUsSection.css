@@ -1,188 +1,1123 @@
-/* 🌍 Base Section */
-.why-choose-us {
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  border: 5px solid transparent; /* Invisible base border */
-  border-radius: 25px;
-  background-clip: padding-box;
+/* =========================================================
+   FLYIXO WHY CHOOSE US
+   ========================================================= */
+
+.flyixo-why-section {
+  --why-navy: #082b49;
+  --why-navy-dark: #041c31;
+
+  --why-primary: #e94e77;
+  --why-primary-dark: #c93661;
+  --why-primary-light: #ff8eaa;
+
+  --why-blue: #2575fc;
+  --why-cyan: #36c8d4;
+  --why-purple: #6a11cb;
+
+  --why-text: #263445;
+  --why-muted: #687789;
+
   position: relative;
+
+  width: 100%;
+
+  padding: 90px 25px;
+
   overflow: hidden;
+
+  font-family: "Poppins", sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 5% 10%,
+      rgba(233, 78, 119, 0.1),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 95% 90%,
+      rgba(37, 117, 252, 0.1),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #f7fbff 0%,
+      #edf6ff 50%,
+      #fff6f8 100%
+    );
+
+  border-radius: 28px;
+
+  border:
+    1px solid rgba(233, 78, 119, 0.14);
+
+  box-shadow:
+    0 20px 60px rgba(8, 43, 73, 0.08);
+
+  isolation: isolate;
 }
 
-/* ✨ Gradient Border Effect */
-.why-choose-us::before {
-  content: "";
+/* =========================================================
+   BACKGROUND CIRCLES
+   ========================================================= */
+
+.flyixo-why-bg {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, #ff7e5f, #feb47b, #ffcc70);
-  z-index: 0;
-}
 
-/* Keep content above border overlay */
-.why-choose-us > * {
-  position: relative;
-  z-index: 1;
-}
-
-
-.why-choose-us h2 {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #222;
-  margin-bottom: 50px;
-}
-
-/* 🌟 Container */
-.why-choose-us-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  padding-bottom: 15px;
-}
-
-/* 🧩 Service Card */
-.service-card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  width: 220px;
-  padding: 25px 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.service-card:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-}
-
-/* 🎯 Icon Container */
-.icon-container {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b);
-  width: 70px;
-  height: 70px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+
+  pointer-events: none;
+
+  z-index: -1;
 }
 
-.icon-container:hover {
-  transform: scale(1.15);
+.flyixo-why-bg-one {
+  width: 400px;
+  height: 400px;
+
+  top: -200px;
+  left: -170px;
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  filter: blur(2px);
+
+  animation:
+    flyixoWhyFloatOne
+    9s
+    ease-in-out
+    infinite;
 }
 
-.icon-container svg {
-  color: white;
-  font-size: 28px;
+.flyixo-why-bg-two {
+  width: 340px;
+  height: 340px;
+
+  right: -160px;
+  bottom: -170px;
+
+  background:
+    rgba(37, 117, 252, 0.07);
+
+  filter: blur(2px);
+
+  animation:
+    flyixoWhyFloatTwo
+    10s
+    ease-in-out
+    infinite;
 }
 
-/* 📜 Text */
-.service-card p {
-  font-size: 15px;
-  color: #444;
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.flyixo-why-grid {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  opacity: 0.3;
+
+  background-image:
+    linear-gradient(
+      rgba(8, 43, 73, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 43, 73, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 35px 35px;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.flyixo-why-container {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1300px;
+
+  margin: 0 auto;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.flyixo-why-header {
+  max-width: 850px;
+
+  margin: 0 auto 65px;
+
   text-align: center;
-  font-weight: 500;
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.flyixo-why-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 17px;
+
+  color:
+    var(--why-primary);
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2.8px;
+
+  text-transform: uppercase;
+}
+
+.flyixo-why-eyebrow-line {
+  display: block;
+
+  width: 32px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--why-primary),
+      var(--why-primary-light)
+    );
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.flyixo-why-title {
+  margin: 0;
+
+  color:
+    var(--why-navy);
+
+  font-size:
+    clamp(2.3rem, 4vw, 3.35rem);
+
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.flyixo-why-title span {
+  background:
+    linear-gradient(
+      90deg,
+      var(--why-primary),
+      #ff6f98
+    );
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================================================
+   TITLE UNDERLINE
+   ========================================================= */
+
+.flyixo-why-title::after {
+  content: "";
+
+  display: block;
+
+  width: 70px;
+  height: 4px;
+
+  margin: 18px auto 0;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--why-primary),
+      var(--why-primary-light)
+    );
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.flyixo-why-description {
+  max-width: 700px;
+
+  margin: 22px auto 0;
+
+  color:
+    var(--why-muted);
+
+  font-size: 0.95rem;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   SERVICES GRID
+   ========================================================= */
+
+.flyixo-why-services {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 25px;
+
+  width: 100%;
+}
+
+/* =========================================================
+   SERVICE CARD
+   ========================================================= */
+
+.flyixo-service-card {
+  position: relative;
+
+  min-height: 285px;
+
+  padding: 35px 28px 25px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+
+  border:
+    1px solid
+    rgba(8, 43, 73, 0.08);
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 12px 35px
+      rgba(8, 43, 73, 0.07);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.flyixo-service-card:hover {
+  transform:
+    translateY(-12px);
+
+  border-color:
+    rgba(233, 78, 119, 0.3);
+
+  box-shadow:
+    0 25px 55px
+      rgba(8, 43, 73, 0.14);
+}
+
+/* =========================================================
+   TOP ACCENT
+   ========================================================= */
+
+.flyixo-service-accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--why-primary),
+      #ffb199,
+      var(--why-blue)
+    );
+
+  transform:
+    scaleX(0.3);
+
+  transform-origin: center;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.flyixo-service-card:hover
+  .flyixo-service-accent {
+  transform:
+    scaleX(1);
+}
+
+/* =========================================================
+   CARD NUMBER
+   ========================================================= */
+
+.flyixo-service-number {
+  position: absolute;
+
+  top: 15px;
+  right: 18px;
+
+  color:
+    rgba(8, 43, 73, 0.12);
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+/* =========================================================
+   ICON WRAPPER
+   ========================================================= */
+
+.flyixo-icon-wrapper {
+  position: relative;
+
+  width: 90px;
+  height: 90px;
+
+  margin-bottom: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   ICON GLOW
+   ========================================================= */
+
+.flyixo-icon-glow {
+  position: absolute;
+
+  width: 88px;
+  height: 88px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.12);
+
+  filter: blur(8px);
+
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.flyixo-service-card:hover
+  .flyixo-icon-glow {
+  transform:
+    scale(1.2);
+
+  opacity: 0.75;
+}
+
+/* =========================================================
+   ICON CONTAINER
+   ========================================================= */
+
+.flyixo-icon-container {
+  position: relative;
+
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    4px solid
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--why-primary),
+      var(--why-primary-light)
+    );
+
+  box-shadow:
+    0 10px 25px
+      rgba(233, 78, 119, 0.22);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.flyixo-service-card:nth-child(2)
+  .flyixo-icon-container {
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #64b5f6
+    );
+}
+
+.flyixo-service-card:nth-child(3)
+  .flyixo-icon-container {
+  background:
+    linear-gradient(
+      135deg,
+      #36c8d4,
+      #4facfe
+    );
+}
+
+.flyixo-service-card:nth-child(4)
+  .flyixo-icon-container {
+  background:
+    linear-gradient(
+      135deg,
+      #ff9966,
+      #ff5e62
+    );
+}
+
+.flyixo-service-card:nth-child(5)
+  .flyixo-icon-container {
+  background:
+    linear-gradient(
+      135deg,
+      #43cea2,
+      #185a9d
+    );
+}
+
+.flyixo-service-card:nth-child(6)
+  .flyixo-icon-container {
+  background:
+    linear-gradient(
+      135deg,
+      #6a11cb,
+      #2575fc
+    );
+}
+
+.flyixo-service-card:hover
+  .flyixo-icon-container {
+  transform:
+    scale(1.12)
+    rotate(5deg);
+
+  box-shadow:
+    0 15px 35px
+      rgba(233, 78, 119, 0.3);
+}
+
+.flyixo-icon-container svg {
+  color: #ffffff;
+
+  font-size: 27px;
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.flyixo-service-content {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+}
+
+.flyixo-service-content h3 {
+  min-height: 50px;
+
+  margin: 0;
+
+  color:
+    var(--why-navy);
+
+  font-size: 1.02rem;
+
   line-height: 1.5;
+
+  font-weight: 750;
 }
 
-/* 🔹 Scrollbar for overflow (small screens) */
-.why-choose-us-container::-webkit-scrollbar {
-  height: 6px;
-}
-.why-choose-us-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
+/* =========================================================
+   CHECK ROW
+   ========================================================= */
+
+.flyixo-service-check {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 13px;
+
+  color:
+    var(--why-muted);
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
 }
 
-/* 📱 Responsive Design */
+.flyixo-service-check svg {
+  color:
+    var(--why-primary);
 
-/* Large Devices (Desktops & Laptops) */
+  font-size: 0.75rem;
+}
+
+/* =========================================================
+   SERVICE ARROW
+   ========================================================= */
+
+.flyixo-service-arrow {
+  margin-top: auto;
+
+  padding-top: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  color:
+    var(--why-primary);
+
+  font-size: 0.68rem;
+
+  font-weight: 700;
+}
+
+.flyixo-arrow-circle {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    var(--why-primary);
+
+  font-size: 0.7rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.flyixo-service-card:hover
+  .flyixo-arrow-circle {
+  transform:
+    translateX(5px);
+}
+
+/* =========================================================
+   DECORATIVE CARD CORNER
+   ========================================================= */
+
+.flyixo-card-corner {
+  position: absolute;
+
+  right: -45px;
+  bottom: -45px;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.045);
+
+  transition:
+    transform 0.4s ease;
+}
+
+.flyixo-service-card:hover
+  .flyixo-card-corner {
+  transform:
+    scale(1.35);
+}
+
+/* =========================================================
+   BOTTOM AREA
+   ========================================================= */
+
+.flyixo-why-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 55px;
+}
+
+.flyixo-why-bottom p {
+  margin: 0;
+
+  color:
+    var(--why-muted);
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.flyixo-why-bottom strong {
+  color:
+    var(--why-primary);
+
+  font-weight: 800;
+}
+
+.flyixo-bottom-line {
+  width: 55px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(233, 78, 119, 0.45)
+    );
+}
+
+.flyixo-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(233, 78, 119, 0.45),
+      transparent
+    );
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes flyixoWhyFloatOne {
+  0%,
+  100% {
+    transform:
+      translate(0, 0);
+  }
+
+  50% {
+    transform:
+      translate(25px, 25px);
+  }
+}
+
+@keyframes flyixoWhyFloatTwo {
+  0%,
+  100% {
+    transform:
+      translate(0, 0);
+  }
+
+  50% {
+    transform:
+      translate(-25px, -20px);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
 @media (max-width: 1200px) {
-  .service-card {
-    width: 200px;
-    padding: 20px 15px;
+  .flyixo-why-section {
+    padding: 80px 20px;
   }
-  .why-choose-us h2 {
-    font-size: 2.4rem;
-  }
-}
 
-/* Tablets (768px - 1024px) */
-@media (max-width: 1024px) {
-  .why-choose-us {
-    padding: 70px 15px;
-  }
-  .why-choose-us h2 {
-    font-size: 2.3rem;
-  }
-  .why-choose-us-container {
+  .flyixo-why-services {
     gap: 20px;
   }
-  .service-card {
-    width: 45%;
+
+  .flyixo-service-card {
+    padding:
+      30px 22px 23px;
+  }
+
+  .flyixo-service-content h3 {
+    font-size: 0.95rem;
   }
 }
 
-/* Mobile Devices (480px - 767px) */
-@media (max-width: 767px) {
-  .why-choose-us {
-    padding: 60px 15px;
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 992px) {
+  .flyixo-why-section {
+    padding: 70px 18px;
   }
-  .why-choose-us h2 {
-    font-size: 2rem;
+
+  .flyixo-why-header {
+    margin-bottom: 50px;
+  }
+
+  .flyixo-why-services {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    gap: 22px;
+  }
+
+  .flyixo-service-card {
+    min-height: 275px;
+  }
+}
+
+/* =========================================================
+   MOBILE TABLET
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .flyixo-why-section {
+    padding: 60px 15px;
+
+    border-radius: 22px;
+  }
+
+  .flyixo-why-header {
     margin-bottom: 40px;
   }
-  .why-choose-us-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+
+  .flyixo-why-eyebrow {
+    gap: 7px;
+
+    font-size: 0.64rem;
+
+    letter-spacing: 2px;
   }
-  .service-card {
-    width: 80%;
-    padding: 20px;
+
+  .flyixo-why-eyebrow-line {
+    width: 20px;
   }
-  .icon-container {
-    width: 60px;
-    height: 60px;
+
+  .flyixo-why-title {
+    font-size: 2rem;
   }
-  .icon-container svg {
+
+  .flyixo-why-description {
+    font-size: 0.82rem;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-why-services {
+    grid-template-columns: 1fr;
+
+    max-width: 430px;
+
+    gap: 18px;
+  }
+
+  .flyixo-service-card {
+    min-height: 250px;
+
+    padding:
+      30px 25px 23px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flyixo-icon-glow {
+    width: 80px;
+    height: 80px;
+  }
+
+  .flyixo-icon-container {
+    width: 65px;
+    height: 65px;
+  }
+
+  .flyixo-icon-container svg {
     font-size: 24px;
   }
-  .service-card p {
-    font-size: 14px;
+
+  .flyixo-service-content h3 {
+    min-height: auto;
+
+    font-size: 0.98rem;
+  }
+
+  .flyixo-why-bottom {
+    margin-top: 40px;
+
+    gap: 10px;
+  }
+
+  .flyixo-bottom-line {
+    width: 30px;
   }
 }
 
-/* Extra Small Devices (Under 480px) */
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 480px) {
-  .why-choose-us {
-    padding: 50px 10px;
+  .flyixo-why-section {
+    padding: 50px 12px;
   }
-  .why-choose-us h2 {
-    font-size: 1.8rem;
+
+  .flyixo-why-header {
+    margin-bottom: 32px;
   }
-  .service-card {
-    width: 95%;
-    padding: 18px;
+
+  .flyixo-why-eyebrow {
+    font-size: 0.57rem;
+
+    letter-spacing: 1.5px;
   }
-  .icon-container {
+
+  .flyixo-why-eyebrow-line {
+    width: 15px;
+  }
+
+  .flyixo-why-title {
+    font-size: 1.7rem;
+
+    letter-spacing: -0.5px;
+  }
+
+  .flyixo-why-title::after {
     width: 55px;
-    height: 55px;
+
+    height: 3px;
+
+    margin-top: 14px;
   }
-  .icon-container svg {
+
+  .flyixo-why-description {
+    margin-top: 16px;
+
+    font-size: 0.77rem;
+  }
+
+  .flyixo-service-card {
+    min-height: 240px;
+
+    padding:
+      27px 18px 20px;
+
+    border-radius: 20px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 74px;
+    height: 74px;
+
+    margin-bottom: 18px;
+  }
+
+  .flyixo-icon-glow {
+    width: 74px;
+    height: 74px;
+  }
+
+  .flyixo-icon-container {
+    width: 61px;
+    height: 61px;
+
+    border-width: 3px;
+  }
+
+  .flyixo-icon-container svg {
     font-size: 22px;
+  }
+
+  .flyixo-service-number {
+    top: 12px;
+    right: 14px;
+
+    font-size: 0.65rem;
+  }
+
+  .flyixo-service-content h3 {
+    font-size: 0.92rem;
+
+    line-height: 1.45;
+  }
+
+  .flyixo-service-check {
+    font-size: 0.63rem;
+  }
+
+  .flyixo-service-arrow {
+    padding-top: 14px;
+
+    font-size: 0.63rem;
+  }
+
+  .flyixo-arrow-circle {
+    width: 21px;
+    height: 21px;
+
+    font-size: 0.62rem;
+  }
+
+  .flyixo-why-bottom {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .flyixo-bottom-line {
+    width: 70px;
+  }
+
+  .flyixo-why-bottom p {
+    font-size: 0.68rem;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .flyixo-why-section {
+    padding:
+      45px 9px;
+  }
+
+  .flyixo-why-title {
+    font-size: 1.5rem;
+  }
+
+  .flyixo-why-description {
+    font-size: 0.73rem;
+  }
+
+  .flyixo-service-card {
+    min-height: 225px;
+
+    padding:
+      25px 15px 18px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 68px;
+    height: 68px;
+  }
+
+  .flyixo-icon-glow {
+    width: 68px;
+    height: 68px;
+  }
+
+  .flyixo-icon-container {
+    width: 56px;
+    height: 56px;
+  }
+
+  .flyixo-icon-container svg {
+    font-size: 20px;
+  }
+
+  .flyixo-service-content h3 {
+    font-size: 0.86rem;
+  }
+
+  .flyixo-service-check {
+    font-size: 0.58rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-why-bg-one,
+  .flyixo-why-bg-two {
+    animation: none;
+  }
+
+  .flyixo-service-card,
+  .flyixo-icon-container,
+  .flyixo-icon-glow,
+  .flyixo-service-accent,
+  .flyixo-arrow-circle {
+    transition: none;
   }
 }

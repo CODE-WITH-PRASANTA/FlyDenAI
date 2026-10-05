@@ -1,254 +1,1252 @@
-/* Section Background & Padding */
-.CompanyReport-section {
-  width: 100%;
-  background: #fff5f7; /* Soft, elegant pink-white background for professional look */
-  padding: 60px 0;
-  border-bottom: 4px solid #e42121; /* Matching bold bottom border */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+/* =========================================================
+   FLYIXO COMPANY REPORT
+   ========================================================= */
+
+.companyreport-section {
+  --report-navy: #07294d;
+  --report-navy-dark: #041c35;
+  --report-pink: #e94e77;
+  --report-pink-light: #f78da7;
+  --report-red: #f04e4e;
+  --report-cyan: #36c8d4;
+  --report-text: #5c6877;
+  --report-muted: #8c97a5;
+  --report-border: rgba(7, 41, 77, 0.08);
+
   position: relative;
+  width: 100%;
+  padding: 100px 6%;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(233, 78, 119, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(54, 200, 212, 0.08),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fff8fa 50%,
+      #f6fbff 100%
+    );
+  isolation: isolate;
 }
 
-/* Container */
-.CompanyReport-container {
+/* =========================================================
+   OUTER BORDER
+   ========================================================= */
+
+.companyreport-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 1px solid rgba(233, 78, 119, 0.12);
+  border-bottom: 1px solid rgba(233, 78, 119, 0.12);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* =========================================================
+   BACKGROUND ORBS
+   ========================================================= */
+
+.companyreport-bg {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
+  filter: blur(4px);
+}
+
+.companyreport-bg-one {
+  width: 430px;
+  height: 430px;
+  top: -230px;
+  left: -190px;
+  background: rgba(233, 78, 119, 0.07);
+  animation: companyReportOrbOne 10s ease-in-out infinite;
+}
+
+.companyreport-bg-two {
+  width: 500px;
+  height: 500px;
+  right: -250px;
+  bottom: -250px;
+  background: rgba(54, 200, 212, 0.08);
+  animation: companyReportOrbTwo 12s ease-in-out infinite;
+}
+
+.companyreport-bg-three {
+  width: 180px;
+  height: 180px;
+  right: 32%;
+  top: 12%;
+  background: rgba(240, 78, 78, 0.04);
+  animation: companyReportOrbThree 8s ease-in-out infinite;
+}
+
+/* =========================================================
+   GRID PATTERN
+   ========================================================= */
+
+.companyreport-grid-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(
+      rgba(7, 41, 77, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(7, 41, 77, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.companyreport-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    minmax(0, 1.05fr);
+
+  align-items: center;
+  gap: 80px;
+}
+
+/* =========================================================
+   IMAGE COLUMN
+   ========================================================= */
+
+.companyreport-image-column {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1300px;
-  margin: auto;
-  gap: 60px;
-  flex-wrap: wrap;
-  padding: 0 30px;
+  justify-content: center;
+  min-width: 0;
 }
 
-/* Image Styling */
-.CompanyReport-image img {
+.companyreport-image-wrapper {
+  position: relative;
+  width: min(100%, 590px);
+  padding: 18px;
+}
+
+/* =========================================================
+   IMAGE FRAME
+   ========================================================= */
+
+.companyreport-image-frame {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  width: 75%;
+  height: 78%;
+  border: 2px dashed rgba(233, 78, 119, 0.24);
+  border-radius: 35px;
+  transform: rotate(7deg);
+  animation: companyReportFrame 12s linear infinite;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.companyreport-image {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  max-width: 560px;
-  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.12));
-  border-radius: 15px;
-  transition: transform 0.3s ease;
+  overflow: hidden;
+
+  border: 8px solid rgba(255, 255, 255, 0.95);
+  border-radius: 30px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 70px rgba(7, 41, 77, 0.14),
+    0 8px 25px rgba(233, 78, 119, 0.08);
 }
 
-/* Content Styling */
-.CompanyReport-content {
-  flex: 1;
-  min-width: 360px;
+.companyreport-image img {
+  display: block;
+  width: 100%;
+  height: 530px;
+  object-fit: cover;
+  object-position: center;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.7s ease;
 }
 
-/* Subtitle */
-.CompanyReport-subtitle {
-  color: #e42121;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  margin-bottom: 12px;
+.companyreport-image:hover img {
+  transform: scale(1.06);
+  filter: saturate(1.08);
+}
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.companyreport-image-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      transparent 45%,
+      rgba(7, 41, 77, 0.3) 100%
+    );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   IMAGE SHINE
+   ========================================================= */
+
+.companyreport-image-shine {
+  position: absolute;
+  top: -120%;
+  left: -80%;
+
+  width: 45%;
+  height: 300%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+
+  transform: rotate(25deg);
+  pointer-events: none;
+
+  transition: left 0.8s ease;
+}
+
+.companyreport-image:hover .companyreport-image-shine {
+  left: 130%;
+}
+
+/* =========================================================
+   FLOATING BADGE
+   ========================================================= */
+
+.companyreport-floating-badge {
+  position: absolute;
+  right: -22px;
+  bottom: 45px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 190px;
+  padding: 13px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 15px 40px rgba(7, 41, 77, 0.15);
+
+  backdrop-filter: blur(15px);
+}
+
+.companyreport-badge-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--report-pink),
+      var(--report-red)
+    );
+
+  box-shadow:
+    0 7px 18px rgba(233, 78, 119, 0.25);
+
+  font-size: 17px;
+}
+
+.companyreport-badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.companyreport-badge-content strong {
+  color: var(--report-navy);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.companyreport-badge-content span {
+  color: #788494;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-/* Title */
-.CompanyReport-title {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #111;
-  margin-bottom: 20px;
-}
+/* =========================================================
+   DECORATIVE DOTS
+   ========================================================= */
 
-/* Description */
-.CompanyReport-desc {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.8;
-  margin-bottom: 40px;
-  max-width: 520px;
-}
-
-/* Stats Bars */
-.CompanyReport-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 45px;
-}
-
-.CompanyReport-bar span {
-  display: block;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 8px;
-}
-
-.CompanyReport-progress {
-  position: relative;
-  width: 100%;
-  background: #ffe0e6; /* light background for bars */
-  height: 12px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.CompanyReport-progress-fill {
-  height: 12px;
-  background: #e42121;
-  border-radius: 10px;
-}
-
-.CompanyReport-percent {
+.companyreport-dot {
   position: absolute;
-  right: 10px;
-  top: -28px;
-  font-size: 14px;
-  color: #222;
-  font-weight: 600;
+  z-index: 6;
+  display: block;
+  border-radius: 50%;
 }
 
-/* Download Section */
-.CompanyReport-download {
+.companyreport-dot-one {
+  top: 25px;
+  right: 15px;
+
+  width: 14px;
+  height: 14px;
+
+  background: var(--report-pink);
+
+  box-shadow:
+    0 0 0 7px rgba(233, 78, 119, 0.1);
+}
+
+.companyreport-dot-two {
+  bottom: 20px;
+  left: 5px;
+
+  width: 10px;
+  height: 10px;
+
+  background: var(--report-cyan);
+
+  box-shadow:
+    0 0 0 6px rgba(54, 200, 212, 0.1);
+}
+
+.companyreport-dot-three {
+  top: 45%;
+  left: -4px;
+
+  width: 8px;
+  height: 8px;
+
+  background: var(--report-red);
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.companyreport-content {
+  position: relative;
+  min-width: 0;
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.companyreport-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 17px;
+
+  color: var(--report-pink);
+
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.companyreport-eyebrow-line {
+  width: 28px;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--report-pink),
+      var(--report-red)
+    );
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.companyreport-brand {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 9px;
+
+  margin-bottom: 14px;
+
+  color: #8b96a5;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.companyreport-brand span:first-child {
+  color: var(--report-navy);
+  font-weight: 950;
+}
+
+.companyreport-brand i {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: var(--report-pink);
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.companyreport-title {
+  max-width: 700px;
+
+  margin: 0 0 22px;
+
+  color: var(--report-navy);
+
+  font-size: clamp(38px, 4vw, 57px);
+  font-weight: 900;
+  line-height: 1.1;
+
+  letter-spacing: -1.6px;
+}
+
+.companyreport-title span {
+  position: relative;
+  color: var(--report-pink);
+}
+
+.companyreport-title span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 2px;
+  right: 2px;
+  bottom: -6px;
+
+  height: 4px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--report-pink),
+      var(--report-red)
+    );
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.companyreport-desc {
+  max-width: 650px;
+
+  margin: 0 0 30px;
+
+  color: var(--report-text);
+
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.companyreport-stats {
+  width: 100%;
+  max-width: 720px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+.companyreport-stat {
+  width: 100%;
+}
+
+/* =========================================================
+   STAT HEADER
+   ========================================================= */
+
+.companyreport-stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 9px;
+}
+
+.companyreport-stat-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: var(--report-navy);
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.companyreport-stat-icon {
+  width: 20px;
+  height: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--report-pink);
+
+  font-size: 12px;
+}
+
+.companyreport-stat-percent {
+  color: var(--report-pink);
+
+  font-size: 13px;
+  font-weight: 900;
+}
+
+/* =========================================================
+   PROGRESS BAR
+   ========================================================= */
+
+.companyreport-progress {
+  position: relative;
+
+  width: 100%;
+  height: 9px;
+
+  overflow: hidden;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #edf1f5,
+      #f5f7f9
+    );
+
+  box-shadow:
+    inset 0 1px 3px rgba(7, 41, 77, 0.04);
+}
+
+.companyreport-progress-fill {
+  position: relative;
+
+  width: 0;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--report-pink),
+      var(--report-red)
+    );
+
+  box-shadow:
+    0 3px 10px rgba(233, 78, 119, 0.2);
+}
+
+/* =========================================================
+   PROGRESS SHINE
+   ========================================================= */
+
+.companyreport-progress-shine {
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 60%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+
+  animation:
+    companyReportProgressShine
+    2.5s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.companyreport-summary {
+  display: flex;
+  align-items: center;
+
+  width: fit-content;
+
+  margin-top: 5px;
+  margin-bottom: 28px;
+
+  padding: 13px 20px;
+
+  border: 1px solid rgba(7, 41, 77, 0.07);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  box-shadow:
+    0 8px 25px rgba(7, 41, 77, 0.04);
+
+  backdrop-filter: blur(10px);
+}
+
+.companyreport-summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.companyreport-summary-item strong {
+  color: var(--report-pink);
+
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.companyreport-summary-item span {
+  color: #7c8795;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.companyreport-summary-divider {
+  width: 1px;
+  height: 35px;
+
+  margin: 0 20px;
+
+  background: #dfe5ea;
+}
+
+/* =========================================================
+   DOWNLOAD CARD
+   ========================================================= */
+
+.companyreport-download {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  padding: 12px 13px 12px 14px;
+
+  border: 1px solid rgba(233, 78, 119, 0.12);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.82);
+
+  box-shadow:
+    0 10px 30px rgba(7, 41, 77, 0.06);
+
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: #fff0f2;
-  padding: 12px 18px;
-  border-radius: 10px;
-  max-width: 280px;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
-.CompanyReport-download:hover {
+.companyreport-download:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  border-color:
+    rgba(233, 78, 119, 0.25);
+
+  box-shadow:
+    0 18px 40px rgba(7, 41, 77, 0.11);
 }
 
-.CompanyReport-pdfIcon {
-  font-size: 32px;
-  color: #e42121;
+/* =========================================================
+   PDF ICON
+   ========================================================= */
+
+.companyreport-pdf-wrapper {
+  width: 43px;
+  height: 43px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--report-pink),
+      var(--report-red)
+    );
+
+  box-shadow:
+    0 8px 20px rgba(233, 78, 119, 0.2);
 }
 
-.CompanyReport-downloadText {
-  color: #c51111;
+.companyreport-pdf-icon {
+  font-size: 19px;
+}
+
+/* =========================================================
+   DOWNLOAD CONTENT
+   ========================================================= */
+
+.companyreport-download-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.companyreport-download-label {
+  color: var(--report-pink);
+
+  font-size: 8px;
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+.companyreport-download-title {
+  color: var(--report-navy);
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   DOWNLOAD ARROW
+   ========================================================= */
+
+.companyreport-download-arrow {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-left: 8px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background: var(--report-navy);
+
   font-size: 14px;
-  font-weight: 600;
-  margin: 0;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
 
-.CompanyReport-downloadTitle {
-  font-size: 16px;
-  color: #111;
-  font-weight: 600;
-  margin: 0;
+.companyreport-download:hover
+  .companyreport-download-arrow {
+  background: var(--report-pink);
+  transform: translateX(4px);
 }
 
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 
-/* Medium Devices (Tablets) */
+@keyframes companyReportFrame {
+  0% {
+    transform: rotate(7deg);
+  }
+
+  50% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes companyReportProgressShine {
+  0% {
+    left: -100%;
+  }
+
+  50% {
+    left: 120%;
+  }
+
+  100% {
+    left: 120%;
+  }
+}
+
+@keyframes companyReportOrbOne {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(25px, -20px) scale(1.08);
+  }
+}
+
+@keyframes companyReportOrbTwo {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(-20px, -25px) scale(1.1);
+  }
+}
+
+@keyframes companyReportOrbThree {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .companyreport-section {
+    padding: 90px 5%;
+  }
+
+  .companyreport-container {
+    gap: 55px;
+  }
+
+  .companyreport-image img {
+    height: 500px;
+  }
+
+  .companyreport-title {
+    font-size: 45px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 992px) {
-  .CompanyReport-container {
-    flex-direction: column;
+  .companyreport-section {
+    padding: 80px 5%;
+  }
+
+  .companyreport-container {
+    grid-template-columns: 1fr;
+
+    max-width: 750px;
+
+    gap: 55px;
+  }
+
+  .companyreport-image-column {
+    width: 100%;
+  }
+
+  .companyreport-image-wrapper {
+    max-width: 570px;
+  }
+
+  .companyreport-image img {
+    height: 470px;
+  }
+
+  .companyreport-content {
     text-align: center;
-    gap: 40px;
   }
 
-  .CompanyReport-content {
-    text-align: center;
-  }
-
-  .CompanyReport-progress {
-    margin: 0 auto;
-  }
-
-  .CompanyReport-percent {
-    right: 0;
-  }
-
-  .CompanyReport-image img {
-    max-width: 480px;
-  }
-
-  .CompanyReport-title {
-    font-size: 32px;
-  }
-
-  .CompanyReport-desc {
-    font-size: 15px;
-  }
-
-  .CompanyReport-download {
+  .companyreport-eyebrow {
     justify-content: center;
-    margin: auto;
+  }
+
+  .companyreport-brand {
+    justify-content: center;
+  }
+
+  .companyreport-title {
+    max-width: 700px;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    font-size: 42px;
+  }
+
+  .companyreport-desc {
+    max-width: 650px;
+
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .companyreport-stats {
+    margin-right: auto;
+    margin-left: auto;
+
+    text-align: left;
+  }
+
+  .companyreport-summary {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .companyreport-download {
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
-/* Small Devices (Phones) */
+/* =========================================================
+   MOBILE TABLET
+   ========================================================= */
+
 @media (max-width: 768px) {
-  .CompanyReport-container {
-    gap: 30px;
-    padding: 0 20px;
+  .companyreport-section {
+    padding: 70px 20px;
   }
 
-  .CompanyReport-title {
-    font-size: 28px;
+  .companyreport-container {
+    gap: 45px;
   }
 
-  .CompanyReport-desc {
+  .companyreport-image-wrapper {
+    padding: 12px;
+  }
+
+  .companyreport-image img {
+    height: 400px;
+  }
+
+  .companyreport-floating-badge {
+    right: -8px;
+    bottom: 25px;
+  }
+
+  .companyreport-title {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .companyreport-desc {
     font-size: 14px;
-    line-height: 1.6;
-    max-width: 100%;
+    line-height: 1.75;
   }
 
-  .CompanyReport-image img {
-    max-width: 100%;
+  .companyreport-stat-label {
+    font-size: 12px;
   }
 
-  .CompanyReport-stats {
-    gap: 20px;
-  }
-
-  .CompanyReport-progress {
-    height: 10px;
-  }
-
-  .CompanyReport-progress-fill {
-    height: 10px;
-  }
-
-  .CompanyReport-percent {
-    top: -24px;
-    font-size: 13px;
-  }
-
-  .CompanyReport-download {
-    padding: 10px 16px;
-    max-width: 240px;
-  }
-
-  .CompanyReport-downloadText {
-    font-size: 13px;
-  }
-
-  .CompanyReport-downloadTitle {
-    font-size: 15px;
+  .companyreport-summary {
+    padding: 12px 17px;
   }
 }
 
-/* Extra Small Devices (Very Small Phones) */
-@media (max-width: 480px) {
- 
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-  .CompanyReport-progress {
+@media (max-width: 576px) {
+  .companyreport-section {
+    padding: 60px 15px;
+  }
+
+  .companyreport-container {
+    gap: 38px;
+  }
+
+  .companyreport-image-wrapper {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .companyreport-image {
+    border-width: 5px;
+    border-radius: 23px;
+  }
+
+  .companyreport-image img {
+    height: 320px;
+  }
+
+  .companyreport-floating-badge {
+    right: -4px;
+    bottom: 18px;
+
+    min-width: 160px;
+
+    padding: 10px 12px;
+
+    gap: 9px;
+
+    border-radius: 14px;
+  }
+
+  .companyreport-badge-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+  }
+
+  .companyreport-badge-content strong {
+    font-size: 13px;
+  }
+
+  .companyreport-badge-content span {
+    font-size: 7px;
+  }
+
+  .companyreport-eyebrow {
+    font-size: 8px;
+    letter-spacing: 1.7px;
+  }
+
+  .companyreport-eyebrow-line {
+    width: 18px;
+  }
+
+  .companyreport-brand {
+    font-size: 7px;
+    letter-spacing: 1.2px;
+  }
+
+  .companyreport-title {
+    font-size: 30px;
+    letter-spacing: -0.8px;
+  }
+
+  .companyreport-title span::after {
+    height: 3px;
+    bottom: -4px;
+  }
+
+  .companyreport-desc {
+    font-size: 13px;
+  }
+
+  .companyreport-stats {
+    gap: 18px;
+  }
+
+  .companyreport-stat-label {
+    font-size: 11px;
+  }
+
+  .companyreport-stat-percent {
+    font-size: 11px;
+  }
+
+  .companyreport-progress {
     height: 8px;
   }
 
-  .CompanyReport-progress-fill {
-    height: 8px;
+  .companyreport-summary {
+    width: 100%;
+    justify-content: center;
   }
 
-  .CompanyReport-percent {
-    top: -20px;
+  .companyreport-download {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .CompanyReport-download {
-    gap: 10px;
-    padding: 8px 14px;
-    max-width: 200px;
+  .companyreport-download-title {
+    font-size: 12px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+  .companyreport-section {
+    padding: 50px 12px;
+  }
+
+  .companyreport-image img {
+    height: 280px;
+  }
+
+  .companyreport-title {
+    font-size: 27px;
+  }
+
+  .companyreport-desc {
+    font-size: 12px;
+  }
+
+  .companyreport-summary {
+    padding: 11px 13px;
+  }
+
+  .companyreport-summary-divider {
+    margin: 0 13px;
+  }
+
+  .companyreport-summary-item strong {
+    font-size: 17px;
+  }
+
+  .companyreport-download {
+    gap: 9px;
+    padding: 10px;
+  }
+
+  .companyreport-pdf-wrapper {
+    width: 38px;
+    height: 38px;
+  }
+
+  .companyreport-download-arrow {
+    width: 27px;
+    height: 27px;
+    margin-left: auto;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL
+   ========================================================= */
+
+@media (max-width: 340px) {
+  .companyreport-section {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .companyreport-title {
+    font-size: 25px;
+  }
+
+  .companyreport-image img {
+    height: 250px;
+  }
+
+  .companyreport-floating-badge {
+    min-width: 140px;
+  }
+
+  .companyreport-download-title {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .companyreport-bg,
+  .companyreport-image-frame,
+  .companyreport-progress-shine {
+    animation: none !important;
+  }
+
+  .companyreport-image img,
+  .companyreport-download,
+  .companyreport-download-arrow {
+    transition: none !important;
   }
 }

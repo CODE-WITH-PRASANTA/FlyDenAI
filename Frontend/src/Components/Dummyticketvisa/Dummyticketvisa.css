@@ -1,225 +1,1214 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+/* ============================================================
+   FLYIXO DUMMY VISA BOOKING
+   Premium 4-Step Process Section
+============================================================ */
 
 :root {
-  --accent: #ff6b3d;
-  --text-dark: #111111;
-  --text-body: #555555;
-  --card-border: #ecd9c9f0;
-  --shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
-  --radius: 20px;
-  --container-max: 1280px;
-  --gap: 30px;
-  --break-sm: 480px;
-  --break-md: 768px;
-  --break-lg: 1024px;
+  --flyixo-visa-navy: #062c43;
+  --flyixo-visa-navy-dark: #031b2b;
+
+  --flyixo-visa-primary: #e94e77;
+  --flyixo-visa-primary-dark: #c93661;
+  --flyixo-visa-primary-light: #ff8eaa;
+
+  --flyixo-visa-cyan: #36c8d4;
+  --flyixo-visa-blue: #2563eb;
+  --flyixo-visa-gold: #f4b942;
+
+  --flyixo-visa-text: #172536;
+  --flyixo-visa-muted: #687789;
+
+  --flyixo-visa-white: #ffffff;
+  --flyixo-visa-light: #f8fafc;
+
+  --flyixo-visa-border: #e7ebef;
+
+  --flyixo-visa-shadow:
+    0 18px 45px rgba(6, 44, 67, 0.09);
+
+  --flyixo-visa-shadow-hover:
+    0 28px 65px rgba(6, 44, 67, 0.16);
+
+  --flyixo-visa-transition: 0.35s ease;
 }
-/* ========= SECTION (full width like reference) ========= */
-.visa-bg {
+
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-dummy-visa,
+.flyixo-dummy-visa *,
+.flyixo-dummy-visa *::before,
+.flyixo-dummy-visa *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-dummy-visa {
+  position: relative;
+
   width: 100%;
-  padding: clamp(40px, 6vw, 0px) 0 clamp(60px, 8vw, 0px);
+
+  padding: 75px 25px 70px;
+
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-position: top center;
-  font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
 
-  /* 🔥 Added subtle premium border + shadow */
-  border-top: 2px solid rgba(0, 0, 0, 0.06);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  overflow: hidden;
 
-  /* Smooth ambient shadow */
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.08),
-    0 -6px 20px rgba(0, 0, 0, 0.04);
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  border-top: 1px solid rgba(6, 44, 67, 0.08);
+  border-bottom: 1px solid rgba(6, 44, 67, 0.08);
 }
 
+/* ============================================================
+   BACKGROUND OVERLAY
+============================================================ */
 
-/* center content to a fixed width like in screenshot */
-.visa-container {
-  max-width: var(--container-max);
+.flyixo-dummy-visa-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(248, 250, 252, 0.91),
+      rgba(255, 247, 249, 0.94)
+    );
+}
+
+/* ============================================================
+   BACKGROUND ORBS
+============================================================ */
+
+.flyixo-dummy-visa-orb {
+  position: absolute;
+
+  z-index: 1;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(1px);
+
+  animation:
+    flyixoVisaFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-orb-one {
+  width: 320px;
+  height: 320px;
+
+  top: -170px;
+  left: -120px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.16),
+      transparent 70%
+    );
+}
+
+.flyixo-orb-two {
+  width: 420px;
+  height: 420px;
+
+  right: -220px;
+  bottom: -230px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.14),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+.flyixo-orb-three {
+  width: 100px;
+  height: 100px;
+
+  right: 13%;
+  top: 18%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.07),
+      transparent 70%
+    );
+
+  animation-delay: 4s;
+}
+
+@keyframes flyixoVisaFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-dummy-visa-container {
+  position: relative;
+
+  z-index: 3;
+
+  width: min(1280px, 100%);
+
   margin: 0 auto;
-  padding: 0 24px;
-  box-sizing: border-box;
 }
 
-/* ========= HEADING ========= */
-/* fluid heading with clamp: min 1.6rem, preferred 3.2vw, max 2.7rem */
-.visa-heading {
-  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
-  line-height: 1.18;
-  font-weight: 800;
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-dummy-visa-header {
+  max-width: 930px;
+
+  margin: 0 auto 48px;
+
   text-align: center;
-  color: var(--text-dark);
-  margin-bottom: clamp(24px, 4vw, 60px);
-  padding: 0 8px;
 }
 
-.visa-heading .brand {
-  color: var(--accent);
-}
+/* ============================================================
+   BADGE
+============================================================ */
 
-.visa-heading .highlight {
-  color: var(--accent);
-  font-weight: 800;
-}
-
-/* ========= GRID LAYOUT ========= */
-/* Use auto-fit so it adapts: 4 columns on wide, fewer on narrower screens */
-.steps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--gap);
-  align-items: start;
-}
-
-/* ========= CARD ========= */
-.step-card {
-  background: #ffffff;
-  border-radius: var(--radius);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
-  padding: clamp(20px, 2.6vw, 34px);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
+.flyixo-dummy-visa-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
-  box-sizing: border-box;
-  transition: transform 220ms ease, box-shadow 220ms ease;
-}
+  justify-content: center;
 
-/* nice lift on hover/focus (desktop only) */
-@media (hover: hover) {
-  .step-card:hover,
-  .step-card:focus-within {
-    transform: translateY(-6px);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.10);
-  }
-}
+  gap: 8px;
 
-/* keep cards visually consistent but let them flow naturally */
-.step-card {
-  min-height: auto;
-}
+  margin-bottom: 17px;
 
-/* illustration image — responsive and capped */
-.step-img {
-  width: clamp(120px, 20vw, 210px);
-  height: auto;
-  margin-bottom: clamp(12px, 2vw, 24px);
-  display: block;
-  object-fit: contain;
-}
+  padding: 8px 15px;
 
-/* title styling: use clamp for size */
-.step-title {
-  font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+  color: var(--flyixo-visa-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border: 1px solid rgba(233, 78, 119, 0.17);
+
+  border-radius: 999px;
+
+  font-size: 10px;
   font-weight: 800;
+
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  color: var(--text-dark);
-  letter-spacing: 0.02em;
-  line-height: 1.25;
-  margin-bottom: 12px;
-  display: block;
+
+  box-shadow:
+    0 7px 20px rgba(233, 78, 119, 0.08);
 }
 
-/* make each span a block for the two-line look */
-.step-title span {
-  display: block;
+.flyixo-badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-visa-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(233, 78, 119, 0.1);
+
+  animation:
+    flyixoBadgePulse
+    2s
+    ease-in-out
+    infinite;
 }
 
-/* dotted orange divider under title */
-.divider {
-  width: 60%;
-  max-width: 240px;
-  margin: 0 auto 16px;
-  border-bottom: 2px dashed var(--accent);
+@keyframes flyixoBadgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
 }
 
-/* body text */
-.step-text {
-  font-size: clamp(0.92rem, 1.6vw, 0.97rem);
-  color: var(--text-body);
-  line-height: 1.7;
-  max-width: 92%;
+/* ============================================================
+   HEADING
+============================================================ */
+
+.flyixo-dummy-visa-heading {
+  max-width: 900px;
+
   margin: 0 auto;
+
+  color: var(--flyixo-visa-text);
+
+  font-size:
+    clamp(
+      27px,
+      3.5vw,
+      43px
+    );
+
+  line-height: 1.2;
+
+  font-weight: 850;
+
+  letter-spacing: -1px;
 }
 
-/* small screens — adjust spacing and set single-column layout */
-@media (max-width: 900px) {
-  :root {
-    --gap: 20px;
+.flyixo-brand {
+  color: var(--flyixo-visa-primary);
+}
+
+.flyixo-highlight {
+  color: var(--flyixo-visa-primary);
+
+  font-weight: 850;
+
+  position: relative;
+
+  white-space: nowrap;
+}
+
+.flyixo-highlight::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -5px;
+
+  height: 3px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-visa-primary),
+      var(--flyixo-visa-cyan)
+    );
+
+  transform-origin: left;
+
+  animation:
+    flyixoUnderline
+    1.2s
+    ease
+    both;
+}
+
+@keyframes flyixoUnderline {
+  from {
+    transform: scaleX(0);
   }
 
-  .visa-bg {
-    padding: clamp(28px, 8vw, 90px) 0 clamp(40px, 8vw, 90px);
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================================
+   SUBTITLE
+============================================================ */
+
+.flyixo-dummy-visa-subtitle {
+  max-width: 650px;
+
+  margin: 17px auto 0;
+
+  color: var(--flyixo-visa-muted);
+
+  font-size: 14px;
+
+  line-height: 1.75;
+}
+
+/* ============================================================
+   STEPS GRID
+============================================================ */
+
+.flyixo-steps-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: stretch;
+}
+
+/* ============================================================
+   STEP CARD
+============================================================ */
+
+.flyixo-step-card {
+  position: relative;
+
+  min-height: 440px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding: 34px 24px 24px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fbfcfd
+    );
+
+  border: 1px solid var(--flyixo-visa-border);
+
+  border-radius: 22px;
+
+  box-shadow:
+    var(--flyixo-visa-shadow);
+
+  transition:
+    transform var(--flyixo-visa-transition),
+    box-shadow var(--flyixo-visa-transition),
+    border-color var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover {
+  transform: translateY(-10px);
+
+  border-color:
+    rgba(233, 78, 119, 0.25);
+
+  box-shadow:
+    var(--flyixo-visa-shadow-hover);
+}
+
+/* ============================================================
+   CARD TOP ACCENT
+============================================================ */
+
+.flyixo-step-accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-visa-primary),
+      var(--flyixo-visa-cyan)
+    );
+
+  transform:
+    scaleX(0.35);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-step-accent {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   STEP NUMBER
+============================================================ */
+
+.flyixo-step-number {
+  position: absolute;
+
+  top: 15px;
+  right: 17px;
+
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.08),
+      rgba(54, 200, 212, 0.08)
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+
+  color:
+    var(--flyixo-visa-primary);
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  transition:
+    transform var(--flyixo-visa-transition),
+    background var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-step-number {
+  transform:
+    rotate(8deg)
+    scale(1.08);
+
+  background:
+    rgba(233, 78, 119, 0.1);
+}
+
+/* ============================================================
+   IMAGE WRAPPER
+============================================================ */
+
+.flyixo-step-image-wrapper {
+  position: relative;
+
+  width: 190px;
+  height: 165px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 13px auto 20px;
+}
+
+/* ============================================================
+   IMAGE GLOW
+============================================================ */
+
+.flyixo-step-image-glow {
+  position: absolute;
+
+  width: 145px;
+  height: 145px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.14),
+      rgba(54, 200, 212, 0.05),
+      transparent 70%
+    );
+
+  transition:
+    transform var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-step-image-glow {
+  transform:
+    scale(1.2);
+}
+
+/* ============================================================
+   STEP IMAGE
+============================================================ */
+
+.flyixo-step-img {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  filter:
+    drop-shadow(
+      0 13px 18px rgba(6, 44, 67, 0.09)
+    );
+
+  transition:
+    transform var(--flyixo-visa-transition),
+    filter var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-step-img {
+  transform:
+    translateY(-7px)
+    scale(1.05);
+
+  filter:
+    drop-shadow(
+      0 18px 25px rgba(6, 44, 67, 0.15)
+    );
+}
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.flyixo-step-title {
+  position: relative;
+
+  z-index: 2;
+
+  margin: 0 0 14px;
+
+  color: var(--flyixo-visa-navy);
+
+  font-size: 15px;
+
+  line-height: 1.35;
+
+  font-weight: 850;
+
+  letter-spacing: 0.4px;
+}
+
+.flyixo-step-title span {
+  display: block;
+}
+
+/* ============================================================
+   DIVIDER
+============================================================ */
+
+.flyixo-step-divider {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  width: 100%;
+
+  margin-bottom: 16px;
+}
+
+.flyixo-step-divider::before,
+.flyixo-step-divider::after {
+  content: "";
+
+  width: 25px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(233, 78, 119, 0.35)
+    );
+}
+
+.flyixo-step-divider::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(233, 78, 119, 0.35),
+      transparent
+    );
+}
+
+.flyixo-step-divider span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-visa-primary);
+}
+
+.flyixo-step-divider span:nth-child(2) {
+  width: 7px;
+  height: 7px;
+
+  background:
+    var(--flyixo-visa-cyan);
+}
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.flyixo-step-text {
+  max-width: 285px;
+
+  margin: 0 auto;
+
+  color: var(--flyixo-visa-muted);
+
+  font-size: 12px;
+
+  line-height: 1.75;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   CARD FOOTER
+============================================================ */
+
+.flyixo-step-footer {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.flyixo-step-label {
+  color:
+    var(--flyixo-visa-primary);
+
+  font-size: 9px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.4px;
+}
+
+.flyixo-step-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-visa-primary),
+      var(--flyixo-visa-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 14px;
+
+  opacity: 0;
+
+  transform:
+    translateX(-8px);
+
+  transition:
+    opacity var(--flyixo-visa-transition),
+    transform var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-step-arrow {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+/* ============================================================
+   DECORATIVE CORNER
+============================================================ */
+
+.flyixo-card-corner {
+  position: absolute;
+
+  right: -30px;
+  bottom: -30px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.09),
+      transparent 70%
+    );
+
+  transition:
+    transform var(--flyixo-visa-transition);
+}
+
+.flyixo-step-card:hover
+.flyixo-card-corner {
+  transform:
+    scale(1.5);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-dummy-visa-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  margin-top: 38px;
+}
+
+.flyixo-bottom-line {
+  width: 100px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.18)
+    );
+}
+
+.flyixo-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.18),
+      transparent
+    );
+}
+
+.flyixo-bottom-content {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+.flyixo-bottom-check {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-visa-primary),
+      var(--flyixo-visa-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.flyixo-bottom-content p {
+  margin: 0;
+
+  color: var(--flyixo-visa-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.2px;
+}
+
+.flyixo-bottom-content strong {
+  color:
+    var(--flyixo-visa-primary);
+}
+
+.flyixo-bottom-content span:last-child {
+  color:
+    var(--flyixo-visa-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (max-width: 1200px) {
+  .flyixo-dummy-visa {
+    padding: 65px 20px;
   }
 
-  .visa-container {
-    padding: 0 16px;
-  }
-
-  .steps-grid {
-    grid-template-columns: 1fr;
+  .flyixo-steps-grid {
     gap: 18px;
   }
 
-  .visa-heading {
+  .flyixo-step-card {
+    padding:
+      30px 18px 22px;
+  }
+
+  .flyixo-step-image-wrapper {
+    width: 165px;
+    height: 150px;
+  }
+
+  .flyixo-step-title {
+    font-size: 14px;
+  }
+
+  .flyixo-step-text {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1000px) {
+  .flyixo-dummy-visa {
+    padding:
+      55px 18px;
+  }
+
+  .flyixo-dummy-visa-header {
+    margin-bottom: 35px;
+  }
+
+  .flyixo-steps-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .flyixo-step-card {
+    min-height: 410px;
+
+    padding:
+      30px 25px 22px;
+  }
+
+  .flyixo-step-image-wrapper {
+    width: 185px;
+    height: 160px;
+  }
+
+  .flyixo-step-text {
+    max-width: 340px;
+
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+  .flyixo-dummy-visa {
+    padding:
+      45px 13px;
+  }
+
+  .flyixo-dummy-visa-header {
     margin-bottom: 28px;
   }
 
-  .step-card {
-    padding: 20px;
-    border-radius: 14px;
+  .flyixo-dummy-visa-badge {
+    font-size: 8px;
+
+    letter-spacing: 1.2px;
+
+    padding:
+      7px 12px;
   }
 
-  .divider {
-    margin-bottom: 14px;
+  .flyixo-dummy-visa-heading {
+    font-size: 27px;
+
+    letter-spacing: -0.5px;
+  }
+
+  .flyixo-dummy-visa-subtitle {
+    font-size: 12px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-steps-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .flyixo-step-card {
+    min-height: 390px;
+
+    padding:
+      30px 25px 22px;
+  }
+
+  .flyixo-step-image-wrapper {
+    width: 190px;
+    height: 160px;
+  }
+
+  .flyixo-step-title {
+    font-size: 15px;
+  }
+
+  .flyixo-step-text {
+    max-width: 380px;
+
+    font-size: 12px;
+  }
+
+  .flyixo-step-arrow {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+
+  .flyixo-dummy-visa-bottom {
+    margin-top: 25px;
+  }
+
+  .flyixo-bottom-line {
+    display: none;
   }
 }
 
-/* medium tablets */
-@media (min-width: 901px) and (max-width: 1199px) {
-  .steps-grid {
-    gap: 22px;
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-dummy-visa {
+    padding:
+      38px 10px;
   }
 
-  /* 2 columns or 3 depending on width — auto-fit handles it */
+  .flyixo-dummy-visa-header {
+    margin-bottom: 23px;
+  }
+
+  .flyixo-dummy-visa-badge {
+    max-width: 95%;
+
+    font-size: 7px;
+
+    letter-spacing: 0.9px;
+  }
+
+  .flyixo-dummy-visa-heading {
+    font-size: 23px;
+
+    line-height: 1.25;
+  }
+
+  .flyixo-highlight {
+    white-space: normal;
+  }
+
+  .flyixo-dummy-visa-subtitle {
+    margin-top: 12px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-step-card {
+    min-height: 370px;
+
+    padding:
+      27px 19px 20px;
+
+    border-radius: 18px;
+  }
+
+  .flyixo-step-number {
+    width: 34px;
+    height: 34px;
+
+    top: 12px;
+    right: 13px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-step-image-wrapper {
+    width: 165px;
+    height: 145px;
+
+    margin-bottom: 15px;
+  }
+
+  .flyixo-step-image-glow {
+    width: 125px;
+    height: 125px;
+  }
+
+  .flyixo-step-title {
+    font-size: 13px;
+  }
+
+  .flyixo-step-divider {
+    margin-bottom: 13px;
+  }
+
+  .flyixo-step-text {
+    font-size: 11px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-step-footer {
+    padding-top: 16px;
+  }
+
+  .flyixo-bottom-content {
+    white-space: normal;
+
+    text-align: center;
+  }
+
+  .flyixo-bottom-content p {
+    font-size: 9px;
+
+    line-height: 1.5;
+  }
 }
 
-/* very wide screens — increase gaps and max card image size */
-@media (min-width: 1400px) {
-  :root {
-    --gap: 36px;
-  }
+/* ============================================================
+   EXTRA SMALL
+============================================================ */
 
-  .step-img {
-    width: clamp(160px, 12vw, 260px);
-  }
-
-  .step-card {
-    padding: 36px;
-    border-radius: 22px;
-  }
-}
-
-/* accessibility: focus styles for keyboard users */
-.step-card:focus-within {
-  outline: 3px solid rgba(255, 107, 61, 0.12);
-  outline-offset: 6px;
-}
-
-/* ensure images and text don't exceed container on tiny screens */
 @media (max-width: 360px) {
-  .visa-heading {
-    font-size: clamp(1.4rem, 6vw, 1.6rem);
+  .flyixo-dummy-visa {
+    padding:
+      32px 8px;
   }
 
-  .step-img {
-    width: clamp(100px, 24vw, 140px);
+  .flyixo-dummy-visa-heading {
+    font-size: 21px;
   }
 
-  .step-text {
-    font-size: 0.9rem;
+  .flyixo-dummy-visa-subtitle {
+    font-size: 10px;
+  }
+
+  .flyixo-step-card {
+    min-height: 350px;
+
+    padding:
+      25px 15px 18px;
+  }
+
+  .flyixo-step-image-wrapper {
+    width: 145px;
+    height: 130px;
+  }
+
+  .flyixo-step-title {
+    font-size: 12px;
+  }
+
+  .flyixo-step-text {
+    font-size: 10px;
+  }
+
+  .flyixo-step-label {
+    font-size: 8px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-dummy-visa *:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.25);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-dummy-visa *,
+  .flyixo-dummy-visa *::before,
+  .flyixo-dummy-visa *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

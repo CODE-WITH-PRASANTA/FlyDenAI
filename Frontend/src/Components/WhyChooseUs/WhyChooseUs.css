@@ -1,229 +1,1081 @@
+/* =========================================================
+   WHY CHOOSE US
+   FLYIXO
+========================================================= */
+
 .whychooseus-section {
+  --why-primary: #e42121;
+  --why-primary-dark: #c91414;
+  --why-primary-light: #ff5b5b;
+
+  --why-navy: #062c43;
+  --why-navy-dark: #031d2e;
+  --why-text: #243746;
+  --why-muted: #657581;
+
+  --why-white: #ffffff;
+  --why-bg: #fff7f8;
+  --why-border: rgba(6, 44, 67, 0.1);
+
   width: 100%;
-  background: #fdf0f2; /* Soft, attractive pink background */
-  padding: 20px 0;
-  text-align: center;
   position: relative;
+  overflow: hidden;
+  padding: 100px 0 90px;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(228, 33, 33, 0.08),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(6, 44, 67, 0.07),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #fff7f8 0%,
+      #ffffff 48%,
+      #fff5f6 100%
+    );
+  text-align: center;
+  isolation: isolate;
 }
 
+/* =========================================================
+   BACKGROUND DECORATIONS
+========================================================= */
+
+.whychooseus-bg-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: -2;
+  filter: blur(1px);
+}
+
+.whychooseus-bg-shape-one {
+  width: 360px;
+  height: 360px;
+  left: -180px;
+  top: 150px;
+  border-radius: 50%;
+  background: rgba(228, 33, 33, 0.05);
+  animation: whyFloatOne 8s ease-in-out infinite;
+}
+
+.whychooseus-bg-shape-two {
+  width: 420px;
+  height: 420px;
+  right: -210px;
+  bottom: 80px;
+  border-radius: 50%;
+  background: rgba(6, 44, 67, 0.045);
+  animation: whyFloatTwo 10s ease-in-out infinite;
+}
+
+.whychooseus-bg-circle {
+  position: absolute;
+  border: 1px solid rgba(228, 33, 33, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.whychooseus-bg-circle-one {
+  width: 180px;
+  height: 180px;
+  top: 80px;
+  right: 8%;
+}
+
+.whychooseus-bg-circle-two {
+  width: 110px;
+  height: 110px;
+  bottom: 100px;
+  left: 8%;
+}
+
+.whychooseus-grid-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  opacity: 0.3;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
 .whychooseus-container {
-  max-width: 1250px;
+  width: min(1250px, calc(100% - 60px));
   margin: 0 auto;
-  padding: 0 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.whychooseus-header {
+  max-width: 850px;
+  margin: 0 auto 60px;
+}
+
+.whychooseus-subtitle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.whychooseus-subtitle-line {
+  width: 42px;
+  height: 2px;
+  position: relative;
+  overflow: hidden;
+  background: var(--why-primary);
+}
+
+.whychooseus-subtitle-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--why-navy);
+  transform: translateX(-100%);
+  animation: whySubtitleLine 3s ease-in-out infinite;
 }
 
 .whychooseus-subtitle {
-  color: #e42121;
-  font-size: 14px;
-  font-weight: 600;
+  margin: 0;
+  color: var(--why-primary);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 12px;
+}
+
+.whychooseus-title {
+  margin: 0;
+  color: var(--why-navy);
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.whychooseus-title span {
+  color: var(--why-primary);
   position: relative;
   display: inline-block;
 }
 
-.whychooseus-subtitle::after {
+.whychooseus-title span::after {
   content: "";
   position: absolute;
-  bottom: -6px;
-  left: 50%;
-  width: 50px;
-  height: 2px;
-  background: #e42121;
-  transform: translateX(-50%);
+  left: 0;
+  bottom: -7px;
+  width: 100%;
+  height: 3px;
+  border-radius: 50px;
+  background: linear-gradient(
+    90deg,
+    var(--why-primary),
+    var(--why-primary-light)
+  );
+  transform-origin: left;
+  animation: whyTitleUnderline 1.2s ease forwards;
 }
 
-.whychooseus-title {
-  font-size: 36px;
-  color: #062c43;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 60px;
+.whychooseus-header-description {
+  max-width: 700px;
+  margin: 24px auto 0;
+  color: var(--why-muted);
+  font-size: 16px;
+  line-height: 1.8;
+  font-weight: 400;
 }
+
+.whychooseus-header-description strong {
+  color: var(--why-primary);
+  font-weight: 800;
+}
+
+/* =========================================================
+   CARDS GRID
+========================================================= */
 
 .whychooseus-cards {
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  justify-content: center;
-  margin-bottom: 80px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 65px;
 }
 
+/* =========================================================
+   CARD
+========================================================= */
+
 .whychooseus-card {
-  background: #fff;
-  border: 1px solid #e7e7e7;
-  border-radius: 16px;
-  padding: 40px 25px;
-  transition: all 0.4s ease;
+  min-width: 0;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  min-height: 390px;
+  padding: 28px 26px 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(255, 250, 251, 0.98)
+    );
+
+  border: 1px solid var(--why-border);
+  border-radius: 22px;
+
+  box-shadow:
+    0 15px 45px rgba(6, 44, 67, 0.07),
+    0 3px 10px rgba(228, 33, 33, 0.03);
+
   cursor: pointer;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease,
+    background 0.45s ease;
+}
+
+.whychooseus-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--why-primary),
+    var(--why-primary-light)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s ease;
+}
+
+.whychooseus-card::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  right: -80px;
+  bottom: -80px;
+  border-radius: 50%;
+  background: rgba(228, 33, 33, 0.05);
+  transition: transform 0.5s ease;
 }
 
 .whychooseus-card:hover {
-  transform: translateY(-10px);
-  border-color: #e42121;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  border-color: rgba(228, 33, 33, 0.3);
+  box-shadow:
+    0 25px 60px rgba(6, 44, 67, 0.12),
+    0 10px 30px rgba(228, 33, 33, 0.08);
 }
 
-.whychooseus-icon {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 18px;
+.whychooseus-card:hover::before {
+  transform: scaleX(1);
 }
 
-.whychooseus-card-title {
-  color: #002b45;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.whychooseus-card:hover::after {
+  transform: scale(2);
 }
 
-.whychooseus-card-desc {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.whychooseus-card-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.whychooseus-more {
-  color: #e42121;
-  font-size: 14px;
-  font-weight: 600;
+.whychooseus-card-number {
+  color: var(--why-primary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.whychooseus-card-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(228, 33, 33, 0.3),
+    transparent
+  );
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.whychooseus-icon-wrapper {
+  width: 88px;
+  height: 88px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 25px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff1f3,
+      #ffffff
+    );
+
+  border: 1px solid rgba(228, 33, 33, 0.1);
+
+  box-shadow:
+    0 10px 30px rgba(228, 33, 33, 0.08);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.whychooseus-more .whychoose-arrow {
-  margin-left: 5px;
-  font-size: 16px;
-  transition: transform 0.3s ease;
+.whychooseus-card:hover .whychooseus-icon-wrapper {
+  box-shadow:
+    0 14px 35px rgba(228, 33, 33, 0.16);
+}
+
+.whychooseus-icon-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 28px;
+  border: 1px dashed rgba(228, 33, 33, 0.18);
+  opacity: 0;
+  transform: scale(0.85);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.whychooseus-card:hover .whychooseus-icon-glow {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.whychooseus-icon {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+  position: relative;
+  z-index: 2;
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+}
+
+.whychooseus-card:hover .whychooseus-icon {
+  filter: drop-shadow(
+    0 8px 12px rgba(228, 33, 33, 0.15)
+  );
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.whychooseus-card-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.whychooseus-card-title {
+  margin: 0 0 12px;
+  color: var(--why-navy);
+  font-size: 21px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  transition: color 0.3s ease;
+}
+
+.whychooseus-card:hover .whychooseus-card-title {
+  color: var(--why-primary);
+}
+
+.whychooseus-card-desc {
+  margin: 0;
+  color: var(--why-muted);
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 400;
+}
+
+/* =========================================================
+   CARD MORE
+========================================================= */
+
+.whychooseus-more {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 28px;
+  padding-top: 17px;
+
+  border-top: 1px solid rgba(6, 44, 67, 0.08);
+}
+
+.whychooseus-more-dots {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.whychooseus-more-dots i {
+  width: 4px;
+  height: 4px;
+  display: block;
+  border-radius: 50%;
+  background: var(--why-primary);
+}
+
+.whychooseus-more-text {
+  color: var(--why-navy);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.whychooseus-arrow {
+  width: 27px;
+  height: 27px;
+  margin-left: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--why-primary);
+  background: #fff1f3;
+  border-radius: 50%;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease,
+    color 0.35s ease;
 }
 
 .whychooseus-card:hover .whychooseus-arrow {
-  transform: translateX(4px);
+  color: #ffffff;
+  background: var(--why-primary);
+  transform: translateX(5px);
 }
 
+/* =========================================================
+   CARD CORNERS
+========================================================= */
+
+.whychooseus-card-corner {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.whychooseus-card-corner-one {
+  right: 0;
+  top: 0;
+  border-top: 2px solid var(--why-primary);
+  border-right: 2px solid var(--why-primary);
+  border-top-right-radius: 20px;
+}
+
+.whychooseus-card-corner-two {
+  left: 0;
+  bottom: 0;
+  border-bottom: 2px solid var(--why-primary);
+  border-left: 2px solid var(--why-primary);
+  border-bottom-left-radius: 20px;
+}
+
+.whychooseus-card:hover .whychooseus-card-corner {
+  opacity: 1;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
 .whychooseus-footer {
-  border-top: 1px solid #e6e6e6;
-  padding-top: 40px;
-  max-width: 800px;
+  width: min(900px, 100%);
   margin: 0 auto;
+  position: relative;
+}
+
+.whychooseus-footer-line {
+  width: 100%;
+  height: 1px;
+  margin-bottom: 30px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(6, 44, 67, 0.15),
+    transparent
+  );
+}
+
+.whychooseus-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.whychooseus-footer-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      var(--why-primary),
+      var(--why-primary-light)
+    );
+
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  box-shadow:
+    0 8px 20px rgba(228, 33, 33, 0.2);
+
+  animation: whyIconPulse 2.5s ease-in-out infinite;
 }
 
 .whychooseus-footer-text {
-  font-size: 22px;
+  margin: 0;
+  color: var(--why-navy);
+  font-size: 19px;
+  line-height: 1.6;
   font-weight: 600;
-  color: #062c43;
-  margin-bottom: 25px;
 }
 
 .whychooseus-footer-text .highlight {
-  color: #e42121;
-  text-decoration: underline;
+  position: relative;
+  color: var(--why-primary);
+  font-weight: 800;
 }
 
+.whychooseus-footer-text .highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--why-primary);
+}
+
+/* =========================================================
+   CTA
+========================================================= */
+
 .whychooseus-btn {
-  background: transparent;
-  color: #e42121;
-  border: 2px solid #e42121;
-  padding: 14px 30px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 6px;
+  margin-top: 25px;
+  padding: 14px 28px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+
+  color: #ffffff;
+  background:
+    linear-gradient(
+      135deg,
+      var(--why-primary),
+      var(--why-primary-light)
+    );
+
+  border: 0;
+  border-radius: 50px;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1px;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  box-shadow:
+    0 12px 25px rgba(228, 33, 33, 0.2);
+
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
 }
 
 .whychooseus-btn:hover {
-  background: #e42121;
-  color: #fff;
+  box-shadow:
+    0 18px 35px rgba(228, 33, 33, 0.3);
 }
 
+.whychooseus-btn span {
+  font-size: 18px;
+  line-height: 1;
+}
 
-/* Tablet & small screens */
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes whyFloatOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(20px, -20px, 0);
+  }
+}
+
+@keyframes whyFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-20px, 20px, 0);
+  }
+}
+
+@keyframes whySubtitleLine {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes whyTitleUnderline {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes whyIconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
 @media (max-width: 1200px) {
-  .whychooseus-title {
-    font-size: 32px;
-    line-height: 1.25;
+  .whychooseus-section {
+    padding: 85px 0 80px;
+  }
+
+  .whychooseus-container {
+    width: min(1100px, calc(100% - 50px));
   }
 
   .whychooseus-cards {
-    gap: 25px;
+    gap: 20px;
   }
 
   .whychooseus-card {
-    padding: 35px 20px;
+    min-height: 380px;
+    padding: 25px 22px 22px;
   }
 
-  .whychooseus-footer-text {
-    font-size: 20px;
+  .whychooseus-card-title {
+    font-size: 19px;
   }
 
-  .whychooseus-btn {
-    padding: 12px 28px;
-    font-size: 13px;
+  .whychooseus-card-desc {
+    font-size: 13.5px;
   }
 }
 
-/* Medium screens (tablets) */
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
 @media (max-width: 992px) {
-  .whychooseus-cards {
-    grid-template-columns: repeat(2, 1fr);
+  .whychooseus-section {
+    padding: 75px 0 70px;
+  }
+
+  .whychooseus-container {
+    width: min(900px, calc(100% - 40px));
+  }
+
+  .whychooseus-header {
+    margin-bottom: 45px;
   }
 
   .whychooseus-title {
-    font-size: 28px;
+    font-size: 38px;
+  }
+
+  .whychooseus-header-description {
+    font-size: 15px;
+  }
+
+  .whychooseus-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .whychooseus-card {
+    min-height: 360px;
+  }
+
+  .whychooseus-icon-wrapper {
+    width: 82px;
+    height: 82px;
+  }
+
+  .whychooseus-icon {
+    width: 54px;
+    height: 54px;
   }
 
   .whychooseus-footer-text {
     font-size: 18px;
   }
-
-  .whychooseus-btn {
-    padding: 12px 24px;
-    font-size: 13px;
-  }
 }
 
-/* Small screens (mobile) */
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
+
 @media (max-width: 768px) {
-  .whychooseus-cards {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .whychooseus-section {
+    padding: 65px 0 60px;
+  }
+
+  .whychooseus-container {
+    width: calc(100% - 30px);
+    padding: 0;
+  }
+
+  .whychooseus-header {
+    margin-bottom: 38px;
+  }
+
+  .whychooseus-subtitle-wrapper {
+    gap: 10px;
+  }
+
+  .whychooseus-subtitle-line {
+    width: 30px;
+  }
+
+  .whychooseus-subtitle {
+    font-size: 11px;
+    letter-spacing: 1.8px;
   }
 
   .whychooseus-title {
-    font-size: 24px;
+    font-size: 32px;
+    letter-spacing: -0.8px;
+  }
+
+  .whychooseus-title span::after {
+    bottom: -5px;
+    height: 2px;
+  }
+
+  .whychooseus-header-description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-top: 20px;
+  }
+
+  .whychooseus-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .whychooseus-card {
+    min-height: 350px;
+    padding: 23px 20px 20px;
+    border-radius: 18px;
+  }
+
+  .whychooseus-card-top {
+    margin-bottom: 20px;
+  }
+
+  .whychooseus-icon-wrapper {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+  }
+
+  .whychooseus-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .whychooseus-card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .whychooseus-card-desc {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .whychooseus-more {
+    margin-top: 22px;
+  }
+
+  .whychooseus-more-text {
+    font-size: 9px;
+  }
+
+  .whychooseus-footer {
+    margin-top: 10px;
+  }
+
+  .whychooseus-footer-content {
+    gap: 11px;
+  }
+
+  .whychooseus-footer-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    font-size: 15px;
   }
 
   .whychooseus-footer-text {
     font-size: 16px;
   }
-
-  .whychooseus-btn {
-    padding: 10px 20px;
-    font-size: 12px;
-  }
-
-  .whychooseus-card {
-    padding: 30px 20px;
-  }
 }
 
-/* Extra small screens (very small mobiles) */
-@media (max-width: 480px) {
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
   .whychooseus-section {
-    padding: 50px 15px;
+    padding: 55px 0 50px;
   }
 
-  .whychooseus-title {
-    font-size: 22px;
+  .whychooseus-container {
+    width: calc(100% - 24px);
+  }
+
+  .whychooseus-header {
+    margin-bottom: 32px;
+  }
+
+  .whychooseus-subtitle-line {
+    width: 22px;
   }
 
   .whychooseus-subtitle {
+    font-size: 10px;
+    letter-spacing: 1.4px;
+  }
+
+  .whychooseus-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .whychooseus-header-description {
     font-size: 13px;
+  }
+
+  .whychooseus-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .whychooseus-card {
+    min-height: auto;
+    padding: 24px 22px 20px;
+  }
+
+  .whychooseus-card-top {
+    margin-bottom: 20px;
+  }
+
+  .whychooseus-icon-wrapper {
+    width: 78px;
+    height: 78px;
+  }
+
+  .whychooseus-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .whychooseus-card-title {
+    font-size: 20px;
+  }
+
+  .whychooseus-card-desc {
+    max-width: 450px;
+    font-size: 14px;
+  }
+
+  .whychooseus-more {
+    margin-top: 25px;
+  }
+
+  .whychooseus-more-text {
+    font-size: 10px;
+  }
+
+  .whychooseus-footer-line {
+    margin-bottom: 24px;
+  }
+
+  .whychooseus-footer-content {
+    align-items: flex-start;
+  }
+
+  .whychooseus-footer-icon {
+    margin-top: 2px;
+  }
+
+  .whychooseus-footer-text {
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .whychooseus-bg-circle-one {
+    width: 100px;
+    height: 100px;
+    right: -30px;
+  }
+
+  .whychooseus-bg-circle-two {
+    width: 80px;
+    height: 80px;
+    left: -25px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .whychooseus-section {
+    padding: 48px 0 45px;
+  }
+
+  .whychooseus-container {
+    width: calc(100% - 20px);
+  }
+
+  .whychooseus-title {
+    font-size: 25px;
+  }
+
+  .whychooseus-subtitle {
+    font-size: 9px;
+  }
+
+  .whychooseus-header-description {
+    font-size: 12.5px;
+  }
+
+  .whychooseus-card {
+    padding: 22px 18px 18px;
+    border-radius: 16px;
+  }
+
+  .whychooseus-icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+
+  .whychooseus-icon {
+    width: 45px;
+    height: 45px;
   }
 
   .whychooseus-card-title {
@@ -231,20 +1083,25 @@
   }
 
   .whychooseus-card-desc {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .whychooseus-footer-text {
-    font-size: 15px;
+    font-size: 14px;
   }
+}
 
-  .whychooseus-btn {
-    padding: 8px 18px;
-    font-size: 12px;
-  }
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-  .whychooseus-icon {
-    width: 50px;
-    height: 50px;
+@media (prefers-reduced-motion: reduce) {
+  .whychooseus-section *,
+  .whychooseus-section *::before,
+  .whychooseus-section *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

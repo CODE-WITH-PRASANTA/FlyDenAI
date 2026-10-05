@@ -1,354 +1,1554 @@
-/* -------------------------------------------------
-   🌟 PREMIUM MODERN UI – FLYDENAI PRICING SECTION
--------------------------------------------------- */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+/* ============================================================
+   FLYIXO PREMIUM PRICING SECTION
+============================================================ */
 
 :root {
-  --bg-light: #ffffff;
-  --bg-gradient: linear-gradient(135deg, #fff7ef00, #ffe9d6);
-  --accent: #ff6a3d;
-  --accent-hover: #ff5520;
-  --dark: #0f172a;
-  --muted: #475569;
-  --border-light: rgba(0, 0, 0, 0.08);
+  --flyixo-pricing-navy: #062c43;
+  --flyixo-pricing-navy-dark: #031b2b;
 
-  --radius: 24px;
-  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-strong: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --flyixo-pricing-primary: #e94e77;
+  --flyixo-pricing-primary-dark: #c93661;
+  --flyixo-pricing-primary-light: #ff8eaa;
+
+  --flyixo-pricing-cyan: #36c8d4;
+  --flyixo-pricing-blue: #2563eb;
+  --flyixo-pricing-gold: #f4b942;
+
+  --flyixo-pricing-text: #182536;
+  --flyixo-pricing-muted: #687789;
+
+  --flyixo-pricing-white: #ffffff;
+  --flyixo-pricing-light: #f8fafc;
+
+  --flyixo-pricing-border: #e5eaf0;
+
+  --flyixo-pricing-shadow:
+    0 20px 50px rgba(6, 44, 67, 0.09);
+
+  --flyixo-pricing-shadow-hover:
+    0 30px 75px rgba(6, 44, 67, 0.16);
+
+  --flyixo-pricing-transition: 0.35s ease;
 }
 
-/* -----------------------------
-   SECTION 
------------------------------ */
-.pricing {
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-pricing,
+.flyixo-pricing *,
+.flyixo-pricing *::before,
+.flyixo-pricing *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-pricing {
+  position: relative;
+
   width: 100%;
-  background: var(--bg-gradient);
-  background-image: url("../../assets/jf-img.webp");
+
+  padding:
+    clamp(60px, 7vw, 95px)
+    20px
+    clamp(65px, 8vw, 105px);
+
   background-size: cover;
   background-position: center;
-  padding: 20px 0 10px;
-  font-family: "Poppins", sans-serif;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  border-top:
+    1px solid
+    rgba(6, 44, 67, 0.08);
+
+  border-bottom:
+    1px solid
+    rgba(6, 44, 67, 0.08);
+}
+
+/* ============================================================
+   OVERLAY
+============================================================ */
+
+.flyixo-pricing__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(248, 250, 252, 0.93),
+      rgba(255, 247, 249, 0.96)
+    );
+}
+
+/* ============================================================
+   BACKGROUND ORBS
+============================================================ */
+
+.flyixo-pricing__orb {
+  position: absolute;
+
+  z-index: 1;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    flyixoPricingFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-pricing__orb--one {
+  width: 430px;
+  height: 430px;
+
+  top: -250px;
+  left: -180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.14),
+      transparent 70%
+    );
+}
+
+.flyixo-pricing__orb--two {
+  width: 500px;
+  height: 500px;
+
+  right: -270px;
+  bottom: -300px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.14),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+.flyixo-pricing__orb--three {
+  width: 180px;
+  height: 180px;
+
+  right: 22%;
+  top: 12%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 99, 235, 0.06),
+      transparent 70%
+    );
+
+  animation-delay: 4s;
+}
+
+@keyframes flyixoPricingFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -18px, 0);
+  }
+}
+
+/* ============================================================
+   GRID BACKGROUND
+============================================================ */
+
+.flyixo-pricing__grid-bg {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-pricing__container {
   position: relative;
 
-  /* NEW simple border + shadow */
-  border-top: 2px solid rgba(0, 0, 0, 0.08);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  z-index: 3;
+
+  width: min(1380px, 100%);
+
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-pricing__header {
+  max-width: 900px;
+
+  margin:
+    0 auto 48px;
+
+  text-align: center;
+}
+
+/* ============================================================
+   BADGE
+============================================================ */
+
+.flyixo-pricing__badge {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-bottom: 17px;
+
+  padding:
+    8px 15px;
+
+  color:
+    var(--flyixo-pricing-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+
+  text-transform: uppercase;
+}
+
+.flyixo-pricing__badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-pricing-primary);
 
   box-shadow:
-    0 4px 12px rgba(0, 0, 0, 0.06),
-    0 -4px 12px rgba(0, 0, 0, 0.04);
+    0 0 0 4px
+    rgba(233, 78, 119, 0.1);
+
+  animation:
+    flyixoPricingPulse
+    2s
+    ease-in-out
+    infinite;
 }
 
-/* container */
-.pricing__container {
-  position: relative;
-  z-index: 10;
-  max-width: 1480px;
-  margin: auto;
-  padding: 0 30px;
+@keyframes flyixoPricingPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
 }
 
-/* heading */
-.pricing__heading {
-  font-size: 2.8rem;
-  font-weight: 800;
-  text-align: center;
-  color: var(--dark);
-  margin-bottom: 10px;
+/* ============================================================
+   HEADING
+============================================================ */
+
+.flyixo-pricing__heading {
+  margin: 0;
+
+  color:
+    var(--flyixo-pricing-text);
+
+  font-size:
+    clamp(
+      30px,
+      4vw,
+      47px
+    );
+
+  line-height: 1.18;
+
+  font-weight: 850;
+
+  letter-spacing: -1px;
 }
 
-.pricing__subheading {
-  text-align: center;
-  font-size: 1.1rem;
-  color: var(--muted);
-  margin-bottom: 55px;
+.flyixo-pricing__heading span {
+  color:
+    var(--flyixo-pricing-primary);
 }
 
-/* -----------------------------
-   GRID
------------------------------ */
-.pricing__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
+/* ============================================================
+   SUBHEADING
+============================================================ */
 
-/* -----------------------------
-   CARD
------------------------------ */
-.plan-card {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius);
-  padding: 34px 30px 30px;
-  text-align: center;
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-soft);
-  position: relative;
-  overflow: hidden;
-  transition: 0.35s ease;
-  backdrop-filter: blur(8px);
-}
+.flyixo-pricing__subheading {
+  margin:
+    16px auto 0;
 
+  color:
+    var(--flyixo-pricing-muted);
 
-.plan-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-strong);
-}
+  font-size: 13px;
 
-.plan-card:hover::before {
-  opacity: 1;
-}
+  line-height: 1.7;
 
-/* title */
-.plan-card__title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--dark);
-  margin-bottom: 20px;
-  line-height: 1.4;
-}
-
-/* image */
-.plan-card__image-wrap {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.plan-card__image {
-  max-width: 250px;
-  width: 100%;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
-  transition: 0.3s ease;
-}
-
-.plan-card:hover .plan-card__image {
-  transform: scale(1.05);
-}
-
-/* price block */
-.plan-card__price-block {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-bottom: 18px;
-}
-
-.plan-card__price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--dark);
-}
-
-.plan-card__per,
-.plan-card__extra {
-  font-size: 0.95rem;
-  color: var(--muted);
   font-weight: 600;
 }
 
-/* divider */
-.plan-card__divider {
-  width: 100%;
-  height: 1px;
-  background: var(--border-light);
-  margin: 20px 0;
+.flyixo-pricing__subheading b {
+  margin:
+    0 5px;
+
+  color:
+    var(--flyixo-pricing-primary);
 }
 
-/* features */
-.plan-card__features {
-  padding: 0;
+/* ============================================================
+   HEADING LINE
+============================================================ */
+
+.flyixo-pricing__heading-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 19px;
+}
+
+.flyixo-pricing__heading-line span {
+  width: 24px;
+  height: 4px;
+
+  border-radius: 20px;
+
+  background:
+    var(--flyixo-pricing-primary);
+}
+
+.flyixo-pricing__heading-line span:nth-child(2) {
+  width: 45px;
+
+  background:
+    var(--flyixo-pricing-cyan);
+}
+
+.flyixo-pricing__heading-line span:nth-child(3) {
+  width: 10px;
+
+  background:
+    var(--flyixo-pricing-gold);
+}
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.flyixo-pricing__loading {
+  min-height: 250px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+}
+
+.flyixo-pricing__loading p {
   margin: 0;
-  list-style: none;
+
+  color:
+    var(--flyixo-pricing-muted);
+
+  font-size: 13px;
+
+  font-weight: 600;
 }
 
-.plan-card__feature {
-  padding: 10px 0;
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.7;
+.flyixo-pricing__spinner {
+  width: 42px;
+  height: 42px;
+
+  border:
+    4px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-top-color:
+    var(--flyixo-pricing-primary);
+
+  border-right-color:
+    var(--flyixo-pricing-cyan);
+
+  border-radius: 50%;
+
+  animation:
+    flyixoPricingSpin
+    0.9s
+    linear
+    infinite;
+}
+
+@keyframes flyixoPricingSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================================
+   PRICING GRID
+============================================================ */
+
+.flyixo-pricing__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 25px;
+
+  align-items: stretch;
+}
+
+/* ============================================================
+   PLAN CARD
+============================================================ */
+
+.flyixo-plan-card {
   position: relative;
+
+  min-height: 650px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding:
+    35px 28px 24px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  border:
+    1px solid
+    var(--flyixo-pricing-border);
+
+  border-radius: 24px;
+
+  box-shadow:
+    var(--flyixo-pricing-shadow);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform var(--flyixo-pricing-transition),
+    box-shadow var(--flyixo-pricing-transition),
+    border-color var(--flyixo-pricing-transition);
 }
 
-/* inner divider */
-.plan-card__inner-divider {
+.flyixo-plan-card:hover {
+  transform:
+    translateY(-10px);
+
+  border-color:
+    rgba(233, 78, 119, 0.23);
+
+  box-shadow:
+    var(--flyixo-pricing-shadow-hover);
+}
+
+/* ============================================================
+   TOP ACCENT
+============================================================ */
+
+.flyixo-plan-card__accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
   width: 100%;
+  height: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-pricing-primary),
+      var(--flyixo-pricing-cyan)
+    );
+
+  transform:
+    scaleX(0.25);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card:hover
+.flyixo-plan-card__accent {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   CARD NUMBER
+============================================================ */
+
+.flyixo-plan-card__number {
+  position: absolute;
+
+  top: 15px;
+  right: 17px;
+
+  width: 37px;
+  height: 37px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    var(--flyixo-pricing-primary);
+
+  background:
+    rgba(233, 78, 119, 0.06);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-radius: 50%;
+
+  font-size: 9px;
+
+  font-weight: 850;
+
+  transition:
+    transform var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card:hover
+.flyixo-plan-card__number {
+  transform:
+    rotate(8deg)
+    scale(1.08);
+}
+
+/* ============================================================
+   RECOMMENDED
+============================================================ */
+
+.flyixo-plan-card__recommended {
+  position: absolute;
+
+  top: 16px;
+  left: 17px;
+
+  padding:
+    6px 9px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-pricing-primary),
+      var(--flyixo-pricing-primary-dark)
+    );
+
+  border-radius: 6px;
+
+  font-size: 7px;
+
+  font-weight: 850;
+
+  letter-spacing: 0.8px;
+
+  box-shadow:
+    0 7px 15px
+    rgba(233, 78, 119, 0.2);
+}
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.flyixo-plan-card__title {
+  min-height: 58px;
+
+  margin:
+    5px 35px 20px;
+
+  color:
+    var(--flyixo-pricing-navy);
+
+  font-size: 16px;
+
+  line-height: 1.45;
+
+  font-weight: 800;
+}
+
+/* ============================================================
+   IMAGE WRAPPER
+============================================================ */
+
+.flyixo-plan-card__image-wrap {
+  position: relative;
+
+  width: 100%;
+  height: 170px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 16px;
+}
+
+/* ============================================================
+   IMAGE GLOW
+============================================================ */
+
+.flyixo-plan-card__image-glow {
+  position: absolute;
+
+  width: 150px;
+  height: 150px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      rgba(54, 200, 212, 0.05),
+      transparent 70%
+    );
+
+  transition:
+    transform var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card:hover
+.flyixo-plan-card__image-glow {
+  transform:
+    scale(1.2);
+}
+
+/* ============================================================
+   IMAGE
+============================================================ */
+
+.flyixo-plan-card__image {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 225px;
+
+  max-height: 165px;
+
+  object-fit: contain;
+
+  display: block;
+
+  filter:
+    drop-shadow(
+      0 12px 18px
+      rgba(6, 44, 67, 0.1)
+    );
+
+  transition:
+    transform var(--flyixo-pricing-transition),
+    filter var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card:hover
+.flyixo-plan-card__image {
+  transform:
+    scale(1.06)
+    translateY(-5px);
+
+  filter:
+    drop-shadow(
+      0 20px 25px
+      rgba(6, 44, 67, 0.15)
+    );
+}
+
+/* ============================================================
+   PRICE BLOCK
+============================================================ */
+
+.flyixo-plan-card__price-block {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-bottom: 4px;
+}
+
+.flyixo-plan-card__price {
+  color:
+    var(--flyixo-pricing-primary);
+
+  font-size:
+    clamp(
+      26px,
+      2.5vw,
+      34px
+    );
+
+  line-height: 1.2;
+
+  font-weight: 850;
+
+  letter-spacing: -0.5px;
+}
+
+.flyixo-plan-card__per {
+  color:
+    var(--flyixo-pricing-muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+
+  font-weight: 650;
+}
+
+.flyixo-plan-card__extra {
+  margin-top: 4px;
+
+  padding:
+    5px 10px;
+
+  color:
+    #16804d;
+
+  background:
+    rgba(22, 128, 77, 0.07);
+
+  border:
+    1px solid
+    rgba(22, 128, 77, 0.12);
+
+  border-radius: 999px;
+
+  font-size: 8px;
+
+  font-weight: 750;
+}
+
+/* ============================================================
+   DIVIDER
+============================================================ */
+
+.flyixo-plan-card__divider {
+  position: relative;
+
+  width: 100%;
+
   height: 1px;
-  background: var(--border-light);
-  margin-top: 10px;
+
+  margin:
+    21px 0 10px;
+
+  background:
+    rgba(6, 44, 67, 0.08);
 }
 
-/* -----------------------------
+.flyixo-plan-card__divider span {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  width: 30px;
+  height: 4px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 20px;
+
+  background:
+    var(--flyixo-pricing-primary);
+}
+
+/* ============================================================
+   FEATURES
+============================================================ */
+
+.flyixo-plan-card__features {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+
+  text-align: left;
+}
+
+.flyixo-plan-card__feature {
+  display: grid;
+
+  grid-template-columns:
+    20px
+    1fr;
+
+  align-items: flex-start;
+
+  gap: 9px;
+
+  padding:
+    9px 0;
+
+  color:
+    var(--flyixo-pricing-muted);
+
+  font-size: 10px;
+
+  line-height: 1.65;
+
+  font-weight: 500;
+
+  border-bottom:
+    1px solid
+    rgba(6, 44, 67, 0.055);
+}
+
+.flyixo-plan-card__feature:last-child {
+  border-bottom: none;
+}
+
+.flyixo-plan-card__check {
+  width: 19px;
+  height: 19px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 1px;
+
+  flex-shrink: 0;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-pricing-primary),
+      var(--flyixo-pricing-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 8px;
+
+  font-weight: 900;
+}
+
+.flyixo-plan-card__feature-text {
+  display: block;
+}
+
+/* ============================================================
    BUTTON
------------------------------ */
-.plan-card__btn {
-  margin-top: 22px;
+============================================================ */
+
+.flyixo-plan-card__btn {
   width: 100%;
-  padding: 15px 0;
-  border-radius: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: auto;
+  padding:
+    13px 18px;
+
   border: none;
-  font-weight: 700;
-  font-size: 1rem;
-  background: var(--accent);
-  color: white;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-pricing-primary),
+      var(--flyixo-pricing-primary-dark)
+    );
+
+  box-shadow:
+    0 12px 25px
+    rgba(233, 78, 119, 0.25);
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
   cursor: pointer;
-  transition: 0.25s ease;
-  box-shadow: 0 12px 25px rgba(255, 101, 40, 0.35);
+
+  transition:
+    transform var(--flyixo-pricing-transition),
+    box-shadow var(--flyixo-pricing-transition),
+    background var(--flyixo-pricing-transition);
 }
 
-.plan-card__btn:hover {
-  background: var(--accent-hover);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 32px rgba(255, 101, 40, 0.5);
+.flyixo-plan-card__btn:hover {
+  transform:
+    translateY(-3px);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-pricing-primary-dark),
+      var(--flyixo-pricing-primary)
+    );
+
+  box-shadow:
+    0 17px 32px
+    rgba(233, 78, 119, 0.34);
 }
 
-/* ============================================
-   📌 RESPONSIVE DESIGN (Professional + Clean)
-============================================ */
+.flyixo-plan-card__btn-arrow {
+  width: 23px;
+  height: 23px;
 
-/* 🖥️ Large Laptop Screens */
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  transition:
+    transform var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card__btn:hover
+.flyixo-plan-card__btn-arrow {
+  transform:
+    translateX(4px);
+}
+
+/* ============================================================
+   CARD FOOTER
+============================================================ */
+
+.flyixo-plan-card__footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 14px;
+
+  color:
+    rgba(6, 44, 67, 0.38);
+
+  font-size: 6px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.flyixo-plan-card__footer i {
+  width: 3px;
+  height: 3px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-pricing-primary);
+}
+
+/* ============================================================
+   DECORATIVE CORNER
+============================================================ */
+
+.flyixo-plan-card__corner {
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -50px;
+  bottom: -50px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.09),
+      transparent 70%
+    );
+
+  transition:
+    transform var(--flyixo-pricing-transition);
+}
+
+.flyixo-plan-card:hover
+.flyixo-plan-card__corner {
+  transform:
+    scale(1.5);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-pricing__bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  margin-top: 42px;
+}
+
+.flyixo-pricing__bottom-line {
+  width: 110px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.16)
+    );
+}
+
+.flyixo-pricing__bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.16),
+      transparent
+    );
+}
+
+.flyixo-pricing__bottom-content {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  white-space: nowrap;
+}
+
+.flyixo-pricing__bottom-check {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-pricing-primary),
+      var(--flyixo-pricing-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.flyixo-pricing__bottom-content p {
+  margin: 0;
+
+  color:
+    var(--flyixo-pricing-muted);
+
+  font-size: 9px;
+
+  font-weight: 650;
+}
+
+.flyixo-pricing__bottom-content strong {
+  color:
+    var(--flyixo-pricing-primary);
+}
+
+.flyixo-pricing__bottom-content span:last-child {
+  color:
+    var(--flyixo-pricing-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE LAPTOP
+============================================================ */
+
 @media (max-width: 1200px) {
-  .pricing__grid {
-    gap: 28px;
+  .flyixo-pricing__grid {
+    gap: 20px;
   }
-  .plan-card {
-    padding: 30px 26px;
+
+  .flyixo-plan-card {
+    padding:
+      32px 21px 23px;
+  }
+
+  .flyixo-plan-card__title {
+    font-size: 14px;
+  }
+
+  .flyixo-plan-card__feature {
+    font-size: 9.5px;
   }
 }
 
-/* 📱 Tablets (1024px) */
+/* ============================================================
+   TABLET
+============================================================ */
+
 @media (max-width: 1024px) {
-  .pricing__container {
-    padding: 0 20px;
+  .flyixo-pricing {
+    padding:
+      60px 18px 80px;
   }
 
-  .pricing__heading {
-    font-size: 2.4rem;
+  .flyixo-pricing__container {
+    width: 100%;
   }
 
-  .pricing__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 26px;
+  .flyixo-pricing__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 22px;
   }
 
-  .plan-card {
-    padding: 28px 24px;
+  .flyixo-plan-card {
+    min-height: 630px;
+
+    padding:
+      30px 24px 22px;
   }
 
-  .plan-card__title {
-    font-size: 1.3rem;
+  .flyixo-plan-card__title {
+    min-height: auto;
+
+    font-size: 15px;
+
+    margin:
+      5px 30px 18px;
   }
 
-  .plan-card__price {
-    font-size: 2rem;
+  .flyixo-plan-card__image-wrap {
+    height: 155px;
+  }
+
+  .flyixo-plan-card__feature {
+    font-size: 10px;
   }
 }
 
-/* 📱 Large Mobile (768px) */
-@media (max-width: 768px) {
-  .pricing__heading {
-    font-size: 2.1rem;
-    margin-bottom: 8px;
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 700px) {
+  .flyixo-pricing {
+    padding:
+      50px 13px 65px;
   }
 
-  .pricing__subheading {
-    font-size: 1rem;
-    margin-bottom: 35px;
+  .flyixo-pricing__header {
+    margin-bottom: 30px;
   }
 
-  .pricing__grid {
+  .flyixo-pricing__badge {
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    padding:
+      7px 12px;
+  }
+
+  .flyixo-pricing__heading {
+    font-size: 29px;
+
+    letter-spacing: -0.6px;
+  }
+
+  .flyixo-pricing__subheading {
+    font-size: 10px;
+  }
+
+  .flyixo-pricing__grid {
     grid-template-columns: 1fr;
-    gap: 26px;
+
+    gap: 17px;
   }
 
-  .plan-card {
-    max-width: 480px;
+  .flyixo-plan-card {
+    width: 100%;
+
+    max-width: 500px;
+
+    min-height: 600px;
+
     margin: 0 auto;
-  }
-}
 
-/* 📱 Medium Mobile (576px) */
-@media (max-width: 576px) {
-  .pricing {
-    padding: 30px 0 20px;
-  }
+    padding:
+      30px 24px 22px;
 
-  .pricing__heading {
-    font-size: 1.9rem;
-  }
-
-  .plan-card {
-    padding: 26px 20px;
     border-radius: 20px;
   }
 
-  .plan-card__title {
-    font-size: 1.25rem;
+  .flyixo-plan-card__title {
+    font-size: 15px;
   }
 
-  .plan-card__price {
-    font-size: 1.8rem;
+  .flyixo-plan-card__image-wrap {
+    height: 155px;
   }
 
-  .plan-card__feature {
-    font-size: 0.93rem;
-    line-height: 1.6;
+  .flyixo-plan-card__price {
+    font-size: 30px;
+  }
+
+  .flyixo-plan-card__feature {
+    font-size: 10px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-pricing__bottom {
+    margin-top: 28px;
+  }
+
+  .flyixo-pricing__bottom-line {
+    display: none;
+  }
+
+  .flyixo-pricing__bottom-content {
+    white-space: normal;
+
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .flyixo-pricing__bottom-content p {
+    font-size: 8px;
+
+    line-height: 1.5;
   }
 }
 
-/* 📱 Small Mobile (420px) */
-@media (max-width: 420px) {
-  .pricing__container {
-    padding: 0 16px;
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-pricing {
+    padding:
+      42px 10px 55px;
   }
 
-  .pricing__heading {
-    font-size: 1.7rem;
+  .flyixo-pricing__heading {
+    font-size: 24px;
   }
 
-  .pricing__subheading {
-    font-size: 0.95rem;
+  .flyixo-pricing__subheading {
+    font-size: 9px;
+
+    line-height: 1.6;
   }
 
-  .plan-card {
-    padding: 22px 18px;
+  .flyixo-plan-card {
+    min-height: 570px;
+
+    padding:
+      27px 18px 20px;
+
     border-radius: 18px;
   }
 
-  .plan-card__price {
-    font-size: 1.6rem;
+  .flyixo-plan-card__number {
+    width: 33px;
+    height: 33px;
+
+    top: 12px;
+    right: 12px;
+
+    font-size: 8px;
   }
 
-  .plan-card__btn {
-    padding: 12px 0;
-    font-size: 0.95rem;
+  .flyixo-plan-card__recommended {
+    top: 13px;
+    left: 13px;
+
+    font-size: 6px;
+
+    padding:
+      5px 7px;
+  }
+
+  .flyixo-plan-card__title {
+    margin:
+      7px 25px 15px;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+  }
+
+  .flyixo-plan-card__image-wrap {
+    height: 140px;
+  }
+
+  .flyixo-plan-card__image {
+    max-width: 185px;
+
+    max-height: 140px;
+  }
+
+  .flyixo-plan-card__price {
+    font-size: 27px;
+  }
+
+  .flyixo-plan-card__per {
+    font-size: 9px;
+  }
+
+  .flyixo-plan-card__feature {
+    grid-template-columns:
+      18px
+      1fr;
+
+    gap: 7px;
+
+    font-size: 9px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-plan-card__check {
+    width: 17px;
+    height: 17px;
+
+    font-size: 7px;
+  }
+
+  .flyixo-plan-card__btn {
+    padding:
+      12px 15px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-plan-card__footer {
+    font-size: 5px;
   }
 }
 
-/* 📱 Extra Small Mobile (360px and below) */
+/* ============================================================
+   EXTRA SMALL
+============================================================ */
+
 @media (max-width: 360px) {
-  .pricing__heading {
-    font-size: 1.55rem;
+  .flyixo-pricing {
+    padding:
+      35px 8px 50px;
   }
 
-  .pricing__subheading {
-    font-size: 0.9rem;
+  .flyixo-pricing__heading {
+    font-size: 21px;
   }
 
-  .plan-card {
-    padding: 20px 16px;
+  .flyixo-pricing__badge {
+    font-size: 7px;
+
+    letter-spacing: 0.7px;
   }
 
-  .plan-card__title {
-    font-size: 1.15rem;
+  .flyixo-plan-card {
+    min-height: 540px;
+
+    padding:
+      25px 15px 18px;
   }
 
-  .plan-card__price {
-    font-size: 1.45rem;
+  .flyixo-plan-card__title {
+    font-size: 12px;
   }
 
-  .plan-card__btn {
-    padding: 10px 0;
-    font-size: 0.9rem;
+  .flyixo-plan-card__image-wrap {
+    height: 125px;
+  }
+
+  .flyixo-plan-card__image {
+    max-width: 165px;
+    max-height: 125px;
+  }
+
+  .flyixo-plan-card__price {
+    font-size: 24px;
+  }
+
+  .flyixo-plan-card__feature {
+    font-size: 8.5px;
+  }
+
+  .flyixo-plan-card__btn {
+    padding:
+      10px 12px;
+
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-pricing *:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.25);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-pricing *,
+  .flyixo-pricing *::before,
+  .flyixo-pricing *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

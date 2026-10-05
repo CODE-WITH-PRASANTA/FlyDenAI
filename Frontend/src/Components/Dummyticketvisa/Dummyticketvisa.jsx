@@ -1,14 +1,24 @@
 import React from "react";
 import "./Dummyticketvisa.css";
 
-// background image
-const bgImageUrl = "../../assets/af-img.webp";
+// ============================================================
+// BACKGROUND IMAGE
+// ============================================================
 
-// step images
+import bgImage from "../../assets/af-img.webp";
+
+// ============================================================
+// STEP IMAGES
+// ============================================================
+
 import searchImg from "../../assets/cf-img.webp";
 import selectImg from "../../assets/df-img.webp";
 import confirmImg from "../../assets/ef-img.webp";
 import downloadImg from "../../assets/ff-img.webp";
+
+// ============================================================
+// STEP DATA
+// ============================================================
 
 const steps = [
   {
@@ -16,7 +26,7 @@ const steps = [
     img: searchImg,
     title: ["SEARCH FOR", "FLIGHT / HOTEL"],
     description:
-      "Enter your travel details and let FlyDenAi instantly fetch the best dummy flight or hotel options for visa purposes.",
+      "Enter your travel details and let Flyixo instantly fetch the best dummy flight or hotel options for visa purposes.",
   },
   {
     id: 2,
@@ -41,36 +51,181 @@ const steps = [
   },
 ];
 
+// ============================================================
+// COMPONENT
+// ============================================================
+
 const Dummyticketvisa = () => {
   return (
     <section
-      className="visa-bg"
+      className="flyixo-dummy-visa"
       style={{
-        backgroundImage: `url(${bgImageUrl})`,
+        backgroundImage: `url(${bgImage})`,
       }}
     >
-      <div className="visa-container">
+      {/* ======================================================
+          BACKGROUND OVERLAY
+      ====================================================== */}
 
-        <h2 className="visa-heading">
-          With <span className="brand">FlyDenAi</span>, getting a dummy flight or hotel booking 
-          for your visa is <span className="highlight">EASIER than ever!</span>
-        </h2>
+      <div className="flyixo-dummy-visa-overlay"></div>
 
-        <div className="steps-grid">
-          {steps.map((step) => (
-            <article className="step-card" key={step.id}>
-              <img src={step.img} alt={step.title[1]} className="step-img" />
+      {/* Decorative Elements */}
+      <div className="flyixo-dummy-visa-orb flyixo-orb-one"></div>
+      <div className="flyixo-dummy-visa-orb flyixo-orb-two"></div>
+      <div className="flyixo-dummy-visa-orb flyixo-orb-three"></div>
 
-              <h3 className="step-title">
+      <div className="flyixo-dummy-visa-container">
+
+        {/* ====================================================
+            HEADER
+        ==================================================== */}
+
+        <div className="flyixo-dummy-visa-header">
+
+          <div className="flyixo-dummy-visa-badge">
+            <span className="flyixo-badge-dot"></span>
+            FLYIXO VISA DOCUMENT SERVICES
+          </div>
+
+          <h2 className="flyixo-dummy-visa-heading">
+            With{" "}
+            <span className="flyixo-brand">
+              Flyixo
+            </span>
+            , getting a dummy flight or hotel booking for your visa is{" "}
+            <span className="flyixo-highlight">
+              EASIER than ever!
+            </span>
+          </h2>
+
+          <p className="flyixo-dummy-visa-subtitle">
+            Follow four simple steps to create your visa-ready
+            flight or hotel booking document quickly and easily.
+          </p>
+
+        </div>
+
+        {/* ====================================================
+            STEPS
+        ==================================================== */}
+
+        <div className="flyixo-steps-grid">
+
+          {steps.map((step, index) => (
+            <article
+              className="flyixo-step-card"
+              key={step.id}
+            >
+
+              {/* =================================================
+                  STEP NUMBER
+              ================================================= */}
+
+              <div className="flyixo-step-number">
+                <span>
+                  {String(step.id).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* =================================================
+                  TOP ACCENT
+              ================================================= */}
+
+              <div className="flyixo-step-accent"></div>
+
+              {/* =================================================
+                  IMAGE
+              ================================================= */}
+
+              <div className="flyixo-step-image-wrapper">
+
+                <div className="flyixo-step-image-glow"></div>
+
+                <img
+                  src={step.img}
+                  alt={`${step.title[0]} ${step.title[1]}`}
+                  className="flyixo-step-img"
+                />
+
+              </div>
+
+              {/* =================================================
+                  TITLE
+              ================================================= */}
+
+              <h3 className="flyixo-step-title">
                 <span>{step.title[0]}</span>
                 <span>{step.title[1]}</span>
               </h3>
 
-              <div className="divider" />
+              {/* =================================================
+                  DIVIDER
+              ================================================= */}
 
-              <p className="step-text">{step.description}</p>
+              <div className="flyixo-step-divider">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              {/* =================================================
+                  DESCRIPTION
+              ================================================= */}
+
+              <p className="flyixo-step-text">
+                {step.description}
+              </p>
+
+              {/* =================================================
+                  STEP LABEL
+              ================================================= */}
+
+              <div className="flyixo-step-footer">
+                <span className="flyixo-step-label">
+                  STEP {String(step.id).padStart(2, "0")}
+                </span>
+
+                <span className="flyixo-step-arrow">
+                  →
+                </span>
+              </div>
+
+              {/* Decorative Corner */}
+              <span className="flyixo-card-corner"></span>
+
             </article>
           ))}
+
+        </div>
+
+        {/* ====================================================
+            BOTTOM TRUST AREA
+        ==================================================== */}
+
+        <div className="flyixo-dummy-visa-bottom">
+
+          <span className="flyixo-bottom-line"></span>
+
+          <div className="flyixo-bottom-content">
+
+            <span className="flyixo-bottom-check">
+              ✓
+            </span>
+
+            <p>
+              Simple process
+              <strong> • </strong>
+              Secure payment
+              <strong> • </strong>
+              Visa-ready documents
+              <strong> • </strong>
+              <span>Flyixo</span>
+            </p>
+
+          </div>
+
+          <span className="flyixo-bottom-line"></span>
+
         </div>
 
       </div>

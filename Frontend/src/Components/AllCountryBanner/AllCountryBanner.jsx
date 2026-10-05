@@ -1,134 +1,405 @@
 import React, { useEffect, useState } from "react";
 import "./AllCountryBanner.css";
-import { FaSearchLocation, FaArrowRight } from "react-icons/fa";
+import {
+  FaSearchLocation,
+  FaArrowRight,
+  FaGlobeAmericas,
+  FaCheckCircle,
+  FaPassport,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import bannerBg from "../../assets/Visa Bg.webp";
-import BASE_URL from "../../Api"; // e.g., "http://localhost:5000/api"
+import BASE_URL from "../../Api";
 
 const AllCountryBanner = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
+
   const navigate = useNavigate();
 
-  // 🔹 Fetch published visas (only country + id)
+  // =====================================================
+  // FETCH PUBLISHED VISA DATA
+  // =====================================================
+
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/visas/published`);
-        const visaData = res.data.data || [];
+
+        const visaData = res.data?.data || [];
+
         setCountries(visaData);
       } catch (err) {
-        console.error("❌ Error fetching countries:", err);
+        console.error("Error fetching countries:", err);
       }
     };
+
     fetchCountries();
   }, []);
 
-  // 🔹 Filter countries dynamically
+  // =====================================================
+  // FILTER COUNTRIES
+  // =====================================================
+
   useEffect(() => {
-    if (searchTerm.trim() === "") {
+    if (!searchTerm.trim()) {
       setFilteredCountries([]);
       return;
     }
 
+    const searchValue = searchTerm.toLowerCase();
+
     const filtered = countries.filter((visa) =>
-      visa.country.toLowerCase().includes(searchTerm.toLowerCase())
+      visa?.country
+        ?.toLowerCase()
+        .includes(searchValue)
     );
+
     setFilteredCountries(filtered);
   }, [searchTerm, countries]);
 
-  // 🔹 Navigate to visa details
+  // =====================================================
+  // NAVIGATE TO VISA DETAILS
+  // =====================================================
+
   const handleCountryClick = (visaId) => {
     navigate(`/Visa/Details/${visaId}`);
+  };
+
+  // =====================================================
+  // CLEAR SEARCH
+  // =====================================================
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setFilteredCountries([]);
   };
 
   return (
     <section
       className="allcountry-banner"
-      style={{ backgroundImage: `url(${bannerBg})` }}
+      style={{
+        backgroundImage: `url(${bannerBg})`,
+      }}
     >
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
+
       <div className="allcountry-overlay"></div>
 
-      {/* 🌍 Top Badge */}
+      <div className="allcountry-glow allcountry-glow-one"></div>
+      <div className="allcountry-glow allcountry-glow-two"></div>
+
+      <div className="allcountry-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      {/* =================================================
+          TOP BADGE
+      ================================================= */}
+
       <motion.div
         className="allcountry-badge"
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
+        initial={{
+          y: -30,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.9,
+        }}
       >
-        🌍 Trusted by <span>900+ Travelers</span> Worldwide
+        <span className="allcountry-badge-icon">
+          <FaGlobeAmericas />
+        </span>
+
+        <span>
+          Trusted by <strong>900+ Travelers</strong> Worldwide
+        </span>
       </motion.div>
 
+      {/* =================================================
+          MAIN CONTENT
+      ================================================= */}
+
       <div className="allcountry-content">
+        {/* Eyebrow */}
+        <motion.div
+          className="allcountry-eyebrow"
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+        >
+          <span></span>
+
+          <FaPassport />
+
+          <strong>FLYIXO GLOBAL VISA SERVICES</strong>
+
+          <span></span>
+        </motion.div>
+
+        {/* Title */}
         <motion.h1
           className="allcountry-title"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 0.1,
+          }}
         >
-          <span>Fast, Reliable</span> & Hassle-Free Visa Services
+          <span>Fast, Reliable</span>{" "}
+          &amp; Hassle-Free Visa Services
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
           className="allcountry-subtitle"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 0.3,
+          }}
         >
-          Apply for your visa online in minutes. Track real-time updates and get
-          expert assistance for any destination — anytime, anywhere.
+          Apply for your visa online in minutes. Track real-time
+          updates and get expert assistance for any destination —
+          anytime, anywhere with <strong>Flyixo</strong>.
         </motion.p>
 
-        {/* 🔍 Search Box */}
+        {/* =================================================
+            SEARCH BOX
+        ================================================= */}
+
         <motion.div
-          className="allcountry-searchbox"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          className={`allcountry-searchbox ${
+            searchTerm ? "has-value" : ""
+          }`}
+          initial={{
+            opacity: 0,
+            scale: 0.9,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.9,
+            delay: 0.5,
+          }}
         >
           <FaSearchLocation className="allcountry-icon left" />
+
           <input
             type="text"
             placeholder="Search your dream destination..."
             className="allcountry-input"
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(e) =>
+              setSearchTerm(e.target.value)
+            }
+            aria-label="Search visa destinations"
           />
-          <FaArrowRight className="allcountry-icon right" />
+
+          {searchTerm ? (
+            <button
+              type="button"
+              className="allcountry-clear"
+              onClick={handleClearSearch}
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          ) : (
+            <span className="allcountry-search-arrow">
+              <FaArrowRight />
+            </span>
+          )}
         </motion.div>
 
-        {/* 🌎 Search Suggestions */}
+        {/* =================================================
+            SEARCH SUGGESTIONS
+        ================================================= */}
+
         {filteredCountries.length > 0 && (
           <motion.div
             className="allcountry-suggestions"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{
+              opacity: 0,
+              y: 12,
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              duration: 0.3,
+            }}
           >
-            {filteredCountries.map((visa) => (
-              <motion.div
-                key={visa._id}
-                className="allcountry-country"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleCountryClick(visa._id)}
-              >
-                {visa.country}
-              </motion.div>
-            ))}
+            <div className="allcountry-suggestions-header">
+              <div>
+                <FaGlobeAmericas />
+
+                <span>Available Destinations</span>
+              </div>
+
+              <small>
+                {filteredCountries.length}{" "}
+                {filteredCountries.length === 1
+                  ? "result"
+                  : "results"}
+              </small>
+            </div>
+
+            <div className="allcountry-suggestions-list">
+              {filteredCountries.map((visa) => (
+                <motion.button
+                  type="button"
+                  key={visa._id}
+                  className="allcountry-country"
+                  whileHover={{
+                    x: 5,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  onClick={() =>
+                    handleCountryClick(visa._id)
+                  }
+                >
+                  <span className="allcountry-country-icon">
+                    <FaGlobeAmericas />
+                  </span>
+
+                  <span className="allcountry-country-name">
+                    {visa.country}
+                  </span>
+
+                  <span className="allcountry-country-arrow">
+                    <FaArrowRight />
+                  </span>
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
         )}
 
+        {/* =================================================
+            NO RESULT
+        ================================================= */}
+
+        {searchTerm.trim() &&
+          filteredCountries.length === 0 && (
+            <motion.div
+              className="allcountry-no-results"
+              initial={{
+                opacity: 0,
+                y: 10,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+            >
+              <FaSearchLocation />
+
+              <span>
+                No visa destination found for{" "}
+                <strong>"{searchTerm}"</strong>
+              </span>
+            </motion.div>
+          )}
+
+        {/* =================================================
+            BOTTOM RIBBON
+        ================================================= */}
+
         <motion.div
           className="allcountry-ribbon"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, delay: 0.7 }}
+          initial={{
+            opacity: 0,
+            y: 30,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 1,
+            delay: 0.7,
+          }}
         >
-          ✅ 99.2% Visa Approval Rate | 24×7 Global Assistance
+          <span className="allcountry-ribbon-icon">
+            <FaCheckCircle />
+          </span>
+
+          <span>
+            99.2% Visa Approval Rate
+          </span>
+
+          <i></i>
+
+          <span>
+            24×7 Global Assistance
+          </span>
+
+          <strong>FLYIXO</strong>
         </motion.div>
+      </div>
+
+      {/* =================================================
+          SIDE BRAND
+      ================================================= */}
+
+      <div className="allcountry-side-brand">
+        <span>FLYIXO</span>
+        <i></i>
+        <small>GLOBAL VISA SOLUTIONS</small>
+      </div>
+
+      {/* =================================================
+          SCROLL INDICATOR
+      ================================================= */}
+
+      <div className="allcountry-scroll">
+        <span>EXPLORE</span>
+
+        <div className="allcountry-scroll-line">
+          <i></i>
+        </div>
       </div>
     </section>
   );

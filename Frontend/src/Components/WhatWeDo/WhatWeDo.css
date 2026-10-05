@@ -1,233 +1,1824 @@
-/* WhatWeDo.css */
+/* =========================================================
+   WHAT WE DO - MAIN SECTION
+   ========================================================= */
 
-/* Section styling */
 .whatwedo {
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9f2fb 100%);
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-}
+  width: 100%;
 
-/* Container layout */
-.whatwedo-container {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 1600px;
-  margin: 0 auto;
-  gap: 40px;
-  align-items: center;
-}
-
-/* LEFT side: image & stats */
-.whatwedo-left {
   position: relative;
-  flex: 1 1 500px;
-  min-width: 300px;
+
+  padding: 100px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8f9fa 0%,
+      #f2f7fc 45%,
+      #fff8fa 100%
+    );
+
+  color: #333;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  overflow: hidden;
 }
+
+
+/* =========================================================
+   BACKGROUND CIRCLE
+   ========================================================= */
+
+.whatwedo-bg-circle {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   CIRCLE ONE
+   ========================================================= */
+
+.whatwedo-bg-circle-one {
+  width: 500px;
+
+  height: 500px;
+
+  top: -300px;
+
+  left: -220px;
+
+  background:
+    rgba(13, 110, 253, 0.045);
+}
+
+
+/* =========================================================
+   CIRCLE TWO
+   ========================================================= */
+
+.whatwedo-bg-circle-two {
+  width: 550px;
+
+  height: 550px;
+
+  right: -300px;
+
+  bottom: -320px;
+
+  background:
+    rgba(233, 78, 119, 0.055);
+}
+
+
+/* =========================================================
+   BACKGROUND DOTS
+   ========================================================= */
+
+.whatwedo-bg-dot {
+  position: absolute;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #e94e77;
+
+  opacity: 0.5;
+
+  animation:
+    whatWeDoDotFloat 4s
+    ease-in-out
+    infinite;
+
+  z-index: 0;
+}
+
+
+.whatwedo-bg-dot-one {
+  top: 18%;
+
+  left: 6%;
+}
+
+
+.whatwedo-bg-dot-two {
+  right: 7%;
+
+  bottom: 18%;
+
+  animation-delay: 1.5s;
+}
+
+
+/* =========================================================
+   DOT ANIMATION
+   ========================================================= */
+
+@keyframes whatWeDoDotFloat {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-12px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.whatwedo-container {
+  width: 100%;
+
+  max-width: 1450px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 75px;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.whatwedo-left {
+  width: 100%;
+
+  min-width: 0;
+
+  position: relative;
+}
+
+
+/* =========================================================
+   IMAGE WRAPPER
+   ========================================================= */
+
+.whatwedo-image-wrapper {
+  width: 100%;
+
+  min-height: 520px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   IMAGE FRAME
+   ========================================================= */
+
+.whatwedo-image-frame {
+  width: 88%;
+
+  height: 470px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  border:
+    8px solid #ffffff;
+
+  background: #ffffff;
+
+  transform:
+    rotate(-2deg);
+
+  box-shadow:
+    0 25px 60px
+    rgba(15, 23, 42, 0.15);
+
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+
+/* =========================================================
+   IMAGE FRAME HOVER
+   ========================================================= */
+
+.whatwedo-image-wrapper:hover
+.whatwedo-image-frame {
+  transform:
+    rotate(0deg)
+    translateY(-5px);
+
+  box-shadow:
+    0 30px 70px
+    rgba(15, 23, 42, 0.2);
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
 
 .whatwedo-img {
   width: 100%;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+  height: 100%;
+
+  display: block;
+
   object-fit: cover;
+
+  object-position: center;
+
+  transition:
+    transform 0.6s ease;
 }
 
-/* Stats cards */
-.whatwedo-stats {
-  position: absolute;
-  right: -30px;
-  bottom: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.whatwedo-image-wrapper:hover
+.whatwedo-img {
+  transform:
+    scale(1.06);
 }
+
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.whatwedo-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(13, 110, 253, 0.05),
+      rgba(233, 78, 119, 0.08)
+    );
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   IMAGE BADGE
+   ========================================================= */
+
+.whatwedo-image-badge {
+  position: absolute;
+
+  left: 15px;
+
+  bottom: 35px;
+
+  min-width: 220px;
+
+  padding: 14px 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.8);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 15px 35px
+    rgba(15, 23, 42, 0.14);
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+  z-index: 5;
+
+  animation:
+    imageBadgeFloat 4s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   BADGE ANIMATION
+   ========================================================= */
+
+@keyframes imageBadgeFloat {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-7px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   BADGE ICON
+   ========================================================= */
+
+.whatwedo-badge-icon {
+  width: 42px;
+
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 11px;
+
+  font-size: 18px;
+
+  box-shadow:
+    0 7px 16px
+    rgba(233, 78, 119, 0.25);
+}
+
+
+/* =========================================================
+   BADGE CONTENT
+   ========================================================= */
+
+.whatwedo-badge-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.whatwedo-badge-content strong {
+  color: #182033;
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  line-height: 1.2;
+}
+
+
+.whatwedo-badge-content span {
+  color: #7b8290;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   IMAGE DECORATION
+   ========================================================= */
+
+.whatwedo-image-decoration {
+  width: 48px;
+
+  height: 48px;
+
+  position: absolute;
+
+  top: 5px;
+
+  right: 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #e94e77;
+
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(15, 23, 42, 0.12);
+
+  z-index: 7;
+
+  animation:
+    whatWeDoRotate 8s
+    linear
+    infinite;
+}
+
+
+/* =========================================================
+   DECORATION ROTATION
+   ========================================================= */
+
+@keyframes whatWeDoRotate {
+
+  from {
+    transform:
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.whatwedo-stats {
+  width: 92%;
+
+  margin:
+    -25px auto 0;
+
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  z-index: 10;
+}
+
+
+/* =========================================================
+   STAT CARD
+   ========================================================= */
 
 .stat {
-  background: #ffffff;
-  padding: 15px 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  min-width: 180px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 0;
+
+  padding: 17px 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.98);
+
+  border:
+    1px solid
+    rgba(13, 110, 253, 0.08);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 10px 30px
+    rgba(15, 23, 42, 0.09);
+
   cursor: default;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
+
+
+/* =========================================================
+   STAT HOVER
+   ========================================================= */
 
 .stat:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform:
+    translateY(-7px);
+
+  border-color:
+    rgba(233, 78, 119, 0.18);
+
+  box-shadow:
+    0 18px 40px
+    rgba(15, 23, 42, 0.13);
 }
+
+
+/* =========================================================
+   STAT ICON
+   ========================================================= */
+
+.stat-icon {
+  width: 38px;
+
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0d6efd,
+      #438ff5
+    );
+
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  box-shadow:
+    0 6px 15px
+    rgba(13, 110, 253, 0.2);
+}
+
+
+/* =========================================================
+   STAT CONTENT
+   ========================================================= */
+
+.stat-content {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+/* =========================================================
+   STAT NUMBER
+   ========================================================= */
 
 .stat-number {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #0d6efd;
+  color: #0f172a;
+
+  font-size: 19px;
+
+  font-weight: 800;
+
+  line-height: 1;
 }
+
+
+/* =========================================================
+   STAT LABEL
+   ========================================================= */
 
 .stat-label {
-  font-size: 0.9rem;
-  color: #555;
-  margin-top: 5px;
+  color: #737b89;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  line-height: 1.35;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.2px;
 }
 
-/* RIGHT side: text content */
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
 .whatwedo-right {
-  flex: 1 1 500px;
-  min-width: 300px;
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 10px 0;
 }
+
+
+/* =========================================================
+   SUB TITLE
+   ========================================================= */
 
 .sub-title {
-  font-size: 0.9rem;
-  font-weight: 600;
+  margin-bottom: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
   color: #0d6efd;
-  letter-spacing: 1px;
-  margin-bottom: 10px;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
 }
 
-.title {
-  font-size: 2rem;
-  line-height: 1.3;
-  font-weight: 700;
-  margin-bottom: 30px;
+
+/* =========================================================
+   SUB TITLE LINE
+   ========================================================= */
+
+.sub-title-line {
+  width: 35px;
+
+  height: 3px;
+
+  display: block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0d6efd,
+      #e94e77
+    );
+
+  border-radius: 10px;
 }
+
+
+/* =========================================================
+   MAIN TITLE
+   ========================================================= */
+
+.title {
+  max-width: 720px;
+
+  margin:
+    0 0 14px;
+
+  color: #111827;
+
+  font-size:
+    clamp(
+      32px,
+      3.2vw,
+      46px
+    );
+
+  font-weight: 800;
+
+  line-height: 1.18;
+
+  letter-spacing: -1.2px;
+}
+
+
+/* =========================================================
+   TITLE EMPHASIS
+   ========================================================= */
 
 .title .em {
   color: #e94e77;
+
+  font-weight: 800;
 }
+
+
+/* =========================================================
+   TITLE DECORATION
+   ========================================================= */
+
+.whatwedo-title-decoration {
+  margin-bottom: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.whatwedo-title-decoration span {
+  height: 4px;
+
+  display: block;
+
+  border-radius: 10px;
+}
+
+
+.whatwedo-title-decoration span:nth-child(1) {
+  width: 42px;
+
+  background: #e94e77;
+}
+
+
+.whatwedo-title-decoration span:nth-child(2) {
+  width: 22px;
+
+  background: #ffca28;
+}
+
+
+.whatwedo-title-decoration span:nth-child(3) {
+  width: 8px;
+
+  background: #e94e77;
+}
+
+
+/* =========================================================
+   CONTENT BLOCK
+   ========================================================= */
 
 .content-block {
-  background: #ffffff;
-  padding: 20px 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
-  margin-bottom: 25px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+
+  min-width: 0;
+
+  position: relative;
+
+  padding: 18px 45px 18px 18px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.82);
+
+  border:
+    1px solid
+    rgba(15, 23, 42, 0.06);
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 7px 22px
+    rgba(15, 23, 42, 0.045);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
+
+
+/* =========================================================
+   CONTENT BLOCK TOP LINE
+   ========================================================= */
+
+.content-block::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 4px;
+
+  height: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #e94e77,
+      #0d6efd
+    );
+
+  border-radius:
+    0 0 5px 5px;
+
+  transition:
+    height 0.35s ease;
+}
+
+
+/* =========================================================
+   CONTENT HOVER
+   ========================================================= */
 
 .content-block:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  transform:
+    translateX(5px);
+
+  border-color:
+    rgba(233, 78, 119, 0.12);
+
+  box-shadow:
+    0 13px 32px
+    rgba(15, 23, 42, 0.08);
 }
+
+
+.content-block:hover::before {
+  height: 100%;
+}
+
+
+/* =========================================================
+   CONTENT ICON
+   ========================================================= */
+
+.content-icon {
+  width: 45px;
+
+  height: 45px;
+
+  flex: 0 0 45px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 12px;
+
+  font-size: 18px;
+
+  box-shadow:
+    0 7px 16px
+    rgba(233, 78, 119, 0.2);
+}
+
+
+/* =========================================================
+   CONTENT INNER
+   ========================================================= */
+
+.content-block-inner {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   CONTENT HEADING
+   ========================================================= */
 
 .content-block h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 10px;
-  color: #0d6efd;
+  margin:
+    0 0 7px;
+
+  color: #172033;
+
+  font-size: 18px;
+
+  font-weight: 750;
+
+  line-height: 1.3;
 }
+
+
+/* =========================================================
+   CONTENT PARAGRAPH
+   ========================================================= */
 
 .content-block p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #555;
+  margin: 0;
+
+  color: #687386;
+
+  font-size: 13px;
+
+  font-weight: 450;
+
+  line-height: 1.7;
 }
 
-/* Divider */
+
+/* =========================================================
+   CONTENT NUMBER
+   ========================================================= */
+
+.content-number {
+  position: absolute;
+
+  top: 13px;
+
+  right: 15px;
+
+  color:
+    rgba(233, 78, 119, 0.13);
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
 .divider {
+  width: 100%;
+
   height: 1px;
-  width: 50px;
-  background: #0d6efd;
-  margin: 20px 0;
-  border-radius: 5px;
+
+  margin:
+    11px 0;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
 }
 
-/* Responsive adjustments for WhatWeDo section */
 
-/* Base section remains same, we focus on responsiveness */
-@media (max-width: 1200px) {
+/* =========================================================
+   DIVIDER LINE
+   ========================================================= */
+
+.divider::before {
+  content: "";
+
+  width: 100%;
+
+  height: 1px;
+
+  background:
+    rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   DIVIDER ACCENT
+   ========================================================= */
+
+.divider span {
+  width: 30px;
+
+  height: 3px;
+
+  position: absolute;
+
+  left: 0;
+
+  background: #e94e77;
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   BOTTOM CARD
+   ========================================================= */
+
+.whatwedo-bottom-card {
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 13px 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(233, 78, 119, 0.07),
+      rgba(13, 110, 253, 0.05)
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.1);
+
+  border-radius: 12px;
+}
+
+
+/* =========================================================
+   BOTTOM ICON
+   ========================================================= */
+
+.whatwedo-bottom-icon {
+  width: 35px;
+
+  height: 35px;
+
+  flex: 0 0 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 50%;
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   BOTTOM CONTENT
+   ========================================================= */
+
+.whatwedo-bottom-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.whatwedo-bottom-content strong {
+  color: #172033;
+
+  font-size: 12px;
+
+  font-weight: 750;
+}
+
+
+.whatwedo-bottom-content span {
+  color: #747d8c;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (max-width: 1250px) {
+
+  .whatwedo {
+    padding:
+      85px 25px;
+  }
+
+
   .whatwedo-container {
-    flex-wrap: wrap;
-    gap: 30px;
+    gap: 55px;
   }
 
-  .whatwedo-left,
-  .whatwedo-right {
-    flex: 1 1 45%;
+
+  .whatwedo-image-wrapper {
+    min-height: 500px;
   }
 
-  .whatwedo-stats {
-    right: -20px;
-    bottom: 15px;
+
+  .whatwedo-image-frame {
+    height: 440px;
   }
+
+
+  .title {
+    font-size: 38px;
+  }
+
 
   .stat {
-    min-width: 150px;
-    padding: 12px 20px;
+    padding:
+      14px 10px;
   }
+
+
+  .stat-number {
+    font-size: 17px;
+  }
+
 }
 
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 992px) {
+
+  .whatwedo {
+    padding:
+      70px 20px;
+  }
+
+
   .whatwedo-container {
-    flex-direction: column-reverse;
-    align-items: center;
+    grid-template-columns: 1fr;
+
+    max-width: 760px;
+
+    gap: 45px;
+  }
+
+
+  .whatwedo-left {
+    order: 1;
+  }
+
+
+  .whatwedo-right {
+    order: 2;
+  }
+
+
+  .whatwedo-image-wrapper {
+    max-width: 650px;
+
+    min-height: 500px;
+
+    margin:
+      0 auto;
+  }
+
+
+  .whatwedo-image-frame {
+    width: 88%;
+
+    height: 450px;
+  }
+
+
+  .whatwedo-stats {
+    width: 90%;
+  }
+
+
+  .title {
+    font-size: 36px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+  .whatwedo {
+    padding:
+      60px 15px;
+  }
+
+
+  .whatwedo-container {
     gap: 35px;
   }
 
-  .whatwedo-left,
-  .whatwedo-right {
-    flex: 1 1 100%;
-    min-width: auto;
+
+  .whatwedo-image-wrapper {
+    min-height: 440px;
   }
+
+
+  .whatwedo-image-frame {
+    width: 88%;
+
+    height: 390px;
+
+    border-width: 6px;
+
+    border-radius: 22px;
+  }
+
+
+  .whatwedo-image-badge {
+    left: 0;
+
+    bottom: 25px;
+
+    min-width: 195px;
+
+    padding:
+      11px 13px;
+  }
+
+
+  .whatwedo-badge-icon {
+    width: 38px;
+
+    height: 38px;
+
+    flex-basis: 38px;
+
+    font-size: 16px;
+  }
+
+
+  .whatwedo-image-decoration {
+    width: 40px;
+
+    height: 40px;
+
+    right: 5px;
+
+    font-size: 18px;
+  }
+
 
   .whatwedo-stats {
-    position: static;
-    flex-direction: row;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
+    width: 95%;
+
+    gap: 8px;
   }
 
-  .title {
-    font-size: 1.8rem;
-  }
-
-  .content-block h3 {
-    font-size: 1.15rem;
-  }
-
-  .content-block p {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .whatwedo {
-    padding: 60px 15px;
-  }
-
-  .stat-number {
-    font-size: 1.5rem;
-  }
-
-  .sub-title {
-    font-size: 0.85rem;
-  }
-
-  .title {
-    font-size: 1.6rem;
-  }
-
-  .content-block {
-    padding: 18px 20px;
-  }
-}
-
-@media (max-width: 576px) {
-  .whatwedo {
-    padding: 50px 10px;
-  }
-
-  .whatwedo-stats {
-    flex-direction: column;
-    gap: 12px;
-  }
 
   .stat {
-    min-width: 140px;
-    padding: 10px 15px;
+    padding:
+      12px 8px;
+
+    gap: 7px;
+
+    border-radius: 11px;
   }
 
-  .title {
-    text-align: start;
+
+  .stat-icon {
+    width: 32px;
+
+    height: 32px;
+
+    flex-basis: 32px;
+
+    font-size: 12px;
   }
+
+
+  .stat-number {
+    font-size: 15px;
+  }
+
+
+  .stat-label {
+    font-size: 7px;
+  }
+
+
+  .sub-title {
+    font-size: 10px;
+  }
+
+
+  .title {
+    font-size: 31px;
+
+    letter-spacing: -0.7px;
+  }
+
+
+  .content-block {
+    padding:
+      15px 35px 15px 14px;
+
+    gap: 11px;
+  }
+
+
+  .content-icon {
+    width: 39px;
+
+    height: 39px;
+
+    flex-basis: 39px;
+
+    font-size: 15px;
+
+    border-radius: 10px;
+  }
+
+
+  .content-block h3 {
+    font-size: 16px;
+  }
+
+
+  .content-block p {
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+  .whatwedo {
+    padding:
+      50px 12px;
+  }
+
+
+  .whatwedo-container {
+    gap: 30px;
+  }
+
+
+  .whatwedo-image-wrapper {
+    min-height: 365px;
+  }
+
+
+  .whatwedo-image-frame {
+    width: 90%;
+
+    height: 315px;
+
+    border-width: 5px;
+
+    border-radius: 18px;
+  }
+
+
+  .whatwedo-image-badge {
+    left: 0;
+
+    bottom: 15px;
+
+    min-width: 170px;
+
+    padding:
+      9px 10px;
+
+    gap: 8px;
+
+    border-radius: 10px;
+  }
+
+
+  .whatwedo-badge-icon {
+    width: 32px;
+
+    height: 32px;
+
+    flex-basis: 32px;
+
+    font-size: 13px;
+
+    border-radius: 8px;
+  }
+
+
+  .whatwedo-badge-content strong {
+    font-size: 10px;
+  }
+
+
+  .whatwedo-badge-content span {
+    font-size: 8px;
+  }
+
+
+  .whatwedo-image-decoration {
+    width: 32px;
+
+    height: 32px;
+
+    top: 0;
+
+    right: 0;
+
+    font-size: 14px;
+  }
+
+
+  .whatwedo-stats {
+    width: 100%;
+
+    margin-top: -5px;
+
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+  }
+
+
+  .stat {
+    width: 100%;
+
+    min-height: 58px;
+
+    padding:
+      10px 13px;
+
+    justify-content: flex-start;
+  }
+
+
+  .stat-icon {
+    width: 35px;
+
+    height: 35px;
+
+    flex-basis: 35px;
+  }
+
+
+  .stat-number {
+    font-size: 17px;
+  }
+
+
+  .stat-label {
+    font-size: 9px;
+  }
+
+
+  .whatwedo-right {
+    padding: 0;
+  }
+
+
+  .sub-title {
+    margin-bottom: 12px;
+
+    font-size: 9px;
+
+    letter-spacing: 1.4px;
+  }
+
+
+  .sub-title-line {
+    width: 27px;
+
+    height: 2px;
+  }
+
+
+  .title {
+    font-size: 27px;
+
+    line-height: 1.22;
+
+    letter-spacing: -0.5px;
+  }
+
+
+  .whatwedo-title-decoration {
+    margin-bottom: 22px;
+  }
+
+
+  .content-block {
+    padding:
+      14px 30px 14px 12px;
+
+    gap: 10px;
+
+    border-radius: 12px;
+  }
+
+
+  .content-icon {
+    width: 36px;
+
+    height: 36px;
+
+    flex-basis: 36px;
+
+    font-size: 14px;
+  }
+
+
+  .content-block h3 {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+  }
+
+
+  .content-block p {
+    font-size: 11.5px;
+
+    line-height: 1.6;
+  }
+
+
+  .content-number {
+    top: 10px;
+
+    right: 10px;
+
+    font-size: 18px;
+  }
+
+
+  .divider {
+    margin:
+      8px 0;
+  }
+
+
+  .whatwedo-bottom-card {
+    margin-top: 20px;
+
+    padding:
+      10px 11px;
+  }
+
+
+  .whatwedo-bottom-icon {
+    width: 30px;
+
+    height: 30px;
+
+    flex-basis: 30px;
+
+    font-size: 11px;
+  }
+
+
+  .whatwedo-bottom-content strong {
+    font-size: 10px;
+  }
+
+
+  .whatwedo-bottom-content span {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .whatwedo {
+    padding:
+      42px 10px;
+  }
+
+
+  .whatwedo-image-wrapper {
+    min-height: 315px;
+  }
+
+
+  .whatwedo-image-frame {
+    width: 91%;
+
+    height: 270px;
+  }
+
+
+  .whatwedo-image-badge {
+    min-width: 145px;
+
+    padding:
+      8px 9px;
+  }
+
+
+  .whatwedo-badge-icon {
+    width: 28px;
+
+    height: 28px;
+
+    flex-basis: 28px;
+
+    font-size: 11px;
+  }
+
+
+  .whatwedo-badge-content strong {
+    font-size: 8px;
+  }
+
+
+  .whatwedo-badge-content span {
+    font-size: 7px;
+  }
+
+
+  .whatwedo-image-decoration {
+    width: 28px;
+
+    height: 28px;
+
+    font-size: 12px;
+  }
+
+
+  .title {
+    font-size: 24px;
+  }
+
+
+  .content-block {
+    padding:
+      12px 27px 12px 10px;
+  }
+
+
+  .content-icon {
+    width: 32px;
+
+    height: 32px;
+
+    flex-basis: 32px;
+
+    font-size: 12px;
+  }
+
+
+  .content-block h3 {
+    font-size: 13px;
+  }
+
+
+  .content-block p {
+    font-size: 10.5px;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+  .whatwedo {
+    padding:
+      35px 8px;
+  }
+
+
+  .whatwedo-image-wrapper {
+    min-height: 285px;
+  }
+
+
+  .whatwedo-image-frame {
+    height: 240px;
+  }
+
+
+  .title {
+    font-size: 22px;
+  }
+
+
+  .content-block p {
+    font-size: 10px;
+  }
+
+
+  .stat-label {
+    font-size: 8px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .whatwedo-bg-dot,
+  .whatwedo-image-badge,
+  .whatwedo-image-decoration {
+    animation: none !important;
+  }
+
+
+  .whatwedo-image-frame,
+  .whatwedo-img,
+  .stat,
+  .content-block {
+    transition: none !important;
+  }
+
 }

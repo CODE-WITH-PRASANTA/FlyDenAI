@@ -1,217 +1,1177 @@
-/* =========================
-   Blog Section
-========================= */
+/* =========================================================
+   FLYIXO BLOG SECTION
+   Complete Responsive Styling
+========================================================= */
+
 .blogsec-section {
-  padding: 20px 20px;
+  --blog-navy: #071a2e;
+  --blog-navy-light: #0c2d4b;
+  --blog-pink: #e63975;
+  --blog-pink-light: #ff6fa3;
+  --blog-gold: #f1c40f;
+  --blog-blue: #6fc3ff;
+  --blog-text: #14283c;
+  --blog-muted: #69798a;
+  --blog-white: #ffffff;
+
+  position: relative;
+
+  width: 100%;
+
+  padding: 90px 20px 80px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 8% 10%,
+      rgba(230, 57, 117, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(111, 195, 255, 0.09),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #f8fafc 0%,
+      #f3f6fa 50%,
+      #eef3f8 100%
+    );
+
   font-family: "Poppins", sans-serif;
-  background: #f5f7fa;
-  color: #0c2340;
-  border-radius: 20px; /* Rounded corners for professional look */
-  border: 1.5px solid rgba(111, 195, 255, 0.3); /* subtle light border */
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08), 0 4px 15px rgba(111, 195, 255, 0.2); /* soft shadow + subtle colored glow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  color: var(--blog-text);
+
+  border-radius: 24px;
+
+  border:
+    1px solid
+    rgba(111, 195, 255, 0.18);
+
+  box-shadow:
+    0 20px 60px
+    rgba(7, 26, 46, 0.08);
 }
 
-.blogsec-section:hover {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12), 0 6px 25px rgba(111, 195, 255, 0.25); /* lift effect on hover */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.blogsec-container {
+  position: relative;
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  z-index: 5;
 }
 
+/* =========================================================
+   BACKGROUND DECORATIONS
+========================================================= */
+
+.blogsec-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+
+  filter: blur(50px);
+}
+
+.blogsec-bg-one {
+  width: 430px;
+  height: 430px;
+
+  top: -220px;
+  left: -220px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(230, 57, 117, 0.12),
+      transparent 70%
+    );
+}
+
+.blogsec-bg-two {
+  width: 420px;
+  height: 420px;
+
+  right: -210px;
+  bottom: -210px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(111, 195, 255, 0.12),
+      transparent 70%
+    );
+}
+
+/* =========================================================
+   GRID PATTERN
+========================================================= */
+
+.blogsec-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.22;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(12, 45, 75, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(12, 45, 75, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 95%
+    );
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .blogsec-header {
+  max-width: 850px;
+
+  margin: 0 auto 65px;
+
   text-align: center;
-  margin-bottom: 70px;
 }
 
-.blogsec-subtitle {
-  color: #777;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 10px;
-  letter-spacing: 1.5px;
+/* Eyebrow */
+
+.blogsec-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 18px;
+
+  margin-bottom: 16px;
+
+  border:
+    1px solid
+    rgba(230, 57, 117, 0.18);
+
+  border-radius: 50px;
+
+  background:
+    rgba(230, 57, 117, 0.06);
+
+  color: var(--blog-pink);
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
   text-transform: uppercase;
 }
 
-.blogsec-title {
-  font-size: 3rem;
+/* Subtitle */
+
+.blogsec-subtitle {
+  margin: 0 0 9px;
+
+  color: #778493;
+
+  font-size: 0.72rem;
+
   font-weight: 700;
-  color: #0c2340;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+/* Main Title */
+
+.blogsec-title {
+  margin: 0;
+
+  color: var(--blog-navy);
+
+  font-size: clamp(
+    2.1rem,
+    4.5vw,
+    3.3rem
+  );
+
+  font-weight: 700;
+
   line-height: 1.2;
+
+  letter-spacing: -1px;
 }
 
 .blogsec-title span {
-  color: #e63975;
-  font-style: italic;
-  background: linear-gradient(90deg, #e63975, #f1c40f, #6fc3ff);
+  display: inline-block;
+
+  color: transparent;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blog-pink),
+      var(--blog-gold),
+      var(--blog-blue)
+    );
+
+  background-clip: text;
+
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+  font-style: italic;
+
+  font-weight: 800;
 }
 
-/* =========================
-   Blog Grid & Cards
-========================= */
+/* Header Description */
+
+.blogsec-header-description {
+  max-width: 680px;
+
+  margin: 18px auto 0;
+
+  color: #68798b;
+
+  font-size: 0.92rem;
+
+  line-height: 1.8;
+}
+
+/* Heading Line */
+
+.blogsec-heading-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 24px;
+}
+
+.blogsec-heading-line span {
+  width: 32px;
+  height: 2px;
+
+  background:
+    rgba(12, 45, 75, 0.18);
+
+  border-radius: 10px;
+}
+
+.blogsec-heading-line i {
+  display: block;
+
+  width: 68px;
+  height: 5px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--blog-pink),
+      var(--blog-gold)
+    );
+
+  box-shadow:
+    0 4px 15px
+    rgba(230, 57, 117, 0.2);
+}
+
+/* =========================================================
+   BLOG GRID
+========================================================= */
+
 .blogsec-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 45px;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 25px;
+
+  align-items: stretch;
 }
 
+/* =========================================================
+   BLOG CARD
+========================================================= */
+
 .blogsec-card {
+  position: relative;
+
   display: flex;
+
   flex-direction: column;
-  background: #fff;
-  border-radius: 20px;
+
+  min-width: 0;
+
+  background:
+    rgba(255, 255, 255, 0.98);
+
+  border:
+    1px solid
+    rgba(12, 45, 75, 0.08);
+
+  border-radius: 22px;
+
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+
+  box-shadow:
+    0 15px 40px
+    rgba(7, 26, 46, 0.08);
+
+  opacity: 0;
+
+  animation:
+    blogCardIn
+    0.7s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    var(--blog-delay)
+    forwards;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+/* Card Top Accent */
+
+.blogsec-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 12%;
+
+  width: 76%;
+  height: 3px;
+
+  z-index: 10;
+
+  border-radius: 0 0 10px 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--blog-pink),
+      var(--blog-gold),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.4s ease,
+    width 0.4s ease,
+    left 0.4s ease;
+}
+
+.blogsec-card:hover::before {
+  left: 5%;
+
+  width: 90%;
+
+  opacity: 1;
 }
 
 .blogsec-card:hover {
-  box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+  transform: translateY(-12px);
+
+  border-color:
+    rgba(230, 57, 117, 0.16);
+
+  box-shadow:
+    0 30px 65px
+    rgba(7, 26, 46, 0.15),
+    0 8px 25px
+    rgba(230, 57, 117, 0.06);
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.blogsec-img {
+  position: relative;
+
+  width: 100%;
+
+  height: 245px;
+
+  overflow: hidden;
+
+  background:
+    #dfe6ed;
 }
 
 /* Image */
-.blogsec-img {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-}
 
-.blogsec-img img {
+.blogsec-image {
+  display: block;
+
   width: 100%;
-  height: 230px;
+  height: 100%;
+
   object-fit: cover;
-  transition: transform 0.5s ease, filter 0.5s ease;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s ease;
 }
 
-.blogsec-img:hover img {
-  filter: brightness(1.1) saturate(1.1);
+.blogsec-card:hover
+  .blogsec-image {
+  transform: scale(1.09);
+
+  filter:
+    brightness(1.05)
+    saturate(1.1);
 }
 
-/* Calendar badge */
+/* Image Overlay */
+
+.blogsec-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(7, 26, 46, 0.02) 20%,
+      rgba(7, 26, 46, 0.5) 100%
+    );
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.4s ease;
+}
+
+.blogsec-card:hover
+  .blogsec-image-overlay {
+  opacity: 0.85;
+}
+
+/* =========================================================
+   IMAGE TAG
+========================================================= */
+
+.blogsec-image-tag {
+  position: absolute;
+
+  top: 15px;
+  left: 15px;
+
+  padding: 6px 11px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 30px;
+
+  background:
+    rgba(7, 26, 46, 0.65);
+
+  color: #ffffff;
+
+  font-size: 0.56rem;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  backdrop-filter: blur(10px);
+
+  z-index: 4;
+}
+
+/* =========================================================
+   DATE BADGE
+========================================================= */
+
 .blogsec-date {
   position: absolute;
-  bottom: -25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(135deg, #e63975, #f1c40f, #6fc3ff);
-  color: #fff;
-  padding: 18px 36px;
-  border-radius: 15px;
-  font-weight: 600;
+
+  left: 20px;
+  bottom: 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 67px;
+
+  padding: 9px 12px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blog-pink),
+      #c72d5d
+    );
+
+  color: #ffffff;
+
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  box-shadow:
+    0 10px 25px
+    rgba(7, 26, 46, 0.2);
+
+  z-index: 5;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-.blogsec-card:hover .blogsec-date {
-  transform: translateX(-50%) translateY(-7px) scale(1.08);
-  box-shadow: 0 15px 35px rgba(230, 57, 117, 0.5);
+.blogsec-card:hover
+  .blogsec-date {
+  transform:
+    translateY(-6px)
+    scale(1.06);
+
+  box-shadow:
+    0 15px 35px
+    rgba(230, 57, 117, 0.4);
 }
 
 .blogsec-date h4 {
   margin: 0;
-  font-size: 1.4rem;
+
+  font-size: 1.35rem;
+
+  font-weight: 800;
+
+  line-height: 1;
 }
 
 .blogsec-date p {
-  margin: 0;
-  font-size: 0.9rem;
-  font-weight: 500;
+  margin: 4px 0 0;
+
+  font-size: 0.68rem;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
 }
 
-/* Text Info */
+/* =========================================================
+   BLOG INFO
+========================================================= */
+
 .blogsec-info {
-  padding: 45px 25px 35px;
   display: flex;
+
+  flex: 1;
+
   flex-direction: column;
-  gap: 18px;
+
+  padding: 27px 24px 23px;
+}
+
+/* =========================================================
+   META
+========================================================= */
+
+.blogsec-meta-wrapper {
+  margin-bottom: 12px;
 }
 
 .blogsec-meta {
-  font-size: 0.85rem;
-  color: #888;
-  font-weight: 500;
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  margin: 0;
+
+  color: #8a96a3;
+
+  font-size: 0.65rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.7px;
+
+  line-height: 1.5;
+
   text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
+
+.blogsec-meta-author {
+  color:
+    var(--blog-pink);
+}
+
+.blogsec-meta-separator {
+  color:
+    #b8c0c8;
+}
+
+/* =========================================================
+   POST TITLE
+========================================================= */
 
 .blogsec-post-title {
-  font-size: 1.6rem;
+  min-height: 66px;
+
+  margin: 0 0 13px;
+
+  color:
+    var(--blog-navy);
+
+  font-size: 1.18rem;
+
   font-weight: 700;
-  background: linear-gradient(90deg, #e63975, #f1c40f, #6fc3ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.3;
-  transition: all 0.3s ease;
+
+  line-height: 1.4;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
-.blogsec-card:hover .blogsec-post-title {
-  text-shadow: 0 4px 12px rgba(230, 57, 117,0.3);
+.blogsec-card:hover
+  .blogsec-post-title {
+  color:
+    var(--blog-pink);
 }
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .blogsec-desc {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: #555;
+  margin: 0;
+
+  color:
+    #69798a;
+
+  font-size: 0.82rem;
+
+  line-height: 1.75;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
+/* =========================================================
+   CARD BOTTOM
+========================================================= */
+
+.blogsec-card-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: auto;
+
+  padding-top: 22px;
+}
+
+/* =========================================================
+   READ MORE
+========================================================= */
+
 .blogsec-link {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #e63975;
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color:
+    var(--blog-pink);
+
+  font-size: 0.8rem;
+
+  font-weight: 700;
+
   text-decoration: none;
-  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+
+  transition:
+    color 0.3s ease,
+    gap 0.3s ease;
 }
 
 .blogsec-link:hover {
-  transform: translateX(6px);
-  text-shadow: 0 2px 8px rgba(230,57,117,0.4);
-  color: #f1c40f;
+  color:
+    var(--blog-navy);
+
+  gap: 14px;
 }
 
-/* =========================
-   Responsive
-========================= */
-@media (max-width: 992px) {
-  .blogsec-title {
-    font-size: 2.5rem;
+.blogsec-link-arrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(230, 57, 117, 0.08);
+
+  font-size: 0.8rem;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.blogsec-link:hover
+  .blogsec-link-arrow {
+  transform: translateX(3px);
+
+  background:
+    var(--blog-pink);
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   BRAND MARK
+========================================================= */
+
+.blogsec-brand-mark {
+  color:
+    rgba(12, 45, 75, 0.25);
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  transition:
+    color 0.3s ease;
+}
+
+.blogsec-card:hover
+  .blogsec-brand-mark {
+  color:
+    rgba(230, 57, 117, 0.4);
+}
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.blogsec-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 55px;
+}
+
+.blogsec-bottom-line {
+  width: 80px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(12, 45, 75, 0.2)
+    );
+}
+
+.blogsec-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(12, 45, 75, 0.2),
+      transparent
+    );
+}
+
+.blogsec-bottom p {
+  margin: 0;
+
+  color:
+    #8a96a3;
+
+  font-size: 0.76rem;
+
+  text-align: center;
+}
+
+.blogsec-bottom strong {
+  color:
+    var(--blog-pink);
+}
+
+/* =========================================================
+   ANIMATION
+========================================================= */
+
+@keyframes blogCardIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (max-width: 1250px) {
+  .blogsec-section {
+    padding: 80px 18px 70px;
+  }
+
+  .blogsec-grid {
+    gap: 20px;
+  }
+
+  .blogsec-info {
+    padding: 25px 20px 22px;
   }
 
   .blogsec-post-title {
-    font-size: 1.4rem;
+    font-size: 1.08rem;
+  }
+
+  .blogsec-desc {
+    font-size: 0.78rem;
   }
 }
+
+/* =========================================================
+   LAPTOP / TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+  .blogsec-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+  }
+
+  .blogsec-img {
+    height: 240px;
+  }
+
+  .blogsec-post-title {
+    min-height: auto;
+
+    font-size: 1.25rem;
+  }
+
+  .blogsec-desc {
+    font-size: 0.84rem;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 768px) {
-  .blogsec-grid {
-    gap: 35px;
-  }
-
-  .blogsec-img img {
-    height: 200px;
-  }
-
-  .blogsec-date {
-    padding: 14px 28px;
-  }
-}
-
-@media (max-width: 480px) {
   .blogsec-section {
-    padding: 60px 15px;
+    padding: 65px 15px 55px;
+
+    border-radius: 18px;
+  }
+
+  .blogsec-header {
+    margin-bottom: 45px;
+  }
+
+  .blogsec-eyebrow {
+    padding: 7px 14px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1.5px;
   }
 
   .blogsec-title {
     font-size: 2rem;
   }
 
-  .blogsec-post-title {
-    font-size: 1.2rem;
+  .blogsec-header-description {
+    font-size: 0.83rem;
+
+    line-height: 1.7;
+  }
+
+  .blogsec-grid {
+    gap: 25px;
+  }
+
+  .blogsec-img {
+    height: 220px;
+  }
+
+  .blogsec-info {
+    padding: 25px 22px 22px;
+  }
+
+  .blogsec-card-bottom {
+    padding-top: 20px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+  .blogsec-section {
+    padding: 55px 12px 45px;
+  }
+
+  .blogsec-header {
+    margin-bottom: 35px;
+  }
+
+  .blogsec-subtitle {
+    font-size: 0.62rem;
+  }
+
+  .blogsec-title {
+    font-size: 1.7rem;
+
+    line-height: 1.25;
+  }
+
+  .blogsec-header-description {
+    font-size: 0.78rem;
+  }
+
+  .blogsec-heading-line {
+    margin-top: 19px;
+  }
+
+  .blogsec-heading-line span {
+    width: 24px;
+  }
+
+  .blogsec-heading-line i {
+    width: 50px;
+  }
+
+  .blogsec-grid {
+    grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .blogsec-card {
+    border-radius: 19px;
+  }
+
+  .blogsec-img {
+    height: 230px;
   }
 
   .blogsec-date {
-    bottom: -20px;
-    padding: 12px 24px;
+    left: 15px;
+    bottom: 15px;
+
+    min-width: 62px;
+
+    padding: 8px 10px;
+  }
+
+  .blogsec-date h4 {
+    font-size: 1.2rem;
+  }
+
+  .blogsec-date p {
+    font-size: 0.62rem;
+  }
+
+  .blogsec-image-tag {
+    top: 12px;
+    left: 12px;
+
+    padding: 5px 9px;
+
+    font-size: 0.5rem;
+  }
+
+  .blogsec-info {
+    padding: 23px 18px 20px;
+  }
+
+  .blogsec-meta {
+    font-size: 0.58rem;
+  }
+
+  .blogsec-post-title {
+    margin-bottom: 11px;
+
+    font-size: 1.12rem;
+
+    line-height: 1.4;
+  }
+
+  .blogsec-desc {
+    font-size: 0.79rem;
+
+    line-height: 1.7;
+  }
+
+  .blogsec-link {
+    font-size: 0.75rem;
+  }
+
+  .blogsec-brand-mark {
+    font-size: 0.6rem;
+  }
+
+  .blogsec-bottom {
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 35px;
+  }
+
+  .blogsec-bottom-line {
+    width: 60px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .blogsec-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .blogsec-title {
+    font-size: 1.45rem;
+  }
+
+  .blogsec-header-description {
+    font-size: 0.73rem;
+  }
+
+  .blogsec-img {
+    height: 205px;
+  }
+
+  .blogsec-info {
+    padding: 20px 15px 18px;
+  }
+
+  .blogsec-post-title {
+    font-size: 1rem;
+  }
+
+  .blogsec-desc {
+    font-size: 0.74rem;
+  }
+
+  .blogsec-card-bottom {
+    gap: 6px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .blogsec-card,
+  .blogsec-image,
+  .blogsec-date,
+  .blogsec-link,
+  .blogsec-link-arrow {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .blogsec-card {
+    opacity: 1;
   }
 }
