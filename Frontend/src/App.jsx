@@ -33,6 +33,7 @@ import Dummyticketsection from "./Pages/Dummyticketsection/Dummyticketsection";
 import DummyTicketBooking from "./Pages/DummyTicketBooking/DummyTicketBooking";
 import DummyTicketSuccess from "./Components/DummyTicketSuccess/DummyTicketSuccess";
 import PaymentFailed from "./Components/PaymentFailed/PaymentFailed";
+import GlobalMap from "./Components/GlobalMap/GlobalMap";
 
 function App() {
   const navigate = useNavigate();
@@ -49,6 +50,8 @@ function App() {
       <PageWrapper>
         <Navbar />
         <Routes>
+
+          <Route path="/globalmap" element={<GlobalMap />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/services" element={<Services />} />
