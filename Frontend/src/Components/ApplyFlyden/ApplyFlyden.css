@@ -1,279 +1,1203 @@
-/* 🌟 Section */
-.ApplyFlyden-section {
-  background: linear-gradient(135deg, #fff8f3, #ffe9dc);
-  padding: 20px 20px;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
+/* =========================================================
+   APPLY FLYIXO SECTION
+   ========================================================= */
+
+.apply-flyixo-section {
+  --apply-primary: #e94e77;
+  --apply-primary-dark: #c93661;
+  --apply-primary-light: #ff8eaa;
+
+  --apply-navy: #082b49;
+  --apply-navy-dark: #041c31;
+
+  --apply-text: #263445;
+  --apply-muted: #687789;
+
+  --apply-white: #ffffff;
+
   position: relative;
+  width: 100%;
+  padding: 90px 30px;
+
   overflow: hidden;
 
-  /* ✨ New Additions */
-  border: 3px solid transparent;
-  border-radius: 20px;
-  background-clip: padding-box, border-box;
-  background-origin: padding-box, border-box;
-  background-image: 
-    linear-gradient(135deg, #fff8f3, #ffe9dc), /* inner bg */
-    linear-gradient(135deg, #ff758c, #ffb199, #ffe9dc); /* border gradient */
-  box-shadow: 0 10px 30px rgba(233, 78, 119, 0.15);
+  text-align: center;
+
+  font-family: "Poppins", sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(233, 78, 119, 0.09),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(54, 200, 212, 0.09),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffaf7 0%,
+      #fff2ee 50%,
+      #fff9f6 100%
+    );
+
+  border: 1px solid rgba(233, 78, 119, 0.15);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(16, 35, 61, 0.08);
+
+  isolation: isolate;
 }
 
+/* =========================================================
+   BACKGROUND DECORATIONS
+   ========================================================= */
 
-/* ✨ Title */
-.ApplyFlyden-title {
-  font-size: 2.6rem;
+.apply-flyixo-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+.apply-flyixo-bg-one {
+  width: 360px;
+  height: 360px;
+
+  top: -180px;
+  left: -150px;
+
+  background: rgba(233, 78, 119, 0.07);
+
+  animation:
+    apply-flyixo-float-one
+    8s
+    ease-in-out
+    infinite;
+}
+
+.apply-flyixo-bg-two {
+  width: 320px;
+  height: 320px;
+
+  right: -150px;
+  bottom: -160px;
+
+  background: rgba(54, 200, 212, 0.07);
+
+  animation:
+    apply-flyixo-float-two
+    9s
+    ease-in-out
+    infinite;
+}
+
+/* =========================================================
+   GRID BACKGROUND
+   ========================================================= */
+
+.apply-flyixo-grid {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  opacity: 0.3;
+
+  background-image:
+    linear-gradient(
+      rgba(8, 43, 73, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(8, 43, 73, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 35px 35px;
+}
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.apply-flyixo-container {
+  position: relative;
+
+  width: 100%;
+  max-width: 1320px;
+
+  margin: 0 auto;
+
+  z-index: 2;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.apply-flyixo-header {
+  max-width: 850px;
+
+  margin: 0 auto 70px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.apply-flyixo-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--apply-primary);
+
+  font-size: 0.78rem;
+
   font-weight: 800;
-  margin-bottom: 50px;
-  background: linear-gradient(90deg, #ff758c, #e94e77);
+
+  letter-spacing: 2.8px;
+
+  text-transform: uppercase;
+}
+
+.apply-flyixo-eyebrow-line {
+  display: block;
+
+  width: 32px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      var(--apply-primary-light)
+    );
+}
+
+/* =========================================================
+   MAIN TITLE
+   ========================================================= */
+
+.apply-flyixo-title {
+  position: relative;
+
+  margin: 0;
+
+  color: var(--apply-navy);
+
+  font-size: clamp(
+    2.2rem,
+    4vw,
+    3.25rem
+  );
+
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.apply-flyixo-title span {
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      #ff6f98
+    );
+
   -webkit-background-clip: text;
+  background-clip: text;
+
   -webkit-text-fill-color: transparent;
 }
 
-/* 🧭 Timeline Container */
-.ApplyFlyden-timeline {
+.apply-flyixo-title::after {
+  content: "";
+
+  display: block;
+
+  width: 72px;
+  height: 4px;
+
+  margin: 18px auto 0;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      var(--apply-primary-light)
+    );
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.apply-flyixo-description {
+  max-width: 680px;
+
+  margin: 22px auto 0;
+
+  color: var(--apply-muted);
+
+  font-size: 0.98rem;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   TIMELINE
+   ========================================================= */
+
+.apply-flyixo-timeline {
+  position: relative;
+
+  width: 100%;
+
   display: flex;
-  justify-content: center;
+
   align-items: flex-start;
-  gap: 120px;
-  position: relative;
-  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 0;
 }
 
-/* 🪄 Each Step */
-.ApplyFlyden-timeline-step {
+/* =========================================================
+   TIMELINE STEP
+   ========================================================= */
+
+.apply-flyixo-timeline-step {
   position: relative;
-  width: 280px;
+
+  width: 31%;
+
+  max-width: 360px;
+
+  z-index: 3;
+}
+
+/* =========================================================
+   STEP CARD
+   ========================================================= */
+
+.apply-flyixo-step-card {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 340px;
+
+  padding: 35px 28px 28px;
+
+  overflow: hidden;
+
   text-align: center;
-  z-index: 2;
+
+  border: 1px solid rgba(233, 78, 119, 0.14);
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 15px 45px rgba(8, 43, 73, 0.08);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  transition:
+    border-color 0.35s ease,
+    background 0.35s ease;
 }
 
-/* 🎯 Icon Circle */
-.ApplyFlyden-step-icon {
+/* Top Gradient */
+
+.apply-flyixo-step-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      #ff9bb3,
+      #36c8d4
+    );
+}
+
+/* Decorative Circle */
+
+.apply-flyixo-step-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  top: -100px;
+  right: -90px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.05);
+
+  pointer-events: none;
+}
+
+.apply-flyixo-step-card:hover {
+  border-color:
+    rgba(233, 78, 119, 0.35);
+
+  background: #ffffff;
+}
+
+/* =========================================================
+   STEP ICON
+   ========================================================= */
+
+.apply-flyixo-step-icon {
   position: relative;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 25px;
+
+  width: 105px;
+  height: 105px;
+
+  margin: 0 auto 26px;
+
   display: flex;
-  justify-content: center;
+
   align-items: center;
+  justify-content: center;
 }
 
-.ApplyFlyden-step-icon svg {
-  font-size: 42px;
-  color: #fff;
+/* Icon Glow */
+
+.apply-flyixo-step-glow {
+  position: absolute;
+
+  width: 105px;
+  height: 105px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.13);
+
+  filter: blur(8px);
+
+  animation:
+    apply-flyixo-pulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+/* Icon Circle */
+
+.apply-flyixo-step-ring {
+  position: relative;
+
+  width: 86px;
+  height: 86px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 5px solid
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  font-size: 34px;
+
+  z-index: 2;
+
+  box-shadow:
+    0 12px 28px
+      rgba(233, 78, 119, 0.25);
+}
+
+/* Step 1 */
+
+.apply-flyixo-ring-1 {
+  background:
+    linear-gradient(
+      135deg,
+      #ff758c,
+      #ff9a9e
+    );
+}
+
+/* Step 2 */
+
+.apply-flyixo-ring-2 {
+  background:
+    linear-gradient(
+      135deg,
+      #667eea,
+      #64b5f6
+    );
+}
+
+/* Step 3 */
+
+.apply-flyixo-ring-3 {
+  background:
+    linear-gradient(
+      135deg,
+      #36c8d4,
+      #4facfe
+    );
+}
+
+/* =========================================================
+   STEP NUMBER
+   ========================================================= */
+
+.apply-flyixo-step-count {
+  position: absolute;
+
+  right: -3px;
+  bottom: -2px;
+
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid #ffffff;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    var(--apply-navy);
+
+  font-size: 0.65rem;
+
+  font-weight: 800;
+
+  z-index: 4;
+
+  box-shadow:
+    0 5px 15px
+      rgba(8, 43, 73, 0.25);
+}
+
+/* =========================================================
+   STEP LABEL
+   ========================================================= */
+
+.apply-flyixo-step-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  color:
+    var(--apply-primary);
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+/* =========================================================
+   STEP TITLE
+   ========================================================= */
+
+.apply-flyixo-step-content h3 {
+  max-width: 280px;
+
+  margin: 0 auto 12px;
+
+  color:
+    var(--apply-navy);
+
+  font-size: 1.18rem;
+
+  line-height: 1.45;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   STEP DESCRIPTION
+   ========================================================= */
+
+.apply-flyixo-step-content p {
+  max-width: 280px;
+
+  margin: 0 auto;
+
+  color:
+    var(--apply-muted);
+
+  font-size: 0.88rem;
+
+  line-height: 1.75;
+}
+
+/* =========================================================
+   CONTENT LINE
+   ========================================================= */
+
+.apply-flyixo-content-line {
+  width: 45px;
+  height: 3px;
+
+  margin: 20px auto 15px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      var(--apply-primary-light)
+    );
+}
+
+/* =========================================================
+   STEP FOOTER
+   ========================================================= */
+
+.apply-flyixo-step-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  color:
+    var(--apply-navy);
+
+  font-size: 0.72rem;
+
+  font-weight: 700;
+}
+
+.apply-flyixo-step-footer svg {
+  color:
+    var(--apply-primary);
+
+  font-size: 0.7rem;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.apply-flyixo-step-card:hover
+  .apply-flyixo-step-footer svg {
+  transform:
+    translateX(5px);
+}
+
+/* =========================================================
+   CONNECTOR
+   ========================================================= */
+
+.apply-flyixo-timeline-connector {
+  position: relative;
+
+  width: 80px;
+  height: 4px;
+
+  margin-top: 105px;
+
+  flex-shrink: 0;
+
+  transform-origin: left center;
+
   z-index: 2;
 }
 
-/* 💫 Glowing Gradient Ring */
-.ApplyFlyden-step-ring {
+/* Connector Line */
+
+.apply-flyixo-connector-line {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff758c, #ffb199);
-  box-shadow: 0 6px 25px rgba(255, 117, 140, 0.5);
-  animation: pulse 2s infinite ease-in-out;
-  z-index: 1;
+
+  top: 50%;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--apply-primary),
+      #ffb199,
+      #36c8d4
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    apply-flyixo-flow
+    4s
+    linear
+    infinite;
 }
 
-/* 🔢 Step Number */
-.ApplyFlyden-step-count {
+/* Connector Dot */
+
+.apply-flyixo-connector-dot {
   position: absolute;
-  bottom: -10px;
-  right: -10px;
-  width: 26px;
-  height: 26px;
+
+  top: 50%;
+  left: 50%;
+
+  width: 9px;
+  height: 9px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border: 2px solid
+    var(--apply-primary);
+
   border-radius: 50%;
-  background: #e94e77;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 12px
+      rgba(233, 78, 119, 0.35);
+}
+
+/* Connector Arrow */
+
+.apply-flyixo-connector-arrow {
+  position: absolute;
+
+  top: 50%;
+  right: -5px;
+
+  width: 24px;
+  height: 24px;
+
   display: flex;
-  justify-content: center;
+
   align-items: center;
-  box-shadow: 0 4px 12px rgba(233, 78, 119, 0.4);
+  justify-content: center;
+
+  transform:
+    translateY(-50%);
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    var(--apply-primary);
+
+  font-size: 0.55rem;
+
+  box-shadow:
+    0 5px 12px
+      rgba(233, 78, 119, 0.25);
 }
 
-/* 📝 Text */
-.ApplyFlyden-step-content h3 {
-  font-size: 1.2rem;
+/* =========================================================
+   TRUST AREA
+   ========================================================= */
+
+.apply-flyixo-trust {
+  width: fit-content;
+
+  max-width: 100%;
+
+  margin: 55px auto 0;
+
+  padding: 13px 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.13);
+
+  border-radius: 50px;
+
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 10px 30px
+      rgba(8, 43, 73, 0.05);
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+}
+
+.apply-flyixo-trust-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color:
+    var(--apply-navy);
+
+  font-size: 0.72rem;
+
   font-weight: 700;
-  color: #222;
-  margin-bottom: 10px;
-}
-.ApplyFlyden-step-content p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.6;
-  max-width: 240px;
-  margin: 0 auto;
+
+  white-space: nowrap;
 }
 
-/* 🔹 Connecting Line Between Steps */
-.ApplyFlyden-timeline-line {
-  position: absolute;
-  top: 45px;
-  left: calc(100% + 5px);
-  width: 120px;
-  height: 5px;
-  background: linear-gradient(90deg, #ff758c, #feb47b, #ffb199);
-  border-radius: 3px;
-  animation: flow 6s linear infinite;
-  background-size: 300%;
+.apply-flyixo-trust-item svg {
+  color:
+    var(--apply-primary);
+
+  font-size: 0.8rem;
 }
 
-/* 🔁 Animations */
-@keyframes flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.apply-flyixo-trust-divider {
+  width: 1px;
+  height: 20px;
+
+  background:
+    rgba(8, 43, 73, 0.14);
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.1); opacity: 0.7; }
-  100% { transform: scale(1); opacity: 0.9; }
-}
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
 
-/* 🎨 Gradient Variation */
-.ApplyFlyden-timeline-step:nth-child(1) .ApplyFlyden-step-ring {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-}
-.ApplyFlyden-timeline-step:nth-child(2) .ApplyFlyden-step-ring {
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
-}
-.ApplyFlyden-timeline-step:nth-child(3) .ApplyFlyden-step-ring {
-  background: linear-gradient(135deg, #89f7fe, #66a6ff);
-}
-
-/* 📱 Laptop (max-width: 1200px) */
-@media (max-width: 1200px) {
-  .ApplyFlyden-section {
-    padding: 70px 40px;
+@keyframes apply-flyixo-pulse {
+  0%,
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
   }
-  .ApplyFlyden-title {
-    font-size: 2.3rem;
-    margin-bottom: 60px;
-  }
-  .ApplyFlyden-timeline {
-    gap: 80px;
-  }
-  .ApplyFlyden-timeline-step {
-    width: 240px;
-  }
-  .ApplyFlyden-step-content h3 {
-    font-size: 1.1rem;
+
+  50% {
+    transform: scale(1.1);
+    opacity: 0.35;
   }
 }
 
-/* 💻 Tablet Landscape (max-width: 992px) */
-@media (max-width: 992px) {
-  .ApplyFlyden-section {
-    padding: 60px 30px;
+@keyframes apply-flyixo-flow {
+  0% {
+    background-position: 0% 50%;
   }
-  .ApplyFlyden-title {
-    font-size: 2.1rem;
-    margin-bottom: 50px;
+
+  100% {
+    background-position: 200% 50%;
   }
-  .ApplyFlyden-timeline {
-    gap: 70px;
-    flex-wrap: wrap;
-    justify-content: center;
+}
+
+@keyframes apply-flyixo-float-one {
+  0%,
+  100% {
+    transform:
+      translate(0, 0);
   }
-  .ApplyFlyden-timeline-line {
-    width: 80px;
+
+  50% {
+    transform:
+      translate(20px, 25px);
   }
-  .ApplyFlyden-timeline-step {
-    width: 220px;
+}
+
+@keyframes apply-flyixo-float-two {
+  0%,
+  100% {
+    transform:
+      translate(0, 0);
   }
-  .ApplyFlyden-step-icon {
+
+  50% {
+    transform:
+      translate(-20px, -20px);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (max-width: 1250px) {
+  .apply-flyixo-section {
+    padding: 80px 25px;
+  }
+
+  .apply-flyixo-timeline-step {
+    max-width: 320px;
+  }
+
+  .apply-flyixo-step-card {
+    min-height: 330px;
+
+    padding:
+      32px 22px 25px;
+  }
+
+  .apply-flyixo-timeline-connector {
+    width: 55px;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .apply-flyixo-section {
+    padding: 75px 25px;
+  }
+
+  .apply-flyixo-header {
+    margin-bottom: 55px;
+  }
+
+  .apply-flyixo-timeline-step {
+    width: 30%;
+  }
+
+  .apply-flyixo-timeline-connector {
+    width: 35px;
+  }
+
+  .apply-flyixo-step-content h3 {
+    font-size: 1.08rem;
+  }
+
+  .apply-flyixo-step-content p {
+    font-size: 0.84rem;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+  .apply-flyixo-timeline {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+  }
+
+  .apply-flyixo-timeline-step {
+    width: 100%;
+
+    max-width: none;
+  }
+
+  .apply-flyixo-timeline-connector {
+    display: none;
+  }
+
+  .apply-flyixo-step-card {
+    min-height: 315px;
+  }
+
+  .apply-flyixo-trust {
+    margin-top: 45px;
+  }
+}
+
+/* =========================================================
+   MOBILE TABLET
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .apply-flyixo-section {
+    padding: 60px 18px;
+
+    border-radius: 20px;
+  }
+
+  .apply-flyixo-header {
+    margin-bottom: 42px;
+  }
+
+  .apply-flyixo-eyebrow {
+    font-size: 0.68rem;
+
+    letter-spacing: 2px;
+  }
+
+  .apply-flyixo-eyebrow-line {
+    width: 20px;
+  }
+
+  .apply-flyixo-title {
+    font-size: 2rem;
+
+    letter-spacing: -0.5px;
+  }
+
+  .apply-flyixo-description {
+    font-size: 0.86rem;
+
+    line-height: 1.7;
+  }
+
+  .apply-flyixo-timeline {
+    grid-template-columns: 1fr;
+
+    max-width: 400px;
+
+    margin: 0 auto;
+
+    gap: 22px;
+  }
+
+  .apply-flyixo-step-card {
+    min-height: auto;
+
+    padding: 30px 24px;
+  }
+
+  .apply-flyixo-trust {
+    width: 100%;
+
+    flex-direction: column;
+
+    gap: 11px;
+
+    padding: 18px;
+
+    border-radius: 20px;
+  }
+
+  .apply-flyixo-trust-divider {
+    width: 60px;
+    height: 1px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .apply-flyixo-section {
+    padding: 50px 14px;
+  }
+
+  .apply-flyixo-header {
+    margin-bottom: 35px;
+  }
+
+  .apply-flyixo-eyebrow {
+    gap: 7px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1.5px;
+  }
+
+  .apply-flyixo-eyebrow-line {
+    width: 16px;
+  }
+
+  .apply-flyixo-title {
+    font-size: 1.7rem;
+
+    line-height: 1.25;
+  }
+
+  .apply-flyixo-title::after {
+    width: 55px;
+    height: 3px;
+
+    margin-top: 14px;
+  }
+
+  .apply-flyixo-description {
+    margin-top: 17px;
+
+    font-size: 0.82rem;
+  }
+
+  .apply-flyixo-step-card {
+    padding: 27px 20px;
+
+    border-radius: 20px;
+  }
+
+  .apply-flyixo-step-icon {
+    width: 90px;
+    height: 90px;
+
+    margin-bottom: 20px;
+  }
+
+  .apply-flyixo-step-glow {
     width: 90px;
     height: 90px;
   }
-  .ApplyFlyden-step-icon svg {
-    font-size: 38px;
-  }
-}
 
-/* 📲 Tablet Portrait (max-width: 768px) */
-@media (max-width: 768px) {
-  .ApplyFlyden-section {
-    padding: 60px 20px;
-  }
-  .ApplyFlyden-title {
-    font-size: 2rem;
-    margin-bottom: 45px;
-  }
-  .ApplyFlyden-timeline {
-    flex-direction: column;
-    align-items: center;
-    gap: 60px;
-  }
-  .ApplyFlyden-timeline-line {
-    display: none;
-  }
-  .ApplyFlyden-timeline-step {
-    width: 85%;
-    max-width: 320px;
-  }
-  .ApplyFlyden-step-icon {
-    width: 85px;
-    height: 85px;
-  }
-  .ApplyFlyden-step-content h3 {
-    font-size: 1.1rem;
-  }
-  .ApplyFlyden-step-content p {
-    font-size: 0.9rem;
-  }
-}
+  .apply-flyixo-step-ring {
+    width: 74px;
+    height: 74px;
 
-/* 📞 Mobile Devices (max-width: 576px) */
-@media (max-width: 576px) {
-  .ApplyFlyden-section {
-    padding: 50px 15px;
+    font-size: 29px;
+
+    border-width: 4px;
   }
-  .ApplyFlyden-title {
-    font-size: 1.7rem;
-    margin-bottom: 40px;
+
+  .apply-flyixo-step-count {
+    width: 27px;
+    height: 27px;
+
+    font-size: 0.58rem;
   }
-  .ApplyFlyden-step-icon {
-    width: 75px;
-    height: 75px;
+
+  .apply-flyixo-step-label {
+    font-size: 0.61rem;
+
+    letter-spacing: 1.6px;
   }
-  .ApplyFlyden-step-icon svg {
-    font-size: 32px;
-  }
-  .ApplyFlyden-step-count {
-    width: 22px;
-    height: 22px;
-    font-size: 12px;
-  }
-  .ApplyFlyden-step-content h3 {
+
+  .apply-flyixo-step-content h3 {
     font-size: 1rem;
   }
-  .ApplyFlyden-step-content p {
-    font-size: 0.88rem;
-    line-height: 1.5;
+
+  .apply-flyixo-step-content p {
+    font-size: 0.82rem;
+
+    line-height: 1.65;
+  }
+
+  .apply-flyixo-content-line {
+    margin: 16px auto 12px;
+  }
+
+  .apply-flyixo-step-footer {
+    font-size: 0.67rem;
+  }
+
+  .apply-flyixo-trust-item {
+    font-size: 0.68rem;
   }
 }
 
-/* 📱 Small Phones (max-width: 400px) */
-@media (max-width: 400px) {
-  .ApplyFlyden-title {
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .apply-flyixo-section {
+    padding: 45px 11px;
+  }
+
+  .apply-flyixo-title {
     font-size: 1.5rem;
   }
-  .ApplyFlyden-step-icon {
-    width: 70px;
-    height: 70px;
+
+  .apply-flyixo-description {
+    font-size: 0.78rem;
   }
-  .ApplyFlyden-step-icon svg {
-    font-size: 28px;
+
+  .apply-flyixo-step-card {
+    padding: 24px 16px;
   }
-  .ApplyFlyden-step-content h3 {
-    font-size: 0.95rem;
+
+  .apply-flyixo-step-icon {
+    width: 82px;
+    height: 82px;
   }
-  .ApplyFlyden-step-content p {
-    font-size: 0.85rem;
+
+  .apply-flyixo-step-glow {
+    width: 82px;
+    height: 82px;
+  }
+
+  .apply-flyixo-step-ring {
+    width: 68px;
+    height: 68px;
+
+    font-size: 26px;
+  }
+
+  .apply-flyixo-step-count {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .apply-flyixo-bg-one,
+  .apply-flyixo-bg-two,
+  .apply-flyixo-step-glow,
+  .apply-flyixo-connector-line {
+    animation: none;
+  }
+
+  .apply-flyixo-step-card {
+    transition: none;
   }
 }

@@ -1,110 +1,1324 @@
-/* WhyBookingDocument.css */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+/* ============================================================
+   FLYIXO - WHY BOOKING DOCUMENT
+   Premium Responsive Section
+============================================================ */
 
 :root {
-  --text-dark: #111111;
-  --text-body: #3a3a3a;
+  --flyixo-booking-navy: #062c43;
+  --flyixo-booking-navy-dark: #031b2b;
+
+  --flyixo-booking-pink: #e94e77;
+  --flyixo-booking-pink-dark: #c93661;
+  --flyixo-booking-pink-light: #ff8eaa;
+
+  --flyixo-booking-cyan: #36c8d4;
+  --flyixo-booking-blue: #2563eb;
+  --flyixo-booking-gold: #f4b942;
+
+  --flyixo-booking-text: #182536;
+  --flyixo-booking-body: #687789;
+
+  --flyixo-booking-white: #ffffff;
+  --flyixo-booking-light: #f8fafc;
+
+  --flyixo-booking-border: #e6ebf0;
+
+  --flyixo-booking-shadow:
+    0 20px 55px rgba(6, 44, 67, 0.1);
+
+  --flyixo-booking-shadow-hover:
+    0 30px 75px rgba(6, 44, 67, 0.16);
+
+  --flyixo-booking-transition: 0.35s ease;
 }
 
-/* ====== FULL SECTION ====== */
-.why-booking {
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-why-booking,
+.flyixo-why-booking *,
+.flyixo-why-booking *::before,
+.flyixo-why-booking *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-why-booking {
+  position: relative;
+
   width: 100%;
-  background: #ffffff;
-  padding: 30px 0 10px;
-  font-family: "Poppins", sans-serif;
+
+  padding:
+    clamp(60px, 7vw, 100px)
+    20px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fbfcfe 50%,
+      #fff8fa 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
 }
 
-/* ====== PAGE WIDTH + MARGINS LIKE REFERENCE ====== */
-.why-booking__container {
-  max-width: 1280px; /* matches screenshot layout size */
+/* ============================================================
+   BACKGROUND ORBS
+============================================================ */
+
+.flyixo-why-booking__orb {
+  position: absolute;
+
+  z-index: 0;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(1px);
+
+  animation:
+    flyixoBookingFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-why-booking__orb--one {
+  width: 400px;
+  height: 400px;
+
+  top: -230px;
+  left: -180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.14),
+      transparent 70%
+    );
+}
+
+.flyixo-why-booking__orb--two {
+  width: 450px;
+  height: 450px;
+
+  right: -230px;
+  bottom: -250px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.12),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoBookingFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+/* ============================================================
+   BACKGROUND PATTERN
+============================================================ */
+
+.flyixo-why-booking__pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-why-booking__container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1280px, 100%);
+
   margin: 0 auto;
-  padding: 0 40px; /* strong left margin feel */
-  display: flex;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(400px, 0.85fr);
+
   align-items: center;
-  justify-content: space-between;
-  gap: 50px;
+
+  gap: clamp(50px, 6vw, 90px);
 }
 
-/* ====== LEFT TEXT COLUMN ====== */
-.why-booking__content {
-  flex: 1.3;
-  max-width: 620px; /* limits text width like reference */
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.flyixo-why-booking__content {
+  width: 100%;
+
+  max-width: 690px;
 }
 
-.why-booking__title {
-  font-size: 2.8rem;
-  line-height: 1.22;
+/* ============================================================
+   BADGE
+============================================================ */
+
+.flyixo-why-booking__badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 18px;
+
+  padding:
+    8px 15px;
+
+  color:
+    var(--flyixo-booking-pink);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
   font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 28px;
-  text-align: center;
+
+  letter-spacing: 1.6px;
+
+  text-transform: uppercase;
 }
 
-.why-booking__text {
-  font-size: 1.02rem;
-  line-height: 1.85;
-  color: var(--text-body);
-  margin-bottom: 20px;
-  text-align: justify;
+.flyixo-why-booking__badge-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-booking-pink);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.1);
+
+  animation:
+    flyixoBookingPulse
+    2s
+    ease-in-out
+    infinite;
 }
 
-/* ====== RIGHT IMAGE COLUMN ====== */
-.why-booking__image-wrap {
-  flex: 1;
+@keyframes flyixoBookingPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.flyixo-why-booking__title {
+  margin: 0;
+
+  max-width: 690px;
+
+  color:
+    var(--flyixo-booking-text);
+
+  font-size:
+    clamp(
+      30px,
+      3.5vw,
+      48px
+    );
+
+  line-height: 1.18;
+
+  font-weight: 850;
+
+  letter-spacing: -1.2px;
+}
+
+.flyixo-why-booking__title span {
+  color:
+    var(--flyixo-booking-pink);
+
+  position: relative;
+}
+
+/* ============================================================
+   TITLE LINE
+============================================================ */
+
+.flyixo-why-booking__title-line {
   display: flex;
-  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin:
+    20px 0 25px;
 }
 
-.why-booking__image {
-  width: 460px; /* slightly smaller to match reference */
-  max-width: 100%;
-  height: auto;
+.flyixo-why-booking__title-line span {
   display: block;
+
+  width: 24px;
+  height: 4px;
+
+  border-radius: 20px;
+
+  background:
+    var(--flyixo-booking-pink);
 }
 
-/* ====== RESPONSIVE ====== */
+.flyixo-why-booking__title-line span:nth-child(2) {
+  width: 45px;
 
-@media (max-width: 1024px) {
-  .why-booking__container {
-    padding: 0 32px;
-    gap: 40px;
+  background:
+    var(--flyixo-booking-cyan);
+}
+
+.flyixo-why-booking__title-line span:nth-child(3) {
+  width: 10px;
+
+  background:
+    var(--flyixo-booking-gold);
+}
+
+/* ============================================================
+   TEXT
+============================================================ */
+
+.flyixo-why-booking__text {
+  margin:
+    0 0 20px;
+
+  color:
+    var(--flyixo-booking-body);
+
+  font-size: 14px;
+
+  line-height: 1.85;
+
+  font-weight: 450;
+
+  text-align: left;
+}
+
+.flyixo-why-booking__text strong {
+  color:
+    var(--flyixo-booking-navy);
+
+  font-weight: 750;
+}
+
+/* ============================================================
+   VISA LIST
+============================================================ */
+
+.flyixo-why-booking__visa-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px 13px;
+
+  margin:
+    5px 0 23px;
+
+  padding: 5px 0;
+}
+
+.flyixo-why-booking__visa-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-height: 32px;
+
+  padding:
+    7px 10px;
+
+  color:
+    var(--flyixo-booking-navy);
+
+  background:
+    rgba(255, 255, 255, 0.75);
+
+  border:
+    1px solid
+    rgba(6, 44, 67, 0.07);
+
+  border-radius: 8px;
+
+  font-size: 11px;
+
+  font-weight: 650;
+
+  transition:
+    transform var(--flyixo-booking-transition),
+    border-color var(--flyixo-booking-transition),
+    box-shadow var(--flyixo-booking-transition);
+}
+
+.flyixo-why-booking__visa-item:hover {
+  transform:
+    translateX(4px);
+
+  border-color:
+    rgba(233, 78, 119, 0.2);
+
+  box-shadow:
+    0 7px 20px
+    rgba(6, 44, 67, 0.06);
+}
+
+.flyixo-why-booking__visa-item--full {
+  grid-column: 1 / -1;
+}
+
+.flyixo-why-booking__check {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-booking-pink),
+      var(--flyixo-booking-pink-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+/* ============================================================
+   HIGHLIGHT BOX
+============================================================ */
+
+.flyixo-why-booking__highlight-box {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 25px;
+
+  padding:
+    15px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.07),
+      rgba(54, 200, 212, 0.06)
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.14);
+
+  border-left:
+    4px solid
+    var(--flyixo-booking-pink);
+
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.flyixo-why-booking__highlight-box::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -50px;
+  top: -60px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 200, 212, 0.1);
+}
+
+.flyixo-why-booking__highlight-icon {
+  position: relative;
+
+  z-index: 2;
+
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    var(--flyixo-booking-pink);
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+.flyixo-why-booking__highlight-box p {
+  position: relative;
+
+  z-index: 2;
+
+  margin: 0;
+
+  color:
+    var(--flyixo-booking-navy);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+.flyixo-why-booking__highlight-box strong {
+  font-weight: 750;
+}
+
+/* ============================================================
+   VISUAL AREA
+============================================================ */
+
+.flyixo-why-booking__visual {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 520px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+/* ============================================================
+   IMAGE CARD
+============================================================ */
+
+.flyixo-why-booking__image-card {
+  position: relative;
+
+  width: min(500px, 100%);
+
+  min-height: 490px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(248, 250, 252, 0.88)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 30px;
+
+  box-shadow:
+    var(--flyixo-booking-shadow);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--flyixo-booking-transition),
+    box-shadow var(--flyixo-booking-transition);
+}
+
+.flyixo-why-booking__image-card:hover {
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    var(--flyixo-booking-shadow-hover);
+}
+
+/* ============================================================
+   IMAGE GLOW
+============================================================ */
+
+.flyixo-why-booking__image-glow {
+  position: absolute;
+
+  width: 360px;
+  height: 360px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      rgba(54, 200, 212, 0.08),
+      transparent 70%
+    );
+
+  animation:
+    flyixoImageGlow
+    5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoImageGlow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
   }
 
-  .why-booking__title {
-    font-size: 2.4rem;
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
   }
 }
 
-@media (max-width: 850px) {
-  .why-booking__container {
-    flex-direction: column;
+/* ============================================================
+   MAIN IMAGE
+============================================================ */
+
+.flyixo-why-booking__image {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+
+  max-width: 440px;
+
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 25px 28px
+      rgba(6, 44, 67, 0.12)
+    );
+
+  transition:
+    transform var(--flyixo-booking-transition),
+    filter var(--flyixo-booking-transition);
+}
+
+.flyixo-why-booking__image-card:hover
+.flyixo-why-booking__image {
+  transform:
+    scale(1.04)
+    translateY(-5px);
+
+  filter:
+    drop-shadow(
+      0 30px 35px
+      rgba(6, 44, 67, 0.16)
+    );
+}
+
+/* ============================================================
+   DECORATIVE RINGS
+============================================================ */
+
+.flyixo-why-booking__ring {
+  position: absolute;
+
+  z-index: 1;
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+.flyixo-ring-one {
+  width: 390px;
+  height: 390px;
+}
+
+.flyixo-ring-two {
+  width: 470px;
+  height: 470px;
+
+  border-color:
+    rgba(54, 200, 212, 0.1);
+}
+
+/* ============================================================
+   FLOATING CARD
+============================================================ */
+
+.flyixo-why-booking__floating-card {
+  position: absolute;
+
+  z-index: 5;
+
+  left: -35px;
+  bottom: 65px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 175px;
+
+  padding:
+    12px 15px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(6, 44, 67, 0.08);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 18px 40px
+    rgba(6, 44, 67, 0.13);
+
+  animation:
+    flyixoFloatingCard
+    4s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoFloatingCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.flyixo-why-booking__floating-icon {
+  width: 34px;
+  height: 34px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-booking-pink),
+      var(--flyixo-booking-pink-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+.flyixo-why-booking__floating-card div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.flyixo-why-booking__floating-card strong {
+  color:
+    var(--flyixo-booking-navy);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.flyixo-why-booking__floating-card span:not(
+  .flyixo-why-booking__floating-icon
+) {
+  color:
+    var(--flyixo-booking-body);
+
+  font-size: 8px;
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   BRAND CARD
+============================================================ */
+
+.flyixo-why-booking__brand-card {
+  position: absolute;
+
+  z-index: 5;
+
+  right: -18px;
+  top: 65px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding:
+    13px 17px;
+
+  background:
+    var(--flyixo-booking-navy);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 15px 30px
+    rgba(6, 44, 67, 0.16);
+
+  transform:
+    rotate(3deg);
+}
+
+.flyixo-why-booking__brand-card span {
+  color:
+    #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 850;
+
+  letter-spacing: 1px;
+}
+
+.flyixo-why-booking__brand-card small {
+  color:
+    var(--flyixo-booking-cyan);
+
+  font-size: 6px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (max-width: 1200px) {
+  .flyixo-why-booking__container {
+    gap: 50px;
+  }
+
+  .flyixo-why-booking__title {
+    font-size: 40px;
+  }
+
+  .flyixo-why-booking__text {
+    font-size: 13px;
+  }
+
+  .flyixo-why-booking__image-card {
+    min-height: 450px;
+  }
+
+  .flyixo-why-booking__visual {
+    min-height: 480px;
+  }
+
+  .flyixo-why-booking__floating-card {
+    left: -20px;
+  }
+
+  .flyixo-why-booking__brand-card {
+    right: -10px;
+  }
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1000px) {
+  .flyixo-why-booking {
+    padding:
+      65px 20px;
+  }
+
+  .flyixo-why-booking__container {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .flyixo-why-booking__content {
+    max-width: 800px;
+
+    margin: 0 auto;
+  }
+
+  .flyixo-why-booking__title {
+    max-width: 800px;
+
+    font-size: 38px;
+  }
+
+  .flyixo-why-booking__visual {
+    min-height: 500px;
+  }
+
+  .flyixo-why-booking__image-card {
+    width: min(520px, 100%);
+
+    min-height: 500px;
+  }
+
+  .flyixo-why-booking__floating-card {
+    left: -30px;
+  }
+
+  .flyixo-why-booking__brand-card {
+    right: -25px;
+  }
+}
+
+/* ============================================================
+   MOBILE TABLET
+============================================================ */
+
+@media (max-width: 700px) {
+  .flyixo-why-booking {
+    padding:
+      50px 15px;
+  }
+
+  .flyixo-why-booking__container {
+    gap: 35px;
+  }
+
+  .flyixo-why-booking__badge {
+    font-size: 8px;
+
+    letter-spacing: 1.1px;
+
+    padding:
+      7px 12px;
+  }
+
+  .flyixo-why-booking__title {
+    font-size: 30px;
+
+    line-height: 1.22;
+
+    letter-spacing: -0.7px;
+  }
+
+  .flyixo-why-booking__title-line {
+    margin:
+      15px 0 20px;
+  }
+
+  .flyixo-why-booking__text {
+    font-size: 12px;
+
+    line-height: 1.8;
+
     text-align: left;
-    gap: 32px;
   }
 
-  .why-booking__image-wrap {
-    justify-content: center;
+  .flyixo-why-booking__visa-list {
+    grid-template-columns: 1fr;
+
+    gap: 8px;
   }
 
-  .why-booking__image {
-    width: 380px;
+  .flyixo-why-booking__visa-item--full {
+    grid-column: auto;
+  }
+
+  .flyixo-why-booking__visa-item {
+    font-size: 10px;
+  }
+
+  .flyixo-why-booking__highlight-box {
+    padding:
+      13px 14px;
+  }
+
+  .flyixo-why-booking__highlight-box p {
+    font-size: 10px;
+  }
+
+  .flyixo-why-booking__visual {
+    min-height: 440px;
+  }
+
+  .flyixo-why-booking__image-card {
+    width: 100%;
+
+    min-height: 420px;
+
+    padding: 20px;
+
+    border-radius: 24px;
+  }
+
+  .flyixo-why-booking__image {
+    max-width: 370px;
+  }
+
+  .flyixo-why-booking__ring.flyixo-ring-one {
+    width: 320px;
+    height: 320px;
+  }
+
+  .flyixo-why-booking__ring.flyixo-ring-two {
+    width: 390px;
+    height: 390px;
+  }
+
+  .flyixo-why-booking__floating-card {
+    left: 8px;
+    bottom: 35px;
+
+    min-width: 155px;
+
+    padding:
+      10px 12px;
+  }
+
+  .flyixo-why-booking__brand-card {
+    right: 8px;
+    top: 35px;
+
+    padding:
+      10px 13px;
   }
 }
 
-@media (max-width: 520px) {
-  .why-booking {
-    padding: 0px 0 90px;
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-why-booking {
+    padding:
+      42px 12px;
   }
 
-  .why-booking__container {
-    padding: 0 18px;
+  .flyixo-why-booking__title {
+    font-size: 25px;
+
+    letter-spacing: -0.4px;
   }
 
-  .why-booking__title {
-    font-size: 1.9rem;
+  .flyixo-why-booking__text {
+    font-size: 11px;
+
+    line-height: 1.75;
   }
 
-  .why-booking__text {
-    font-size: 0.95rem;
+  .flyixo-why-booking__visa-item {
+    padding:
+      6px 8px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-why-booking__check {
+    width: 18px;
+    height: 18px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-why-booking__highlight-box {
+    gap: 9px;
+
+    border-left-width: 3px;
+  }
+
+  .flyixo-why-booking__highlight-icon {
+    width: 27px;
+    height: 27px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-why-booking__highlight-box p {
+    font-size: 9px;
+  }
+
+  .flyixo-why-booking__visual {
+    min-height: 350px;
+  }
+
+  .flyixo-why-booking__image-card {
+    min-height: 350px;
+
+    padding: 12px;
+
+    border-radius: 20px;
+  }
+
+  .flyixo-why-booking__image {
+    max-width: 300px;
+  }
+
+  .flyixo-why-booking__image-glow {
+    width: 260px;
+    height: 260px;
+  }
+
+  .flyixo-why-booking__ring.flyixo-ring-one {
+    width: 250px;
+    height: 250px;
+  }
+
+  .flyixo-why-booking__ring.flyixo-ring-two {
+    width: 310px;
+    height: 310px;
+  }
+
+  .flyixo-why-booking__floating-card {
+    left: 5px;
+    bottom: 20px;
+
+    min-width: 135px;
+
+    padding:
+      8px 9px;
+
+    gap: 7px;
+  }
+
+  .flyixo-why-booking__floating-icon {
+    width: 27px;
+    height: 27px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-why-booking__floating-card strong {
+    font-size: 9px;
+  }
+
+  .flyixo-why-booking__floating-card span:not(
+    .flyixo-why-booking__floating-icon
+  ) {
+    font-size: 6px;
+  }
+
+  .flyixo-why-booking__brand-card {
+    right: 4px;
+    top: 22px;
+
+    padding:
+      8px 10px;
+  }
+
+  .flyixo-why-booking__brand-card span {
+    font-size: 10px;
+  }
+
+  .flyixo-why-booking__brand-card small {
+    font-size: 5px;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL DEVICES
+============================================================ */
+
+@media (max-width: 360px) {
+  .flyixo-why-booking {
+    padding:
+      35px 9px;
+  }
+
+  .flyixo-why-booking__title {
+    font-size: 22px;
+  }
+
+  .flyixo-why-booking__badge {
+    font-size: 7px;
+
+    letter-spacing: 0.8px;
+  }
+
+  .flyixo-why-booking__text {
+    font-size: 10px;
+  }
+
+  .flyixo-why-booking__visual {
+    min-height: 310px;
+  }
+
+  .flyixo-why-booking__image-card {
+    min-height: 310px;
+  }
+
+  .flyixo-why-booking__image {
+    max-width: 250px;
+  }
+
+  .flyixo-why-booking__floating-card {
+    bottom: 12px;
+  }
+
+  .flyixo-why-booking__brand-card {
+    top: 12px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-why-booking *:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.25);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-why-booking *,
+  .flyixo-why-booking *::before,
+  .flyixo-why-booking *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

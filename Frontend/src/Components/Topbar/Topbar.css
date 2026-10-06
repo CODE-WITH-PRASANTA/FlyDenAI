@@ -1,0 +1,544 @@
+/* =========================================================
+   TOPBAR
+   ========================================================= */
+
+.topbar {
+  width: 100%;
+  height: 42px;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 10000;
+
+  background: #0b2342;
+
+  color: #ffffff;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+
+  transition:
+    height 0.35s ease,
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+
+/* =========================================================
+   TOPBAR VISIBLE
+   ========================================================= */
+
+.topbar-visible {
+  height: 42px;
+
+  transform: translateY(0);
+
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+}
+
+
+/* =========================================================
+   TOPBAR HIDDEN
+   ========================================================= */
+
+.topbar-hidden {
+  height: 0;
+
+  transform: translateY(-100%);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.topbar-container {
+  width: 100%;
+
+  max-width: 1440px;
+
+  height: 42px;
+
+  margin: 0 auto;
+
+  padding: 0 30px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.topbar-content {
+  width: 100%;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+/* =========================================================
+   LEFT
+   ========================================================= */
+
+.topbar-left {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 28px;
+}
+
+
+/* =========================================================
+   RIGHT
+   ========================================================= */
+
+.topbar-right {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+}
+
+
+/* =========================================================
+   TOPBAR LINK
+   ========================================================= */
+
+.topbar-item {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition: color 0.25s ease;
+}
+
+
+.topbar-item:hover {
+  color: #ffca28;
+}
+
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.topbar-icon {
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.topbar-phone {
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   COUNTRY CODE
+   ========================================================= */
+
+.topbar-country-code {
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.topbar-email {
+  max-width: 300px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.topbar-loading {
+  margin: 0;
+
+  padding: 0;
+
+  color: #ffffff;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   CHECK STATUS BUTTON
+   ========================================================= */
+
+.topbar-login {
+  min-height: 30px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 5px 0;
+
+  margin: 0;
+
+  color: #ffffff;
+
+  background: transparent;
+
+  border: none;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+.topbar-login:hover {
+  color: #ffca28;
+
+  transform: translateY(-1px);
+}
+
+
+.topbar-login:active {
+  transform: translateY(0);
+}
+
+
+.topbar-login:focus-visible {
+  outline: 2px solid #ffffff;
+
+  outline-offset: 4px;
+
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   STATUS ICON
+   ========================================================= */
+
+.topbar-status-icon {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+  .topbar {
+    height: 40px;
+  }
+
+  .topbar-visible {
+    height: 40px;
+  }
+
+  .topbar-container {
+    height: 40px;
+
+    padding: 0 20px;
+  }
+
+  .topbar-content {
+    height: 40px;
+
+    gap: 15px;
+  }
+
+  .topbar-left {
+    gap: 18px;
+  }
+
+  .topbar-item,
+  .topbar-login,
+  .topbar-loading {
+    font-size: 12px;
+  }
+
+  .topbar-email {
+    max-width: 220px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+  .topbar {
+    height: 38px;
+  }
+
+  .topbar-visible {
+    height: 38px;
+  }
+
+  .topbar-container {
+    height: 38px;
+
+    padding: 0 14px;
+  }
+
+  .topbar-content {
+    height: 38px;
+
+    gap: 10px;
+  }
+
+  .topbar-left {
+    flex: 1;
+
+    min-width: 0;
+
+    gap: 10px;
+  }
+
+  .topbar-item {
+    font-size: 10px;
+  }
+
+  .topbar-login {
+    font-size: 10px;
+
+    gap: 4px;
+  }
+
+  .topbar-email-item {
+    display: none;
+  }
+
+  .topbar-phone-item {
+    min-width: 0;
+  }
+
+  .topbar-phone {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+  .topbar-status-text {
+    display: inline;
+  }
+
+  .topbar-status-icon {
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 575px) {
+
+  .topbar {
+    height: 36px;
+  }
+
+  .topbar-visible {
+    height: 36px;
+  }
+
+  .topbar-container {
+    height: 36px;
+
+    padding: 0 10px;
+  }
+
+  .topbar-content {
+    height: 36px;
+
+    gap: 6px;
+  }
+
+  .topbar-left {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  /*
+     Keep Check Status visible.
+     Do NOT hide .topbar-right.
+  */
+
+  .topbar-right {
+    display: flex;
+
+    flex-shrink: 0;
+  }
+
+  .topbar-phone-item {
+    max-width: 48%;
+  }
+
+  .topbar-phone {
+    max-width: 75px;
+  }
+
+  .topbar-login {
+    min-height: 28px;
+
+    padding: 4px 0;
+
+    font-size: 9.5px;
+
+    gap: 4px;
+  }
+
+  .topbar-status-icon {
+    font-size: 10px;
+  }
+
+  .topbar-status-text {
+    white-space: nowrap;
+  }
+
+  .topbar-email-item {
+    display: none;
+  }
+
+  .topbar-loading {
+    font-size: 10px;
+
+    white-space: nowrap;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .topbar-container {
+    padding: 0 8px;
+  }
+
+  .topbar-phone-item {
+    max-width: 43%;
+  }
+
+  .topbar-phone {
+    max-width: 60px;
+  }
+
+  .topbar-login {
+    font-size: 8.5px;
+  }
+
+  .topbar-status-icon {
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .topbar,
+  .topbar-item,
+  .topbar-login {
+    transition: none !important;
+  }
+}

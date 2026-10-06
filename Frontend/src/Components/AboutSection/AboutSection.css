@@ -1,231 +1,1659 @@
-/* ------------------- Base Section ------------------- */
+/* =========================================================
+   FLYIXO ABOUT SECTION
+========================================================= */
+
 .aboutsec-section {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  padding: 40px 80px; /* increased padding for better spacing */
-  align-items: center;
-  justify-content: center;
-  font-family: 'Poppins', sans-serif;
-  background: #f9f9f9;
-  box-sizing: border-box;
-  border: 1px solid #e0e0e0; /* subtle border */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* soft shadow for depth */
-  transition: all 0.3s ease-in-out;
+  --about-navy: #062c43;
+  --about-navy-dark: #031d2e;
+
+  --about-red: #e60039;
+  --about-red-dark: #c90030;
+  --about-red-light: #ff5270;
+
+  --about-text: #293c48;
+  --about-muted: #687982;
+
+  --about-white: #ffffff;
+  --about-bg: #fff7f9;
+
+  --about-border: rgba(6, 44, 67, 0.1);
+
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  padding: 100px 0 90px;
+
+  background:
+    radial-gradient(
+      circle at 5% 20%,
+      rgba(230, 0, 57, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 95% 80%,
+      rgba(6, 44, 67, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fffafb 0%,
+      #fff3f6 48%,
+      #ffffff 100%
+    );
+
+  font-family: "Poppins", sans-serif;
+
+  isolation: isolate;
 }
 
-/* ------------------- Left Side ------------------- */
-.aboutsec-left {
-  flex: 1 1 400px;
-  position: relative;
-  display: flex;
-  justify-content: center;
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.aboutsec-bg {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.aboutsec-bg-one {
+  width: 430px;
+  height: 430px;
+
+  left: -220px;
+  top: 80px;
+
+  background: rgba(230, 0, 57, 0.045);
+
+  animation: aboutsecFloatOne 9s ease-in-out infinite;
+}
+
+.aboutsec-bg-two {
+  width: 500px;
+  height: 500px;
+
+  right: -250px;
+  bottom: -100px;
+
+  background: rgba(6, 44, 67, 0.035);
+
+  animation: aboutsecFloatTwo 11s ease-in-out infinite;
+}
+
+.aboutsec-pattern {
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+  pointer-events: none;
+
+  opacity: 0.45;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 40px 40px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.aboutsec-container {
+  width: min(1300px, calc(100% - 70px));
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(400px, 0.9fr)
+    minmax(500px, 1.1fr);
+
+  gap: 80px;
+
   align-items: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   LEFT SECTION
+========================================================= */
+
+.aboutsec-left {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
 }
 
 .aboutsec-image-wrapper {
-  position: relative;
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
+
+  position: relative;
+
+  padding:
+    20px
+    20px
+    45px
+    0;
 }
 
-/* Main Image */
+/* =========================================================
+   MAIN IMAGE
+========================================================= */
+
+.aboutsec-main-image-box {
+  width: 100%;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 25px 65px rgba(6, 44, 67, 0.13),
+    0 8px 25px rgba(230, 0, 57, 0.06);
+
+  transform: rotate(-1deg);
+
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+.aboutsec-image-wrapper:hover
+.aboutsec-main-image-box {
+  transform: rotate(0deg) translateY(-5px);
+
+  box-shadow:
+    0 35px 80px rgba(6, 44, 67, 0.17),
+    0 12px 35px rgba(230, 0, 57, 0.1);
+}
+
 .aboutsec-main-image {
   width: 100%;
-  border-radius: 25px;
+
+  height: 530px;
+
+  display: block;
+
   object-fit: cover;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+
+  transition:
+    transform 0.8s ease;
 }
 
+.aboutsec-image-wrapper:hover
+.aboutsec-main-image {
+  transform: scale(1.04);
+}
 
-/* Small Overlapping Image */
-.aboutsec-small-image {
+.aboutsec-image-overlay {
   position: absolute;
-  bottom: -25px;
-  left: 30px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 4px solid #e60039;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-  transition: transform 0.5s ease;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(6, 44, 67, 0.03),
+      rgba(230, 0, 57, 0.08)
+    );
+
+  pointer-events: none;
 }
+
+.aboutsec-image-shine {
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  transform: skewX(-20deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.35),
+      transparent
+    );
+
+  pointer-events: none;
+
+  transition:
+    left 0.9s ease;
+}
+
+.aboutsec-image-wrapper:hover
+.aboutsec-image-shine {
+  left: 140%;
+}
+
+/* =========================================================
+   SMALL IMAGE
+========================================================= */
+
+.aboutsec-small-image {
+  width: 155px;
+  height: 155px;
+
+  position: absolute;
+
+  left: -15px;
+  bottom: 0;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  border:
+    6px solid #ffffff;
+
+  box-shadow:
+    0 15px 35px rgba(6, 44, 67, 0.18);
+
+  z-index: 5;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.aboutsec-small-image::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -6px;
+
+  border:
+    2px solid var(--about-red);
+
+  border-radius: 50%;
+
+  z-index: -1;
+}
+
 .aboutsec-small-image img {
   width: 100%;
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
-}
-.aboutsec-small-image:hover {
-  transform: scale(1.1);
+
+  transition:
+    transform 0.6s ease;
 }
 
-/* Experience Badge */
-.aboutsec-experience-badge {
+.aboutsec-small-overlay {
   position: absolute;
-  top: 15%;
-  right: -10px;
-  background: linear-gradient(135deg, #e60039, #ff3b5c);
-  color: #fff;
-  padding: 20px 25px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: bounceBadge 3s infinite ease-in-out;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      145deg,
+      transparent,
+      rgba(230, 0, 57, 0.15)
+    );
 }
+
+.aboutsec-small-image:hover {
+  transform:
+    translateY(-8px)
+    scale(1.05);
+
+  box-shadow:
+    0 20px 45px rgba(230, 0, 57, 0.2);
+}
+
+.aboutsec-small-image:hover img {
+  transform: scale(1.08);
+}
+
+/* =========================================================
+   EXPERIENCE BADGE
+========================================================= */
+
+.aboutsec-experience-badge {
+  min-width: 145px;
+
+  position: absolute;
+
+  top: 12%;
+  right: -15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    20px
+    22px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--about-red),
+      var(--about-red-light)
+    );
+
+  border:
+    5px solid rgba(255, 255, 255, 0.9);
+
+  border-radius: 22px;
+
+  text-align: center;
+
+  box-shadow:
+    0 18px 40px rgba(230, 0, 57, 0.25);
+
+  z-index: 6;
+
+  animation:
+    aboutsecBadgeFloat 4s ease-in-out infinite;
+}
+
+.aboutsec-experience-badge::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -9px;
+
+  border:
+    1px dashed rgba(230, 0, 57, 0.35);
+
+  border-radius: 28px;
+
+  pointer-events: none;
+}
+
 .aboutsec-experience-badge span {
-  font-size: 13px;
-  letter-spacing: 1px;
+  margin-bottom: 3px;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
   text-transform: uppercase;
 }
+
 .aboutsec-experience-badge h2 {
-  margin: 5px 0;
-  font-size: 32px;
-  font-weight: 700;
-}
-.aboutsec-experience-badge p {
   margin: 0;
-  font-size: 13px;
+
+  font-size: 38px;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -1px;
 }
 
-/* ------------------- Right Side ------------------- */
+.aboutsec-experience-badge p {
+  margin: 7px 0 0;
+
+  font-size: 10px;
+
+  line-height: 1.3;
+
+  font-weight: 600;
+
+  opacity: 0.95;
+}
+
+/* =========================================================
+   FLOATING BRAND LABEL
+========================================================= */
+
+.aboutsec-floating-label {
+  position: absolute;
+
+  left: 25px;
+  top: 32px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding:
+    10px
+    14px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  border:
+    1px solid rgba(6, 44, 67, 0.08);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 10px 30px rgba(6, 44, 67, 0.1);
+
+  backdrop-filter: blur(10px);
+
+  z-index: 7;
+}
+
+.aboutsec-floating-dot {
+  width: 8px;
+  height: 8px;
+
+  flex: 0 0 8px;
+
+  border-radius: 50%;
+
+  background: var(--about-red);
+
+  box-shadow:
+    0 0 0 5px rgba(230, 0, 57, 0.1);
+
+  animation:
+    aboutsecDotPulse 2s ease-in-out infinite;
+}
+
+.aboutsec-floating-label div {
+  display: flex;
+
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.aboutsec-floating-label strong {
+  color: var(--about-navy);
+
+  font-size: 11px;
+
+  line-height: 1.2;
+
+  font-weight: 800;
+}
+
+.aboutsec-floating-label small {
+  margin-top: 2px;
+
+  color: var(--about-muted);
+
+  font-size: 7px;
+
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   IMAGE CORNERS
+========================================================= */
+
+.aboutsec-corner {
+  width: 55px;
+  height: 55px;
+
+  position: absolute;
+
+  pointer-events: none;
+}
+
+.aboutsec-corner-one {
+  right: -8px;
+  bottom: 25px;
+
+  border-right:
+    4px solid var(--about-red);
+
+  border-bottom:
+    4px solid var(--about-red);
+
+  border-bottom-right-radius: 18px;
+}
+
+.aboutsec-corner-two {
+  left: -20px;
+  top: 95px;
+
+  border-left:
+    4px solid var(--about-navy);
+
+  border-top:
+    4px solid var(--about-navy);
+
+  border-top-left-radius: 18px;
+}
+
+/* =========================================================
+   RIGHT CONTENT
+========================================================= */
+
 .aboutsec-right {
-  flex: 1 1 500px;
-  padding-left: 25px;
+  width: 100%;
+  min-width: 0;
+}
+
+.aboutsec-subtitle-wrapper {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 17px;
+}
+
+.aboutsec-subtitle-line {
+  width: 38px;
+  height: 2px;
+
+  background: var(--about-red);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.aboutsec-subtitle-line::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: var(--about-navy);
+
+  transform:
+    translateX(-100%);
+
+  animation:
+    aboutsecLineMove 3s ease-in-out infinite;
 }
 
 .aboutsec-sub-title {
-  color: #e60039;
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 12px;
+  margin: 0;
+
+  color: var(--about-red);
+
+  font-size: 12px;
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
   text-transform: uppercase;
-  letter-spacing: 1.5px;
 }
+
+/* =========================================================
+   HEADING
+========================================================= */
 
 .aboutsec-heading {
-  font-size: 34px;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 20px;
-  color: #111;
+  max-width: 700px;
+
+  margin: 0 0 20px;
+
+  color: var(--about-navy);
+
+  font-size: clamp(36px, 4vw, 53px);
+
+  line-height: 1.12;
+
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
 }
+
+.aboutsec-heading span {
+  display: inline-block;
+
+  color: var(--about-red);
+
+  position: relative;
+}
+
+.aboutsec-heading span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -6px;
+
+  width: 100%;
+  height: 3px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--about-red),
+      var(--about-red-light)
+    );
+}
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
 
 .aboutsec-description {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.7;
-  margin-bottom: 35px;
+  max-width: 700px;
+
+  margin: 0 0 25px;
+
+  color: var(--about-muted);
+
+  font-size: 14px;
+
+  line-height: 1.85;
+
+  font-weight: 400;
 }
 
-/* ------------------- Features ------------------- */
+.aboutsec-description strong {
+  color: var(--about-navy);
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   TRUST ROW
+========================================================= */
+
+.aboutsec-trust-row {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  margin-bottom: 28px;
+}
+
+.aboutsec-trust-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--about-navy);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+.aboutsec-trust-icon {
+  width: 19px;
+  height: 19px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    var(--about-red);
+
+  border-radius: 50%;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
 .aboutsec-features {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-bottom: 35px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 15px;
+
+  margin-bottom: 25px;
 }
 
 .aboutsec-feature {
+  min-width: 0;
+
+  position: relative;
+
   display: flex;
+
   align-items: flex-start;
-  gap: 15px;
-  padding: 18px;
+
+  gap: 13px;
+
+  padding:
+    18px
+    18px;
+
+  background:
+    rgba(255, 255, 255, 0.85);
+
+  border:
+    1px solid var(--about-border);
+
   border-radius: 15px;
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-  transition: all 0.4s ease;
-}
-.aboutsec-feature:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+
+  box-shadow:
+    0 8px 25px rgba(6, 44, 67, 0.045);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    background 0.4s ease;
 }
 
+.aboutsec-feature::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 3px;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--about-red),
+      var(--about-red-light)
+    );
+
+  transform:
+    scaleY(0);
+
+  transform-origin: bottom;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.aboutsec-feature:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(230, 0, 57, 0.2);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 40px rgba(6, 44, 67, 0.09);
+}
+
+.aboutsec-feature:hover::before {
+  transform:
+    scaleY(1);
+}
+
+/* =========================================================
+   FEATURE ICON
+========================================================= */
+
 .aboutsec-icon {
-  font-size: 30px;
-  color: #e60039;
+  width: 45px;
+  height: 45px;
+
+  flex: 0 0 45px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff0f3,
+      #fff8f9
+    );
+
+  border:
+    1px solid rgba(230, 0, 57, 0.1);
+
+  font-size: 22px;
+
+  transition:
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+.aboutsec-feature:hover .aboutsec-icon {
+  transform:
+    rotate(-5deg)
+    scale(1.08);
+
+  background:
+    #fff0f3;
+}
+
+/* =========================================================
+   FEATURE CONTENT
+========================================================= */
+
+.aboutsec-feature-content {
+  min-width: 0;
+
+  flex: 1;
 }
 
 .aboutsec-feature-title {
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 4px;
-  color: #111;
+  margin: 0 0 6px;
+
+  color: var(--about-navy);
+
+  font-size: 14px;
+
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  transition:
+    color 0.3s ease;
+}
+
+.aboutsec-feature:hover
+.aboutsec-feature-title {
+  color: var(--about-red);
 }
 
 .aboutsec-feature-desc {
-  font-size: 14px;
-  color: #555;
+  margin: 0;
+
+  color: var(--about-muted);
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+.aboutsec-feature-number {
+  position: absolute;
+
+  right: 13px;
+  top: 10px;
+
+  color:
+    rgba(6, 44, 67, 0.07);
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  transition:
+    color 0.3s ease;
+}
+
+.aboutsec-feature:hover
+.aboutsec-feature-number {
+  color:
+    rgba(230, 0, 57, 0.12);
+}
+
+/* =========================================================
+   BOTTOM BRAND AREA
+========================================================= */
+
+.aboutsec-bottom {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding-top: 19px;
+
+  border-top:
+    1px solid rgba(6, 44, 67, 0.09);
+}
+
+.aboutsec-bottom-mark {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--about-navy),
+      #0b5275
+    );
+
+  border-radius: 11px;
+
+  font-size: 17px;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 8px 20px rgba(6, 44, 67, 0.15);
+}
+
+.aboutsec-bottom-content {
+  display: flex;
+
+  flex-direction: column;
+
+  text-align: left;
+}
+
+.aboutsec-bottom-content span {
+  margin-bottom: 3px;
+
+  color: var(--about-red);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.aboutsec-bottom-content p {
+  margin: 0;
+
+  color: var(--about-muted);
+
+  font-size: 11px;
+
   line-height: 1.5;
 }
 
-/* ------------------- Footer ------------------- */
-.aboutsec-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+.aboutsec-bottom-content strong {
+  color: var(--about-navy);
+
+  font-weight: 800;
 }
 
-.aboutsec-learn-more {
-  background: linear-gradient(135deg, #e60039, #ff3b5c);
-  color: #fff;
-  padding: 12px 28px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  transition: all 0.3s ease;
-}
-.aboutsec-learn-more:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes aboutsecFloatOne {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(20px, -20px, 0);
+  }
 }
 
+@keyframes aboutsecFloatTwo {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
 
-.aboutsec-more {
-  width: 42px;
-  height: 42px;
-  background-color: #e60039;
-  color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-.aboutsec-more:hover {
-  transform: scale(1.2);
-  background-color: #ff3b5c;
+  50% {
+    transform:
+      translate3d(-20px, 20px, 0);
+  }
 }
 
-/* ------------------- Animations ------------------- */
-@keyframes bounceBadge {
-  0%,100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.05); }
+@keyframes aboutsecBadgeFloat {
+  0%,
+  100% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-8px);
+  }
 }
 
-/* ------------------- Responsive ------------------- */
-@media (max-width: 1024px) {
-  .aboutsec-section { padding: 40px 50px; }
+@keyframes aboutsecDotPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 5px rgba(230, 0, 57, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(230, 0, 57, 0.04);
+  }
 }
+
+@keyframes aboutsecLineMove {
+  0% {
+    transform:
+      translateX(-100%);
+  }
+
+  50%,
+  100% {
+    transform:
+      translateX(100%);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .aboutsec-section {
+    padding:
+      90px
+      0
+      80px;
+  }
+
+  .aboutsec-container {
+    width:
+      min(
+        1100px,
+        calc(100% - 50px)
+      );
+
+    grid-template-columns:
+      minmax(350px, 0.85fr)
+      minmax(450px, 1.15fr);
+
+    gap: 55px;
+  }
+
+  .aboutsec-main-image {
+    height: 500px;
+  }
+
+  .aboutsec-heading {
+    font-size: 44px;
+  }
+
+  .aboutsec-feature {
+    padding:
+      16px;
+  }
+}
+
+/* =========================================================
+   TABLET LANDSCAPE
+========================================================= */
+
+@media (max-width: 992px) {
+  .aboutsec-section {
+    padding:
+      80px
+      0
+      70px;
+  }
+
+  .aboutsec-container {
+    width:
+      min(
+        900px,
+        calc(100% - 40px)
+      );
+
+    grid-template-columns:
+      1fr;
+
+    gap: 70px;
+  }
+
+  .aboutsec-left {
+    max-width: 620px;
+
+    margin: 0 auto;
+  }
+
+  .aboutsec-image-wrapper {
+    max-width: 560px;
+  }
+
+  .aboutsec-main-image {
+    height: 550px;
+  }
+
+  .aboutsec-right {
+    max-width: 850px;
+
+    margin: 0 auto;
+  }
+
+  .aboutsec-heading {
+    max-width: 800px;
+
+    font-size: 44px;
+  }
+
+  .aboutsec-description {
+    max-width: 800px;
+  }
+}
+
+/* =========================================================
+   TABLET PORTRAIT
+========================================================= */
 
 @media (max-width: 768px) {
-  .aboutsec-section { flex-direction: column; padding: 25px; }
-  .aboutsec-main-image { width: 100%; }
-  .aboutsec-small-image { width: 140px; height: 140px; bottom: -20px; left: 15px; }
-  .aboutsec-experience-badge { top: 8%; right: 8%; padding: 16px; font-size: 13px; }
-  .aboutsec-features { grid-template-columns: 1fr; }
-  .aboutsec-avatar, .aboutsec-more { width: 38px; height: 38px; }
+  .aboutsec-section {
+    padding:
+      70px
+      0
+      60px;
+  }
+
+  .aboutsec-container {
+    width:
+      calc(100% - 30px);
+
+    gap: 55px;
+  }
+
+  .aboutsec-image-wrapper {
+    padding:
+      15px
+      15px
+      40px
+      0;
+  }
+
+  .aboutsec-main-image {
+    height: 500px;
+  }
+
+  .aboutsec-small-image {
+    width: 135px;
+    height: 135px;
+
+    left: -5px;
+  }
+
+  .aboutsec-experience-badge {
+    right: -5px;
+
+    min-width: 125px;
+
+    padding:
+      17px
+      18px;
+  }
+
+  .aboutsec-experience-badge h2 {
+    font-size: 32px;
+  }
+
+  .aboutsec-floating-label {
+    left: 20px;
+    top: 25px;
+  }
+
+  .aboutsec-heading {
+    font-size: 37px;
+
+    letter-spacing: -1px;
+  }
+
+  .aboutsec-description {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .aboutsec-trust-row {
+    gap: 13px;
+  }
+
+  .aboutsec-trust-item {
+    font-size: 9px;
+  }
+
+  .aboutsec-features {
+    gap: 12px;
+  }
+
+  .aboutsec-feature {
+    padding:
+      15px;
+  }
+
+  .aboutsec-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-basis: 40px;
+
+    font-size: 19px;
+  }
+
+  .aboutsec-feature-title {
+    font-size: 13px;
+  }
+
+  .aboutsec-feature-desc {
+    font-size: 10px;
+  }
 }
 
-@media (max-width: 480px) {
-  .aboutsec-section { padding: 15px; }
-  .aboutsec-small-image { width: 120px; height: 120px; }
-  .aboutsec-experience-badge { padding: 14px; font-size: 12px; }
-  .aboutsec-heading { font-size: 28px; }
-  .aboutsec-description { font-size: 14px; }
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+  .aboutsec-section {
+    padding:
+      60px
+      0
+      50px;
+  }
+
+  .aboutsec-container {
+    width:
+      calc(100% - 24px);
+
+    gap: 48px;
+  }
+
+  .aboutsec-image-wrapper {
+    padding:
+      12px
+      8px
+      35px
+      0;
+  }
+
+  .aboutsec-main-image-box {
+    border-radius: 22px;
+  }
+
+  .aboutsec-main-image {
+    height: 390px;
+  }
+
+  .aboutsec-small-image {
+    width: 110px;
+    height: 110px;
+
+    left: 0;
+
+    border-width: 5px;
+  }
+
+  .aboutsec-experience-badge {
+    min-width: 105px;
+
+    right: 0;
+
+    padding:
+      13px
+      13px;
+
+    border-width: 4px;
+
+    border-radius: 17px;
+  }
+
+  .aboutsec-experience-badge span {
+    font-size: 8px;
+  }
+
+  .aboutsec-experience-badge h2 {
+    font-size: 27px;
+  }
+
+  .aboutsec-experience-badge p {
+    font-size: 8px;
+  }
+
+  .aboutsec-floating-label {
+    left: 12px;
+    top: 20px;
+
+    padding:
+      8px
+      10px;
+  }
+
+  .aboutsec-floating-label strong {
+    font-size: 9px;
+  }
+
+  .aboutsec-floating-label small {
+    font-size: 6px;
+  }
+
+  .aboutsec-corner-one {
+    right: -2px;
+    bottom: 17px;
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .aboutsec-corner-two {
+    left: -8px;
+    top: 70px;
+
+    width: 40px;
+    height: 40px;
+  }
+
+  .aboutsec-subtitle-wrapper {
+    gap: 9px;
+  }
+
+  .aboutsec-subtitle-line {
+    width: 25px;
+  }
+
+  .aboutsec-sub-title {
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+  }
+
+  .aboutsec-heading {
+    font-size: 30px;
+
+    line-height: 1.18;
+  }
+
+  .aboutsec-heading span::after {
+    height: 2px;
+
+    bottom: -4px;
+  }
+
+  .aboutsec-description {
+    font-size: 12px;
+
+    line-height: 1.75;
+  }
+
+  .aboutsec-trust-row {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+  }
+
+  .aboutsec-trust-item {
+    font-size: 9px;
+  }
+
+  .aboutsec-trust-icon {
+    width: 17px;
+    height: 17px;
+
+    flex-basis: 17px;
+
+    font-size: 9px;
+  }
+
+  .aboutsec-features {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .aboutsec-feature {
+    padding:
+      15px
+      14px;
+  }
+
+  .aboutsec-icon {
+    width: 42px;
+    height: 42px;
+
+    flex-basis: 42px;
+  }
+
+  .aboutsec-feature-title {
+    font-size: 13px;
+  }
+
+  .aboutsec-feature-desc {
+    font-size: 10px;
+
+    line-height: 1.6;
+  }
+
+  .aboutsec-feature-number {
+    font-size: 22px;
+  }
+
+  .aboutsec-bottom {
+    padding-top: 16px;
+  }
+
+  .aboutsec-bottom-mark {
+    width: 35px;
+    height: 35px;
+
+    flex-basis: 35px;
+
+    font-size: 15px;
+  }
+
+  .aboutsec-bottom-content span {
+    font-size: 7px;
+  }
+
+  .aboutsec-bottom-content p {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .aboutsec-section {
+    padding:
+      50px
+      0
+      45px;
+  }
+
+  .aboutsec-container {
+    width:
+      calc(100% - 18px);
+  }
+
+  .aboutsec-main-image {
+    height: 330px;
+  }
+
+  .aboutsec-small-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .aboutsec-experience-badge {
+    min-width: 90px;
+
+    padding:
+      11px
+      10px;
+  }
+
+  .aboutsec-experience-badge h2 {
+    font-size: 24px;
+  }
+
+  .aboutsec-heading {
+    font-size: 27px;
+  }
+
+  .aboutsec-description {
+    font-size: 11.5px;
+  }
+
+  .aboutsec-feature {
+    padding:
+      13px;
+  }
+
+  .aboutsec-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+
+    font-size: 17px;
+  }
+
+  .aboutsec-feature-title {
+    font-size: 12px;
+  }
+
+  .aboutsec-feature-desc {
+    font-size: 9.5px;
+  }
+
+  .aboutsec-bottom-content p {
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 340px) {
+  .aboutsec-main-image {
+    height: 290px;
+  }
+
+  .aboutsec-small-image {
+    width: 78px;
+    height: 78px;
+  }
+
+  .aboutsec-experience-badge {
+    min-width: 80px;
+
+    padding:
+      9px
+      8px;
+  }
+
+  .aboutsec-experience-badge h2 {
+    font-size: 21px;
+  }
+
+  .aboutsec-experience-badge p {
+    font-size: 7px;
+  }
+
+  .aboutsec-heading {
+    font-size: 24px;
+  }
+
+  .aboutsec-trust-item {
+    font-size: 8px;
+  }
+
+  .aboutsec-feature-title {
+    font-size: 11px;
+  }
+
+  .aboutsec-feature-desc {
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .aboutsec-section *,
+  .aboutsec-section *::before,
+  .aboutsec-section *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

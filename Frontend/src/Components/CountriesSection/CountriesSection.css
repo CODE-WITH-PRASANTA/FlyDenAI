@@ -1,139 +1,1512 @@
-/* === General Section Styles === */
+/* =========================================================
+   COUNTRIES SECTION
+   ========================================================= */
+
 .countries-section {
-  padding: 50px 20px;
-  font-family: "Poppins", sans-serif;
-  text-align: center;
-  margin: 10px auto;
-  background: linear-gradient(135deg, #f0f4ff 0%, #e0ecff 100%);
-  border-radius: 20px;
-  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
-  overflow: hidden;
-  animation: fadeIn 1s ease-in-out;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
+  width: 100%;
 
-/* Sub-title with Neon/Glitch effect */
-.countries-subtitle {
-  font-size: 0.95rem;
-  letter-spacing: 1.5px;
-  color: #555;
-  text-transform: uppercase;
-  margin-bottom: 10px;
   position: relative;
-  display: inline-block;
-  animation: textGlitch 2.5s infinite;
+
+  margin: 30px auto;
+
+  padding: 90px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7faff 0%,
+      #ffffff 45%,
+      #fff7fa 100%
+    );
+
+  border:
+    1px solid
+    rgba(13, 110, 253, 0.08);
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 55px
+    rgba(15, 23, 42, 0.07);
+
+  overflow: hidden;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  text-align: center;
 }
 
-/* Title with gradient & glow */
-.countries-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 45px;
-  color: #0c3c60;
-  line-height: 1.2;
+
+/* =========================================================
+   BACKGROUND CIRCLES
+   ========================================================= */
+
+.countries-bg-circle {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 0;
 }
+
+
+.countries-bg-circle-one {
+  width: 480px;
+
+  height: 480px;
+
+  top: -280px;
+
+  left: -220px;
+
+  background:
+    rgba(13, 110, 253, 0.045);
+}
+
+
+.countries-bg-circle-two {
+  width: 520px;
+
+  height: 520px;
+
+  right: -300px;
+
+  bottom: -300px;
+
+  background:
+    rgba(233, 78, 119, 0.055);
+}
+
+
+/* =========================================================
+   BACKGROUND DOTS
+   ========================================================= */
+
+.countries-bg-dot {
+  position: absolute;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #e94e77;
+
+  opacity: 0.5;
+
+  animation:
+    countriesDotFloat
+    4s
+    ease-in-out
+    infinite;
+
+  z-index: 0;
+}
+
+
+.countries-bg-dot-one {
+  top: 17%;
+
+  left: 7%;
+}
+
+
+.countries-bg-dot-two {
+  right: 8%;
+
+  bottom: 19%;
+
+  animation-delay: 1.5s;
+}
+
+
+@keyframes countriesDotFloat {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-12px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.countries-header {
+  width: 100%;
+
+  max-width: 1000px;
+
+  margin:
+    0 auto 50px;
+
+  position: relative;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.countries-subtitle {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-bottom: 17px;
+
+  color: #0d6efd;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   SUBTITLE LINES
+   ========================================================= */
+
+.countries-subtitle-line {
+  width: 30px;
+
+  height: 3px;
+
+  display: block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0d6efd,
+      #e94e77
+    );
+
+  border-radius: 10px;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.countries-title {
+  margin: 0;
+
+  color: #0f172a;
+
+  font-size:
+    clamp(
+      30px,
+      4vw,
+      46px
+    );
+
+  font-weight: 800;
+
+  line-height: 1.18;
+
+  letter-spacing: -1px;
+}
+
+
+/* =========================================================
+   TITLE HIGHLIGHT
+   ========================================================= */
 
 .countries-title span {
-  background: linear-gradient(90deg, #ff758c, #ff7eb3, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textGradient 5s infinite linear;
+  color: #e94e77;
+
+  font-weight: 800;
 }
 
-/* Grid Layout */
+
+/* =========================================================
+   TITLE DECORATION
+   ========================================================= */
+
+.countries-title-decoration {
+  margin:
+    18px auto 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 5px;
+}
+
+
+.countries-title-decoration span {
+  height: 4px;
+
+  display: block;
+
+  border-radius: 10px;
+}
+
+
+.countries-title-decoration span:nth-child(1) {
+  width: 42px;
+
+  background: #e94e77;
+}
+
+
+.countries-title-decoration span:nth-child(2) {
+  width: 22px;
+
+  background: #ffca28;
+}
+
+
+.countries-title-decoration span:nth-child(3) {
+  width: 8px;
+
+  background: #e94e77;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.countries-description {
+  max-width: 850px;
+
+  margin:
+    0 auto;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.8;
+
+  font-weight: 450;
+}
+
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
 .countries-grid {
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  z-index: 2;
+
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 22px;
 }
 
-/* Country Card */
+
+/* =========================================================
+   COUNTRY CARD
+   ========================================================= */
+
 .country-card {
+  width: 100%;
+
+  min-width: 0;
+
   position: relative;
+
+  border-radius: 19px;
+
   overflow: hidden;
-  border-radius: 15px;
+
+  background: #ffffff;
+
+  border:
+    1px solid
+    rgba(15, 23, 42, 0.07);
+
+  box-shadow:
+    0 12px 35px
+    rgba(15, 23, 42, 0.08);
+
   cursor: pointer;
-  transition: all 0.5s ease;
-  background: linear-gradient(145deg, #ffffff 0%, #f0f4ff 100%);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
+
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
 
 .country-card:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  transform:
+    translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.2);
+
+  box-shadow:
+    0 22px 50px
+    rgba(15, 23, 42, 0.14);
 }
 
-/* Image with overlay & hover zoom */
-.country-image {
+
+/* =========================================================
+   IMAGE WRAPPER
+   ========================================================= */
+
+.country-image-wrapper {
   width: 100%;
-  padding-top: 60%;
-  background-size: cover;
-  background-position: center;
-  transition: all 0.5s ease;
-  filter: brightness(0.45);
+
+  height: 245px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #edf3ff,
+      #fff0f5
+    );
 }
 
-.country-card:hover .country-image {
-  filter: brightness(0.6);
-}
 
-/* Country Name with glow */
-.country-name {
+/* =========================================================
+   COUNTRY IMAGE
+   ========================================================= */
+
+.country-image {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #fff;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  background-size: cover;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
+  filter:
+    brightness(0.68)
+    saturate(0.95);
+
+  transform:
+    scale(1.01);
+
+  transition:
+    transform 0.6s ease,
+    filter 0.6s ease;
+}
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.country-card:hover
+.country-image {
+  transform:
+    scale(1.1);
+
+  filter:
+    brightness(0.78)
+    saturate(1.08);
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.country-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.03) 0%,
+      rgba(15, 23, 42, 0.15) 35%,
+      rgba(15, 23, 42, 0.88) 100%
+    );
+
+  z-index: 1;
+
+  transition:
+    background 0.4s ease;
+}
+
+
+.country-card:hover
+.country-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 23, 42, 0.04) 0%,
+      rgba(15, 23, 42, 0.1) 30%,
+      rgba(15, 23, 42, 0.82) 100%
+    );
+}
+
+
+/* =========================================================
+   COUNTRY ICON
+   ========================================================= */
+
+.country-icon {
+  width: 40px;
+
+  height: 40px;
+
+  position: absolute;
+
+  top: 14px;
+
+  right: 14px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.17);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.28);
+
+  border-radius: 11px;
+
+  font-size: 16px;
+
+  backdrop-filter:
+    blur(10px);
+
+  -webkit-backdrop-filter:
+    blur(10px);
+
+  z-index: 3;
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease;
+}
+
+
+/* =========================================================
+   ICON HOVER
+   ========================================================= */
+
+.country-card:hover
+.country-icon {
+  transform:
+    rotate(-8deg)
+    scale(1.08);
+
+  background:
+    #e94e77;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.country-card-content {
+  position: absolute;
+
+  left: 18px;
+
+  right: 18px;
+
+  bottom: 18px;
+
+  z-index: 3;
+
+  text-align: left;
+}
+
+
+/* =========================================================
+   COUNTRY LABEL
+   ========================================================= */
+
+.country-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-size: 8px;
+
   font-weight: 700;
-  font-size: 0.9rem;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
-  animation: namePulse 2s infinite;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px);}
-  to { opacity: 1; transform: translateY(0);}
+
+/* =========================================================
+   COUNTRY NAME
+   ========================================================= */
+
+.country-name {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 17px;
+
+  font-weight: 750;
+
+  line-height: 1.35;
+
+  text-shadow:
+    0 3px 10px
+    rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.3s ease;
 }
 
-@keyframes textGlitch {
-  0%, 20%, 40%, 60%, 80%, 100% {
-    text-shadow: 1px 0 2px #ff00ff, -1px 0 2px #00ffff;
+
+.country-card:hover
+.country-name {
+  transform:
+    translateX(3px);
+}
+
+
+/* =========================================================
+   COUNTRY SEPARATOR
+   ========================================================= */
+
+.country-separator {
+  margin:
+    0 5px;
+
+  color:
+    #ffca28;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   CARD LINE
+   ========================================================= */
+
+.country-card-line {
+  width: 100%;
+
+  height: 3px;
+
+  margin-top: 9px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.country-card-line span {
+  width: 35px;
+
+  height: 3px;
+
+  display: block;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e94e77,
+      #ffca28
+    );
+
+  border-radius: 10px;
+
+  transition:
+    width 0.4s ease;
+}
+
+
+.country-card:hover
+.country-card-line span {
+  width: 60px;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.country-arrow {
+  width: 34px;
+
+  height: 34px;
+
+  position: absolute;
+
+  bottom: 17px;
+
+  right: 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 50%;
+
+  font-size: 18px;
+
+  z-index: 4;
+
+  opacity: 0;
+
+  transform:
+    translateX(-8px);
+
+  backdrop-filter:
+    blur(8px);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    background 0.35s ease;
+}
+
+
+/* =========================================================
+   ARROW HOVER
+   ========================================================= */
+
+.country-card:hover
+.country-arrow {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+
+  background:
+    #e94e77;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.countries-empty {
+  grid-column:
+    1 / -1;
+
+  min-height: 280px;
+
+  padding: 40px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    rgba(255, 255, 255, 0.8);
+
+  border:
+    1px dashed
+    rgba(233, 78, 119, 0.25);
+
+  border-radius: 18px;
+}
+
+
+/* =========================================================
+   EMPTY ICON
+   ========================================================= */
+
+.countries-empty-icon {
+  width: 65px;
+
+  height: 65px;
+
+  margin-bottom: 15px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 50%;
+
+  font-size: 27px;
+}
+
+
+/* =========================================================
+   EMPTY TITLE
+   ========================================================= */
+
+.countries-empty h3 {
+  margin:
+    0 0 7px;
+
+  color: #0f172a;
+
+  font-size: 20px;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   EMPTY DESCRIPTION
+   ========================================================= */
+
+.countries-empty p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   BOTTOM INFORMATION
+   ========================================================= */
+
+.countries-bottom {
+  width: fit-content;
+
+  max-width: 100%;
+
+  margin:
+    35px auto 0;
+
+  padding:
+    12px 17px;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.85);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.1);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 25px
+    rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   BOTTOM ICON
+   ========================================================= */
+
+.countries-bottom-icon {
+  width: 32px;
+
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #d63b67
+    );
+
+  border-radius: 50%;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   BOTTOM CONTENT
+   ========================================================= */
+
+.countries-bottom-content {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 2px;
+}
+
+
+.countries-bottom-content strong {
+  color: #172033;
+
+  font-size: 11px;
+
+  font-weight: 750;
+}
+
+
+.countries-bottom-content span {
+  color: #7a8391;
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.countries-loading {
+  min-height: 350px;
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LOADING SPINNER
+   ========================================================= */
+
+.countries-spinner {
+  width: 50px;
+
+  height: 50px;
+
+  margin-bottom: 17px;
+
+  border:
+    4px solid
+    rgba(13, 110, 253, 0.1);
+
+  border-top-color:
+    #0d6efd;
+
+  border-right-color:
+    #e94e77;
+
+  border-radius: 50%;
+
+  animation:
+    countriesSpinner
+    0.8s
+    linear
+    infinite;
+}
+
+
+@keyframes countriesSpinner {
+
+  to {
+    transform:
+      rotate(360deg);
   }
+
 }
 
-@keyframes textGradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+
+/* =========================================================
+   LOADING TITLE
+   ========================================================= */
+
+.countries-loading h3 {
+  margin:
+    0 0 7px;
+
+  color: #0f172a;
+
+  font-size: 20px;
+
+  font-weight: 700;
 }
 
-@keyframes namePulse {
-  0% { transform: translate(-50%, -50%) scale(1);}
-  50% { transform: translate(-50%, -50%) scale(1.1);}
-  100% { transform: translate(-50%, -50%) scale(1);}
+
+/* =========================================================
+   LOADING TEXT
+   ========================================================= */
+
+.countries-loading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
 }
 
-/* === Responsive === */
-@media (max-width: 1024px) {
-  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
-  .countries-title { font-size: 2.2rem; }
-  .country-name { font-size: 1.2rem; }
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .countries-section {
+    padding:
+      80px 25px;
+  }
+
+
+  .countries-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+
+  .country-image-wrapper {
+    height: 230px;
+  }
+
 }
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+  .countries-section {
+    margin:
+      25px 15px;
+
+    padding:
+      65px 20px;
+
+    border-radius: 23px;
+  }
+
+
+  .countries-header {
+    margin-bottom: 40px;
+  }
+
+
+  .countries-title {
+    font-size: 35px;
+  }
+
+
+  .countries-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+  }
+
+
+  .country-image-wrapper {
+    height: 240px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
 
 @media (max-width: 768px) {
-  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
-  .countries-title { font-size: 2rem; }
-  .country-name { font-size: 0.9rem; }
+
+  .countries-section {
+    margin:
+      20px 10px;
+
+    padding:
+      55px 15px;
+
+    border-radius: 20px;
+  }
+
+
+  .countries-header {
+    margin-bottom: 32px;
+  }
+
+
+  .countries-subtitle {
+    font-size: 9px;
+
+    letter-spacing: 1.4px;
+  }
+
+
+  .countries-subtitle-line {
+    width: 23px;
+
+    height: 2px;
+  }
+
+
+  .countries-title {
+    font-size: 29px;
+
+    line-height: 1.22;
+  }
+
+
+  .countries-description {
+    font-size: 12px;
+
+    line-height: 1.7;
+  }
+
+
+  .countries-grid {
+    gap: 15px;
+  }
+
+
+  .country-image-wrapper {
+    height: 210px;
+  }
+
+
+  .country-name {
+    font-size: 15px;
+  }
+
+
+  .country-card-content {
+    left: 14px;
+
+    right: 14px;
+
+    bottom: 14px;
+  }
+
+
+  .country-arrow {
+    width: 30px;
+
+    height: 30px;
+
+    right: 13px;
+
+    bottom: 13px;
+
+    font-size: 15px;
+  }
+
 }
 
-@media (max-width: 480px) {
-  .countries-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
-  .countries-title { font-size: 1.8rem; }
-  .country-name { font-size: 0.7rem; }
-  .countries-section{
-    padding: 0px 10px;
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 576px) {
+
+  .countries-section {
+    width:
+      calc(100% - 20px);
+
+    margin:
+      15px auto;
+
+    padding:
+      45px 11px;
+
+    border-radius: 18px;
   }
+
+
+  .countries-header {
+    margin-bottom: 28px;
+  }
+
+
+  .countries-subtitle {
+    gap: 6px;
+
+    margin-bottom: 13px;
+
+    font-size: 8px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .countries-subtitle-line {
+    width: 18px;
+  }
+
+
+  .countries-title {
+    font-size: 25px;
+
+    letter-spacing: -0.5px;
+  }
+
+
+  .countries-title-decoration {
+    margin:
+      14px auto 16px;
+  }
+
+
+  .countries-description {
+    padding:
+      0 5px;
+
+    font-size: 11.5px;
+
+    line-height: 1.65;
+  }
+
+
+  .countries-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+  }
+
+
+  .country-card {
+    border-radius: 14px;
+  }
+
+
+  .country-image-wrapper {
+    height: 185px;
+  }
+
+
+  .country-icon {
+    width: 30px;
+
+    height: 30px;
+
+    top: 9px;
+
+    right: 9px;
+
+    font-size: 12px;
+
+    border-radius: 8px;
+  }
+
+
+  .country-card-content {
+    left: 10px;
+
+    right: 10px;
+
+    bottom: 10px;
+  }
+
+
+  .country-label {
+    margin-bottom: 4px;
+
+    font-size: 6px;
+
+    letter-spacing: 0.7px;
+  }
+
+
+  .country-name {
+    font-size: 12px;
+
+    line-height: 1.3;
+  }
+
+
+  .country-separator {
+    margin:
+      0 2px;
+  }
+
+
+  .country-card-line {
+    margin-top: 6px;
+  }
+
+
+  .country-card-line span {
+    width: 24px;
+
+    height: 2px;
+  }
+
+
+  .country-card:hover
+  .country-card-line span {
+    width: 40px;
+  }
+
+
+  .country-arrow {
+    display: none;
+  }
+
+
+  .countries-bottom {
+    width: 100%;
+
+    margin-top: 24px;
+
+    padding:
+      9px 11px;
+
+    border-radius: 10px;
+
+    justify-content: flex-start;
+  }
+
+
+  .countries-bottom-icon {
+    width: 28px;
+
+    height: 28px;
+
+    flex-basis: 28px;
+  }
+
+
+  .countries-bottom-content strong {
+    font-size: 9px;
+  }
+
+
+  .countries-bottom-content span {
+    font-size: 7px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .countries-section {
+    width:
+      calc(100% - 14px);
+
+    padding:
+      38px 8px;
+  }
+
+
+  .countries-title {
+    font-size: 22px;
+  }
+
+
+  .countries-description {
+    font-size: 10.5px;
+  }
+
+
+  .countries-grid {
+    gap: 8px;
+  }
+
+
+  .country-image-wrapper {
+    height: 160px;
+  }
+
+
+  .country-name {
+    font-size: 10.5px;
+  }
+
+
+  .country-label {
+    font-size: 5.5px;
+  }
+
+
+  .country-icon {
+    width: 27px;
+
+    height: 27px;
+
+    font-size: 10px;
+  }
+
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+  .countries-title {
+    font-size: 20px;
+  }
+
+
+  .countries-grid {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap: 7px;
+  }
+
+
+  .country-image-wrapper {
+    height: 145px;
+  }
+
+
+  .country-name {
+    font-size: 9.5px;
+  }
+
+
+  .country-card-content {
+    left: 7px;
+
+    right: 7px;
+
+    bottom: 7px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .countries-bg-dot,
+  .countries-spinner {
+    animation: none !important;
+  }
+
+
+  .country-card,
+  .country-image,
+  .country-icon,
+  .country-name,
+  .country-card-line span,
+  .country-arrow {
+    transition: none !important;
+  }
+
 }

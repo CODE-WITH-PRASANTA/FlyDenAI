@@ -1,141 +1,1374 @@
-/* WhyTripCafeHolidays.css */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+/* ============================================================
+   FLYIXO WHY TRIP / HOLIDAYS SECTION
+   Premium Responsive Design
+============================================================ */
 
 :root {
-  --text-dark: #111111;
-  --text-body: #333333;
-  --accent-red: #ff4b4b;
+  --flyixo-trip-navy: #062c43;
+  --flyixo-trip-navy-dark: #031b2b;
+
+  --flyixo-trip-primary: #e94e77;
+  --flyixo-trip-primary-dark: #c93661;
+  --flyixo-trip-primary-light: #ff8eaa;
+
+  --flyixo-trip-cyan: #36c8d4;
+  --flyixo-trip-blue: #2563eb;
+  --flyixo-trip-gold: #f4b942;
+
+  --flyixo-trip-text: #182536;
+  --flyixo-trip-muted: #687789;
+
+  --flyixo-trip-white: #ffffff;
+  --flyixo-trip-light: #f8fafc;
+
+  --flyixo-trip-border: #e7ebef;
+
+  --flyixo-trip-shadow:
+    0 20px 55px rgba(6, 44, 67, 0.09);
+
+  --flyixo-trip-shadow-hover:
+    0 30px 75px rgba(6, 44, 67, 0.16);
+
+  --flyixo-trip-transition: 0.35s ease;
 }
 
-/* ===== SECTION WRAPPER (full width) ===== */
-.why-trip {
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-why-trip,
+.flyixo-why-trip *,
+.flyixo-why-trip *::before,
+.flyixo-why-trip *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-why-trip {
+  position: relative;
+
   width: 100%;
-  background-color: #ffffff;
-  padding: 0px 0 20px;
-  font-family: "Poppins", sans-serif;
+
+  padding:
+    clamp(60px, 7vw, 100px)
+    20px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f9fbfd 50%,
+      #fff8fa 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  border-top:
+    1px solid
+    rgba(6, 44, 67, 0.06);
+
+  border-bottom:
+    1px solid
+    rgba(6, 44, 67, 0.06);
 }
 
-/* ===== INNER CONTAINER (same style as your other sections) ===== */
-.why-trip__container {
-  max-width: 1240px;
+/* ============================================================
+   BACKGROUND ORBS
+============================================================ */
+
+.flyixo-why-trip__orb {
+  position: absolute;
+
+  z-index: 0;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    flyixoTripFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-why-trip__orb--one {
+  width: 430px;
+  height: 430px;
+
+  left: -220px;
+  top: -240px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.14),
+      transparent 70%
+    );
+}
+
+.flyixo-why-trip__orb--two {
+  width: 500px;
+  height: 500px;
+
+  right: -270px;
+  bottom: -300px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoTripFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+/* ============================================================
+   BACKGROUND GRID
+============================================================ */
+
+.flyixo-why-trip__grid {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.32;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-why-trip__container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1240px, 100%);
+
   margin: 0 auto;
-  padding: 0 60px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 70px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(320px, 0.8fr)
+    minmax(0, 1.2fr);
+
+  align-items: center;
+
+  gap: clamp(55px, 7vw, 100px);
 }
 
-/* ===== LEFT IMAGE ===== */
-.why-trip__image-wrap {
-  flex: 0 0 330px; /* fixed-ish size like reference */
+/* ============================================================
+   LEFT VISUAL
+============================================================ */
+
+.flyixo-why-trip__visual {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 570px;
+
   display: flex;
+
+  align-items: center;
+
   justify-content: center;
 }
 
-.why-trip__image {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+/* ============================================================
+   IMAGE CARD
+============================================================ */
 
-/* ===== RIGHT CONTENT ===== */
-.why-trip__content {
-  flex: 1;
-}
+.flyixo-why-trip__image-card {
+  position: relative;
 
-.why-trip__heading {
-  font-size: 2.6rem;
-  font-weight: 800;
-  color: var(--text-dark);
-  margin-bottom: 24px;
-}
+  width: min(440px, 100%);
 
-.why-trip__intro {
-  font-size: 1rem;
-  line-height: 1.9;
-  color: var(--text-body);
-  margin-bottom: 22px;
-}
+  min-height: 540px;
 
-/* ===== BULLET LIST ===== */
-.why-trip__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.why-trip__list-item {
   display: flex;
-  align-items: flex-start;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(248, 250, 252, 0.88)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.9);
+
+  border-radius: 30px;
+
+  box-shadow:
+    var(--flyixo-trip-shadow);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--flyixo-trip-transition),
+    box-shadow var(--flyixo-trip-transition);
+}
+
+.flyixo-why-trip__image-card:hover {
+  transform:
+    translateY(-8px);
+
+  box-shadow:
+    var(--flyixo-trip-shadow-hover);
+}
+
+/* ============================================================
+   IMAGE GLOW
+============================================================ */
+
+.flyixo-why-trip__image-glow {
+  position: absolute;
+
+  width: 380px;
+  height: 380px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      rgba(54, 200, 212, 0.07),
+      transparent 70%
+    );
+
+  animation:
+    flyixoTripImageGlow
+    5s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoTripImageGlow {
+  0%,
+  100% {
+    transform: scale(1);
+
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.1);
+
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   IMAGE
+============================================================ */
+
+.flyixo-why-trip__image {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+
+  max-width: 390px;
+
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 25px 30px
+      rgba(6, 44, 67, 0.13)
+    );
+
+  transition:
+    transform var(--flyixo-trip-transition),
+    filter var(--flyixo-trip-transition);
+}
+
+.flyixo-why-trip__image-card:hover
+.flyixo-why-trip__image {
+  transform:
+    scale(1.04)
+    translateY(-5px);
+
+  filter:
+    drop-shadow(
+      0 32px 38px
+      rgba(6, 44, 67, 0.17)
+    );
+}
+
+/* ============================================================
+   DECORATIVE RINGS
+============================================================ */
+
+.flyixo-why-trip__ring {
+  position: absolute;
+
+  z-index: 1;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+}
+
+.flyixo-trip-ring-one {
+  width: 390px;
+  height: 390px;
+}
+
+.flyixo-trip-ring-two {
+  width: 470px;
+  height: 470px;
+
+  border-color:
+    rgba(54, 200, 212, 0.1);
+}
+
+/* ============================================================
+   BRAND FLOATING CARD
+============================================================ */
+
+.flyixo-why-trip__brand-card {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 45px;
+  right: -20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  padding:
+    13px 17px;
+
+  background:
+    var(--flyixo-trip-navy);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 15px 30px
+    rgba(6, 44, 67, 0.16);
+
+  transform:
+    rotate(3deg);
+
+  transition:
+    transform var(--flyixo-trip-transition);
+}
+
+.flyixo-why-trip__brand-card:hover {
+  transform:
+    rotate(0deg)
+    translateY(-4px);
+}
+
+.flyixo-why-trip__brand-name {
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.2px;
+}
+
+.flyixo-why-trip__brand-label {
+  color:
+    var(--flyixo-trip-cyan);
+
+  font-size: 6px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+/* ============================================================
+   TRUST FLOATING CARD
+============================================================ */
+
+.flyixo-why-trip__trust-card {
+  position: absolute;
+
+  z-index: 6;
+
+  left: -28px;
+  bottom: 50px;
+
+  display: flex;
+
+  align-items: center;
+
   gap: 10px;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text-body);
-  margin-bottom: 10px;
+
+  min-width: 195px;
+
+  padding:
+    12px 14px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(6, 44, 67, 0.08);
+
+  border-radius: 12px;
+
+  box-shadow:
+    0 18px 40px
+    rgba(6, 44, 67, 0.13);
+
+  animation:
+    flyixoTripTrustFloat
+    4s
+    ease-in-out
+    infinite;
 }
 
-/* plane icon SVG */
-.plane-icon {
-  width: 18px;
-  height: 18px;
+@keyframes flyixoTripTrustFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.flyixo-why-trip__trust-icon {
+  width: 35px;
+  height: 35px;
+
   flex-shrink: 0;
-  fill: var(--accent-red);
-  margin-top: 6px; /* aligns icon with first text line */
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-trip-primary),
+      var(--flyixo-trip-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  font-weight: 900;
 }
 
-/* ===== RESPONSIVE ===== */
+.flyixo-why-trip__trust-content {
+  display: flex;
 
-@media (max-width: 1024px) {
-  .why-trip__container {
-    padding: 0 32px;
-    gap: 40px;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.flyixo-why-trip__trust-content strong {
+  color:
+    var(--flyixo-trip-navy);
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+.flyixo-why-trip__trust-content span {
+  color:
+    var(--flyixo-trip-muted);
+
+  font-size: 8px;
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   RIGHT CONTENT
+============================================================ */
+
+.flyixo-why-trip__content {
+  width: 100%;
+
+  max-width: 720px;
+}
+
+/* ============================================================
+   BADGE
+============================================================ */
+
+.flyixo-why-trip__badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 17px;
+
+  padding:
+    8px 15px;
+
+  color:
+    var(--flyixo-trip-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.flyixo-why-trip__badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-trip-primary);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.1);
+
+  animation:
+    flyixoTripPulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoTripPulse {
+  0%,
+  100% {
+    transform: scale(1);
   }
 
-  .why-trip__heading {
-    font-size: 2.3rem;
+  50% {
+    transform: scale(1.3);
   }
 }
 
-@media (max-width: 850px) {
-  .why-trip {
-    padding: 0px 0 20px;
+/* ============================================================
+   HEADING
+============================================================ */
+
+.flyixo-why-trip__heading {
+  margin: 0;
+
+  color:
+    var(--flyixo-trip-text);
+
+  font-size:
+    clamp(
+      30px,
+      3.5vw,
+      46px
+    );
+
+  line-height: 1.18;
+
+  font-weight: 850;
+
+  letter-spacing: -1px;
+}
+
+.flyixo-why-trip__heading span {
+  color:
+    var(--flyixo-trip-primary);
+
+  position: relative;
+}
+
+/* ============================================================
+   HEADING LINE
+============================================================ */
+
+.flyixo-why-trip__heading-line {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin:
+    18px 0 24px;
+}
+
+.flyixo-why-trip__heading-line span {
+  width: 24px;
+  height: 4px;
+
+  border-radius: 20px;
+
+  background:
+    var(--flyixo-trip-primary);
+}
+
+.flyixo-why-trip__heading-line span:nth-child(2) {
+  width: 45px;
+
+  background:
+    var(--flyixo-trip-cyan);
+}
+
+.flyixo-why-trip__heading-line span:nth-child(3) {
+  width: 10px;
+
+  background:
+    var(--flyixo-trip-gold);
+}
+
+/* ============================================================
+   INTRO TEXT
+============================================================ */
+
+.flyixo-why-trip__intro {
+  margin:
+    0 0 12px;
+
+  color:
+    var(--flyixo-trip-muted);
+
+  font-size: 13px;
+
+  line-height: 1.85;
+
+  font-weight: 500;
+}
+
+.flyixo-why-trip__intro--last {
+  margin-bottom: 25px;
+
+  color:
+    var(--flyixo-trip-navy);
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   LIST
+============================================================ */
+
+.flyixo-why-trip__list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+/* ============================================================
+   LIST ITEM
+============================================================ */
+
+.flyixo-why-trip__list-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    30px
+    34px
+    1fr;
+
+  align-items: center;
+
+  gap: 9px;
+
+  min-height: 50px;
+
+  padding:
+    9px 12px;
+
+  background:
+    rgba(255, 255, 255, 0.7);
+
+  border:
+    1px solid
+    rgba(6, 44, 67, 0.07);
+
+  border-radius: 10px;
+
+  transition:
+    transform var(--flyixo-trip-transition),
+    border-color var(--flyixo-trip-transition),
+    box-shadow var(--flyixo-trip-transition),
+    background var(--flyixo-trip-transition);
+}
+
+.flyixo-why-trip__list-item:hover {
+  transform:
+    translateX(5px);
+
+  background:
+    #ffffff;
+
+  border-color:
+    rgba(233, 78, 119, 0.2);
+
+  box-shadow:
+    0 9px 25px
+    rgba(6, 44, 67, 0.07);
+}
+
+/* ============================================================
+   NUMBER
+============================================================ */
+
+.flyixo-why-trip__item-number {
+  color:
+    rgba(6, 44, 67, 0.3);
+
+  font-size: 9px;
+
+  font-weight: 850;
+
+  letter-spacing: 0.8px;
+
+  text-align: center;
+}
+
+/* ============================================================
+   ICON WRAPPER
+============================================================ */
+
+.flyixo-why-trip__icon-wrap {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    var(--flyixo-trip-primary);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+
+  border-radius: 50%;
+
+  transition:
+    transform var(--flyixo-trip-transition),
+    background var(--flyixo-trip-transition);
+}
+
+.flyixo-why-trip__list-item:hover
+.flyixo-why-trip__icon-wrap {
+  transform:
+    rotate(-8deg)
+    scale(1.08);
+
+  color:
+    #ffffff;
+
+  background:
+    var(--flyixo-trip-primary);
+}
+
+/* ============================================================
+   PLANE ICON
+============================================================ */
+
+.flyixo-why-trip__plane-icon {
+  width: 16px;
+  height: 16px;
+
+  fill: currentColor;
+
+  display: block;
+
+  transform:
+    rotate(-4deg);
+}
+
+/* ============================================================
+   ITEM TEXT
+============================================================ */
+
+.flyixo-why-trip__item-text {
+  color:
+    var(--flyixo-trip-text);
+
+  font-size: 11px;
+
+  line-height: 1.65;
+
+  font-weight: 600;
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-why-trip__bottom {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 25px;
+
+  padding-top: 18px;
+
+  border-top:
+    1px solid
+    rgba(6, 44, 67, 0.08);
+}
+
+.flyixo-why-trip__bottom-check {
+  width: 25px;
+  height: 25px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-trip-primary),
+      var(--flyixo-trip-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 11px;
+
+  font-weight: 900;
+}
+
+.flyixo-why-trip__bottom p {
+  margin: 0;
+
+  color:
+    var(--flyixo-trip-muted);
+
+  font-size: 10px;
+
+  font-weight: 650;
+}
+
+.flyixo-why-trip__bottom strong {
+  color:
+    var(--flyixo-trip-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (max-width: 1200px) {
+  .flyixo-why-trip__container {
+    gap: 55px;
   }
 
-  .why-trip__container {
-    flex-direction: column;
-    align-items: center;
+  .flyixo-why-trip__visual {
+    min-height: 520px;
   }
 
-  .why-trip__content {
-    width: 100%;
+  .flyixo-why-trip__image-card {
+    min-height: 500px;
   }
 
-  .why-trip__heading {
-    text-align: center;
-    
+  .flyixo-why-trip__heading {
+    font-size: 40px;
   }
 
-  .why-trip__intro,
-  .why-trip__list {
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+  .flyixo-why-trip__intro {
+    font-size: 12px;
   }
 }
 
-@media (max-width: 520px) {
-  .why-trip__container {
-    padding: 0 18px;
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 950px) {
+  .flyixo-why-trip {
+    padding:
+      65px 18px;
   }
 
-  .why-trip__heading {
-    font-size: 1.8rem;
-    text-align: left;
+  .flyixo-why-trip__container {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
   }
 
-  .why-trip__intro,
-  .why-trip__list {
-    max-width: 100%;
+  .flyixo-why-trip__visual {
+    min-height: 500px;
+  }
+
+  .flyixo-why-trip__image-card {
+    width: min(500px, 100%);
+
+    min-height: 500px;
+  }
+
+  .flyixo-why-trip__content {
+    max-width: 800px;
+
+    margin: 0 auto;
+  }
+
+  .flyixo-why-trip__heading {
+    font-size: 38px;
+  }
+
+  .flyixo-why-trip__intro {
+    font-size: 13px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 650px) {
+  .flyixo-why-trip {
+    padding:
+      50px 13px;
+  }
+
+  .flyixo-why-trip__container {
+    gap: 35px;
+  }
+
+  .flyixo-why-trip__visual {
+    min-height: 420px;
+  }
+
+  .flyixo-why-trip__image-card {
+    min-height: 410px;
+
+    padding: 18px;
+
+    border-radius: 24px;
+  }
+
+  .flyixo-why-trip__image {
+    max-width: 340px;
+  }
+
+  .flyixo-trip-ring-one {
+    width: 310px;
+    height: 310px;
+  }
+
+  .flyixo-trip-ring-two {
+    width: 390px;
+    height: 390px;
+  }
+
+  .flyixo-why-trip__brand-card {
+    top: 28px;
+    right: 5px;
+
+    padding:
+      10px 13px;
+  }
+
+  .flyixo-why-trip__brand-name {
+    font-size: 11px;
+  }
+
+  .flyixo-why-trip__brand-label {
+    font-size: 5px;
+  }
+
+  .flyixo-why-trip__trust-card {
+    left: 5px;
+    bottom: 25px;
+
+    min-width: 160px;
+
+    padding:
+      9px 11px;
+  }
+
+  .flyixo-why-trip__trust-icon {
+    width: 29px;
+    height: 29px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-why-trip__trust-content strong {
+    font-size: 9px;
+  }
+
+  .flyixo-why-trip__trust-content span {
+    font-size: 7px;
+  }
+
+  .flyixo-why-trip__badge {
+    font-size: 8px;
+
+    letter-spacing: 1px;
+
+    padding:
+      7px 12px;
+  }
+
+  .flyixo-why-trip__heading {
+    font-size: 29px;
+
+    letter-spacing: -0.6px;
+  }
+
+  .flyixo-why-trip__intro {
+    font-size: 11px;
+
+    line-height: 1.8;
+  }
+
+  .flyixo-why-trip__list {
+    gap: 8px;
+  }
+
+  .flyixo-why-trip__list-item {
+    grid-template-columns:
+      25px
+      30px
+      1fr;
+
+    gap: 7px;
+
+    padding:
+      9px 9px;
+  }
+
+  .flyixo-why-trip__item-number {
+    font-size: 8px;
+  }
+
+  .flyixo-why-trip__icon-wrap {
+    width: 28px;
+    height: 28px;
+  }
+
+  .flyixo-why-trip__plane-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .flyixo-why-trip__item-text {
+    font-size: 9.5px;
+
+    line-height: 1.6;
+  }
+
+  .flyixo-why-trip__bottom p {
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-why-trip {
+    padding:
+      42px 10px;
+  }
+
+  .flyixo-why-trip__visual {
+    min-height: 340px;
+  }
+
+  .flyixo-why-trip__image-card {
+    min-height: 335px;
+
+    padding: 10px;
+
+    border-radius: 20px;
+  }
+
+  .flyixo-why-trip__image {
+    max-width: 275px;
+  }
+
+  .flyixo-why-trip__image-glow {
+    width: 270px;
+    height: 270px;
+  }
+
+  .flyixo-trip-ring-one {
+    width: 240px;
+    height: 240px;
+  }
+
+  .flyixo-trip-ring-two {
+    width: 300px;
+    height: 300px;
+  }
+
+  .flyixo-why-trip__brand-card {
+    top: 16px;
+    right: 2px;
+
+    padding:
+      8px 10px;
+  }
+
+  .flyixo-why-trip__brand-name {
+    font-size: 9px;
+  }
+
+  .flyixo-why-trip__brand-label {
+    font-size: 4px;
+  }
+
+  .flyixo-why-trip__trust-card {
+    left: 2px;
+    bottom: 14px;
+
+    min-width: 135px;
+
+    padding:
+      7px 8px;
+
+    gap: 6px;
+  }
+
+  .flyixo-why-trip__trust-icon {
+    width: 25px;
+    height: 25px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-why-trip__trust-content strong {
+    font-size: 8px;
+  }
+
+  .flyixo-why-trip__trust-content span {
+    font-size: 6px;
+  }
+
+  .flyixo-why-trip__heading {
+    font-size: 24px;
+  }
+
+  .flyixo-why-trip__intro {
+    font-size: 10px;
+
+    line-height: 1.75;
+  }
+
+  .flyixo-why-trip__list-item {
+    grid-template-columns:
+      21px
+      27px
+      1fr;
+
+    gap: 6px;
+  }
+
+  .flyixo-why-trip__item-number {
+    font-size: 7px;
+  }
+
+  .flyixo-why-trip__icon-wrap {
+    width: 26px;
+    height: 26px;
+  }
+
+  .flyixo-why-trip__plane-icon {
+    width: 13px;
+    height: 13px;
+  }
+
+  .flyixo-why-trip__item-text {
+    font-size: 9px;
+  }
+
+  .flyixo-why-trip__bottom {
+    margin-top: 20px;
+
+    padding-top: 14px;
+  }
+
+  .flyixo-why-trip__bottom-check {
+    width: 22px;
+    height: 22px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-why-trip__bottom p {
+    font-size: 8px;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL DEVICES
+============================================================ */
+
+@media (max-width: 360px) {
+  .flyixo-why-trip {
+    padding:
+      35px 8px;
+  }
+
+  .flyixo-why-trip__visual {
+    min-height: 300px;
+  }
+
+  .flyixo-why-trip__image-card {
+    min-height: 295px;
+  }
+
+  .flyixo-why-trip__image {
+    max-width: 240px;
+  }
+
+  .flyixo-why-trip__heading {
+    font-size: 22px;
+  }
+
+  .flyixo-why-trip__intro {
+    font-size: 9.5px;
+  }
+
+  .flyixo-why-trip__item-text {
+    font-size: 8.5px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-why-trip *:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.25);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-why-trip *,
+  .flyixo-why-trip *::before,
+  .flyixo-why-trip *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,157 +1,655 @@
-/* =========================
-   Milestones Section
-========================= */
+/* =========================================================
+   FLYIXO MILESTONES SECTION
+   Complete Responsive CSS
+========================================================= */
+
 .milestones-section {
-  background: linear-gradient(135deg, #061425 0%, #0e2a46 100%);
-  padding: 50px 20px;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
-  color: #fff;
-  perspective: 1200px;
+  --milestone-navy: #061425;
+  --milestone-navy-light: #0e2a46;
+  --milestone-blue: #17659c;
+  --milestone-pink: #e63975;
+  --milestone-pink-light: #ff6fa3;
+  --milestone-gold: #ffd36f;
+  --milestone-blue-light: #6fc3ff;
+  --milestone-white: #ffffff;
+  --milestone-muted: #b9c4cf;
+
   position: relative;
+  width: 100%;
+  padding: 95px 20px 80px;
+
   overflow: hidden;
+  isolation: isolate;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(230, 57, 117, 0.12),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(111, 195, 255, 0.1),
+      transparent 28%
+    ),
+    linear-gradient(
+      135deg,
+      #04101f 0%,
+      #061425 45%,
+      #0e2a46 100%
+    );
+
+  color: var(--milestone-white);
+
+  font-family: "Poppins", sans-serif;
 }
 
-/* Decorative gradient glows */
-.milestones-section::before,
-.milestones-section::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(230, 57, 117, 0.25), transparent 70%);
-  z-index: 0;
-  filter: blur(80px);
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.milestones-container {
+  position: relative;
+
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  z-index: 5;
 }
-.milestones-section::before {
+
+/* =========================================================
+   BACKGROUND GLOWS
+========================================================= */
+
+.milestones-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(60px);
+
+  z-index: -1;
+}
+
+.milestones-bg-one {
+  width: 500px;
+  height: 500px;
+
+  top: -220px;
+  left: -250px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(230, 57, 117, 0.2),
+      transparent 70%
+    );
+}
+
+.milestones-bg-two {
   width: 450px;
   height: 450px;
-  top: -120px;
-  left: -140px;
-}
-.milestones-section::after {
-  width: 400px;
-  height: 400px;
-  bottom: -120px;
-  right: -120px;
+
+  right: -220px;
+  bottom: -220px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(111, 195, 255, 0.15),
+      transparent 70%
+    );
 }
 
-.milestones-title {
-  font-size: 3rem;
+.milestones-bg-three {
+  width: 250px;
+  height: 250px;
+
+  top: 45%;
+  left: 40%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 211, 111, 0.06),
+      transparent 70%
+    );
+}
+
+/* =========================================================
+   GRID PATTERN
+========================================================= */
+
+.milestones-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.15;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 90%
+    );
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.milestones-header {
+  max-width: 850px;
+
+  margin: 0 auto 75px;
+
+  text-align: center;
+}
+
+/* Eyebrow */
+
+.milestones-eyebrow {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 18px;
+
+  margin-bottom: 18px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.16);
+
+  border-radius: 50px;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  color: var(--milestone-gold);
+
+  font-size: 0.7rem;
   font-weight: 700;
-  margin-bottom: 60px;
-  animation: fadeIn 1s ease both;
-  z-index: 2;
-  position: relative;
-  letter-spacing: 1px;
+
+  letter-spacing: 2px;
+
+  backdrop-filter: blur(12px);
+}
+
+/* Title */
+
+.milestones-title {
+  margin: 0;
+
+  color: var(--milestone-white);
+
+  font-size: clamp(
+    2.2rem,
+    4.5vw,
+    3.4rem
+  );
+
+  font-weight: 700;
+
+  line-height: 1.15;
+
+  letter-spacing: -1px;
 }
 
 .milestones-title span {
-  background: linear-gradient(90deg, #e63975, #f1c40f, #6fc3ff);
+  display: inline-block;
+
+  color: transparent;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--milestone-pink-light),
+      var(--milestone-gold),
+      var(--milestone-blue-light)
+    );
+
+  background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+
   font-style: italic;
+
   font-weight: 800;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* =========================
-   Timeline
-========================= */
+/* Subtitle */
+
+.milestones-subtitle {
+  max-width: 720px;
+
+  margin: 20px auto 0;
+
+  color:
+    rgba(255, 255, 255, 0.68);
+
+  font-size: 0.95rem;
+
+  line-height: 1.85;
+}
+
+/* Heading Decoration */
+
+.milestones-heading-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 25px;
+}
+
+.milestones-heading-line span {
+  width: 35px;
+  height: 2px;
+
+  background:
+    rgba(255, 255, 255, 0.3);
+}
+
+.milestones-heading-line i {
+  width: 70px;
+  height: 5px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--milestone-pink),
+      var(--milestone-gold)
+    );
+
+  box-shadow:
+    0 0 20px
+    rgba(230, 57, 117, 0.4);
+}
+
+/* =========================================================
+   TIMELINE WRAPPER
+========================================================= */
+
+.milestones-timeline-wrapper {
+  position: relative;
+
+  max-width: 1200px;
+
+  margin: 0 auto 75px;
+
+  padding: 0 20px;
+}
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
 .milestones-timeline {
   position: relative;
+
   display: flex;
+
+  align-items: flex-start;
   justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto 70px auto;
-  padding: 0 20px;
-  align-items: center;
-  z-index: 2;
+
+  width: 100%;
+
+  min-height: 75px;
 }
+
+/* Base Line */
+
+.milestones-line {
+  position: absolute;
+
+  top: 14px;
+
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.12);
+
+  transform: translateY(-50%);
+
+  z-index: 1;
+}
+
+/* Progress */
 
 .milestones-progress {
   position: absolute;
-  top: 50%;
+
+  top: 14px;
+
   left: 0;
-  height: 6px;
-  background: linear-gradient(90deg, #e63975, #f1c40f, #6fc3ff);
-  border-radius: 3px;
+
+  height: 4px;
+
+  min-width: 0;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--milestone-pink),
+      var(--milestone-gold),
+      var(--milestone-blue-light)
+    );
+
   transform: translateY(-50%);
-  transition: width 0.5s ease-in-out;
-  z-index: 0;
-}
 
-.milestones-timeline-item {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.35s ease, color 0.35s ease;
-}
+  transition:
+    width 0.65s
+    cubic-bezier(0.22, 1, 0.36, 1);
 
-.milestones-timeline-item:hover {
-  transform: translateY(-15px) scale(1.1);
-}
+  box-shadow:
+    0 0 15px
+    rgba(230, 57, 117, 0.45);
 
-/* Dots */
-.milestones-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #061425;
-  border: 3px solid #fff;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-  transition: all 0.3s ease;
-}
-
-.milestones-timeline-item.active .milestones-dot {
-  background: linear-gradient(135deg, #e63975, #f1c40f, #6fc3ff);
-  border-color: #fff;
-  box-shadow: 0 0 15px #e63975, 0 0 25px #f1c40f, 0 0 35px #6fc3ff, 0 0 50px rgba(111,195,255,0.6);
-  transform: scale(1.6);
-}
-
-.milestones-timeline-item p {
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: 1rem;
-  color: #fff;
-  transition: color 0.3s ease;
-}
-
-.milestones-timeline-item.active p {
-  color: #f1c40f;
-  text-shadow: 0 2px 8px rgba(241,196,15,0.7);
-}
-
-/* =========================
-   Content Cards
-========================= */
-.milestones-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  border-radius: 20px;
-  padding: 50px 40px;
-  gap: 40px;
-  animation: fadeSlide 0.6s ease both;
-  transform-style: preserve-3d;
-  backdrop-filter: blur(18px);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.45);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: 1.8px solid rgba(255, 255, 255, 0.18);
-  position: relative;
   z-index: 2;
 }
 
-.milestones-content:hover {
-  transform: translateY(-15px) scale(1.04);
-  box-shadow: 0 20px 65px rgba(0, 0, 0, 0.65);
+/* =========================================================
+   TIMELINE ITEM
+========================================================= */
+
+.milestones-timeline-item {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 90px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: inherit;
+
+  cursor: pointer;
+
+  z-index: 5;
+
+  font-family: inherit;
+
+  transition:
+    transform 0.35s ease;
 }
+
+.milestones-timeline-item:hover {
+  transform: translateY(-7px);
+}
+
+/* Dot Wrapper */
+
+.milestones-dot-wrapper {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+}
+
+/* Dot */
+
+.milestones-dot {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background:
+    #071827;
+
+  border:
+    3px solid
+    rgba(255, 255, 255, 0.55);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(255, 255, 255, 0.03);
+
+  transition:
+    width 0.35s ease,
+    height 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Inner Dot */
+
+.milestones-dot-inner {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 12px
+    rgba(255, 255, 255, 0.7);
+}
+
+/* Completed */
+
+.milestones-timeline-item.completed
+  .milestones-dot {
+  border-color:
+    rgba(255, 255, 255, 0.85);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--milestone-pink),
+      var(--milestone-gold)
+    );
+}
+
+/* Active */
+
+.milestones-timeline-item.active
+  .milestones-dot {
+  width: 24px;
+  height: 24px;
+
+  border-color: #ffffff;
+
+  box-shadow:
+    0 0 0 5px
+      rgba(230, 57, 117, 0.12),
+    0 0 20px
+      rgba(230, 57, 117, 0.65),
+    0 0 35px
+      rgba(255, 211, 111, 0.35);
+}
+
+/* Year */
+
+.milestones-year {
+  display: block;
+
+  margin-top: 13px;
+
+  color:
+    rgba(255, 255, 255, 0.58);
+
+  font-size: 0.9rem;
+
+  font-weight: 600;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.milestones-timeline-item:hover
+  .milestones-year,
+.milestones-timeline-item.active
+  .milestones-year {
+  color: #ffffff;
+}
+
+.milestones-timeline-item.active
+  .milestones-year {
+  color: var(--milestone-gold);
+
+  font-weight: 800;
+
+  transform: scale(1.08);
+
+  text-shadow:
+    0 0 15px
+    rgba(255, 211, 111, 0.45);
+}
+
+/* =========================================================
+   MAIN CONTENT CARD
+========================================================= */
+
+.milestones-content {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 500px;
+
+  padding: 45px;
+
+  gap: 65px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.13);
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  box-shadow:
+    0 35px 90px
+    rgba(0, 0, 0, 0.38),
+    inset 0 1px 0
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  overflow: hidden;
+
+  animation:
+    milestoneContentIn
+    0.6s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+}
+
+/* Card Glow */
+
+.milestones-content::before {
+  content: "";
+
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  top: -200px;
+  right: -150px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(230, 57, 117, 0.12),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+/* Card Hover */
+
+.milestones-content:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(255, 255, 255, 0.22);
+
+  box-shadow:
+    0 45px 100px
+    rgba(0, 0, 0, 0.45),
+    0 0 45px
+    rgba(230, 57, 117, 0.06);
+}
+
+/* Image Position */
 
 .milestones-content.left-img {
   flex-direction: row;
@@ -161,180 +659,989 @@
   flex-direction: row-reverse;
 }
 
-/* Image Styles */
-.milestones-img {
-  flex: 1;
-  max-width: 420px;
-  perspective: 1000px;
+/* =========================================================
+   IMAGE WRAPPER
+========================================================= */
+
+.milestones-img-wrapper {
+  position: relative;
+
+  flex: 0 1 48%;
+
+  max-width: 570px;
+
+  padding: 12px;
 }
 
-.milestones-img img {
+/* Image Frame */
+
+.milestones-img-frame {
+  position: relative;
+
   width: 100%;
-  border-radius: 20px;
-  transition: transform 0.6s ease, box-shadow 0.6s ease, filter 0.6s ease;
-  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4));
+
+  aspect-ratio: 4 / 3;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+
+  background:
+    #0b2339;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 25px 55px
+    rgba(0, 0, 0, 0.4);
 }
 
-.milestones-img img:hover {
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
-  filter: brightness(1.1) saturate(1.2);
+/* Image */
+
+.milestones-img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.8s
+    cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.6s ease;
 }
 
-/* Text Styles */
+.milestones-content:hover
+  .milestones-img {
+  transform: scale(1.07);
+
+  filter:
+    brightness(1.08)
+    saturate(1.12);
+}
+
+/* Image Overlay */
+
+.milestones-img-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(4, 16, 31, 0.08),
+      rgba(230, 57, 117, 0.2)
+    );
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.5s ease;
+}
+
+.milestones-content:hover
+  .milestones-img-overlay {
+  opacity: 0.75;
+}
+
+/* =========================================================
+   IMAGE SHINE
+========================================================= */
+
+.milestones-image-shine {
+  position: absolute;
+
+  top: -100%;
+  left: -80%;
+
+  width: 45%;
+  height: 300%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+
+  transform: rotate(25deg);
+
+  transition:
+    left 0.9s ease;
+
+  pointer-events: none;
+}
+
+.milestones-content:hover
+  .milestones-image-shine {
+  left: 140%;
+}
+
+/* =========================================================
+   IMAGE YEAR BADGE
+========================================================= */
+
+.milestones-image-year {
+  position: absolute;
+
+  left: -5px;
+  bottom: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 115px;
+
+  padding: 13px 17px;
+
+  border-radius: 0 15px 15px 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--milestone-pink),
+      #c9285e
+    );
+
+  box-shadow:
+    0 12px 30px
+    rgba(230, 57, 117, 0.4);
+
+  z-index: 5;
+}
+
+.milestones-image-year span {
+  color:
+    rgba(255, 255, 255, 0.7);
+
+  font-size: 0.6rem;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.milestones-image-year strong {
+  color: #ffffff;
+
+  font-size: 1.55rem;
+
+  line-height: 1.2;
+}
+
+/* =========================================================
+   IMAGE CORNERS
+========================================================= */
+
+.milestones-image-corner {
+  position: absolute;
+
+  width: 55px;
+  height: 55px;
+
+  border-color:
+    var(--milestone-gold);
+
+  z-index: 4;
+
+  pointer-events: none;
+}
+
+.milestones-image-corner-one {
+  top: 0;
+  right: 0;
+
+  border-top: 3px solid;
+  border-right: 3px solid;
+
+  border-radius: 0 18px 0 0;
+}
+
+.milestones-image-corner-two {
+  bottom: 0;
+  left: 0;
+
+  border-bottom: 3px solid;
+  border-left: 3px solid;
+
+  border-radius: 0 0 0 18px;
+}
+
+/* =========================================================
+   TEXT CONTENT
+========================================================= */
+
 .milestones-text {
-  flex: 1.4;
+  flex: 1;
+
+  min-width: 0;
+
   text-align: left;
-  max-width: 850px;
-  margin: auto;
 }
+
+/* Label */
+
+.milestones-content-label {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+.milestones-content-number {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 30px;
+
+  border-radius: 8px;
+
+  background:
+    rgba(230, 57, 117, 0.14);
+
+  color:
+    var(--milestone-pink-light);
+
+  font-size: 0.75rem;
+
+  font-weight: 800;
+}
+
+.milestones-content-label-text {
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* Heading */
 
 .milestones-text h3 {
-  font-size: 2.2rem;
+  margin: 0 0 20px;
+
+  max-width: 700px;
+
+  color: #ffffff;
+
+  font-size: clamp(
+    1.8rem,
+    3vw,
+    2.6rem
+  );
+
   font-weight: 700;
-  margin-bottom: 25px;
-  animation: fadeIn 1s ease both;
-  background: linear-gradient(90deg, #ff6fa3, #ffd36f, #6fc3ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+
+  line-height: 1.2;
+
+  letter-spacing: -0.5px;
 }
 
-.milestones-text p {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-  line-height: 1.9;
-  color: #ccc;
+/* Description */
+
+.milestones-description {
+  max-width: 700px;
+
+  margin: 0 0 25px;
+
+  color:
+    rgba(255, 255, 255, 0.68);
+
+  font-size: 0.95rem;
+
+  line-height: 1.85;
 }
 
-.milestones-text ul {
-  list-style: none;
-  padding: 0;
-}
+/* =========================================================
+   FEATURE LIST
+========================================================= */
 
-.milestones-text li {
-  margin-bottom: 15px;
-  font-size: 1.05rem;
-  animation: fadeIn 1s ease both;
+.milestones-list {
   display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+
+  margin: 0;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.milestones-list li {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.83);
+
+  font-size: 0.88rem;
+
+  line-height: 1.6;
+
+  opacity: 0;
+
+  animation:
+    milestoneListIn
+    0.45s
+    ease
+    var(--item-delay)
+    forwards;
+}
+
+/* Check */
+
+.milestones-check {
+  flex: 0 0 auto;
+
+  display: inline-flex;
+
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  margin-top: 1px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--milestone-pink),
+      var(--milestone-gold)
+    );
+
+  color: #ffffff;
+
+  font-size: 0.7rem;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 5px 15px
+    rgba(230, 57, 117, 0.25);
 }
 
-.milestones-text li span {
-  color: #f1c40f;
-  font-weight: bold;
-  font-size: 1.3rem;
-  text-shadow: 0 0 10px #e63975, 0 0 20px #f1c40f;
+.milestones-point {
+  flex: 1;
 }
 
-/* =========================
-   Animations
-========================= */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.milestones-navigation {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 35px;
 }
 
-@keyframes fadeSlide {
-  from { opacity: 0; transform: translateY(50px); }
-  to { opacity: 1; transform: translateY(0); }
+.milestones-nav-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  color: #ffffff;
+
+  font-size: 1rem;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* =========================
-   Responsive Milestones
-========================= */
+.milestones-nav-btn:hover {
+  transform: translateY(-3px);
 
-/* Large tablets and small desktops */
-@media (max-width: 1200px) {
-  .milestones-section {
-    padding: 80px 20px;
+  border-color:
+    var(--milestone-pink-light);
+
+  background:
+    var(--milestone-pink);
+
+  box-shadow:
+    0 10px 25px
+    rgba(230, 57, 117, 0.3);
+}
+
+/* Counter */
+
+.milestones-counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+}
+
+.milestones-counter strong {
+  color:
+    var(--milestone-gold);
+
+  font-size: 1rem;
+}
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.milestones-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 55px;
+}
+
+.milestones-bottom-line {
+  width: 80px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25)
+    );
+}
+
+.milestones-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.25),
+      transparent
+    );
+}
+
+.milestones-bottom p {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 0.78rem;
+
+  text-align: center;
+}
+
+.milestones-bottom strong {
+  color:
+    var(--milestone-pink-light);
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes milestoneContentIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px)
+      scale(0.98);
   }
 
-  .milestones-title {
-    font-size: 2.5rem;
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+@keyframes milestoneListIn {
+  from {
+    opacity: 0;
+
+    transform: translateX(15px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .milestones-section {
+    padding: 80px 20px 70px;
+  }
+
+  .milestones-header {
+    margin-bottom: 65px;
   }
 
   .milestones-content {
-    padding: 40px 30px;
-    gap: 30px;
+    padding: 38px;
+
+    gap: 45px;
+  }
+
+  .milestones-img-wrapper {
+    flex-basis: 46%;
+  }
+
+  .milestones-text h3 {
+    font-size: 2.15rem;
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 992px) {
+  .milestones-section {
+    padding: 70px 18px 60px;
+  }
+
+  .milestones-header {
+    margin-bottom: 55px;
+  }
+
+  .milestones-timeline-wrapper {
+    padding: 0 10px;
+
+    margin-bottom: 55px;
+  }
+
+  .milestones-content,
+  .milestones-content.left-img,
+  .milestones-content.right-img {
+    flex-direction: column;
+
+    gap: 35px;
+
+    padding: 35px;
+  }
+
+  .milestones-img-wrapper {
+    width: 100%;
+
+    max-width: 650px;
+
+    flex-basis: auto;
+  }
+
+  .milestones-text {
+    width: 100%;
+
+    max-width: 700px;
   }
 
   .milestones-text h3 {
     font-size: 2rem;
   }
 
-  .milestones-text p {
-    font-size: 1rem;
+  .milestones-description {
+    font-size: 0.9rem;
   }
 }
 
-/* Tablets */
-@media (max-width: 992px) {
-  .milestones-timeline {
-    padding: 0 15px;
-  }
+/* =========================================================
+   MOBILE TABLET
+========================================================= */
 
-  .milestones-content {
-    flex-direction: column !important;
-    padding: 35px 25px;
-    gap: 25px;
-  }
-
-  .milestones-img {
-    max-width: 100%;
-  }
-
-  .milestones-text {
-    text-align: start;
-    max-width: 100%;
-  }
-
-  .milestones-text h3 {
-    font-size: 1.8rem;
-  }
-
-  .milestones-text p {
-    font-size: 1rem;
-  }
-}
-
-/* Large mobile phones */
 @media (max-width: 768px) {
-  .milestones-title {
-    font-size: 2.2rem;
-    margin-bottom: 40px;
-  }
-
-  .milestones-timeline-item p {
-    font-size: 0.95rem;
-  }
-
-  .milestones-text li {
-    font-size: 0.95rem;
-  }
-}
-
-/* Small mobile phones */
-@media (max-width: 480px) {
   .milestones-section {
-    padding: 60px 15px;
+    padding: 60px 14px 50px;
+  }
+
+  .milestones-header {
+    margin-bottom: 45px;
+  }
+
+  .milestones-eyebrow {
+    padding: 7px 14px;
+
+    font-size: 0.6rem;
+
+    letter-spacing: 1.5px;
   }
 
   .milestones-title {
-    margin-bottom: 30px;
+    font-size: 2rem;
+
+    letter-spacing: -0.5px;
   }
 
-  .milestones-content {
-    padding: 30px 20px;
-    gap: 20px;
-  }
-  .milestones-text p {
-    font-size: 0.95rem;
+  .milestones-subtitle {
+    margin-top: 15px;
+
+    font-size: 0.84rem;
+
     line-height: 1.7;
   }
 
-  .milestones-text li {
-    font-size: 0.9rem;
-    text-align: start;
+  /* Horizontal scroll timeline */
+
+  .milestones-timeline-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+
+    overflow-y: visible;
+
+    padding:
+      10px
+      20px
+      20px;
+
+    margin-bottom: 35px;
+
+    scrollbar-width: none;
+  }
+
+  .milestones-timeline-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .milestones-timeline {
+    min-width: 650px;
+  }
+
+  .milestones-content {
+    padding: 25px 20px;
+
+    gap: 25px;
+
+    border-radius: 24px;
+  }
+
+  .milestones-img-wrapper {
+    padding: 7px;
+  }
+
+  .milestones-img-frame {
+    border-radius: 20px;
+  }
+
+  .milestones-image-year {
+    left: -1px;
+    bottom: 15px;
+
+    min-width: 95px;
+
+    padding: 10px 13px;
+  }
+
+  .milestones-image-year span {
+    font-size: 0.52rem;
+  }
+
+  .milestones-image-year strong {
+    font-size: 1.3rem;
+  }
+
+  .milestones-text h3 {
+    font-size: 1.7rem;
+
+    line-height: 1.3;
+  }
+
+  .milestones-description {
+    font-size: 0.84rem;
+
+    line-height: 1.75;
+  }
+
+  .milestones-list {
+    gap: 11px;
+  }
+
+  .milestones-list li {
+    font-size: 0.8rem;
+  }
+
+  .milestones-navigation {
+    margin-top: 28px;
+  }
+
+  .milestones-bottom {
+    margin-top: 35px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .milestones-section {
+    padding: 50px 10px 45px;
+  }
+
+  .milestones-title {
+    font-size: 1.65rem;
+  }
+
+  .milestones-subtitle {
+    font-size: 0.78rem;
+  }
+
+  .milestones-heading-line {
+    margin-top: 20px;
+  }
+
+  .milestones-heading-line span {
+    width: 25px;
+  }
+
+  .milestones-heading-line i {
+    width: 50px;
+  }
+
+  .milestones-timeline-wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .milestones-content {
+    padding: 20px 15px;
+
+    gap: 22px;
+
+    border-radius: 20px;
+  }
+
+  .milestones-img-wrapper {
+    padding: 5px;
+  }
+
+  .milestones-img-frame {
+    aspect-ratio: 1 / 0.82;
+
+    border-radius: 17px;
+  }
+
+  .milestones-image-corner {
+    width: 35px;
+    height: 35px;
+  }
+
+  .milestones-image-year {
+    bottom: 10px;
+
+    min-width: 85px;
+
+    padding: 8px 11px;
+
+    border-radius: 0 10px 10px 0;
+  }
+
+  .milestones-image-year span {
+    font-size: 0.46rem;
+
+    letter-spacing: 1.5px;
+  }
+
+  .milestones-image-year strong {
+    font-size: 1.15rem;
+  }
+
+  .milestones-content-label {
+    gap: 8px;
+
+    margin-bottom: 12px;
+  }
+
+  .milestones-content-number {
+    width: 33px;
+    height: 26px;
+
+    font-size: 0.65rem;
+  }
+
+  .milestones-content-label-text {
+    font-size: 0.6rem;
+
+    letter-spacing: 1.5px;
+  }
+
+  .milestones-text h3 {
+    margin-bottom: 15px;
+
+    font-size: 1.4rem;
+  }
+
+  .milestones-description {
+    margin-bottom: 20px;
+
+    font-size: 0.78rem;
+  }
+
+  .milestones-list li {
+    gap: 9px;
+
+    font-size: 0.75rem;
+  }
+
+  .milestones-check {
+    width: 19px;
+    height: 19px;
+
+    font-size: 0.6rem;
+  }
+
+  .milestones-navigation {
+    gap: 12px;
+
+    margin-top: 25px;
+  }
+
+  .milestones-nav-btn {
+    width: 37px;
+    height: 37px;
+
+    font-size: 0.85rem;
+  }
+
+  .milestones-counter {
+    font-size: 0.72rem;
+  }
+
+  .milestones-bottom {
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 30px;
+  }
+
+  .milestones-bottom-line {
+    width: 60px;
+  }
+
+  .milestones-bottom p {
+    font-size: 0.7rem;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .milestones-section {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .milestones-title {
+    font-size: 1.45rem;
+  }
+
+  .milestones-content {
+    padding: 17px 12px;
+  }
+
+  .milestones-text h3 {
+    font-size: 1.25rem;
+  }
+
+  .milestones-description {
+    font-size: 0.74rem;
+  }
+
+  .milestones-list li {
+    font-size: 0.7rem;
+  }
+
+  .milestones-image-year {
+    min-width: 75px;
+
+    padding: 7px 9px;
+  }
+
+  .milestones-image-year strong {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .milestones-content,
+  .milestones-list li,
+  .milestones-img,
+  .milestones-image-shine,
+  .milestones-nav-btn,
+  .milestones-timeline-item,
+  .milestones-progress {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .milestones-content {
+    opacity: 1;
+  }
+
+  .milestones-list li {
+    opacity: 1;
   }
 }

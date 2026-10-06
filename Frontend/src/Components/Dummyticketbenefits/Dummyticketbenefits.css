@@ -1,136 +1,1167 @@
-/* BenefitsSection.css */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap");
+/* ============================================================
+   FLYIXO BENEFITS SECTION
+   Premium Responsive Design
+============================================================ */
 
 :root {
-  --accent: #ff6b3d;
-  --text-dark: #111111;
-  --text-body: #4b5563;
-  --card-border: #f2f2f2;
-  --card-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-  --radius: 22px;
+  --flyixo-benefits-navy: #062c43;
+  --flyixo-benefits-navy-dark: #031b2b;
+
+  --flyixo-benefits-primary: #e94e77;
+  --flyixo-benefits-primary-dark: #c93661;
+  --flyixo-benefits-primary-light: #ff8eaa;
+
+  --flyixo-benefits-cyan: #36c8d4;
+  --flyixo-benefits-blue: #2563eb;
+  --flyixo-benefits-gold: #f4b942;
+
+  --flyixo-benefits-text: #182536;
+  --flyixo-benefits-muted: #687789;
+
+  --flyixo-benefits-white: #ffffff;
+  --flyixo-benefits-light: #f8fafc;
+
+  --flyixo-benefits-border: #e7ebef;
+
+  --flyixo-benefits-shadow:
+    0 18px 45px rgba(6, 44, 67, 0.08);
+
+  --flyixo-benefits-shadow-hover:
+    0 28px 65px rgba(6, 44, 67, 0.15);
+
+  --flyixo-benefits-transition: 0.35s ease;
 }
-/* ===== SECTION (full width) ===== */
-.benefits {
+
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-benefits,
+.flyixo-benefits *,
+.flyixo-benefits *::before,
+.flyixo-benefits *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-benefits {
+  position: relative;
+
   width: 100%;
-  padding: 60px 0 120px;
-  background: #fdfdfd;
-  font-family: "Poppins", sans-serif;
 
-  /* 👇 Added soft modern border + shadow */
-  border-top: 2px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+  padding:
+    clamp(65px, 7vw, 100px)
+    20px
+    clamp(70px, 8vw, 110px);
 
-  box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.06),
-    0 -6px 18px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f9fbfd 52%,
+      #fff8fa 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  border-top:
+    1px solid
+    rgba(6, 44, 67, 0.07);
+
+  border-bottom:
+    1px solid
+    rgba(6, 44, 67, 0.07);
 }
 
+/* ============================================================
+   BACKGROUND ORBS
+============================================================ */
 
-/* center content like your other sections */
-.benefits__container {
-  max-width: 1240px;
+.flyixo-benefits__orb {
+  position: absolute;
+
+  z-index: 0;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  animation:
+    flyixoBenefitsFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-benefits__orb--one {
+  width: 430px;
+  height: 430px;
+
+  top: -250px;
+  left: -180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.14),
+      transparent 70%
+    );
+}
+
+.flyixo-benefits__orb--two {
+  width: 500px;
+  height: 500px;
+
+  right: -270px;
+  bottom: -300px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoBenefitsFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -20px, 0);
+  }
+}
+
+/* ============================================================
+   BACKGROUND GRID
+============================================================ */
+
+.flyixo-benefits__grid-bg {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.35;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 20%,
+      black 80%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-benefits__container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1240px, 100%);
+
   margin: 0 auto;
-  padding: 0 32px;
 }
 
-/* ===== HEADING ===== */
-.benefits__heading {
-  font-size: 2.6rem;
-  font-weight: 800;
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-benefits__header {
+  max-width: 800px;
+
+  margin:
+    0 auto 50px;
+
   text-align: center;
-  color: var(--text-dark);
-  margin-bottom: 56px;
 }
 
-/* ===== GRID (3 x 2 on desktop) ===== */
-.benefits__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 32px 30px;
-}
+/* ============================================================
+   BADGE
+============================================================ */
 
-/* ===== CARD ===== */
-.benefit-card {
-  background: #ffffff;
-  border-radius: var(--radius);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
-  padding: 40px 32px 42px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 230px; /* keeps all cards looking same height */
-}
+.flyixo-benefits__badge {
+  display: inline-flex;
 
-/* icon circle */
-.benefit-card__icon-wrap {
-  width: 72px;
-  height: 72px;
-  border-radius: 999px;
-  background: rgba(255, 107, 61, 0.1);
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
-}
 
-.benefit-card__icon {
-  font-size: 32px;
-}
+  gap: 9px;
 
-/* title */
-.benefit-card__title {
-  font-size: 1rem;
-  font-weight: 700;
+  margin-bottom: 17px;
+
+  padding:
+    8px 15px;
+
+  color:
+    var(--flyixo-benefits-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-radius: 999px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text-dark);
-  margin-bottom: 16px;
 }
 
-/* text */
-.benefit-card__text {
-  font-size: 0.98rem;
-  line-height: 1.7;
-  color: var(--text-body);
+.flyixo-benefits__badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-benefits-primary);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.1);
+
+  animation:
+    flyixoBenefitsPulse
+    2s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoBenefitsPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ============================================================
+   HEADING
+============================================================ */
+
+.flyixo-benefits__heading {
+  margin: 0;
+
+  color:
+    var(--flyixo-benefits-text);
+
+  font-size:
+    clamp(
+      30px,
+      4vw,
+      46px
+    );
+
+  line-height: 1.18;
+
+  font-weight: 850;
+
+  letter-spacing: -1px;
+}
+
+.flyixo-benefits__heading span {
+  color:
+    var(--flyixo-benefits-primary);
+
+  position: relative;
+}
+
+/* ============================================================
+   SUBTITLE
+============================================================ */
+
+.flyixo-benefits__subtitle {
+  max-width: 670px;
+
+  margin:
+    17px auto 0;
+
+  color:
+    var(--flyixo-benefits-muted);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   HEADER LINE
+============================================================ */
+
+.flyixo-benefits__heading-line {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 21px;
+}
+
+.flyixo-benefits__heading-line span {
+  display: block;
+
+  width: 24px;
+  height: 4px;
+
+  border-radius: 20px;
+
+  background:
+    var(--flyixo-benefits-primary);
+}
+
+.flyixo-benefits__heading-line span:nth-child(2) {
+  width: 45px;
+
+  background:
+    var(--flyixo-benefits-cyan);
+}
+
+.flyixo-benefits__heading-line span:nth-child(3) {
+  width: 10px;
+
+  background:
+    var(--flyixo-benefits-gold);
+}
+
+/* ============================================================
+   BENEFITS GRID
+============================================================ */
+
+.flyixo-benefits__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 25px;
+}
+
+/* ============================================================
+   BENEFIT CARD
+============================================================ */
+
+.flyixo-benefit-card {
+  position: relative;
+
+  min-height: 340px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding:
+    34px 27px 23px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fbfcfd
+    );
+
+  border:
+    1px solid
+    var(--flyixo-benefits-border);
+
+  border-radius: 22px;
+
+  box-shadow:
+    var(--flyixo-benefits-shadow);
+
+  transition:
+    transform var(--flyixo-benefits-transition),
+    box-shadow var(--flyixo-benefits-transition),
+    border-color var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover {
+  transform:
+    translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.22);
+
+  box-shadow:
+    var(--flyixo-benefits-shadow-hover);
+}
+
+/* ============================================================
+   CARD NUMBER
+============================================================ */
+
+.flyixo-benefit-card__number {
+  position: absolute;
+
+  top: 14px;
+  right: 17px;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    var(--flyixo-benefits-primary);
+
+  background:
+    rgba(233, 78, 119, 0.06);
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.12);
+
+  border-radius: 50%;
+
+  font-size: 9px;
+
+  font-weight: 850;
+
+  transition:
+    transform var(--flyixo-benefits-transition),
+    background var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__number {
+  transform:
+    rotate(8deg)
+    scale(1.08);
+
+  background:
+    rgba(233, 78, 119, 0.1);
+}
+
+/* ============================================================
+   TOP ACCENT
+============================================================ */
+
+.flyixo-benefit-card__accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-benefits-primary),
+      var(--flyixo-benefits-cyan)
+    );
+
+  transform:
+    scaleX(0.25);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__accent {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   ICON WRAPPER
+============================================================ */
+
+.flyixo-benefit-card__icon-wrap {
+  position: relative;
+
+  width: 82px;
+  height: 82px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin:
+    10px 0 22px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(233, 78, 119, 0.08),
+      rgba(54, 200, 212, 0.08)
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.1);
+
+  transition:
+    transform var(--flyixo-benefits-transition),
+    box-shadow var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__icon-wrap {
+  transform:
+    translateY(-5px)
+    scale(1.06);
+
+  box-shadow:
+    0 15px 30px
+    rgba(233, 78, 119, 0.1);
+}
+
+/* ============================================================
+   ICON GLOW
+============================================================ */
+
+.flyixo-benefit-card__icon-glow {
+  position: absolute;
+
+  inset: 8px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.15),
+      transparent 70%
+    );
+
+  animation:
+    flyixoIconGlow
+    3s
+    ease-in-out
+    infinite;
+}
+
+@keyframes flyixoIconGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   ICON
+============================================================ */
+
+.flyixo-benefit-card__icon {
+  position: relative;
+
+  z-index: 2;
+
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    #ffffff;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 8px 20px
+    rgba(6, 44, 67, 0.08);
+
+  font-size: 29px;
+
+  transition:
+    transform var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__icon {
+  transform:
+    scale(1.08);
+}
+
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.flyixo-benefit-card__content {
+  flex: 1;
+
+  width: 100%;
+}
+
+/* ============================================================
+   CARD TITLE
+============================================================ */
+
+.flyixo-benefit-card__title {
+  margin:
+    0 0 14px;
+
+  color:
+    var(--flyixo-benefits-navy);
+
+  font-size: 14px;
+
+  line-height: 1.4;
+
+  font-weight: 850;
+
+  letter-spacing: 0.7px;
+}
+
+/* ============================================================
+   CARD TEXT
+============================================================ */
+
+.flyixo-benefit-card__text {
   max-width: 320px;
+
+  margin:
+    0 auto;
+
+  color:
+    var(--flyixo-benefits-muted);
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ============================================================
+   CARD FOOTER
+============================================================ */
 
-@media (max-width: 1024px) {
-  .benefits {
-    padding: 30px 0 100px;
-  }
+.flyixo-benefit-card__footer {
+  width: 100%;
 
-  .benefits__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 26px;
-  }
+  display: flex;
 
-  .benefit-card {
-    min-height: 220px;
-  }
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  padding-top: 15px;
+
+  border-top:
+    1px solid
+    rgba(6, 44, 67, 0.07);
 }
 
-@media (max-width: 640px) {
-  .benefits__container {
-    padding: 0 18px;
-  }
+.flyixo-benefit-card__label {
+  color:
+    var(--flyixo-benefits-primary);
 
-  .benefits__heading {
-    font-size: 2.1rem;
-    margin-bottom: 40px;
-  }
+  font-size: 8px;
 
-  .benefits__grid {
-    grid-template-columns: 1fr;
+  font-weight: 850;
+
+  letter-spacing: 1.2px;
+}
+
+.flyixo-benefit-card__arrow {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-benefits-primary),
+      var(--flyixo-benefits-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  opacity: 0;
+
+  transform:
+    translateX(-8px);
+
+  transition:
+    opacity var(--flyixo-benefits-transition),
+    transform var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__arrow {
+  opacity: 1;
+
+  transform:
+    translateX(0);
+}
+
+/* ============================================================
+   DECORATIVE CARD CORNER
+============================================================ */
+
+.flyixo-benefit-card__corner {
+  position: absolute;
+
+  width: 90px;
+  height: 90px;
+
+  right: -45px;
+  bottom: -45px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.1),
+      transparent 70%
+    );
+
+  transition:
+    transform var(--flyixo-benefits-transition);
+}
+
+.flyixo-benefit-card:hover
+.flyixo-benefit-card__corner {
+  transform:
+    scale(1.5);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-benefits__bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+
+  margin-top: 42px;
+}
+
+.flyixo-benefits__bottom-line {
+  width: 110px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.16)
+    );
+}
+
+.flyixo-benefits__bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.16),
+      transparent
+    );
+}
+
+.flyixo-benefits__bottom-content {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  white-space: nowrap;
+}
+
+.flyixo-benefits__check {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-benefits-primary),
+      var(--flyixo-benefits-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 10px;
+
+  font-weight: 900;
+}
+
+.flyixo-benefits__bottom-content p {
+  margin: 0;
+
+  color:
+    var(--flyixo-benefits-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+.flyixo-benefits__bottom-content strong {
+  color:
+    var(--flyixo-benefits-primary);
+}
+
+.flyixo-benefits__bottom-content span:last-child {
+  color:
+    var(--flyixo-benefits-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE TABLET
+============================================================ */
+
+@media (max-width: 1100px) {
+  .flyixo-benefits__grid {
     gap: 20px;
   }
 
-  .benefit-card {
-    padding: 32px 24px 34px;
+  .flyixo-benefit-card {
+    padding:
+      32px 21px 22px;
+  }
+
+  .flyixo-benefit-card__title {
+    font-size: 13px;
+  }
+
+  .flyixo-benefit-card__text {
+    font-size: 10px;
+  }
+}
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+  .flyixo-benefits {
+    padding:
+      60px 18px 80px;
+  }
+
+  .flyixo-benefits__header {
+    margin-bottom: 38px;
+  }
+
+  .flyixo-benefits__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .flyixo-benefit-card {
+    min-height: 330px;
+
+    padding:
+      32px 24px 22px;
+  }
+
+  .flyixo-benefit-card__text {
+    max-width: 360px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-benefit-card__arrow {
+    opacity: 1;
+
+    transform:
+      translateX(0);
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  .flyixo-benefits {
+    padding:
+      50px 13px 65px;
+  }
+
+  .flyixo-benefits__header {
+    margin-bottom: 30px;
+  }
+
+  .flyixo-benefits__badge {
+    font-size: 8px;
+
+    letter-spacing: 1.1px;
+
+    padding:
+      7px 12px;
+  }
+
+  .flyixo-benefits__heading {
+    font-size: 28px;
+
+    letter-spacing: -0.6px;
+  }
+
+  .flyixo-benefits__subtitle {
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-benefits__grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .flyixo-benefit-card {
+    min-height: 300px;
+
+    padding:
+      30px 23px 20px;
+
+    border-radius: 19px;
+  }
+
+  .flyixo-benefit-card__icon-wrap {
+    width: 75px;
+    height: 75px;
+
+    margin-bottom: 18px;
+  }
+
+  .flyixo-benefit-card__icon {
+    width: 54px;
+    height: 54px;
+
+    font-size: 27px;
+  }
+
+  .flyixo-benefit-card__title {
+    font-size: 13px;
+  }
+
+  .flyixo-benefit-card__text {
+    font-size: 11px;
+
+    line-height: 1.75;
+  }
+
+  .flyixo-benefits__bottom {
+    margin-top: 28px;
+  }
+
+  .flyixo-benefits__bottom-line {
+    display: none;
+  }
+
+  .flyixo-benefits__bottom-content {
+    white-space: normal;
+
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .flyixo-benefits__bottom-content p {
+    font-size: 9px;
+
+    line-height: 1.5;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 400px) {
+  .flyixo-benefits {
+    padding:
+      42px 10px 55px;
+  }
+
+  .flyixo-benefits__heading {
+    font-size: 24px;
+  }
+
+  .flyixo-benefits__subtitle {
+    font-size: 10px;
+  }
+
+  .flyixo-benefit-card {
+    min-height: 285px;
+
+    padding:
+      27px 18px 18px;
+  }
+
+  .flyixo-benefit-card__number {
+    width: 32px;
+    height: 32px;
+
+    top: 12px;
+    right: 12px;
+
+    font-size: 8px;
+  }
+
+  .flyixo-benefit-card__icon-wrap {
+    width: 68px;
+    height: 68px;
+  }
+
+  .flyixo-benefit-card__icon {
+    width: 49px;
+    height: 49px;
+
+    font-size: 24px;
+  }
+
+  .flyixo-benefit-card__title {
+    font-size: 12px;
+  }
+
+  .flyixo-benefit-card__text {
+    font-size: 10px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-benefit-card__label {
+    font-size: 7px;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL
+============================================================ */
+
+@media (max-width: 340px) {
+  .flyixo-benefits__heading {
+    font-size: 22px;
+  }
+
+  .flyixo-benefit-card {
+    min-height: 275px;
+
+    padding:
+      25px 15px 17px;
+  }
+
+  .flyixo-benefit-card__text {
+    font-size: 9.5px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-benefits *:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.25);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-benefits *,
+  .flyixo-benefits *::before,
+  .flyixo-benefits *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

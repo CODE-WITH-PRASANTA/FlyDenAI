@@ -1,4 +1,3 @@
-// PricingPlans.jsx
 import React, { useEffect, useState } from "react";
 import "./Dummyticketpricing.css";
 
@@ -7,26 +6,29 @@ import flightImg from "../../assets/kf-img.webp";
 import hotelImg from "../../assets/lf-img.webp";
 import insuranceImg from "../../assets/mf-img.webp";
 
-import BASE_URL from "../../Api"; // example: http://localhost:6003/api
+import BASE_URL from "../../Api";
 
 const Dummyticketpricing = () => {
   const [ticketPrice, setTicketPrice] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch price from backend
+  // ============================================================
+  // FETCH PRICE FROM BACKEND
+  // ============================================================
+
   const fetchPrice = async () => {
     try {
       const response = await fetch(`${BASE_URL}/price`);
       const data = await response.json();
 
-      if (data.success && data.data.ticketPrice) {
+      if (data.success && data.data?.ticketPrice) {
         setTicketPrice(data.data.ticketPrice);
       } else {
-        setTicketPrice("499"); // fallback price
+        setTicketPrice("499");
       }
     } catch (error) {
-      console.error("Error fetching price:", error);
-      setTicketPrice("499"); // fallback price
+      console.error("Error fetching Flyixo pricing:", error);
+      setTicketPrice("499");
     } finally {
       setLoading(false);
     }
@@ -36,7 +38,10 @@ const Dummyticketpricing = () => {
     fetchPrice();
   }, []);
 
-  // Static plan content (except price)
+  // ============================================================
+  // PRICING PLANS
+  // ============================================================
+
   const plans = [
     {
       id: 1,
@@ -47,7 +52,7 @@ const Dummyticketpricing = () => {
       extraLabel: "",
       features: [
         "Instant Dummy Ticket / Flight Reservation approved for all Visa Embassies.",
-        "Fast Delivery within 10–30 minutes by FlyDenAI Travel Experts.",
+        "Fast Delivery within 10–30 minutes by Flyixo Travel Experts.",
         "Free Rescheduling — Update Date or Time Anytime.",
         "Available for One-way, Round-trip & Multi-City Visa Requirements.",
         "Perfect for Schengen Visa, USA Visa, Canada Visa, UK Visa & more.",
@@ -62,7 +67,7 @@ const Dummyticketpricing = () => {
       extraLabel: "",
       features: [
         "Genuine Embassy-Accepted Hotel Reservation for Visa Interview.",
-        "Same-Day Delivery within 10–30 minutes by FlyDenAI.",
+        "Same-Day Delivery within 10–30 minutes by Flyixo.",
         "Unlimited Free Modifications Anytime.",
         "Hotel Booking for Single & Multi-City Travel Plans.",
         "Ideal for Schengen Visa, Dubai Visa, Singapore Visa & International Travel.",
@@ -78,85 +83,269 @@ const Dummyticketpricing = () => {
       features: [
         "Visa-Compliant Travel Insurance accepted by all Embassies worldwide.",
         "Pricing varies based on Country, Travel Duration & Insurance Coverage.",
-        "FlyDenAI provides expert assistance for the best insurance plan.",
+        "Flyixo provides expert assistance for the best insurance plan.",
         "Covers Medical Emergencies, Accidents, Trip Delay & more.",
         "Perfect for Schengen Visa, Europe Travel, USA Travel & International Trips.",
       ],
     },
   ];
 
-  // Smooth scroll to top
+  // ============================================================
+  // SCROLL TO TOP
+  // ============================================================
+
   const scrollToTop = () => {
     const scrollTarget =
-      window.document.documentElement || window.document.body;
+      document.documentElement || document.body;
+
     scrollTarget.scrollTo({
       top: 0,
       behavior: "smooth",
     });
   };
 
+  // ============================================================
+  // JSX
+  // ============================================================
+
   return (
     <section
-      className="pricing"
-      style={{ backgroundImage: `url(${pricingBg})` }}
+      className="flyixo-pricing"
+      style={{
+        backgroundImage: `url(${pricingBg})`,
+      }}
     >
-      <div className="pricing__container">
-        <h2 className="pricing__heading">
-          FlyDenAI Visa Services – Pricing & Document Plans
-        </h2>
+      {/* ======================================================
+          BACKGROUND DECORATIONS
+      ======================================================= */}
 
-        <p className="pricing__subheading">
-          Visa-Friendly • Embassy Approved • Fast & Reliable FlyDenAI Services
-        </p>
+      <div className="flyixo-pricing__overlay"></div>
+
+      <div className="flyixo-pricing__orb flyixo-pricing__orb--one"></div>
+      <div className="flyixo-pricing__orb flyixo-pricing__orb--two"></div>
+      <div className="flyixo-pricing__orb flyixo-pricing__orb--three"></div>
+
+      <div className="flyixo-pricing__grid-bg"></div>
+
+      <div className="flyixo-pricing__container">
+
+        {/* ====================================================
+            HEADER
+        ===================================================== */}
+
+        <div className="flyixo-pricing__header">
+
+          <div className="flyixo-pricing__badge">
+            <span className="flyixo-pricing__badge-dot"></span>
+            FLYIXO VISA DOCUMENT SERVICES
+          </div>
+
+          <h2 className="flyixo-pricing__heading">
+            Flyixo Visa Services –{" "}
+            <span>Pricing & Document Plans</span>
+          </h2>
+
+          <p className="flyixo-pricing__subheading">
+            Visa-Friendly
+            <b> • </b>
+            Embassy Ready
+            <b> • </b>
+            Fast & Reliable Flyixo Services
+          </p>
+
+          <div className="flyixo-pricing__heading-line">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+        </div>
+
+        {/* ====================================================
+            LOADING
+        ===================================================== */}
 
         {loading && (
-          <p style={{ textAlign: "center", fontSize: "1.2rem" }}>
-            Loading Pricing...
-          </p>
+          <div className="flyixo-pricing__loading">
+
+            <div className="flyixo-pricing__spinner"></div>
+
+            <p>
+              Loading Flyixo Pricing...
+            </p>
+
+          </div>
         )}
 
-        <div className="pricing__grid">
-          {!loading &&
-            plans.map((plan) => (
-              <article className="plan-card" key={plan.id}>
-                <h3 className="plan-card__title">{plan.title}</h3>
+        {/* ====================================================
+            PRICING GRID
+        ===================================================== */}
 
-                <div className="plan-card__image-wrap">
+        {!loading && (
+          <div className="flyixo-pricing__grid">
+
+            {plans.map((plan, index) => (
+              <article
+                className={`flyixo-plan-card flyixo-plan-card--${index + 1}`}
+                key={plan.id}
+              >
+
+                {/* Card Number */}
+                <div className="flyixo-plan-card__number">
+                  {String(plan.id).padStart(2, "0")}
+                </div>
+
+                {/* Popular Label */}
+                {plan.id === 1 && (
+                  <div className="flyixo-plan-card__recommended">
+                    MOST POPULAR
+                  </div>
+                )}
+
+                {/* Top Accent */}
+                <div className="flyixo-plan-card__accent"></div>
+
+                {/* ==================================================
+                    TITLE
+                =================================================== */}
+
+                <h3 className="flyixo-plan-card__title">
+                  {plan.title}
+                </h3>
+
+                {/* ==================================================
+                    IMAGE
+                =================================================== */}
+
+                <div className="flyixo-plan-card__image-wrap">
+
+                  <div className="flyixo-plan-card__image-glow"></div>
+
                   <img
                     src={plan.img}
                     alt={plan.title}
-                    className="plan-card__image"
+                    className="flyixo-plan-card__image"
                   />
+
                 </div>
 
-                <div className="plan-card__price-block">
-                  <span className="plan-card__price">{plan.price}</span>
-                  <span className="plan-card__per">{plan.subLabel}</span>
+                {/* ==================================================
+                    PRICE
+                =================================================== */}
+
+                <div className="flyixo-plan-card__price-block">
+
+                  <span className="flyixo-plan-card__price">
+                    {plan.price}
+                  </span>
+
+                  <span className="flyixo-plan-card__per">
+                    {plan.subLabel}
+                  </span>
 
                   {plan.extraLabel && (
-                    <span className="plan-card__extra">{plan.extraLabel}</span>
+                    <span className="flyixo-plan-card__extra">
+                      ✓ {plan.extraLabel}
+                    </span>
                   )}
+
                 </div>
 
-                <div className="plan-card__divider" />
+                {/* Divider */}
+                <div className="flyixo-plan-card__divider">
+                  <span></span>
+                </div>
 
-                <ul className="plan-card__features">
+                {/* ==================================================
+                    FEATURES
+                =================================================== */}
+
+                <ul className="flyixo-plan-card__features">
+
                   {plan.features.map((feature, idx) => (
-                    <li className="plan-card__feature" key={idx}>
-                      {feature}
-                      {idx !== plan.features.length - 1 && (
-                        <div className="plan-card__inner-divider" />
-                      )}
+                    <li
+                      className="flyixo-plan-card__feature"
+                      key={idx}
+                    >
+
+                      <span className="flyixo-plan-card__check">
+                        ✓
+                      </span>
+
+                      <span className="flyixo-plan-card__feature-text">
+                        {feature}
+                      </span>
+
                     </li>
                   ))}
+
                 </ul>
 
-                <button className="plan-card__btn" onClick={scrollToTop}>
-                  Get Started
+                {/* ==================================================
+                    BUTTON
+                =================================================== */}
+
+                <button
+                  type="button"
+                  className="flyixo-plan-card__btn"
+                  onClick={scrollToTop}
+                >
+                  <span>Get Started</span>
+                  <span className="flyixo-plan-card__btn-arrow">
+                    →
+                  </span>
                 </button>
+
+                {/* Card Footer */}
+                <div className="flyixo-plan-card__footer">
+                  <span>SECURE</span>
+                  <i></i>
+                  <span>RELIABLE</span>
+                  <i></i>
+                  <span>FLYIXO</span>
+                </div>
+
+                {/* Decorative Corner */}
+                <span className="flyixo-plan-card__corner"></span>
+
               </article>
             ))}
-        </div>
+
+          </div>
+        )}
+
+        {/* ====================================================
+            BOTTOM TRUST
+        ===================================================== */}
+
+        {!loading && (
+          <div className="flyixo-pricing__bottom">
+
+            <span className="flyixo-pricing__bottom-line"></span>
+
+            <div className="flyixo-pricing__bottom-content">
+
+              <span className="flyixo-pricing__bottom-check">
+                ✓
+              </span>
+
+              <p>
+                Transparent Pricing
+                <strong> • </strong>
+                Fast Processing
+                <strong> • </strong>
+                Professional Support
+                <strong> • </strong>
+                <span>Flyixo</span>
+              </p>
+
+            </div>
+
+            <span className="flyixo-pricing__bottom-line"></span>
+
+          </div>
+        )}
+
       </div>
     </section>
   );

@@ -1,44 +1,183 @@
-.page-loader {
+/* src/Components/PageLoader/PageLoader.css */
+
+.fx-loader {
+  --fx-navy: #062a73;
+  --fx-blue: #1273d6;
+  --fx-sky: #1e9bea;
+  --fx-orange: #ff8a00;
+  --fx-amber: #ffc21a;
+
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #f9f9f9, #e6f7f4);
+  z-index: 9999;
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 2000;
-  animation: fadeIn 0.5s ease-in-out;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #e8f4ff 60%, #d3ebff 100%);
+  font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
 }
 
-.loader-box {
+/* soft drifting clouds */
+.fx-cloud {
+  position: absolute;
+  width: 420px;
+  height: 140px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  filter: blur(28px);
+  animation: fx-drift 14s ease-in-out infinite alternate;
+}
+.fx-cloud--a { top: 12%; left: -6%; }
+.fx-cloud--b { bottom: 10%; right: -8%; animation-delay: -6s; }
+
+@keyframes fx-drift {
+  from { transform: translateX(-30px); }
+  to   { transform: translateX(40px); }
+}
+
+.fx-box {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  padding: 0 24px;
   text-align: center;
-  animation: scaleUp 0.6s ease-in-out;
 }
 
-.loader-text {
-  font-size: 18px;
+/* ---------- globe + orbit ---------- */
+.fx-stage {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin-bottom: 18px;
+}
+
+.fx-globe {
+  position: absolute;
+  inset: 25px;
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 10px 18px rgba(18, 115, 214, 0.35));
+}
+
+.fx-grid {
+  fill: none;
+  stroke: #ffffff;
+  stroke-opacity: 0.28;
+  stroke-width: 0.8;
+}
+
+/* meridians sweep to fake globe rotation */
+.fx-meridian {
+  transform-origin: 50px 50px;
+  animation: fx-spin-globe 3.6s linear infinite;
+}
+.fx-m2 { animation-delay: -1.2s; }
+.fx-m3 { animation-delay: -2.4s; }
+
+@keyframes fx-spin-globe {
+  0%   { transform: scaleX(0.02); }
+  50%  { transform: scaleX(1); }
+  100% { transform: scaleX(0.02); }
+}
+
+.fx-orbit {
+  position: absolute;
+  inset: 0;
+  animation: fx-orbit 2.4s linear infinite;
+}
+
+/* fading orange trail behind the plane */
+.fx-trail {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(255, 138, 0, 0) 0%, rgba(255, 138, 0, 0) 55%, var(--fx-orange) 90%, var(--fx-amber) 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+}
+
+.fx-plane {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  width: 28px;
+  height: 28px;
+  margin-left: -14px;
+  fill: var(--fx-navy);
+  transform: rotate(90deg); /* nose points along the clockwise path */
+  filter: drop-shadow(0 2px 3px rgba(6, 42, 115, 0.35));
+}
+
+@keyframes fx-orbit {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- brand ---------- */
+.fx-brand {
+  margin: 0;
+  font-size: 2.6rem;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.fx-brand-blue {
+  background: linear-gradient(180deg, var(--fx-sky), var(--fx-navy));
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.fx-brand-orange {
+  background: linear-gradient(180deg, var(--fx-amber), var(--fx-orange));
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fx-tag {
+  margin: 10px 0 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--fx-navy);
+  opacity: 0.8;
+}
+
+/* ---------- progress ---------- */
+.fx-bar {
+  width: min(260px, 70vw);
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(18, 115, 214, 0.15);
+  overflow: hidden;
+}
+.fx-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--fx-sky), var(--fx-blue) 55%, var(--fx-orange));
+  transition: width 0.05s linear;
+}
+
+.fx-percent {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #18b495;
-  letter-spacing: 1px;
-  animation: pulse 1.5s infinite;
+  font-variant-numeric: tabular-nums;
+  color: var(--fx-blue);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ---------- small screens ---------- */
+@media (max-width: 480px) {
+  .fx-stage { transform: scale(0.85); margin-bottom: 8px; }
+  .fx-brand { font-size: 2.2rem; }
 }
 
-@keyframes scaleUp {
-  from { transform: scale(0.8); opacity: 0.5; }
-  to { transform: scale(1); opacity: 1; }
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fx-cloud,
+  .fx-meridian { animation: none; }
+  .fx-meridian { transform: scaleX(0.5); }
+  .fx-orbit { animation-duration: 8s; }
 }
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-

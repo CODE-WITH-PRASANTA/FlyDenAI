@@ -1,10 +1,12 @@
 import React from "react";
 import "./VisaStepsSection.css";
+
 import {
   FaFileSignature,
   FaMoneyCheckAlt,
   FaPassport,
   FaCheckCircle,
+  FaArrowRight,
 } from "react-icons/fa";
 
 const VisaStepsSection = () => {
@@ -40,40 +42,167 @@ const VisaStepsSection = () => {
 
   return (
     <section className="visa-steps-section">
-      <div className="bg-glow"></div>
-      <p className="section-subtitle">Working Process</p>
-      <h2 className="section-title">
-        Follow These 3 Simple Steps To Get Your Visa
-      </h2>
 
-      <div className="steps-timeline">
-        {steps.map((step, index) => (
-          <div className="timeline-step" key={step.id}>
-            <div
-              className="step-circle"
-              style={{ "--step-color": step.color }}
-            >
-              <div className="step-icon">{step.icon}</div>
-              <div className="check-dot">
-                <FaCheckCircle />
-              </div>
-            </div>
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
-            <div className="step-content">
-              <h3>{step.subtitle}</h3>
-              <h2>{step.title}</h2>
-              <p>{step.description}</p>
-            </div>
+      <div className="visa-steps-bg-glow visa-steps-bg-glow-one"></div>
+      <div className="visa-steps-bg-glow visa-steps-bg-glow-two"></div>
 
-            {index < steps.length - 1 && (
-              <div
-                className="connector-line"
-                style={{ "--line-color": step.color }}
-              ></div>
-            )}
+      <div className="visa-steps-grid"></div>
+
+      <div className="visa-steps-orbit visa-steps-orbit-one"></div>
+      <div className="visa-steps-orbit visa-steps-orbit-two"></div>
+
+      {/* =====================================================
+          CONTAINER
+      ===================================================== */}
+
+      <div className="visa-steps-container">
+
+        {/* ===================================================
+            HEADER
+        =================================================== */}
+
+        <div className="visa-steps-header">
+
+          <div className="visa-steps-subtitle-wrapper">
+            <span className="visa-steps-line"></span>
+
+            <p className="section-subtitle">
+              WORKING PROCESS
+            </p>
+
+            <span className="visa-steps-line"></span>
           </div>
-        ))}
+
+          <span className="visa-steps-brand">
+            FLYIXO VISA PROCESS
+          </span>
+
+          <h2 className="section-title">
+            Follow These{" "}
+            <span>3 Simple Steps</span>{" "}
+            To Get Your Visa
+          </h2>
+
+          <p className="visa-steps-description">
+            Flyixo makes the visa process simple and organized.
+            Follow these three essential steps to move from
+            registration to your visa approval.
+          </p>
+
+        </div>
+
+        {/* ===================================================
+            TIMELINE
+        =================================================== */}
+
+        <div className="steps-timeline">
+
+          {steps.map((step, index) => (
+            <div
+              className="timeline-step"
+              key={step.id}
+              style={{
+                "--step-color": step.color,
+              }}
+            >
+
+              {/* Step Number */}
+              <div className="timeline-number">
+                0{step.id}
+              </div>
+
+              {/* =================================================
+                  STEP CIRCLE
+              ================================================= */}
+
+              <div className="step-circle">
+
+                <div className="step-circle-ring"></div>
+
+                <div className="step-icon">
+                  {step.icon}
+                </div>
+
+                <div className="check-dot">
+                  <FaCheckCircle />
+                </div>
+
+              </div>
+
+              {/* =================================================
+                  CONTENT
+              ================================================= */}
+
+              <div className="step-content">
+
+                <div className="step-label">
+                  <span></span>
+                  {step.subtitle}
+                </div>
+
+                <h3>
+                  {step.title}
+                </h3>
+
+                <p>
+                  {step.description}
+                </p>
+
+              </div>
+
+              {/* =================================================
+                  CONNECTOR
+              ================================================= */}
+
+              {index < steps.length - 1 && (
+                <div className="connector-wrapper">
+
+                  <div className="connector-line"></div>
+
+                  <div className="connector-arrow">
+                    <FaArrowRight />
+                  </div>
+
+                </div>
+              )}
+
+            </div>
+          ))}
+
+        </div>
+
+        {/* ===================================================
+            BOTTOM TRUST
+        =================================================== */}
+
+        <div className="visa-steps-bottom">
+
+          <div className="visa-steps-bottom-icon">
+            <FaCheckCircle />
+          </div>
+
+          <div className="visa-steps-bottom-content">
+
+            <span>
+              SIMPLE • SECURE • PROFESSIONAL
+            </span>
+
+            <p>
+              Start your international journey with{" "}
+              <strong>Flyixo</strong> and receive expert
+              assistance throughout your visa process.
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
+
     </section>
   );
 };

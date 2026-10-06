@@ -1,169 +1,1580 @@
-/* === Container === */
+/* =========================================================
+   WELCOME SECTION
+   ========================================================= */
+
 .welcome-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1400px;
-  margin: 50px auto;
-  padding: 20px;
-  gap: 40px;
-  flex-wrap: wrap;
+  width: 100%;
+
   position: relative;
+
+  padding: 100px 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fff9fa 45%,
+      #ffffff 100%
+    );
+
+  overflow: hidden;
 }
 
-/* === Left Side: Passport + Traveler === */
-.welcome-left {
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.welcome-container {
+  width: 100%;
+
+  max-width: 1380px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 75px;
+
   position: relative;
-  min-height: 350px;
+
+  z-index: 2;
 }
+
+
+/* =========================================================
+   BACKGROUND CIRCLES
+   ========================================================= */
+
+.welcome-bg-circle {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+  filter: blur(1px);
+}
+
+
+/* =========================================================
+   CIRCLE ONE
+   ========================================================= */
+
+.welcome-bg-circle-one {
+  width: 430px;
+
+  height: 430px;
+
+  top: -220px;
+
+  left: -190px;
+
+  background:
+    rgba(230, 57, 70, 0.055);
+}
+
+
+/* =========================================================
+   CIRCLE TWO
+   ========================================================= */
+
+.welcome-bg-circle-two {
+  width: 500px;
+
+  height: 500px;
+
+  right: -280px;
+
+  bottom: -280px;
+
+  background:
+    rgba(255, 202, 40, 0.07);
+}
+
+
+/* =========================================================
+   BACKGROUND DOT
+   ========================================================= */
+
+.welcome-bg-dot {
+  position: absolute;
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #e63946;
+
+  opacity: 0.45;
+
+  animation:
+    welcomeDotFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   DOT ONE
+   ========================================================= */
+
+.welcome-bg-dot-one {
+  top: 18%;
+
+  left: 8%;
+}
+
+
+/* =========================================================
+   DOT TWO
+   ========================================================= */
+
+.welcome-bg-dot-two {
+  right: 10%;
+
+  bottom: 20%;
+
+  animation-delay: 1.5s;
+}
+
+
+/* =========================================================
+   DOT ANIMATION
+   ========================================================= */
+
+@keyframes welcomeDotFloat {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-12px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.welcome-left {
+  width: 100%;
+
+  min-width: 0;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   IMAGE WRAPPER
+   ========================================================= */
+
+.welcome-image-wrapper {
+  width: 100%;
+
+  max-width: 600px;
+
+  min-height: 510px;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   PASSPORT CONTAINER
+   ========================================================= */
+
+.passport-image-container {
+  width: 82%;
+
+  height: 440px;
+
+  position: absolute;
+
+  top: 30px;
+
+  left: 0;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+
+  transform:
+    rotate(-2deg);
+
+  background: #f5f5f5;
+
+  box-shadow:
+    0 25px 60px
+    rgba(20, 20, 20, 0.14);
+
+  border:
+    8px solid #ffffff;
+
+  z-index: 1;
+}
+
+
+/* =========================================================
+   PASSPORT IMAGE
+   ========================================================= */
 
 .passport-bg {
-  width: 550px;
+  width: 100%;
+
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
-  border-radius: 12px;
-  filter: brightness(0.95);
+
+  object-position: center;
+
+  filter:
+    brightness(0.96)
+    saturate(1.05);
+
+  transition:
+    transform 0.6s ease;
 }
+
+
+/* =========================================================
+   IMAGE HOVER
+   ========================================================= */
+
+.welcome-image-wrapper:hover
+.passport-bg {
+  transform:
+    scale(1.05);
+}
+
+
+/* =========================================================
+   IMAGE OVERLAY
+   ========================================================= */
+
+.passport-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(230, 57, 70, 0.08),
+      transparent 55%
+    );
+
+  pointer-events: none;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   TRAVELER WRAPPER
+   ========================================================= */
+
+.traveler-wrapper {
+  position: absolute;
+
+  right: 0;
+
+  bottom: 0;
+
+  width: 235px;
+
+  height: 350px;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  z-index: 5;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TRAVELER
+   ========================================================= */
 
 .traveler {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
-  width: 120px;
-  animation: floatTraveler 5s ease-in-out infinite alternate;
-  filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.2));
+  width: 100%;
+
+  max-width: 235px;
+
+  height: auto;
+
+  display: block;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 15px 22px
+      rgba(0, 0, 0, 0.23)
+    );
+
+  animation:
+    floatTraveler 5s ease-in-out infinite;
 }
+
+
+/* =========================================================
+   TRAVELER ANIMATION
+   ========================================================= */
 
 @keyframes floatTraveler {
-  0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-10px) translateX(-5px); }
-  100% { transform: translateY(0) translateX(0); }
+
+  0% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(-7px, -13px, 0);
+  }
+
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
 }
 
-/* === Right Side: Content === */
-.welcome-right {
-  flex: 1 1 200px;
-  padding: 20px 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+/* =========================================================
+   FLOATING CARD
+   ========================================================= */
+
+.welcome-floating-card {
+  position: absolute;
+
+  left: 30px;
+
+  bottom: 25px;
+
+  min-width: 215px;
+
+  padding: 14px 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.8);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 15px 35px
+    rgba(0, 0, 0, 0.13);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  z-index: 8;
+
+  animation:
+    floatingCard 4s ease-in-out infinite;
 }
+
+
+/* =========================================================
+   FLOATING CARD ANIMATION
+   ========================================================= */
+
+@keyframes floatingCard {
+
+  0% {
+    transform:
+      translateY(0);
+  }
+
+  50% {
+    transform:
+      translateY(-7px);
+  }
+
+  100% {
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+/* =========================================================
+   FLOATING ICON
+   ========================================================= */
+
+.welcome-floating-icon {
+  width: 42px;
+
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e63946,
+      #f15b6a
+    );
+
+  border-radius: 11px;
+
+  color: #ffffff;
+
+  font-size: 19px;
+
+  box-shadow:
+    0 7px 15px
+    rgba(230, 57, 70, 0.25);
+}
+
+
+/* =========================================================
+   FLOATING CONTENT
+   ========================================================= */
+
+.welcome-floating-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.welcome-floating-content strong {
+  color: #182033;
+
+  font-size: 13px;
+
+  font-weight: 750;
+
+  line-height: 1.2;
+}
+
+
+.welcome-floating-content span {
+  color: #737b89;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+}
+
+
+/* =========================================================
+   IMAGE DECORATION
+   ========================================================= */
+
+.welcome-image-decoration {
+  position: absolute;
+
+  right: 70px;
+
+  top: 5px;
+
+  width: 46px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #e63946;
+
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(0, 0, 0, 0.1);
+
+  z-index: 10;
+
+  animation:
+    decorationRotate 8s linear infinite;
+}
+
+
+/* =========================================================
+   DECORATION ANIMATION
+   ========================================================= */
+
+@keyframes decorationRotate {
+
+  0% {
+    transform:
+      rotate(0deg);
+  }
+
+  100% {
+    transform:
+      rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.welcome-right {
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 42px;
+
+  position: relative;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  border:
+    1px solid
+    rgba(20, 20, 20, 0.06);
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(31, 31, 31, 0.08);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   RIGHT SIDE TOP LINE
+   ========================================================= */
+
+.welcome-right::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e63946,
+      #ffca28,
+      #e63946
+    );
+}
+
+
+/* =========================================================
+   RIGHT HOVER
+   ========================================================= */
 
 .welcome-right:hover {
-  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  transform:
+    translateY(-4px);
+
+  box-shadow:
+    0 28px 70px
+    rgba(31, 31, 31, 0.11);
 }
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.welcome-badge {
+  width: fit-content;
+
+  max-width: 100%;
+
+  margin-bottom: 18px;
+
+  padding: 8px 13px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #d72f40;
+
+  background:
+    rgba(230, 57, 70, 0.07);
+
+  border:
+    1px solid
+    rgba(230, 57, 70, 0.12);
+
+  border-radius: 50px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   BADGE ICON
+   ========================================================= */
+
+.welcome-badge-icon {
+  width: 22px;
+
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background: #e63946;
+
+  border-radius: 50%;
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
 
 .welcome-title {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  line-height: 1.3;
-  color: #1b1b1b;
+  margin: 0;
+
+  color: #182033;
+
+  font-size: clamp(
+    32px,
+    3.2vw,
+    48px
+  );
+
+  font-weight: 800;
+
+  line-height: 1.12;
+
+  letter-spacing: -1.3px;
 }
+
+
+/* =========================================================
+   HIGHLIGHT
+   ========================================================= */
 
 .highlight {
+  position: relative;
+
   color: #e63946;
+
+  font-weight: 800;
+
+  display: inline-block;
+}
+
+
+/* =========================================================
+   TITLE LINE
+   ========================================================= */
+
+.welcome-title-line {
+  margin-top: 15px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.welcome-title-line span {
+  height: 4px;
+
+  display: block;
+
+  border-radius: 10px;
+}
+
+
+.welcome-title-line span:nth-child(1) {
+  width: 42px;
+
+  background: #e63946;
+}
+
+
+.welcome-title-line span:nth-child(2) {
+  width: 22px;
+
+  background: #ffca28;
+}
+
+
+.welcome-title-line span:nth-child(3) {
+  width: 8px;
+
+  background: #e63946;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.welcome-text {
+  max-width: 650px;
+
+  margin: 0 0 26px;
+
+  color: #606875;
+
+  font-size: 15.5px;
+
+  font-weight: 450;
+
+  line-height: 1.8;
+}
+
+
+.welcome-text strong {
+  color: #293142;
+
   font-weight: 700;
 }
 
-.welcome-text {
-  font-size: 16px;
-  color: #4a4a4a;
-  line-height: 1.6;
-  margin-bottom: 20px;
+
+/* =========================================================
+   BENEFITS
+   ========================================================= */
+
+.benefits-list {
+  width: 100%;
+
+  margin: 0 0 30px;
+
+  padding: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  list-style: none;
 }
 
-/* === Benefits List === */
-.benefits-list {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 25px;
-}
+
+/* =========================================================
+   BENEFIT ITEM
+   ========================================================= */
 
 .benefits-list li {
-  display: flex;
-  align-items: center;
+  width: 100%;
+
+  min-height: 52px;
+
   padding: 10px 14px;
-  margin-bottom: 10px;
-  background: #f8f8f8;
-  border-radius: 8px;
-  font-size: 15px;
-  color: #333;
-  transition: background 0.3s ease, transform 0.3s ease;
-  cursor: default;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: #3e4654;
+
+  background:
+    linear-gradient(
+      90deg,
+      #fff8f8,
+      #ffffff
+    );
+
+  border:
+    1px solid
+    rgba(230, 57, 70, 0.06);
+
+  border-radius: 11px;
+
+  font-size: 13.5px;
+
+  font-weight: 500;
+
+  line-height: 1.45;
+
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
+
+
+/* =========================================================
+   BENEFIT HOVER
+   ========================================================= */
 
 .benefits-list li:hover {
-  background: #f0f0f0;
-  transform: translateX(3px);
+  transform:
+    translateX(5px);
+
+  background:
+    #ffffff;
+
+  border-color:
+    rgba(230, 57, 70, 0.12);
+
+  box-shadow:
+    0 7px 20px
+    rgba(230, 57, 70, 0.07);
 }
+
+
+/* =========================================================
+   CHECK
+   ========================================================= */
 
 .check {
+  width: 27px;
+
+  height: 27px;
+
+  flex: 0 0 27px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e63946,
+      #ef5361
+    );
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 5px 12px
+    rgba(230, 57, 70, 0.18);
+}
+
+
+/* =========================================================
+   BENEFIT TEXT
+   ========================================================= */
+
+.benefit-text {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.welcome-stats {
+  width: 100%;
+
+  padding-top: 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  border-top:
+    1px solid
+    rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================================
+   STAT
+   ========================================================= */
+
+.welcome-stat {
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 5px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   STAT NUMBER
+   ========================================================= */
+
+.welcome-stat-number {
   color: #e63946;
-  font-weight: bold;
-  margin-right: 10px;
+
+  font-size: 18px;
+
+  font-weight: 800;
+
+  line-height: 1;
 }
 
-/* === Button === */
-.btn-primary {
-  background: #e63946;
-  color: #fff;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
+
+/* =========================================================
+   STAT LABEL
+   ========================================================= */
+
+.welcome-stat-label {
+  color: #7b8290;
+
+  font-size: 10px;
+
   font-weight: 600;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+
+  line-height: 1.3;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.4px;
 }
 
-.btn-primary:hover {
-  background: #d22b3d;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+
+/* =========================================================
+   STAT DIVIDER
+   ========================================================= */
+
+.welcome-stat-divider {
+  width: 1px;
+
+  height: 38px;
+
+  flex: 0 0 1px;
+
+  background:
+    rgba(0, 0, 0, 0.09);
 }
 
-/* === Responsive Design === */
 
-/* Large tablets */
-@media (max-width: 992px) {
+/* =========================================================
+   LARGE TABLETS
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
   .welcome-section {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 30px;
+    padding:
+      80px 25px;
   }
-  .welcome-left {
-    flex: 1 1 100%;
-    min-height: 300px;
-    margin-bottom: 20px;
+
+
+  .welcome-container {
+    gap: 45px;
   }
+
+
   .welcome-right {
-    flex: 1 1 100%;
+    padding: 35px;
   }
+
+
+  .welcome-image-wrapper {
+    min-height: 470px;
+  }
+
+
+  .passport-image-container {
+    height: 410px;
+  }
+
+
+  .traveler-wrapper {
+    width: 210px;
+
+    height: 320px;
+  }
+
 }
 
-/* Small tablets & large mobiles */
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (max-width: 992px) {
+
+  .welcome-section {
+    padding:
+      70px 25px;
+  }
+
+
+  .welcome-container {
+    grid-template-columns: 1fr;
+
+    gap: 45px;
+
+    max-width: 750px;
+  }
+
+
+  .welcome-left {
+    order: 1;
+  }
+
+
+  .welcome-right {
+    order: 2;
+
+    padding: 35px;
+  }
+
+
+  .welcome-image-wrapper {
+    max-width: 600px;
+
+    min-height: 500px;
+  }
+
+
+  .passport-image-container {
+    width: 82%;
+
+    height: 440px;
+  }
+
+
+  .traveler-wrapper {
+    width: 225px;
+
+    height: 345px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL TABLETS
+   ========================================================= */
+
 @media (max-width: 768px) {
-  .benefits-list li { font-size: 14px; padding: 9px 12px; }
-  .btn-primary { padding: 12px 24px; font-size: 15px; }
-  .traveler { width: 100px; }
+
+  .welcome-section {
+    padding:
+      60px 20px;
+  }
+
+
+  .welcome-container {
+    gap: 35px;
+  }
+
+
+  .welcome-image-wrapper {
+    min-height: 440px;
+  }
+
+
+  .passport-image-container {
+    width: 85%;
+
+    height: 390px;
+  }
+
+
+  .traveler-wrapper {
+    width: 190px;
+
+    height: 295px;
+  }
+
+
+  .welcome-floating-card {
+    left: 15px;
+
+    bottom: 15px;
+
+    min-width: 195px;
+
+    padding: 12px 14px;
+  }
+
+
+  .welcome-floating-icon {
+    width: 38px;
+
+    height: 38px;
+  }
+
+
+  .welcome-right {
+    padding: 30px;
+  }
+
+
+  .welcome-title {
+    font-size: 36px;
+  }
+
+
+  .welcome-text {
+    font-size: 14.5px;
+
+    line-height: 1.7;
+  }
+
+
+  .benefits-list li {
+    font-size: 13px;
+
+    padding: 9px 12px;
+  }
+
 }
 
-/* Medium mobiles */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 576px) {
-  .btn-primary { padding: 10px 20px; font-size: 14px; }
-  .traveler { width: 70px; }
-  .welcome-left { min-height: 250px; }
-  .welcome-right { padding: 0px; }
-  .passport-bg {width: 250px;}
-  .welcome-section {margin: 0px;}
+
+  .welcome-section {
+    padding:
+      50px 15px;
+  }
+
+
+  .welcome-container {
+    gap: 25px;
+  }
+
+
+  .welcome-image-wrapper {
+    min-height: 350px;
+  }
+
+
+  .passport-image-container {
+    width: 88%;
+
+    height: 310px;
+
+    top: 15px;
+
+    border-width: 5px;
+
+    border-radius: 18px;
+  }
+
+
+  .traveler-wrapper {
+    width: 135px;
+
+    height: 220px;
+
+    right: -3px;
+
+    bottom: 0;
+  }
+
+
+  .welcome-floating-card {
+    left: 0;
+
+    bottom: 8px;
+
+    min-width: auto;
+
+    max-width: 180px;
+
+    padding: 9px 11px;
+
+    gap: 8px;
+
+    border-radius: 11px;
+  }
+
+
+  .welcome-floating-icon {
+    width: 32px;
+
+    height: 32px;
+
+    font-size: 14px;
+
+    border-radius: 8px;
+  }
+
+
+  .welcome-floating-content strong {
+    font-size: 10px;
+  }
+
+
+  .welcome-floating-content span {
+    font-size: 8.5px;
+  }
+
+
+  .welcome-image-decoration {
+    width: 34px;
+
+    height: 34px;
+
+    right: 20px;
+
+    top: 0;
+
+    font-size: 16px;
+  }
+
+
+  .welcome-right {
+    padding: 25px 20px;
+
+    border-radius: 18px;
+  }
+
+
+  .welcome-badge {
+    margin-bottom: 14px;
+
+    padding: 7px 10px;
+
+    font-size: 9px;
+  }
+
+
+  .welcome-badge-icon {
+    width: 19px;
+
+    height: 19px;
+
+    font-size: 9px;
+  }
+
+
+  .welcome-title {
+    font-size: 30px;
+
+    letter-spacing: -0.7px;
+  }
+
+
+  .welcome-title-line {
+    margin-top: 12px;
+
+    margin-bottom: 16px;
+  }
+
+
+  .welcome-text {
+    margin-bottom: 20px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+
+  .benefits-list {
+    gap: 8px;
+
+    margin-bottom: 23px;
+  }
+
+
+  .benefits-list li {
+    min-height: 48px;
+
+    padding: 8px 10px;
+
+    gap: 9px;
+
+    font-size: 12px;
+
+    border-radius: 9px;
+  }
+
+
+  .check {
+    width: 24px;
+
+    height: 24px;
+
+    flex-basis: 24px;
+
+    font-size: 11px;
+  }
+
+
+  .welcome-stats {
+    padding-top: 20px;
+  }
+
+
+  .welcome-stat-number {
+    font-size: 15px;
+  }
+
+
+  .welcome-stat-label {
+    font-size: 8px;
+  }
+
+
+  .welcome-stat-divider {
+    height: 30px;
+  }
+
 }
 
-/* Small mobiles */
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
 @media (max-width: 400px) {
-  .btn-primary { padding: 8px 16px; font-size: 13px; }
-  .traveler { width: 60px; }
-  .welcome-left { min-height: 200px; }
+
+  .welcome-section {
+    padding:
+      40px 12px;
+  }
+
+
+  .welcome-image-wrapper {
+    min-height: 300px;
+  }
+
+
+  .passport-image-container {
+    width: 90%;
+
+    height: 270px;
+  }
+
+
+  .traveler-wrapper {
+    width: 115px;
+
+    height: 190px;
+  }
+
+
+  .welcome-floating-card {
+    max-width: 155px;
+
+    padding: 8px 9px;
+  }
+
+
+  .welcome-floating-content strong {
+    font-size: 9px;
+  }
+
+
+  .welcome-floating-content span {
+    font-size: 8px;
+  }
+
+
+  .welcome-right {
+    padding: 22px 15px;
+  }
+
+
+  .welcome-title {
+    font-size: 27px;
+  }
+
+
+  .welcome-text {
+    font-size: 12px;
+  }
+
+
+  .benefits-list li {
+    font-size: 11.5px;
+  }
+
+
+  .welcome-stat-number {
+    font-size: 13px;
+  }
+
+
+  .welcome-stat-label {
+    font-size: 7px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+  .welcome-image-wrapper {
+    min-height: 270px;
+  }
+
+
+  .passport-image-container {
+    height: 240px;
+  }
+
+
+  .traveler-wrapper {
+    width: 95px;
+
+    height: 160px;
+  }
+
+
+  .welcome-floating-card {
+    max-width: 140px;
+  }
+
+
+  .welcome-title {
+    font-size: 24px;
+  }
+
+
+  .welcome-right {
+    padding:
+      20px 12px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .traveler,
+  .welcome-floating-card,
+  .welcome-bg-dot,
+  .welcome-image-decoration {
+    animation: none !important;
+  }
+
+
+  .welcome-image-wrapper:hover
+  .passport-bg {
+    transform: none;
+  }
+
+
+  .welcome-right,
+  .benefits-list li {
+    transition: none;
+  }
+
 }
