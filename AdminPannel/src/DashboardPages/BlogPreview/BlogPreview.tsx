@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import "./BlogPreview.css";
-import { EyeIcon, Upload, XCircle, Trash2 } from "lucide-react";
+import {
+  EyeIcon,
+  Upload,
+  XCircle,
+  Trash2,
+  User,
+  FolderOpen,
+  ArrowUpRight,
+  BookOpen,
+  Sparkles,
+} from "lucide-react";
 
 interface Blog {
   id: number;
@@ -53,80 +63,293 @@ const BlogPreview: React.FC = () => {
 
   const togglePublish = (id: number) => {
     setBlogs((prev) =>
-      prev.map((b) =>
-        b.id === id ? { ...b, published: !b.published } : b
+      prev.map((blog) =>
+        blog.id === id
+          ? { ...blog, published: !blog.published }
+          : blog
       )
     );
   };
 
   const deleteBlog = (id: number) => {
     if (window.confirm("Are you sure you want to delete this blog?")) {
-      setBlogs((prev) => prev.filter((b) => b.id !== id));
+      setBlogs((prev) => prev.filter((blog) => blog.id !== id));
     }
   };
 
+  const publishedCount = blogs.filter((blog) => blog.published).length;
+  const draftCount = blogs.filter((blog) => !blog.published).length;
+
   return (
     <div className="blogPreview-container">
-      <h2 className="blogPreview-heading">📖 Blog Preview Dashboard</h2>
-      <div className="blogPreview-grid">
-        {blogs.map((blog) => (
-          <div key={blog.id} className="blogPreview-card">
-            <div className="blogPreview-img">
-              <img src={blog.imageUrl} alt={blog.title} />
-              <div className="blogPreview-status">
-                {blog.published ? "Published" : "Draft"}
-              </div>
-            </div>
 
-            <div className="blogPreview-content">
-              <h3>{blog.title}</h3>
-              <p className="blogPreview-popular">{blog.popularLine}</p>
-              <p className="blogPreview-desc">{blog.desc}</p>
+      {/* =========================
+          HEADER
+      ========================== */}
+      <div className="blogPreview-header">
 
-              <div className="blogPreview-meta">
-                <span>👤 {blog.author}</span>
-                <span>📂 {blog.category}</span>
-              </div>
-
-              <div className="blogPreview-tags">
-                {blog.tags.map((tag, i) => (
-                  <span key={i} className="tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="blogPreview-actions">
-              <button
-                className={`publish-btn ${
-                  blog.published ? "unpublish" : "publish"
-                }`}
-                onClick={() => togglePublish(blog.id)}
-              >
-                {blog.published ? (
-                  <>
-                    <XCircle size={16} /> Unpublish
-                  </>
-                ) : (
-                  <>
-                    <Upload size={16} /> Publish
-                  </>
-                )}
-              </button>
-
-              <button className="view-btn">
-                <EyeIcon size={16} /> View
-              </button>
-
-              <button
-                className="delete-btn"
-                onClick={() => deleteBlog(blog.id)}
-              >
-                <Trash2 size={16} /> Delete
-              </button>
-            </div>
+        <div className="blogPreview-header-left">
+          <div className="blogPreview-header-icon">
+            <BookOpen size={25} />
           </div>
-        ))}
+
+          <div>
+            <span className="blogPreview-eyebrow">
+              CONTENT MANAGEMENT
+            </span>
+
+            <h1 className="blogPreview-heading">
+              Blog Preview
+            </h1>
+
+            <p className="blogPreview-subtitle">
+              Preview, publish and manage your blog content.
+            </p>
+          </div>
+        </div>
+
+        <div className="blogPreview-header-badge">
+          <Sparkles size={16} />
+          <span>{blogs.length} Total Blogs</span>
+        </div>
+
       </div>
+
+      {/* =========================
+          STATS
+      ========================== */}
+      <div className="blogPreview-stats">
+
+        <div className="blogPreview-stat-card">
+          <div className="blogPreview-stat-icon total">
+            <BookOpen size={20} />
+          </div>
+
+          <div className="blogPreview-stat-content">
+            <span>Total Blogs</span>
+            <strong>{blogs.length}</strong>
+          </div>
+        </div>
+
+        <div className="blogPreview-stat-card">
+          <div className="blogPreview-stat-icon published">
+            <Upload size={20} />
+          </div>
+
+          <div className="blogPreview-stat-content">
+            <span>Published</span>
+            <strong>{publishedCount}</strong>
+          </div>
+        </div>
+
+        <div className="blogPreview-stat-card">
+          <div className="blogPreview-stat-icon draft">
+            <XCircle size={20} />
+          </div>
+
+          <div className="blogPreview-stat-content">
+            <span>Drafts</span>
+            <strong>{draftCount}</strong>
+          </div>
+        </div>
+
+      </div>
+
+      {/* =========================
+          BLOG GRID
+      ========================== */}
+      {blogs.length > 0 ? (
+        <div className="blogPreview-grid">
+
+          {blogs.map((blog) => (
+            <article
+              key={blog.id}
+              className="blogPreview-card"
+            >
+
+              {/* IMAGE */}
+              <div className="blogPreview-img">
+
+                <img
+                  src={blog.imageUrl}
+                  alt={blog.title}
+                />
+
+                <div className="blogPreview-image-overlay" />
+
+                <div
+                  className={`blogPreview-status ${
+                    blog.published
+                      ? "published"
+                      : "draft"
+                  }`}
+                >
+                  <span className="blogPreview-status-dot" />
+
+                  {blog.published
+                    ? "Published"
+                    : "Draft"}
+                </div>
+
+                <div className="blogPreview-category">
+                  <FolderOpen size={13} />
+                  {blog.category}
+                </div>
+
+                <button
+                  className="blogPreview-image-view"
+                  type="button"
+                  aria-label="Preview blog"
+                >
+                  <EyeIcon size={17} />
+                </button>
+
+              </div>
+
+              {/* CONTENT */}
+              <div className="blogPreview-content">
+
+                <div className="blogPreview-content-top">
+
+                  <span className="blogPreview-small-label">
+                    FEATURED ARTICLE
+                  </span>
+
+                  <h3 className="blogPreview-title">
+                    {blog.title}
+                  </h3>
+
+                </div>
+
+                <div className="blogPreview-popular-box">
+                  <Sparkles size={15} />
+
+                  <p className="blogPreview-popular">
+                    {blog.popularLine}
+                  </p>
+                </div>
+
+                <p className="blogPreview-desc">
+                  {blog.desc}
+                </p>
+
+                {/* META */}
+                <div className="blogPreview-meta">
+
+                  <div className="blogPreview-meta-item">
+                    <span className="blogPreview-meta-icon">
+                      <User size={14} />
+                    </span>
+
+                    <div>
+                      <small>Author</small>
+                      <strong>{blog.author}</strong>
+                    </div>
+                  </div>
+
+                  <div className="blogPreview-meta-item">
+                    <span className="blogPreview-meta-icon">
+                      <FolderOpen size={14} />
+                    </span>
+
+                    <div>
+                      <small>Category</small>
+                      <strong>{blog.category}</strong>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* TAGS */}
+                <div className="blogPreview-tags">
+
+                  {blog.tags.map((tag, index) => (
+                    <span
+                      key={`${tag}-${index}`}
+                      className="tag"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+
+                </div>
+
+              </div>
+
+              {/* ACTIONS */}
+              <div className="blogPreview-actions">
+
+                <button
+                  type="button"
+                  className={`blogPreview-action-btn publish-btn ${
+                    blog.published
+                      ? "unpublish"
+                      : "publish"
+                  }`}
+                  onClick={() =>
+                    togglePublish(blog.id)
+                  }
+                >
+                  {blog.published ? (
+                    <>
+                      <XCircle size={16} />
+                      <span>Unpublish</span>
+                    </>
+                  ) : (
+                    <>
+                      <Upload size={16} />
+                      <span>Publish</span>
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  className="blogPreview-action-btn view-btn"
+                >
+                  <EyeIcon size={16} />
+                  <span>View</span>
+
+                  <ArrowUpRight
+                    size={14}
+                    className="blogPreview-arrow"
+                  />
+                </button>
+
+                <button
+                  type="button"
+                  className="blogPreview-action-btn delete-btn"
+                  onClick={() =>
+                    deleteBlog(blog.id)
+                  }
+                >
+                  <Trash2 size={16} />
+                  <span>Delete</span>
+                </button>
+
+              </div>
+
+            </article>
+          ))}
+
+        </div>
+      ) : (
+        <div className="blogPreview-empty">
+
+          <div className="blogPreview-empty-icon">
+            <BookOpen size={34} />
+          </div>
+
+          <h3>No Blogs Available</h3>
+
+          <p>
+            There are currently no blog posts available
+            to preview.
+          </p>
+
+        </div>
+      )}
+
     </div>
   );
 };

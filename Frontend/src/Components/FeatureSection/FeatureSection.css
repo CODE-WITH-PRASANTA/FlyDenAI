@@ -1,120 +1,1078 @@
-/* ======================= Feature Section ======================= */
-.feature-section {
-  padding: 20px 20px;
-  background-color: #f9fafa;
-  text-align: center;
+/* =========================================================
+   FLYIXO FEATURE SECTION
+========================================================= */
+
+.flyixo-feature-section {
+  --feature-navy: #062c43;
+  --feature-navy-dark: #031b2b;
+
+  --feature-primary: #e94e77;
+  --feature-primary-dark: #c93661;
+  --feature-primary-light: #ff8eaa;
+
+  --feature-cyan: #36d1d4;
+  --feature-blue: #2563eb;
+  --feature-gold: #f4b942;
+
+  --feature-text: #182536;
+  --feature-muted: #687789;
+
+  --feature-white: #ffffff;
+  --feature-light: #f7f9fc;
+  --feature-border: #e3e8ee;
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 85px 24px 75px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f8fbfc 50%,
+      #f1f8fa 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
-.feature-header {
-  font-size: 28px;
-  font-weight: 700;
-  margin-bottom: 40px;
-  color: #1a1a1a;
+.flyixo-feature-section *,
+.flyixo-feature-section *::before,
+.flyixo-feature-section *::after {
+  box-sizing: border-box;
 }
 
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 32px;
-  max-width: 1200px;
+
+/* =========================================================
+   BACKGROUND DECORATIONS
+========================================================= */
+
+.flyixo-feature-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(5px);
+}
+
+.flyixo-feature-bg-one {
+  width: 520px;
+  height: 520px;
+
+  top: -260px;
+  right: -190px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.12),
+      transparent 70%
+    );
+}
+
+.flyixo-feature-bg-two {
+  width: 480px;
+  height: 480px;
+
+  left: -240px;
+  bottom: -260px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 209, 212, 0.11),
+      transparent 70%
+    );
+}
+
+.flyixo-feature-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 95%
+    );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.flyixo-feature-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  max-width: 1300px;
+
   margin: 0 auto;
 }
 
-/* ======================= Feature Card ======================= */
-.feature-card {
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  text-align: left;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-feature-header {
+  max-width: 850px;
+
+  margin: 0 auto 55px;
+
+  text-align: center;
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.feature-image {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.feature-title {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 16px;
-  color: #2c2c2c;
-}
-
-.feature-description {
-  font-size: 14px;
-  color: #555;
-  margin: 0 16px 16px;
-}
-
-.feature-link {
-  display: inline-block;
-  margin: 0 16px 20px;
-  color: #ff5a3c;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.feature-link:hover {
-  text-decoration: underline;
-}
-
-/* ======================= Explore Button ======================= */
-.feature-button-container {
-  margin-top: 40px;
+.flyixo-feature-eyebrow {
   display: flex;
+
+  align-items: center;
   justify-content: center;
+
+  gap: 11px;
+
+  margin-bottom: 18px;
+
+  color: var(--feature-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.6px;
 }
 
-.explore-guides-btn {
-  padding: 12px 28px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #fff;
-  background: linear-gradient(135deg, #ff5a3c, #ff7a55);
+.flyixo-feature-line {
+  width: 42px;
+  height: 2px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--feature-primary),
+      var(--feature-cyan)
+    );
+}
+
+.flyixo-feature-heading-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  margin: 0 auto 17px;
+
+  border: 1px solid
+    rgba(233, 78, 119, 0.15);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.1),
+      rgba(54, 209, 212, 0.08)
+    );
+
+  color: var(--feature-primary);
+
+  font-size: 19px;
+
+  box-shadow:
+    0 10px 25px
+    rgba(6, 44, 67, 0.07);
+}
+
+.flyixo-feature-title {
+  margin: 0 0 18px;
+
+  color: var(--feature-navy);
+
+  font-size: clamp(34px, 4.4vw, 53px);
+
+  font-weight: 800;
+
+  line-height: 1.08;
+
+  letter-spacing: -1.7px;
+}
+
+.flyixo-feature-title span {
+  color: var(--feature-primary);
+}
+
+.flyixo-feature-subtitle {
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  color: var(--feature-muted);
+
+  font-size: 14px;
+
+  line-height: 1.85;
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.flyixo-feature-grid-list {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+
+/* =========================================================
+   FEATURE CARD
+========================================================= */
+
+.flyixo-feature-card {
+  position: relative;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  border: 1px solid var(--feature-border);
+
+  border-radius: 24px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  box-shadow:
+    0 15px 40px
+    rgba(6, 44, 67, 0.07);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.flyixo-feature-card:hover {
+  transform: translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.3);
+
+  box-shadow:
+    0 27px 55px
+    rgba(6, 44, 67, 0.14);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.flyixo-feature-number {
+  position: absolute;
+
+  z-index: 8;
+
+  top: 14px;
+  left: 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.35);
+
+  border-radius: 10px;
+
+  background:
+    rgba(6, 44, 67, 0.72);
+
+  color: #ffffff;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+
+  backdrop-filter: blur(8px);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.flyixo-feature-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  height: 235px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #dfe9ed,
+      #f5f8fa
+    );
+}
+
+.flyixo-feature-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease;
+}
+
+.flyixo-feature-card:hover
+.flyixo-feature-image {
+  transform: scale(1.08);
+}
+
+.flyixo-feature-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 43, 0.15) 0%,
+      transparent 42%,
+      rgba(3, 27, 43, 0.68) 100%
+    );
+}
+
+.flyixo-feature-image-top {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+  left: 14px;
+
+  z-index: 3;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flyixo-feature-category {
+  padding: 7px 10px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.25);
+
+  border-radius: 30px;
+
+  background:
+    rgba(6, 44, 67, 0.7);
+
+  color: #ffffff;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  backdrop-filter: blur(8px);
+}
+
+.flyixo-feature-star {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 31px;
+  height: 31px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.9);
+
+  color: var(--feature-gold);
+
+  font-size: 10px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(0, 0, 0, 0.1);
+}
+
+.flyixo-feature-image-bottom {
+  position: absolute;
+
+  z-index: 3;
+
+  left: 16px;
+  bottom: 15px;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.flyixo-feature-content {
+  display: flex;
+
+  flex: 1;
+
+  flex-direction: column;
+
+  padding: 23px 22px 20px;
+}
+
+.flyixo-feature-card-title {
+  min-height: 50px;
+
+  margin: 0 0 12px;
+
+  color: var(--feature-navy);
+
+  font-size: 18px;
+
+  font-weight: 750;
+
+  line-height: 1.4;
+
+  letter-spacing: -0.3px;
+
+  transition:
+    color 0.3s ease;
+}
+
+.flyixo-feature-card:hover
+.flyixo-feature-card-title {
+  color: var(--feature-primary);
+}
+
+.flyixo-feature-description {
+  flex: 1;
+
+  margin: 0 0 20px;
+
+  color: var(--feature-muted);
+
+  font-size: 12px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.flyixo-feature-card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 16px;
+
+  border-top: 1px solid
+    rgba(6, 44, 67, 0.08);
+}
+
+.flyixo-feature-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: var(--feature-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  letter-spacing: 0.4px;
+
+  transition:
+    color 0.3s ease;
+}
+
+.flyixo-feature-link:hover {
+  color: var(--feature-primary-dark);
+}
+
+.flyixo-feature-link-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.09);
+
+  font-size: 8px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.flyixo-feature-link:hover
+.flyixo-feature-link-icon {
+  transform: translateX(3px);
+
+  background:
+    rgba(233, 78, 119, 0.15);
+}
+
+.flyixo-feature-card-label {
+  color: #a1abb5;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CARD CORNER
+========================================================= */
+
+.flyixo-feature-card-corner {
+  position: absolute;
+
+  right: -40px;
+  bottom: -40px;
+
+  width: 105px;
+  height: 105px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 209, 212, 0.06);
+
+  pointer-events: none;
+
+  transition:
+    transform 0.4s ease;
+}
+
+.flyixo-feature-card:hover
+.flyixo-feature-card-corner {
+  transform: scale(1.3);
+}
+
+
+/* =========================================================
+   EXPLORE BUTTON
+========================================================= */
+
+.flyixo-feature-button-container {
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 48px;
+}
+
+.flyixo-explore-guides-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 13px 14px 13px 18px;
+
   border: none;
-  border-radius: 8px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--feature-primary),
+      var(--feature-primary-dark)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.4px;
+
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  box-shadow:
+    0 14px 30px
+    rgba(233, 78, 119, 0.23);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.explore-guides-btn:hover {
-  background: linear-gradient(135deg, #e14d32, #ff6842);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+.flyixo-explore-guides-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 19px 38px
+    rgba(233, 78, 119, 0.32);
 }
 
-/* ======================= Responsive ======================= */
-@media (max-width: 768px) {
-  .feature-header {
-    font-size: 24px;
-    margin-bottom: 32px;
+.flyixo-explore-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  font-size: 10px;
+}
+
+.flyixo-explore-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  font-size: 9px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.flyixo-explore-guides-btn:hover
+.flyixo-explore-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   BOTTOM BRAND
+========================================================= */
+
+.flyixo-feature-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 42px;
+}
+
+.flyixo-feature-bottom-line {
+  width: 75px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.2)
+    );
+}
+
+.flyixo-feature-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.2),
+      transparent
+    );
+}
+
+.flyixo-feature-bottom p {
+  margin: 0;
+
+  color: var(--feature-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.flyixo-feature-bottom strong {
+  color: var(--feature-primary);
+}
+
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .flyixo-feature-section {
+    padding: 75px 20px 65px;
   }
 
-  .feature-description {
+  .flyixo-feature-grid-list {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .flyixo-feature-image-wrapper {
+    height: 230px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+  .flyixo-feature-section {
+    padding: 65px 16px 60px;
+  }
+
+  .flyixo-feature-header {
+    margin-bottom: 40px;
+  }
+
+  .flyixo-feature-eyebrow {
+    font-size: 8px;
+
+    letter-spacing: 1.8px;
+  }
+
+  .flyixo-feature-line {
+    width: 27px;
+  }
+
+  .flyixo-feature-heading-icon {
+    width: 46px;
+    height: 46px;
+
+    font-size: 17px;
+  }
+
+  .flyixo-feature-title {
+    font-size: 36px;
+
+    letter-spacing: -1px;
+  }
+
+  .flyixo-feature-subtitle {
     font-size: 13px;
   }
 
-  .explore-guides-btn {
-    font-size: 15px;
-    padding: 10px 24px;
+  .flyixo-feature-grid-list {
+    gap: 16px;
+  }
+
+  .flyixo-feature-card {
+    border-radius: 20px;
+  }
+
+  .flyixo-feature-image-wrapper {
+    height: 210px;
+  }
+
+  .flyixo-feature-content {
+    padding: 20px 18px 18px;
+  }
+
+  .flyixo-feature-card-title {
+    font-size: 16px;
+  }
+
+  .flyixo-feature-description {
+    font-size: 11px;
   }
 }
 
-@media (max-width: 480px) {
-  .feature-header {
-    font-size: 20px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .flyixo-feature-section {
+    padding: 55px 13px;
   }
 
-  .feature-card {
-    border-radius: 10px;
+  .flyixo-feature-header {
+    margin-bottom: 32px;
+  }
+
+  .flyixo-feature-title {
+    font-size: 30px;
+  }
+
+  .flyixo-feature-subtitle {
+    font-size: 12px;
+
+    line-height: 1.75;
+  }
+
+  .flyixo-feature-grid-list {
+    grid-template-columns: 1fr;
+
+    gap: 17px;
+  }
+
+  .flyixo-feature-card {
+    border-radius: 19px;
+  }
+
+  .flyixo-feature-image-wrapper {
+    height: 230px;
+  }
+
+  .flyixo-feature-card-title {
+    min-height: auto;
+
+    font-size: 17px;
+  }
+
+  .flyixo-feature-description {
+    font-size: 12px;
+
+    line-height: 1.75;
+  }
+
+  .flyixo-feature-button-container {
+    margin-top: 35px;
+  }
+
+  .flyixo-explore-guides-btn {
+    padding: 11px 12px 11px 15px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-feature-bottom {
+    gap: 8px;
+
+    margin-top: 30px;
+  }
+
+  .flyixo-feature-bottom-line {
+    width: 30px;
+  }
+
+  .flyixo-feature-bottom p {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .flyixo-feature-section {
+    padding: 45px 10px;
+  }
+
+  .flyixo-feature-title {
+    font-size: 27px;
+  }
+
+  .flyixo-feature-eyebrow {
+    font-size: 7px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .flyixo-feature-line {
+    width: 20px;
+  }
+
+  .flyixo-feature-heading-icon {
+    width: 42px;
+    height: 42px;
+
+    margin-bottom: 14px;
+
+    font-size: 15px;
+  }
+
+  .flyixo-feature-image-wrapper {
+    height: 210px;
+  }
+
+  .flyixo-feature-content {
+    padding: 18px 16px;
+  }
+
+  .flyixo-feature-card-title {
+    font-size: 16px;
+  }
+
+  .flyixo-feature-description {
+    font-size: 11px;
+  }
+
+  .flyixo-feature-number {
+    top: 10px;
+    left: 10px;
+
+    width: 30px;
+    height: 30px;
+
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media (max-width: 340px) {
+  .flyixo-feature-title {
+    font-size: 25px;
+  }
+
+  .flyixo-feature-subtitle {
+    font-size: 11px;
+  }
+
+  .flyixo-feature-image-wrapper {
+    height: 190px;
+  }
+
+  .flyixo-feature-card-title {
+    font-size: 15px;
+  }
+
+  .flyixo-feature-description {
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.flyixo-feature-link:focus-visible,
+.flyixo-explore-guides-btn:focus-visible {
+  outline: 3px solid
+    rgba(37, 99, 235, 0.3);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-feature-section *,
+  .flyixo-feature-section *::before,
+  .flyixo-feature-section *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
   }
 }

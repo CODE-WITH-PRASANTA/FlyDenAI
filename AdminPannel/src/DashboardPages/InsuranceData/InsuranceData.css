@@ -1,232 +1,1154 @@
-/* MAIN */
+/* =========================================================
+   INSURANCE DATA
+   PREMIUM INSURANCE BOOKING DASHBOARD
+========================================================= */
+
 .Insurance-booking-container {
-  padding: 40px;
-  background: #f2f5fc;
+  width: 100%;
   min-height: 100vh;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.065),
+      transparent 27%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(236, 72, 153, 0.055),
+      transparent 25%
+    ),
+    #f7f8fc;
+
+  color: #1c2435;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
 .Insurance-booking-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #202020;
-  margin-bottom: 25px;
+  margin: 0 0 24px;
+
+  color: #171d2e;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 850;
+
+  letter-spacing: -0.7px;
 }
 
-/* SEARCH & FILTER BAR */
+.Insurance-booking-title::after {
+  content: "";
+
+  display: block;
+
+  width: 48px;
+  height: 4px;
+
+  margin-top: 9px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #ec4899
+    );
+}
+
+
+/* =========================================================
+   FILTER / CONTROL BAR
+========================================================= */
+
 .Insurance-controls {
+  width: 100%;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-  gap: 15px;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e7e9ef;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 7px 24px
+    rgba(25, 32, 52, 0.045);
 }
 
-/* SEARCH BOX */
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
 .Insurance-search {
+  min-width: 280px;
+  flex: 1;
+
+  height: 44px;
+
   display: flex;
   align-items: center;
-  background: white;
-  border-radius: 12px;
-  padding: 10px 15px;
-  width: 350px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 1px solid #e0e0e0;
+
+  gap: 9px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e0e3ea;
+  border-radius: 10px;
+
+  background: #fafbfc;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.Insurance-search:focus-within {
+  background: #ffffff;
+
+  border-color: #9e72d9;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.07);
 }
 
 .Insurance-search-icon {
-  margin-right: 10px;
-  color: #6c6c6c;
+  flex-shrink: 0;
+
+  color: #969dad;
 }
 
 .Insurance-search input {
-  border: none;
-  outline: none;
   width: 100%;
-  font-size: 15px;
+  height: 100%;
+
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #252c3d;
+
+  font-size: 12px;
+  font-weight: 500;
 }
 
-/* FILTER DROPDOWN */
+.Insurance-search input::placeholder {
+  color: #a6abb6;
+}
+
+
+/* =========================================================
+   FILTER SELECT
+========================================================= */
+
 .Insurance-filter {
-  padding: 12px 18px;
-  border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: 1px solid #e0e0e0;
-  font-size: 15px;
+  min-width: 155px;
+  height: 44px;
+
+  padding: 0 34px 0 12px;
+
+  border: 1px solid #e0e3ea;
+  border-radius: 10px;
+
+  outline: none;
+
+  background: #fafbfc;
+
+  color: #555d6e;
+
+  font-size: 11px;
+  font-weight: 700;
+
   cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* GRID */
+.Insurance-filter:hover {
+  background: #ffffff;
+
+  border-color: #d4c4ec;
+}
+
+.Insurance-filter:focus {
+  background: #ffffff;
+
+  border-color: #9d70d7;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.07);
+}
+
+
+/* =========================================================
+   BOOKING GRID
+========================================================= */
+
 .Insurance-booking-grid {
+  width: 100%;
+
   display: grid;
-  gap: 25px;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  align-items: start;
 }
 
-/* CARD */
+
+/* =========================================================
+   BOOKING CARD
+========================================================= */
+
 .Insurance-booking-card {
-  background: white;
+  position: relative;
+
+  min-width: 0;
+
+  overflow: visible;
+
+  padding: 0;
+
+  border: 1px solid #e6e8ef;
   border-radius: 18px;
-  padding: 26px;
-  border: 1px solid #e3e3e3;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  transition: 0.25s ease;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 28px
+    rgba(25, 32, 52, 0.055);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .Insurance-booking-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+  transform: translateY(-3px);
+
+  border-color: #ddd5ec;
+
+  box-shadow:
+    0 15px 36px
+    rgba(25, 32, 52, 0.09);
 }
 
-/* HEADER */
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
 .Insurance-booking-header {
+  min-height: 94px;
+
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 17px 19px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #edf0f4;
+
+  border-radius: 18px 18px 0 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fcfcfe
+    );
 }
+
+
+/* =========================================================
+   CUSTOMER NAME
+========================================================= */
 
 .Insurance-booking-name {
-  font-size: 22px;
-  font-weight: 700;
-  color: #333;
+  max-width: 400px;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #1c2435;
+
+  font-size: 17px;
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
+.Insurance-booking-name::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+
+  margin-right: 8px;
+
+  vertical-align: middle;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
+}
+
+
+/* =========================================================
+   ROUTE
+========================================================= */
 
 .Insurance-booking-subtitle {
-  font-size: 14px;
-  color: #7a7a7a;
-  margin-top: 4px;
+  display: flex;
+  align-items: center;
+
+  margin: 7px 0 0;
+
+  color: #697184;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  line-height: 1.5;
 }
 
-/* MENU */
+.Insurance-booking-subtitle::first-letter {
+  color: #7540c7;
+}
+
+
+/* =========================================================
+   INSURANCE CODE
+========================================================= */
+
+.Insurance-code {
+  display: inline-flex;
+  align-items: center;
+
+  margin: 8px 0 0;
+
+  padding: 4px 7px;
+
+  border: 1px solid #e8def5;
+  border-radius: 6px;
+
+  background: #faf7ff;
+
+  color: #8c91a0;
+
+  font-size: 8px;
+
+  letter-spacing: 0.3px;
+}
+
+.Insurance-code strong {
+  margin-left: 4px;
+
+  color: #7540c7;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   THREE DOT MENU
+========================================================= */
+
 .Insurance-booking-menu-icon {
   position: relative;
-  padding: 6px;
+
+  flex-shrink: 0;
+
+  width: 33px;
+  height: 33px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  color: #7b8292;
+
   cursor: pointer;
-  border-radius: 50%;
-  transition: 0.2s;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .Insurance-booking-menu-icon:hover {
-  background: #f0f0f0;
+  color: #6d3ec2;
+
+  background: #f2ecff;
+
+  transform: rotate(90deg);
 }
+
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
 
 .Insurance-booking-dropdown {
   position: absolute;
+
+  z-index: 100;
+
+  top: 37px;
   right: 0;
-  top: 28px;
-  width: 150px;
-  background: white;
-  border-radius: 12px;
+
+  width: 155px;
+
+  padding: 5px;
+
   overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  animation: fadeMenu 0.2s ease;
+
+  border: 1px solid #e5e7ed;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 16px 40px
+    rgba(18, 25, 40, 0.16);
+
+  animation:
+    InsuranceMenuIn
+    0.18s
+    ease-out;
 }
 
-@keyframes fadeMenu {
-  from { opacity: 0; transform: translateY(-5px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes InsuranceMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .Insurance-booking-option {
-  padding: 12px 16px;
   width: 100%;
+  min-height: 39px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 11px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #50586a;
+
+  font-size: 11px;
+  font-weight: 700;
+
   text-align: left;
-  background: white;
-  border: none;
+
   cursor: pointer;
-  font-size: 14px;
-  transition: 0.2s;
+
+  transition:
+    background 0.18s ease,
+    padding-left 0.18s ease;
 }
 
 .Insurance-booking-option:hover {
-  background: #f3f3f3;
+  padding-left: 14px;
+
+  background: #f7f7fa;
 }
 
-.delete {
-  color: #d93636;
+.Insurance-booking-option.delete {
+  color: #d2385d;
 }
 
-/* DETAILS */
+.Insurance-booking-option.delete:hover {
+  background: #fff1f4;
+}
+
+
+/* =========================================================
+   DETAILS CONTAINER
+========================================================= */
+
 .Insurance-booking-details {
-  margin-top: 18px;
-  background: #fafcff;
-  border-radius: 14px;
-  padding: 18px;
-  border: 1px solid #eaeaea;
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 8px;
+
+  margin: 0;
+
+  padding: 14px 18px 18px;
+
+  border-radius: 0 0 18px 18px;
+
+  background: #ffffff;
 }
 
-.Insurance-details-row {
+
+/* =========================================================
+   DETAIL ROWS
+========================================================= */
+
+.Insurance-booking-details > p {
+  min-width: 0;
+
+  min-height: 39px;
+
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  align-items: center;
+
+  gap: 5px;
+
+  margin: 0;
+
+  padding: 8px 10px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  border: 1px solid #eceef3;
+  border-radius: 9px;
+
+  background: #fafbfc;
+
+  color: #697184;
+
+  font-size: 10px;
+
+  line-height: 1.45;
+
+  word-break: break-word;
 }
 
-.Insurance-booking-id {
-  margin-top: 12px;
-  font-weight: 600;
-  padding-top: 10px;
-  border-top: 1px solid #ddd;
-  color: #444;
+.Insurance-booking-details > p strong {
+  flex-shrink: 0;
+
+  color: #3d4556;
+
+  font-weight: 750;
 }
 
-/* EMPTY RESULT */
-.Insurance-no-results {
-  padding: 40px;
-  text-align: center;
-  color: #777;
-  font-size: 18px;
+
+/* =========================================================
+   EMAIL
+========================================================= */
+
+.Insurance-booking-details > p:nth-child(1) {
+  grid-column: span 2;
 }
 
-/* STATUS BADGES */
+
+/* =========================================================
+   PURPOSE
+========================================================= */
+
+.Insurance-booking-details > p:nth-child(4) {
+  grid-column: span 2;
+}
+
+
+/* =========================================================
+   DATE ROWS
+========================================================= */
+
+.Insurance-booking-details > p:nth-child(5),
+.Insurance-booking-details > p:nth-child(6) {
+  background: #fbf9ff;
+
+  border-color: #eee7f8;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
 .Insurance-status-label {
-  margin-top: 12px;
-  font-weight: 600;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between;
+
+  gap: 8px !important;
+
+  margin-top: 2px !important;
 }
 
 .Insurance-status {
-  margin-left: 6px;
-  padding: 4px 10px;
-  border-radius: 8px;
-  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 65px;
+
+  padding: 5px 8px;
+
+  margin-left: auto;
+
+  border-radius: 7px;
+
+  font-size: 8px;
+
+  font-weight: 850;
+
+  letter-spacing: 0.4px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
 }
 
 .Insurance-status.Pending {
-  background: #fff4d6;
-  color: #c28a00;
+  color: #9a6800;
+
+  background: #fff7df;
+
+  border: 1px solid #f1dda9;
 }
 
 .Insurance-status.Finalized {
-  background: #d9ffe4;
-  color: #0c7d34;
+  color: #08783a;
+
+  background: #eafaf0;
+
+  border: 1px solid #c8efd8;
 }
 
-/* PAGINATION */
-.Insurance-pagination {
-  margin-top: 30px;
+
+/* =========================================================
+   BOOKING ID
+========================================================= */
+
+.Insurance-booking-id {
+  grid-column: span 2;
+
+  margin-top: 2px !important;
+
+  background: #f5f6f9 !important;
+
+  border-color: #e5e7ec !important;
+
+  color: #646c7d !important;
+}
+
+.Insurance-booking-id strong {
+  color: #323a4a !important;
+}
+
+
+/* =========================================================
+   EMPTY RESULTS
+========================================================= */
+
+.Insurance-no-results {
+  grid-column: 1 / -1;
+
+  min-height: 260px;
+
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  border: 1px dashed #dfe2e9;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #969cab;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.Insurance-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 24px;
+  padding: 10px 0;
 }
 
 .Insurance-page-btn,
 .Insurance-page-number {
-  padding: 10px 16px;
-  background: white;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  transition: 0.2s;
-  font-weight: 600;
-}
+  min-width: 35px;
+  height: 35px;
 
-.Insurance-page-number.active {
-  background: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e1e4eb;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #687083;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .Insurance-page-btn:hover,
 .Insurance-page-number:hover {
-  background: #f0f0f0;
+  color: #7040ba;
+
+  border-color: #d8c8ef;
+
+  background: #faf7ff;
+
+  transform: translateY(-1px);
+}
+
+.Insurance-page-number.active {
+  border-color: transparent;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #a855f7
+    );
+
+  box-shadow:
+    0 6px 15px
+    rgba(124, 58, 237, 0.22);
+}
+
+
+/* =========================================================
+   DISABLED PAGINATION
+========================================================= */
+
+.Insurance-page-btn:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+
+  .Insurance-booking-container {
+    padding: 34px;
+  }
+
+  .Insurance-booking-grid {
+    gap: 22px;
+  }
+
+  .Insurance-booking-card {
+    border-radius: 20px;
+  }
+}
+
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .Insurance-booking-container {
+    padding: 24px;
+  }
+
+  .Insurance-booking-grid {
+    gap: 17px;
+  }
+
+  .Insurance-booking-header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .Insurance-booking-details {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .Insurance-filter {
+    min-width: 140px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .Insurance-booking-container {
+    padding: 20px;
+  }
+
+  .Insurance-booking-title {
+    font-size: 25px;
+  }
+
+  .Insurance-controls {
+    flex-wrap: wrap;
+  }
+
+  .Insurance-search {
+    flex: 1 1 100%;
+
+    min-width: 0;
+  }
+
+  .Insurance-filter {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  .Insurance-booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .Insurance-booking-card {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .Insurance-booking-container {
+    padding: 15px;
+  }
+
+  .Insurance-booking-title {
+    margin-bottom: 18px;
+
+    font-size: 22px;
+
+    letter-spacing: -0.4px;
+  }
+
+  .Insurance-booking-title::after {
+    width: 38px;
+    height: 3px;
+  }
+
+  .Insurance-controls {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-radius: 13px;
+  }
+
+  .Insurance-search {
+    width: 100%;
+    min-width: 0;
+
+    height: 41px;
+  }
+
+  .Insurance-filter {
+    width: 100%;
+    min-width: 0;
+
+    height: 41px;
+  }
+
+  .Insurance-booking-grid {
+    gap: 14px;
+  }
+
+  .Insurance-booking-card {
+    border-radius: 15px;
+  }
+
+  .Insurance-booking-header {
+    min-height: 84px;
+
+    padding: 13px 14px;
+
+    border-radius: 15px 15px 0 0;
+  }
+
+  .Insurance-booking-name {
+    max-width: 240px;
+
+    font-size: 14px;
+  }
+
+  .Insurance-booking-subtitle {
+    font-size: 10px;
+  }
+
+  .Insurance-code {
+    font-size: 7.5px;
+  }
+
+  .Insurance-booking-details {
+    grid-template-columns: 1fr;
+
+    gap: 7px;
+
+    padding: 12px 13px 14px;
+  }
+
+  .Insurance-booking-details > p {
+    min-height: 37px;
+
+    font-size: 10px;
+  }
+
+  .Insurance-booking-details > p:nth-child(1),
+  .Insurance-booking-details > p:nth-child(4),
+  .Insurance-booking-id {
+    grid-column: span 1;
+  }
+
+  .Insurance-status-label {
+    justify-content: space-between;
+  }
+
+  .Insurance-booking-dropdown {
+    width: 145px;
+  }
+
+  .Insurance-pagination {
+    margin-top: 17px;
+  }
+
+  .Insurance-page-btn,
+  .Insurance-page-number {
+    min-width: 32px;
+    height: 32px;
+
+    padding: 0 8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .Insurance-booking-container {
+    padding: 10px;
+  }
+
+  .Insurance-booking-title {
+    font-size: 19px;
+  }
+
+  .Insurance-booking-header {
+    padding: 11px 12px;
+  }
+
+  .Insurance-booking-name {
+    max-width: 190px;
+
+    font-size: 13px;
+  }
+
+  .Insurance-booking-details {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .Insurance-booking-details > p {
+    font-size: 9.5px;
+  }
+
+  .Insurance-status {
+    min-width: 58px;
+
+    padding: 4px 6px;
+
+    font-size: 7px;
+  }
+
+  .Insurance-pagination {
+    gap: 3px;
+  }
+
+  .Insurance-page-btn,
+  .Insurance-page-number {
+    min-width: 29px;
+    height: 29px;
+
+    padding: 0 6px;
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+
+  .Insurance-booking-container {
+    padding: 8px;
+  }
+
+  .Insurance-booking-title {
+    font-size: 17px;
+  }
+
+  .Insurance-booking-name {
+    max-width: 160px;
+
+    font-size: 12px;
+  }
+
+  .Insurance-booking-subtitle {
+    font-size: 9px;
+  }
+
+  .Insurance-booking-details > p {
+    font-size: 9px;
+  }
+
+  .Insurance-status {
+    min-width: auto;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.Insurance-booking-container button:focus-visible,
+.Insurance-booking-container input:focus-visible,
+.Insurance-booking-container select:focus-visible {
+  outline: 3px solid
+    rgba(124, 58, 237, 0.16);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .Insurance-booking-container *,
+  .Insurance-booking-container *::before,
+  .Insurance-booking-container *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
 }

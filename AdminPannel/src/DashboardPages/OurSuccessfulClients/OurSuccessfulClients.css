@@ -1,181 +1,925 @@
+/* =========================================================
+   OUR SUCCESSFUL CLIENTS - PREMIUM ADMIN UI
+   ========================================================= */
+
 .clients-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 40px;
-  align-items: flex-start;
-  font-family: Arial, sans-serif;
-  flex-wrap: wrap;
+  --clients-primary: #6d28d9;
+  --clients-primary-dark: #5b21b6;
+  --clients-secondary: #ec4899;
+  --clients-accent: #8b5cf6;
+
+  --clients-bg: #f7f7fb;
+  --clients-card: #ffffff;
+  --clients-border: #e9e7f0;
+
+  --clients-text: #181825;
+  --clients-text-secondary: #626174;
+  --clients-muted: #9290a0;
+
+  --clients-success: #16a34a;
+  --clients-success-bg: #ecfdf3;
+
+  --clients-danger: #dc2626;
+  --clients-danger-bg: #fff1f2;
+
+  width: 100%;
+  min-height: 100%;
+
+  padding: 28px;
+
+  display: grid;
+  grid-template-columns: minmax(290px, 0.72fr) minmax(0, 1.75fr);
+  gap: 24px;
+  align-items: start;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(109, 40, 217, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.06),
+      transparent 25%
+    ),
+    var(--clients-bg);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  box-sizing: border-box;
 }
 
-/* LEFT FORM */
-.left-form {
-  flex: 1;
-  min-width: 280px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #fdfdfd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+/* =========================================================
+   BOX SIZING
+   ========================================================= */
+
+.clients-container *,
+.clients-container *::before,
+.clients-container *::after {
+  box-sizing: border-box;
 }
 
-.left-form form {
+/* =========================================================
+   LEFT FORM CARD
+   ========================================================= */
+
+.clients-container .left-form {
+  width: 100%;
+  min-width: 0;
+
+  padding: 26px;
+
+  background: var(--clients-card);
+
+  border: 1px solid var(--clients-border);
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 35px rgba(31, 20, 60, 0.07);
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.clients-container .left-form::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--clients-primary),
+      var(--clients-secondary)
+    );
+}
+
+.clients-container .left-form:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 18px 45px rgba(31, 20, 60, 0.1);
+}
+
+/* =========================================================
+   FORM TITLE
+   ========================================================= */
+
+.clients-container .left-form h2 {
+  position: relative;
+
+  margin: 0 0 26px;
+
+  color: var(--clients-text);
+
+  font-size: 20px;
+  line-height: 1.35;
+
+  font-weight: 800;
+
+  letter-spacing: -0.45px;
+}
+
+.clients-container .left-form h2::after {
+  content: "";
+
+  display: block;
+
+  width: 48px;
+  height: 4px;
+
+  margin-top: 10px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--clients-primary),
+      var(--clients-secondary)
+    );
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.clients-container .left-form form {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
+
+  gap: 0;
 }
 
-.left-form label {
-  margin-top: 10px;
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.clients-container .left-form label {
+  display: block;
+
+  margin: 0 0 8px;
+
+  color: var(--clients-text);
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  font-weight: 750;
+
+  letter-spacing: 0.1px;
+}
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.clients-container .left-form input {
+  width: 100%;
+  min-height: 48px;
+
+  margin: 0 0 17px;
+
+  padding: 0 14px;
+
+  border: 1px solid var(--clients-border);
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: var(--clients-text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  outline: none;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.clients-container .left-form input::placeholder {
+  color: #aaa7b5;
+
   font-weight: 500;
 }
 
-.left-form input {
-  padding: 8px;
-  margin-top: 4px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+.clients-container .left-form input:hover {
+  border-color: #cfc5e8;
+
+  background: #fdfcff;
 }
 
-.left-form button {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #007bff;
-  border: none;
-  color: white;
-  border-radius: 4px;
+.clients-container .left-form input:focus {
+  border-color: var(--clients-primary);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(109, 40, 217, 0.1);
+}
+
+/* =========================================================
+   DATE INPUT
+   ========================================================= */
+
+.clients-container .left-form input[type="date"] {
+  color-scheme: light;
+
   cursor: pointer;
+}
+
+.clients-container .left-form input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+
+  opacity: 0.65;
+
+  transition: opacity 0.2s ease;
+}
+
+.clients-container .left-form input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* =========================================================
+   EMAIL INPUT
+   ========================================================= */
+
+.clients-container .left-form input[type="email"] {
+  letter-spacing: 0.1px;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
+
+.clients-container .left-form button[type="submit"] {
+  width: 100%;
+  min-height: 50px;
+
+  margin-top: 3px;
+
+  padding: 12px 18px;
+
+  border: none;
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--clients-primary),
+      var(--clients-secondary)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 24px rgba(109, 40, 217, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.clients-container .left-form button[type="submit"]:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 30px rgba(109, 40, 217, 0.28);
+
+  filter: brightness(1.03);
+}
+
+.clients-container .left-form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RIGHT TABLE CARD
+   ========================================================= */
+
+.clients-container .right-table {
+  width: 100%;
+  min-width: 0;
+
+  padding: 26px;
+
+  background: var(--clients-card);
+
+  border: 1px solid var(--clients-border);
+  border-radius: 22px;
+
+  box-shadow:
+    0 12px 35px rgba(31, 20, 60, 0.07);
+
+  overflow: hidden;
+
+  transition:
+    box-shadow 0.3s ease;
+}
+
+.clients-container .right-table:hover {
+  box-shadow:
+    0 18px 45px rgba(31, 20, 60, 0.09);
+}
+
+/* =========================================================
+   TABLE TITLE
+   ========================================================= */
+
+.clients-container .right-table h3 {
+  position: relative;
+
+  margin: 0 0 22px;
+
+  padding-bottom: 18px;
+
+  color: var(--clients-text);
+
+  font-size: 20px;
+  line-height: 1.35;
+
+  font-weight: 800;
+
+  letter-spacing: -0.45px;
+
+  border-bottom: 1px solid var(--clients-border);
+}
+
+.clients-container .right-table h3::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -1px;
+
+  width: 50px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--clients-primary),
+      var(--clients-secondary)
+    );
+}
+
+/* =========================================================
+   TABLE SCROLL WRAPPER
+   ========================================================= */
+
+.clients-container .right-table {
+  overflow-x: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c9c3d5 transparent;
+}
+
+.clients-container .right-table::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.clients-container .right-table::-webkit-scrollbar-track {
+  background: #f8f7fb;
+
+  border-radius: 20px;
+}
+
+.clients-container .right-table::-webkit-scrollbar-thumb {
+  background: #c9c3d5;
+
+  border-radius: 20px;
+}
+
+.clients-container .right-table::-webkit-scrollbar-thumb:hover {
+  background: var(--clients-primary);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.clients-container .right-table table {
+  width: 100%;
+
+  min-width: 940px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  table-layout: auto;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.clients-container .right-table table thead th {
+  height: 52px;
+
+  padding: 13px 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #faf9ff 0%,
+      #f3f1f9 100%
+    );
+
+  color: #59536b;
+
+  border-top: 1px solid var(--clients-border);
+  border-bottom: 1px solid var(--clients-border);
+
+  font-size: 10px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.65px;
+
+  white-space: nowrap;
+}
+
+.clients-container .right-table table thead th:first-child {
+  border-top-left-radius: 14px;
+}
+
+.clients-container .right-table table thead th:last-child {
+  border-top-right-radius: 14px;
+}
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.clients-container .right-table table tbody td {
+  min-height: 70px;
+
+  padding: 14px;
+
+  color: #3f3a4d;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #efedf4;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  font-weight: 600;
+
+  text-align: center;
+
+  vertical-align: middle;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.clients-container .right-table table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.clients-container .right-table table tbody tr:hover td {
+  background: #faf8ff;
+}
+
+/* =========================================================
+   CLIENT NAME
+   ========================================================= */
+
+.clients-container .right-table table tbody td:first-child {
+  color: #272333;
+
+  font-size: 12px;
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   PROJECT NAME
+   ========================================================= */
+
+.clients-container .right-table table tbody td:nth-child(2) {
+  color: var(--clients-primary);
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   PAYMENT AMOUNT
+   ========================================================= */
+
+.clients-container .right-table table tbody td:nth-child(3) {
+  color: #15803d;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PAYMENT DATE
+   ========================================================= */
+
+.clients-container .right-table table tbody td:nth-child(4) {
+  color: #656174;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.clients-container .right-table table tbody td:nth-child(5) {
+  color: #5e5870;
+
   font-weight: 600;
 }
 
-.left-form button:hover {
-  background-color: #0056b3;
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.clients-container .right-table table tbody td:nth-child(6) {
+  color: #4e485e;
+
+  font-weight: 700;
+
+  white-space: nowrap;
 }
 
-/* RIGHT TABLE */
-.right-table {
-  flex: 2;
-  min-width: 320px;
-  border: 1px solid #ccc;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
+/* =========================================================
+   ACTION COLUMN
+   ========================================================= */
+
+.clients-container .right-table table th:last-child,
+.clients-container .right-table table td:last-child {
+  width: 105px;
 }
 
-.right-table table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 500px;
-}
+/* =========================================================
+   ACTION ICON CONTAINER
+   ========================================================= */
 
-.right-table th,
-.right-table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: center;
-  word-wrap: break-word;
-}
+.clients-container .right-table .icon-buttons {
+  min-width: 80px;
 
-.right-table th {
-  background-color: #f2f2f2;
-}
-
-/* ICON BUTTONS */
-.icon-buttons {
   display: flex;
+
+  align-items: center;
   justify-content: center;
-  gap: 10px;
+
+  gap: 8px;
 }
 
-.edit-icon {
-  color: #007bff;
+/* =========================================================
+   COMMON ICON STYLE
+   ========================================================= */
+
+.clients-container .right-table .edit-icon,
+.clients-container .right-table .delete-icon {
+  width: 34px;
+  height: 34px;
+
+  padding: 9px;
+
+  border-radius: 9px;
+
   cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.edit-icon:hover {
-  color: #0056b3;
+/* =========================================================
+   EDIT ICON
+   ========================================================= */
+
+.clients-container .right-table .edit-icon {
+  color: #6d28d9;
+
+  background: #f3eefe;
 }
 
-.delete-icon {
-  color: #dc3545;
-  cursor: pointer;
-  font-size: 18px;
-  transition: 0.2s;
+.clients-container .right-table .edit-icon:hover {
+  color: #ffffff;
+
+  background: var(--clients-primary);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 15px rgba(109, 40, 217, 0.2);
 }
 
-.delete-icon:hover {
-  color: #a71d2a;
+/* =========================================================
+   DELETE ICON
+   ========================================================= */
+
+.clients-container .right-table .delete-icon {
+  color: #dc2626;
+
+  background: #fff1f2;
 }
 
-/* ✅ RESPONSIVE STYLES */
-@media (max-width: 1024px) {
+.clients-container .right-table .delete-icon:hover {
+  color: #ffffff;
+
+  background: #ef4444;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 15px rgba(239, 68, 68, 0.2);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.clients-container button:focus-visible,
+.clients-container input:focus-visible,
+.clients-container svg:focus-visible {
+  outline: 3px solid rgba(109, 40, 217, 0.18);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   EMPTY TABLE
+   ========================================================= */
+
+.clients-container .right-table tbody:empty::after {
+  content: "";
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
   .clients-container {
+    grid-template-columns:
+      minmax(270px, 0.75fr)
+      minmax(0, 1.5fr);
+
+    padding: 22px;
+
     gap: 20px;
   }
 
-  .right-table table {
-    min-width: 600px;
+  .clients-container .left-form,
+  .clients-container .right-table {
+    padding: 22px;
+  }
+
+  .clients-container .right-table table {
+    min-width: 900px;
   }
 }
 
-@media (max-width: 768px) {
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
   .clients-container {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
+
+    padding: 20px;
+
+    gap: 18px;
   }
 
-  .left-form,
-  .right-table {
-    width: 100%;
-  }
-
-  .left-form {
+  .clients-container .left-form {
     order: 1;
   }
 
-  .right-table {
+  .clients-container .right-table {
     order: 2;
+  }
+
+  .clients-container .right-table table {
+    min-width: 900px;
   }
 }
 
-@media (max-width: 480px) {
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
   .clients-container {
-    padding: 10px;
-    gap: 15px;
+    padding: 16px;
+
+    gap: 16px;
   }
 
-  .left-form,
-  .right-table {
-    padding: 15px;
+  .clients-container .left-form,
+  .clients-container .right-table {
+    padding: 19px;
+
+    border-radius: 18px;
   }
 
-  .left-form input {
-    padding: 6px;
+  .clients-container .left-form h2,
+  .clients-container .right-table h3 {
+    font-size: 18px;
   }
 
-  .left-form button {
+  .clients-container .left-form input {
+    min-height: 46px;
+
+    font-size: 12px;
+  }
+
+  .clients-container .left-form button[type="submit"] {
+    min-height: 48px;
+  }
+
+  .clients-container .right-table table {
+    min-width: 880px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .clients-container {
+    padding: 11px;
+
+    gap: 13px;
+  }
+
+  .clients-container .left-form,
+  .clients-container .right-table {
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .clients-container .left-form h2,
+  .clients-container .right-table h3 {
+    font-size: 17px;
+  }
+
+  .clients-container .left-form label {
+    font-size: 11px;
+  }
+
+  .clients-container .left-form input {
+    min-height: 44px;
+
+    margin-bottom: 15px;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+  }
+
+  .clients-container .left-form button[type="submit"] {
+    min-height: 46px;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+  }
+
+  .clients-container .right-table h3 {
+    margin-bottom: 17px;
+
+    padding-bottom: 15px;
+  }
+
+  .clients-container .right-table table {
+    min-width: 850px;
+  }
+
+  .clients-container .right-table table thead th {
+    height: 47px;
+
+    padding: 11px 9px;
+
+    font-size: 8px;
+  }
+
+  .clients-container .right-table table tbody td {
+    min-height: 64px;
+
+    padding: 11px 9px;
+
+    font-size: 10px;
+  }
+
+  .clients-container .right-table table tbody td:first-child {
+    font-size: 11px;
+  }
+
+  .clients-container .right-table .edit-icon,
+  .clients-container .right-table .delete-icon {
+    width: 31px;
+    height: 31px;
+
     padding: 8px;
-    font-size: 14px;
   }
 
-  .right-table table {
-    font-size: 13px;
-  }
-
-  .right-table th,
-  .right-table td {
-    padding: 6px;
-  }
-
-  .icon-buttons {
+  .clients-container .right-table .icon-buttons {
     gap: 6px;
   }
+}
 
-  .edit-icon,
-  .delete-icon {
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .clients-container {
+    padding: 8px;
+  }
+
+  .clients-container .left-form,
+  .clients-container .right-table {
+    padding: 14px;
+  }
+
+  .clients-container .left-form h2,
+  .clients-container .right-table h3 {
     font-size: 16px;
+  }
+
+  .clients-container .right-table table {
+    min-width: 820px;
+  }
+
+  .clients-container .left-form input {
+    font-size: 10px;
+  }
+
+  .clients-container .left-form button[type="submit"] {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-container *,
+  .clients-container *::before,
+  .clients-container *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

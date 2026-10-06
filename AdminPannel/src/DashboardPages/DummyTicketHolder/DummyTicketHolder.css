@@ -1,419 +1,1160 @@
-/* ========================================================= */
-/* 🌟 GLOBAL LAYOUT (PREMIUM LOOK) */
-/* ========================================================= */
+/* =========================================================
+   DUMMY TICKET HOLDER
+   PREMIUM BOOKING MANAGEMENT DASHBOARD
+========================================================= */
+
 .DummyTicketHolder-container {
   width: 100%;
-  max-width: 1380px;
-  margin: auto;
-  padding: 25px;
-  background: linear-gradient(135deg, #f9fbff, #eef3ff);
+  max-width: 1500px;
   min-height: 100vh;
-  border-radius: 16px;
+
+  margin: 0 auto;
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 5%,
+      rgba(236, 72, 153, 0.06),
+      transparent 25%
+    ),
+    #f7f8fc;
+
+  color: #1d2435;
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
 .DummyTicketHolder-title {
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 25px;
-  color: #1e2a5a;
-  letter-spacing: 0.5px;
+  position: relative;
+
+  margin: 0 0 24px;
+
+  color: #171d2e;
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 850;
+
+  letter-spacing: -0.7px;
+}
+
+.DummyTicketHolder-title::after {
+  content: "";
+
+  display: block;
+
+  width: 48px;
+  height: 4px;
+
+  margin-top: 9px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #7c3aed,
+      #ec4899
+    );
 }
 
 
-/* ========================================================= */
-/* 🌟 SEARCH + FILTER SECTION */
-/* ========================================================= */
+/* =========================================================
+   FILTER BAR
+========================================================= */
+
 .DummyTicketHolder-filters {
+  width: 100%;
+
   display: flex;
-  gap: 15px;
-  margin-bottom: 25px;
   align-items: center;
-  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  padding: 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e7e9ef;
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 7px 24px
+    rgba(25, 32, 52, 0.045);
 }
+
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
 
 .DummyTicketHolder-searchBox {
+  min-width: 250px;
   flex: 1;
+
+  height: 43px;
+
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: white;
-  padding: 12px 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.07);
-  border: 1px solid #dce2ff;
+
+  gap: 9px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #e0e3ea;
+  border-radius: 10px;
+
+  background: #fafbfc;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.DummyTicketHolder-searchBox:focus-within {
+  border-color: #a17ad8;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.07);
+}
+
+.DummyTicketHolder-searchBox svg {
+  flex-shrink: 0;
+
+  color: #969dad;
 }
 
 .DummyTicketHolder-searchBox input {
   width: 100%;
-  border: none;
-  outline: none;
-  font-size: 15px;
+  height: 100%;
+
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
   background: transparent;
-  color: #1a1a1a;
+
+  color: #282f40;
+
+  font-size: 12px;
+  font-weight: 500;
 }
 
+.DummyTicketHolder-searchBox input::placeholder {
+  color: #a7acb7;
+}
+
+
+/* =========================================================
+   FILTER SELECTS
+========================================================= */
+
 .DummyTicketHolder-filterSelect {
-  padding: 10px 14px;
-  border-radius: 12px;
-  border: 1px solid #dce2ff;
-  background: white;
-  font-size: 14px;
+  min-width: 150px;
+  height: 43px;
+
+  padding: 0 34px 0 12px;
+
+  border: 1px solid #e0e3ea;
+  border-radius: 10px;
+
+  outline: none;
+
+  background-color: #fafbfc;
+  color: #555d6e;
+
+  font-size: 11px;
+  font-weight: 700;
+
   cursor: pointer;
-  font-weight: 600;
-  color: #2e3a70;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: 0.2s ease;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
 .DummyTicketHolder-filterSelect:hover {
-  background: #f1f4ff;
+  background-color: #ffffff;
+
+  border-color: #d2c2ed;
+}
+
+.DummyTicketHolder-filterSelect:focus {
+  background-color: #ffffff;
+
+  border-color: #9b70d9;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.07);
 }
 
 
+/* =========================================================
+   BOOKING GRID
+========================================================= */
 
-/* ========================================================= */
-/* 🌟 GRID – 2 CARDS PER ROW */
-/* ========================================================= */
 .DummyTicketHolder-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  align-items: start;
 }
 
-@media (max-width: 900px) {
-  .DummyTicketHolder-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
+/* =========================================================
+   BOOKING CARD
+========================================================= */
 
-/* ========================================================= */
-/* 🌟 PREMIUM CARD DESIGN */
-/* ========================================================= */
 .DummyTicketHolder-card {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 28px;
-  box-shadow: 
-    0 10px 25px rgba(0,0,0,0.08),
-    inset 0 0 0 2px rgba(80,120,255,0.05);
-  border: 1px solid rgba(160,185,255,0.3);
-  transition: 0.3s ease;
   position: relative;
+
+  min-width: 0;
+
+  padding: 0;
+
+  overflow: visible;
+
+  border: 1px solid #e6e8ef;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 28px
+    rgba(25, 32, 52, 0.055);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .DummyTicketHolder-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 
-    0 14px 35px rgba(0,0,0,0.1),
-    inset 0 0 0 2px rgba(33,90,255,0.1);
+  transform: translateY(-3px);
+
+  border-color: #ddd5ec;
+
+  box-shadow:
+    0 15px 35px
+    rgba(25, 32, 52, 0.085);
 }
 
 
-/* ========================================================= */
-/* 🌟 CARD HEADER */
-/* ========================================================= */
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
 .DummyTicketHolder-cardHeader {
+  min-height: 72px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #e6e6e6;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding: 15px 18px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #edf0f4;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fcfcfe
+    );
+
+  border-radius: 18px 18px 0 0;
 }
 
 .DummyTicketHolder-cardHeader h3 {
+  min-width: 0;
+
   margin: 0;
-  font-size: 21px;
-  font-weight: 700;
-  color: #1a1a1f;
+
+  overflow: hidden;
+
+  color: #1c2435;
+
+  font-size: 15px;
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.DummyTicketHolder-cardHeader h3::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 7px;
+  height: 7px;
+
+  margin-right: 8px;
+
+  vertical-align: middle;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
+}
+
+
+/* =========================================================
+   THREE DOT MENU
+========================================================= */
+
+.DummyTicketHolder-menuWrapper {
+  position: relative;
+
+  flex-shrink: 0;
 }
 
 .DummyTicketHolder-menuIcon {
+  width: 32px;
+  height: 32px;
+
+  padding: 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 9px;
+
+  color: #777f91;
+
   cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
-  transition: 0.2s;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .DummyTicketHolder-menuIcon:hover {
-  background: #f0f2ff;
+  color: #6d3ec2;
+
+  background: #f2ecff;
+
+  transform: rotate(90deg);
 }
 
 
-/* ========================================================= */
-/* 🌟 3 DOT MENU (PREMIUM DROPDOWN) */
-/* ========================================================= */
-.DummyTicketHolder-menuWrapper {
-  position: relative;
-}
+/* =========================================================
+   DROPDOWN
+========================================================= */
 
 .DummyTicketHolder-menuBox {
   position: absolute;
-  top: 38px;
+
+  top: 39px;
   right: 0;
-  width: 170px;
-  background: #ffffff;
-  border-radius: 12px;
+
+  z-index: 100;
+
+  width: 165px;
+
+  padding: 5px;
+
   overflow: hidden;
-  box-shadow: 
-    0 10px 30px rgba(0,0,0,0.2),
-    inset 0 0 0 1px rgba(130,150,255,0.1);
-  animation: menuSlideIn 0.25s ease-out;
-  z-index: 30;
+
+  border: 1px solid #e6e8ef;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 16px 40px
+    rgba(18, 25, 40, 0.16);
+
+  animation:
+    DummyTicketHolderMenuIn
+    0.18s
+    ease-out;
 }
 
-@keyframes menuSlideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes DummyTicketHolderMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .DummyTicketHolder-menuItem {
   width: 100%;
-  padding: 14px 14px;
+
+  min-height: 38px;
+
   display: flex;
-  gap: 10px;
   align-items: center;
+
+  gap: 9px;
+
+  padding: 0 10px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-align: left;
+
   cursor: pointer;
-  background: none;
-  border: none;
-  font-size: 15px;
-  font-weight: 600;
-  transition: 0.25s ease;
+
+  transition:
+    background 0.18s ease,
+    padding-left 0.18s ease;
 }
 
 .DummyTicketHolder-menuItem:hover {
-  background: #f5f5ff;
+  padding-left: 13px;
 }
 
-.DummyTicketHolder-menuItem.approve { color: #0a8a3a; }
-.DummyTicketHolder-menuItem.reject { color: #d08800; }
-.DummyTicketHolder-menuItem.delete { color: #d00000; }
+.DummyTicketHolder-menuItem.approve {
+  color: #07853c;
+}
+
+.DummyTicketHolder-menuItem.approve:hover {
+  background: #effbf4;
+}
+
+.DummyTicketHolder-menuItem.reject {
+  color: #c17b05;
+}
+
+.DummyTicketHolder-menuItem.reject:hover {
+  background: #fff8e9;
+}
+
+.DummyTicketHolder-menuItem.delete {
+  color: #d3385e;
+}
+
+.DummyTicketHolder-menuItem.delete:hover {
+  background: #fff1f4;
+}
 
 
+/* =========================================================
+   INFORMATION ROW
+========================================================= */
 
-/* ========================================================= */
-/* 🌟 BLOCK ROW */
-/* ========================================================= */
 .DummyTicketHolder-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-  margin-top: 22px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin: 0;
+
+  padding: 10px 18px 0;
 }
 
-@media (max-width: 600px) {
-  .DummyTicketHolder-row {
-    grid-template-columns: 1fr;
-  }
+.DummyTicketHolder-row:last-of-type {
+  padding-bottom: 18px;
 }
 
 
-/* ========================================================= */
-/* 🌟 BLOCK (NEUMORPHISM LOOK) */
-/* ========================================================= */
+/* =========================================================
+   INFORMATION BLOCK
+========================================================= */
+
 .DummyTicketHolder-block {
-  background: linear-gradient(135deg, #f7f9ff, #eef2ff);
-  padding: 18px;
-  border-radius: 14px;
-  border-left: 5px solid #4c6aff;
-  box-shadow:
-    inset 0 1px 4px rgba(255,255,255,0.8),
-    inset 0 -2px 6px rgba(0,0,0,0.05);
+  min-width: 0;
+
+  padding: 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #eceef3;
+  border-radius: 12px;
+
+  background: #fafbfc;
+
+  box-shadow: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
+
+.DummyTicketHolder-block:hover {
+  border-color: #e2d9ef;
+
+  background: #fcfaff;
+}
+
+
+/* =========================================================
+   BLOCK HEADER
+========================================================= */
 
 .DummyTicketHolder-blockHeader {
   display: flex;
   align-items: center;
+
   gap: 8px;
-  color: #4358ff;
+
+  margin-bottom: 10px;
+
+  color: #6840a9;
+
+  font-size: 10px;
   font-weight: 800;
-  font-size: 15px;
-  margin-bottom: 12px;
+
+  letter-spacing: 0.65px;
+
+  text-transform: uppercase;
 }
+
+.DummyTicketHolder-blockHeader svg {
+  width: 16px;
+  height: 16px;
+
+  padding: 5px;
+
+  box-sizing: content-box;
+
+  border-radius: 7px;
+
+  color: #7446bd;
+
+  background: #f0eaff;
+}
+
+
+/* =========================================================
+   INFORMATION TEXT
+========================================================= */
 
 .DummyTicketHolder-block p {
-  margin: 6px 0;
-  font-size: 14px;
-  color: #2c2c35;
-  letter-spacing: 0.2px;
+  display: flex;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  margin: 7px 0;
+
+  color: #687082;
+
+  font-size: 10.5px;
+
+  line-height: 1.5;
+
+  word-break: break-word;
 }
+
+.DummyTicketHolder-block p strong {
+  flex-shrink: 0;
+
+  color: #363e50;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   PASSENGER LIST
+========================================================= */
+
+.DummyTicketHolder-block:nth-child(2) p {
+  padding: 6px 8px;
+
+  margin: 5px 0;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  border: 1px solid #eef0f4;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   FINAL PRICE
+========================================================= */
 
 .DummyTicketHolder-final {
-  font-weight: 800;
-  font-size: 15px;
-  padding-top: 8px;
+  align-items: center !important;
+
+  margin-top: 10px !important;
+  padding-top: 9px !important;
+
+  border-top: 1px dashed #dddfe5;
+
+  color: #242b3d !important;
+
+  font-size: 13px !important;
+}
+
+.DummyTicketHolder-final strong {
+  color: #242b3d;
+}
+
+.DummyTicketHolder-final::after {
+  content: "";
+
+  display: block;
+
+  margin-left: auto;
 }
 
 
+/* =========================================================
+   STATUS BLOCK
+========================================================= */
 
-/* ========================================================= */
-/* 🌟 STATUS TAGS */
-/* ========================================================= */
 .DummyTicketHolder-status {
-  padding: 5px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 66px;
+
+  padding: 5px 9px;
+
+  margin-left: auto;
+
   border-radius: 7px;
-  margin-left: 8px;
-  font-size: 11px;
+
+  font-size: 8px;
+
+  font-weight: 850;
+
+  letter-spacing: 0.45px;
+
   text-transform: uppercase;
-  font-weight: 700;
-}
 
-.SUCCESS {
-  background: #d9ffe5;
-  color: #06782b;
-}
-
-.PENDING {
-  background: #fff2c6;
-  color: #a67600;
-}
-
-.APPROVED {
-  background: #d9ffe5;
-  color: #06782b;
+  white-space: nowrap;
 }
 
 
-/* ========================================================= */
-/* 🌟 PAGINATION */
-/* ========================================================= */
+/* =========================================================
+   PAYMENT STATUS
+========================================================= */
+
+.DummyTicketHolder-status.SUCCESS {
+  color: #08783a;
+
+  background: #eafaf0;
+
+  border: 1px solid #c9efd8;
+}
+
+.DummyTicketHolder-status.PENDING {
+  color: #a06b00;
+
+  background: #fff7df;
+
+  border: 1px solid #f3dfaa;
+}
+
+.DummyTicketHolder-status.FAILED {
+  color: #c62f4f;
+
+  background: #fff0f3;
+
+  border: 1px solid #f5d0d9;
+}
+
+
+/* =========================================================
+   APPROVAL STATUS
+========================================================= */
+
+.DummyTicketHolder-status.APPROVED {
+  color: #08783a;
+
+  background: #eafaf0;
+
+  border: 1px solid #c9efd8;
+}
+
+.DummyTicketHolder-status.REJECTED {
+  color: #c62f4f;
+
+  background: #fff0f3;
+
+  border: 1px solid #f5d0d9;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
 .DummyTicketHolder-pagination {
-  text-align: center;
-  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  margin-top: 25px;
+  padding: 14px 0;
 }
 
 .DummyTicketHolder-pageBtn {
-  padding: 10px 18px;
-  margin: 5px;
-  background: #eaefff;
-  border-radius: 10px;
-  border: none;
+  min-width: 34px;
+  height: 34px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 10px;
+
+  border: 1px solid #e1e4eb;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #697183;
+
+  font-size: 10px;
+  font-weight: 750;
+
   cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s;
-  font-size: 14px;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .DummyTicketHolder-pageBtn:hover {
-  background: #d6e0ff;
+  color: #7141bb;
+
+  border-color: #d8c8ef;
+
+  background: #faf7ff;
+
+  transform: translateY(-1px);
 }
 
 .DummyTicketHolder-pageBtn.active {
-  background: #4b7bff;
-  color: white;
+  border-color: transparent;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #a855f7
+    );
+
+  box-shadow:
+    0 6px 15px
+    rgba(124, 58, 237, 0.22);
 }
-/* ========================================================= */
-/* 📱 MOBILE RESPONSIVE — FOR SMALL DEVICES (max-width: 480px) */
-/* ========================================================= */
-@media (max-width: 480px) {
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.DummyTicketHolder-grid:empty::after {
+  content: "No dummy ticket bookings found.";
+
+  grid-column: 1 / -1;
+
+  min-height: 220px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px dashed #dfe2e9;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  color: #969cab;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
 
   .DummyTicketHolder-container {
-    padding: 15px;
-  }
-
-  .DummyTicketHolder-title {
-    font-size: 22px;
-    text-align: center;
-  }
-
-  .DummyTicketHolder-filters {
-    gap: 12px;
-  }
-
-  .DummyTicketHolder-searchBox {
-    width: 100%;
-  }
-
-  .DummyTicketHolder-filterSelect {
-    width: 100%;
+    padding: 34px;
   }
 
   .DummyTicketHolder-grid {
-    grid-template-columns: 1fr !important;
-    gap: 18px;
+    gap: 22px;
   }
 
-  .DummyTicketHolder-card {
-    padding: 20px;
-  }
-
-  .DummyTicketHolder-row {
-    grid-template-columns: 1fr !important;
-    gap: 14px;
+  .DummyTicketHolder-cardHeader {
+    min-height: 76px;
   }
 
   .DummyTicketHolder-block {
-    padding: 14px;
-  }
-
-  .DummyTicketHolder-menuBox {
-    right: 0;
-    width: 150px;
-  }
-
-  .DummyTicketHolder-pageBtn {
-    padding: 8px 12px;
-    font-size: 13px;
+    padding: 15px;
   }
 }
 
 
+/* =========================================================
+   LAPTOP
+========================================================= */
 
-/* ========================================================= */
-/* 📱 LARGE MOBILE (480px – 600px) */
-/* ========================================================= */
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
+
+  .DummyTicketHolder-container {
+    padding: 24px;
+  }
 
   .DummyTicketHolder-grid {
-    grid-template-columns: 1fr !important;
+    gap: 17px;
+  }
+
+  .DummyTicketHolder-cardHeader {
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
   .DummyTicketHolder-row {
-    grid-template-columns: 1fr !important;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
-  .DummyTicketHolder-card {
-    padding: 22px;
+  .DummyTicketHolder-block {
+    padding: 12px;
+  }
+
+  .DummyTicketHolder-filterSelect {
+    min-width: 135px;
   }
 }
 
 
+/* =========================================================
+   TABLET
+========================================================= */
 
-/* ========================================================= */
-/* 📲 TABLET VIEW (600px – 900px) */
-/* ========================================================= */
 @media (max-width: 900px) {
 
-  .DummyTicketHolder-grid {
-    grid-template-columns: 1fr !important;
+  .DummyTicketHolder-container {
+    padding: 20px;
+  }
+
+  .DummyTicketHolder-title {
+    font-size: 25px;
   }
 
   .DummyTicketHolder-filters {
     flex-wrap: wrap;
   }
 
-  .DummyTicketHolder-filterSelect {
-    width: calc(50% - 10px);
-  }
-
   .DummyTicketHolder-searchBox {
     flex: 1 1 100%;
+  }
+
+  .DummyTicketHolder-filterSelect {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .DummyTicketHolder-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .DummyTicketHolder-card {
+    width: 100%;
   }
 }
 
 
+/* =========================================================
+   MOBILE LARGE
+========================================================= */
 
-/* ========================================================= */
-/* 🖥 SMALL LAPTOP (900px – 1200px) */
-/* ========================================================= */
-@media (max-width: 1200px) {
+@media (max-width: 600px) {
+
+  .DummyTicketHolder-container {
+    padding: 15px;
+  }
+
+  .DummyTicketHolder-title {
+    margin-bottom: 18px;
+
+    font-size: 22px;
+    letter-spacing: -0.4px;
+  }
+
+  .DummyTicketHolder-title::after {
+    width: 38px;
+    height: 3px;
+  }
+
+  .DummyTicketHolder-filters {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 8px;
+
+    padding: 10px;
+
+    border-radius: 13px;
+  }
+
+  .DummyTicketHolder-searchBox {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .DummyTicketHolder-filterSelect {
+    width: 100%;
+    min-width: 0;
+  }
 
   .DummyTicketHolder-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 22px;
+    gap: 14px;
   }
 
   .DummyTicketHolder-card {
-    padding: 24px;
+    border-radius: 15px;
+  }
+
+  .DummyTicketHolder-cardHeader {
+    min-height: 64px;
+
+    padding: 13px 14px;
+
+    border-radius: 15px 15px 0 0;
+  }
+
+  .DummyTicketHolder-cardHeader h3 {
+    font-size: 13px;
+  }
+
+  .DummyTicketHolder-row {
+    grid-template-columns: 1fr;
+
+    gap: 8px;
+
+    padding: 8px 12px 0;
+  }
+
+  .DummyTicketHolder-row:last-of-type {
+    padding-bottom: 12px;
+  }
+
+  .DummyTicketHolder-block {
+    padding: 12px;
+  }
+
+  .DummyTicketHolder-blockHeader {
+    margin-bottom: 8px;
+  }
+
+  .DummyTicketHolder-block p {
+    font-size: 10.5px;
+  }
+
+  .DummyTicketHolder-menuBox {
+    width: 150px;
+  }
+
+  .DummyTicketHolder-pagination {
+    margin-top: 18px;
+  }
+
+  .DummyTicketHolder-pageBtn {
+    min-width: 32px;
+    height: 32px;
+
+    padding: 0 8px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE SMALL
+========================================================= */
+
+@media (max-width: 420px) {
+
+  .DummyTicketHolder-container {
+    padding: 11px;
+  }
+
+  .DummyTicketHolder-title {
+    font-size: 19px;
+  }
+
+  .DummyTicketHolder-searchBox {
+    height: 40px;
+  }
+
+  .DummyTicketHolder-filterSelect {
+    height: 40px;
+  }
+
+  .DummyTicketHolder-cardHeader {
+    padding: 11px 12px;
+  }
+
+  .DummyTicketHolder-cardHeader h3 {
+    max-width: 210px;
+  }
+
+  .DummyTicketHolder-row {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .DummyTicketHolder-block {
+    padding: 10px;
+  }
+
+  .DummyTicketHolder-block p {
+    font-size: 10px;
+  }
+
+  .DummyTicketHolder-status {
+    min-width: 58px;
+
+    padding: 4px 7px;
+
+    font-size: 7px;
+  }
+
+  .DummyTicketHolder-pageBtn {
+    min-width: 29px;
+    height: 29px;
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+
+  .DummyTicketHolder-container {
+    padding: 8px;
+  }
+
+  .DummyTicketHolder-title {
+    font-size: 17px;
+  }
+
+  .DummyTicketHolder-cardHeader h3 {
+    max-width: 170px;
+  }
+
+  .DummyTicketHolder-block p {
+    font-size: 9.5px;
+  }
+
+  .DummyTicketHolder-blockHeader {
+    font-size: 9px;
+  }
+
+  .DummyTicketHolder-status {
+    min-width: auto;
+
+    padding: 4px 6px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.DummyTicketHolder-container button:focus-visible,
+.DummyTicketHolder-container input:focus-visible,
+.DummyTicketHolder-container select:focus-visible {
+  outline: 3px solid
+    rgba(124, 58, 237, 0.16);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .DummyTicketHolder-container *,
+  .DummyTicketHolder-container *::before,
+  .DummyTicketHolder-container *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

@@ -1,259 +1,940 @@
+/* =========================================================
+   MEDIA UPLOAD - PREMIUM ADMIN UI
+   ========================================================= */
+
 .mediaupload-container {
-  display: flex;
-  gap: 2rem;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 2rem;
-  background: #f8fafc;
-  font-family: "Poppins", sans-serif;
-  flex-wrap: wrap;
+  --media-primary: #6d28d9;
+  --media-primary-dark: #5b21b6;
+  --media-secondary: #ec4899;
+  --media-accent: #8b5cf6;
+
+  --media-bg: #f7f7fb;
+  --media-card: #ffffff;
+  --media-border: #e8e8f0;
+
+  --media-text: #171725;
+  --media-text-secondary: #606078;
+  --media-text-muted: #8b8b9d;
+
+  --media-success: #16a34a;
+  --media-success-bg: #ecfdf3;
+
+  --media-danger: #dc2626;
+  --media-danger-bg: #fff1f2;
+
+  --media-shadow:
+    0 12px 35px rgba(31, 20, 60, 0.07);
+
+  width: 100%;
+  min-height: 100%;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.8fr);
+  gap: 24px;
+  align-items: start;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(139, 92, 246, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.06),
+      transparent 25%
+    ),
+    var(--media-bg);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  box-sizing: border-box;
 }
 
-/* ==== LEFT SIDE ==== */
-.mediaupload-left {
-  flex: 0 0 30%;
-  background: #fff;
-  padding: 1.8rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+/* =========================================================
+   GLOBAL BOX SIZING
+   ========================================================= */
+
+.mediaupload-container *,
+.mediaupload-container *::before,
+.mediaupload-container *::after {
+  box-sizing: border-box;
 }
+
+/* =========================================================
+   LEFT UPLOAD PANEL
+   ========================================================= */
+
+.mediaupload-left {
+  width: 100%;
+  min-width: 0;
+  padding: 26px;
+
+  background: var(--media-card);
+  border: 1px solid var(--media-border);
+  border-radius: 22px;
+
+  box-shadow: var(--media-shadow);
+
+  position: relative;
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.mediaupload-left::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--media-primary),
+      var(--media-secondary)
+    );
+}
+
+.mediaupload-left:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 18px 45px rgba(31, 20, 60, 0.1);
+}
+
+/* =========================================================
+   LEFT TITLE
+   ========================================================= */
 
 .mediaupload-left h2 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  color: #1e293b;
+  position: relative;
+
+  margin: 0 0 28px;
+
+  color: var(--media-text);
+
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -0.4px;
 }
 
+.mediaupload-left h2::after {
+  content: "";
+
+  display: block;
+
+  width: 48px;
+  height: 4px;
+
+  margin-top: 10px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--media-primary),
+      var(--media-secondary)
+    );
+}
+
+/* =========================================================
+   FORM FIELD
+   ========================================================= */
+
 .mediaupload-field {
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 21px;
+
   display: flex;
   flex-direction: column;
+  gap: 9px;
 }
 
 .mediaupload-field label {
-  font-weight: 500;
-  color: #475569;
-  margin-bottom: 6px;
+  display: block;
+
+  color: var(--media-text);
+
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 750;
+  letter-spacing: 0.1px;
 }
 
-.mediaupload-field input,
-.mediaupload-field select {
-  padding: 10px 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+.mediaupload-field input[type="file"] {
+  width: 100%;
+  min-height: 50px;
+
+  padding: 8px;
+
+  border: 1px dashed #cfcfe0;
+  border-radius: 13px;
+
+  background: #fafaff;
+
+  color: var(--media-text-secondary);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
   outline: none;
-  font-size: 0.95rem;
-  transition: border-color 0.3s;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.mediaupload-field input:hover,
-.mediaupload-field select:hover {
-  border-color: #3b82f6;
+.mediaupload-field input[type="file"]:hover {
+  border-color: var(--media-primary);
+
+  background: #f9f7ff;
 }
+
+.mediaupload-field input[type="file"]:focus {
+  border-color: var(--media-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(109, 40, 217, 0.1);
+}
+
+.mediaupload-field input[type="file"]::file-selector-button {
+  margin-right: 10px;
+
+  padding: 9px 13px;
+
+  border: none;
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--media-primary),
+      var(--media-accent)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.mediaupload-field input[type="file"]::file-selector-button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   SELECT
+   ========================================================= */
+
+.mediaupload-field select {
+  width: 100%;
+  min-height: 48px;
+
+  padding: 0 42px 0 14px;
+
+  border: 1px solid var(--media-border);
+  border-radius: 12px;
+
+  background-color: #ffffff;
+
+  color: var(--media-text);
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  outline: none;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.mediaupload-field select:hover {
+  border-color: #c9b8f3;
+  background: #fcfbff;
+}
+
+.mediaupload-field select:focus {
+  border-color: var(--media-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(109, 40, 217, 0.1);
+}
+
+/* =========================================================
+   POST BUTTON
+   ========================================================= */
 
 .mediaupload-btn {
-  background: #2563eb;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
+  width: 100%;
+  min-height: 50px;
+
+  margin-top: 5px;
+
+  padding: 12px 18px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  transition: 0.3s;
+  gap: 9px;
+
+  border: none;
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--media-primary),
+      var(--media-secondary)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 22px rgba(109, 40, 217, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
 .mediaupload-btn:hover {
-  background: #1d4ed8;
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 28px rgba(109, 40, 217, 0.28);
+
+  filter: brightness(1.03);
 }
 
-/* ==== RIGHT SIDE ==== */
-.mediaupload-right {
-  flex: 1;
-  background: #fff;
-  padding: 1.8rem;
-  border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+.mediaupload-btn:active {
+  transform: translateY(0);
 }
+
+.mediaupload-btn svg {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   RIGHT PANEL
+   ========================================================= */
+
+.mediaupload-right {
+  width: 100%;
+  min-width: 0;
+
+  padding: 26px;
+
+  background: var(--media-card);
+
+  border: 1px solid var(--media-border);
+  border-radius: 22px;
+
+  box-shadow: var(--media-shadow);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.mediaupload-right:hover {
+  box-shadow:
+    0 18px 45px rgba(31, 20, 60, 0.09);
+}
+
+/* =========================================================
+   RIGHT HEADER
+   ========================================================= */
 
 .mediaupload-right-header {
-  margin-bottom: 1.5rem;
+  width: 100%;
+
+  margin-bottom: 22px;
+
+  padding-bottom: 20px;
+
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+
+  gap: 20px;
+
+  border-bottom: 1px solid var(--media-border);
 }
 
 .mediaupload-right-header h2 {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #1e293b;
+  margin: 0;
+
+  color: var(--media-text);
+
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 800;
+
+  letter-spacing: -0.45px;
 }
 
 .mediaupload-right-header p {
-  font-size: 0.95rem;
-  color: #64748b;
+  max-width: 430px;
+
+  margin: 0;
+
+  color: var(--media-text-muted);
+
+  font-size: 12px;
+  line-height: 1.7;
+  font-weight: 500;
+
+  text-align: right;
 }
 
-/* ==== TABLE WRAPPER ==== */
+/* =========================================================
+   TABLE WRAPPER
+   ========================================================= */
+
 .mediaupload-table-wrapper {
+  width: 100%;
+
   overflow-x: auto;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  background: #fff;
+  overflow-y: hidden;
+
+  border: 1px solid var(--media-border);
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  scrollbar-width: thin;
+  scrollbar-color: #c8c2d8 transparent;
 }
 
-/* Scroll for small screens */
+/* =========================================================
+   TABLE SCROLLBAR
+   ========================================================= */
+
 .mediaupload-table-wrapper::-webkit-scrollbar {
-  height: 8px;
+  width: 7px;
+  height: 7px;
+}
+
+.mediaupload-table-wrapper::-webkit-scrollbar-track {
+  background: #f8f7fb;
+  border-radius: 20px;
 }
 
 .mediaupload-table-wrapper::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-/* ==== TABLE SYSTEM ==== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 650px;
-}
-
-th,
-td {
-  text-align: center;
-  padding: 14px 12px;
-  border-bottom: 1px solid #f1f5f9;
-}
-
-th {
-  background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%);
-  color: #475569;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-
-td {
-  color: #334155;
-  font-size: 0.93rem;
-  vertical-align: middle;
-}
-
-tr:nth-child(even) {
-  background: #f9fafb;
-}
-
-tr:hover {
-  background: #f1f5f9;
-  transition: 0.3s ease;
-}
-
-/* ==== IMAGE STYLE ==== */
-td img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* ==== STATUS BADGE ==== */
-.status-badge {
-  display: inline-block;
-  padding: 5px 12px;
+  background: #c8c2d8;
   border-radius: 20px;
-  font-size: 0.8rem;
+}
+
+.mediaupload-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--media-primary);
+}
+
+/* =========================================================
+   TABLE
+   IMPORTANT:
+   Scoped to MediaUpload only
+   ========================================================= */
+
+.mediaupload-container table {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  table-layout: auto;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.mediaupload-container table thead th {
+  height: 52px;
+
+  padding: 13px 15px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #faf9ff 0%,
+      #f4f2fa 100%
+    );
+
+  color: #57516a;
+
+  border-bottom: 1px solid var(--media-border);
+
+  font-size: 10px;
+  line-height: 1.2;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+
+  white-space: nowrap;
+
+  text-align: center;
+}
+
+.mediaupload-container table thead th:first-child {
+  border-top-left-radius: 15px;
+}
+
+.mediaupload-container table thead th:last-child {
+  border-top-right-radius: 15px;
+}
+
+/* =========================================================
+   TABLE BODY
+   ========================================================= */
+
+.mediaupload-container table tbody td {
+  min-height: 82px;
+
+  padding: 15px;
+
+  border-bottom: 1px solid #f0eef5;
+
+  color: #373346;
+
+  font-size: 12px;
   font-weight: 600;
+
+  text-align: center;
+  vertical-align: middle;
+
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.status-badge.published {
-  background: #dcfce7;
-  color: #166534;
+.mediaupload-container table tbody tr:last-child td {
+  border-bottom: none;
 }
 
-.status-badge.unpublished {
-  background: #fee2e2;
-  color: #991b1b;
+.mediaupload-container table tbody tr:hover td {
+  background: #faf8ff;
 }
 
-/* ==== ACTION BUTTONS ==== */
-.action-buttons {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
+/* =========================================================
+   SERIAL NUMBER
+   ========================================================= */
+
+.mediaupload-container table tbody td:first-child {
+  color: #8b849a;
+
+  font-size: 11px;
+  font-weight: 750;
+}
+
+/* =========================================================
+   PHOTO CELL
+   ========================================================= */
+
+.mediaupload-container table tbody td:nth-child(2) {
+  width: 95px;
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.mediaupload-container table tbody td img {
+  display: block;
+
+  width: 62px;
+  height: 62px;
+
+  margin: 0 auto;
+
+  padding: 3px;
+
+  border: 1px solid #e9e4f2;
+  border-radius: 13px;
+
+  background: #ffffff;
+
+  object-fit: cover;
+
+  box-shadow:
+    0 5px 14px rgba(34, 22, 60, 0.1);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.mediaupload-container table tbody tr:hover td img {
+  transform: scale(1.04);
+
+  box-shadow:
+    0 8px 20px rgba(34, 22, 60, 0.15);
+}
+
+/* =========================================================
+   CATEGORY
+   ========================================================= */
+
+.mediaupload-container table tbody td:nth-child(3) {
+  color: #514b61;
+  font-weight: 700;
+}
+
+.mediaupload-container table tbody td:nth-child(3)::first-letter {
+  color: var(--media-primary);
+}
+
+/* =========================================================
+   STATUS BADGE
+   ========================================================= */
+
+.mediaupload-container .status-badge {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-}
 
-.publish-btn,
-.delete-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  min-width: 92px;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+
   white-space: nowrap;
 }
 
-.publish-btn {
-  background: #10b981;
-  color: white;
-  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+.mediaupload-container .status-badge::before {
+  content: "";
+
+  width: 6px;
+  height: 6px;
+
+  margin-right: 6px;
+
+  border-radius: 50%;
 }
 
-.publish-btn:hover {
-  background: #059669;
+/* Published */
+
+.mediaupload-container .status-badge.published {
+  color: #15803d;
+
+  background: #ecfdf3;
+
+  border: 1px solid #bbf7d0;
 }
 
-.delete-btn {
+.mediaupload-container .status-badge.published::before {
+  background: #22c55e;
+
+  box-shadow:
+    0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+
+/* Unpublished */
+
+.mediaupload-container .status-badge.unpublished {
+  color: #b42318;
+
+  background: #fff1f2;
+
+  border: 1px solid #fecdd3;
+}
+
+.mediaupload-container .status-badge.unpublished::before {
   background: #ef4444;
-  color: white;
-  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+
+  box-shadow:
+    0 0 0 3px rgba(239, 68, 68, 0.08);
 }
 
-.delete-btn:hover {
-  background: #dc2626;
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
+.mediaupload-container table tbody td.action-buttons {
+  min-width: 205px;
+
+  padding: 12px 14px;
 }
 
-/* ==== EMPTY STATE ==== */
-.no-data {
+.mediaupload-container .action-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================================================
+   COMMON ACTION BUTTON
+   ========================================================= */
+
+.mediaupload-container .publish-btn,
+.mediaupload-container .delete-btn {
+  min-height: 34px;
+
+  padding: 8px 11px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  line-height: 1;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* =========================================================
+   PUBLISH
+   ========================================================= */
+
+.mediaupload-container .publish-btn {
+  color: #047857;
+
+  background: #ecfdf5;
+
+  border-color: #bbf7d0;
+}
+
+.mediaupload-container .publish-btn:hover {
+  color: #ffffff;
+
+  background: #10b981;
+
+  border-color: #10b981;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(16, 185, 129, 0.2);
+}
+
+/* =========================================================
+   DELETE
+   ========================================================= */
+
+.mediaupload-container .delete-btn {
+  color: #b42318;
+
+  background: #fff1f2;
+
+  border-color: #fecdd3;
+}
+
+.mediaupload-container .delete-btn:hover {
+  color: #ffffff;
+
+  background: #ef4444;
+
+  border-color: #ef4444;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 15px rgba(239, 68, 68, 0.2);
+}
+
+.mediaupload-container .publish-btn:active,
+.mediaupload-container .delete-btn:active {
+  transform: translateY(0);
+}
+
+.mediaupload-container .publish-btn svg,
+.mediaupload-container .delete-btn svg {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.mediaupload-container table tbody td.no-data {
+  height: 210px;
+
+  padding: 35px 20px;
+
+  color: #9994a6;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fcfbff 100%
+    );
+
+  font-size: 13px;
+  font-weight: 650;
+
   text-align: center;
-  color: #64748b;
-  padding: 20px;
-  font-weight: 500;
 }
 
-/* ==== RESPONSIVE ==== */
-@media (max-width: 1100px) {
-  .mediaupload-left {
-    flex: 0 0 35%;
-  }
-  table {
-    min-width: 600px;
-  }
+.mediaupload-container table tbody td.no-data::before {
+  content: "📷";
+
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 30px;
+
+  opacity: 0.55;
 }
 
-@media (max-width: 900px) {
+/* =========================================================
+   TABLE COLUMN SIZING
+   ========================================================= */
+
+.mediaupload-container table th:nth-child(1),
+.mediaupload-container table td:nth-child(1) {
+  width: 70px;
+}
+
+.mediaupload-container table th:nth-child(2),
+.mediaupload-container table td:nth-child(2) {
+  width: 105px;
+}
+
+.mediaupload-container table th:nth-child(3),
+.mediaupload-container table td:nth-child(3) {
+  min-width: 120px;
+}
+
+.mediaupload-container table th:nth-child(4),
+.mediaupload-container table td:nth-child(4) {
+  min-width: 120px;
+}
+
+.mediaupload-container table th:nth-child(5),
+.mediaupload-container table td:nth-child(5) {
+  min-width: 215px;
+}
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+.mediaupload-container button:focus-visible,
+.mediaupload-container input:focus-visible,
+.mediaupload-container select:focus-visible {
+  outline: 3px solid rgba(109, 40, 217, 0.18);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
   .mediaupload-container {
+    grid-template-columns: minmax(260px, 0.75fr) minmax(0, 1.5fr);
+
+    padding: 22px;
+
+    gap: 20px;
+  }
+
+  .mediaupload-left,
+  .mediaupload-right {
+    padding: 22px;
+  }
+
+  .mediaupload-right-header {
+    align-items: flex-start;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 8px;
+  }
+
+  .mediaupload-right-header p {
+    max-width: 100%;
+
+    text-align: left;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+  .mediaupload-container {
+    grid-template-columns: 1fr;
+
+    padding: 20px;
   }
 
   .mediaupload-left,
@@ -269,68 +950,220 @@ td img {
     order: 2;
   }
 
-  table {
-    font-size: 0.9rem;
-  }
-
-  td img {
-    width: 50px;
-    height: 50px;
-  }
-
   .mediaupload-right-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mediaupload-right-header p {
+    max-width: 380px;
+
+    text-align: right;
   }
 }
 
-@media (max-width: 600px) {
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
   .mediaupload-container {
-    padding: 1rem;
+    padding: 16px;
+
+    gap: 16px;
   }
 
   .mediaupload-left,
   .mediaupload-right {
-    padding: 1.2rem;
+    padding: 19px;
+
+    border-radius: 18px;
   }
 
-  th,
-  td {
-    padding: 10px 8px;
-  }
-
-  .mediaupload-btn {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-
-  td img {
-    width: 45px;
-    height: 45px;
-  }
-
-  table {
-    min-width: 500px;
-  }
-}
-
-@media (max-width: 420px) {
+  .mediaupload-left h2,
   .mediaupload-right-header h2 {
-    font-size: 1.1rem;
+    font-size: 18px;
+  }
+
+  .mediaupload-right-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 7px;
   }
 
   .mediaupload-right-header p {
-    font-size: 0.85rem;
+    max-width: 100%;
+
+    text-align: left;
+
+    font-size: 11px;
   }
 
-  th,
-  td {
-    font-size: 0.8rem;
+  .mediaupload-table-wrapper {
+    border-radius: 13px;
   }
 
-  .publish-btn,
-  .delete-btn {
-    font-size: 0.75rem;
-    padding: 6px 10px;
+  .mediaupload-container table {
+    min-width: 700px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .mediaupload-container {
+    padding: 11px;
+
+    gap: 13px;
+  }
+
+  .mediaupload-left,
+  .mediaupload-right {
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .mediaupload-left h2 {
+    margin-bottom: 22px;
+
+    font-size: 17px;
+  }
+
+  .mediaupload-right-header {
+    margin-bottom: 17px;
+    padding-bottom: 16px;
+  }
+
+  .mediaupload-right-header h2 {
+    font-size: 17px;
+  }
+
+  .mediaupload-right-header p {
+    font-size: 10px;
+    line-height: 1.6;
+  }
+
+  .mediaupload-field {
+    margin-bottom: 17px;
+  }
+
+  .mediaupload-field label {
+    font-size: 12px;
+  }
+
+  .mediaupload-field select {
+    min-height: 45px;
+
+    font-size: 12px;
+  }
+
+  .mediaupload-field input[type="file"] {
+    min-height: 47px;
+
+    font-size: 10px;
+  }
+
+  .mediaupload-field input[type="file"]::file-selector-button {
+    padding: 8px 10px;
+
+    font-size: 10px;
+  }
+
+  .mediaupload-btn {
+    min-height: 47px;
+
+    font-size: 12px;
+  }
+
+  .mediaupload-container table {
+    min-width: 680px;
+  }
+
+  .mediaupload-container table thead th {
+    height: 47px;
+
+    padding: 11px 10px;
+
+    font-size: 9px;
+  }
+
+  .mediaupload-container table tbody td {
+    min-height: 75px;
+
+    padding: 12px 10px;
+
+    font-size: 11px;
+  }
+
+  .mediaupload-container table tbody td img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .mediaupload-container .status-badge {
+    min-width: 86px;
+
+    padding: 6px 9px;
+
+    font-size: 9px;
+  }
+
+  .mediaupload-container .publish-btn,
+  .mediaupload-container .delete-btn {
+    min-height: 32px;
+
+    padding: 7px 9px;
+
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .mediaupload-container {
+    padding: 8px;
+  }
+
+  .mediaupload-left,
+  .mediaupload-right {
+    padding: 14px;
+  }
+
+  .mediaupload-left h2,
+  .mediaupload-right-header h2 {
+    font-size: 16px;
+  }
+
+  .mediaupload-container table {
+    min-width: 650px;
+  }
+
+  .mediaupload-container table tbody td img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .mediaupload-container *,
+  .mediaupload-container *::before,
+  .mediaupload-container *::after {
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -1,138 +1,1211 @@
-/* Container */
-.flyden-advantage-section {
-  padding: 5rem 2rem;
-  max-width: 1280px;
-  margin: 0 auto;
-  font-family: 'Poppins', sans-serif;
-  background-color: #f9f9fb;
-  text-align: center;
+/* ============================================================
+   FLYIXO ADVANTAGE SECTION
+   Premium Study Abroad Advantage UI
+============================================================ */
+
+:root {
+  --flyixo-advantage-navy: #062c43;
+  --flyixo-advantage-navy-dark: #031b2b;
+
+  --flyixo-advantage-primary: #e94e77;
+  --flyixo-advantage-primary-dark: #c93661;
+  --flyixo-advantage-primary-light: #ff8eaa;
+
+  --flyixo-advantage-blue: #2563eb;
+  --flyixo-advantage-cyan: #36c8d4;
+  --flyixo-advantage-gold: #f4b942;
+  --flyixo-advantage-green: #20b486;
+  --flyixo-advantage-purple: #7c3aed;
+
+  --flyixo-advantage-text: #182536;
+  --flyixo-advantage-muted: #687789;
+
+  --flyixo-advantage-white: #ffffff;
+  --flyixo-advantage-light: #f7f9fc;
+  --flyixo-advantage-border: #e4e9ef;
+
+  --flyixo-advantage-shadow:
+    0 15px 45px rgba(6, 44, 67, 0.09);
+
+  --flyixo-advantage-transition: 0.35s ease;
 }
 
-/* Heading */
-.flyden-advantage-heading {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  color: #1c1c1c;
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-advantage-section,
+.flyixo-advantage-section *,
+.flyixo-advantage-section *::before,
+.flyixo-advantage-section *::after {
+  box-sizing: border-box;
 }
 
-.flyden-advantage-heading span {
-  color: #ff4c60;
+/* ============================================================
+   SECTION
+============================================================ */
+
+.flyixo-advantage-section {
+  position: relative;
+
+  width: 100%;
+
+  padding:
+    85px 25px 90px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbfd 0%,
+      #ffffff 48%,
+      #f8f4f7 100%
+    );
+
+  overflow: hidden;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
 }
 
-/* Grid */
-.flyden-advantages-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 2.5rem;
-  justify-items: center;
-}
+/* ============================================================
+   BACKGROUND GLOWS
+============================================================ */
 
-/* Card */
-.flyden-advantage-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 25px 20px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
-  transition: all 0.2s ease;
-}
+.flyixo-advantage-bg {
+  position: absolute;
 
-.flyden-advantage-card:hover {
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
-}
+  z-index: 0;
 
-/* Icon */
-.flyden-icon-wrapper {
-  background-color: #ff4c60;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+
+  pointer-events: none;
+
+  filter: blur(3px);
+
+  animation:
+    flyixoAdvantageFloat
+    9s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-advantage-bg-one {
+  width: 500px;
+  height: 500px;
+
+  left: -300px;
+  top: -250px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.13),
+      transparent 70%
+    );
+}
+
+.flyixo-advantage-bg-two {
+  width: 550px;
+  height: 550px;
+
+  right: -320px;
+  bottom: -300px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoAdvantageFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -18px, 0);
+  }
+}
+
+/* ============================================================
+   GRID PATTERN
+============================================================ */
+
+.flyixo-advantage-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  opacity: 0.45;
+
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-advantage-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1280px, 100%);
+
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-advantage-header {
+  max-width: 850px;
+
+  margin:
+    0 auto 55px;
+
+  text-align: center;
+
+  animation:
+    flyixoAdvantageHeaderIn
+    0.8s
+    ease
+    both;
+}
+
+@keyframes flyixoAdvantageHeaderIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.flyixo-advantage-eyebrow {
   display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 15px;
+
+  color:
+    var(--flyixo-advantage-primary);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.flyixo-advantage-eyebrow-line {
+  width: 42px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--flyixo-advantage-primary)
+    );
+}
+
+.flyixo-advantage-eyebrow-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-advantage-primary),
+      transparent
+    );
+}
+
+/* ============================================================
+   HEADING
+============================================================ */
+
+.flyixo-advantage-heading {
+  margin: 0;
+
+  color:
+    var(--flyixo-advantage-navy);
+
+  font-size:
+    clamp(
+      38px,
+      4vw,
+      56px
+    );
+
+  line-height: 1.15;
+
+  font-weight: 850;
+
+  letter-spacing: -1.5px;
+}
+
+.flyixo-advantage-heading span {
+  color:
+    var(--flyixo-advantage-primary);
+
+  position: relative;
+
+  display: inline-block;
+}
+
+.flyixo-advantage-heading span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 5px;
+  right: 5px;
+  bottom: -7px;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-advantage-primary),
+      var(--flyixo-advantage-primary-light)
+    );
+
+  border-radius: 10px;
+
+  transform:
+    scaleX(0.7);
+
+  transform-origin: center;
+
+  opacity: 0.7;
+}
+
+/* ============================================================
+   INTRO
+============================================================ */
+
+.flyixo-advantage-intro {
+  max-width: 650px;
+
+  margin:
+    22px auto 0;
+
+  color:
+    var(--flyixo-advantage-muted);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   GRID
+============================================================ */
+
+.flyixo-advantages-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 24px;
+}
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.flyixo-advantage-card {
+  position: relative;
+
+  min-height: 330px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding:
+    34px 25px 25px;
+
+  background:
+    rgba(255, 255, 255, 0.94);
+
+  border:
+    1px solid
+    var(--flyixo-advantage-border);
+
+  border-radius: 22px;
+
+  box-shadow:
+    var(--flyixo-advantage-shadow);
+
+  text-align: center;
+
+  overflow: hidden;
+
+  transition:
+    transform var(--flyixo-advantage-transition),
+    box-shadow var(--flyixo-advantage-transition),
+    border-color var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover {
+  transform:
+    translateY(-10px);
+
+  border-color:
+    rgba(233, 78, 119, 0.3);
+
+  box-shadow:
+    0 25px 60px
+    rgba(6, 44, 67, 0.14);
+}
+
+/* ============================================================
+   CARD TOP ACCENT
+============================================================ */
+
+.flyixo-advantage-accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-advantage-primary),
+      var(--flyixo-advantage-cyan)
+    );
+
+  transform:
+    scaleX(0.25);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-advantage-accent {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   CARD NUMBER
+============================================================ */
+
+.flyixo-advantage-number {
+  position: absolute;
+
+  top: 15px;
+  right: 17px;
+
+  color:
+    rgba(6, 44, 67, 0.12);
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  letter-spacing: 1px;
+
+  transition:
+    color var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-advantage-number {
+  color:
+    rgba(233, 78, 119, 0.45);
+}
+
+/* ============================================================
+   ICON WRAPPER
+============================================================ */
+
+.flyixo-icon-wrapper {
+  position: relative;
+
+  width: 88px;
+  height: 88px;
+
+  display: flex;
+
   align-items: center;
   justify-content: center;
-  margin-bottom: 18px;
+
+  margin-bottom: 23px;
 }
 
-.flyden-icon {
-  font-size: 2.5rem;
-  color: #ffffff;
+/* ============================================================
+   ICON GLOW
+============================================================ */
+
+.flyixo-icon-glow {
+  position: absolute;
+
+  inset: -8px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.2),
+      transparent 68%
+    );
+
+  opacity: 0.5;
+
+  transition:
+    transform var(--flyixo-advantage-transition),
+    opacity var(--flyixo-advantage-transition);
 }
 
-/* Text */
-.flyden-text h3 {
-  font-size: 1.2rem;
+.flyixo-advantage-card:hover
+.flyixo-icon-glow {
+  transform:
+    scale(1.3);
+
+  opacity: 0.9;
+}
+
+/* ============================================================
+   ICON INNER
+============================================================ */
+
+.flyixo-icon-inner {
+  position: relative;
+
+  z-index: 2;
+
+  width: 78px;
+  height: 78px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-advantage-primary),
+      var(--flyixo-advantage-primary-dark)
+    );
+
+  border:
+    5px solid
+    rgba(233, 78, 119, 0.1);
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 12px 25px
+    rgba(233, 78, 119, 0.23);
+
+  transition:
+    transform var(--flyixo-advantage-transition),
+    box-shadow var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-icon-inner {
+  transform:
+    rotate(-7deg)
+    scale(1.08);
+
+  box-shadow:
+    0 18px 35px
+    rgba(233, 78, 119, 0.3);
+}
+
+/* ============================================================
+   ICON
+============================================================ */
+
+.flyixo-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 35px;
+
+  line-height: 1;
+
+  filter:
+    drop-shadow(
+      0 3px 4px
+      rgba(0, 0, 0, 0.15)
+    );
+}
+
+/* ============================================================
+   CARD CONTENT
+============================================================ */
+
+.flyixo-advantage-text {
+  flex: 1;
+
+  width: 100%;
+}
+
+.flyixo-advantage-text h3 {
+  margin:
+    0 0 11px;
+
+  color:
+    var(--flyixo-advantage-navy);
+
+  font-size: 18px;
+
+  line-height: 1.35;
+
+  font-weight: 750;
+
+  transition:
+    color var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-advantage-text h3 {
+  color:
+    var(--flyixo-advantage-primary);
+}
+
+.flyixo-advantage-text p {
+  margin: 0;
+
+  color:
+    var(--flyixo-advantage-muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   CARD FOOTER
+============================================================ */
+
+.flyixo-advantage-footer {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 22px;
+
+  padding-top: 14px;
+
+  border-top:
+    1px solid
+    #edf0f3;
+
+  color:
+    var(--flyixo-advantage-primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-align: left;
+}
+
+.flyixo-advantage-arrow {
+  width: 27px;
+  height: 27px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color:
+    var(--flyixo-advantage-primary);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+
+  border-radius: 50%;
+
+  font-size: 15px;
+
+  transition:
+    transform var(--flyixo-advantage-transition),
+    background var(--flyixo-advantage-transition),
+    color var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-advantage-arrow {
+  color:
+    #ffffff;
+
+  background:
+    var(--flyixo-advantage-primary);
+
+  transform:
+    translateX(4px);
+}
+
+/* ============================================================
+   CARD CORNER
+============================================================ */
+
+.flyixo-advantage-corner {
+  position: absolute;
+
+  right: -35px;
+  bottom: -35px;
+
+  width: 85px;
+  height: 85px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.08),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  transition:
+    transform var(--flyixo-advantage-transition);
+}
+
+.flyixo-advantage-card:hover
+.flyixo-advantage-corner {
+  transform:
+    scale(1.5);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-advantage-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 50px;
+}
+
+.flyixo-advantage-bottom-line {
+  width: 90px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d7dde4
+    );
+}
+
+.flyixo-advantage-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #d7dde4,
+      transparent
+    );
+}
+
+.flyixo-advantage-bottom p {
+  margin: 0;
+
+  color:
+    var(--flyixo-advantage-muted);
+
+  font-size: 11px;
+
   font-weight: 600;
-  margin: 0 0 8px 0;
-  color: #1c1c1c;
+
+  text-align: center;
 }
 
-.flyden-text p {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.5;
+.flyixo-advantage-bottom strong {
+  color:
+    var(--flyixo-advantage-primary);
+
+  font-weight: 850;
 }
 
+/* ============================================================
+   LARGE LAPTOP
+============================================================ */
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 1024px) {
-  .flyden-advantages-grid {
-    gap: 2rem;
+@media (max-width: 1200px) {
+  .flyixo-advantage-section {
+    padding:
+      75px 22px 80px;
+  }
+
+  .flyixo-advantages-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 22px;
+  }
+
+  .flyixo-advantage-card {
+    min-height: 325px;
+  }
+
+  .flyixo-advantage-heading {
+    font-size: 48px;
   }
 }
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+  .flyixo-advantage-section {
+    padding:
+      70px 20px 75px;
+  }
+
+  .flyixo-advantage-header {
+    margin-bottom: 45px;
+  }
+
+  .flyixo-advantage-heading {
+    font-size: 43px;
+  }
+
+  .flyixo-advantage-intro {
+    font-size: 14px;
+  }
+
+  .flyixo-advantages-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .flyixo-advantage-card {
+    min-height: 315px;
+
+    padding:
+      32px 24px 23px;
+  }
+}
+
+/* ============================================================
+   SMALL TABLET
+============================================================ */
 
 @media (max-width: 768px) {
-  .flyden-advantages-grid {
-    display: flex;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    gap: 1.5rem;
-    padding-bottom: 10px;
+  .flyixo-advantage-section {
+    padding:
+      60px 18px 65px;
   }
 
-  .flyden-advantage-card {
-    flex: 0 0 250px;
-    scroll-snap-align: start;
-  }
-}
+  .flyixo-advantage-eyebrow {
+    font-size: 10px;
 
-@media (max-width: 480px) {
-  .flyden-advantage-section {
-    padding: 3rem 1rem;
+    letter-spacing: 1.6px;
   }
 
-  .flyden-advantage-heading {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+  .flyixo-advantage-heading {
+    font-size: 38px;
   }
 
-  .flyden-advantages-grid {
-    gap: 1rem;
+  .flyixo-advantage-intro {
+    max-width: 580px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
   }
 
-  .flyden-advantage-card {
-    flex: 0 0 200px;
-    padding: 20px 15px;
+  .flyixo-advantages-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 17px;
   }
 
-  .flyden-text h3 {
-    font-size: 1.1rem;
+  .flyixo-advantage-card {
+    min-height: 305px;
+
+    padding:
+      29px 20px 21px;
+
+    border-radius: 19px;
   }
 
-  .flyden-text p {
-    font-size: 0.9rem;
+  .flyixo-icon-wrapper {
+    width: 78px;
+    height: 78px;
+
+    margin-bottom: 19px;
   }
 
-  .flyden-icon-wrapper {
+  .flyixo-icon-inner {
     width: 70px;
     height: 70px;
   }
 
-  .flyden-icon {
-    font-size: 2rem;
+  .flyixo-icon {
+    font-size: 31px;
+  }
+
+  .flyixo-advantage-text h3 {
+    font-size: 17px;
+  }
+
+  .flyixo-advantage-text p {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  .flyixo-advantage-section {
+    padding:
+      52px 15px 60px;
+  }
+
+  .flyixo-advantage-header {
+    margin-bottom: 38px;
+  }
+
+  .flyixo-advantage-eyebrow {
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.2px;
+  }
+
+  .flyixo-advantage-eyebrow-line {
+    width: 28px;
+  }
+
+  .flyixo-advantage-heading {
+    font-size: 33px;
+
+    letter-spacing: -0.8px;
+  }
+
+  .flyixo-advantage-heading span::after {
+    bottom: -5px;
+
+    height: 2px;
+  }
+
+  .flyixo-advantage-intro {
+    margin-top: 17px;
+
+    font-size: 12px;
+  }
+
+  .flyixo-advantages-grid {
+    grid-template-columns: 1fr;
+
+    gap: 17px;
+  }
+
+  .flyixo-advantage-card {
+    width: 100%;
+
+    min-height: 290px;
+
+    padding:
+      30px 24px 22px;
+  }
+
+  .flyixo-advantage-number {
+    top: 14px;
+    right: 15px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 20px;
+  }
+
+  .flyixo-icon-inner {
+    width: 72px;
+    height: 72px;
+  }
+
+  .flyixo-icon {
+    font-size: 32px;
+  }
+
+  .flyixo-advantage-text h3 {
+    font-size: 18px;
+  }
+
+  .flyixo-advantage-text p {
+    max-width: 350px;
+
+    margin:
+      0 auto;
+
+    font-size: 13px;
+  }
+
+  .flyixo-advantage-footer {
+    margin-top: 20px;
+  }
+
+  .flyixo-advantage-bottom {
+    gap: 10px;
+
+    margin-top: 38px;
+  }
+
+  .flyixo-advantage-bottom-line {
+    width: 40px;
+  }
+
+  .flyixo-advantage-bottom p {
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-advantage-section {
+    padding:
+      45px 12px 50px;
+  }
+
+  .flyixo-advantage-heading {
+    font-size: 29px;
+  }
+
+  .flyixo-advantage-intro {
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-advantage-card {
+    min-height: 275px;
+
+    padding:
+      27px 20px 20px;
+
+    border-radius: 17px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 72px;
+    height: 72px;
+
+    margin-bottom: 17px;
+  }
+
+  .flyixo-icon-inner {
+    width: 65px;
+    height: 65px;
+  }
+
+  .flyixo-icon {
+    font-size: 28px;
+  }
+
+  .flyixo-advantage-text h3 {
+    font-size: 16px;
+  }
+
+  .flyixo-advantage-text p {
+    font-size: 12px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-advantage-footer {
+    font-size: 8px;
+  }
+
+  .flyixo-advantage-arrow {
+    width: 25px;
+    height: 25px;
+
+    font-size: 13px;
+  }
+
+  .flyixo-advantage-bottom {
+    display: none;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL MOBILE
+============================================================ */
+
+@media (max-width: 360px) {
+  .flyixo-advantage-section {
+    padding:
+      40px 10px 45px;
+  }
+
+  .flyixo-advantage-eyebrow {
+    font-size: 7px;
+  }
+
+  .flyixo-advantage-heading {
+    font-size: 26px;
+  }
+
+  .flyixo-advantage-intro {
+    font-size: 10px;
+  }
+
+  .flyixo-advantage-card {
+    min-height: 260px;
+
+    padding:
+      25px 17px 18px;
+  }
+
+  .flyixo-icon-wrapper {
+    width: 68px;
+    height: 68px;
+  }
+
+  .flyixo-icon-inner {
+    width: 60px;
+    height: 60px;
+  }
+
+  .flyixo-icon {
+    font-size: 26px;
+  }
+
+  .flyixo-advantage-text h3 {
+    font-size: 15px;
+  }
+
+  .flyixo-advantage-text p {
+    font-size: 11px;
+  }
+
+  .flyixo-advantage-footer {
+    font-size: 7px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-advantage-card:focus-within {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.2);
+
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-advantage-section *,
+  .flyixo-advantage-section *::before,
+  .flyixo-advantage-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

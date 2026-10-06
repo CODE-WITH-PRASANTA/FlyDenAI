@@ -1,0 +1,749 @@
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 25px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom: 1px solid #e9edf3;
+
+  backdrop-filter: blur(14px);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LEFT
+========================================================= */
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.topbar__menu-button {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e7ebf1;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #263447;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.topbar__menu-button:hover {
+  background: #fff3f6;
+  border-color: #f2a2b8;
+  color: #e94e77;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   PAGE INFO
+========================================================= */
+
+.topbar__page-info {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.topbar__page-label {
+  color: #8a95a5;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.topbar__page-title {
+  margin-top: 3px;
+
+  color: #162335;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   RIGHT
+========================================================= */
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
+
+.topbar__icon-button {
+  position: relative;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e7ebf1;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  color: #4b596c;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.topbar__icon-button:hover {
+  color: #e94e77;
+
+  border-color: #f2a2b8;
+
+  background: #fff4f7;
+}
+
+/* =========================================================
+   NOTIFICATION DOT
+========================================================= */
+
+.topbar__notification-dot {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #e94e77;
+
+  border: 2px solid #ffffff;
+}
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.topbar__search {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.topbar__search-box {
+  position: absolute;
+
+  right: 48px;
+  top: 0;
+
+  width: 260px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 0 13px;
+
+  border: 1px solid #e3e8ef;
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 10px 35px rgba(20, 35, 55, 0.1);
+
+  animation: topbarSearchOpen 0.2s ease;
+}
+
+@keyframes topbarSearchOpen {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.topbar__search-box svg {
+  color: #9aa4b2;
+  flex-shrink: 0;
+}
+
+.topbar__search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: #253247;
+
+  font-family: inherit;
+
+  font-size: 13px;
+}
+
+.topbar__search-box input::placeholder {
+  color: #a4adba;
+}
+
+/* =========================================================
+   DROPDOWN WRAPPER
+========================================================= */
+
+.topbar__dropdown-wrapper {
+  position: relative;
+}
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.topbar__dropdown {
+  position: absolute;
+
+  top: calc(100% + 10px);
+  right: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e8edf3;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 18px 45px rgba(20, 35, 55, 0.14);
+
+  overflow: hidden;
+
+  animation: topbarDropdownOpen 0.2s ease;
+}
+
+@keyframes topbarDropdownOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   NOTIFICATION DROPDOWN
+========================================================= */
+
+.topbar__notification-dropdown {
+  width: 350px;
+}
+
+.topbar__dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 17px;
+
+  border-bottom: 1px solid #edf0f4;
+}
+
+.topbar__dropdown-header h4 {
+  margin: 0;
+
+  color: #1d2a3b;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.topbar__dropdown-header span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #98a2b0;
+
+  font-size: 10px;
+}
+
+.topbar__notification-count {
+  width: 25px;
+  height: 25px;
+
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 !important;
+
+  border-radius: 50%;
+
+  background: #fff0f4;
+
+  color: #e94e77 !important;
+
+  font-size: 11px !important;
+  font-weight: 700;
+}
+
+/* =========================================================
+   NOTIFICATION ITEM
+========================================================= */
+
+.topbar__notification-item {
+  display: flex;
+
+  gap: 11px;
+
+  padding: 13px 16px;
+
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.topbar__notification-item:last-child {
+  border-bottom: none;
+}
+
+.topbar__notification-icon {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #fff1f5;
+
+  color: #e94e77;
+}
+
+.topbar__notification-item strong {
+  display: block;
+
+  color: #283548;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.topbar__notification-item p {
+  margin: 3px 0;
+
+  color: #8792a2;
+
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.topbar__notification-item small {
+  color: #adb5c0;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
+
+.topbar__profile-button {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 4px 5px 4px 4px;
+
+  border: 1px solid #e7ebf1;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  color: #263447;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.topbar__profile-button:hover {
+  border-color: #f1a0b7;
+  background: #fff8fa;
+}
+
+/* =========================================================
+   PROFILE AVATAR
+========================================================= */
+
+.topbar__profile-avatar {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #ff7898
+    );
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   PROFILE INFO
+========================================================= */
+
+.topbar__profile-info {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  padding-right: 4px;
+}
+
+.topbar__profile-name {
+  color: #253247;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.topbar__profile-role {
+  margin-top: 2px;
+
+  color: #929cab;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   PROFILE ARROW
+========================================================= */
+
+.topbar__profile-arrow {
+  color: #8b96a5;
+
+  transition: transform 0.2s ease;
+}
+
+.topbar__profile-arrow--open {
+  transform: rotate(180deg);
+}
+
+/* =========================================================
+   PROFILE DROPDOWN
+========================================================= */
+
+.topbar__profile-dropdown {
+  width: 230px;
+
+  padding: 7px;
+}
+
+.topbar__profile-dropdown-header {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 11px;
+}
+
+.topbar__large-avatar {
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #fff0f4;
+
+  color: #e94e77;
+}
+
+.topbar__profile-dropdown-header strong {
+  display: block;
+
+  color: #263447;
+
+  font-size: 12px;
+}
+
+.topbar__profile-dropdown-header span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #9aa4b2;
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.topbar__dropdown-divider {
+  height: 1px;
+
+  margin: 3px 7px 6px;
+
+  background: #edf0f4;
+}
+
+/* =========================================================
+   DROPDOWN LINKS
+========================================================= */
+
+.topbar__dropdown-link {
+  width: 100%;
+  min-height: 39px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 10px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #596678;
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.topbar__dropdown-link:hover {
+  background: #fff3f6;
+  color: #e94e77;
+}
+
+.topbar__logout {
+  color: #dc425f;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark .topbar {
+  background: rgba(10, 19, 32, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .topbar__menu-button,
+.dark .topbar__icon-button,
+.dark .topbar__profile-button,
+.dark .topbar__search-box,
+.dark .topbar__dropdown {
+  background: #111c2d;
+  border-color: rgba(255, 255, 255, 0.09);
+  color: #ffffff;
+}
+
+.dark .topbar__page-title,
+.dark .topbar__profile-name,
+.dark .topbar__notification-item strong,
+.dark .topbar__dropdown-header h4,
+.dark .topbar__profile-dropdown-header strong {
+  color: #ffffff;
+}
+
+.dark .topbar__search-box input {
+  color: #ffffff;
+}
+
+.dark .topbar__search-box input::placeholder {
+  color: #718096;
+}
+
+.dark .topbar__notification-item {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .topbar__dropdown-link {
+  color: #b7c0cd;
+}
+
+.dark .topbar__dropdown-link:hover {
+  background: rgba(233, 78, 119, 0.1);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .topbar {
+    padding: 0 20px;
+  }
+
+  .topbar__page-info {
+    display: none;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 575px) {
+  .topbar {
+    height: 64px;
+
+    padding: 0 13px;
+  }
+
+  .topbar__right {
+    gap: 5px;
+  }
+
+  .topbar__menu-button,
+  .topbar__icon-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .topbar__profile-button {
+    width: 38px;
+    height: 38px;
+
+    padding: 2px;
+
+    justify-content: center;
+  }
+
+  .topbar__profile-info,
+  .topbar__profile-arrow {
+    display: none;
+  }
+
+  .topbar__profile-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .topbar__search-box {
+    position: fixed;
+
+    top: 72px;
+    left: 13px;
+    right: 13px;
+
+    width: auto;
+
+    box-sizing: border-box;
+  }
+
+  .topbar__notification-dropdown {
+    position: fixed;
+
+    top: 72px;
+    left: 10px;
+    right: 10px;
+
+    width: auto;
+
+    max-width: none;
+  }
+
+  .topbar__profile-dropdown {
+    right: 0;
+
+    width: 210px;
+  }
+}

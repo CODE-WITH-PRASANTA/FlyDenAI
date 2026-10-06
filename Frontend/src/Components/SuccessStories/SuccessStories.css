@@ -1,273 +1,1535 @@
-.success-stories-container {
-  width: 100%;
-  padding: 1rem 8%;
-  background: linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%);
-  font-family: "Poppins", sans-serif;
-  color: #1c1c1c;
+/* ============================================================
+   FLYIXO SUCCESS STORIES
+   Premium Responsive Study Abroad Testimonials
+============================================================ */
+
+:root {
+  --flyixo-success-navy: #062c43;
+  --flyixo-success-navy-dark: #031b2b;
+
+  --flyixo-success-primary: #e94e77;
+  --flyixo-success-primary-dark: #c93661;
+  --flyixo-success-primary-light: #ff8eaa;
+
+  --flyixo-success-blue: #2575fc;
+  --flyixo-success-cyan: #36d1d4;
+  --flyixo-success-gold: #f4b942;
+
+  --flyixo-success-text: #182536;
+  --flyixo-success-muted: #687789;
+
+  --flyixo-success-white: #ffffff;
+  --flyixo-success-light: #f8fafc;
+  --flyixo-success-border: #e4e9ef;
+
+  --flyixo-success-shadow:
+    0 18px 50px rgba(6, 44, 67, 0.08);
+
+  --flyixo-success-transition: 0.35s ease;
+}
+
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-success-section,
+.flyixo-success-section *,
+.flyixo-success-section *::before,
+.flyixo-success-section *::after {
   box-sizing: border-box;
-  border: 4px solid transparent;
-  border-radius: 25px;
-  background-clip: padding-box, border-box;
-  background-origin: border-box;
-  background-image: 
-    linear-gradient(135deg, #f8fbff 0%, #eef4ff 100%), 
-    linear-gradient(135deg, #0073ff 0%, #00bfff 100%);
-  box-shadow: 0 10px 30px rgba(0, 115, 255, 0.08);
+}
+
+/* ============================================================
+   MAIN SECTION
+============================================================ */
+
+.flyixo-success-section {
   position: relative;
-  transition: all 0.3s ease-in-out;
+
+  width: 100%;
+
+  padding: 85px 25px 90px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7fbff 0%,
+      #ffffff 48%,
+      #fff7fa 100%
+    );
+
+  color: var(--flyixo-success-text);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  overflow: hidden;
 }
 
-/* Heading */
-.main-heading {
-  font-weight: 700;
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: #0a1f44;
-}
+/* ============================================================
+   BACKGROUND GLOW
+============================================================ */
 
-.main-heading span {
-  color: #0073ff;
-}
+.flyixo-success-bg {
+  position: absolute;
 
-.sub-heading {
-  font-weight: 400;
-  font-size: 1.1rem;
-  color: #606f86;
-  text-align: center;
-  margin-bottom: 3rem;
-}
+  z-index: 0;
 
-/* Grid Layout */
-.stories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-/* Story Card */
-.story-card {
-  background: #ffffff;
-  padding: 1.8rem;
-  border-radius: 18px;
-  box-shadow: 0 4px 20px rgba(0, 115, 255, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 115, 255, 0.05);
-}
-
-.story-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0, 115, 255, 0.15);
-}
-
-/* User Info */
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.user-avatar {
-  width: 60px;
-  height: 60px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #0073ff;
+
+  pointer-events: none;
+
+  filter: blur(5px);
+
+  animation:
+    flyixoSuccessFloat
+    10s
+    ease-in-out
+    infinite;
 }
 
-.user-name {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin: 0;
-  color: #0a1f44;
+.flyixo-success-bg-one {
+  width: 520px;
+  height: 520px;
+
+  top: -270px;
+  left: -280px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(37, 117, 252, 0.12),
+      transparent 70%
+    );
 }
 
-.user-location {
-  font-weight: 400;
-  font-size: 0.9rem;
-  color: #6a7c93;
+.flyixo-success-bg-two {
+  width: 560px;
+  height: 560px;
+
+  right: -320px;
+  bottom: -340px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
 }
 
-/* Testimonial Text */
-.testimonial {
-  font-weight: 400;
-  font-size: 0.95rem;
-  color: #1c1c1c;
-  flex-grow: 1;
-  line-height: 1.5;
-  background: #f7faff;
-  padding: 1rem;
-  border-radius: 10px;
-  border-left: 4px solid #0073ff;
-  transition: 0.3s;
+@keyframes flyixoSuccessFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -22px, 0);
+  }
 }
 
-.story-card:hover .testimonial {
-  background: #eef5ff;
+/* ============================================================
+   GRID PATTERN
+============================================================ */
+
+.flyixo-success-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.45;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
 }
 
-/* Bottom Row */
-.bottom-row {
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-success-container {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    min(1280px, 100%);
+
+  margin: 0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-success-header {
+  max-width: 850px;
+
+  margin:
+    0 auto 48px;
+
+  text-align: center;
+
+  animation:
+    flyixoSuccessHeaderIn
+    0.8s
+    ease
+    both;
+}
+
+@keyframes flyixoSuccessHeaderIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.flyixo-success-eyebrow {
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
-  margin-top: auto;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 15px;
+
+  color:
+    var(--flyixo-success-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
 }
 
-.category {
-  background: #0073ff;
-  color: white;
-  padding: 0.35rem 1rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  border-radius: 25px;
+.flyixo-success-line {
+  width: 42px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--flyixo-success-primary)
+    );
+}
+
+.flyixo-success-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-success-primary),
+      transparent
+    );
+}
+
+/* ============================================================
+   MAIN HEADING
+============================================================ */
+
+.flyixo-success-heading {
+  margin: 0;
+
+  color:
+    var(--flyixo-success-navy);
+
+  font-size:
+    clamp(
+      40px,
+      4.5vw,
+      58px
+    );
+
+  line-height: 1.1;
+
+  font-weight: 850;
+
+  letter-spacing: -1.8px;
+}
+
+.flyixo-success-heading span {
+  position: relative;
+
+  display: inline-block;
+
+  color:
+    var(--flyixo-success-primary);
+}
+
+.flyixo-success-heading span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 5px;
+  right: 5px;
+
+  bottom: -7px;
+
+  height: 3px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-success-primary),
+      var(--flyixo-success-primary-light)
+    );
+}
+
+/* ============================================================
+   SUB HEADING
+============================================================ */
+
+.flyixo-success-subheading {
+  margin:
+    17px 0 5px;
+
+  color:
+    var(--flyixo-success-navy);
+
+  font-size: 17px;
+
+  font-weight: 750;
+}
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.flyixo-success-description {
+  max-width: 680px;
+
+  margin:
+    12px auto 0;
+
+  color:
+    var(--flyixo-success-muted);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   STORIES GRID
+============================================================ */
+
+.flyixo-stories-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+/* ============================================================
+   STORY CARD
+============================================================ */
+
+.flyixo-story-card {
+  position: relative;
+
+  min-height: 360px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding:
+    27px 24px 19px;
+
+  background:
+    rgba(255, 255, 255, 0.96);
+
+  border:
+    1px solid
+    var(--flyixo-success-border);
+
+  border-radius: 22px;
+
+  box-shadow:
+    var(--flyixo-success-shadow);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--flyixo-success-transition),
+    box-shadow var(--flyixo-success-transition),
+    border-color var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover {
+  transform:
+    translateY(-10px);
+
+  border-color:
+    rgba(233, 78, 119, 0.25);
+
+  box-shadow:
+    0 28px 65px
+    rgba(6, 44, 67, 0.14);
+}
+
+/* ============================================================
+   CARD TOP ACCENT
+============================================================ */
+
+.flyixo-story-accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-success-primary),
+      var(--flyixo-success-blue),
+      var(--flyixo-success-cyan)
+    );
+
+  transform:
+    scaleX(0.25);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-story-accent {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   CARD NUMBER
+============================================================ */
+
+.flyixo-story-number {
+  position: absolute;
+
+  top: 13px;
+  right: 17px;
+
+  color:
+    rgba(6, 44, 67, 0.09);
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  letter-spacing: 1px;
+
+  transition:
+    color var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-story-number {
+  color:
+    rgba(233, 78, 119, 0.35);
+}
+
+/* ============================================================
+   USER INFO
+============================================================ */
+
+.flyixo-user-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-bottom: 18px;
+}
+
+/* ============================================================
+   AVATAR WRAPPER
+============================================================ */
+
+.flyixo-avatar-wrapper {
+  position: relative;
+
+  width: 62px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   AVATAR RING
+============================================================ */
+
+.flyixo-avatar-ring {
+  position: absolute;
+
+  inset: -3px;
+
+  border:
+    2px solid
+    rgba(233, 78, 119, 0.18);
+
+  border-radius: 50%;
+
+  transition:
+    transform var(--flyixo-success-transition),
+    border-color var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-avatar-ring {
+  transform:
+    rotate(45deg);
+
+  border-color:
+    rgba(233, 78, 119, 0.5);
+}
+
+/* ============================================================
+   USER AVATAR
+============================================================ */
+
+.flyixo-user-avatar {
+  position: relative;
+
+  z-index: 2;
+
+  width: 56px;
+  height: 56px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  display: block;
+
+  border:
+    3px solid
+    #ffffff;
+
+  box-shadow:
+    0 7px 20px
+    rgba(6, 44, 67, 0.13);
+
+  transition:
+    transform var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-user-avatar {
+  transform:
+    scale(1.07);
+}
+
+/* ============================================================
+   USER DETAILS
+============================================================ */
+
+.flyixo-user-details {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.flyixo-user-name {
+  margin: 0 0 4px;
+
+  color:
+    var(--flyixo-success-navy);
+
+  font-size: 16px;
+
+  font-weight: 800;
+
+  line-height: 1.3;
+}
+
+.flyixo-user-location {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin: 0;
+
+  color:
+    var(--flyixo-success-muted);
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  line-height: 1.4;
+}
+
+.flyixo-location-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--flyixo-success-primary);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.08);
+}
+
+/* ============================================================
+   QUOTE ICON
+============================================================ */
+
+.flyixo-quote-icon {
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: -2px;
+
+  color:
+    var(--flyixo-success-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border-radius: 10px;
+
+  font-family:
+    Georgia,
+    serif;
+
+  font-size: 28px;
+
+  line-height: 1;
+
+  transition:
+    transform var(--flyixo-success-transition),
+    background var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-quote-icon {
+  transform:
+    rotate(-5deg)
+    scale(1.05);
+
+  background:
+    rgba(233, 78, 119, 0.12);
+}
+
+/* ============================================================
+   TESTIMONIAL
+============================================================ */
+
+.flyixo-testimonial {
+  flex: 1;
+
+  margin:
+    12px 0 17px;
+
+  padding:
+    15px 16px;
+
+  color:
+    #465567;
+
+  background:
+    #f8fafc;
+
+  border:
+    1px solid
+    #edf1f5;
+
+  border-left:
+    3px solid
+    var(--flyixo-success-primary);
+
+  border-radius:
+    5px 13px 13px 5px;
+
+  font-size: 12px;
+
+  line-height: 1.75;
+
+  font-weight: 500;
+
+  transition:
+    background var(--flyixo-success-transition),
+    border-color var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-testimonial {
+  background:
+    #fff7fa;
+
+  border-left-color:
+    var(--flyixo-success-primary-dark);
+}
+
+/* ============================================================
+   RATING
+============================================================ */
+
+.flyixo-story-rating {
+  display: flex;
+
+  align-items: center;
+
+  gap: 2px;
+
+  margin-bottom: 16px;
+}
+
+.flyixo-story-rating span {
+  color:
+    var(--flyixo-success-gold);
+
+  font-size: 14px;
+
+  line-height: 1;
+
+  text-shadow:
+    0 2px 5px
+    rgba(244, 185, 66, 0.2);
+}
+
+.flyixo-story-rating small {
+  margin-left: 6px;
+
+  color:
+    var(--flyixo-success-muted);
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+/* ============================================================
+   BOTTOM ROW
+============================================================ */
+
+.flyixo-story-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding-top: 13px;
+
+  border-top:
+    1px solid
+    #edf0f3;
+}
+
+/* ============================================================
+   CATEGORY
+============================================================ */
+
+.flyixo-category {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    6px 12px;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-success-primary),
+      var(--flyixo-success-primary-dark)
+    );
+
+  border-radius: 30px;
+
+  font-size: 9px;
+
+  font-weight: 750;
+
   white-space: nowrap;
+
+  box-shadow:
+    0 6px 15px
+    rgba(233, 78, 119, 0.18);
 }
 
-.university-logo {
-  width: 55px;
-  height: 32px;
+/* ============================================================
+   UNIVERSITY LOGO
+============================================================ */
+
+.flyixo-university-logo-box {
+  width: 62px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px;
+
+  background:
+    #ffffff;
+
+  border:
+    1px solid
+    #e8edf2;
+
+  border-radius: 8px;
+
+  transition:
+    transform var(--flyixo-success-transition),
+    box-shadow var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-university-logo-box {
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+    0 7px 18px
+    rgba(6, 44, 67, 0.09);
+}
+
+.flyixo-university-logo {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: contain;
-  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.08));
+
+  filter:
+    drop-shadow(
+      0 2px 3px
+      rgba(0, 0, 0, 0.08)
+    );
 }
 
+/* ============================================================
+   STORY FOOTER
+============================================================ */
 
-/* For large desktop screens */
-@media (max-width: 1600px) {
-  .stories-grid {
-    grid-template-columns: repeat(3, 1fr);
+.flyixo-story-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 13px;
+
+  color:
+    var(--flyixo-success-primary);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.2px;
+}
+
+.flyixo-story-arrow {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    var(--flyixo-success-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+
+  border-radius: 50%;
+
+  font-size: 13px;
+
+  transition:
+    transform var(--flyixo-success-transition),
+    background var(--flyixo-success-transition),
+    color var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-story-arrow {
+  color:
+    #ffffff;
+
+  background:
+    var(--flyixo-success-primary);
+
+  transform:
+    translateX(4px);
+}
+
+/* ============================================================
+   DECORATIVE CORNER
+============================================================ */
+
+.flyixo-story-corner {
+  position: absolute;
+
+  right: -40px;
+  bottom: -40px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 209, 212, 0.12),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  transition:
+    transform var(--flyixo-success-transition);
+}
+
+.flyixo-story-card:hover
+.flyixo-story-corner {
+  transform:
+    scale(1.45);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-success-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 48px;
+}
+
+.flyixo-bottom-line {
+  width: 90px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d6dde5
+    );
+}
+
+.flyixo-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #d6dde5,
+      transparent
+    );
+}
+
+.flyixo-success-bottom p {
+  margin: 0;
+
+  color:
+    var(--flyixo-success-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.flyixo-success-bottom strong {
+  color:
+    var(--flyixo-success-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (min-width: 1400px) {
+  .flyixo-success-section {
+    padding:
+      100px 35px 105px;
+  }
+
+  .flyixo-success-container {
+    max-width: 1350px;
+  }
+
+  .flyixo-stories-grid {
+    gap: 25px;
+  }
+
+  .flyixo-story-card {
+    min-height: 375px;
+
+    padding:
+      30px 26px 20px;
   }
 }
 
-/* For medium desktop screens and small laptops */
+/* ============================================================
+   LAPTOP
+============================================================ */
+
 @media (max-width: 1200px) {
-  .stories-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .flyixo-success-section {
+    padding:
+      75px 22px 80px;
+  }
+
+  .flyixo-stories-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 19px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 48px;
+  }
+
+  .flyixo-story-card {
+    min-height: 360px;
   }
 }
 
-/* For tablets and large mobile devices */
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+  .flyixo-success-section {
+    padding:
+      65px 18px 72px;
+  }
+
+  .flyixo-success-header {
+    margin-bottom: 38px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 42px;
+  }
+
+  .flyixo-success-description {
+    font-size: 12px;
+  }
+
+  .flyixo-stories-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+
+  .flyixo-story-card {
+    min-height: 350px;
+
+    padding:
+      25px 20px 18px;
+  }
+
+  .flyixo-testimonial {
+    font-size: 11px;
+  }
+}
+
+/* ============================================================
+   SMALL TABLET
+============================================================ */
+
 @media (max-width: 768px) {
-  .stories-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .story-card {
-    padding: 1.5rem;
-  }
-  .testimonial {
-    font-size: 0.9rem;
-  }
-}
-
-/* For mobile devices */
-@media (max-width: 480px) {
-  .main-heading {
-    font-size: 2.5rem;
-  }
-  .sub-heading {
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-  .story-card {
-    padding: 1rem;
-  }
-  .user-avatar {
-    width: 50px;
-    height: 50px;
-  }
-  .testimonial {
-    font-size: 0.85rem;
-    padding: 0.8rem;
-  }
-  .category {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.8rem;
-  }
-  .university-logo {
-    width: 45px;
-    height: 28px;
-  }
-}
-
-/* For small mobile devices */
-@media (max-width: 320px) {
-  .main-heading {
-    font-size: 2rem;
-  }
-  .sub-heading {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-  }
-  .story-card {
-    padding: 0.8rem;
-  }
-  .user-avatar {
-    width: 40px;
-    height: 40px;
-  }
-  .testimonial {
-    font-size: 0.8rem;
-    padding: 0.6rem;
-  }
-  .category {
-    font-size: 0.6rem;
-    padding: 0.2rem 0.6rem;
-  }
-  .university-logo {
-    width: 35px;
-    height: 22px;
-  }
-}
-
-/* ✅ Mobile & Tablet Smooth Scroll (No Design Change) */
-@media (max-width: 1024px) {
-  .success-stories-container {
-    overflow-x: hidden;
-    overflow-y: auto;
-    scroll-behavior: smooth;
+  .flyixo-success-section {
+    padding:
+      55px 15px 65px;
   }
 
-  .stories-grid {
+  .flyixo-success-eyebrow {
+    gap: 7px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .flyixo-success-line {
+    width: 28px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 36px;
+
+    letter-spacing: -1px;
+  }
+
+  .flyixo-success-subheading {
+    font-size: 15px;
+  }
+
+  .flyixo-success-description {
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  /*
+     Horizontal mobile/tablet cards
+  */
+
+  .flyixo-stories-grid {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 1.5rem;
+
+    gap: 15px;
+
     overflow-x: auto;
+
     scroll-snap-type: x mandatory;
+
     -webkit-overflow-scrolling: touch;
-    padding-bottom: 1rem;
+
+    padding:
+      5px 3px 18px;
+
+    scrollbar-width: none;
   }
 
-  .story-card {
-    flex: 0 0 85%;
+  .flyixo-stories-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .flyixo-story-card {
+    flex:
+      0 0 88%;
+
+    min-height: 350px;
+
     scroll-snap-align: center;
+
+    scroll-snap-stop: always;
   }
 
-  /* Optional minimal scrollbar style for better UX */
-  .stories-grid::-webkit-scrollbar {
-    height: 6px;
+  .flyixo-success-bottom {
+    margin-top: 32px;
   }
 
-  .stories-grid::-webkit-scrollbar-thumb {
-    background: rgba(0, 115, 255, 0.3);
-    border-radius: 10px;
-  }
-
-  .stories-grid::-webkit-scrollbar-track {
-    background: transparent;
+  .flyixo-bottom-line {
+    width: 50px;
   }
 }
 
-@media (max-width: 768px) {
-  .story-card {
-    flex: 0 0 90%;
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  .flyixo-success-section {
+    padding:
+      48px 12px 58px;
+  }
+
+  .flyixo-success-header {
+    margin-bottom: 30px;
+  }
+
+  .flyixo-success-eyebrow {
+    font-size: 7px;
+
+    letter-spacing: 1px;
+  }
+
+  .flyixo-success-line {
+    width: 21px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 30px;
+  }
+
+  .flyixo-success-heading span::after {
+    height: 2px;
+
+    bottom: -5px;
+  }
+
+  .flyixo-success-subheading {
+    margin-top: 14px;
+
+    font-size: 14px;
+  }
+
+  .flyixo-success-description {
+    margin-top: 9px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-story-card {
+    flex:
+      0 0 91%;
+
+    min-height: 340px;
+
+    padding:
+      24px 19px 17px;
+
+    border-radius: 19px;
+  }
+
+  .flyixo-user-info {
+    gap: 11px;
+  }
+
+  .flyixo-avatar-wrapper {
+    width: 57px;
+    height: 57px;
+  }
+
+  .flyixo-user-avatar {
+    width: 51px;
+    height: 51px;
+  }
+
+  .flyixo-user-name {
+    font-size: 15px;
+  }
+
+  .flyixo-user-location {
+    font-size: 9px;
+  }
+
+  .flyixo-testimonial {
+    padding:
+      14px;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-story-rating span {
+    font-size: 13px;
+  }
+
+  .flyixo-category {
+    font-size: 8px;
+
+    padding:
+      5px 10px;
+  }
+
+  .flyixo-university-logo-box {
+    width: 57px;
+    height: 35px;
+  }
+
+  .flyixo-story-footer {
+    font-size: 7px;
+  }
+
+  .flyixo-success-bottom {
+    display: none;
   }
 }
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
 
 @media (max-width: 480px) {
-  .story-card {
-    flex: 0 0 95%;
+  .flyixo-success-section {
+    padding:
+      42px 10px 50px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 27px;
+  }
+
+  .flyixo-success-subheading {
+    font-size: 13px;
+  }
+
+  .flyixo-success-description {
+    font-size: 9px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-story-card {
+    flex:
+      0 0 94%;
+
+    min-height: 325px;
+
+    padding:
+      22px 16px 16px;
+  }
+
+  .flyixo-avatar-wrapper {
+    width: 52px;
+    height: 52px;
+  }
+
+  .flyixo-user-avatar {
+    width: 47px;
+    height: 47px;
+  }
+
+  .flyixo-user-name {
+    font-size: 14px;
+  }
+
+  .flyixo-user-location {
+    font-size: 8px;
+  }
+
+  .flyixo-quote-icon {
+    width: 32px;
+    height: 32px;
+
+    font-size: 24px;
+  }
+
+  .flyixo-testimonial {
+    margin:
+      10px 0 14px;
+
+    padding:
+      12px;
+
+    font-size: 10px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-story-rating {
+    margin-bottom: 13px;
+  }
+
+  .flyixo-story-rating span {
+    font-size: 12px;
+  }
+
+  .flyixo-story-rating small {
+    font-size: 8px;
+  }
+
+  .flyixo-category {
+    font-size: 7px;
+
+    padding:
+      5px 9px;
+  }
+
+  .flyixo-university-logo-box {
+    width: 50px;
+    height: 31px;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL MOBILE
+============================================================ */
+
+@media (max-width: 360px) {
+  .flyixo-success-section {
+    padding:
+      37px 8px 45px;
+  }
+
+  .flyixo-success-heading {
+    font-size: 24px;
+  }
+
+  .flyixo-success-subheading {
+    font-size: 12px;
+  }
+
+  .flyixo-success-description {
+    font-size: 8px;
+  }
+
+  .flyixo-story-card {
+    flex:
+      0 0 96%;
+
+    min-height: 315px;
+
+    padding:
+      20px 14px 14px;
+  }
+
+  .flyixo-user-info {
+    gap: 9px;
+  }
+
+  .flyixo-avatar-wrapper {
+    width: 48px;
+    height: 48px;
+  }
+
+  .flyixo-user-avatar {
+    width: 43px;
+    height: 43px;
+  }
+
+  .flyixo-user-name {
+    font-size: 13px;
+  }
+
+  .flyixo-user-location {
+    font-size: 7px;
+  }
+
+  .flyixo-testimonial {
+    font-size: 9px;
+
+    padding:
+      10px;
+
+    line-height: 1.6;
+  }
+
+  .flyixo-category {
+    font-size: 6px;
+
+    padding:
+      4px 8px;
+  }
+
+  .flyixo-university-logo-box {
+    width: 44px;
+    height: 27px;
+  }
+
+  .flyixo-story-footer {
+    font-size: 6px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-story-card:focus-within {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.2);
+
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-success-section *,
+  .flyixo-success-section *::before,
+  .flyixo-success-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+  .flyixo-stories-grid {
+    scroll-behavior: auto;
   }
 }

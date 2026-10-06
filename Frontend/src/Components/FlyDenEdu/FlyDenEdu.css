@@ -1,145 +1,1209 @@
-/* ===== FLYDEN EDU SECTION ===== */
-.flyden-section {
-  padding: 20px 20px;
-  background-color: #f9f9fb;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
+/* ============================================================
+   FLYIXO EDUCATION SECTION
+   Premium Study Abroad Statistics / Features
+============================================================ */
 
-  /* New border styles */
-  border: 2px solid #ff4c60; /* soft primary color border */
-  border-radius: 20px;        /* rounded corners for smooth look */
-  margin: 0 auto;             /* center horizontally */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* subtle shadow for depth */
-  transition: all 0.3s ease;
+:root {
+  --flyixo-edu-navy: #062c43;
+  --flyixo-edu-navy-dark: #031b2b;
+
+  --flyixo-edu-primary: #e94e77;
+  --flyixo-edu-primary-dark: #c93661;
+  --flyixo-edu-primary-light: #ff8eaa;
+
+  --flyixo-edu-blue: #1a73e8;
+  --flyixo-edu-orange: #ffa500;
+  --flyixo-edu-green: #28a745;
+  --flyixo-edu-purple: #6f42c1;
+  --flyixo-edu-cyan: #36c8d4;
+
+  --flyixo-edu-text: #182536;
+  --flyixo-edu-muted: #687789;
+
+  --flyixo-edu-white: #ffffff;
+  --flyixo-edu-light: #f7f9fc;
+  --flyixo-edu-border: #e4e9ef;
+
+  --flyixo-edu-transition: 0.35s ease;
 }
 
-/* Section Title */
-.flyden-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1c1c1c;
-  margin-bottom: 40px;
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-edu-section,
+.flyixo-edu-section *,
+.flyixo-edu-section *::before,
+.flyixo-edu-section *::after {
+  box-sizing: border-box;
 }
 
-.flyden-title span {
-  color: #ff4c60;
-}
+/* ============================================================
+   MAIN SECTION
+============================================================ */
 
-/* Grid Layout */
-.flyden-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  justify-items: center;
-}
+.flyixo-edu-section {
+  position: relative;
 
-/* Card */
-.flyden-card {
-  background-color: #ffffff;
-  border-radius: 20px;
-  padding: 25px 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 260px;
+
+  padding:
+    75px 25px 80px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fbfd 0%,
+      #ffffff 48%,
+      #f9f5f7 100%
+    );
+
+  overflow: hidden;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+}
+
+/* ============================================================
+   BACKGROUND GLOWS
+============================================================ */
+
+.flyixo-edu-bg {
+  position: absolute;
+
+  z-index: 0;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(5px);
+
+  animation:
+    flyixoEduFloat
+    9s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-edu-bg-one {
+  width: 500px;
+  height: 500px;
+
+  top: -270px;
+  left: -280px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(26, 115, 232, 0.12),
+      transparent 70%
+    );
+}
+
+.flyixo-edu-bg-two {
+  width: 520px;
+  height: 520px;
+
+  right: -290px;
+  bottom: -300px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.13),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoEduFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -18px, 0);
+  }
+}
+
+/* ============================================================
+   GRID PATTERN
+============================================================ */
+
+.flyixo-edu-grid-pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  pointer-events: none;
+
+  opacity: 0.42;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+}
+
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.flyixo-edu-container {
+  position: relative;
+
+  z-index: 2;
+
+  width:
+    min(1250px, 100%);
+
+  margin:
+    0 auto;
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.flyixo-edu-header {
+  max-width: 800px;
+
+  margin:
+    0 auto 50px;
+
   text-align: center;
-  transition: all 0.2s ease;
-  border: 1px solid #eee;
+
+  animation:
+    flyixoEduHeaderIn
+    0.8s
+    ease
+    both;
 }
 
-.flyden-card:hover {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+@keyframes flyixoEduHeaderIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
 }
 
-/* Icon */
-.flyden-icon {
-  margin-bottom: 18px;
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.flyixo-edu-eyebrow {
   display: flex;
+
   align-items: center;
   justify-content: center;
-  width: 70px;
-  height: 70px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 50%;
-  background-color: #f0f4f8;
+
+  gap: 11px;
+
+  margin-bottom: 14px;
+
+  color:
+    var(--flyixo-edu-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
 }
 
-/* Feature Title */
-.flyden-feature-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1c1c1c;
-  margin-bottom: 10px;
+.flyixo-edu-eyebrow-line {
+  width: 42px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--flyixo-edu-primary)
+    );
 }
 
-/* Feature Description */
-.flyden-feature-desc {
+.flyixo-edu-eyebrow-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-edu-primary),
+      transparent
+    );
+}
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.flyixo-edu-title {
+  margin: 0;
+
+  color:
+    var(--flyixo-edu-navy);
+
+  font-size:
+    clamp(
+      34px,
+      4vw,
+      52px
+    );
+
+  line-height: 1.15;
+
+  font-weight: 850;
+
+  letter-spacing: -1.4px;
+}
+
+.flyixo-edu-title span {
+  position: relative;
+
+  display: inline-block;
+
+  color:
+    var(--flyixo-edu-primary);
+}
+
+.flyixo-edu-title span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 4px;
+  right: 4px;
+
+  bottom: -6px;
+
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-edu-primary),
+      var(--flyixo-edu-primary-light)
+    );
+
+  border-radius: 10px;
+
+  opacity: 0.75;
+}
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.flyixo-edu-description {
+  max-width: 650px;
+
+  margin:
+    19px auto 0;
+
+  color:
+    var(--flyixo-edu-muted);
+
   font-size: 14px;
-  color: #555;
-  line-height: 1.5;
+
+  line-height: 1.8;
+
+  font-weight: 500;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .flyden-section {
-    padding: 50px 15px;
+/* ============================================================
+   FEATURE GRID
+============================================================ */
+
+.flyixo-edu-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 23px;
+}
+
+/* ============================================================
+   CARD
+============================================================ */
+
+.flyixo-edu-card {
+  position: relative;
+
+  min-height: 310px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  padding:
+    32px 22px 22px;
+
+  background:
+    rgba(255, 255, 255, 0.95);
+
+  border:
+    1px solid
+    var(--flyixo-edu-border);
+
+  border-radius: 21px;
+
+  box-shadow:
+    0 14px 42px
+    rgba(6, 44, 67, 0.08);
+
+  text-align: center;
+
+  overflow: hidden;
+
+  transition:
+    transform var(--flyixo-edu-transition),
+    box-shadow var(--flyixo-edu-transition),
+    border-color var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover {
+  transform:
+    translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.28);
+
+  box-shadow:
+    0 24px 58px
+    rgba(6, 44, 67, 0.14);
+}
+
+/* ============================================================
+   CARD NUMBER
+============================================================ */
+
+.flyixo-edu-card-number {
+  position: absolute;
+
+  top: 14px;
+  right: 16px;
+
+  color:
+    rgba(6, 44, 67, 0.11);
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  letter-spacing: 1px;
+
+  transition:
+    color var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-card-number {
+  color:
+    rgba(233, 78, 119, 0.4);
+}
+
+/* ============================================================
+   TOP ACCENT
+============================================================ */
+
+.flyixo-edu-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--flyixo-edu-primary),
+      var(--flyixo-edu-cyan)
+    );
+
+  transform:
+    scaleX(0.25);
+
+  transform-origin: center;
+
+  transition:
+    transform var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover::before {
+  transform:
+    scaleX(1);
+}
+
+/* ============================================================
+   EXTRA ACCENT
+============================================================ */
+
+.flyixo-edu-card-accent {
+  position: absolute;
+
+  width: 80px;
+  height: 80px;
+
+  top: -45px;
+  left: -45px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.04);
+
+  transition:
+    transform var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-card-accent {
+  transform:
+    scale(1.7);
+}
+
+/* ============================================================
+   ICON WRAPPER
+============================================================ */
+
+.flyixo-edu-icon-wrapper {
+  position: relative;
+
+  width: 90px;
+  height: 90px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   ICON GLOW
+============================================================ */
+
+.flyixo-edu-icon-glow {
+  position: absolute;
+
+  inset: -9px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.12),
+      transparent 68%
+    );
+
+  opacity: 0.7;
+
+  transition:
+    transform var(--flyixo-edu-transition),
+    opacity var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-icon-glow {
+  transform:
+    scale(1.25);
+
+  opacity: 1;
+}
+
+/* ============================================================
+   ICON
+============================================================ */
+
+.flyixo-edu-icon {
+  position: relative;
+
+  z-index: 2;
+
+  width: 78px;
+  height: 78px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #f4f7fa,
+      #ffffff
+    );
+
+  border:
+    5px solid
+    #f0f3f7;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 10px 25px
+    rgba(6, 44, 67, 0.1);
+
+  transition:
+    transform var(--flyixo-edu-transition),
+    box-shadow var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-icon {
+  transform:
+    rotate(-6deg)
+    scale(1.08);
+
+  box-shadow:
+    0 16px 34px
+    rgba(6, 44, 67, 0.14);
+}
+
+.flyixo-edu-icon svg {
+  display: block;
+
+  width: 48px;
+  height: 48px;
+}
+
+/* ============================================================
+   CONTENT
+============================================================ */
+
+.flyixo-edu-content {
+  width: 100%;
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+}
+
+.flyixo-edu-feature-title {
+  margin:
+    0 0 10px;
+
+  color:
+    var(--flyixo-edu-navy);
+
+  font-size: 21px;
+
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  transition:
+    color var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-feature-title {
+  color:
+    var(--flyixo-edu-primary);
+}
+
+.flyixo-edu-feature-desc {
+  max-width: 220px;
+
+  margin: 0;
+
+  color:
+    var(--flyixo-edu-muted);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   CARD FOOTER
+============================================================ */
+
+.flyixo-edu-card-footer {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  padding-top: 13px;
+
+  border-top:
+    1px solid
+    #edf0f3;
+
+  color:
+    var(--flyixo-edu-primary);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-align: left;
+}
+
+.flyixo-edu-arrow {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    var(--flyixo-edu-primary);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+
+  border-radius: 50%;
+
+  font-size: 14px;
+
+  transition:
+    transform var(--flyixo-edu-transition),
+    background var(--flyixo-edu-transition),
+    color var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-arrow {
+  color: #ffffff;
+
+  background:
+    var(--flyixo-edu-primary);
+
+  transform:
+    translateX(4px);
+}
+
+/* ============================================================
+   CARD CORNER
+============================================================ */
+
+.flyixo-edu-card-corner {
+  position: absolute;
+
+  right: -30px;
+  bottom: -30px;
+
+  width: 75px;
+  height: 75px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.1),
+      transparent 70%
+    );
+
+  pointer-events: none;
+
+  transition:
+    transform var(--flyixo-edu-transition);
+}
+
+.flyixo-edu-card:hover
+.flyixo-edu-card-corner {
+  transform:
+    scale(1.5);
+}
+
+/* ============================================================
+   BOTTOM TRUST
+============================================================ */
+
+.flyixo-edu-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 17px;
+
+  margin-top: 45px;
+}
+
+.flyixo-edu-bottom-line {
+  width: 85px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d8dfe6
+    );
+}
+
+.flyixo-edu-bottom-line:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      #d8dfe6,
+      transparent
+    );
+}
+
+.flyixo-edu-bottom p {
+  margin: 0;
+
+  color:
+    var(--flyixo-edu-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.flyixo-edu-bottom strong {
+  color:
+    var(--flyixo-edu-primary);
+
+  font-weight: 850;
+}
+
+/* ============================================================
+   LARGE LAPTOP
+============================================================ */
+
+@media (max-width: 1200px) {
+  .flyixo-edu-section {
+    padding:
+      70px 22px 75px;
   }
 
-  .flyden-title {
-    font-size: 26px;
+  .flyixo-edu-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 21px;
   }
 
-  .flyden-card {
-    max-width: 240px;
+  .flyixo-edu-card {
+    min-height: 305px;
+  }
+
+  .flyixo-edu-title {
+    font-size: 47px;
   }
 }
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+  .flyixo-edu-section {
+    padding:
+      65px 20px 70px;
+  }
+
+  .flyixo-edu-header {
+    margin-bottom: 42px;
+  }
+
+  .flyixo-edu-title {
+    font-size: 41px;
+  }
+
+  .flyixo-edu-description {
+    font-size: 13px;
+  }
+
+  .flyixo-edu-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 19px;
+  }
+
+  .flyixo-edu-card {
+    min-height: 300px;
+
+    padding:
+      30px 22px 21px;
+  }
+}
+
+/* ============================================================
+   SMALL TABLET
+============================================================ */
 
 @media (max-width: 768px) {
-  .flyden-section {
-    padding: 40px 10px;
+  .flyixo-edu-section {
+    padding:
+      58px 17px 65px;
   }
 
-  .flyden-title {
-    font-size: 24px;
+  .flyixo-edu-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
   }
 
-  /* Make grid scrollable horizontally */
-  .flyden-grid {
-    display: flex;
-    overflow-x: auto;
-    gap: 20px;
-    padding-bottom: 10px;
+  .flyixo-edu-title {
+    font-size: 36px;
   }
 
-  .flyden-grid::-webkit-scrollbar {
-    height: 6px;
+  .flyixo-edu-description {
+    max-width: 600px;
+
+    font-size: 12px;
+
+    line-height: 1.7;
   }
 
-  .flyden-grid::-webkit-scrollbar-thumb {
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 3px;
+  .flyixo-edu-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
   }
 
-  .flyden-grid::-webkit-scrollbar-track {
-    background-color: transparent;
+  .flyixo-edu-card {
+    min-height: 290px;
+
+    padding:
+      28px 19px 20px;
+
+    border-radius: 18px;
+  }
+
+  .flyixo-edu-icon-wrapper {
+    width: 78px;
+    height: 78px;
+  }
+
+  .flyixo-edu-icon {
+    width: 69px;
+    height: 69px;
+  }
+
+  .flyixo-edu-icon svg {
+    width: 43px;
+    height: 43px;
+  }
+
+  .flyixo-edu-feature-title {
+    font-size: 19px;
+  }
+
+  .flyixo-edu-feature-desc {
+    font-size: 12px;
   }
 }
 
-@media (max-width: 480px) {
-  .flyden-section {
-    padding: 30px 5px;
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+  .flyixo-edu-section {
+    padding:
+      50px 14px 55px;
   }
 
-  .flyden-title {
+  .flyixo-edu-header {
+    margin-bottom: 35px;
+  }
+
+  .flyixo-edu-eyebrow {
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.1px;
+  }
+
+  .flyixo-edu-eyebrow-line {
+    width: 28px;
+  }
+
+  .flyixo-edu-title {
+    font-size: 31px;
+
+    letter-spacing: -0.8px;
+  }
+
+  .flyixo-edu-description {
+    margin-top: 16px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-edu-grid {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+  }
+
+  .flyixo-edu-card {
+    width: 100%;
+
+    min-height: 280px;
+
+    padding:
+      29px 22px 20px;
+  }
+
+  .flyixo-edu-icon-wrapper {
+    width: 80px;
+    height: 80px;
+
+    margin-bottom: 18px;
+  }
+
+  .flyixo-edu-icon {
+    width: 71px;
+    height: 71px;
+  }
+
+  .flyixo-edu-icon svg {
+    width: 44px;
+    height: 44px;
+  }
+
+  .flyixo-edu-feature-title {
     font-size: 20px;
   }
 
-  .flyden-card {
-    min-width: 180px;
-    padding: 15px 10px;
+  .flyixo-edu-feature-desc {
+    max-width: 340px;
+
+    font-size: 13px;
   }
 
-  .flyden-feature-title {
-    font-size: 16px;
+  .flyixo-edu-bottom {
+    gap: 10px;
+
+    margin-top: 35px;
+  }
+
+  .flyixo-edu-bottom-line {
+    width: 40px;
+  }
+
+  .flyixo-edu-bottom p {
+    font-size: 9px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 480px) {
+  .flyixo-edu-section {
+    padding:
+      44px 11px 50px;
+  }
+
+  .flyixo-edu-title {
+    font-size: 28px;
+  }
+
+  .flyixo-edu-description {
+    font-size: 10px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-edu-card {
+    min-height: 265px;
+
+    padding:
+      26px 18px 19px;
+
+    border-radius: 17px;
+  }
+
+  .flyixo-edu-icon-wrapper {
+    width: 72px;
+    height: 72px;
+
+    margin-bottom: 16px;
+  }
+
+  .flyixo-edu-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .flyixo-edu-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flyixo-edu-feature-title {
+    font-size: 18px;
+  }
+
+  .flyixo-edu-feature-desc {
+    font-size: 12px;
+
+    line-height: 1.6;
+  }
+
+  .flyixo-edu-card-footer {
+    font-size: 8px;
+  }
+
+  .flyixo-edu-arrow {
+    width: 24px;
+    height: 24px;
+
+    font-size: 13px;
+  }
+
+  .flyixo-edu-bottom {
+    display: none;
+  }
+}
+
+/* ============================================================
+   EXTRA SMALL MOBILE
+============================================================ */
+
+@media (max-width: 360px) {
+  .flyixo-edu-section {
+    padding:
+      38px 9px 44px;
+  }
+
+  .flyixo-edu-eyebrow {
+    font-size: 7px;
+  }
+
+  .flyixo-edu-title {
+    font-size: 25px;
+  }
+
+  .flyixo-edu-description {
+    font-size: 9px;
+  }
+
+  .flyixo-edu-card {
+    min-height: 250px;
+
+    padding:
+      24px 15px 17px;
+  }
+
+  .flyixo-edu-icon-wrapper {
+    width: 67px;
+    height: 67px;
+  }
+
+  .flyixo-edu-icon {
+    width: 59px;
+    height: 59px;
+  }
+
+  .flyixo-edu-icon svg {
+    width: 37px;
+    height: 37px;
+  }
+
+  .flyixo-edu-feature-title {
+    font-size: 17px;
+  }
+
+  .flyixo-edu-feature-desc {
+    font-size: 11px;
+  }
+
+  .flyixo-edu-card-footer {
+    font-size: 7px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-edu-card:focus-within {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.2);
+
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-edu-section *,
+  .flyixo-edu-section *::before,
+  .flyixo-edu-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }

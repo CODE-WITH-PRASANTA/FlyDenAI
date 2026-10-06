@@ -1,227 +1,1213 @@
-/* ================= MAIN SECTION ================= */
-.internship-section {
+/* =========================================================
+   FLYIXO INTERNSHIP HIGHLIGHT
+========================================================= */
+
+.flyixo-internship-section {
+  --internship-navy: #062c43;
+  --internship-navy-dark: #031b2b;
+  --internship-primary: #e94e77;
+  --internship-primary-dark: #c93661;
+  --internship-primary-light: #ff8eaa;
+  --internship-cyan: #36d1d4;
+  --internship-blue: #2563eb;
+  --internship-gold: #f4b942;
+  --internship-text: #182536;
+  --internship-muted: #687789;
+  --internship-white: #ffffff;
+  --internship-light: #f7f9fc;
+  --internship-border: #e3e8ee;
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 100px 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f8fafc 50%,
+      #f4f8fb 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  box-sizing: border-box;
+}
+
+.flyixo-internship-section *,
+.flyixo-internship-section *::before,
+.flyixo-internship-section *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACKGROUND DECORATIONS
+========================================================= */
+
+.flyixo-internship-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(4px);
+}
+
+.flyixo-internship-bg-one {
+  width: 550px;
+  height: 550px;
+
+  top: -280px;
+  right: -200px;
+
+  background: rgba(233, 78, 119, 0.08);
+}
+
+.flyixo-internship-bg-two {
+  width: 480px;
+  height: 480px;
+
+  bottom: -230px;
+  left: -230px;
+
+  background: rgba(54, 209, 212, 0.08);
+}
+
+.flyixo-internship-grid {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.65;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 90%
+    );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.flyixo-internship-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
   max-width: 1300px;
+
   margin: 0 auto;
-  padding: 80px 40px;
-  font-family: "Poppins", sans-serif;
 }
 
-.internship-header {
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-internship-header {
+  max-width: 900px;
+
+  margin: 0 auto 75px;
+
   text-align: center;
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 50px;
-  color: #1a1a1a;
-  line-height: 1.4;
 }
 
-/* ================= CARD LAYOUT ================= */
-.highlight-card {
+.flyixo-internship-eyebrow {
   display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--internship-primary);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.4px;
+}
+
+.flyixo-internship-line {
+  display: block;
+
+  width: 42px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--internship-primary),
+      var(--internship-cyan)
+    );
+}
+
+.flyixo-internship-title {
+  margin: 0 0 20px;
+
+  color: var(--internship-navy);
+
+  font-size: clamp(36px, 4.5vw, 56px);
+
+  font-weight: 800;
+
+  line-height: 1.12;
+
+  letter-spacing: -1.8px;
+}
+
+.flyixo-internship-title span {
+  display: block;
+
+  color: var(--internship-primary);
+}
+
+.flyixo-internship-subtitle {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  color: var(--internship-muted);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   HIGHLIGHTS WRAPPER
+========================================================= */
+
+.flyixo-internship-highlights {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 50px;
+}
+
+
+/* =========================================================
+   HIGHLIGHT CARD
+========================================================= */
+
+.flyixo-highlight-card {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 0.9fr);
+
+  align-items: center;
+
+  gap: 70px;
+
+  min-height: 430px;
+
+  padding: 25px;
+
+  border: 1px solid var(--internship-border);
+
+  border-radius: 30px;
+
+  background:
+    rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 18px 55px rgba(6, 44, 67, 0.07);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+}
+
+.flyixo-highlight-card:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(233, 78, 119, 0.2);
+
+  box-shadow:
+    0 28px 70px rgba(6, 44, 67, 0.12);
+}
+
+.flyixo-highlight-card-reverse {
+  grid-template-columns:
+    minmax(0, 0.9fr)
+    minmax(0, 1fr);
+}
+
+.flyixo-highlight-card-reverse .flyixo-highlight-image-wrapper {
+  order: 2;
+}
+
+.flyixo-highlight-card-reverse .flyixo-highlight-content {
+  order: 1;
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.flyixo-highlight-number {
+  position: absolute;
+
+  top: 22px;
+  left: 24px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--internship-primary),
+      var(--internship-primary-dark)
+    );
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+
+  box-shadow:
+    0 10px 25px rgba(233, 78, 119, 0.22);
+}
+
+.flyixo-highlight-card-reverse .flyixo-highlight-number {
+  left: auto;
+  right: 24px;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.flyixo-highlight-image-wrapper {
+  position: relative;
+
+  min-width: 0;
+}
+
+.flyixo-highlight-image {
+  position: relative;
+
+  height: 380px;
+
+  overflow: hidden;
+
+  border-radius: 23px;
+
+  box-shadow:
+    0 18px 40px rgba(6, 44, 67, 0.14);
+}
+
+.flyixo-highlight-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.7s ease,
+    filter 0.7s ease;
+}
+
+.flyixo-highlight-card:hover
+.flyixo-highlight-image img {
+  transform: scale(1.06);
+}
+
+.flyixo-highlight-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 43, 0.02) 35%,
+      rgba(3, 27, 43, 0.68) 100%
+    );
+
+  pointer-events: none;
+}
+
+.flyixo-highlight-image-label {
+  position: absolute;
+
+  left: 22px;
+  bottom: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 12px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.13);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: white;
+}
+
+.flyixo-highlight-image-label span {
+  margin-bottom: 2px;
+
+  color: var(--internship-primary-light);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.flyixo-highlight-image-label strong {
+  font-size: 12px;
+
+  letter-spacing: 0.6px;
+}
+
+.flyixo-highlight-image-decoration {
+  position: absolute;
+
+  right: -15px;
+  bottom: -15px;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--internship-primary),
+      var(--internship-cyan)
+    );
+
+  opacity: 0.17;
+
+  z-index: -1;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.flyixo-highlight-content {
+  position: relative;
+
+  min-width: 0;
+
+  padding: 20px 20px 20px 5px;
+}
+
+.flyixo-highlight-card-reverse
+.flyixo-highlight-content {
+  padding-left: 20px;
+  padding-right: 5px;
+}
+
+.flyixo-highlight-label {
+  display: inline-block;
+
+  margin-bottom: 13px;
+
+  color: var(--internship-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+.flyixo-highlight-content h3 {
+  margin: 0 0 17px;
+
+  color: var(--internship-navy);
+
+  font-size: clamp(24px, 2.4vw, 34px);
+
+  font-weight: 800;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.7px;
+}
+
+.flyixo-highlight-content p {
+  max-width: 570px;
+
+  margin: 0 0 22px;
+
+  color: var(--internship-muted);
+
+  font-size: 15px;
+
+  line-height: 1.85;
+}
+
+
+/* =========================================================
+   LINK
+========================================================= */
+
+.flyixo-highlight-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  color: var(--internship-primary);
+
+  text-decoration: none;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  transition:
+    color 0.25s ease;
+}
+
+.flyixo-highlight-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 35px;
+  height: 35px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.1);
+
+  color: var(--internship-primary);
+
+  font-size: 18px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.flyixo-highlight-link:hover {
+  color: var(--internship-primary-dark);
+}
+
+.flyixo-highlight-link:hover
+.flyixo-highlight-arrow {
+  transform: translateX(5px);
+
+  background: var(--internship-primary);
+
+  color: white;
+}
+
+
+/* =========================================================
+   CONTENT BOTTOM LINE
+========================================================= */
+
+.flyixo-highlight-bottom-line {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 28px;
+}
+
+.flyixo-highlight-bottom-line span {
+  width: 35px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--internship-primary),
+      var(--internship-cyan)
+    );
+}
+
+.flyixo-highlight-bottom-line small {
+  color: #9aa6b3;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.2px;
+}
+
+
+/* =========================================================
+   CARD CORNER
+========================================================= */
+
+.flyixo-highlight-corner {
+  position: absolute;
+
+  right: -35px;
+  bottom: -35px;
+
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 209, 212, 0.08);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.flyixo-internship-cta {
+  display: flex;
+
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
-  margin-bottom: 50px;
-  flex-wrap: wrap;
-  transition: all 0.4s ease;
+
+  gap: 40px;
+
+  margin-top: 75px;
+
+  padding: 40px 45px;
+
+  border-radius: 26px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--internship-navy-dark),
+      var(--internship-navy)
+    );
+
+  box-shadow:
+    0 22px 55px rgba(6, 44, 67, 0.17);
+
+  overflow: hidden;
+
+  position: relative;
 }
 
-.highlight-card.reverse {
-  flex-direction: row-reverse;
+.flyixo-internship-cta::before {
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  top: -160px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.15);
 }
 
-.highlight-image {
-  flex: 1 1 50%;
+.flyixo-internship-cta::after {
+  content: "";
+
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  bottom: -110px;
+  left: 25%;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 209, 212, 0.1);
 }
 
-.highlight-image img {
-  width: 100%;
-  border-radius: 18px;
-  object-fit: cover;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+.flyixo-cta-content {
+  position: relative;
+
+  z-index: 2;
 }
 
-/* ================= TEXT SECTION ================= */
-.highlight-content {
-  flex: 1 1 45%;
-  color: #111;
+.flyixo-cta-label {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--internship-primary-light);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
 }
 
-.highlight-content h3 {
-  font-size: 26px;
-  font-weight: 700;
-  line-height: 1.3;
-  margin-bottom: 18px;
-  color: #222;
+.flyixo-cta-content h3 {
+  margin: 0 0 9px;
+
+  color: white;
+
+  font-size: 27px;
+
+  font-weight: 800;
 }
 
-.highlight-content p {
-  color: #444;
-  font-size: 17px;
+.flyixo-cta-content p {
+  max-width: 680px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.67);
+
+  font-size: 13px;
+
   line-height: 1.7;
-  margin-bottom: 20px;
 }
 
-.highlight-content a {
-  color: #ff5722;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 17px;
-  transition: color 0.3s ease;
-}
 
-.highlight-content a:hover {
-  color: #e64a19;
-}
+/* =========================================================
+   CTA BUTTON
+========================================================= */
 
-/* ================= CHOOSE BUTTON ================= */
-.choose-button-container {
-  text-align: center;
-  margin-top: 60px;
-}
+.flyixo-choose-btn {
+  position: relative;
 
-.choose-btn {
-  background: #ff5722;
-  color: #fff;
-  font-size: 18px;
-  padding: 14px 34px;
-  border-radius: 8px;
-  border: 2px solid transparent;
+  z-index: 3;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 53px;
+
+  padding: 0 23px;
+
   border: none;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--internship-primary),
+      var(--internship-primary-dark)
+    );
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
   cursor: pointer;
+
+  box-shadow:
+    0 12px 28px rgba(233, 78, 119, 0.25);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.flyixo-choose-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 17px 35px rgba(233, 78, 119, 0.32);
+}
+
+.flyixo-choose-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.flyixo-choose-btn:hover
+.flyixo-choose-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   BOTTOM BRAND
+========================================================= */
+
+.flyixo-internship-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 42px;
+}
+
+.flyixo-internship-bottom span {
+  width: 65px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.25)
+    );
+}
+
+.flyixo-internship-bottom span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.25),
+      transparent
+    );
+}
+
+.flyixo-internship-bottom p {
+  margin: 0;
+
+  color: var(--internship-muted);
+
+  font-size: 11px;
+
   font-weight: 600;
-  transition: all 0.3s ease;
+
+  letter-spacing: 0.5px;
+
+  text-align: center;
 }
 
-.choose-btn:hover {
-  background: #e64a19;
-  transform: translateY(-2px);
+.flyixo-internship-bottom strong {
+  color: var(--internship-primary);
 }
 
-/* ================= MEDIA QUERIES ================= */
 
-/* ====== Large Tablets (1024px and below) ====== */
-@media (max-width: 1024px) {
-  .internship-section {
-    padding: 60px 30px;
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .flyixo-internship-section {
+    padding: 80px 22px;
   }
 
-  .highlight-card {
-    gap: 40px;
-    margin-bottom: 80px;
+  .flyixo-highlight-card {
+    gap: 45px;
   }
 
-  .highlight-content h3 {
-    font-size: 24px;
+  .flyixo-highlight-content h3 {
+    font-size: 27px;
   }
 
-  .highlight-content p {
-    font-size: 16px;
-  }
-
-  .choose-btn {
-    font-size: 17px;
-    padding: 12px 30px;
+  .flyixo-highlight-image {
+    height: 350px;
   }
 }
 
-/* ====== Tablets (768px and below) ====== */
-@media (max-width: 768px) {
-  .internship-section {
-    padding: 50px 25px;
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .flyixo-internship-header {
+    margin-bottom: 55px;
   }
 
-  .internship-header {
-    font-size: 1.8rem;
-    margin-bottom: 40px;
+  .flyixo-highlight-card,
+  .flyixo-highlight-card-reverse {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding: 20px;
   }
 
-  .highlight-card {
+  .flyixo-highlight-card-reverse
+  .flyixo-highlight-image-wrapper {
+    order: 1;
+  }
+
+  .flyixo-highlight-card-reverse
+  .flyixo-highlight-content {
+    order: 2;
+  }
+
+  .flyixo-highlight-content,
+  .flyixo-highlight-card-reverse
+  .flyixo-highlight-content {
+    padding: 10px 8px 15px;
+  }
+
+  .flyixo-highlight-image {
+    height: 370px;
+  }
+
+  .flyixo-highlight-content h3 {
+    font-size: 27px;
+  }
+
+  .flyixo-highlight-content p {
+    max-width: 100%;
+  }
+
+  .flyixo-highlight-number,
+  .flyixo-highlight-card-reverse
+  .flyixo-highlight-number {
+    left: 35px;
+    right: auto;
+  }
+
+  .flyixo-internship-cta {
+    align-items: flex-start;
+
     flex-direction: column;
-    text-align: center;
+
+    padding: 35px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .flyixo-internship-section {
+    padding: 60px 15px;
+  }
+
+  .flyixo-internship-eyebrow {
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.4px;
+  }
+
+  .flyixo-internship-line {
+    width: 23px;
+  }
+
+  .flyixo-internship-title {
+    font-size: 32px;
+
+    letter-spacing: -1px;
+  }
+
+  .flyixo-internship-subtitle {
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-internship-highlights {
     gap: 30px;
-    margin-bottom: 70px;
   }
 
-  .highlight-card.reverse {
-    flex-direction: column;
+  .flyixo-highlight-card {
+    gap: 18px;
+
+    padding: 14px;
+
+    border-radius: 22px;
   }
 
-  .highlight-image,
-  .highlight-content {
-    flex: 1 1 100%;
+  .flyixo-highlight-image {
+    height: 280px;
+
+    border-radius: 17px;
   }
 
-  .highlight-content h3 {
+  .flyixo-highlight-number,
+  .flyixo-highlight-card-reverse
+  .flyixo-highlight-number {
+    top: 25px;
+    left: 25px;
+
+    width: 43px;
+    height: 43px;
+
+    border-radius: 12px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-highlight-image-label {
+    left: 15px;
+    bottom: 15px;
+
+    padding: 9px 12px;
+
+    border-radius: 10px;
+  }
+
+  .flyixo-highlight-image-label span {
+    font-size: 7px;
+  }
+
+  .flyixo-highlight-image-label strong {
+    font-size: 9px;
+  }
+
+  .flyixo-highlight-content {
+    padding: 5px 5px 12px !important;
+  }
+
+  .flyixo-highlight-label {
+    font-size: 8px;
+
+    letter-spacing: 1.4px;
+  }
+
+  .flyixo-highlight-content h3 {
+    margin-bottom: 13px;
+
+    font-size: 22px;
+
+    line-height: 1.3;
+  }
+
+  .flyixo-highlight-content p {
+    margin-bottom: 17px;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-highlight-link {
+    font-size: 12px;
+  }
+
+  .flyixo-highlight-arrow {
+    width: 31px;
+    height: 31px;
+
+    font-size: 15px;
+  }
+
+  .flyixo-highlight-bottom-line {
+    margin-top: 20px;
+  }
+
+  .flyixo-highlight-bottom-line small {
+    font-size: 7px;
+  }
+
+  .flyixo-internship-cta {
+    gap: 25px;
+
+    margin-top: 50px;
+
+    padding: 27px 22px;
+
+    border-radius: 20px;
+  }
+
+  .flyixo-cta-content h3 {
     font-size: 22px;
   }
 
-  .highlight-content p {
-    font-size: 15px;
+  .flyixo-cta-content p {
+    font-size: 12px;
   }
 
-  .highlight-content a {
-    font-size: 16px;
-  }
-
-  .choose-btn {
-    font-size: 16px;
-    padding: 12px 28px;
-  }
-}
-
-/* ====== Mobile (480px and below) ====== */
-@media (max-width: 480px) {
-  .internship-section {
-    padding: 40px 20px;
-  }
-
-  .internship-header {
-    font-size: 1.6rem;
-  }
-
-  .highlight-card {
-    gap: 25px;
-    margin-bottom: 60px;
-  }
-
-  .highlight-content h3 {
-    font-size: 20px;
-  }
-
-  .highlight-content p {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  .highlight-content a {
-    font-size: 15px;
-  }
-
-  .choose-btn {
+  .flyixo-choose-btn {
     width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    border-radius: 6px;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    font-size: 12px;
+  }
+
+  .flyixo-internship-bottom {
+    gap: 9px;
+
+    margin-top: 32px;
+  }
+
+  .flyixo-internship-bottom span {
+    width: 25px;
+  }
+
+  .flyixo-internship-bottom p {
+    font-size: 9px;
   }
 }
 
-/* ====== Small Phones (360px and below) ====== */
-@media (max-width: 360px) {
-  .internship-header {
-    font-size: 1.4rem;
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+  .flyixo-internship-section {
+    padding: 50px 11px;
   }
 
-  .highlight-content h3 {
-    font-size: 18px;
+  .flyixo-internship-title {
+    font-size: 28px;
   }
 
-  .highlight-content p {
-    font-size: 13px;
+  .flyixo-internship-subtitle {
+    font-size: 12px;
   }
 
-  .choose-btn {
-    font-size: 14px;
+  .flyixo-highlight-image {
+    height: 235px;
+  }
+
+  .flyixo-highlight-content h3 {
+    font-size: 19px;
+  }
+
+  .flyixo-highlight-content p {
+    font-size: 12px;
+  }
+
+  .flyixo-highlight-link {
+    font-size: 11px;
+  }
+
+  .flyixo-cta-content h3 {
+    font-size: 19px;
+  }
+
+  .flyixo-choose-btn {
+    font-size: 11px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.flyixo-highlight-link:focus-visible,
+.flyixo-choose-btn:focus-visible {
+  outline: 3px solid rgba(54, 209, 212, 0.45);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-internship-section *,
+  .flyixo-internship-section *::before,
+  .flyixo-internship-section *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
   }
 }

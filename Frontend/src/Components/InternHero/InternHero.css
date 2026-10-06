@@ -1,290 +1,1283 @@
-/* ===============================
-   INTERN HERO MAIN SECTION
-================================= */
-.InternHero-Container {
+/* =========================================================
+   FLYIXO INTERN HERO
+========================================================= */
+
+.intern-hero {
+  --intern-navy: #062c43;
+  --intern-navy-dark: #031b2b;
+  --intern-primary: #e94e77;
+  --intern-primary-dark: #c93661;
+  --intern-primary-light: #ff8eaa;
+  --intern-cyan: #36d1d4;
+  --intern-blue: #2563eb;
+  --intern-gold: #f4b942;
+  --intern-white: #ffffff;
+  --intern-text: #182536;
+  --intern-muted: #687789;
+
   position: relative;
-  background: linear-gradient(135deg, #141e30, #243b55); /* Background */
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  padding: 70px 20px;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
+
+  width: 100%;
+  min-height: 720px;
+
+  overflow: hidden;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 3px solid transparent;
-  border-radius: 20px;
-  background-clip: padding-box;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
 
-  /* Gradient border effect */
-  position: relative;
+  padding: 85px 24px;
+
+  background-image: url("../../assets/intern.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family:
+    "Poppins",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  box-sizing: border-box;
 }
 
-.InternHero-Container::before {
-  content: "";
+.intern-hero *,
+.intern-hero *::before,
+.intern-hero *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.intern-hero__background {
   position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  z-index: -1;
-  border-radius: 20px;
-  background: linear-gradient(90deg, #e94e77, #56ccf2, #2f80ed);
-  background-size: 200% 200%;
-  animation: gradientBorder 6s linear infinite;
-}
 
-/* Gradient border animation */
-@keyframes gradientBorder {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.InternHero-Overlay {
-  position: absolute;
   inset: 0;
-  background: rgba(0, 25, 50, 0.55);
+
+  z-index: 0;
+}
+
+.intern-hero__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(3, 27, 43, 0.93) 0%,
+      rgba(6, 44, 67, 0.83) 45%,
+      rgba(9, 31, 53, 0.91) 100%
+    );
+}
+
+.intern-hero__glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+.intern-hero__glow--one {
+  width: 520px;
+  height: 520px;
+
+  top: -280px;
+  left: -160px;
+
+  background: rgba(233, 78, 119, 0.16);
+}
+
+.intern-hero__glow--two {
+  width: 500px;
+  height: 500px;
+
+  right: -180px;
+  bottom: -280px;
+
+  background: rgba(54, 209, 212, 0.13);
+}
+
+.intern-hero__grid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.15;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 90%
+    );
+}
+
+
+/* =========================================================
+   FLOATING SHAPES
+========================================================= */
+
+.intern-hero__shape {
+  position: absolute;
+
   z-index: 1;
-   border-radius: 20px;
+
+  pointer-events: none;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  animation: internFloat 7s ease-in-out infinite;
 }
 
-.InternHero-Content {
+.intern-hero__shape--one {
+  width: 150px;
+  height: 150px;
+
+  top: 12%;
+  left: 5%;
+}
+
+.intern-hero__shape--two {
+  width: 80px;
+  height: 80px;
+
+  right: 8%;
+  top: 18%;
+
+  border-color: rgba(233, 78, 119, 0.25);
+
+  animation-delay: 1.5s;
+}
+
+.intern-hero__shape--three {
+  width: 110px;
+  height: 110px;
+
+  left: 9%;
+  bottom: 12%;
+
+  border-color: rgba(54, 209, 212, 0.2);
+
+  animation-delay: 3s;
+}
+
+@keyframes internFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(8deg);
+  }
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.intern-hero__container {
   position: relative;
-  z-index: 2;
-  max-width: 1100px;
+
+  z-index: 3;
+
   width: 100%;
-}
+  max-width: 1250px;
 
-/* ===============================
-   HEADINGS & TEXT
-================================= */
-.InternHero-Title {
-  font-size: 44px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.InternHero-Subtitle {
-  font-size: 20px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #f1f1f1;
-}
-
-.InternHero-Rating {
-  font-size: 18px;
-  margin-bottom: 40px;
-}
-
-.InternHero-RatingText {
-  color: #fff;
-  font-weight: 500;
-}
-
-.InternHero-RatingValue {
-  color: #ffc14d;
-  margin: 0 5px;
-}
-
-.InternHero-Trust {
-  color: #00c17b;
-  font-weight: 600;
-}
-
-/* ===============================
-   SEARCH CARD
-================================= */
-.InternHero-SearchCard {
-  background: #ffffff;
-  color: #333;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-  padding: 30px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  max-width: 950px;
   margin: 0 auto;
 }
 
-/* ===============================
-   STATS SECTION
-================================= */
-.InternHero-StatsRow {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
-}
-
-.InternHero-StatItem {
-  display: flex;
-  align-items: center;
-  font-weight: 600;
-  color: #e65b3f;
-  gap: 8px;
-  font-size: 15px;
-}
-
-.InternHero-StatIcon {
-  font-size: 18px;
-}
-
-/* ===============================
-   SEARCH FILTERS
-================================= */
-.InternHero-SearchRow {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.InternHero-DropDown,
-.InternHero-TypeButtons {
-  flex: 1;
-  min-width: 260px;
-  text-align: left;
-}
-
-.InternHero-DropDown label,
-.InternHero-TypeButtons label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 6px;
-  color: #222;
-  font-size: 15px;
-}
-
-.InternHero-DropDown select {
+.intern-hero__content {
   width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #d1d1d1;
-  border-radius: 8px;
-  font-size: 15px;
-  background-color: #fafafa;
+
+  text-align: center;
 }
 
-/* ===============================
-   TYPE BUTTONS
-================================= */
-.InternHero-BtnGroup {
+
+/* =========================================================
+   EYEBROW
+========================================================= */
+
+.intern-hero__eyebrow {
   display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 18px;
+
+  color: var(--intern-primary-light);
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+}
+
+.intern-hero__eyebrow svg {
+  font-size: 15px;
+
+  color: var(--intern-cyan);
+
+  animation: globeSpin 8s linear infinite;
+}
+
+.intern-hero__eyebrow-line {
+  width: 42px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--intern-primary),
+      var(--intern-cyan)
+    );
+}
+
+@keyframes globeSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.intern-hero__title {
+  max-width: 900px;
+
+  margin: 0 auto 16px;
+
+  color: var(--intern-white);
+
+  font-size: clamp(45px, 6vw, 76px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -2.5px;
+}
+
+.intern-hero__title span {
+  display: block;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--intern-primary-light),
+      #ffffff 50%,
+      var(--intern-cyan)
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  background-size: 200% auto;
+
+  animation: internTitleGradient 5s linear infinite;
+}
+
+@keyframes internTitleGradient {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+
+/* =========================================================
+   SUBTITLE
+========================================================= */
+
+.intern-hero__subtitle {
+  max-width: 760px;
+
+  margin: 0 auto;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 18px;
+
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.intern-hero__rating {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
   gap: 10px;
+
+  margin-top: 18px;
+  margin-bottom: 35px;
+
+  font-size: 13px;
 }
 
-.InternHero-TypeBtn {
-  flex: 1;
-  padding: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+.intern-hero__rating-stars {
+  display: flex;
+
+  gap: 3px;
+
+  color: #00b67a;
+}
+
+.intern-hero__rating-stars svg {
+  font-size: 14px;
+}
+
+.intern-hero__rating-excellent {
+  color: white;
+
+  font-weight: 700;
+}
+
+.intern-hero__rating-value {
+  color: var(--intern-gold);
+
+  font-weight: 700;
+}
+
+.intern-hero__rating-trust {
+  color: #00b67a;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   SEARCH CARD
+========================================================= */
+
+.intern-hero__search-card {
+  position: relative;
+
+  width: 100%;
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 28px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(248, 251, 253, 0.97)
+    );
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.3);
+
+  text-align: left;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+
+/* =========================================================
+   SEARCH CARD HEADER
+========================================================= */
+
+.intern-hero__card-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-bottom: 22px;
+
+  border-bottom: 1px solid #e9edf1;
+}
+
+.intern-hero__card-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--intern-primary);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+.intern-hero__card-header h2 {
+  margin: 0;
+
+  color: var(--intern-navy);
+
+  font-size: 23px;
+
+  font-weight: 800;
+}
+
+.intern-hero__card-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--intern-primary),
+      var(--intern-primary-light)
+    );
+
+  color: white;
+
+  box-shadow:
+    0 10px 25px rgba(233, 78, 119, 0.2);
+}
+
+.intern-hero__card-icon svg {
+  font-size: 19px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.intern-hero__stats {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 35px;
+
+  padding: 22px 0;
+
+  border-bottom: 1px solid #e9edf1;
+}
+
+.intern-hero__stat {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.intern-hero__stat-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.11),
+      rgba(54, 209, 212, 0.1)
+    );
+
+  color: var(--intern-primary);
+
+  font-size: 17px;
+}
+
+.intern-hero__stat-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 1px;
+}
+
+.intern-hero__stat-content strong {
+  color: var(--intern-navy);
+
+  font-size: 18px;
+
+  font-weight: 800;
+}
+
+.intern-hero__stat-content span {
+  color: var(--intern-muted);
+
+  font-size: 11px;
+
   font-weight: 600;
-  background: #fff;
-  color: #333;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+.intern-hero__stat-divider {
+  width: 1px;
+  height: 35px;
+
+  background: #e0e5ea;
+}
+
+
+/* =========================================================
+   SEARCH ROW
+========================================================= */
+
+.intern-hero__search-row {
+  display: grid;
+
+  grid-template-columns: 1.1fr 1fr auto;
+
+  align-items: end;
+
+  gap: 18px;
+
+  padding-top: 24px;
+}
+
+.intern-hero__field {
+  min-width: 0;
+}
+
+.intern-hero__field label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: var(--intern-navy);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.intern-hero__select-wrapper {
+  position: relative;
+}
+
+.intern-hero__select-wrapper::after {
+  content: "⌄";
+
+  position: absolute;
+
+  right: 14px;
+  top: 50%;
+
+  transform: translateY(-55%);
+
+  color: var(--intern-primary);
+
+  font-size: 18px;
+
+  pointer-events: none;
+}
+
+.intern-hero__select-wrapper select {
+  width: 100%;
+
+  min-height: 50px;
+
+  appearance: none;
+
+  padding: 0 42px 0 15px;
+
+  border: 1px solid #dce2e8;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #465365;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
   cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.InternHero-TypeBtn.active {
-  background: #ff6433;
-  color: #fff;
-  border-color: #ff6433;
+.intern-hero__select-wrapper select:focus {
+  border-color: var(--intern-primary);
+
+  box-shadow:
+    0 0 0 4px rgba(233, 78, 119, 0.1);
 }
 
-/* ===============================
+
+/* =========================================================
+   TYPE BUTTONS
+========================================================= */
+
+.intern-hero__type-buttons {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 7px;
+}
+
+.intern-hero__type-button {
+  min-height: 50px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 0 10px;
+
+  border: 1px solid #dce2e8;
+
+  border-radius: 12px;
+
+  background: white;
+
+  color: #4d5967;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    all 0.25s ease;
+}
+
+.intern-hero__type-button:hover {
+  border-color: var(--intern-primary);
+
+  color: var(--intern-primary);
+
+  transform: translateY(-2px);
+}
+
+.intern-hero__type-button.active {
+  border-color: var(--intern-primary);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--intern-primary),
+      var(--intern-primary-dark)
+    );
+
+  color: white;
+
+  box-shadow:
+    0 8px 20px rgba(233, 78, 119, 0.2);
+}
+
+
+/* =========================================================
    SEARCH BUTTON
-================================= */
-.InternHero-SearchBtn {
-  background: #ff6433;
-  color: #fff;
-  font-weight: 600;
+========================================================= */
+
+.intern-hero__search-button {
+  min-height: 50px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-width: 145px;
+
+  padding: 0 24px;
+
   border: none;
-  padding: 12px 40px;
-  border-radius: 8px;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--intern-primary),
+      var(--intern-primary-dark)
+    );
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
   cursor: pointer;
-  font-size: 16px;
+
+  box-shadow:
+    0 10px 25px rgba(233, 78, 119, 0.24);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* ===============================
-   RESPONSIVE MEDIA QUERIES
-================================= */
+.intern-hero__search-button svg {
+  transition:
+    transform 0.3s ease;
+}
 
-/* Large Screens (1200px and up) */
-@media (min-width: 1200px) {
-  .InternHero-Title {
-    font-size: 48px;
+.intern-hero__search-button:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 32px rgba(233, 78, 119, 0.32);
+}
+
+.intern-hero__search-button:hover svg {
+  transform: translateX(4px);
+}
+
+.intern-hero__search-button:active {
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.intern-hero__card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 25px;
+
+  margin-top: 22px;
+}
+
+.intern-hero__trust-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color: var(--intern-muted);
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.intern-hero__trust-item svg {
+  color: #00a878;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   BOTTOM BRAND
+========================================================= */
+
+.intern-hero__bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 28px;
+}
+
+.intern-hero__bottom span {
+  width: 65px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.45)
+    );
+}
+
+.intern-hero__bottom span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.45),
+      transparent
+    );
+}
+
+.intern-hero__bottom p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.4px;
+
+  text-align: center;
+}
+
+.intern-hero__bottom strong {
+  color: var(--intern-primary-light);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+  .intern-hero {
+    min-height: 780px;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
-  .InternHero-Subtitle {
-    font-size: 22px;
+
+  .intern-hero__search-card {
+    max-width: 1150px;
   }
 }
 
-/* Medium Devices (Tablets) */
-@media (max-width: 992px) {
-  .InternHero-Title {
-    font-size: 38px;
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+  .intern-hero {
+    min-height: 680px;
+
+    padding: 75px 20px;
   }
-  .InternHero-Subtitle {
-    font-size: 18px;
+
+  .intern-hero__search-card {
+    max-width: 950px;
   }
-  .InternHero-SearchCard {
-    padding: 25px 30px;
+
+  .intern-hero__search-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .intern-hero__search-button {
+    width: 100%;
+
+    grid-column: 1 / -1;
   }
 }
 
-/* Small Devices (Mobiles) */
+
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 768px) {
-  .InternHero-Title {
-    font-size: 32px;
+  .intern-hero {
+    min-height: auto;
+
+    padding: 65px 16px;
   }
 
-  .InternHero-Subtitle {
+  .intern-hero__eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 1.8px;
+  }
+
+  .intern-hero__eyebrow-line {
+    width: 25px;
+  }
+
+  .intern-hero__title {
+    font-size: clamp(38px, 9vw, 52px);
+
+    letter-spacing: -1.5px;
+  }
+
+  .intern-hero__subtitle {
+    max-width: 600px;
+
+    font-size: 15px;
+  }
+
+  .intern-hero__rating {
+    margin-bottom: 28px;
+  }
+
+  .intern-hero__search-card {
+    padding: 22px;
+
+    border-radius: 20px;
+  }
+
+  .intern-hero__card-header h2 {
+    font-size: 20px;
+  }
+
+  .intern-hero__stats {
+    gap: 20px;
+  }
+
+  .intern-hero__stat-divider {
+    height: 28px;
+  }
+
+  .intern-hero__search-row {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .intern-hero__search-button {
+    grid-column: auto;
+
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .intern-hero {
+    padding: 50px 13px;
+  }
+
+  .intern-hero__eyebrow {
+    gap: 7px;
+
+    margin-bottom: 14px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .intern-hero__eyebrow svg {
+    font-size: 12px;
+  }
+
+  .intern-hero__eyebrow-line {
+    width: 18px;
+  }
+
+  .intern-hero__title {
+    margin-bottom: 13px;
+
+    font-size: 35px;
+
+    letter-spacing: -1px;
+  }
+
+  .intern-hero__subtitle {
+    font-size: 13px;
+
+    line-height: 1.65;
+  }
+
+  .intern-hero__rating {
+    gap: 6px;
+
+    margin-top: 14px;
+    margin-bottom: 23px;
+
+    font-size: 11px;
+  }
+
+  .intern-hero__rating-stars svg {
+    font-size: 11px;
+  }
+
+  .intern-hero__search-card {
+    padding: 18px;
+
+    border-radius: 17px;
+  }
+
+  .intern-hero__card-header {
+    padding-bottom: 17px;
+  }
+
+  .intern-hero__card-label {
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+  .intern-hero__card-header h2 {
     font-size: 17px;
   }
 
-  .InternHero-SearchRow {
-    flex-direction: column;
-    align-items: stretch;
+  .intern-hero__card-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
   }
 
-  .InternHero-SearchBtn {
-    width: 100%;
+  .intern-hero__stats {
+    justify-content: space-between;
+
+    gap: 8px;
+
+    padding: 17px 0;
   }
 
-  .InternHero-SearchCard {
-    padding: 20px;
+  .intern-hero__stat {
+    gap: 7px;
   }
 
-  .InternHero-StatItem {
+  .intern-hero__stat-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 13px;
+  }
+
+  .intern-hero__stat-content strong {
     font-size: 14px;
+  }
+
+  .intern-hero__stat-content span {
+    font-size: 8px;
+  }
+
+  .intern-hero__stat-divider {
+    height: 25px;
+  }
+
+  .intern-hero__field label {
+    font-size: 11px;
+  }
+
+  .intern-hero__select-wrapper select,
+  .intern-hero__type-button,
+  .intern-hero__search-button {
+    min-height: 46px;
+
+    font-size: 11px;
+  }
+
+  .intern-hero__type-buttons {
+    gap: 5px;
+  }
+
+  .intern-hero__card-footer {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    margin-top: 18px;
+  }
+
+  .intern-hero__bottom {
+    gap: 9px;
+
+    margin-top: 22px;
+  }
+
+  .intern-hero__bottom span {
+    width: 25px;
+  }
+
+  .intern-hero__bottom p {
+    font-size: 9px;
+  }
+
+  .intern-hero__shape--one {
+    width: 90px;
+    height: 90px;
+
+    left: -30px;
+  }
+
+  .intern-hero__shape--two {
+    width: 55px;
+    height: 55px;
+
+    right: -15px;
+  }
+
+  .intern-hero__shape--three {
+    width: 65px;
+    height: 65px;
+
+    left: -20px;
   }
 }
 
-/* Extra Small Devices (below 480px) */
-@media (max-width: 480px) {
-  .InternHero-Title {
-    font-size: 26px;
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media (max-width: 380px) {
+  .intern-hero {
+    padding: 42px 10px;
   }
 
-  .InternHero-Subtitle {
+  .intern-hero__title {
+    font-size: 31px;
+  }
+
+  .intern-hero__subtitle {
+    font-size: 12px;
+  }
+
+  .intern-hero__search-card {
+    padding: 15px;
+  }
+
+  .intern-hero__card-header h2 {
     font-size: 15px;
   }
 
-  .InternHero-Rating {
-    font-size: 15px;
-    margin-bottom: 25px;
+  .intern-hero__stats {
+    gap: 5px;
   }
 
-  .InternHero-SearchBtn {
-    font-size: 15px;
-    padding: 10px 0;
+  .intern-hero__stat {
+    flex-direction: column;
+
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .intern-hero__stat-divider {
+    display: none;
+  }
+
+  .intern-hero__stat-content strong {
+    font-size: 13px;
+  }
+
+  .intern-hero__stat-content span {
+    font-size: 7px;
+  }
+
+  .intern-hero__type-button {
+    padding: 0 5px;
+
+    font-size: 10px;
+  }
+
+  .intern-hero__search-button {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.intern-hero__type-button:focus-visible,
+.intern-hero__search-button:focus-visible,
+.intern-hero__select-wrapper select:focus-visible {
+  outline: 3px solid rgba(54, 209, 212, 0.4);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .intern-hero *,
+  .intern-hero *::before,
+  .intern-hero *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
   }
 }

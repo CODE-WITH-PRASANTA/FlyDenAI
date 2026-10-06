@@ -1,490 +1,1713 @@
+/* =========================================================
+   ADVERTISING BANNER MANAGEMENT
+   PREMIUM ADMIN UI
+========================================================= */
+
+:root {
+  --advertising-primary: #7c3aed;
+  --advertising-primary-dark: #6d28d9;
+  --advertising-secondary: #a855f7;
+  --advertising-pink: #ec4899;
+
+  --advertising-success: #16a34a;
+  --advertising-danger: #ef4444;
+  --advertising-warning: #f59e0b;
+
+  --advertising-bg: #f7f8fc;
+  --advertising-card: #ffffff;
+
+  --advertising-text: #171525;
+  --advertising-text-secondary: #626375;
+  --advertising-muted: #9293a1;
+
+  --advertising-border: #e8e8f0;
+
+  --advertising-radius: 20px;
+
+  --advertising-shadow:
+    0 8px 30px rgba(24, 20, 45, 0.06);
+
+  --advertising-transition: 0.25s ease;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
 .Advertizing-Banner-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem;
-  background: #f8fafc;
+  width: 100%;
   min-height: 100vh;
-  font-family: "Poppins", sans-serif;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.06),
+      transparent 26%
+    ),
+    var(--advertising-bg);
+
+  color: var(--advertising-text);
+
+  animation:
+    advertisingFadeIn 0.45s ease both;
 }
 
-.Advertizing-Banner-left,
-.Advertizing-Banner-right {
-  flex: 1;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  transition: 0.3s;
-}
+/* =========================================================
+   PAGE HEADER
+========================================================= */
 
-.Advertizing-Banner-heading {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 1.5rem;
+.Advertizing-Banner-page-header {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 26px;
 }
 
-/* Upload Preview */
-.Advertizing-Banner-preview {
-  position: relative;
-  width: 100%;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 1.2rem;
+.Advertizing-Banner-page-title-wrap {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
 }
 
-.Advertizing-Banner-preview img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+.Advertizing-Banner-page-icon {
+  width: 58px;
+  height: 58px;
 
-.Advertizing-Banner-remove-img {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 8px;
-  cursor: pointer;
-}
+  flex-shrink: 0;
 
-.Advertizing-Banner-upload-label {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
-  border: 2px dashed #e94e77;
-  border-radius: 12px;
-  color: #e94e77;
-  cursor: pointer;
+
+  color: #ffffff;
+
+  border-radius: 17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--advertising-primary),
+      var(--advertising-pink)
+    );
+
+  box-shadow:
+    0 12px 28px rgba(124, 58, 237, 0.23);
+
+  animation:
+    advertisingFloat 3s ease-in-out infinite;
+}
+
+.Advertizing-Banner-eyebrow {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--advertising-primary);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+
+  text-transform: uppercase;
+}
+
+.Advertizing-Banner-page-title {
+  margin: 0;
+
+  color: var(--advertising-text);
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+}
+
+.Advertizing-Banner-page-subtitle {
+  margin: 5px 0 0;
+
+  color: var(--advertising-text-secondary);
+
+  font-size: 12px;
+  line-height: 1.5;
+
   font-weight: 500;
-  transition: 0.3s;
+}
+
+.Advertizing-Banner-header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 10px 14px;
+
+  color: var(--advertising-primary-dark);
+
+  background:
+    rgba(124, 58, 237, 0.08);
+
+  border: 1px solid
+    rgba(124, 58, 237, 0.12);
+
+  border-radius: 11px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.Advertizing-Banner-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 25px;
+}
+
+.Advertizing-Banner-stat-card {
+  position: relative;
+
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 17px;
+
+  box-sizing: border-box;
+
+  background: var(--advertising-card);
+
+  border: 1px solid var(--advertising-border);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 5px 20px rgba(24, 20, 45, 0.045);
+
+  overflow: hidden;
+
+  transition:
+    transform var(--advertising-transition),
+    box-shadow var(--advertising-transition),
+    border-color var(--advertising-transition);
+}
+
+.Advertizing-Banner-stat-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 100px;
+  height: 100px;
+
+  right: -45px;
+  bottom: -50px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(124, 58, 237, 0.045);
+}
+
+.Advertizing-Banner-stat-card:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(124, 58, 237, 0.17);
+
+  box-shadow:
+    0 12px 30px rgba(24, 20, 45, 0.08);
+}
+
+.Advertizing-Banner-stat-icon {
+  width: 47px;
+  height: 47px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+}
+
+.Advertizing-Banner-stat-icon.total {
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.1);
+}
+
+.Advertizing-Banner-stat-icon.live {
+  color: var(--advertising-success);
+
+  background:
+    rgba(22, 163, 74, 0.1);
+}
+
+.Advertizing-Banner-stat-icon.draft {
+  color: var(--advertising-warning);
+
+  background:
+    rgba(245, 158, 11, 0.11);
+}
+
+.Advertizing-Banner-stat-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.Advertizing-Banner-stat-info span {
+  color: var(--advertising-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+
+  text-transform: uppercase;
+}
+
+.Advertizing-Banner-stat-info strong {
+  color: var(--advertising-text);
+
+  font-size: 23px;
+  line-height: 1.2;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.Advertizing-Banner-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(360px, 0.82fr)
+    minmax(0, 1.35fr);
+
+  gap: 22px;
+
+  align-items: start;
+}
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.Advertizing-Banner-left,
+.Advertizing-Banner-right {
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 23px;
+
+  background: var(--advertising-card);
+
+  border: 1px solid var(--advertising-border);
+
+  border-radius: var(--advertising-radius);
+
+  box-shadow: var(--advertising-shadow);
+
+  transition:
+    border-color var(--advertising-transition),
+    box-shadow var(--advertising-transition);
+}
+
+.Advertizing-Banner-left:hover,
+.Advertizing-Banner-right:hover {
+  border-color:
+    rgba(124, 58, 237, 0.13);
+
+  box-shadow:
+    0 14px 35px rgba(24, 20, 45, 0.075);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.Advertizing-Banner-section-header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding-bottom: 19px;
+
+  margin-bottom: 20px;
+
+  border-bottom:
+    1px solid var(--advertising-border);
+}
+
+.Advertizing-Banner-section-icon {
+  width: 42px;
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.09);
+
+  border-radius: 11px;
+}
+
+.Advertizing-Banner-section-icon.purple {
+  color: var(--advertising-pink);
+
+  background:
+    rgba(236, 72, 153, 0.09);
+}
+
+.Advertizing-Banner-section-header > div:last-child {
+  min-width: 0;
+}
+
+.Advertizing-Banner-heading {
+  margin: 0;
+
+  color: var(--advertising-text);
+
+  font-size: 17px;
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  letter-spacing: -0.2px;
+}
+
+.Advertizing-Banner-section-header p {
+  margin: 4px 0 0;
+
+  color: var(--advertising-muted);
+
+  font-size: 10px;
+  line-height: 1.5;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   FORM SECTION
+========================================================= */
+
+.Advertizing-Banner-form-section {
+  margin-bottom: 20px;
+}
+
+.Advertizing-Banner-field-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  margin-bottom: 9px;
+}
+
+.Advertizing-Banner-field-header label,
+.Advertizing-Banner-field label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--advertising-text);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.Advertizing-Banner-field-header small {
+  color: var(--advertising-muted);
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.required {
+  margin-left: 3px;
+
+  color: var(--advertising-danger);
+}
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+.Advertizing-Banner-upload {
+  width: 100%;
+}
+
+.Advertizing-Banner-upload-label {
+  min-height: 190px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 25px;
+
+  text-align: center;
+
+  border:
+    1.5px dashed
+    rgba(124, 58, 237, 0.3);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.035),
+      rgba(236, 72, 153, 0.025)
+    );
+
+  cursor: pointer;
+
+  transition:
+    background var(--advertising-transition),
+    border-color var(--advertising-transition),
+    transform var(--advertising-transition);
 }
 
 .Advertizing-Banner-upload-label:hover {
-  background: rgba(233, 78, 119, 0.08);
+  border-color:
+    var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.065);
+
+  transform: translateY(-2px);
 }
 
 .Advertizing-Banner-file {
   display: none;
 }
 
-/* Input Fields */
-.Advertizing-Banner-field {
-  margin-bottom: 1.2rem;
+.Advertizing-Banner-upload-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 11px;
+
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.1);
+
+  border-radius: 15px;
 }
 
-.Advertizing-Banner-field label {
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.4rem;
+.Advertizing-Banner-upload-label strong {
+  color: var(--advertising-text);
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+.Advertizing-Banner-upload-label > span {
+  margin-top: 5px;
+
+  color: var(--advertising-muted);
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+.Advertizing-Banner-upload-label small {
+  margin-top: 10px;
+
+  padding: 5px 9px;
+
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.07);
+
+  border-radius: 6px;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+.Advertizing-Banner-preview {
+  position: relative;
+
+  width: 100%;
+
+  height: 205px;
+
+  overflow: hidden;
+
+  border-radius: 15px;
+
+  background: #eee;
+}
+
+.Advertizing-Banner-preview img {
+  width: 100%;
+  height: 100%;
+
   display: block;
+
+  object-fit: cover;
+}
+
+.Advertizing-Banner-preview-overlay {
+  position: absolute;
+
+  left: 12px;
+  bottom: 12px;
+
+  padding: 6px 9px;
+
+  color: #ffffff;
+
+  background:
+    rgba(20, 15, 35, 0.65);
+
+  border-radius: 7px;
+
+  backdrop-filter: blur(8px);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.Advertizing-Banner-preview-overlay span {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.Advertizing-Banner-remove-img {
+  position: absolute;
+
+  top: 11px;
+  right: 11px;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    rgba(239, 68, 68, 0.9);
+
+  border: none;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.Advertizing-Banner-remove-img:hover {
+  background: #dc2626;
+
+  transform: scale(1.07);
+}
+
+/* =========================================================
+   FORM FIELDS
+========================================================= */
+
+.Advertizing-Banner-field {
+  margin-bottom: 18px;
+}
+
+.Advertizing-Banner-input-wrap {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+}
+
+.Advertizing-Banner-input-wrap svg {
+  position: absolute;
+
+  left: 13px;
+
+  color: var(--advertising-muted);
+
+  pointer-events: none;
 }
 
 .Advertizing-Banner-field input,
 .Advertizing-Banner-field textarea {
   width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  transition: 0.3s;
+
+  box-sizing: border-box;
+
+  color: var(--advertising-text);
+
+  background: #fbfbfd;
+
+  border: 1px solid #e2e2eb;
+
+  border-radius: 11px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.Advertizing-Banner-field input {
+  height: 45px;
+
+  padding: 0 13px 0 39px;
+}
+
+.Advertizing-Banner-field textarea {
+  min-height: 100px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.Advertizing-Banner-field input::placeholder,
+.Advertizing-Banner-field textarea::placeholder {
+  color: #aaaab7;
 }
 
 .Advertizing-Banner-field input:focus,
 .Advertizing-Banner-field textarea:focus {
-  border-color: #e94e77;
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(233, 78, 119, 0.2);
+  background: #ffffff;
+
+  border-color:
+    var(--advertising-primary);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(124, 58, 237, 0.09);
 }
 
-/* Post Button */
+/* =========================================================
+   KEY POINTS
+========================================================= */
+
+.Advertizing-Banner-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Advertizing-Banner-label-row label {
+  margin-bottom: 7px;
+}
+
+.Advertizing-Banner-label-row span {
+  margin-bottom: 7px;
+
+  color: var(--advertising-primary);
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+.Advertizing-Banner-points {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.Advertizing-Banner-point-input {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+.Advertizing-Banner-point-input > span {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.08);
+
+  border-radius: 8px;
+
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.Advertizing-Banner-point-input input {
+  padding-left: 12px;
+}
+
+/* =========================================================
+   POST BUTTON
+========================================================= */
+
 .Advertizing-Banner-post-btn {
-  background: linear-gradient(135deg, #e94e77, #d63b6b);
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
   width: 100%;
-  transition: 0.3s;
+
+  min-height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin-top: 5px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--advertising-primary),
+      var(--advertising-pink)
+    );
+
+  border: none;
+
+  border-radius: 11px;
+
+  box-shadow:
+    0 8px 20px
+    rgba(124, 58, 237, 0.2);
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .Advertizing-Banner-post-btn:hover {
-  background: linear-gradient(135deg, #d03c64, #b62e58);
   transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 26px
+    rgba(124, 58, 237, 0.28);
 }
 
-/* Uploaded Section */
+.Advertizing-Banner-post-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   UPLOADED BANNER GRID
+========================================================= */
+
 .Advertizing-Banner-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
 }
 
+/* =========================================================
+   BANNER CARD
+========================================================= */
+
 .Advertizing-Banner-card {
-  background: #fff;
-  border-radius: 12px;
+  min-width: 0;
+
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: 0.3s;
+
+  background: #ffffff;
+
+  border: 1px solid var(--advertising-border);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 5px 18px rgba(24, 20, 45, 0.045);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .Advertizing-Banner-card:hover {
-  transform: scale(1.02);
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(124, 58, 237, 0.15);
+
+  box-shadow:
+    0 15px 35px rgba(24, 20, 45, 0.09);
 }
 
-.Advertizing-Banner-card img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
+.Advertizing-Banner-card.Advertizing-Banner-live {
+  border-color:
+    rgba(22, 163, 74, 0.3);
 }
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+.Advertizing-Banner-card-image {
+  position: relative;
+
+  width: 100%;
+  height: 155px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eee8ff,
+      #fce7f3
+    );
+}
+
+.Advertizing-Banner-card-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease;
+}
+
+.Advertizing-Banner-card:hover
+.Advertizing-Banner-card-image img {
+  transform: scale(1.05);
+}
+
+.Advertizing-Banner-card-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 15, 35, 0.15),
+      rgba(20, 15, 35, 0.42)
+    );
+
+  pointer-events: none;
+}
+
+.Advertizing-Banner-status {
+  position: absolute;
+
+  top: 11px;
+  left: 11px;
+
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  padding: 6px 9px;
+
+  color: #ffffff;
+
+  border-radius: 20px;
+
+  backdrop-filter: blur(8px);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.5px;
+}
+
+.Advertizing-Banner-status span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.Advertizing-Banner-status.live {
+  background:
+    rgba(22, 163, 74, 0.88);
+}
+
+.Advertizing-Banner-status.draft {
+  background:
+    rgba(245, 158, 11, 0.9);
+}
+
+.Advertizing-Banner-card-number {
+  position: absolute;
+
+  right: 11px;
+  top: 11px;
+
+  padding: 6px 8px;
+
+  color: #ffffff;
+
+  background:
+    rgba(20, 15, 35, 0.55);
+
+  border-radius: 7px;
+
+  backdrop-filter: blur(8px);
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
 
 .Advertizing-Banner-card-content {
-  padding: 1rem;
+  padding: 16px;
+}
+
+.Advertizing-Banner-card-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--advertising-primary);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
 }
 
 .Advertizing-Banner-card-content h3 {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 0.3rem;
+  margin: 0 0 8px;
+
+  color: var(--advertising-text);
+
+  font-size: 15px;
+
+  line-height: 1.4;
+
+  font-weight: 800;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
-.Advertizing-Banner-card-content p {
-  color: #555;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
+.Advertizing-Banner-card-subline {
+  margin: 0 0 12px;
+
+  color: var(--advertising-text-secondary);
+
+  font-size: 10px;
+
+  line-height: 1.6;
+
+  font-weight: 500;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
 }
 
-.Advertizing-Banner-card-content ul {
-  list-style: disc;
-  padding-left: 1.3rem;
-  color: #555;
-  font-size: 0.9rem;
-  margin-bottom: 0.8rem;
+/* =========================================================
+   CARD POINTS
+========================================================= */
+
+.Advertizing-Banner-card-points {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  margin-bottom: 15px;
+
+  padding: 10px;
+
+  background:
+    #fafafe;
+
+  border:
+    1px solid #eeeeF5;
+
+  border-radius: 10px;
 }
+
+.Advertizing-Banner-card-point {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 7px;
+
+  color: var(--advertising-text-secondary);
+
+  font-size: 9px;
+
+  line-height: 1.45;
+
+  font-weight: 600;
+}
+
+.Advertizing-Banner-card-point svg {
+  flex-shrink: 0;
+
+  margin-top: 1px;
+
+  color: var(--advertising-success);
+}
+
+/* =========================================================
+   CARD ACTIONS
+========================================================= */
 
 .Advertizing-Banner-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 8px;
+
+  padding-top: 13px;
+
+  border-top:
+    1px solid var(--advertising-border);
 }
 
 .Advertizing-Banner-actions button {
-  flex: 1;
-  border: none;
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  font-weight: 500;
+  min-height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 7px 8px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
   cursor: pointer;
-  transition: 0.3s;
-  color: white;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.Advertizing-Banner-actions button:hover {
+  transform: translateY(-2px);
 }
 
 .Advertizing-Banner-actions .delete {
-  background: #ff6b6b;
+  color: #dc2626;
+
+  background: #ffffff;
+
+  border:
+    1px solid #fee2e2;
 }
 
 .Advertizing-Banner-actions .delete:hover {
-  background: #e63946;
+  color: #ffffff;
+
+  background: #ef4444;
+
+  border-color: #ef4444;
+
+  box-shadow:
+    0 6px 15px rgba(239, 68, 68, 0.18);
 }
 
 .Advertizing-Banner-actions .live {
-  background: #28a745;
+  color: #15803d;
+
+  background: #f0fdf4;
+
+  border:
+    1px solid #bbf7d0;
+}
+
+.Advertizing-Banner-actions .live:hover {
+  color: #ffffff;
+
+  background: #16a34a;
+
+  border-color: #16a34a;
+
+  box-shadow:
+    0 6px 15px rgba(22, 163, 74, 0.18);
 }
 
 .Advertizing-Banner-actions .live.active {
-  background: #1e7e34;
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #16a34a,
+      #15803d
+    );
+
+  border-color: transparent;
 }
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
 
 .Advertizing-Banner-empty {
-  color: #777;
+  min-height: 360px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
   text-align: center;
-  font-style: italic;
-  margin-top: 2rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.025),
+      rgba(236, 72, 153, 0.02)
+    );
+
+  border:
+    1px dashed #dcdce8;
+
+  border-radius: 15px;
 }
 
-.Advertizing-Banner-live {
-  border: 2px solid #28a745;
-  box-shadow: 0 0 10px rgba(40, 167, 69, 0.25);
+.Advertizing-Banner-empty-icon {
+  width: 68px;
+  height: 68px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  color: var(--advertising-primary);
+
+  background:
+    rgba(124, 58, 237, 0.08);
+
+  border-radius: 20px;
 }
 
+.Advertizing-Banner-empty h3 {
+  margin: 0 0 6px;
 
-/* ============================= */
-/* 📱 MEDIA QUERIES - RESPONSIVE */
-/* ============================= */
+  color: var(--advertising-text);
 
-/* For tablets and small laptops (≤1024px) */
-@media (max-width: 1024px) {
+  font-size: 16px;
+
+  font-weight: 800;
+}
+
+.Advertizing-Banner-empty p {
+  margin: 0 0 5px;
+
+  color: var(--advertising-text-secondary);
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+.Advertizing-Banner-empty > span {
+  color: var(--advertising-muted);
+
+  font-size: 9px;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.Advertizing-Banner-container.dark {
+  --advertising-bg: #0d111c;
+  --advertising-card: #151b29;
+
+  --advertising-text: #f8fafc;
+  --advertising-text-secondary: #aeb6c7;
+  --advertising-muted: #7f8a9e;
+
+  --advertising-border: #273044;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.08),
+      transparent 28%
+    ),
+    #0d111c;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-left,
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-right {
+  background: #151b29;
+
+  border-color: #273044;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-stat-card {
+  background: #151b29;
+
+  border-color: #273044;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field input,
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field textarea {
+  color: #f8fafc;
+
+  background: #101623;
+
+  border-color: #2b3549;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field input:focus,
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field textarea:focus {
+  background: #121a29;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field input::placeholder,
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-field textarea::placeholder {
+  color: #667085;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-upload-label {
+  background:
+    rgba(124, 58, 237, 0.07);
+
+  border-color:
+    rgba(168, 85, 247, 0.35);
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-upload-label strong {
+  color: #f8fafc;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-card {
+  background: #151b29;
+
+  border-color: #273044;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-card-points {
+  background: #101623;
+
+  border-color: #273044;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-actions {
+  border-color: #273044;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-actions .delete {
+  background: #151b29;
+
+  border-color: #4b2830;
+}
+
+.Advertizing-Banner-container.dark
+.Advertizing-Banner-empty {
+  background:
+    rgba(124, 58, 237, 0.035);
+
+  border-color: #34405a;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+========================================================= */
+
+@media (max-width: 1250px) {
   .Advertizing-Banner-container {
-    flex-direction: column;
-    padding: 1.5rem;
+    padding: 25px;
   }
 
-  .Advertizing-Banner-left,
-  .Advertizing-Banner-right {
-    width: 100%;
-    padding: 1.5rem;
-  }
-
-  .Advertizing-Banner-heading {
-    font-size: 1.4rem;
-  }
-
-  .Advertizing-Banner-field input,
-  .Advertizing-Banner-field textarea {
-    font-size: 0.9rem;
+  .Advertizing-Banner-layout {
+    grid-template-columns:
+      minmax(330px, 0.8fr)
+      minmax(0, 1.2fr);
   }
 
   .Advertizing-Banner-grid {
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: 1fr;
   }
 }
 
-/* For mobile devices (≤768px) */
-@media (max-width: 768px) {
-  .Advertizing-Banner-container {
-    padding: 1rem;
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .Advertizing-Banner-layout {
+    grid-template-columns: 1fr;
   }
 
-  .Advertizing-Banner-left,
-  .Advertizing-Banner-right {
-    padding: 1.2rem;
-    border-radius: 12px;
+  .Advertizing-Banner-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
-  .Advertizing-Banner-heading {
-    font-size: 1.2rem;
-    text-align: center;
-  }
-
-  .Advertizing-Banner-upload-label span {
-    font-size: 0.9rem;
-  }
-
-  .Advertizing-Banner-field label {
-    font-size: 0.9rem;
-  }
-
-  .Advertizing-Banner-field input,
-  .Advertizing-Banner-field textarea {
-    padding: 0.7rem;
-  }
-
-  .Advertizing-Banner-post-btn {
-    font-size: 0.95rem;
-    padding: 0.8rem;
-  }
-
-  .Advertizing-Banner-card img {
-    height: 140px;
-  }
-
-  .Advertizing-Banner-card-content h3 {
-    font-size: 1rem;
-  }
-
-  .Advertizing-Banner-card-content p,
-  .Advertizing-Banner-card-content ul {
-    font-size: 0.85rem;
+  .Advertizing-Banner-page-title {
+    font-size: 25px;
   }
 }
 
-/* For very small phones (≤480px) */
-@media (max-width: 480px) {
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 720px) {
   .Advertizing-Banner-container {
-    padding: 0.8rem;
+    padding: 18px;
   }
 
-  .Advertizing-Banner-heading {
-    font-size: 1rem;
+  .Advertizing-Banner-page-header {
+    flex-direction: column;
+
+    align-items: stretch;
   }
 
-  .Advertizing-Banner-field input,
-  .Advertizing-Banner-field textarea {
-    font-size: 0.85rem;
+  .Advertizing-Banner-header-badge {
+    align-self: flex-start;
   }
 
-  .Advertizing-Banner-post-btn {
-    font-size: 0.9rem;
-    padding: 0.7rem;
+  .Advertizing-Banner-stats {
+    grid-template-columns: 1fr;
   }
 
   .Advertizing-Banner-grid {
     grid-template-columns: 1fr;
   }
 
+  .Advertizing-Banner-left,
+  .Advertizing-Banner-right {
+    padding: 19px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+  .Advertizing-Banner-container {
+    padding: 13px 10px;
+  }
+
+  .Advertizing-Banner-page-title-wrap {
+    align-items: flex-start;
+  }
+
+  .Advertizing-Banner-page-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 14px;
+  }
+
+  .Advertizing-Banner-page-title {
+    font-size: 21px;
+  }
+
+  .Advertizing-Banner-page-subtitle {
+    font-size: 10px;
+  }
+
+  .Advertizing-Banner-eyebrow {
+    font-size: 8px;
+  }
+
+  .Advertizing-Banner-left,
+  .Advertizing-Banner-right {
+    padding: 15px;
+
+    border-radius: 16px;
+  }
+
+  .Advertizing-Banner-section-header {
+    align-items: flex-start;
+  }
+
+  .Advertizing-Banner-section-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .Advertizing-Banner-heading {
+    font-size: 15px;
+  }
+
+  .Advertizing-Banner-upload-label {
+    min-height: 175px;
+  }
+
+  .Advertizing-Banner-preview {
+    height: 180px;
+  }
+
+  .Advertizing-Banner-card-image {
+    height: 180px;
+  }
+
   .Advertizing-Banner-actions button {
-    font-size: 0.8rem;
-    padding: 0.5rem;
-  }
-
-  .Advertizing-Banner-preview img {
-    height: 160px;
+    font-size: 9px;
   }
 }
 
-/* =====================================================
-   THEME VARIABLES
-===================================================== */
-:root {
-  --bg-light: #ffffff;
-  --bg-dark: #101828;
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
 
-  --bg-card-light: #f9fafb;
-  --bg-card-dark: #1f2937;
+@media (max-width: 380px) {
+  .Advertizing-Banner-container {
+    padding: 10px 8px;
+  }
 
-  --text-light: #1e293b;
-  --text-dark: #f9fafb;
+  .Advertizing-Banner-page-title {
+    font-size: 19px;
+  }
 
-  --muted-light: #6b7280;
-  --muted-dark: #cbd5e1;
+  .Advertizing-Banner-page-icon {
+    width: 43px;
+    height: 43px;
+  }
 
-  --border-light: #e5e7eb;
-  --border-dark: #374151;
+  .Advertizing-Banner-stat-card {
+    min-height: 76px;
 
-  --accent: #4f46e5;
-  --success: #10b981;
-  --danger: #ef4444;
-  --info: #3b82f6;
+    padding: 13px;
+  }
+
+  .Advertizing-Banner-stat-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .Advertizing-Banner-stat-info strong {
+    font-size: 20px;
+  }
+
+  .Advertizing-Banner-card-content {
+    padding: 14px;
+  }
+
+  .Advertizing-Banner-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .Advertizing-Banner-upload-label {
+    min-height: 160px;
+
+    padding: 18px;
+  }
 }
 
-/* =======================================================
-   🌙 THEME SWITCH MANAGEMENT
-======================================================= */
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
 
-/* Default (Light Mode) */
-.Advertizing-Banner-container.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
+.Advertizing-Banner-post-btn:focus-visible,
+.Advertizing-Banner-actions button:focus-visible,
+.Advertizing-Banner-remove-img:focus-visible,
+.Advertizing-Banner-upload-label:focus-within {
+  outline:
+    3px solid rgba(124, 58, 237, 0.25);
+
+  outline-offset: 2px;
 }
 
-.Advertizing-Banner-container.light .Advertizing-Banner-left,
-.Advertizing-Banner-container.light .Advertizing-Banner-right {
-  background: var(--bg-card-light);
-  color: var(--text-light);
-  border: 1px solid var(--border-light);
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .Advertizing-Banner-container,
+  .Advertizing-Banner-page-icon {
+    animation: none;
+  }
+
+  .Advertizing-Banner-card,
+  .Advertizing-Banner-stat-card,
+  .Advertizing-Banner-post-btn,
+  .Advertizing-Banner-actions button,
+  .Advertizing-Banner-upload-label {
+    transition: none;
+  }
 }
 
-.Advertizing-Banner-container.light input,
-.Advertizing-Banner-container.light textarea {
-  background: #fff;
-  color: var(--text-light);
-  border-color: var(--border-light);
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes advertisingFadeIn {
+  from {
+    opacity: 0;
+
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
 }
 
-/* Dark Mode */
-.Advertizing-Banner-container.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+@keyframes advertisingFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
 }
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-left,
-.Advertizing-Banner-container.dark .Advertizing-Banner-right {
-  background: var(--bg-card-dark);
-  color: var(--text-dark);
-  border: 1px solid var(--border-dark);
-}
-
-.Advertizing-Banner-container.dark input,
-.Advertizing-Banner-container.dark textarea {
-  background: #1e293b;
-  color: #f1f5f9;
-  border-color: var(--border-dark);
-}
-
-.Advertizing-Banner-container.dark input::placeholder,
-.Advertizing-Banner-container.dark textarea::placeholder {
-  color: #94a3b8;
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-card {
-  background: #1f2937;
-  color: #f9fafb;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-upload-label {
-  border-color: #e94e77;
-  color: #e94e77;
-  background: rgba(233, 78, 119, 0.1);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-post-btn {
-  box-shadow: 0 0 10px rgba(233, 78, 119, 0.4);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-empty {
-  color: var(--muted-dark);
-}
-
-/* =========================================
-   🎨 Theme Styling for Headings & Labels
-========================================= */
-
-/* Light Mode */
-.Advertizing-Banner-container.light .Advertizing-Banner-heading {
-  color: var(--text-light);
-}
-
-.Advertizing-Banner-container.light .Advertizing-Banner-field label {
-  color: var(--text-light);
-}
-
-/* Dark Mode */
-.Advertizing-Banner-container.dark .Advertizing-Banner-heading {
-  color: var(--text-dark);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-field label {
-  color: var(--muted-dark);
-}
-
-/* =========================================
-   🎨 Theme Styling for Headings, Labels, and Card Content
-========================================= */
-
-/* 🌞 Light Mode */
-.Advertizing-Banner-container.light .Advertizing-Banner-heading {
-  color: var(--text-light);
-}
-
-.Advertizing-Banner-container.light .Advertizing-Banner-field label {
-  color: var(--text-light);
-}
-
-.Advertizing-Banner-container.light .Advertizing-Banner-card-content h3 {
-  color: var(--text-light);
-}
-
-.Advertizing-Banner-container.light .Advertizing-Banner-card-content p,
-.Advertizing-Banner-container.light .Advertizing-Banner-card-content ul {
-  color: var(--muted-light);
-}
-
-/* 🌙 Dark Mode */
-.Advertizing-Banner-container.dark .Advertizing-Banner-heading {
-  color: var(--text-dark);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-field label {
-  color: var(--muted-dark);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-card-content h3 {
-  color: var(--text-dark);
-}
-
-.Advertizing-Banner-container.dark .Advertizing-Banner-card-content p,
-.Advertizing-Banner-container.dark .Advertizing-Banner-card-content ul {
-  color: var(--muted-dark);
-}
-
