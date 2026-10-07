@@ -1,356 +1,1477 @@
-/* ================================
-   🌍 HERO SECTION - Full Responsive
-================================ */
-.hero-section {
-  position: relative;
-  width: 100%;
-  height: 65vh;
-  overflow: hidden;
-  font-family: "Poppins", sans-serif;
+/* ============================================================
+   FLYIXO HERO SECTION
+   Premium Responsive Hero Slider
+============================================================ */
+
+:root {
+  --flyixo-hero-navy: #062c43;
+  --flyixo-hero-navy-dark: #031b2b;
+
+  --flyixo-hero-primary: #e94e77;
+  --flyixo-hero-primary-dark: #c93661;
+  --flyixo-hero-primary-light: #ff8eaa;
+
+  --flyixo-hero-cyan: #36c8d4;
+  --flyixo-hero-blue: #2563eb;
+  --flyixo-hero-gold: #ffd166;
+
+  --flyixo-hero-white: #ffffff;
+  --flyixo-hero-text: #f7f9fc;
+  --flyixo-hero-muted: #d5dee7;
+
+  --flyixo-hero-transition: 0.35s ease;
 }
 
-/* === Slides === */
-.hero-slide {
+/* ============================================================
+   RESET
+============================================================ */
+
+.flyixo-hero-section,
+.flyixo-hero-section *,
+.flyixo-hero-section *::before,
+.flyixo-hero-section *::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   MAIN HERO
+============================================================ */
+
+.flyixo-hero-section {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 650px;
+  height: 72vh;
+
+  overflow: hidden;
+
+  background:
+    var(--flyixo-hero-navy-dark);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+}
+
+/* ============================================================
+   SLIDES
+============================================================ */
+
+.flyixo-hero-slide {
   position: absolute;
+
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   background-size: cover;
-  background-position: center center;
+
+  background-position: center;
+
+  background-repeat: no-repeat;
+
   opacity: 0;
-  transform: scale(1.05);
-  transition: opacity 1s ease, transform 2s ease;
+
+  transform:
+    scale(1.08);
+
+  visibility: hidden;
+
+  transition:
+    opacity 1s ease,
+    transform 7s ease,
+    visibility 1s ease;
+
+  z-index: 0;
 }
 
-.hero-slide.active {
+.flyixo-hero-slide.active {
   opacity: 1;
-  transform: scale(1);
+
+  visibility: visible;
+
+  transform:
+    scale(1);
+
   z-index: 2;
 }
 
-/* Overlay */
-.overlay {
+/* ============================================================
+   OVERLAY
+============================================================ */
+
+.flyixo-hero-overlay {
   position: absolute;
+
   inset: 0;
-  background: linear-gradient(
-    to bottom right,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.7)
-  );
+
   z-index: 1;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 22, 36, 0.92) 0%,
+      rgba(3, 22, 36, 0.76) 32%,
+      rgba(3, 22, 36, 0.45) 65%,
+      rgba(3, 22, 36, 0.55) 100%
+    );
 }
 
-/* === Hero Content === */
-.hero-content {
+/* ============================================================
+   IMAGE GRADIENT
+============================================================ */
+
+.flyixo-hero-image-gradient {
   position: absolute;
-  top: 12%;
-  transform: translateY(-50%);
-  color: #fff;
+
+  inset: 0;
+
   z-index: 2;
-  max-width: 700px;
-  animation: fadeUp 1.2s ease forwards;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(3, 27, 43, 0.18),
+      transparent 40%,
+      rgba(3, 27, 43, 0.4)
+    );
 }
 
-.hero-content.left {
-  left: 8%;
-  text-align: left;
-}
+/* ============================================================
+   BACKGROUND GLOWS
+============================================================ */
 
-.hero-content.right {
-  right: 8%;
-  text-align: left;
-}
-
-/* Subtitles */
-.hero-subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 15px;
-  letter-spacing: 0.5px;
-}
-
-.hero-subtitle span {
-  color: #e94e77;
-  font-weight: 600;
-}
-
-/* Title */
-.hero-content h1 {
-  font-size: 3.5rem;
-  line-height: 1.2;
-  margin-bottom: 25px;
-}
-
-.hero-content h1 .highlight {
-  color: #e94e77;
-}
-
-/* Bullets */
-.hero-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px;
-}
-
-.hero-content ul li {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-/* ===============================
-   🎯 Buttons Section
-=============================== */
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  align-items: center;
-}
-
-/* Base Button */
-.hero-btn {
-  border-radius: 30px;
-  padding: 12px 30px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  min-width: 180px;
-}
-
-/* Primary Button */
-.hero-btn-primary {
-  background: linear-gradient(135deg, #e94e77, #e53935);
-  color: #fff;
-  border: none;
-}
-
-.hero-btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(233, 78, 119, 0.6);
-}
-
-/* Secondary Button */
-.hero-btn-secondary {
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.hero-btn-secondary:hover {
-  color: #e94e77;
-  border-color: #e94e77;
-  transform: scale(1.05);
-}
-
-/* ===============================
-   📱 Responsive Design
-=============================== */
-
-/* Tablet View */
-@media (max-width: 992px) {
-  .hero-buttons {
-    gap: 12px;
-  }
-
-  .hero-btn {
-    padding: 10px 24px;
-    font-size: 0.95rem;
-    min-width: 160px;
-  }
-}
-
-/* Mobile View */
-@media (max-width: 768px) {
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    gap: 12px;
-    margin-top: 15px;
-  }
-
-  .hero-btn {
-    width: 85%;
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-}
-
-/* Extra Small Devices (≤ 480px) */
-@media (max-width: 480px) {
-  .hero-btn {
-    width: 90%;
-    padding: 10px 18px;
-    font-size: 0.9rem;
-    min-width: auto;
-  }
-}
-
-/* Arrows */
-.arrow {
+.flyixo-hero-glow {
   position: absolute;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  filter: blur(10px);
+
+  animation:
+    flyixoHeroFloat
+    8s
+    ease-in-out
+    infinite;
+}
+
+.flyixo-hero-glow-one {
+  width: 350px;
+  height: 350px;
+
+  left: -170px;
+  top: -180px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(54, 200, 212, 0.16),
+      transparent 70%
+    );
+}
+
+.flyixo-hero-glow-two {
+  width: 400px;
+  height: 400px;
+
+  right: -200px;
+  bottom: -220px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(233, 78, 119, 0.18),
+      transparent 70%
+    );
+
+  animation-delay: 2s;
+}
+
+@keyframes flyixoHeroFloat {
+  0%,
+  100% {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform:
+      translate3d(0, -20px, 0);
+  }
+}
+
+/* ============================================================
+   GRID
+============================================================ */
+
+.flyixo-hero-grid {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  opacity: 0.12;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    55px 55px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      transparent,
+      black 25%,
+      black 75%,
+      transparent
+    );
+}
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
+
+.flyixo-hero-content {
+  position: absolute;
+
   top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+
+  z-index: 5;
+
+  width: min(650px, 48%);
+
+  color:
+    var(--flyixo-hero-white);
+
+  transform:
+    translateY(-50%);
+
+  opacity: 0;
+
+  transition:
+    opacity 0.8s ease 0.25s,
+    transform 0.9s ease 0.25s;
+}
+
+.flyixo-hero-slide.active
+.flyixo-hero-content {
+  opacity: 1;
+
+  transform:
+    translateY(-50%);
+}
+
+.flyixo-hero-left {
+  left: 8%;
+}
+
+.flyixo-hero-right {
+  right: 8%;
+}
+
+/* ============================================================
+   BADGE
+============================================================ */
+
+.flyixo-hero-badge {
+  width: fit-content;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-bottom: 17px;
+
+  padding:
+    8px 14px;
+
+  color:
+    var(--flyixo-hero-primary-light);
+
+  background:
+    rgba(233, 78, 119, 0.1);
+
+  border:
+    1px solid
+    rgba(255, 142, 170, 0.22);
+
+  border-radius: 999px;
+
+  backdrop-filter: blur(10px);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+.flyixo-hero-badge-dot {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
-  border: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
+
+  background:
+    var(--flyixo-hero-primary);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.12);
+
+  animation:
+    flyixoHeroPulse
+    2s
+    ease-in-out
+    infinite;
 }
 
-.arrow.left {
-  left: 20px;
+@keyframes flyixoHeroPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
 }
 
-.arrow.right {
-  right: 20px;
+/* ============================================================
+   SUBTITLE
+============================================================ */
+
+.flyixo-hero-subtitle {
+  margin:
+    0 0 13px;
+
+  color:
+    var(--flyixo-hero-muted);
+
+  font-size:
+    clamp(13px, 1.25vw, 18px);
+
+  line-height: 1.6;
+
+  font-weight: 500;
+
+  letter-spacing: 0.2px;
 }
 
-.arrow:hover {
-  background: rgba(255, 255, 255, 0.4);
-  color: #e94e77;
-  transform: translateY(-50%) scale(1.15);
+.flyixo-hero-subtitle span {
+  color:
+    var(--flyixo-hero-primary-light);
+
+  font-weight: 750;
 }
 
-/* Dots */
-.dots {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
+/* ============================================================
+   TITLE
+============================================================ */
+
+.flyixo-hero-title {
+  max-width: 700px;
+
+  margin:
+    0 0 18px;
+
+  color:
+    var(--flyixo-hero-white);
+
+  font-size:
+    clamp(38px, 4.1vw, 62px);
+
+  line-height: 1.08;
+
+  font-weight: 850;
+
+  letter-spacing:
+    -1.8px;
+}
+
+.flyixo-hero-highlight {
+  color:
+    var(--flyixo-hero-primary-light);
+
+  text-shadow:
+    0 5px 25px
+    rgba(233, 78, 119, 0.2);
+}
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.flyixo-hero-description {
+  max-width: 610px;
+
+  margin:
+    0 0 20px;
+
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-size: 11px;
+
+  line-height: 1.8;
+
+  font-weight: 500;
+}
+
+/* ============================================================
+   LIST
+============================================================ */
+
+.flyixo-hero-list {
   display: flex;
-  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 8px;
+
+  margin:
+    0 0 23px;
+
+  padding: 0;
+
+  list-style: none;
+}
+
+.flyixo-hero-list li {
+  display: flex;
+
+  align-items: center;
+
   gap: 10px;
-  z-index: 10;
+
+  color:
+    rgba(255, 255, 255, 0.9);
+
+  font-size:
+    clamp(10px, 1vw, 13px);
+
+  font-weight: 550;
+
+  line-height: 1.5;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
+.flyixo-hero-list-icon {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
+
+  font-size: 11px;
+}
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.flyixo-hero-buttons {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+/* ============================================================
+   BASE BUTTON
+============================================================ */
+
+.flyixo-hero-btn {
+  min-height: 45px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding:
+    10px 16px;
+
+  border-radius: 999px;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition:
+    transform var(--flyixo-hero-transition),
+    box-shadow var(--flyixo-hero-transition),
+    border-color var(--flyixo-hero-transition),
+    background var(--flyixo-hero-transition),
+    color var(--flyixo-hero-transition);
 }
 
-.dot.active {
-  background: linear-gradient(135deg, #e94e77, #e53935);
-  transform: scale(1.3);
+/* ============================================================
+   PRIMARY BUTTON
+============================================================ */
+
+.flyixo-hero-btn-primary {
+  border:
+    1px solid
+    transparent;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-hero-primary),
+      var(--flyixo-hero-primary-dark)
+    );
+
+  box-shadow:
+    0 12px 28px
+    rgba(233, 78, 119, 0.28);
 }
 
-/* === Animations === */
-@keyframes fadeUp {
-  from {
-    transform: translateY(30px);
-    opacity: 0;
+.flyixo-hero-btn-primary:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 17px 35px
+    rgba(233, 78, 119, 0.4);
+}
+
+/* ============================================================
+   SECONDARY BUTTON
+============================================================ */
+
+.flyixo-hero-btn-secondary {
+  color:
+    #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.25);
+
+  backdrop-filter:
+    blur(10px);
+}
+
+.flyixo-hero-btn-secondary:hover {
+  color:
+    var(--flyixo-hero-primary-light);
+
+  border-color:
+    var(--flyixo-hero-primary);
+
+  background:
+    rgba(233, 78, 119, 0.09);
+
+  transform:
+    translateY(-3px);
+}
+
+/* ============================================================
+   WHATSAPP BUTTON
+============================================================ */
+
+.flyixo-hero-btn-whatsapp {
+  color:
+    #ffffff;
+
+  background:
+    rgba(31, 185, 137, 0.12);
+
+  border:
+    1px solid
+    rgba(31, 185, 137, 0.35);
+
+  backdrop-filter:
+    blur(10px);
+}
+
+.flyixo-hero-btn-whatsapp:hover {
+  background:
+    rgba(31, 185, 137, 0.22);
+
+  border-color:
+    #31b989;
+
+  transform:
+    translateY(-3px);
+}
+
+/* ============================================================
+   BUTTON ICON
+============================================================ */
+
+.flyixo-hero-btn-icon {
+  font-size: 12px;
+}
+
+/* ============================================================
+   BUTTON ARROW
+============================================================ */
+
+.flyixo-hero-btn-arrow {
+  width: 22px;
+  height: 22px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.3);
+
+  border-radius: 50%;
+
+  transition:
+    transform var(--flyixo-hero-transition);
+}
+
+.flyixo-hero-btn-primary:hover
+.flyixo-hero-btn-arrow {
+  transform:
+    translateX(3px);
+}
+
+/* ============================================================
+   DISABLED
+============================================================ */
+
+.flyixo-hero-btn-disabled {
+  cursor:
+    not-allowed;
+
+  opacity: 0.65;
+}
+
+/* ============================================================
+   TRUST TEXT
+============================================================ */
+
+.flyixo-hero-trust {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 15px;
+
+  color:
+    rgba(255, 255, 255, 0.58);
+
+  font-size: 8px;
+
+  font-weight: 550;
+}
+
+.flyixo-hero-trust-check {
+  width: 17px;
+  height: 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color:
+    #ffffff;
+
+  background:
+    rgba(31, 185, 137, 0.85);
+
+  border-radius: 50%;
+
+  font-size: 8px;
+}
+
+/* ============================================================
+   ARROWS
+============================================================ */
+
+.flyixo-hero-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  z-index: 15;
+
+  width: 47px;
+  height: 47px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transform:
+    translateY(-50%);
+
+  color:
+    #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 50%;
+
+  backdrop-filter:
+    blur(10px);
+
+  font-family: Arial, sans-serif;
+
+  cursor: pointer;
+
+  transition:
+    transform var(--flyixo-hero-transition),
+    background var(--flyixo-hero-transition),
+    border-color var(--flyixo-hero-transition);
+}
+
+.flyixo-hero-arrow span {
+  margin-top: -3px;
+
+  font-size: 28px;
+
+  line-height: 1;
+}
+
+.flyixo-hero-arrow:hover {
+  transform:
+    translateY(-50%)
+    scale(1.08);
+
+  background:
+    var(--flyixo-hero-primary);
+
+  border-color:
+    var(--flyixo-hero-primary);
+}
+
+.flyixo-hero-arrow-left {
+  left: 22px;
+}
+
+.flyixo-hero-arrow-right {
+  right: 22px;
+}
+
+/* ============================================================
+   DOTS
+============================================================ */
+
+.flyixo-hero-dots {
+  position: absolute;
+
+  left: 50%;
+  bottom: 25px;
+
+  z-index: 15;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  transform:
+    translateX(-50%);
+}
+
+.flyixo-hero-dot {
+  width: 7px;
+  height: 7px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.3);
+
+  cursor: pointer;
+
+  transition:
+    width var(--flyixo-hero-transition),
+    background var(--flyixo-hero-transition),
+    box-shadow var(--flyixo-hero-transition);
+}
+
+.flyixo-hero-dot:hover {
+  background:
+    rgba(255, 255, 255, 0.75);
+}
+
+.flyixo-hero-dot.active {
+  width: 29px;
+
+  background:
+    var(--flyixo-hero-primary);
+
+  box-shadow:
+    0 0 14px
+    rgba(233, 78, 119, 0.45);
+}
+
+/* ============================================================
+   COUNTER
+============================================================ */
+
+.flyixo-hero-counter {
+  position: absolute;
+
+  right: 7.5%;
+  bottom: 24px;
+
+  z-index: 15;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.flyixo-hero-counter > span:first-child {
+  color:
+    #ffffff;
+}
+
+.flyixo-hero-counter-line {
+  width: 55px;
+  height: 2px;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  border-radius: 10px;
+}
+
+.flyixo-hero-counter-line span {
+  display: block;
+
+  height: 100%;
+
+  background:
+    var(--flyixo-hero-primary);
+
+  border-radius: inherit;
+
+  transition:
+    width 0.4s ease;
+}
+
+/* ============================================================
+   LARGE DESKTOP
+============================================================ */
+
+@media (min-width: 1600px) {
+  .flyixo-hero-section {
+    min-height: 700px;
+
+    height: 72vh;
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+
+  .flyixo-hero-left {
+    left: 10%;
+  }
+
+  .flyixo-hero-right {
+    right: 10%;
+  }
+
+  .flyixo-hero-content {
+    width: 600px;
+  }
+
+  .flyixo-hero-description {
+    font-size: 12px;
   }
 }
 
-/* ============================
-   📱 Responsive Font & Height
-============================ */
+/* ============================================================
+   LAPTOP
+============================================================ */
 
-/* Tablets (max-width: 1024px) */
-@media (max-width: 1024px) {
-  .hero-section {
-    height: 60vh;
+@media (max-width: 1200px) {
+  .flyixo-hero-section {
+    min-height: 600px;
+
+    height: 68vh;
   }
-  .hero-content h1 {
-    font-size: 2.8rem;
+
+  .flyixo-hero-content {
+    width: 54%;
   }
-  .hero-subtitle {
-    font-size: 1.1rem;
+
+  .flyixo-hero-left {
+    left: 7%;
   }
-  .hero-content ul li {
-    font-size: 1rem;
+
+  .flyixo-hero-right {
+    right: 7%;
   }
-  .herobtn {
-    font-size: 0.95rem;
+
+  .flyixo-hero-title {
+    font-size: 48px;
+  }
+
+  .flyixo-hero-arrow-left {
+    left: 14px;
+  }
+
+  .flyixo-hero-arrow-right {
+    right: 14px;
   }
 }
 
-/* Mobile Landscape (max-width: 768px) */
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+  .flyixo-hero-section {
+    min-height: 590px;
+
+    height: 65vh;
+  }
+
+  .flyixo-hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3, 22, 36, 0.94),
+        rgba(3, 22, 36, 0.68)
+      );
+  }
+
+  .flyixo-hero-content {
+    width: 64%;
+  }
+
+  .flyixo-hero-left {
+    left: 8%;
+  }
+
+  .flyixo-hero-right {
+    right: 8%;
+  }
+
+  .flyixo-hero-title {
+    font-size: 42px;
+
+    letter-spacing: -1px;
+  }
+
+  .flyixo-hero-subtitle {
+    font-size: 14px;
+  }
+
+  .flyixo-hero-description {
+    font-size: 10px;
+  }
+
+  .flyixo-hero-list li {
+    font-size: 10px;
+  }
+
+  .flyixo-hero-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flyixo-hero-arrow span {
+    font-size: 24px;
+  }
+
+  .flyixo-hero-counter {
+    right: 5%;
+  }
+}
+
+/* ============================================================
+   MOBILE TABLET
+============================================================ */
+
 @media (max-width: 768px) {
-  .hero-section {
-    height: 55vh;
+  .flyixo-hero-section {
+    min-height: 620px;
+
+    height: 78vh;
   }
-  .hero-content {
-    top: 16%;
+
+  .flyixo-hero-slide {
+    background-position:
+      center center;
   }
-  .hero-content h1 {
-    font-size: 2.2rem;
+
+  .flyixo-hero-overlay {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 22, 36, 0.72),
+        rgba(3, 22, 36, 0.9)
+      );
   }
-  .hero-subtitle {
-    font-size: 1rem;
+
+  .flyixo-hero-content {
+    top: 50%;
+
+    left: 50%;
+    right: auto;
+
+    width: calc(100% - 70px);
+
+    max-width: 600px;
+
+    text-align: center;
+
+    transform:
+      translate(-50%, -45%);
   }
-  .hero-content ul li {
-    font-size: 0.95rem;
+
+  .flyixo-hero-slide.active
+  .flyixo-hero-content {
+    transform:
+      translate(-50%, -50%);
   }
-  .herobtn {
-    font-size: 0.9rem;
+
+  .flyixo-hero-badge {
+    margin-bottom: 13px;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+  }
+
+  .flyixo-hero-subtitle {
+    font-size: 12px;
+
+    line-height: 1.55;
+  }
+
+  .flyixo-hero-title {
+    margin-bottom: 15px;
+
+    font-size:
+      clamp(31px, 7vw, 42px);
+
+    line-height: 1.1;
+  }
+
+  .flyixo-hero-description {
+    max-width: 520px;
+
+    margin:
+      0 auto 17px;
+
+    font-size: 9px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-hero-list {
+    align-items: center;
+
+    margin-bottom: 19px;
+  }
+
+  .flyixo-hero-list li {
+    justify-content: center;
+
+    font-size: 9px;
+  }
+
+  .flyixo-hero-buttons {
+    justify-content: center;
+  }
+
+  .flyixo-hero-btn {
+    min-height: 40px;
+
+    padding:
+      8px 14px;
+
+    font-size: 8px;
+  }
+
+  .flyixo-hero-trust {
+    justify-content: center;
+
+    font-size: 7px;
+  }
+
+  .flyixo-hero-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .flyixo-hero-arrow span {
+    font-size: 21px;
+  }
+
+  .flyixo-hero-arrow-left {
+    left: 9px;
+  }
+
+  .flyixo-hero-arrow-right {
+    right: 9px;
+  }
+
+  .flyixo-hero-counter {
+    display: none;
+  }
+
+  .flyixo-hero-dots {
+    bottom: 18px;
   }
 }
 
-/* iPhone 11, 12, 13, 14, 15 Pro, etc. (max-width: 430px) */
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 576px) {
+  .flyixo-hero-section {
+    min-height: 620px;
+
+    height: 78vh;
+  }
+
+  .flyixo-hero-content {
+    width: calc(100% - 58px);
+  }
+
+  .flyixo-hero-badge {
+    padding:
+      6px 10px;
+
+    font-size: 6px;
+  }
+
+  .flyixo-hero-badge-dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  .flyixo-hero-subtitle {
+    margin-bottom: 9px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-hero-title {
+    margin-bottom: 11px;
+
+    font-size:
+      clamp(27px, 8vw, 35px);
+  }
+
+  .flyixo-hero-description {
+    margin-bottom: 14px;
+
+    font-size: 8px;
+
+    line-height: 1.65;
+  }
+
+  .flyixo-hero-list {
+    gap: 6px;
+
+    margin-bottom: 16px;
+  }
+
+  .flyixo-hero-list li {
+    gap: 7px;
+
+    font-size: 8px;
+  }
+
+  .flyixo-hero-list-icon {
+    width: 20px;
+    height: 20px;
+
+    font-size: 8px;
+  }
+
+  .flyixo-hero-buttons {
+    flex-direction: column;
+
+    width: 100%;
+
+    gap: 7px;
+  }
+
+  .flyixo-hero-btn {
+    width: 100%;
+
+    max-width: 240px;
+
+    min-height: 38px;
+
+    padding:
+      8px 12px;
+
+    font-size: 8px;
+  }
+
+  .flyixo-hero-trust {
+    margin-top: 10px;
+
+    font-size: 6px;
+  }
+
+  .flyixo-hero-trust-check {
+    width: 14px;
+    height: 14px;
+
+    font-size: 6px;
+  }
+
+  .flyixo-hero-arrow {
+    width: 31px;
+    height: 31px;
+  }
+
+  .flyixo-hero-arrow span {
+    font-size: 19px;
+  }
+
+  .flyixo-hero-arrow-left {
+    left: 6px;
+  }
+
+  .flyixo-hero-arrow-right {
+    right: 6px;
+  }
+
+  .flyixo-hero-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .flyixo-hero-dot.active {
+    width: 23px;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
 @media (max-width: 430px) {
-  .hero-section {
-    height: 55vh;
+  .flyixo-hero-section {
+    min-height: 590px;
+
+    height: 78vh;
   }
-  .hero-content {
-    top: 10%;
-    padding: 0 12px;
+
+  .flyixo-hero-content {
+    width: calc(100% - 52px);
   }
-  .hero-content h1 {
-    font-size: 1.9rem;
-    line-height: 1.25;
+
+  .flyixo-hero-subtitle {
+    font-size: 9px;
   }
-  .hero-subtitle {
-    font-size: 0.9rem;
+
+  .flyixo-hero-title {
+    font-size:
+      clamp(24px, 8.2vw, 31px);
   }
-  .hero-content ul li {
-    font-size: 0.85rem;
+
+  .flyixo-hero-description {
+    font-size: 7px;
   }
-  .herobtn {
-    font-size: 0.85rem;
-    padding: 10px 22px;
+
+  .flyixo-hero-list li {
+    font-size: 7px;
   }
-   .herobuttons{
-    display: block;
+
+  .flyixo-hero-btn {
+    max-width: 220px;
+
+    min-height: 36px;
+
+    font-size: 7px;
   }
 }
 
-/* Smaller Mobiles (max-width: 375px, e.g., iPhone SE) */
+/* ============================================================
+   EXTRA SMALL
+============================================================ */
+
 @media (max-width: 375px) {
-  .hero-section {
-    height: 50vh;
+  .flyixo-hero-section {
+    min-height: 560px;
+
+    height: 78vh;
   }
-  .hero-content h1 {
-    font-size: 1.7rem;
+
+  .flyixo-hero-content {
+    width: calc(100% - 48px);
   }
-  .hero-subtitle {
-    font-size: 0.85rem;
+
+  .flyixo-hero-badge {
+    margin-bottom: 9px;
+
+    font-size: 5px;
   }
-  .hero-content ul li {
-    font-size: 0.8rem;
+
+  .flyixo-hero-subtitle {
+    font-size: 8px;
   }
-  .herobtn {
-    font-size: 0.8rem;
-    padding: 9px 20px;
+
+  .flyixo-hero-title {
+    font-size: 23px;
+
+    line-height: 1.12;
   }
- 
+
+  .flyixo-hero-description {
+    font-size: 6.5px;
+  }
+
+  .flyixo-hero-list {
+    gap: 5px;
+  }
+
+  .flyixo-hero-list li {
+    font-size: 6.5px;
+  }
+
+  .flyixo-hero-list-icon {
+    width: 18px;
+    height: 18px;
+
+    font-size: 7px;
+  }
+
+  .flyixo-hero-btn {
+    max-width: 200px;
+
+    min-height: 34px;
+
+    font-size: 6.5px;
+  }
+
+  .flyixo-hero-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .flyixo-hero-arrow span {
+    font-size: 17px;
+  }
+
+  .flyixo-hero-arrow-left {
+    left: 5px;
+  }
+
+  .flyixo-hero-arrow-right {
+    right: 5px;
+  }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.flyixo-hero-section button:focus-visible,
+.flyixo-hero-section a:focus-visible {
+  outline:
+    3px solid
+    rgba(255, 142, 170, 0.6);
+
+  outline-offset: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-hero-section *,
+  .flyixo-hero-section *::before,
+  .flyixo-hero-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
 }

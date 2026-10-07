@@ -1,372 +1,1547 @@
-:root {
-  --primary: #2563eb;
-  --primary-dark: #1e40af;
-  --bg-light: #f3f4f6;
-  --card-bg: #ffffff;
-  --text-dark: #1f2937;
-  --text-light: #6b7280;
-  --border-color: #e5e7eb;
-}
+/* =========================================================
+   DIRECTOR & ACHIEVEMENT MANAGEMENT
+   PREMIUM ADMIN DASHBOARD UI
+   ========================================================= */
 
-/* ====== Container ====== */
 .DirectorAchivment-container {
-  padding: 35px;
-  background: var(--bg-light);
+  --da-primary: #6d28d9;
+  --da-primary-dark: #5b21b6;
+  --da-secondary: #ec4899;
+  --da-accent: #8b5cf6;
+
+  --da-bg: #f7f7fb;
+  --da-card: #ffffff;
+  --da-border: #e8e5ef;
+
+  --da-text: #181725;
+  --da-text-secondary: #625e70;
+  --da-muted: #9692a3;
+
+  --da-success: #16a34a;
+  --da-success-bg: #ecfdf3;
+
+  --da-danger: #dc2626;
+  --da-danger-bg: #fff1f2;
+
+  --da-shadow:
+    0 12px 35px rgba(31, 20, 60, 0.07);
+
+  width: 100%;
   min-height: 100vh;
-  font-family: "Poppins", sans-serif;
+
+  padding: 28px;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(109, 40, 217, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 5%,
+      rgba(236, 72, 153, 0.06),
+      transparent 25%
+    ),
+    var(--da-bg);
+
+  color: var(--da-text);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  box-sizing: border-box;
 }
 
-/* ====== Title ====== */
+/* =========================================================
+   GLOBAL BOX SIZING
+   ========================================================= */
+
+.DirectorAchivment-container *,
+.DirectorAchivment-container *::before,
+.DirectorAchivment-container *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
+
 .DirectorAchivment-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-dark);
+  position: relative;
+
+  width: fit-content;
+
+  margin: 0 auto 32px;
+
+  color: var(--da-text);
+
+  font-size: 26px;
+  line-height: 1.3;
+
+  font-weight: 850;
+
+  letter-spacing: -0.7px;
+
   text-align: center;
-  margin-bottom: 35px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-/* ====== Content ====== */
+.DirectorAchivment-title::after {
+  content: "";
+
+  display: block;
+
+  width: 62px;
+  height: 4px;
+
+  margin: 11px auto 0;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--da-primary),
+      var(--da-secondary)
+    );
+
+  box-shadow:
+    0 4px 12px rgba(109, 40, 217, 0.18);
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
 .DirectorAchivment-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(330px, 0.78fr)
+    minmax(0, 1.75fr);
+
+  gap: 24px;
+
+  align-items: start;
 }
 
-/* ====== Left & Right Panels ====== */
+/* =========================================================
+   LEFT / RIGHT CARDS
+   ========================================================= */
+
 .DirectorAchivment-left,
 .DirectorAchivment-right {
-  flex: 1;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 26px;
+
+  background: var(--da-card);
+
+  border: 1px solid var(--da-border);
+
+  border-radius: 22px;
+
+  box-shadow: var(--da-shadow);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
+.DirectorAchivment-left::before,
+.DirectorAchivment-right::before {
+  content: "";
 
-/* ====== Form ====== */
-.DirectorAchivment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--da-primary),
+      var(--da-secondary)
+    );
 }
+
+.DirectorAchivment-left:hover,
+.DirectorAchivment-right:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 18px 45px rgba(31, 20, 60, 0.1);
+}
+
+/* =========================================================
+   SECTION SUBTITLE
+   ========================================================= */
 
 .DirectorAchivment-subtitle {
+  position: relative;
+
+  margin: 0 0 24px;
+
+  padding-bottom: 16px;
+
+  color: var(--da-text);
+
   font-size: 18px;
-  font-weight: 600;
-  color: var(--primary-dark);
-  margin-bottom: 10px;
+  line-height: 1.4;
+
+  font-weight: 800;
+
+  letter-spacing: -0.3px;
+
+  border-bottom: 1px solid var(--da-border);
 }
 
-.DirectorAchivment-row {
+.DirectorAchivment-subtitle::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -1px;
+
+  width: 45px;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--da-primary),
+      var(--da-secondary)
+    );
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.DirectorAchivment-form {
+  width: 100%;
+
   display: flex;
+  flex-direction: column;
+
+  gap: 0;
+}
+
+/* =========================================================
+   FORM ROW
+   ========================================================= */
+
+.DirectorAchivment-row {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
   gap: 15px;
 }
 
+/* =========================================================
+   FORM FIELD
+   ========================================================= */
+
 .DirectorAchivment-field {
-  flex: 1;
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 }
 
+/* =========================================================
+   LABELS
+   ========================================================= */
+
 .DirectorAchivment-form label {
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: var(--text-dark);
+  display: block;
+
+  margin: 0 0 8px;
+
+  color: var(--da-text);
+
+  font-size: 12px;
+  line-height: 1.4;
+
+  font-weight: 750;
+
+  letter-spacing: 0.1px;
 }
+
+/* =========================================================
+   INPUTS + TEXTAREA
+   ========================================================= */
 
 .DirectorAchivment-form input,
 .DirectorAchivment-form textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 15px;
+
+  border: 1px solid var(--da-border);
+
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  color: var(--da-text);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
   outline: none;
-  color: var(--text-dark);
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    transform 0.2s ease;
 }
+
+.DirectorAchivment-form input {
+  height: 48px;
+
+  padding: 0 14px;
+
+  margin-bottom: 17px;
+}
+
+.DirectorAchivment-form textarea {
+  min-height: 125px;
+
+  margin-bottom: 18px;
+
+  padding: 13px 14px;
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.DirectorAchivment-form input::placeholder,
+.DirectorAchivment-form textarea::placeholder {
+  color: #aaa6b5;
+
+  font-weight: 500;
+}
+
+/* =========================================================
+   INPUT HOVER
+   ========================================================= */
+
+.DirectorAchivment-form input:hover,
+.DirectorAchivment-form textarea:hover {
+  border-color: #cfc5e5;
+
+  background: #fdfcff;
+}
+
+/* =========================================================
+   INPUT FOCUS
+   ========================================================= */
 
 .DirectorAchivment-form input:focus,
 .DirectorAchivment-form textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  border-color: var(--da-primary);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px rgba(109, 40, 217, 0.1);
 }
 
+/* =========================================================
+   SUBMIT BUTTON
+   ========================================================= */
 
-/* ====== Button ====== */
 .DirectorAchivment-btn {
-  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-  color: #fff;
-  font-weight: 600;
+  width: 100%;
+
+  min-height: 50px;
+
+  margin-top: 2px;
+
+  padding: 12px 18px;
+
   border: none;
-  border-radius: 8px;
-  padding: 10px;
-  margin-top: 8px;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--da-primary),
+      var(--da-secondary)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1px;
+
   cursor: pointer;
-  transition: opacity 0.3s ease;
+
+  box-shadow:
+    0 10px 24px rgba(109, 40, 217, 0.2);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease,
+    opacity 0.25s ease;
 }
 
-.DirectorAchivment-btn:hover {
-  opacity: 0.9;
+.DirectorAchivment-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 15px 30px rgba(109, 40, 217, 0.28);
+
+  filter: brightness(1.04);
 }
 
-/* ====== Achievements ====== */
+.DirectorAchivment-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.DirectorAchivment-btn:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+/* =========================================================
+   ACHIEVEMENT UPLOAD SECTION
+   ========================================================= */
+
 .DirectorAchivment-achievement {
-  margin-top: 30px;
-  border-top: 1px solid var(--border-color);
-  padding-top: 20px;
+  width: 100%;
+
+  margin-top: 26px;
+
+  padding-top: 24px;
+
+  border-top: 1px solid var(--da-border);
 }
+
+/* =========================================================
+   UPLOAD BOX
+   ========================================================= */
 
 .DirectorAchivment-upload-box {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-}
+  width: 100%;
 
-.DirectorAchivment-upload-label {
-  background: var(--primary);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
+  min-height: 105px;
+
+  margin-bottom: 20px;
+
+  padding: 18px;
+
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-weight: 500;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  justify-content: center;
+
+  border: 1.5px dashed #cec5df;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fcfbff,
+      #faf9fd
+    );
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
 }
+
+.DirectorAchivment-upload-box:hover {
+  border-color: var(--da-primary);
+
+  background: #faf7ff;
+
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   UPLOAD LABEL
+   ========================================================= */
+
+.DirectorAchivment-upload-label {
+  min-height: 44px;
+
+  padding: 11px 18px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--da-primary),
+      var(--da-accent)
+    );
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 18px rgba(109, 40, 217, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.DirectorAchivment-upload-label:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 22px rgba(109, 40, 217, 0.25);
+
+  filter: brightness(1.04);
+}
+
+.DirectorAchivment-upload-label svg {
+  font-size: 14px;
+}
+
+/* =========================================================
+   HIDDEN FILE INPUT
+   ========================================================= */
 
 .DirectorAchivment-file {
   display: none;
 }
 
+/* =========================================================
+   CERTIFICATE GALLERY
+   ========================================================= */
+
 .DirectorAchivment-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+
+  align-items: start;
 }
+
+/* =========================================================
+   IMAGE BOX
+   ========================================================= */
 
 .DirectorAchivment-imgBox {
   position: relative;
-  width: 100px;
-  height: 100px;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  border-radius: 13px;
+
+  overflow: visible;
+
+  background: #f5f3f9;
+
+  border: 1px solid var(--da-border);
+
+  box-shadow:
+    0 5px 15px rgba(31, 20, 60, 0.08);
 }
 
+/* =========================================================
+   GALLERY IMAGE
+   ========================================================= */
+
 .DirectorAchivment-imgBox img {
+  display: block;
+
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+
+  border-radius: 12px;
+
   object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease;
 }
+
+.DirectorAchivment-imgBox:hover img {
+  transform: scale(1.025);
+
+  filter: brightness(0.95);
+}
+
+/* =========================================================
+   DELETE IMAGE BUTTON
+   ========================================================= */
 
 .DirectorAchivment-imgDelete {
   position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #ef4444;
-  border: none;
-  border-radius: 50%;
-  color: white;
-  width: 22px;
-  height: 22px;
+
+  top: -7px;
+  right: -7px;
+
+  width: 26px;
+  height: 26px;
+
+  padding: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-}
 
-/* ====== Table ====== */
-.DirectorAchivment-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+  border: 2px solid #ffffff;
 
-.DirectorAchivment-table th {
-  background: var(--primary);
-  color: #fff;
-  font-weight: 600;
-}
+  border-radius: 50%;
 
-.DirectorAchivment-table th,
-.DirectorAchivment-table td {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-color);
-  text-align: left;
-}
-
-.DirectorAchivment-edit,
-.DirectorAchivment-delete {
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.DirectorAchivment-edit {
-  background: #10b981;
-  margin-right: 5px;
-}
-
-.DirectorAchivment-delete {
   background: #ef4444;
+
+  color: #ffffff;
+
+  font-size: 10px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 10px rgba(239, 68, 68, 0.3);
+
+  z-index: 2;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
+
+.DirectorAchivment-imgDelete:hover {
+  background: #dc2626;
+
+  transform: scale(1.1);
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
 
 .DirectorAchivment-empty {
-  color: var(--text-light);
+  width: 100%;
+
+  margin: 0;
+
+  padding: 28px 15px;
+
+  color: var(--da-muted);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+  font-weight: 600;
+
   text-align: center;
-  margin-top: 15px;
+
+  border: 1px dashed var(--da-border);
+
+  border-radius: 13px;
+
+  background: #faf9fc;
 }
-/* ====== Responsive Design ====== */
-@media (max-width: 992px) {
+
+/* =========================================================
+   RIGHT PANEL
+   ========================================================= */
+
+.DirectorAchivment-right {
+  overflow: hidden;
+}
+
+/* =========================================================
+   TABLE SCROLL AREA
+   ========================================================= */
+
+.DirectorAchivment-right:has(.DirectorAchivment-table) {
+  overflow-x: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #c8c1d5
+    transparent;
+}
+
+.DirectorAchivment-right:has(.DirectorAchivment-table)::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.DirectorAchivment-right:has(.DirectorAchivment-table)::-webkit-scrollbar-track {
+  background: #f8f7fb;
+
+  border-radius: 20px;
+}
+
+.DirectorAchivment-right:has(.DirectorAchivment-table)::-webkit-scrollbar-thumb {
+  background: #c8c1d5;
+
+  border-radius: 20px;
+}
+
+.DirectorAchivment-right:has(.DirectorAchivment-table)::-webkit-scrollbar-thumb:hover {
+  background: var(--da-primary);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.DirectorAchivment-table {
+  width: 100%;
+
+  min-width: 950px;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  table-layout: auto;
+}
+
+/* =========================================================
+   TABLE HEADER
+   ========================================================= */
+
+.DirectorAchivment-table th {
+  height: 52px;
+
+  padding: 13px 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #faf9ff,
+      #f3f1f9
+    );
+
+  color: #59536a;
+
+  border-top: 1px solid var(--da-border);
+
+  border-bottom: 1px solid var(--da-border);
+
+  font-size: 10px;
+
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  text-align: center;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.65px;
+
+  white-space: nowrap;
+}
+
+.DirectorAchivment-table th:first-child {
+  border-top-left-radius: 13px;
+}
+
+.DirectorAchivment-table th:last-child {
+  border-top-right-radius: 13px;
+}
+
+/* =========================================================
+   TABLE CELLS
+   ========================================================= */
+
+.DirectorAchivment-table td {
+  min-height: 75px;
+
+  padding: 14px;
+
+  color: #464153;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #efedf4;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  font-weight: 600;
+
+  text-align: center;
+
+  vertical-align: middle;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.DirectorAchivment-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.DirectorAchivment-table tbody tr:hover td {
+  background: #faf8ff;
+}
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
+.DirectorAchivment-table td:nth-child(2) {
+  color: #292535;
+
+  font-size: 12px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   DESIGNATION
+   ========================================================= */
+
+.DirectorAchivment-table td:nth-child(1) {
+  color: var(--da-primary);
+
+  font-weight: 750;
+}
+
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+.DirectorAchivment-table td:nth-child(3) {
+  color: #4c4758;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.DirectorAchivment-table td:nth-child(4) {
+  color: #625c70;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ADDRESS
+   ========================================================= */
+
+.DirectorAchivment-table td:nth-child(5) {
+  max-width: 190px;
+
+  color: #686273;
+
+  line-height: 1.5;
+}
+
+/* =========================================================
+   CERTIFICATE IMAGE LIST
+   ========================================================= */
+
+.DirectorAchivment-imgList {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+}
+
+/* =========================================================
+   CERTIFICATE IMAGES
+   Override inline dimensions from JSX
+   ========================================================= */
+
+.DirectorAchivment-imgList img {
+  width: 58px !important;
+  height: 58px !important;
+
+  margin: 0 !important;
+
+  padding: 2px;
+
+  border: 1px solid #e5e0ed;
+
+  border-radius: 10px !important;
+
+  object-fit: cover;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 12px rgba(31, 20, 60, 0.1) !important;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.DirectorAchivment-imgList img:hover {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 8px 18px rgba(31, 20, 60, 0.16) !important;
+}
+
+/* =========================================================
+   NO CERTIFICATES
+   ========================================================= */
+
+.DirectorAchivment-table td span {
+  color: var(--da-muted);
+
+  font-size: 10px;
+
+  font-weight: 650;
+}
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.DirectorAchivment-delete {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #fecdd3;
+
+  border-radius: 9px;
+
+  background: var(--da-danger-bg);
+
+  color: var(--da-danger);
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.DirectorAchivment-delete:hover {
+  background: var(--da-danger);
+
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 7px 15px rgba(239, 68, 68, 0.2);
+}
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+.DirectorAchivment-container button:focus-visible,
+.DirectorAchivment-container input:focus-visible,
+.DirectorAchivment-container textarea:focus-visible {
+  outline: 3px solid rgba(109, 40, 217, 0.18);
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   LARGE LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .DirectorAchivment-container {
+    padding: 22px;
+  }
+
   .DirectorAchivment-content {
-    flex-direction: column;
+    grid-template-columns:
+      minmax(300px, 0.75fr)
+      minmax(0, 1.5fr);
+
+    gap: 20px;
   }
 
   .DirectorAchivment-left,
   .DirectorAchivment-right {
-    width: 100%;
-    min-width: auto;
-  }
-
-  .DirectorAchivment-row {
-    flex-direction: column;
+    padding: 22px;
   }
 
   .DirectorAchivment-table {
-    width: 100%;
-    min-width: 600px; /* Maintain readability */
+    min-width: 900px;
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+  .DirectorAchivment-container {
+    padding: 20px;
+  }
+
+  .DirectorAchivment-content {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .DirectorAchivment-left {
+    order: 1;
   }
 
   .DirectorAchivment-right {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    order: 2;
   }
 
-  .DirectorAchivment-right::-webkit-scrollbar {
-    height: 6px;
-  }
-
-  .DirectorAchivment-right::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 4px;
-  }
-
-  .DirectorAchivment-right::-webkit-scrollbar-track {
-    background: var(--border-color);
+  .DirectorAchivment-table {
+    min-width: 900px;
   }
 }
 
-@media (max-width: 576px) {
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 700px) {
   .DirectorAchivment-container {
-    padding: 10px;
+    padding: 16px;
   }
 
   .DirectorAchivment-title {
+    margin-bottom: 24px;
+
     font-size: 22px;
   }
 
+  .DirectorAchivment-left,
+  .DirectorAchivment-right {
+    padding: 19px;
+
+    border-radius: 18px;
+  }
+
   .DirectorAchivment-subtitle {
+    font-size: 17px;
+  }
+
+  .DirectorAchivment-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .DirectorAchivment-form input {
+    height: 46px;
+
+    font-size: 12px;
+  }
+
+  .DirectorAchivment-form textarea {
+    min-height: 115px;
+
+    font-size: 12px;
+  }
+
+  .DirectorAchivment-gallery {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+  .DirectorAchivment-table {
+    min-width: 870px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .DirectorAchivment-container {
+    padding: 11px;
+  }
+
+  .DirectorAchivment-title {
+    margin-bottom: 20px;
+
+    font-size: 19px;
+
+    letter-spacing: -0.4px;
+  }
+
+  .DirectorAchivment-title::after {
+    width: 48px;
+
+    height: 3px;
+
+    margin-top: 8px;
+  }
+
+  .DirectorAchivment-content {
+    gap: 14px;
+  }
+
+  .DirectorAchivment-left,
+  .DirectorAchivment-right {
+    padding: 16px;
+
+    border-radius: 16px;
+  }
+
+  .DirectorAchivment-subtitle {
+    margin-bottom: 19px;
+
+    padding-bottom: 13px;
+
     font-size: 16px;
   }
 
-  .DirectorAchivment-upload-label {
-    font-size: 14px;
-    padding: 8px 16px;
+  .DirectorAchivment-form label {
+    font-size: 11px;
   }
 
-  .DirectorAchivment-imgBox {
-    width: 80px;
-    height: 80px;
+  .DirectorAchivment-form input {
+    height: 44px;
+
+    margin-bottom: 14px;
+
+    padding: 0 12px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+  }
+
+  .DirectorAchivment-form textarea {
+    min-height: 105px;
+
+    margin-bottom: 15px;
+
+    padding: 11px 12px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
   }
 
   .DirectorAchivment-btn {
-    font-size: 14px;
+    min-height: 46px;
+
+    border-radius: 11px;
+
+    font-size: 12px;
+  }
+
+  .DirectorAchivment-achievement {
+    margin-top: 21px;
+
+    padding-top: 20px;
+  }
+
+  .DirectorAchivment-upload-box {
+    min-height: 88px;
+
+    padding: 14px;
+  }
+
+  .DirectorAchivment-upload-label {
+    min-height: 41px;
+
+    padding: 9px 13px;
+
+    font-size: 10px;
+  }
+
+  .DirectorAchivment-gallery {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .DirectorAchivment-imgDelete {
+    width: 23px;
+    height: 23px;
+
+    font-size: 8px;
+  }
+
+  .DirectorAchivment-empty {
+    padding: 22px 12px;
+
+    font-size: 10px;
+  }
+
+  .DirectorAchivment-table {
+    min-width: 850px;
+  }
+
+  .DirectorAchivment-table th {
+    height: 47px;
+
+    padding: 10px 9px;
+
+    font-size: 8px;
+  }
+
+  .DirectorAchivment-table td {
+    min-height: 65px;
+
+    padding: 11px 9px;
+
+    font-size: 10px;
+  }
+
+  .DirectorAchivment-table td:nth-child(2) {
+    font-size: 11px;
+  }
+
+  .DirectorAchivment-imgList {
+    gap: 5px;
+  }
+
+  .DirectorAchivment-imgList img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .DirectorAchivment-delete {
+    width: 31px;
+    height: 31px;
+
+    font-size: 10px;
   }
 }
 
-/* ====== Dark Mode Styles ====== */
-.DirectorAchivment-container.dark {
-  background: #0f172a;
-  color: #e2e8f0;
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 380px) {
+  .DirectorAchivment-container {
+    padding: 8px;
+  }
+
+  .DirectorAchivment-left,
+  .DirectorAchivment-right {
+    padding: 14px;
+  }
+
+  .DirectorAchivment-title {
+    font-size: 17px;
+  }
+
+  .DirectorAchivment-subtitle {
+    font-size: 15px;
+  }
+
+  .DirectorAchivment-gallery {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+  .DirectorAchivment-table {
+    min-width: 820px;
+  }
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-title {
-  background: linear-gradient(90deg, #60a5fa, #3b82f6);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.DirectorAchivment-container.dark {
+  --da-bg: #0b0b12;
+  --da-card: #15151f;
+  --da-border: #292938;
+
+  --da-text: #f5f3fa;
+  --da-text-secondary: #c2becd;
+  --da-muted: #8f8b9c;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(139, 92, 246, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.08),
+      transparent 25%
+    ),
+    var(--da-bg);
+
+  color: var(--da-text);
 }
+
+/* =========================================================
+   DARK - CARDS
+   ========================================================= */
 
 .DirectorAchivment-container.dark .DirectorAchivment-left,
 .DirectorAchivment-container.dark .DirectorAchivment-right {
-  background: #1e293b;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-  border: 1px solid #334155;
+  background: #15151f;
+
+  border-color: #292938;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
+/* =========================================================
+   DARK - FORM
+   ========================================================= */
+
 .DirectorAchivment-container.dark .DirectorAchivment-form label {
-  color: #cbd5e1;
+  color: #dedbe7;
 }
 
 .DirectorAchivment-container.dark .DirectorAchivment-form input,
 .DirectorAchivment-container.dark .DirectorAchivment-form textarea {
-  background: #334155;
-  color: #f1f5f9;
-  border: 1px solid #475569;
+  background: #1d1d29;
+
+  border-color: #353546;
+
+  color: #f5f3fa;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-form input::placeholder,
+.DirectorAchivment-container.dark .DirectorAchivment-form textarea::placeholder {
+  color: #777385;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-form input:hover,
+.DirectorAchivment-container.dark .DirectorAchivment-form textarea:hover {
+  border-color: #514a63;
+
+  background: #20202d;
 }
 
 .DirectorAchivment-container.dark .DirectorAchivment-form input:focus,
 .DirectorAchivment-container.dark .DirectorAchivment-form textarea:focus {
-  border-color: #60a5fa;
-  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+  border-color: #a78bfa;
+
+  background: #1d1d29;
+
+  box-shadow:
+    0 0 0 4px rgba(167, 139, 250, 0.12);
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-btn {
-  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
-  color: #fff;
+/* =========================================================
+   DARK - UPLOAD
+   ========================================================= */
+
+.DirectorAchivment-container.dark .DirectorAchivment-upload-box {
+  background:
+    linear-gradient(
+      180deg,
+      #191922,
+      #17171f
+    );
+
+  border-color: #3a3748;
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-upload-label {
-  background: #2563eb;
-  color: #fff;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+.DirectorAchivment-container.dark .DirectorAchivment-upload-box:hover {
+  background: #1b1925;
+
+  border-color: #8b5cf6;
 }
+
+/* =========================================================
+   DARK - EMPTY
+   ========================================================= */
+
+.DirectorAchivment-container.dark .DirectorAchivment-empty {
+  background: #191922;
+
+  border-color: #302e3d;
+
+  color: #858190;
+}
+
+/* =========================================================
+   DARK - TABLE
+   ========================================================= */
 
 .DirectorAchivment-container.dark .DirectorAchivment-table th {
-  background: #1d4ed8;
+  background:
+    linear-gradient(
+      180deg,
+      #20202d,
+      #1a1a25
+    );
+
+  color: #cbc7d5;
+
+  border-color: #302f3d;
 }
 
 .DirectorAchivment-container.dark .DirectorAchivment-table td {
-  color: #e2e8f0;
+  background: #15151f;
+
+  color: #c9c5d2;
+
+  border-color: #282735;
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-empty {
-  color: #94a3b8;
+.DirectorAchivment-container.dark .DirectorAchivment-table tbody tr:hover td {
+  background: #1c1b28;
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-imgBox img {
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+.DirectorAchivment-container.dark .DirectorAchivment-table td:nth-child(2) {
+  color: #f2effa;
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-edit {
-  background: #22c55e;
+.DirectorAchivment-container.dark .DirectorAchivment-table td:nth-child(1) {
+  color: #a78bfa;
 }
+
+.DirectorAchivment-container.dark .DirectorAchivment-table td:nth-child(3),
+.DirectorAchivment-container.dark .DirectorAchivment-table td:nth-child(4),
+.DirectorAchivment-container.dark .DirectorAchivment-table td:nth-child(5) {
+  color: #b7b2c1;
+}
+
+/* =========================================================
+   DARK - CERTIFICATE IMAGES
+   ========================================================= */
+
+.DirectorAchivment-container.dark .DirectorAchivment-imgBox {
+  background: #20202b;
+
+  border-color: #333142;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-imgList img {
+  background: #20202b;
+
+  border-color: #383544;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* =========================================================
+   DARK - DELETE
+   ========================================================= */
 
 .DirectorAchivment-container.dark .DirectorAchivment-delete {
+  background: #351b21;
+
+  border-color: #5a2933;
+
+  color: #fb7185;
+}
+
+.DirectorAchivment-container.dark .DirectorAchivment-delete:hover {
   background: #ef4444;
+
+  border-color: #ef4444;
+
+  color: #ffffff;
+}
+
+/* =========================================================
+   DARK - SCROLLBAR
+   ========================================================= */
+
+.DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-track {
+  background: #171720;
 }
 
 .DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-thumb {
-  background: #3b82f6;
+  background: #4a4658;
 }
 
-.DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-track {
-  background: #334155;
+.DirectorAchivment-container.dark .DirectorAchivment-right::-webkit-scrollbar-thumb:hover {
+  background: #8b5cf6;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .DirectorAchivment-container *,
+  .DirectorAchivment-container *::before,
+  .DirectorAchivment-container *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

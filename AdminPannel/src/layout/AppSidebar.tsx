@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+
 import {
   ChevronDownIcon,
   GridIcon,
@@ -11,171 +12,343 @@ import {
   BoxCubeIcon,
   HorizontaLDots,
 } from "../icons";
+
 import { useSidebar } from "../context/SidebarContext";
-import companylogo from "../Asserts/Logo.png";
+import companylogo from "../Asserts/logo-main.png";
+
+import "./AppSidebar.css";
+
+// =========================================================
+// TYPES
+// =========================================================
 
 type NavItem = {
   name: string;
   icon: React.ReactNode;
   path?: string;
-  subItems?: { name: string; path: string }[];
+  subItems?: {
+    name: string;
+    path: string;
+  }[];
 };
 
+// =========================================================
+// NAVIGATION ITEMS
+// =========================================================
+
 const navItems: NavItem[] = [
-  { icon: <GridIcon />, name: "Dashboard", path: "/" },
+  {
+    name: "Dashboard",
+    icon: <GridIcon />,
+    path: "/",
+  },
+
+  // =======================================================
+  // VISA MANAGEMENT
+  // =======================================================
 
   {
-    icon: <BoxCubeIcon />,
     name: "Visa Management",
+    icon: <BoxCubeIcon />,
     subItems: [
-      { name: "Post Visa", path: "/visa/post-visa" },
-      { name: "Preview", path: "/visa/preview" },
+      {
+        name: "Post Visa",
+        path: "/visa/post-visa",
+      },
+      {
+        name: "Preview",
+        path: "/visa/preview",
+      },
     ],
   },
 
+  // =======================================================
+  // COUNTRY MANAGEMENT
+  // =======================================================
+
   {
-    icon: <TableIcon />,
     name: "Country Manage",
-    subItems: [
-      { name: "Country", path: "/country/manage" },
-      { name: "Visa Type", path: "/country/visa-type" },
-    ],
-  },
-
-  {
-    icon: <BoxCubeIcon />,
-    name: "Visa Notes",
-    subItems: [
-      { name: "Payment", path: "/visa-notes/payment" },
-      { name: "Delivered", path: "/visa-notes/delivered" },
-    ],
-  },
-
-  // ⭐ NEW SECTION — Dummy Ticket (as requested)
-  {
-    icon: <BoxCubeIcon />,
-    name: "Dummy Ticket",
-    subItems: [
-      { name: "Manage Ticket", path: "/dummy-ticket/manage" },
-      { name: "Booking Holder", path: "/dummy-ticket/holder" },
-      { name: "Insurance Lead", path: "/dummy-ticket/insurance" }
-    ],
-  },
-
-  // ⭐ Discount Coupon MOVED BELOW Dummy Ticket
-  {
-    icon: <BoxCubeIcon />,
-    name: "Discount Coupon",
-    subItems: [
-      { name: "Generate Coupon", path: "/discount-coupon/generate" },
-    ],
-  },
-
-  {
-    icon: <UserCircleIcon />,
-    name: "Client Enquiry",
-    subItems: [
-      { name: "Visa Clients", path: "/client/visa-clients" },
-      { name: "Study Abroad Clients", path: "/client/study-abroad" },
-      { name: "Intern Abroad Clients", path: "/client/intern-abroad" },
-    ],
-  },
-
-  {
     icon: <TableIcon />,
-    name: "Team Management",
     subItems: [
-      { name: "Post Team Member", path: "/team/post-member" },
-      { name: "Preview", path: "/team/preview" },
+      {
+        name: "Country",
+        path: "/country/manage",
+      },
+      {
+        name: "Visa Type",
+        path: "/country/visa-type",
+      },
     ],
   },
 
-  {
-    icon: <PageIcon />,
-    name: "Testimonial",
-    subItems: [
-      { name: "Client Action", path: "/testimonial/client-action" },
-      { name: "Post Testimonial", path: "/testimonial/post" },
-    ],
-  },
+  // =======================================================
+  // VISA NOTES
+  // =======================================================
 
   {
-    icon: <ListIcon />,
-    name: "Blog Management",
-    subItems: [
-      { name: "Post Blog", path: "/blog/post" },
-      { name: "Preview", path: "/blog/preview" },
-    ],
-  },
-
-  {
+    name: "Visa Notes",
     icon: <BoxCubeIcon />,
-    name: "Manage Advertise",
     subItems: [
-      { name: "Banner", path: "/advertise/banner" },
-      { name: "Post Milestone", path: "/advertise/post-milestone" },
+      {
+        name: "Payment",
+        path: "/visa-notes/payment",
+      },
+      {
+        name: "Delivered",
+        path: "/visa-notes/delivered",
+      },
     ],
   },
 
-  { icon: <PlugInIcon />, name: "Contact Management", path: "/contact/manage" },
-
-  { icon: <BoxCubeIcon />, name: "Media Upload", path: "/media/upload" },
+  // =======================================================
+  // DUMMY TICKET
+  // =======================================================
 
   {
-    icon: <UserCircleIcon />,
+    name: "Dummy Ticket",
+    icon: <BoxCubeIcon />,
+    subItems: [
+      {
+        name: "Manage Ticket",
+        path: "/dummy-ticket/manage",
+      },
+      {
+        name: "Booking Holder",
+        path: "/dummy-ticket/holder",
+      },
+      {
+        name: "Insurance Lead",
+        path: "/dummy-ticket/insurance",
+      },
+    ],
+  },
+
+  // =======================================================
+  // DISCOUNT COUPON
+  // =======================================================
+
+  {
+    name: "Discount Coupon",
+    icon: <BoxCubeIcon />,
+    subItems: [
+      {
+        name: "Generate Coupon",
+        path: "/discount-coupon/generate",
+      },
+    ],
+  },
+
+  // =======================================================
+  // CLIENT ENQUIRY REMOVED
+  // =======================================================
+
+  // =======================================================
+  // TEAM MANAGEMENT
+  // =======================================================
+
+  {
+    name: "Team Management",
+    icon: <TableIcon />,
+    subItems: [
+      {
+        name: "Post Team Member",
+        path: "/team/post-member",
+      },
+      {
+        name: "Preview",
+        path: "/team/preview",
+      },
+    ],
+  },
+
+  // =======================================================
+  // TESTIMONIAL
+  // =======================================================
+
+  {
+    name: "Testimonial",
+    icon: <PageIcon />,
+    subItems: [
+      {
+        name: "Client Action",
+        path: "/testimonial/client-action",
+      },
+      {
+        name: "Post Testimonial",
+        path: "/testimonial/post",
+      },
+    ],
+  },
+
+  // =======================================================
+  // BLOG MANAGEMENT
+  // =======================================================
+
+  {
+    name: "Blog Management",
+    icon: <ListIcon />,
+    subItems: [
+      {
+        name: "Post Blog",
+        path: "/blog/post",
+      },
+      {
+        name: "Preview",
+        path: "/blog/preview",
+      },
+    ],
+  },
+
+  // =======================================================
+  // ADVERTISE MANAGEMENT
+  // =======================================================
+
+  {
+    name: "Manage Advertise",
+    icon: <BoxCubeIcon />,
+    subItems: [
+      {
+        name: "Banner",
+        path: "/advertise/banner",
+      },
+      {
+        name: "Post Milestone",
+        path: "/advertise/post-milestone",
+      },
+    ],
+  },
+
+  // =======================================================
+  // CONTACT
+  // =======================================================
+
+  {
+    name: "Contact Management",
+    icon: <PlugInIcon />,
+    path: "/contact/manage",
+  },
+
+  // =======================================================
+  // MEDIA
+  // =======================================================
+
+  {
+    name: "Media Upload",
+    icon: <BoxCubeIcon />,
+    path: "/media/upload",
+  },
+
+  // =======================================================
+  // SUCCESSFUL CLIENTS
+  // =======================================================
+
+  {
     name: "Our Successful Clients",
+    icon: <UserCircleIcon />,
     path: "/clients/successful",
   },
 
+  // =======================================================
+  // DIRECTOR
+  // =======================================================
+
   {
-    icon: <UserCircleIcon />,
     name: "Director & Achievement Manage",
+    icon: <UserCircleIcon />,
     path: "/director-achievement-manage",
   },
 
-  // FAQ MANAGEMENT
+  // =======================================================
+  // FAQ
+  // =======================================================
+
   {
-    icon: <PageIcon />,
     name: "FAQ Management",
+    icon: <PageIcon />,
     subItems: [
-      { name: "Post FAQ", path: "/faq/post-faq" },
-      { name: "View All", path: "/faq/preview" },
+      {
+        name: "Post FAQ",
+        path: "/faq/post-faq",
+      },
+      {
+        name: "View All",
+        path: "/faq/preview",
+      },
     ],
   },
 ];
 
-
+// =========================================================
+// COMPONENT
+// =========================================================
 
 const AppSidebar: React.FC = () => {
-  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const {
+    isExpanded,
+    isMobileOpen,
+    isHovered,
+    setIsHovered,
+  } = useSidebar();
+
   const location = useLocation();
 
-  const [openSubmenu, setOpenSubmenu] = useState<{ index: number } | null>(null);
-  const [subMenuHeight, setSubMenuHeight] = useState<Record<number, number>>({});
-  const subMenuRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const [openSubmenu, setOpenSubmenu] = useState<{
+    index: number;
+  } | null>(null);
+
+  const [subMenuHeight, setSubMenuHeight] =
+    useState<Record<number, number>>({});
+
+  const subMenuRefs = useRef<
+    Record<number, HTMLDivElement | null>
+  >({});
+
+  // =========================================================
+  // ACTIVE ROUTE
+  // =========================================================
 
   const isActive = useCallback(
-    (path: string) => location.pathname === path,
+    (path: string) => {
+      return location.pathname === path;
+    },
     [location.pathname]
   );
 
-  // Auto-expand submenu for active route
+  // =========================================================
+  // AUTO OPEN ACTIVE SUBMENU
+  // =========================================================
+
   useEffect(() => {
     let matched = false;
+
     navItems.forEach((nav, index) => {
-      if (nav.subItems?.some((sub) => isActive(sub.path))) {
-        setOpenSubmenu({ index });
+      if (
+        nav.subItems?.some((sub) =>
+          isActive(sub.path)
+        )
+      ) {
+        setOpenSubmenu({
+          index,
+        });
+
         matched = true;
       }
     });
-    if (!matched) setOpenSubmenu(null);
+
+    if (!matched) {
+      setOpenSubmenu(null);
+    }
   }, [location, isActive]);
 
-  // Calculate submenu height dynamically
+  // =========================================================
+  // SUBMENU HEIGHT
+  // =========================================================
+
   useEffect(() => {
     if (openSubmenu !== null) {
       const key = openSubmenu.index;
       const ref = subMenuRefs.current[key];
+
       if (ref) {
         setSubMenuHeight((prev) => ({
           ...prev,
@@ -185,155 +358,275 @@ const AppSidebar: React.FC = () => {
     }
   }, [openSubmenu]);
 
+  // =========================================================
+  // SUBMENU TOGGLE
+  // =========================================================
+
   const handleSubmenuToggle = (index: number) => {
-    setOpenSubmenu((prev) => (prev?.index === index ? null : { index }));
+    setOpenSubmenu((prev) =>
+      prev?.index === index
+        ? null
+        : {
+            index,
+          }
+    );
   };
+
+  // =========================================================
+  // SIDEBAR STATE
+  // =========================================================
+
+  const sidebarExpanded =
+    isExpanded || isHovered || isMobileOpen;
+
+  // =========================================================
+  // RENDER
+  // =========================================================
 
   return (
     <aside
-      className={`fixed top-0 left-0 mt-16 lg:mt-0 flex flex-col h-[calc(100vh-4rem)] lg:h-screen bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 text-gray-900 transition-all duration-300 ease-in-out z-50
-        ${
-          isExpanded || isMobileOpen
-            ? "w-[290px]"
-            : isHovered
-            ? "w-[290px]"
-            : "w-[90px]"
+      className={`app-sidebar ${
+        sidebarExpanded
+          ? "app-sidebar-expanded"
+          : "app-sidebar-collapsed"
+      } ${
+        isMobileOpen
+          ? "app-sidebar-mobile-open"
+          : "app-sidebar-mobile-closed"
+      }`}
+      onMouseEnter={() => {
+        if (!isExpanded) {
+          setIsHovered(true);
         }
-        ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
-        lg:translate-x-0`}
-      onMouseEnter={() => !isExpanded && setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      }}
+      onMouseLeave={() => {
+        setIsHovered(false);
+      }}
     >
-      {/* ===== LOGO SECTION ===== */}
-      <div
-        className={`py-5 flex ${
-          !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
-        }`}
-      >
-        <Link to="/">
+      {/* =====================================================
+          SINGLE LOGO
+          SAME LOGO ON ALL SIDEBAR STATES
+      ===================================================== */}
+
+      <div className="sidebar-logo-section">
+        <Link
+          to="/"
+          className="sidebar-logo-link"
+          aria-label="Go to Dashboard"
+        >
           <img
             src={companylogo}
             alt="Company Logo"
-            width={isExpanded || isHovered || isMobileOpen ? 150 : 32}
-            height={isExpanded || isHovered || isMobileOpen ? 40 : 32}
+            className="sidebar-logo"
           />
         </Link>
       </div>
 
-      {/* ===== MENU SECTION ===== */}
-      <div className="flex flex-col overflow-y-auto no-scrollbar duration-300 ease-linear">
-        <nav>
-          <h2
-            className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
-              !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+      {/* =====================================================
+          MENU
+      ===================================================== */}
+
+      <div className="sidebar-menu-scroll">
+        <nav
+          className="sidebar-navigation"
+          aria-label="Main Navigation"
+        >
+          {/* =================================================
+              MENU TITLE
+          ================================================= */}
+
+          <div
+            className={`sidebar-menu-heading ${
+              sidebarExpanded
+                ? "sidebar-menu-heading-expanded"
+                : "sidebar-menu-heading-collapsed"
             }`}
           >
-            {isExpanded || isHovered || isMobileOpen ? (
-              "Main Menu"
+            {sidebarExpanded ? (
+              <span>Main Menu</span>
             ) : (
-              <HorizontaLDots className="size-6" />
+              <HorizontaLDots className="sidebar-dots-icon" />
             )}
-          </h2>
+          </div>
 
-          <ul className="flex flex-col gap-4">
-            {navItems.map((nav, index) => (
-              <li key={nav.name}>
-                {/* MAIN MENU ITEM */}
-                {nav.subItems ? (
-                  <button
-                    onClick={() => handleSubmenuToggle(index)}
-                    className={`menu-item group ${
-                      openSubmenu?.index === index
-                        ? "menu-item-active"
-                        : "menu-item-inactive"
-                    } ${
-                      !isExpanded && !isHovered
-                        ? "lg:justify-center"
-                        : "lg:justify-start"
-                    }`}
-                  >
-                    <span
-                      className={`menu-item-icon-size ${
-                        openSubmenu?.index === index
-                          ? "menu-item-icon-active"
-                          : "menu-item-icon-inactive"
-                      }`}
-                    >
-                      {nav.icon}
-                    </span>
-                    {(isExpanded || isHovered || isMobileOpen) && (
-                      <span className="menu-item-text">{nav.name}</span>
-                    )}
-                    {(isExpanded || isHovered || isMobileOpen) && (
-                      <ChevronDownIcon
-                        className={`ml-auto w-5 h-5 transition-transform duration-200 ${
-                          openSubmenu?.index === index
-                            ? "rotate-180 text-brand-500"
+          {/* =================================================
+              NAVIGATION
+          ================================================= */}
+
+          <ul className="sidebar-nav-list">
+            {navItems.map((nav, index) => {
+              const hasSubmenu =
+                !!nav.subItems?.length;
+
+              const submenuOpen =
+                openSubmenu?.index === index;
+
+              const directActive =
+                !!nav.path &&
+                isActive(nav.path);
+
+              const childActive =
+                nav.subItems?.some((sub) =>
+                  isActive(sub.path)
+                ) || false;
+
+              const active =
+                directActive || childActive;
+
+              return (
+                <li
+                  key={nav.name}
+                  className="sidebar-nav-list-item"
+                >
+                  {/* =================================================
+                      SUBMENU ITEM
+                  ================================================= */}
+
+                  {hasSubmenu ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handleSubmenuToggle(index)
+                        }
+                        aria-expanded={submenuOpen}
+                        className={`sidebar-menu-item ${
+                          active
+                            ? "sidebar-menu-item-active"
+                            : "sidebar-menu-item-inactive"
+                        } ${
+                          !sidebarExpanded
+                            ? "sidebar-menu-item-collapsed"
                             : ""
                         }`}
-                      />
-                    )}
-                  </button>
-                ) : (
-                  nav.path && (
-                    <Link
-                      to={nav.path}
-                      className={`menu-item group ${
-                        isActive(nav.path)
-                          ? "menu-item-active"
-                          : "menu-item-inactive"
-                      }`}
-                    >
-                      <span
-                        className={`menu-item-icon-size ${
-                          isActive(nav.path)
-                            ? "menu-item-icon-active"
-                            : "menu-item-icon-inactive"
+                      >
+                        <span
+                          className={`sidebar-menu-icon ${
+                            active
+                              ? "sidebar-menu-icon-active"
+                              : "sidebar-menu-icon-inactive"
+                          }`}
+                        >
+                          {nav.icon}
+                        </span>
+
+                        {sidebarExpanded && (
+                          <>
+                            <span className="sidebar-menu-text">
+                              {nav.name}
+                            </span>
+
+                            <ChevronDownIcon
+                              className={`sidebar-chevron ${
+                                submenuOpen
+                                  ? "sidebar-chevron-open"
+                                  : ""
+                              }`}
+                            />
+                          </>
+                        )}
+                      </button>
+
+                      {/* =================================================
+                          SUBMENU
+                      ================================================= */}
+
+                      {sidebarExpanded && (
+                        <div
+                          ref={(element) => {
+                            subMenuRefs.current[index] =
+                              element;
+                          }}
+                          className="sidebar-submenu-wrapper"
+                          style={{
+                            height: submenuOpen
+                              ? `${
+                                  subMenuHeight[index] ||
+                                  0
+                                }px`
+                              : "0px",
+                          }}
+                        >
+                          <ul className="sidebar-submenu">
+                            {nav.subItems?.map(
+                              (sub) => {
+                                const subActive =
+                                  isActive(
+                                    sub.path
+                                  );
+
+                                return (
+                                  <li
+                                    key={sub.name}
+                                    className="sidebar-submenu-list-item"
+                                  >
+                                    <Link
+                                      to={sub.path}
+                                      className={`sidebar-submenu-item ${
+                                        subActive
+                                          ? "sidebar-submenu-item-active"
+                                          : "sidebar-submenu-item-inactive"
+                                      }`}
+                                    >
+                                      <span
+                                        className={`sidebar-submenu-dot ${
+                                          subActive
+                                            ? "sidebar-submenu-dot-active"
+                                            : ""
+                                        }`}
+                                      />
+
+                                      <span>
+                                        {sub.name}
+                                      </span>
+                                    </Link>
+                                  </li>
+                                );
+                              }
+                            )}
+                          </ul>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    /* =================================================
+                       DIRECT LINK
+                    ================================================= */
+
+                    nav.path && (
+                      <Link
+                        to={nav.path}
+                        className={`sidebar-menu-item ${
+                          active
+                            ? "sidebar-menu-item-active"
+                            : "sidebar-menu-item-inactive"
+                        } ${
+                          !sidebarExpanded
+                            ? "sidebar-menu-item-collapsed"
+                            : ""
                         }`}
                       >
-                        {nav.icon}
-                      </span>
-                      {(isExpanded || isHovered || isMobileOpen) && (
-                        <span className="menu-item-text">{nav.name}</span>
-                      )}
-                    </Link>
-                  )
-                )}
+                        <span
+                          className={`sidebar-menu-icon ${
+                            active
+                              ? "sidebar-menu-icon-active"
+                              : "sidebar-menu-icon-inactive"
+                          }`}
+                        >
+                          {nav.icon}
+                        </span>
 
-                {/* ===== SUBMENU ===== */}
-                {nav.subItems && (isExpanded || isHovered || isMobileOpen) && (
-                  <div
-                    ref={(el) => {
-                      if (el) subMenuRefs.current[index] = el;
-                    }}
-                    className="overflow-hidden transition-all duration-300"
-                    style={{
-                      height:
-                        openSubmenu?.index === index
-                          ? `${subMenuHeight[index] || 0}px`
-                          : "0px",
-                    }}
-                  >
-                    <ul className="mt-2 space-y-1 ml-9">
-                      {nav.subItems.map((sub) => (
-                        <li key={sub.name}>
-                          <Link
-                            to={sub.path}
-                            className={`menu-dropdown-item ${
-                              isActive(sub.path)
-                                ? "menu-dropdown-item-active"
-                                : "menu-dropdown-item-inactive"
-                            }`}
-                          >
-                            {sub.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </li>
-            ))}
+                        {sidebarExpanded && (
+                          <span className="sidebar-menu-text">
+                            {nav.name}
+                          </span>
+                        )}
+                      </Link>
+                    )
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
       </div>

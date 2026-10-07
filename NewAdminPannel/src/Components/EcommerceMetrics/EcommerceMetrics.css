@@ -1,0 +1,286 @@
+/* =========================================================
+   ECOMMERCE METRICS
+========================================================= */
+
+.ecommerce-metrics {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 24px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   METRIC CARD
+========================================================= */
+
+.ecommerce-metrics__card {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 2px 5px rgba(16, 24, 40, 0.04);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.ecommerce-metrics__card:hover {
+  transform: translateY(-3px);
+
+  border-color: #d9dee7;
+
+  box-shadow:
+    0 12px 28px rgba(16, 24, 40, 0.08);
+}
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.ecommerce-metrics__icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #f2f4f7;
+
+  color: #1f2937;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ecommerce-metrics__icon svg {
+  width: 24px;
+  height: 24px;
+
+  display: block;
+}
+
+.ecommerce-metrics__card:hover
+.ecommerce-metrics__icon {
+  background: #eef1f5;
+
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   BOTTOM CONTENT
+========================================================= */
+
+.ecommerce-metrics__bottom {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.ecommerce-metrics__content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.ecommerce-metrics__label {
+  color: #667085;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  font-weight: 400;
+}
+
+.ecommerce-metrics__value {
+  margin: 7px 0 0;
+
+  color: #1d2939;
+
+  font-size: 24px;
+  line-height: 32px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.4px;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.ecommerce-metrics__badge {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+   The Badge component is still used exactly as before.
+   These rules help its inner SVG remain aligned.
+*/
+
+.ecommerce-metrics__badge svg {
+  width: 14px;
+  height: 14px;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark .ecommerce-metrics__card {
+  background: rgba(255, 255, 255, 0.03);
+
+  border-color: #1f2937;
+
+  box-shadow: none;
+}
+
+.dark .ecommerce-metrics__card:hover {
+  border-color: #374151;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.dark .ecommerce-metrics__icon {
+  background: #1f2937;
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .ecommerce-metrics__card:hover
+.ecommerce-metrics__icon {
+  background: #263244;
+}
+
+.dark .ecommerce-metrics__label {
+  color: #98a2b3;
+}
+
+.dark .ecommerce-metrics__value {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .ecommerce-metrics {
+    gap: 20px;
+  }
+
+  .ecommerce-metrics__card {
+    padding: 22px;
+  }
+
+  .ecommerce-metrics__value {
+    font-size: 23px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .ecommerce-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+
+  .ecommerce-metrics__card {
+    padding: 18px;
+  }
+
+  .ecommerce-metrics__icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .ecommerce-metrics__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .ecommerce-metrics__bottom {
+    margin-top: 17px;
+
+    gap: 10px;
+  }
+
+  .ecommerce-metrics__label {
+    font-size: 13px;
+  }
+
+  .ecommerce-metrics__value {
+    margin-top: 5px;
+
+    font-size: 21px;
+    line-height: 29px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .ecommerce-metrics {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .ecommerce-metrics__card {
+    padding: 18px;
+  }
+
+  .ecommerce-metrics__bottom {
+    margin-top: 16px;
+  }
+
+  .ecommerce-metrics__value {
+    font-size: 23px;
+  }
+}

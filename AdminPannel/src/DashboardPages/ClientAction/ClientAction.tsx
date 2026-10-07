@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import "./ClientAction.css";
 import { useTheme } from "../../context/ThemeContext";
+import {
+  FaStar,
+  FaRegStar,
+  FaTrashAlt,
+  FaCheckCircle,
+  FaClock,
+  FaComments,
+  FaUsers,
+  FaQuoteLeft,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
 
 interface Client {
   id: number;
@@ -12,7 +24,8 @@ interface Client {
 }
 
 const ClientAction: React.FC = () => {
-  const { theme } = useTheme(); // ✅ Access current theme
+  const { theme } = useTheme();
+
   const [clients, setClients] = useState<Client[]>([
     {
       id: 1,
@@ -37,94 +50,380 @@ const ClientAction: React.FC = () => {
   const togglePublish = (id: number) => {
     setClients((prev) =>
       prev.map((client) =>
-        client.id === id ? { ...client, published: !client.published } : client
+        client.id === id
+          ? {
+              ...client,
+              published: !client.published,
+            }
+          : client
       )
     );
   };
 
   const deleteClient = (id: number) => {
-    setClients((prev) => prev.filter((client) => client.id !== id));
+    const client = clients.find((item) => item.id === id);
+
+    if (
+      window.confirm(
+        `Are you sure you want to delete ${client?.name || "this testimonial"}?`
+      )
+    ) {
+      setClients((prev) =>
+        prev.filter((client) => client.id !== id)
+      );
+    }
   };
 
   const toggleReadMore = (id: number) => {
     setClients((prev) =>
       prev.map((client) =>
-        client.id === id ? { ...client, expanded: !client.expanded } : client
+        client.id === id
+          ? {
+              ...client,
+              expanded: !client.expanded,
+            }
+          : client
       )
     );
   };
 
-  return (
-    <div className={`clientAction-container ${theme}`}>
-      <h2 className="clientAction-title">📋 Client Testimonials Management</h2>
+  const publishedCount = clients.filter(
+    (client) => client.published
+  ).length;
 
+  const draftCount = clients.filter(
+    (client) => !client.published
+  ).length;
+
+  const averageRating =
+    clients.length > 0
+      ? (
+          clients.reduce(
+            (total, client) => total + client.rating,
+            0
+          ) / clients.length
+        ).toFixed(1)
+      : "0.0";
+
+  return (
+    <div
+      className={`clientAction-container ${
+        theme === "dark" ? "dark" : "light"
+      }`}
+    >
+      {/* =====================================================
+          PAGE HEADER
+      ====================================================== */}
+      <div className="clientAction-header">
+        <div className="clientAction-header-left">
+          <div className="clientAction-header-icon">
+            <FaComments />
+          </div>
+
+          <div>
+            <span className="clientAction-eyebrow">
+              TESTIMONIAL MANAGEMENT
+            </span>
+
+            <h2 className="clientAction-title">
+              Client Testimonials
+            </h2>
+
+            <p className="clientAction-subtitle">
+              Review, publish and manage client feedback from one place.
+            </p>
+          </div>
+        </div>
+
+        <div className="clientAction-header-count">
+          <span>Total Reviews</span>
+          <strong>{clients.length}</strong>
+        </div>
+      </div>
+
+      {/* =====================================================
+          STATISTICS
+      ====================================================== */}
+      <div className="clientAction-stats">
+        <div className="clientAction-stat-card">
+          <div className="clientAction-stat-icon purple">
+            <FaComments />
+          </div>
+
+          <div className="clientAction-stat-content">
+            <span>Total Testimonials</span>
+            <strong>{clients.length}</strong>
+            <small>Customer feedback</small>
+          </div>
+        </div>
+
+        <div className="clientAction-stat-card">
+          <div className="clientAction-stat-icon green">
+            <FaCheckCircle />
+          </div>
+
+          <div className="clientAction-stat-content">
+            <span>Published</span>
+            <strong>{publishedCount}</strong>
+            <small>Visible testimonials</small>
+          </div>
+        </div>
+
+        <div className="clientAction-stat-card">
+          <div className="clientAction-stat-icon orange">
+            <FaClock />
+          </div>
+
+          <div className="clientAction-stat-content">
+            <span>Drafts</span>
+            <strong>{draftCount}</strong>
+            <small>Waiting for publishing</small>
+          </div>
+        </div>
+
+        <div className="clientAction-stat-card">
+          <div className="clientAction-stat-icon yellow">
+            <FaStar />
+          </div>
+
+          <div className="clientAction-stat-content">
+            <span>Average Rating</span>
+            <strong>{averageRating}</strong>
+            <small>Customer satisfaction</small>
+          </div>
+        </div>
+      </div>
+
+      {/* =====================================================
+          SECTION HEADER
+      ====================================================== */}
+      <div className="clientAction-sectionHeader">
+        <div>
+          <h3>Customer Reviews</h3>
+
+          <p>
+            Manage published and unpublished testimonials.
+          </p>
+        </div>
+
+        <div className="clientAction-reviewCount">
+          <FaUsers />
+          <span>{clients.length} Reviews</span>
+        </div>
+      </div>
+
+      {/* =====================================================
+          CONTENT
+      ====================================================== */}
       <div className="clientAction-tableWrapper">
         {clients.length === 0 ? (
-          <p className="clientAction-noData">No client data available 💬</p>
+          <div className="clientAction-noData">
+            <div className="clientAction-emptyIcon">
+              <FaComments />
+            </div>
+
+            <h3>No testimonials available</h3>
+
+            <p>
+              Client testimonials will appear here once they are added.
+            </p>
+          </div>
         ) : (
-          <table className="clientAction-table">
-            <thead>
-              <tr>
-                <th>Sl. No.</th>
-                <th>Client Name</th>
-                <th>Rating</th>
-                <th>Client Message</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clients.map((client, index) => (
-                <tr key={client.id}>
-                  <td>{index + 1}</td>
-                  <td>{client.name}</td>
-                  <td>
-                    {"★".repeat(client.rating)}
-                    {"☆".repeat(5 - client.rating)}
-                  </td>
-                  <td className="clientAction-message">
-                    {client.expanded
-                      ? client.message
-                      : client.message.slice(0, 80) +
-                        (client.message.length > 80 ? "..." : "")}
-                    {client.message.length > 80 && (
-                      <button
-                        className="clientAction-readMoreBtn"
-                        onClick={() => toggleReadMore(client.id)}
-                      >
-                        {client.expanded ? "Read Less" : "Read More"}
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    <span
-                      className={`clientAction-status ${
-                        client.published ? "active" : "inactive"
-                      }`}
-                    >
-                      {client.published ? "Published" : "Draft"}
-                    </span>
-                  </td>
-                  <td className="clientAction-actions">
-                    <button
-                      className={`clientAction-btn ${
-                        client.published ? "unpublish" : "publish"
-                      }`}
-                      onClick={() => togglePublish(client.id)}
-                    >
-                      {client.published ? "Unpublish" : "Publish"}
-                    </button>
-                    <button
-                      className="clientAction-btn delete"
-                      onClick={() => deleteClient(client.id)}
-                    >
-                      🗑
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="clientAction-tableCard">
+            <div className="clientAction-tableScroll">
+              <table className="clientAction-table">
+                <thead>
+                  <tr>
+                    <th className="serial-column">#</th>
+                    <th className="client-column">
+                      Client
+                    </th>
+                    <th className="rating-column">
+                      Rating
+                    </th>
+                    <th className="message-column">
+                      Testimonial
+                    </th>
+                    <th className="status-column">
+                      Status
+                    </th>
+                    <th className="action-column">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {clients.map((client, index) => (
+                    <tr key={client.id}>
+                      {/* Serial */}
+                      <td className="serial-column">
+                        <span className="clientAction-number">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </td>
+
+                      {/* Client */}
+                      <td className="client-column">
+                        <div className="clientAction-client">
+                          <div className="clientAction-avatar">
+                            {client.name
+                              .charAt(0)
+                              .toUpperCase()}
+                          </div>
+
+                          <div className="clientAction-clientInfo">
+                            <strong>{client.name}</strong>
+
+                            <span>
+                              Client testimonial
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Rating */}
+                      <td className="rating-column">
+                        <div className="clientAction-rating">
+                          <div className="clientAction-stars">
+                            {Array.from(
+                              { length: 5 },
+                              (_, starIndex) =>
+                                starIndex < client.rating ? (
+                                  <FaStar
+                                    key={starIndex}
+                                  />
+                                ) : (
+                                  <FaRegStar
+                                    key={starIndex}
+                                  />
+                                )
+                            )}
+                          </div>
+
+                          <span>
+                            {client.rating}.0
+                          </span>
+                        </div>
+                      </td>
+
+                      {/* Message */}
+                      <td className="message-column">
+                        <div className="clientAction-messageBox">
+                          <FaQuoteLeft className="quote-icon" />
+
+                          <div className="clientAction-message">
+                            {client.expanded
+                              ? client.message
+                              : client.message.slice(
+                                  0,
+                                  90
+                                ) +
+                                (client.message.length >
+                                90
+                                  ? "..."
+                                  : "")}
+
+                            {client.message.length > 90 && (
+                              <button
+                                className="clientAction-readMoreBtn"
+                                onClick={() =>
+                                  toggleReadMore(
+                                    client.id
+                                  )
+                                }
+                              >
+                                {client.expanded ? (
+                                  <>
+                                    Read Less
+                                    <FaChevronUp />
+                                  </>
+                                ) : (
+                                  <>
+                                    Read More
+                                    <FaChevronDown />
+                                  </>
+                                )}
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Status */}
+                      <td className="status-column">
+                        <span
+                          className={`clientAction-status ${
+                            client.published
+                              ? "active"
+                              : "inactive"
+                          }`}
+                        >
+                          <span className="status-dot"></span>
+
+                          {client.published
+                            ? "Published"
+                            : "Draft"}
+                        </span>
+                      </td>
+
+                      {/* Actions */}
+                      <td className="action-column">
+                        <div className="clientAction-actions">
+                          <button
+                            type="button"
+                            className={`clientAction-publishBtn ${
+                              client.published
+                                ? "unpublish"
+                                : "publish"
+                            }`}
+                            onClick={() =>
+                              togglePublish(
+                                client.id
+                              )
+                            }
+                          >
+                            {client.published
+                              ? "Unpublish"
+                              : "Publish"}
+                          </button>
+
+                          <button
+                            type="button"
+                            className="clientAction-deleteBtn"
+                            onClick={() =>
+                              deleteClient(
+                                client.id
+                              )
+                            }
+                            aria-label={`Delete ${client.name}`}
+                            title="Delete testimonial"
+                          >
+                            <FaTrashAlt />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Table Footer */}
+            <div className="clientAction-tableFooter">
+              <span>
+                Showing{" "}
+                <strong>{clients.length}</strong>{" "}
+                testimonial
+                {clients.length !== 1 ? "s" : ""}
+              </span>
+
+              <span className="clientAction-footerStatus">
+                <span className="status-dot"></span>
+                Management panel
+              </span>
+            </div>
+          </div>
         )}
       </div>
     </div>

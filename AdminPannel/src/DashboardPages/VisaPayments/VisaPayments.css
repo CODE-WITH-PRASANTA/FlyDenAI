@@ -1,467 +1,1366 @@
-/* Page container */
-.VisaPayment-Container {
-  padding: 30px;
+/* =========================================================
+   VISA PAYMENTS
+   PREMIUM VISA APPLICATION MANAGEMENT DASHBOARD
+========================================================= */
+
+:root {
+  --vp-primary: #e94e77;
+  --vp-primary-dark: #d93662;
+  --vp-secondary: #7c3aed;
+  --vp-secondary-dark: #6424c7;
+
+  --vp-success: #10b981;
+  --vp-success-dark: #059669;
+
+  --vp-warning: #f59e0b;
+  --vp-warning-dark: #d97706;
+
+  --vp-danger: #ef4444;
+  --vp-danger-dark: #dc2626;
+
+  --vp-blue: #3b82f6;
+
+  --vp-bg: #f7f8fc;
+  --vp-card: #ffffff;
+  --vp-soft: #f8f9fc;
+  --vp-soft-pink: #fff4f7;
+  --vp-soft-purple: #f7f3ff;
+
+  --vp-text: #172033;
+  --vp-text-dark: #111827;
+  --vp-muted: #7b8496;
+  --vp-muted-light: #9ca3af;
+
+  --vp-border: #e8eaf0;
+  --vp-border-dark: #d9dce5;
+
+  --vp-radius: 18px;
+
+  --vp-shadow:
+    0 8px 30px rgba(24, 32, 56, 0.06);
+
+  --vp-shadow-hover:
+    0 18px 45px rgba(24, 32, 56, 0.11);
 }
+
+
+/* =========================================================
+   PAGE CONTAINER
+========================================================= */
+
+.VisaPayment-Container {
+  width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding: 28px;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(233, 78, 119, 0.06),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124, 58, 237, 0.06),
+      transparent 25%
+    ),
+    var(--vp-bg);
+
+  color: var(--vp-text);
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
 .VisaPayment-Title {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 25px;
-  color: #1d1d1d;
-}
-
-/* Grid Layout */
-.VisaPayment-CardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-/* Card Style */
-.VisaPayment-Card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.07);
-  transition: 0.3s;
-}
-
-.VisaPayment-Card:hover {
-  transform: translateY(-6px);
-}
-
-/* Header */
-.VisaPayment-Header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.VisaPayment-Country {
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
-}
-
-.VisaPayment-AppId {
-  font-size: 13px;
-  color: #777;
-}
-
-/* MENU */
-.VisaPayment-MenuArea {
   position: relative;
-}
 
-.VisaPayment-MenuIcon,
-.VisaPayment-TravellerMenuIcon {
-  font-size: 22px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.VisaPayment-MenuIcon:hover {
-  color: #007bff;
-}
-
-/* Smooth dropdown */
-.animateDropdown {
-  animation: fadeIn 0.2s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.VisaPayment-Dropdown,
-.VisaPayment-TravellerDropdown {
-  position: absolute;
-  right: 5px;
-  top: 30px;
-  background: #fff;
-  padding: 12px;
-  border-radius: 12px;
-  width: 170px;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-  z-index: 25;
-}
-/* --- Info Section Container --- */
-.VisaPayment-Info {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid #e5e5e5;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-/* --- EACH Info Box (Premium card style) --- */
-.VisaPayment-InfoBox {
-    margin-top: 20px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 14px;
 
-  background: #f8faff;
-  border: 1px solid #e1eaff;
-  border-radius: 14px;
+  margin: 0 0 24px;
 
-  transition: 0.25s ease;
-  box-shadow: 0 4px 8px rgba(0, 80, 255, 0.04);
-}
+  padding-left: 16px;
 
-/* Hover effect */
-.VisaPayment-InfoBox:hover {
-  background: #eef4ff;
-  border-color: #cddcff;
-  transform: translateX(4px);
-  box-shadow: 0 6px 14px rgba(0, 60, 255, 0.14);
-}
+  color: var(--vp-text);
 
-/* Icons */
-.VisaPayment-InfoIcon {
-  font-size: 22px;
-  color: #0066ff;
-}
-
-/* Accent Rupee Icon */
-.VisaPayment-RupeeSymbol {
-  font-size: 22px;
-  color: #009933;
-  font-weight: 700;
-}
-
-/* Text Block */
-.VisaPayment-InfoText {
-  display: flex;
-  flex-direction: column;
-}
-
-.VisaPayment-InfoText span {
-  font-size: 12px;
-  font-weight: 500;
-  color: #6d6d6d;
-}
-
-.VisaPayment-InfoText strong {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1d1d1d;
-  margin-top: 2px;
-}
-
-/* --- Step Badge --- */
-.VisaPayment-StepBadge {
-  background: #fff6d9;
-  color: #b48800;
-
-  padding: 4px 10px;
-  border-radius: 10px;
-  border: 1px solid #ffe29e;
-
-  font-size: 13px;
-}
-
-/* --- Payment Status Badge --- */
-.VisaPayment-StatusBadge {
-  padding: 4px 12px;
-  font-size: 13px;
-
-  border-radius: 10px;
-  font-weight: 700;
-  border: 1px solid;
-}
-
-/* SUCCESS */
-.VisaPayment-StatusBadge.success {
-  background: #e9ffe9;
-  border-color: #4ac76d;
-  color: #15803d;
-}
-
-/* PENDING */
-.VisaPayment-StatusBadge.pending {
-  background: #fff4d6;
-  border-color: #ffca65;
-  color: #b96e00;
-}
-
-/* FAILED */
-.VisaPayment-StatusBadge.failed {
-  background: #ffe6e6;
-  border-color: #ff8b8b;
-  color: #c40000;
-}
-
-/* Total Amount styling */
-.VisaPayment-Amount {
-  font-size: 17px;
+  font-size: 27px;
   font-weight: 800;
-  color: #222;
+
+  letter-spacing: -0.7px;
 }
 
-/* Traveller Section */
-.VisaPayment-TravellerSection {
-  margin-top: 18px;
+.VisaPayment-Title::before {
+  content: "";
+
+  width: 5px;
+  height: 31px;
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--vp-primary),
+      var(--vp-secondary)
+    );
 }
 
-.VisaPayment-TravellerCard {
-  background: #f6f9ff;
-  padding: 12px;
-  border-radius: 12px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
 
-/* Global Docs */
-.VisaPayment-DocsSection {
-  margin-top: 18px;
-  padding-top: 15px;
-  border-top: 1px solid #eee;
-}
+/* =========================================================
+   SEARCH + FILTER BAR
+========================================================= */
 
-.VisaPayment-DocButtons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+.VisaPayment-TopBar {
+  width: 100%;
 
-.VisaPayment-DocBtn {
   display: flex;
   align-items: center;
-  padding: 12px;
-  border-radius: 12px;
-  gap: 10px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: 0.25s;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+
+  padding: 13px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  box-shadow:
+    0 5px 22px rgba(31, 38, 58, 0.045);
+
+  backdrop-filter: blur(12px);
 }
 
-.VisaPayment-DocBtn.active {
-  background: #e7ffe8;
-  color: #038d11;
-  border: 1px solid #1b9a22;
+
+/* =========================================================
+   SEARCH BOX
+========================================================= */
+
+.VisaPayment-SearchBox {
+  position: relative;
+
+  width: 100%;
+  max-width: 500px;
 }
 
-.VisaPayment-DocBtn.inactive {
-  background: #f1f1f1;
-  color: #aeaeae;
-  cursor: not-allowed;
-  border: 1px solid #dddddd;
+.VisaPayment-SearchBox input {
+  width: 100%;
+
+  height: 45px;
+
+  box-sizing: border-box;
+
+  padding:
+    0 15px 0 42px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  color: var(--vp-text);
+
+  background: var(--vp-soft);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.VisaPayment-DocIcon {
-  font-size: 18px;
+.VisaPayment-SearchBox input::placeholder {
+  color: #a1a8b6;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1200px) {
-  .VisaPayment-CardGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 768px) {
-  .VisaPayment-CardGrid {
-    grid-template-columns: 1fr;
-  }
+.VisaPayment-SearchBox input:hover {
+  border-color: #d6dae4;
 }
 
-/* Traveller Dropdown - Premium Design */
-.VisaPayment-TravellerDropdown {
+.VisaPayment-SearchBox input:focus {
+  border-color: var(--vp-primary);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+      rgba(233, 78, 119, 0.08);
+}
+
+.SearchIcon {
   position: absolute;
-  right: 0;
-  top: 35px;
-  width: 170px;
 
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
+  left: 15px;
+  top: 50%;
 
-  border-radius: 14px;
-  padding: 12px;
+  transform: translateY(-50%);
 
-  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.12);
+  color: var(--vp-primary);
 
-  animation: travellerFadeIn 0.22s ease-out;
-  z-index: 30;
+  font-size: 14px;
 
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  pointer-events: none;
 }
 
-/* Smooth fade + slide animation */
-@keyframes travellerFadeIn {
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+.VisaPayment-FilterBtn {
+  min-height: 45px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: none;
+
+  border-radius: 11px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--vp-primary),
+      var(--vp-secondary)
+    );
+
+  box-shadow:
+    0 7px 18px
+      rgba(124, 58, 237, 0.17);
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.VisaPayment-FilterBtn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 23px
+      rgba(124, 58, 237, 0.25);
+}
+
+.VisaPayment-FilterBtn svg {
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
+
+.VisaPayment-FilterMenu {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 15px;
+
+  margin-bottom: 22px;
+
+  padding: 18px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 10px 30px rgba(31, 38, 58, 0.07);
+
+  animation:
+    vpFilterIn 0.25s ease;
+}
+
+@keyframes vpFilterIn {
   from {
     opacity: 0;
-    transform: translateY(-6px);
+    transform: translateY(-7px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Dropdown items */
-.VisaPayment-TravellerDropdown p {
-  margin: 8px 0;
-  padding: 8px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 10px;
 
+/* =========================================================
+   FILTER ROW
+========================================================= */
+
+.filter-row {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.filter-row label {
+  color: var(--vp-text);
+
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.filter-row select,
+.filter-row input[type="date"] {
+  width: 100%;
+
+  height: 42px;
+
+  box-sizing: border-box;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 9px;
+
+  outline: none;
+
+  color: var(--vp-text);
+
+  background: var(--vp-soft);
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.filter-row select:focus,
+.filter-row input[type="date"]:focus {
+  border-color: var(--vp-primary);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px
+      rgba(233, 78, 119, 0.07);
+}
+
+
+/* =========================================================
+   DATE RANGE
+========================================================= */
+
+.filter-date-range {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
   gap: 8px;
-
-  color: #333;
-  transition: 0.25s ease;
 }
 
-/* Hover effect */
-.VisaPayment-TravellerDropdown p:hover {
-  background: #e8f1ff;
-  color: #0062ff;
-  transform: translateX(4px);
-  box-shadow: 0 2px 6px rgba(0, 98, 255, 0.15);
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+.VisaPayment-ResetBtn {
+  min-height: 42px;
+
+  grid-column: 1 / -1;
+
+  margin-top: 3px;
+
+  border: 1px solid
+    rgba(239, 68, 68, 0.2);
+
+  border-radius: 9px;
+
+  color: var(--vp-danger);
+
+  background:
+    rgba(239, 68, 68, 0.05);
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-/* Date Group holds both dates together */
-.VisaPayment-DateGroup {
+.VisaPayment-ResetBtn:hover {
+  color: #ffffff;
+
+  background: var(--vp-danger);
+}
+
+
+/* =========================================================
+   APPLICATION CARD GRID
+========================================================= */
+
+.VisaPayment-CardGrid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   APPLICATION CARD
+========================================================= */
+
+.VisaPayment-Card {
+  position: relative;
+
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 19px;
+
+  background: var(--vp-card);
+
+  box-shadow: var(--vp-shadow);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.VisaPayment-Card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(233, 78, 119, 0.22);
+
+  box-shadow: var(--vp-shadow-hover);
+}
+
+
+/* =========================================================
+   CARD HEADER
+========================================================= */
+
+.VisaPayment-Header {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
   gap: 12px;
-  margin-top: 12px;
+
+  padding: 18px 18px 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff8fa 0%,
+      #ffffff 55%,
+      #faf7ff 100%
+    );
+
+  border-bottom: 1px solid var(--vp-border);
 }
 
-/* Each date row */
-.VisaPayment-DateItem {
-  display: flex;
+
+/* =========================================================
+   VISA COUNTRY / TYPE
+========================================================= */
+
+.VisaPayment-Country {
+  margin: 0;
+
+  color: var(--vp-text);
+
+  font-size: 18px;
+  font-weight: 800;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.35px;
+}
+
+.VisaPayment-Country::before {
+  content: "VISA";
+
+  display: inline-flex;
   align-items: center;
-  padding: 12px;
-  background: #f7faff;
-  border-radius: 12px;
-  border: 1px solid #e4ecff;
-  transition: 0.25s ease;
-  box-shadow: 0 4px 10px rgba(0, 87, 255, 0.05);
+
+  min-height: 20px;
+
+  margin-right: 7px;
+
+  padding: 0 6px;
+
+  border-radius: 5px;
+
+  color: var(--vp-primary);
+
+  background:
+    rgba(233, 78, 119, 0.09);
+
+  font-size: 8px;
+  font-weight: 850;
+
+  vertical-align: middle;
+
+  letter-spacing: 0.6px;
 }
 
-/* Hover effect */
-.VisaPayment-DateItem:hover {
-  background: #eef5ff;
-  border-color: #c3d8ff;
-  transform: translateX(4px);
-  box-shadow: 0 6px 16px rgba(0, 87, 255, 0.12);
-}
 
-/* Date icon */
-.VisaPayment-DateIcon {
-  font-size: 20px;
-  color: #0066ff;
-  margin-right: 14px;
-}
+/* =========================================================
+   APPLICATION ID
+========================================================= */
 
-/* Text container */
-.VisaPayment-DateText {
-  display: flex;
-  flex-direction: column;
-}
+.VisaPayment-AppId {
+  margin: 6px 0 0;
 
-/* Title text */
-.VisaPayment-DateText span {
-  font-size: 13px;
-  color: #6e6e6e;
-  margin-bottom: 3px;
-}
+  color: var(--vp-muted);
 
-/* Actual date */
-.VisaPayment-DateText strong {
-  font-size: 15px;
-  font-weight: 700;
-  color: #222;
-  padding: 4px 10px;
-  background: #fff;
-  border: 1px solid #e6eefe;
-  border-radius: 8px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.04);
-}
+  font-size: 10px;
 
-/* Smooth fade + slide */
-.animateMenu {
-  animation: menuFade 0.25s ease-out;
-}
-
-@keyframes menuFade {
-  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Dropdown container */
-.VisaMenu-Dropdown {
-  position: absolute;
-  right: 0;
-  top: 34px;
-  width: 190px;
-
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-
-  padding: 10px;
-  border-radius: 16px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-
-  border: 1px solid rgba(220, 230, 255, 0.6);
-  z-index: 50;
-}
-
-/* Each menu row */
-.VisaMenu-Item {
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 14px;
   font-weight: 600;
 
+  letter-spacing: 0.15px;
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.VisaPayment-MenuArea {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+.VisaPayment-MenuIcon,
+.VisaPayment-TravellerMenuIcon {
+  width: 32px;
+  height: 32px;
+
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+
+  padding: 7px;
+
+  box-sizing: border-box;
+
+  border-radius: 9px;
+
+  color: var(--vp-muted);
 
   cursor: pointer;
-  transition: 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-/* Hover effect */
+.VisaPayment-MenuIcon:hover,
+.VisaPayment-TravellerMenuIcon:hover {
+  color: var(--vp-primary);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+}
+
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.VisaMenu-Dropdown,
+.VisaPayment-Dropdown,
+.VisaPayment-TravellerDropdown {
+  position: absolute;
+
+  z-index: 100;
+
+  right: 0;
+  top: 37px;
+
+  min-width: 190px;
+
+  padding: 7px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  box-shadow:
+    0 15px 40px
+      rgba(20, 27, 45, 0.14);
+
+  backdrop-filter: blur(12px);
+
+  animation:
+    vpMenuIn 0.2s ease;
+}
+
+@keyframes vpMenuIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(-5px)
+      scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   MENU ITEM
+========================================================= */
+
+.VisaMenu-Item {
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  box-sizing: border-box;
+
+  padding: 0 11px;
+
+  border-radius: 9px;
+
+  color: var(--vp-text);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
 .VisaMenu-Item:hover {
-  background: #eef4ff;
-  transform: translateX(4px);
+  transform: translateX(3px);
+
+  background:
+    rgba(124, 58, 237, 0.07);
 }
 
-/* Approve styling */
-.VisaMenu-Item.approve span {
-  color: #0ea34a;
-  font-weight: bold;
+.VisaMenu-Item.approve {
+  color: var(--vp-success-dark);
 }
 
-/* Delete styling */
+.VisaMenu-Item.approve:hover {
+  background:
+    rgba(16, 185, 129, 0.08);
+}
+
+.VisaMenu-Item.approved.disabled {
+  color: #9ca3af;
+
+  cursor: default;
+}
+
 .VisaMenu-Item.delete {
-  color: #d40000;
+  color: var(--vp-danger);
 }
+
 .VisaMenu-Item.delete:hover {
-  background: #ffe5e5 !important;
-  color: #b00000;
+  background:
+    rgba(239, 68, 68, 0.08);
 }
 
-/* FIXED HEIGHT + INTERNAL SCROLL */
-.VisaPayment-Card {
-  height: 520px;             /* adjust height as you want (500–650px recommended) */
-  overflow-y: auto;          /* enables scrolling inside card */
-  scrollbar-width: thin;     /* Firefox */
-  scrollbar-color: #d0d7ff transparent;
+
+/* =========================================================
+   DATE SECTION
+========================================================= */
+
+.VisaPayment-DateGroup {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  padding: 15px 18px 0;
 }
 
-/* PREMIUM SCROLLBAR */
+.VisaPayment-DateItem {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 10px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 11px;
+
+  background: var(--vp-soft);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.VisaPayment-DateItem:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(233, 78, 119, 0.18);
+
+  background: var(--vp-soft-pink);
+}
+
+.VisaPayment-DateIcon {
+  flex-shrink: 0;
+
+  color: var(--vp-primary);
+
+  font-size: 15px;
+}
+
+.VisaPayment-DateText {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.VisaPayment-DateText span {
+  color: var(--vp-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.45px;
+}
+
+.VisaPayment-DateText strong {
+  color: var(--vp-text);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   INFORMATION GRID
+========================================================= */
+
+.VisaPayment-InfoGrid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 9px;
+
+  padding: 15px 18px 0;
+}
+
+.VisaPayment-InfoBox {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 11px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.VisaPayment-InfoBox:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(233, 78, 119, 0.18);
+
+  box-shadow:
+    0 5px 15px
+      rgba(31, 38, 58, 0.05);
+}
+
+.VisaPayment-InfoIcon {
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px;
+
+  box-sizing: border-box;
+
+  border-radius: 8px;
+
+  color: var(--vp-primary);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+}
+
+.VisaPayment-RupeeSymbol {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  color: var(--vp-success-dark);
+
+  background:
+    rgba(16, 185, 129, 0.09);
+
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.VisaPayment-InfoText {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.VisaPayment-InfoText span {
+  color: var(--vp-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.35px;
+}
+
+.VisaPayment-InfoText strong {
+  color: var(--vp-text);
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   PAYMENT STATUS
+========================================================= */
+
+.VisaPayment-StatusBadge {
+  width: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 21px;
+
+  padding: 0 8px;
+
+  border-radius: 50px;
+
+  border: 1px solid transparent;
+
+  font-size: 8px !important;
+
+  font-weight: 850 !important;
+
+  letter-spacing: 0.4px;
+}
+
+.VisaPayment-StatusBadge.success {
+  color: #047857;
+
+  background:
+    #ecfdf5;
+
+  border-color:
+    #a7f3d0;
+}
+
+.VisaPayment-StatusBadge.pending {
+  color: #b45309;
+
+  background:
+    #fffbeb;
+
+  border-color:
+    #fde68a;
+}
+
+.VisaPayment-StatusBadge.failed {
+  color: #b91c1c;
+
+  background:
+    #fef2f2;
+
+  border-color:
+    #fecaca;
+}
+
+
+/* =========================================================
+   TOTAL AMOUNT
+========================================================= */
+
+.VisaPayment-Amount {
+  color: var(--vp-success-dark) !important;
+
+  font-size: 14px !important;
+}
+
+
+/* =========================================================
+   TRAVELLER SECTION
+========================================================= */
+
+.VisaPayment-TravellerSection {
+  margin: 16px 18px 0;
+
+  padding-top: 14px;
+
+  border-top: 1px solid var(--vp-border);
+}
+
+.VisaPayment-TravellerSection h4,
+.VisaPayment-DocsSection h4 {
+  display: flex;
+  align-items: center;
+
+  margin: 0 0 10px;
+
+  color: var(--vp-text);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.VisaPayment-TravellerSection h4::before,
+.VisaPayment-DocsSection h4::before {
+  content: "";
+
+  width: 3px;
+  height: 15px;
+
+  margin-right: 7px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--vp-primary),
+      var(--vp-secondary)
+    );
+}
+
+
+/* =========================================================
+   TRAVELLER CARD
+========================================================= */
+
+.VisaPayment-TravellerCard {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 8px;
+
+  padding: 12px;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fffafd,
+      #faf9ff
+    );
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.VisaPayment-TravellerCard:hover {
+  transform: translateX(2px);
+
+  border-color:
+    rgba(124, 58, 237, 0.17);
+}
+
+.VisaPayment-TravellerCard > div {
+  min-width: 0;
+}
+
+.VisaPayment-TravellerCard strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--vp-text);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.VisaPayment-TravellerCard p {
+  margin: 3px 0;
+
+  color: var(--vp-muted);
+
+  font-size: 9px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   TRAVELLER MENU
+========================================================= */
+
+.VisaPayment-TravellerMenuIcon {
+  flex-shrink: 0;
+
+  color: var(--vp-muted);
+}
+
+
+/* =========================================================
+   TRAVELLER DROPDOWN
+========================================================= */
+
+.VisaPayment-TravellerDropdown {
+  top: 35px;
+
+  min-width: 150px;
+}
+
+.VisaPayment-TravellerDropdown p {
+  margin: 2px 0;
+}
+
+.VisaPayment-TravellerDropdown a {
+  min-height: 35px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 0 9px;
+
+  border-radius: 8px;
+
+  color: var(--vp-text);
+
+  font-size: 10px;
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.VisaPayment-TravellerDropdown a:hover {
+  color: var(--vp-primary);
+
+  background:
+    rgba(233, 78, 119, 0.07);
+}
+
+
+/* =========================================================
+   DOCUMENT SECTION
+========================================================= */
+
+.VisaPayment-DocsSection {
+  margin-top: 16px;
+
+  padding:
+    14px 18px 18px;
+
+  border-top: 1px solid var(--vp-border);
+}
+
+.VisaPayment-DocButtons {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
+
+.VisaPayment-DocBtn {
+  min-width: 0;
+
+  min-height: 37px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  box-sizing: border-box;
+
+  padding: 0 9px;
+
+  border-radius: 9px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.VisaPayment-DocBtn.active {
+  color: #047857;
+
+  border: 1px solid #b7efd7;
+
+  background:
+    #ecfdf5;
+}
+
+.VisaPayment-DocBtn.active:hover {
+  transform: translateY(-1px);
+
+  background:
+    #dff9ed;
+}
+
+.VisaPayment-DocBtn.inactive {
+  color: #a5a9b2;
+
+  border: 1px solid #e5e7eb;
+
+  background: #f7f7f8;
+
+  cursor: not-allowed;
+}
+
+.VisaPayment-DocIcon {
+  flex-shrink: 0;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.VisaPagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 6px;
+
+  margin-top: 26px;
+}
+
+.VisaPagination-Btn,
+.VisaPagination-Number {
+  min-width: 37px;
+  height: 37px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 11px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--vp-border);
+
+  border-radius: 9px;
+
+  color: var(--vp-text);
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.VisaPagination-Btn:hover:not(:disabled),
+.VisaPagination-Number:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(233, 78, 119, 0.25);
+
+  color: var(--vp-primary);
+
+  background:
+    var(--vp-soft-pink);
+}
+
+.VisaPagination-Number.active {
+  border-color: transparent;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--vp-primary),
+      var(--vp-secondary)
+    );
+
+  box-shadow:
+    0 6px 15px
+      rgba(233, 78, 119, 0.2);
+}
+
+.VisaPagination-Btn:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   CARD SCROLLBAR
+========================================================= */
+
 .VisaPayment-Card::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 
 .VisaPayment-Card::-webkit-scrollbar-track {
@@ -469,220 +1368,365 @@
 }
 
 .VisaPayment-Card::-webkit-scrollbar-thumb {
-  background: #c8d2ff;
-  border-radius: 10px;
+  border-radius: 20px;
+
+  background:
+    #d9dce5;
 }
 
 .VisaPayment-Card::-webkit-scrollbar-thumb:hover {
-  background: #a8b8ff;
+  background:
+    #b9bfcb;
 }
 
-/* ---------- PAGINATION ---------- */
-.VisaPagination {
-  margin-top: 30px;
+
+/* =========================================================
+   OPTIONAL CARD INTERNAL SCROLL
+========================================================= */
+
+.VisaPayment-Card {
+  max-height: 690px;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #d9dce5 transparent;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.VisaPayment-CardGrid:empty::before {
+  content: "No visa applications found";
+
+  grid-column: 1 / -1;
+
+  min-height: 250px;
+
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-}
 
-.VisaPagination-Btn, 
-.VisaPagination-Number {
-  padding: 8px 14px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: 1px solid #d6dfff;
-  background: #f8faff;
-  cursor: pointer;
-  transition: 0.25s ease;
-  font-weight: 600;
-}
+  border: 1px dashed var(--vp-border);
 
-.VisaPagination-Number.active {
-  background: #4a6bff;
-  border-color: #4a6bff;
-  color: #fff !important;
-}
+  border-radius: 18px;
 
-.VisaPagination-Btn:hover,
-.VisaPagination-Number:hover {
-  background: #e9efff;
-  border-color: #b9c8ff;
-}
+  color: var(--vp-muted);
 
-.VisaPagination-Btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-
-/* ================================
-   SEARCH + FILTER TOP BAR
-================================ */
-.VisaPayment-TopBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
-  gap: 10px;
-}
-
-/* ---------- Search Box ---------- */
-.VisaPayment-SearchBox {
-  width: 100%;
-  max-width: 380px;
-  position: relative;
-}
-
-.VisaPayment-SearchBox input {
-  width: 100%;
-  padding: 10px 12px 10px 38px;
-  border-radius: 10px;
-  background-color: #ffffff;
-  border: 1px solid #dcdcdc;
-  font-size: 15px;
-  transition: 0.3s ease;
-}
-
-.VisaPayment-SearchBox input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
-  outline: none;
-}
-
-.SearchIcon {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  font-size: 16px;
-  color: #888;
-  transform: translateY(-50%);
-}
-
-/* ---------- Filter Button ---------- */
-.VisaPayment-FilterBtn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #007bff;
-  border: none;
-  padding: 10px 16px;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s ease;
-}
-
-.VisaPayment-FilterBtn:hover {
-  background: #0056d6;
-  transform: translateY(-1px);
-}
-
-/* ================================
-   FILTER DROPDOWN BOX
-================================ */
-.VisaPayment-FilterMenu {
-  width: 100%;
-  margin-top: 10px;
-  padding: 18px;
   background: #ffffff;
-  border-radius: 14px;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-  animation: fadeSlide 0.25s ease;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
+
+  font-size: 13px;
+  font-weight: 650;
 }
 
-@keyframes fadeSlide {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
+
+/* =========================================================
+   RESPONSIVE - 1400
+========================================================= */
+
+@media (max-width: 1400px) {
+  .VisaPayment-CardGrid {
+    grid-template-columns:
+      repeat(3, minmax(280px, 1fr));
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .VisaPayment-Container {
+    padding: 23px;
   }
 }
 
-/* ---------- Filter Row ---------- */
-.filter-row {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
 
-.filter-row label {
-  font-weight: 600;
-  font-size: 14px;
-  color: #333;
-}
+/* =========================================================
+   RESPONSIVE - 1200
+========================================================= */
 
-.filter-row select,
-.filter-row input[type="date"] {
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #dcdcdc;
-  font-size: 14px;
-  background-color: #fafafa;
-  transition: 0.3s ease;
-}
+@media (max-width: 1200px) {
+  .VisaPayment-CardGrid {
+    grid-template-columns:
+      repeat(2, minmax(280px, 1fr));
+  }
 
-.filter-row select:focus,
-.filter-row input[type="date"]:focus {
-  border-color: #007bff;
-  background: #ffffff;
-  box-shadow: 0 0 5px rgba(0, 124, 255, 0.3);
-  outline: none;
-}
-
-/* ---------- Date Range Row ---------- */
-.filter-date-range {
-  display: flex;
-  gap: 12px;
-}
-
-.filter-date-range input {
-  flex: 1;
-}
-
-/* ---------- Reset Button ---------- */
-.VisaPayment-ResetBtn {
-  grid-column: span 2;
-  padding: 10px 14px;
-  border: none;
-  background: #ff4d4d;
-  color: white;
-  border-radius: 10px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.VisaPayment-ResetBtn:hover {
-  background: #d43a3a;
-}
-
-/* ================================
-   RESPONSIVE DESIGN
-================================ */
-@media (max-width: 768px) {
   .VisaPayment-FilterMenu {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 900
+========================================================= */
+
+@media (max-width: 900px) {
+  .VisaPayment-Container {
+    padding: 18px;
+  }
+
+  .VisaPayment-CardGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .VisaPayment-TopBar {
+    align-items: stretch;
+  }
+
+  .VisaPayment-SearchBox {
+    max-width: none;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 768
+========================================================= */
+
+@media (max-width: 768px) {
+  .VisaPayment-Container {
+    padding: 14px;
+  }
+
+  .VisaPayment-Title {
+    margin-bottom: 18px;
+
+    font-size: 22px;
   }
 
   .VisaPayment-TopBar {
     flex-direction: column;
-    align-items: stretch;
+
+    padding: 11px;
   }
 
   .VisaPayment-SearchBox {
     max-width: 100%;
   }
 
-  .filter-date-range {
-    flex-direction: column;
+  .VisaPayment-FilterBtn {
+    width: 100%;
+  }
+
+  .VisaPayment-FilterMenu {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    padding: 14px;
+  }
+
+  .VisaPayment-ResetBtn {
+    grid-column: auto;
+  }
+
+  .VisaPayment-CardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .VisaPayment-Card {
+    max-height: none;
+  }
+
+  .VisaPayment-DateGroup {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .VisaPayment-InfoGrid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
+
+/* =========================================================
+   RESPONSIVE - 520
+========================================================= */
+
+@media (max-width: 520px) {
+  .VisaPayment-Container {
+    padding: 10px;
+  }
+
+  .VisaPayment-Title {
+    font-size: 19px;
+
+    padding-left: 13px;
+  }
+
+  .VisaPayment-Title::before {
+    width: 4px;
+    height: 25px;
+  }
+
+  .VisaPayment-Header {
+    padding: 15px;
+  }
+
+  .VisaPayment-Country {
+    font-size: 16px;
+  }
+
+  .VisaPayment-DateGroup {
+    grid-template-columns: 1fr;
+
+    padding:
+      13px 15px 0;
+  }
+
+  .VisaPayment-InfoGrid {
+    grid-template-columns: 1fr;
+
+    padding:
+      13px 15px 0;
+  }
+
+  .VisaPayment-TravellerSection {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .VisaPayment-DocsSection {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .VisaPayment-DocButtons {
+    grid-template-columns: 1fr;
+  }
+
+  .VisaPagination {
+    margin-top: 20px;
+  }
+
+  .VisaPagination-Btn,
+  .VisaPagination-Number {
+    min-width: 34px;
+    height: 34px;
+
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE - 380
+========================================================= */
+
+@media (max-width: 380px) {
+  .VisaPayment-Container {
+    padding: 7px;
+  }
+
+  .VisaPayment-Card {
+    border-radius: 15px;
+  }
+
+  .VisaPayment-Country {
+    font-size: 15px;
+  }
+
+  .VisaPayment-AppId {
+    font-size: 9px;
+  }
+
+  .VisaPayment-DateText strong {
+    font-size: 10px;
+  }
+
+  .VisaPayment-InfoText strong {
+    font-size: 12px;
+  }
+
+  .VisaPayment-TravellerCard {
+    padding: 10px;
+  }
+
+  .VisaPayment-TravellerCard strong {
+    font-size: 10px;
+  }
+
+  .VisaPayment-TravellerCard p {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+.VisaPayment-Card {
+  animation:
+    vpCardAppear 0.35s ease both;
+}
+
+@keyframes vpCardAppear {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.VisaPayment-Card:nth-child(2) {
+  animation-delay: 0.04s;
+}
+
+.VisaPayment-Card:nth-child(3) {
+  animation-delay: 0.08s;
+}
+
+.VisaPayment-Card:nth-child(4) {
+  animation-delay: 0.12s;
+}
+
+.VisaPayment-Card:nth-child(5) {
+  animation-delay: 0.16s;
+}
+
+.VisaPayment-Card:nth-child(6) {
+  animation-delay: 0.2s;
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.VisaPayment-Container
+button:focus-visible,
+.VisaPayment-Container
+input:focus-visible,
+.VisaPayment-Container
+select:focus-visible {
+  outline: 3px solid
+    rgba(233, 78, 119, 0.15);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .VisaPayment-Container *,
+  .VisaPayment-Container *::before,
+  .VisaPayment-Container *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}

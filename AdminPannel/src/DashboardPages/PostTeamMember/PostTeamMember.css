@@ -1,249 +1,1091 @@
-/*------------------ THEME VARIABLES ------------------*/
+/* =========================================================
+   POST TEAM MEMBER
+   PREMIUM ADMIN UI
+========================================================= */
+
+/* =========================================================
+   THEME VARIABLES
+========================================================= */
+
 :root {
-  --bg-light: #ffffff;
-  --bg-aside-light: #f9f9f9;
-  --bg-form-light: #ffffff;
-  --text-light: #333333;
-  --text-muted-light: #666666;
-  --border-light: #e0e0e0;
-  --accent: #4f46e5;
-  --success: #10b981;
-  --danger: #ef4444;
-  --info: #3b82f6;
+  --ptm-primary: #6d3bd2;
+  --ptm-primary-dark: #5425b7;
+  --ptm-primary-light: #f2ecff;
+  --ptm-primary-soft: #faf8ff;
 
-  --bg-dark: rgb(16 24 40);
-  --bg-form-dark: rgb(30 41 59);
-  --bg-aside-dark: rgb(30 41 59);
-  --text-dark: #f5f5f5;
-  --text-muted-dark: #cbd5e1;
-  --border-dark: #374151;
+  --ptm-bg: #f7f8fc;
+  --ptm-card: #ffffff;
+
+  --ptm-text: #1d2230;
+  --ptm-text-dark: #121623;
+  --ptm-muted: #858c9c;
+  --ptm-muted-dark: #697184;
+
+  --ptm-border: #e7e9ef;
+  --ptm-border-light: #eef0f4;
+
+  --ptm-success: #12a66a;
+  --ptm-success-bg: #e8f8f0;
+
+  --ptm-danger: #df4f5d;
+  --ptm-danger-bg: #fff0f2;
+
+  --ptm-info: #367ee8;
+  --ptm-info-bg: #edf4ff;
+
+  --ptm-warning: #d99316;
+  --ptm-warning-bg: #fff5df;
+
+  --ptm-radius: 16px;
+
+  --ptm-shadow:
+    0 8px 30px rgba(30, 35, 55, 0.055);
+
+  --ptm-shadow-hover:
+    0 15px 40px rgba(30, 35, 55, 0.09);
 }
 
-/*------------------ CONTAINER ------------------*/
-.PostTeamMember-container {
-  display: flex;
-  gap: 30px;
-  padding: 25px;
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+.PostTeamMember-container,
+.PostTeamMember-container * {
   box-sizing: border-box;
-  flex-wrap: wrap;
 }
 
-.PostTeamMember-container.light {
-  background-color: var(--bg-light);
-  color: var(--text-light);
+.PostTeamMember-container {
+  width: 100%;
+  min-height: 100vh;
+
+  padding: 28px;
+
+  display: grid;
+  grid-template-columns:
+    minmax(340px, 0.72fr)
+    minmax(650px, 1.65fr);
+
+  gap: 22px;
+
+  align-items: start;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.055),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 10%,
+      rgba(236, 72, 153, 0.035),
+      transparent 25%
+    ),
+    var(--ptm-bg);
+
+  color: var(--ptm-text);
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  overflow-x: hidden;
 }
+
+/* =========================================================
+   DARK MODE
+========================================================= */
 
 .PostTeamMember-container.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+  --ptm-bg: #101828;
+  --ptm-card: #1e293b;
+
+  --ptm-text: #f8fafc;
+  --ptm-text-dark: #ffffff;
+  --ptm-muted: #94a3b8;
+
+  --ptm-border: #334155;
+  --ptm-border-light: #334155;
+
+  --ptm-primary-soft: #20233d;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(124, 58, 237, 0.13),
+      transparent 30%
+    ),
+    #101828;
 }
 
-/*------------------ FORM SECTION ------------------*/
+/* =========================================================
+   FORM CARD
+========================================================= */
+
 .PostTeamMember-form-section {
-  flex: 1;
-  min-width: 320px;
-  background-color: var(--bg-form-light);
-  border-radius: 14px;
-  padding: 30px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  overflow-y: auto;
-  max-height: 85vh;
-  transition: 0.3s ease;
+  width: 100%;
+
+  padding: 0;
+
+  background: var(--ptm-card);
+
+  border: 1px solid var(--ptm-border);
+
+  border-radius: var(--ptm-radius);
+
+  box-shadow: var(--ptm-shadow);
+
+  overflow: hidden;
+
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* Heading */
+.PostTeamMember-form-section:hover {
+  box-shadow: var(--ptm-shadow-hover);
+}
+
+/* =========================================================
+   TABLE CARD
+========================================================= */
+
+.PostTeamMember-table-section {
+  width: 100%;
+  min-width: 0;
+
+  padding: 0;
+
+  background: var(--ptm-card);
+
+  border: 1px solid var(--ptm-border);
+
+  border-radius: var(--ptm-radius);
+
+  box-shadow: var(--ptm-shadow);
+
+  overflow: hidden;
+
+  transition:
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.PostTeamMember-table-section:hover {
+  box-shadow: var(--ptm-shadow-hover);
+}
+
+/* =========================================================
+   HEADINGS
+========================================================= */
+
 .PostTeamMember-heading {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 10px;
+  position: relative;
+
+  margin: 0;
+
+  padding: 21px 22px 18px;
+
+  color: var(--ptm-text-dark);
+
+  font-size: 18px;
+
+  font-weight: 750;
+
+  line-height: 1.3;
+
+  letter-spacing: -0.35px;
+
+  border-bottom: 1px solid var(--ptm-border-light);
+
+  background: var(--ptm-card);
 }
 
-/* Form Boxes */
+.PostTeamMember-heading::after {
+  content: "";
+
+  position: absolute;
+
+  left: 22px;
+  bottom: -1px;
+
+  width: 46px;
+  height: 3px;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #6d3bd2,
+      #a855f7
+    );
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
 .PostTeamMember-form {
+  width: 100%;
+
+  padding: 22px;
+
   display: flex;
   flex-direction: column;
-  gap: 20px;
+
+  gap: 15px;
 }
+
+/* =========================================================
+   FORM BOX
+========================================================= */
 
 .PostTeamMember-box {
+  width: 100%;
+
+  padding: 17px;
+
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  border-radius: 10px;
-  background: var(--bg-aside-light);
-  border: 1px solid var(--border-light);
-  transition: 0.3s;
+
+  gap: 12px;
+
+  border: 1px solid var(--ptm-border);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--ptm-card),
+      var(--ptm-primary-soft)
+    );
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.PostTeamMember-container.dark .PostTeamMember-box {
-  border: 1px solid var(--border-dark);
+.PostTeamMember-box:hover {
+  border-color: #d9cff0;
+
+  box-shadow:
+    0 5px 18px rgba(91, 62, 140, 0.045);
 }
+
+.PostTeamMember-container.dark
+.PostTeamMember-box:hover {
+  border-color: #475569;
+}
+
+/* =========================================================
+   BOX HEADING
+========================================================= */
+
+.PostTeamMember-box h4 {
+  margin: 0 0 2px;
+
+  color: var(--ptm-text-dark);
+
+  font-size: 12px;
+
+  font-weight: 750;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.7px;
+}
+
+.PostTeamMember-box h4::before {
+  content: "";
+
+  display: inline-block;
+
+  width: 6px;
+  height: 6px;
+
+  margin-right: 7px;
+
+  border-radius: 50%;
+
+  vertical-align: middle;
+
+  background: var(--ptm-primary);
+}
+
+/* =========================================================
+   ROW
+========================================================= */
 
 .PostTeamMember-box-row {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 13px;
+
+  flex-wrap: nowrap;
 }
 
+/* =========================================================
+   FORM ITEM
+========================================================= */
+
 .PostTeamMember-box-item {
-  flex: 1;
-  min-width: 150px;
+  width: 100%;
+
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 }
 
-.PostTeamMember-box-item label {
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: var(--text-muted-light);
+/* =========================================================
+   LABEL
+========================================================= */
+
+.PostTeamMember-box-item label,
+.PostTeamMember-box > label {
+  margin: 0 0 7px;
+
+  color: var(--ptm-text);
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  line-height: 1.3;
 }
 
-.PostTeamMember-container.dark .PostTeamMember-box-item label {
-  color: var(--text-muted-dark);
-}
+/* =========================================================
+   INPUTS
+========================================================= */
 
-.PostTeamMember-box-item input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
-  outline: none;
-  font-size: 14px;
-  transition: 0.3s;
-  background-color: var(--bg-form-light);
-  color: var(--text-light);
-}
+.PostTeamMember-box-item input,
+.PostTeamMember-box > input {
+  width: 100%;
+  height: 43px;
 
-.PostTeamMember-box-item input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 6px var(--accent);
-}
+  padding: 0 12px;
 
-/* Submit button */
-.PostTeamMember-submit-btn {
-  background-color: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 12px 18px;
+  border: 1px solid var(--ptm-border);
+
   border-radius: 10px;
+
+  outline: none;
+
+  background: var(--ptm-card);
+
+  color: var(--ptm-text);
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.PostTeamMember-box-item input::placeholder,
+.PostTeamMember-box > input::placeholder {
+  color: #a1a7b5;
+
+  font-size: 11px;
+
+  font-weight: 450;
+}
+
+.PostTeamMember-box-item input:hover,
+.PostTeamMember-box > input:hover {
+  border-color: #cfc9db;
+}
+
+.PostTeamMember-box-item input:focus,
+.PostTeamMember-box > input:focus {
+  border-color: var(--ptm-primary);
+
+  background: var(--ptm-card);
+
+  box-shadow:
+    0 0 0 3px rgba(109, 59, 210, 0.09);
+}
+
+/* =========================================================
+   FILE INPUT
+========================================================= */
+
+.PostTeamMember-box input[type="file"] {
+  width: 100%;
+
+  height: auto;
+
+  min-height: 48px;
+
+  padding: 7px;
+
+  border: 1px dashed #cfc8dc;
+
+  border-radius: 10px;
+
+  background: var(--ptm-primary-soft);
+
+  color: var(--ptm-muted);
+
+  font-size: 11px;
+
   cursor: pointer;
-  font-weight: 600;
-  font-size: 15px;
-  transition: 0.3s ease;
-  align-self: flex-start;
+}
+
+.PostTeamMember-box input[type="file"]::file-selector-button {
+  margin-right: 10px;
+
+  padding: 7px 12px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  color: #ffffff;
+
+  background: var(--ptm-primary);
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.PostTeamMember-box input[type="file"]::file-selector-button:hover {
+  background: var(--ptm-primary-dark);
+}
+
+/* =========================================================
+   SOCIAL MEDIA INPUTS
+========================================================= */
+
+.PostTeamMember-box:nth-of-type(4)
+.PostTeamMember-box-row {
+  gap: 10px;
+}
+
+.PostTeamMember-box:nth-of-type(4)
+.PostTeamMember-box-row input {
+  min-width: 0;
+}
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.PostTeamMember-submit-btn {
+  width: 100%;
+
+  min-height: 46px;
+
+  margin-top: 2px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 10px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #6d3bd2,
+      #8b5cf6
+    );
+
+  box-shadow:
+    0 8px 20px rgba(109, 59, 210, 0.2);
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .PostTeamMember-submit-btn:hover {
-  opacity: 0.9;
   transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 25px rgba(109, 59, 210, 0.28);
 }
 
-/*------------------ TABLE SECTION ------------------*/
-.PostTeamMember-table-section {
-  flex: 1;
-  min-width: 320px;
-  background-color: var(--bg-form-light);
-  border-radius: 14px;
-  padding: 30px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  overflow-y: auto;
-  max-height: 85vh;
-  transition: 0.3s ease;
+.PostTeamMember-submit-btn:active {
+  transform: translateY(0);
 }
 
+/* =========================================================
+   TABLE HEADER
+========================================================= */
+
+.PostTeamMember-table-section
+.PostTeamMember-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* =========================================================
+   TABLE WRAPPER
+========================================================= */
 
 .PostTeamMember-table-wrapper {
+  width: 100%;
+
+  padding: 17px;
+
   overflow-x: auto;
+  overflow-y: auto;
+
+  max-height: calc(100vh - 150px);
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #d7d2df
+    transparent;
 }
+
+.PostTeamMember-table-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.PostTeamMember-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.PostTeamMember-table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+
+  background: #d7d2df;
+}
+
+.PostTeamMember-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #bdb5ca;
+}
+
+/* =========================================================
+   TABLE
+========================================================= */
 
 .PostTeamMember-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+
+  min-width: 850px;
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  font-size: 11px;
 }
 
-.PostTeamMember-table th,
-.PostTeamMember-table td {
-  padding: 12px 8px;
+/* =========================================================
+   TABLE HEAD
+========================================================= */
+
+.PostTeamMember-table thead th {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
+
+  padding: 12px 11px;
+
+  border-top: 1px solid var(--ptm-border);
+
+  border-bottom: 1px solid var(--ptm-border);
+
+  color: #777f90;
+
+  background: #faf9fc;
+
   text-align: center;
-  border: 1px solid var(--border-light);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.75px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
 }
 
+.PostTeamMember-container.dark
+.PostTeamMember-table thead th {
+  background: #182334;
 
-/* Profile image */
+  color: #aab4c4;
+}
+
+/* =========================================================
+   TABLE BODY
+========================================================= */
+
+.PostTeamMember-table tbody td {
+  padding: 11px 10px;
+
+  border-bottom: 1px solid var(--ptm-border-light);
+
+  color: var(--ptm-text);
+
+  background: var(--ptm-card);
+
+  text-align: center;
+
+  font-size: 11px;
+
+  font-weight: 550;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+
+  transition: background 0.2s ease;
+}
+
+.PostTeamMember-table tbody tr:hover td {
+  background: #fcfaff;
+}
+
+.PostTeamMember-container.dark
+.PostTeamMember-table tbody tr:hover td {
+  background: #223047;
+}
+
+.PostTeamMember-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
 .PostTeamMember-profile-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+
+  display: block;
+
+  margin: 0 auto;
+
+  border-radius: 12px;
+
   object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  border: 2px solid #ffffff;
+
+  background: #f1edf7;
+
+  box-shadow:
+    0 3px 10px rgba(25, 25, 40, 0.12);
 }
 
-/* Action buttons */
-.PostTeamMember-action-buttons button {
-  margin: 0 3px;
+/* =========================================================
+   PUBLISH BUTTON
+========================================================= */
+
+.PostTeamMember-publish-btn {
+  min-width: 82px;
+
   padding: 6px 10px;
-  border-radius: 8px;
-  font-size: 13px;
+
   border: none;
+
+  border-radius: 20px;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 750;
+
   cursor: pointer;
-  transition: 0.3s ease;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.PostTeamMember-edit-btn {
-  background-color: var(--success);
-  color: #fff;
-}
-
-.PostTeamMember-delete-btn {
-  background-color: var(--danger);
-  color: #fff;
-}
-
-.PostTeamMember-preview-btn {
-  background-color: var(--info);
-  color: #fff;
-}
-
-.PostTeamMember-action-buttons button:hover {
-  opacity: 0.85;
+.PostTeamMember-publish-btn:hover {
   transform: translateY(-1px);
 }
 
-/* Scrollbars */
-.PostTeamMember-form-section::-webkit-scrollbar,
-.PostTeamMember-table-section::-webkit-scrollbar {
-  width: 7px;
-}
-.PostTeamMember-form-section::-webkit-scrollbar-thumb,
-.PostTeamMember-table-section::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 4px;
-}
+/* PUBLISHED */
 
-/*------------------ MEDIA QUERIES ------------------*/
+.PostTeamMember-publish-btn.published {
+  color: var(--ptm-success);
 
-/* Tablets */
-@media (max-width: 1024px) {
+  background: var(--ptm-success-bg);
 
+  box-shadow:
+    inset 0 0 0 1px rgba(18, 166, 106, 0.08);
 }
 
-/* Mobile devices */
-@media (max-width: 768px) {
-  .PostTeamMember-container{
-    padding: 10px;
+/* UNPUBLISHED */
+
+.PostTeamMember-publish-btn.unpublished {
+  color: var(--ptm-warning);
+
+  background: var(--ptm-warning-bg);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(217, 147, 22, 0.08);
+}
+
+/* =========================================================
+   ACTION BUTTON CONTAINER
+========================================================= */
+
+.PostTeamMember-action-buttons {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   ALL ACTION BUTTONS
+========================================================= */
+
+.PostTeamMember-action-buttons button {
+  min-width: 54px;
+
+  height: 30px;
+
+  margin: 0 3px;
+
+  padding: 0 9px;
+
+  border: none;
+
+  border-radius: 7px;
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.PostTeamMember-action-buttons button:hover {
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+.PostTeamMember-edit-btn {
+  color: #6640bf;
+
+  background: #f0eaff;
+}
+
+.PostTeamMember-edit-btn:hover {
+  color: #ffffff;
+
+  background: #7040d4;
+
+  box-shadow:
+    0 5px 12px rgba(112, 64, 212, 0.2);
+}
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+.PostTeamMember-delete-btn {
+  color: #d84d5b;
+
+  background: #fff0f2;
+}
+
+.PostTeamMember-delete-btn:hover {
+  color: #ffffff;
+
+  background: #dc5360;
+
+  box-shadow:
+    0 5px 12px rgba(220, 83, 96, 0.2);
+}
+
+/* =========================================================
+   OPTIONAL PREVIEW BUTTON
+========================================================= */
+
+.PostTeamMember-preview-btn {
+  color: #3475d7;
+
+  background: #edf4ff;
+}
+
+.PostTeamMember-preview-btn:hover {
+  color: #ffffff;
+
+  background: #397de0;
+
+  box-shadow:
+    0 5px 12px rgba(57, 125, 224, 0.2);
+}
+
+/* =========================================================
+   EMPTY / N/A
+========================================================= */
+
+.PostTeamMember-table td {
+  max-width: 220px;
+}
+
+.PostTeamMember-table td:first-child {
+  color: #9ba2b1;
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+/* =========================================================
+   DARK MODE TABLE
+========================================================= */
+
+.PostTeamMember-container.dark
+.PostTeamMember-table tbody td {
+  border-color: #334155;
+
+  color: #e2e8f0;
+}
+
+.PostTeamMember-container.dark
+.PostTeamMember-box-item input,
+.PostTeamMember-container.dark
+.PostTeamMember-box > input {
+  border-color: #475569;
+
+  background: #1e293b;
+
+  color: #f8fafc;
+}
+
+.PostTeamMember-container.dark
+.PostTeamMember-box-item input::placeholder,
+.PostTeamMember-container.dark
+.PostTeamMember-box > input::placeholder {
+  color: #718096;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1250px) {
+  .PostTeamMember-container {
+    grid-template-columns: 1fr;
+
+    padding: 24px;
   }
-  /* Only table wrapper scroll horizontally */
+
+  .PostTeamMember-form-section,
+  .PostTeamMember-table-section {
+    width: 100%;
+  }
+
   .PostTeamMember-table-wrapper {
-    overflow-x: auto;
+    max-height: 650px;
   }
 }
 
-/* Small mobile devices */
-@media (max-width: 480px) {
-    .PostTeamMember-container{
-    padding: 0px;
+/* =========================================================
+   TABLET SMALL
+========================================================= */
+
+@media (max-width: 850px) {
+  .PostTeamMember-container {
+    padding: 18px;
+
+    gap: 18px;
+  }
+
+  .PostTeamMember-box-row {
+    grid-template-columns: 1fr;
+  }
+
+  .PostTeamMember-form {
+    padding: 18px;
+  }
+
+  .PostTeamMember-table-wrapper {
+    padding: 13px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .PostTeamMember-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 12px;
+
+    gap: 15px;
+  }
+
+  .PostTeamMember-form-section,
+  .PostTeamMember-table-section {
+    width: 100%;
+
+    border-radius: 13px;
+  }
+
+  .PostTeamMember-heading {
+    padding: 17px;
+
+    font-size: 16px;
+  }
+
+  .PostTeamMember-heading::after {
+    left: 17px;
+  }
+
+  .PostTeamMember-form {
+    padding: 14px;
+
+    gap: 12px;
+  }
+
+  .PostTeamMember-box {
+    padding: 14px;
+
+    border-radius: 11px;
+  }
+
+  .PostTeamMember-box-row {
+    grid-template-columns: 1fr;
+
+    gap: 11px;
+  }
+
+  .PostTeamMember-box-item input,
+  .PostTeamMember-box > input {
+    height: 42px;
+  }
+
+  .PostTeamMember-submit-btn {
+    min-height: 45px;
+  }
+
+  .PostTeamMember-table-wrapper {
+    padding: 10px;
+
+    max-height: 600px;
+  }
+
+  .PostTeamMember-table {
+    min-width: 850px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .PostTeamMember-container {
+    padding: 8px;
+  }
+
+  .PostTeamMember-heading {
+    font-size: 15px;
+  }
+
+  .PostTeamMember-form {
+    padding: 11px;
+  }
+
+  .PostTeamMember-box {
+    padding: 12px;
+  }
+
+  .PostTeamMember-box-item label,
+  .PostTeamMember-box > label {
+    font-size: 10px;
+  }
+
+  .PostTeamMember-box-item input,
+  .PostTeamMember-box > input {
+    font-size: 11px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.PostTeamMember-container
+button:focus-visible,
+.PostTeamMember-container
+input:focus-visible {
+  outline: 2px solid #8b5cf6;
+
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .PostTeamMember-container *,
+  .PostTeamMember-container *::before,
+  .PostTeamMember-container *::after {
+    transition: none !important;
+
+    animation: none !important;
   }
 }

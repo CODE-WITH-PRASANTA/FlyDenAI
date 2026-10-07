@@ -1,295 +1,1457 @@
-/* =============================
-   VisaPosting Professional & Responsive
-============================= */
+/* =========================================================
+   VISA POSTING
+   Professional Admin UI
+========================================================= */
 
-/* Page Layout */
-.Visaposting-PageLayout {
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.Visaposting-Page {
+  width: 100%;
+  min-height: 100vh;
+  padding: 28px;
+  background:
+    radial-gradient(
+      circle at 5% 0%,
+      rgba(255, 77, 171, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 95% 10%,
+      rgba(120, 90, 255, 0.07),
+      transparent 25%
+    ),
+    #f7f8fc;
+  font-family:
+    Inter,
+    Poppins,
+    Arial,
+    sans-serif;
+  color: #20202a;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.Visaposting-Header {
+  width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin: 40px auto;
-  font-family: 'Poppins', sans-serif;
-  color: #333;
-  background: #f8f6fb;
-  padding: 15px;
-}
-
-/* ----------------------------
-   Form Container
----------------------------- */
-.Visaposting-FormContainer {
-  flex: 2;
-  background: #fff;
-  padding: 40px 35px;
+  align-items: center;
+  gap: 22px;
+  padding: 25px 28px;
+  margin-bottom: 24px;
+  border: 1px solid #eeeaf2;
   border-radius: 22px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  transition: all 0.3s ease;
-}
-.Visaposting-FormContainer:hover {
-  box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #fff8fc 100%
+    );
+  box-shadow:
+    0 12px 35px rgba(32, 24, 40, 0.06);
 }
 
-/* ----------------------------
-   Section Titles
----------------------------- */
-.Visaposting-Title {
+.Visaposting-HeaderIcon {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 17px;
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      #ff3f9f,
+      #ff79bc
+    );
+  box-shadow:
+    0 10px 25px rgba(255, 63, 159, 0.25);
+}
+
+.Visaposting-HeaderContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.Visaposting-HeaderBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  color: #ff3f9f;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+}
+
+.Visaposting-HeaderContent h1 {
+  margin: 0;
+  color: #24222a;
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.Visaposting-HeaderContent p {
+  margin: 7px 0 0;
+  max-width: 680px;
+  color: #7c7785;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.Visaposting-HeaderStats {
+  display: flex;
+  gap: 10px;
+}
+
+.Visaposting-HeaderStats div {
+  min-width: 82px;
+  padding: 12px 14px;
+  border: 1px solid #eee6ee;
+  border-radius: 14px;
   text-align: center;
-  font-size: 32px;
-  font-weight: 700;
-  color: #ff4dab;
-  margin-bottom: 40px;
-  letter-spacing: 1px;
-}
-.Visaposting-SectionTitle {
-  font-size: 20px;
-  font-weight: 600;
-  color: #ff4dab;
-  margin-bottom: 18px;
-  border-left: 6px solid #ff4dab;
-  padding-left: 12px;
-  margin-top: 25px;
+  background: #fff;
 }
 
-/* ----------------------------
-   Grid Layout
----------------------------- */
+.Visaposting-HeaderStats strong {
+  display: block;
+  color: #ff3f9f;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.Visaposting-HeaderStats span {
+  display: block;
+  margin-top: 2px;
+  color: #8c8793;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   MAIN LAYOUT
+========================================================= */
+
+.Visaposting-PageLayout {
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    370px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
+.Visaposting-FormContainer {
+  min-width: 0;
+  padding: 8px;
+}
+
+.Visaposting-Section {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 25px;
+  border: 1px solid #ece9f0;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow:
+    0 8px 28px rgba(28, 24, 38, 0.045);
+  overflow: hidden;
+}
+
+.Visaposting-Section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background:
+    linear-gradient(
+      90deg,
+      #ff3f9f,
+      #ff86c5,
+      transparent
+    );
+  opacity: 0.8;
+}
+
+/* =========================================================
+   SECTION HEADING
+========================================================= */
+
+.Visaposting-SectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 24px;
+}
+
+.Visaposting-SectionIcon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: #ff3f9f;
+  background: #fff0f8;
+}
+
+.Visaposting-SectionHeading h2 {
+  margin: 0;
+  color: #292631;
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -0.2px;
+}
+
+.Visaposting-SectionHeading p {
+  margin: 4px 0 0;
+  color: #94909b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
 .Visaposting-GridTwoCol {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin-bottom: 18px;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 17px;
 }
 
-/* ----------------------------
-   Inputs & Selects & File
----------------------------- */
+/* =========================================================
+   FIELD
+========================================================= */
+
+.Visaposting-Field {
+  width: 100%;
+  min-width: 0;
+}
+
+.Visaposting-Field label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 8px;
+  color: #403c47;
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.Visaposting-Field label span {
+  color: #ff3f9f;
+}
+
+/* =========================================================
+   INPUT WRAPPER
+========================================================= */
+
+.Visaposting-InputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.Visaposting-InputWrapper > svg {
+  position: absolute;
+  left: 14px;
+  z-index: 2;
+  color: #aaa4b1;
+  pointer-events: none;
+}
+
+.Visaposting-InputWrapper
+  .Visaposting-Input,
+.Visaposting-InputWrapper
+  .Visaposting-Select {
+  padding-left: 42px;
+}
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
 .Visaposting-Input,
-.Visaposting-Select,
-.Visaposting-FileInput {
+.Visaposting-Select {
   width: 100%;
-  padding: 12px 16px;
-  font-size: 15px;
-  border-radius: 14px;
-  border: 1px solid #e0d7e5;
+  height: 47px;
+  padding: 0 14px;
+  border: 1px solid #e6e2e9;
+  border-radius: 12px;
   outline: none;
-  transition: all 0.3s ease;
-  background: #fdf7fc;
-}
-.Visaposting-Input:focus,
-.Visaposting-Select:focus,
-.Visaposting-FileInput:focus {
-  border-color: #ff4dab;
-  box-shadow: 0 0 10px rgba(255,77,171,0.3);
-}
-
-/* ----------------------------
-   Checkbox Row
----------------------------- */
-.Visaposting-CheckboxRow {
-  display: flex;
-  gap: 25px;
-  margin-top: 12px;
-  font-size: 14px;
-  align-items: center;
-}
-.Visaposting-CheckboxRow input[type="checkbox"] {
-  accent-color: #ff4dab;
-  margin-right: 6px;
-}
-
-/* ----------------------------
-   Inline Add Sections
----------------------------- */
-.Visaposting-InlineAdd {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
-.Visaposting-InlineAdd input {
-  flex: 1;
-  background: #fdf7fc;
-}
-.Visaposting-AddBtn {
-  background: linear-gradient(135deg, #ff4dab, #ff70b0);
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  padding: 12px 20px;
+  background: #fbfafc;
+  color: #302d36;
+  font-family: inherit;
+  font-size: 12px;
   font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.Visaposting-AddBtn:hover {
-  background: linear-gradient(135deg, #ff70b0, #ff4dab);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(255,77,171,0.25);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-/* ----------------------------
-   Submit Button
----------------------------- */
-.Visaposting-SubmitBtn {
-  display: block;
-  width: 100%;
-  margin-top: 30px;
-  padding: 16px 0;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #ff4dab, #ff70b0);
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.Visaposting-SubmitBtn:hover {
-  background: linear-gradient(135deg, #ff70b0, #ff4dab);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255,77,171,0.3);
+.Visaposting-Input::placeholder {
+  color: #aaa6af;
 }
 
-/* ----------------------------
-   Preview Panel
----------------------------- */
-.Visaposting-PreviewPanel {
-  flex: 1;
-  background: #fff0f8;
-  border-radius: 22px;
-  padding: 30px;
-  position: sticky;
-  top: 25px;
-  height: fit-content;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-}
-.Visaposting-PreviewTitle {
-  text-align: center;
-  color: #ff4dab;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 28px;
-}
-
-/* ----------------------------
-   Preview Sections
----------------------------- */
-.Visaposting-PreviewSection {
-  margin-bottom: 25px;
-}
-.Visaposting-PreviewSection h4 {
-  font-size: 17px;
-  font-weight: 600;
-  color: #ff4dab;
-  margin-bottom: 10px;
-}
-
-/* ----------------------------
-   Preview Boxes
----------------------------- */
-.Visaposting-PreviewBox {
+.Visaposting-Input:hover,
+.Visaposting-Select:hover {
+  border-color: #d7cfd9;
   background: #fff;
-  border-radius: 18px;
-  padding: 14px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-  border: 1px solid #ffd1e3;
-  transition: all 0.3s ease;
 }
-.Visaposting-PreviewBox:hover {
-  box-shadow: 0 10px 25px rgba(255,77,171,0.15);
-  transform: translateY(-3px);
+
+.Visaposting-Input:focus,
+.Visaposting-Select:focus {
+  border-color: #ff68b1;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(255, 77, 171, 0.08);
 }
-.Visaposting-PreviewBox button {
-  background: transparent;
-  border: none;
-  color: #ff4dab;
-  font-size: 20px;
+
+.Visaposting-Select {
+  appearance: none;
   cursor: pointer;
-  transition: all 0.3s ease;
-}
-.Visaposting-PreviewBox button:hover {
-  color: #ff70b0;
-  transform: scale(1.1);
+  background-image:
+    linear-gradient(45deg, transparent 50%, #aaa 50%),
+    linear-gradient(135deg, #aaa 50%, transparent 50%);
+  background-position:
+    calc(100% - 17px) 20px,
+    calc(100% - 12px) 20px;
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
 }
 
-/* ----------------------------
-   TinyMCE Editor Custom
----------------------------- */
+.Visaposting-FullField {
+  margin-top: 18px;
+}
+
+/* =========================================================
+   UPLOAD
+========================================================= */
+
+.Visaposting-UploadBox {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  min-height: 82px;
+  padding: 15px 18px;
+  margin: 0 !important;
+  border: 1.5px dashed #e5bdd3;
+  border-radius: 15px;
+  background:
+    linear-gradient(
+      135deg,
+      #fffafd,
+      #fff5fa
+    );
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.Visaposting-UploadBox:hover {
+  border-color: #ff68b1;
+  background: #fff7fb;
+  transform: translateY(-1px);
+}
+
+.Visaposting-UploadBox input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.Visaposting-UploadIcon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  color: #ff3f9f;
+  background: #ffe8f4;
+}
+
+.Visaposting-UploadBox strong {
+  display: block;
+  color: #39343d;
+  font-size: 12px;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+.Visaposting-UploadBox span {
+  display: block;
+  margin-top: 5px;
+  color: #99939e;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   STATUS CARDS
+========================================================= */
+
+.Visaposting-StatusGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.Visaposting-StatusCard {
+  position: relative;
+  display: flex !important;
+  align-items: center;
+  gap: 11px;
+  padding: 15px;
+  margin: 0 !important;
+  border: 1px solid #eae6ec;
+  border-radius: 15px;
+  background: #fbfafc;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.Visaposting-StatusCard:hover {
+  border-color: #f0bdd7;
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 20px rgba(255, 77, 171, 0.08);
+}
+
+.Visaposting-StatusCard.active {
+  border-color: #ff8ac5;
+  background: #fff5fa;
+  box-shadow:
+    0 8px 20px rgba(255, 77, 171, 0.08);
+}
+
+.Visaposting-StatusCard input {
+  position: absolute;
+  opacity: 0;
+}
+
+.Visaposting-StatusIcon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff3f9f;
+  border-radius: 11px;
+  background: #ffe9f4;
+}
+
+.Visaposting-StatusCard strong {
+  display: block;
+  color: #37323c;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.Visaposting-StatusCard span {
+  display: block;
+  margin-top: 3px;
+  color: #96909b;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+.Visaposting-CheckIcon {
+  margin-left: auto;
+  color: #ddd7df;
+}
+
+.Visaposting-StatusCard.active
+  .Visaposting-CheckIcon {
+  color: #ff3f9f;
+}
+
+/* =========================================================
+   EDITOR
+========================================================= */
+
+.Visaposting-EditorWrapper {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #e8e3ea;
+  border-radius: 14px;
+}
+
 .tox.tox-tinymce {
+  width: 100% !important;
+  border: none !important;
   border-radius: 14px !important;
-  border: 1px solid #ffd1e3 !important;
 }
 
-/* =============================
-   RESPONSIVE STYLES
-============================= */
-@media (max-width: 1200px) {
-  .Visaposting-PageLayout {
-    gap: 0px;
-  }
-  .Visaposting-FormContainer {
-    padding: 30px 25px;
-  }
-  .Visaposting-Title {
-    font-size: 28px;
-  }
-  .Visaposting-SectionTitle {
-    font-size: 18px;
+.tox .tox-toolbar,
+.tox .tox-toolbar__overflow,
+.tox .tox-toolbar__primary {
+  background: #fff9fc !important;
+}
+
+.tox .tox-statusbar {
+  background: #fffafd !important;
+}
+
+/* =========================================================
+   VISA TYPE GRID
+========================================================= */
+
+.Visaposting-AddGrid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.Visaposting-AddButtonWrapper {
+  display: flex;
+  align-items: end;
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.Visaposting-AddBtn {
+  min-height: 47px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 12px;
+  background:
+    linear-gradient(
+      135deg,
+      #ff3f9f,
+      #ff73b7
+    );
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow:
+    0 8px 18px rgba(255, 63, 159, 0.16);
+  transition: all 0.25s ease;
+}
+
+.Visaposting-AddBtn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 25px rgba(255, 63, 159, 0.23);
+}
+
+.Visaposting-AddBtn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   INLINE ADD
+========================================================= */
+
+.Visaposting-InlineAdd {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    180px;
+  gap: 12px;
+}
+
+/* =========================================================
+   CHIPS
+========================================================= */
+
+.Visaposting-ChipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.Visaposting-Chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #f1d6e4;
+  border-radius: 9px;
+  background: #fff7fb;
+  color: #665e69;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.Visaposting-Chip svg {
+  color: #ff3f9f;
+  flex: 0 0 auto;
+}
+
+.Visaposting-Chip span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Visaposting-Chip button {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  color: #a69eaa;
+  background: transparent;
+  cursor: pointer;
+}
+
+.Visaposting-Chip button:hover {
+  color: #ff3f9f;
+  background: #ffe8f4;
+}
+
+/* =========================================================
+   FAQ / INFO
+========================================================= */
+
+.Visaposting-FAQGrid,
+.Visaposting-InfoGrid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr)
+    160px;
+  gap: 12px;
+  align-items: end;
+}
+
+/* =========================================================
+   SUBMIT AREA
+========================================================= */
+
+.Visaposting-SubmitArea {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px;
+  margin-bottom: 30px;
+  border: 1px solid #eee8ef;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow:
+    0 8px 25px rgba(25, 20, 30, 0.045);
+}
+
+.Visaposting-SubmitInfo {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.Visaposting-SubmitInfo > svg {
+  color: #36b77c;
+  flex: 0 0 auto;
+}
+
+.Visaposting-SubmitInfo strong {
+  display: block;
+  color: #37323c;
+  font-size: 12px;
+}
+
+.Visaposting-SubmitInfo span {
+  display: block;
+  margin-top: 3px;
+  color: #99929e;
+  font-size: 10px;
+}
+
+.Visaposting-SubmitBtn {
+  min-width: 190px;
+  height: 49px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 13px;
+  color: #fff;
+  background:
+    linear-gradient(
+      135deg,
+      #ff3f9f,
+      #ff70b2
+    );
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow:
+    0 10px 24px rgba(255, 63, 159, 0.2);
+  transition: all 0.25s ease;
+}
+
+.Visaposting-SubmitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 30px rgba(255, 63, 159, 0.28);
+}
+
+.Visaposting-SubmitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.Visaposting-Spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation:
+    VisapostingSpin 0.7s linear infinite;
+}
+
+@keyframes VisapostingSpin {
+  to {
+    transform: rotate(360deg);
   }
 }
+
+/* =========================================================
+   PREVIEW PANEL
+========================================================= */
+
+.Visaposting-PreviewPanel {
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 20px;
+  border: 1px solid #eee7ef;
+  border-radius: 21px;
+  background:
+    linear-gradient(
+      180deg,
+      #fff9fc 0%,
+      #ffffff 30%
+    );
+  box-shadow:
+    0 12px 35px rgba(30, 23, 35, 0.07);
+}
+
+.Visaposting-PreviewPanel::-webkit-scrollbar {
+  width: 5px;
+}
+
+.Visaposting-PreviewPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.Visaposting-PreviewPanel::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: #ead9e3;
+}
+
+/* =========================================================
+   PREVIEW HEADER
+========================================================= */
+
+.Visaposting-PreviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #f0e9ef;
+}
+
+.Visaposting-PreviewHeaderIcon {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #ff3f9f;
+  background: #ffeaf5;
+}
+
+.Visaposting-PreviewHeader span {
+  display: block;
+  color: #ff3f9f;
+  font-size: 8px;
+  font-weight: 850;
+  letter-spacing: 1px;
+}
+
+.Visaposting-PreviewHeader h2 {
+  margin: 3px 0 0;
+  color: #29252e;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   PREVIEW SECTION
+========================================================= */
+
+.Visaposting-PreviewSection {
+  padding: 18px 0;
+  border-bottom: 1px solid #f0ebf0;
+}
+
+.Visaposting-PreviewSection:last-child {
+  border-bottom: none;
+}
+
+.Visaposting-PreviewSectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.Visaposting-PreviewSectionHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.Visaposting-PreviewSectionHeader svg {
+  color: #ff3f9f;
+}
+
+.Visaposting-PreviewSectionHeader h3 {
+  margin: 0;
+  color: #4a444e;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.Visaposting-PreviewSectionHeader > span {
+  min-width: 24px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  color: #ff3f9f;
+  background: #ffeaf5;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   PREVIEW CARD
+========================================================= */
+
+.Visaposting-PreviewCard {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px;
+  margin-bottom: 8px;
+  border: 1px solid #eee7ed;
+  border-radius: 12px;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.Visaposting-PreviewCard:hover {
+  border-color: #f0bfd8;
+  transform: translateX(-2px);
+  box-shadow:
+    0 7px 18px rgba(255, 77, 171, 0.08);
+}
+
+.Visaposting-PreviewCardIcon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: #ff3f9f;
+  background: #fff0f7;
+}
+
+.Visaposting-PreviewCardContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.Visaposting-PreviewCardContent strong {
+  display: block;
+  overflow: hidden;
+  color: #3b3640;
+  font-size: 11px;
+  font-weight: 750;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.Visaposting-PreviewCardContent span {
+  display: block;
+  margin-top: 2px;
+  color: #9b949f;
+  font-size: 9px;
+}
+
+.Visaposting-PreviewCardContent small {
+  display: block;
+  margin-top: 4px;
+  color: #ff3f9f;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.Visaposting-DeleteBtn {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  color: #aaa2ac;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.Visaposting-DeleteBtn:hover {
+  color: #ef426d;
+  background: #fff0f3;
+}
+
+/* =========================================================
+   SIMPLE PREVIEW
+========================================================= */
+
+.Visaposting-SimplePreview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 9px 10px;
+  margin-bottom: 7px;
+  border: 1px solid #eee8ed;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.Visaposting-SimplePreview > div {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.Visaposting-SimplePreview > div svg {
+  flex: 0 0 auto;
+  color: #43b67e;
+}
+
+.Visaposting-SimplePreview span {
+  overflow: hidden;
+  color: #615a66;
+  font-size: 10px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   FAQ PREVIEW
+========================================================= */
+
+.Visaposting-FAQPreview {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #eee6ed;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.Visaposting-FAQTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Visaposting-FAQTop strong {
+  color: #ff3f9f;
+  font-size: 10px;
+}
+
+.Visaposting-Question {
+  margin: 8px 0 5px;
+  color: #423c46;
+  font-size: 10px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.Visaposting-Answer {
+  margin: 0;
+  color: #89818d;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   INFO PREVIEW
+========================================================= */
+
+.Visaposting-InfoPreview {
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid #eee6ed;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.Visaposting-InfoPreviewTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.Visaposting-InfoPreviewTop strong {
+  color: #443d48;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.Visaposting-InfoPreview p {
+  margin: 6px 0 0;
+  color: #8d8591;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.Visaposting-EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 105px;
+  padding: 18px;
+  border: 1px dashed #eadde5;
+  border-radius: 12px;
+  color: #c0b6c0;
+  background: #fffafd;
+  text-align: center;
+}
+
+.Visaposting-EmptyState svg {
+  margin-bottom: 7px;
+  color: #d9b9cc;
+}
+
+.Visaposting-EmptyState p {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1600px) {
+  .Visaposting-Page {
+    padding: 32px 40px;
+  }
+
+  .Visaposting-PageLayout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      400px;
+  }
+
+  .Visaposting-Section {
+    padding: 28px;
+  }
+}
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .Visaposting-Page {
+    padding: 20px;
+  }
+
+  .Visaposting-PageLayout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      330px;
+    gap: 18px;
+  }
+
+  .Visaposting-HeaderStats {
+    display: none;
+  }
+
+  .Visaposting-Section {
+    padding: 21px;
+  }
+
+  .Visaposting-FAQGrid,
+  .Visaposting-InfoGrid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+  .Visaposting-FAQGrid .Visaposting-AddBtn,
+  .Visaposting-InfoGrid .Visaposting-AddBtn {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 992px) {
-  .Visaposting-PageLayout {
-    flex-direction: column-reverse;
-    margin: 0px;
+  .Visaposting-Page {
+    padding: 15px;
   }
-  .Visaposting-PreviewPanel {
-    width: 100%;
-    position: relative;
-    top: 0;
-    margin-bottom: 25px;
-  }
-}
 
-@media (max-width: 768px) {
-  .Visaposting-GridTwoCol {
+  .Visaposting-PageLayout {
     grid-template-columns: 1fr;
   }
-  .Visaposting-Input,
-  .Visaposting-Select,
-  .Visaposting-FileInput {
-    font-size: 14px;
-    padding: 10px 14px;
+
+  .Visaposting-PreviewPanel {
+    position: relative;
+    top: auto;
+    max-height: none;
+    order: 2;
   }
-  .Visaposting-AddBtn,
-  .Visaposting-SubmitBtn {
-    font-size: 14px;
-    padding: 12px 16px;
+
+  .Visaposting-FormContainer {
+    order: 1;
+    padding: 0;
+  }
+
+  .Visaposting-Header {
+    padding: 20px;
+  }
+
+  .Visaposting-HeaderContent h1 {
+    font-size: 24px;
+  }
+
+  .Visaposting-PreviewPanel {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    gap: 0 18px;
+  }
+
+  .Visaposting-PreviewHeader {
+    grid-column: 1 / -1;
   }
 }
 
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .Visaposting-Page {
+    padding: 10px;
+  }
+
+  .Visaposting-Header {
+    align-items: flex-start;
+    padding: 18px;
+    border-radius: 17px;
+  }
+
+  .Visaposting-HeaderIcon {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .Visaposting-HeaderContent h1 {
+    font-size: 21px;
+  }
+
+  .Visaposting-HeaderContent p {
+    font-size: 11px;
+  }
+
+  .Visaposting-GridTwoCol,
+  .Visaposting-StatusGrid,
+  .Visaposting-AddGrid,
+  .Visaposting-FAQGrid,
+  .Visaposting-InfoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .Visaposting-Section {
+    padding: 17px;
+    border-radius: 16px;
+  }
+
+  .Visaposting-SectionHeading {
+    margin-bottom: 19px;
+  }
+
+  .Visaposting-SectionIcon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .Visaposting-SectionHeading h2 {
+    font-size: 15px;
+  }
+
+  .Visaposting-SectionHeading p {
+    font-size: 10px;
+  }
+
+  .Visaposting-InlineAdd {
+    grid-template-columns: 1fr;
+  }
+
+  .Visaposting-SubmitArea {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .Visaposting-SubmitBtn {
+    width: 100%;
+  }
+
+  .Visaposting-PreviewPanel {
+    display: block;
+    padding: 16px;
+  }
+
+  .Visaposting-FAQGrid .Visaposting-AddBtn,
+  .Visaposting-InfoGrid .Visaposting-AddBtn {
+    grid-column: auto;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media (max-width: 480px) {
-  
- 
+  .Visaposting-Page {
+    padding: 7px;
+  }
+
+  .Visaposting-Header {
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .Visaposting-HeaderIcon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+  }
+
+  .Visaposting-HeaderContent h1 {
+    font-size: 18px;
+  }
+
+  .Visaposting-HeaderBadge {
+    font-size: 8px;
+  }
+
+  .Visaposting-HeaderContent p {
+    display: none;
+  }
+
+  .Visaposting-Section {
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+
+  .Visaposting-SectionHeading {
+    gap: 9px;
+  }
+
+  .Visaposting-SectionIcon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .Visaposting-Input,
+  .Visaposting-Select {
+    height: 44px;
+    font-size: 11px;
+  }
+
+  .Visaposting-UploadBox {
+    min-height: 72px;
+    padding: 11px;
+  }
+
+  .Visaposting-UploadIcon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .Visaposting-UploadBox strong {
+    font-size: 10px;
+  }
+
+  .Visaposting-UploadBox span {
+    font-size: 8px;
+  }
+
+  .Visaposting-StatusCard {
+    padding: 12px;
+  }
+
+  .Visaposting-StatusIcon {
+    width: 33px;
+    height: 33px;
+    flex-basis: 33px;
+  }
+
+  .Visaposting-StatusCard strong {
+    font-size: 10px;
+  }
+
+  .Visaposting-StatusCard span {
+    font-size: 8px;
+  }
+
+  .Visaposting-SubmitArea {
+    padding: 14px;
+  }
+
+  .Visaposting-SubmitInfo span {
+    font-size: 8px;
+  }
+
+  .Visaposting-SubmitBtn {
+    min-width: 0;
+    height: 45px;
+  }
+
+  .Visaposting-PreviewPanel {
+    border-radius: 16px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 360px) {
+  .Visaposting-HeaderIcon {
+    display: none;
+  }
+
+  .Visaposting-HeaderContent h1 {
+    font-size: 17px;
+  }
+
+  .Visaposting-SectionHeading h2 {
+    font-size: 14px;
+  }
+
+  .Visaposting-Input,
+  .Visaposting-Select {
+    height: 42px;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.Visaposting-Input:focus-visible,
+.Visaposting-Select:focus-visible,
+.Visaposting-AddBtn:focus-visible,
+.Visaposting-SubmitBtn:focus-visible,
+.Visaposting-DeleteBtn:focus-visible {
+  outline: 3px solid rgba(255, 63, 159, 0.18);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
   .Visaposting-Input,
   .Visaposting-Select,
-  .Visaposting-FileInput {
-    padding: 8px 12px;
-  }
   .Visaposting-AddBtn,
-  .Visaposting-SubmitBtn {
-    font-size: 13px;
-    padding: 10px 14px;
+  .Visaposting-SubmitBtn,
+  .Visaposting-StatusCard,
+  .Visaposting-PreviewCard {
+    transition: none;
   }
-  .Visaposting-CheckboxRow {
-    align-items: flex-start;
-    gap: 28px;
-  }
-  .Visaposting-InlineAdd {
-    flex-direction: column;
-    gap: 8px;
+
+  .Visaposting-Spinner {
+    animation: none;
   }
 }

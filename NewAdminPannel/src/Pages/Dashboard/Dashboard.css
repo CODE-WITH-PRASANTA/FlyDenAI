@@ -1,0 +1,213 @@
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard {
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+
+.dashboard__grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+/* =========================================================
+   LEFT SECTION
+========================================================= */
+
+.dashboard__left-section {
+  grid-column: span 7 / span 7;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+
+  min-width: 0;
+}
+
+/* =========================================================
+   METRICS
+========================================================= */
+
+.dashboard__metrics {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   SALES CHART
+========================================================= */
+
+.dashboard__sales-chart {
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   MONTHLY TARGET
+========================================================= */
+
+.dashboard__target-section {
+  grid-column: span 5 / span 5;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.dashboard__statistics-section {
+  grid-column: span 12 / span 12;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   DEMOGRAPHIC
+========================================================= */
+
+.dashboard__demographic-section {
+  grid-column: span 5 / span 5;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   RECENT ORDERS
+========================================================= */
+
+.dashboard__orders-section {
+  grid-column: span 7 / span 7;
+
+  width: 100%;
+  min-width: 0;
+}
+
+/* =========================================================
+   COMMON COMPONENT SAFETY
+========================================================= */
+
+.dashboard__metrics > *,
+.dashboard__sales-chart > *,
+.dashboard__target-section > *,
+.dashboard__statistics-section > *,
+.dashboard__demographic-section > *,
+.dashboard__orders-section > * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   LARGE TABLET
+========================================================= */
+
+@media (max-width: 1199px) {
+  .dashboard__grid {
+    gap: 20px;
+  }
+
+  .dashboard__left-section {
+    grid-column: span 7 / span 7;
+  }
+
+  .dashboard__target-section {
+    grid-column: span 5 / span 5;
+  }
+
+  .dashboard__demographic-section {
+    grid-column: span 5 / span 5;
+  }
+
+  .dashboard__orders-section {
+    grid-column: span 7 / span 7;
+  }
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .dashboard__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+  }
+
+  .dashboard__left-section {
+    grid-column: span 2 / span 2;
+  }
+
+  .dashboard__target-section {
+    grid-column: span 2 / span 2;
+  }
+
+  .dashboard__statistics-section {
+    grid-column: span 2 / span 2;
+  }
+
+  .dashboard__demographic-section {
+    grid-column: span 2 / span 2;
+  }
+
+  .dashboard__orders-section {
+    grid-column: span 2 / span 2;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .dashboard__grid {
+    grid-template-columns: 1fr;
+
+    gap: 18px;
+  }
+
+  .dashboard__left-section,
+  .dashboard__target-section,
+  .dashboard__statistics-section,
+  .dashboard__demographic-section,
+  .dashboard__orders-section {
+    grid-column: 1 / -1;
+  }
+
+  .dashboard__left-section {
+    gap: 18px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .dashboard__grid {
+    gap: 15px;
+  }
+
+  .dashboard__left-section {
+    gap: 15px;
+  }
+}

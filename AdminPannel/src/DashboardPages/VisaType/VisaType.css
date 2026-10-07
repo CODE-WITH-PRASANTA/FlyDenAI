@@ -1,442 +1,1601 @@
-/*------------------ THEME VARIABLES ------------------*/
+/* =========================================================
+   VISA TYPE - PREMIUM ADMIN DASHBOARD
+========================================================= */
+
 :root {
-  --bg-light: #fff;
-  --bg-aside-light: #fafafa;
-  --bg-form-light: #fff;
-  --text-light: #333;
-  --text-muted-light: #777;
-  --border-light: #ddd;
-  --accent: #4f46e5;
-  --success: #10b981;
-  --danger: #ef4444;
-  --info: #3b82f6;
+  --visa-primary: #e94e77;
+  --visa-primary-dark: #d93662;
+  --visa-secondary: #7c3aed;
+  --visa-blue: #2563eb;
+  --visa-green: #10b981;
+  --visa-red: #ef4444;
+  --visa-orange: #f59e0b;
 
-  --bg-dark: rgb(16 24 40);
-  --bg-form-dark: rgb(30 41 59);
-  --bg-aside-dark: rgb(30 41 59);
-  --text-dark: #f5f5f5;
-  --text-muted-dark: #cbd5e1;
-  --border-dark: #374151;
+  --visa-bg: #f7f8fc;
+  --visa-card: #ffffff;
+  --visa-input: #f9fafc;
+  --visa-soft: #f5f6fa;
+
+  --visa-text: #172033;
+  --visa-muted: #7b8496;
+  --visa-light-muted: #a1a8b7;
+
+  --visa-border: #e7e9f0;
+  --visa-border-hover: #d7dbe6;
+
+  --visa-shadow:
+    0 8px 30px rgba(31, 38, 58, 0.055);
+
+  --visa-shadow-hover:
+    0 15px 38px rgba(31, 38, 58, 0.09);
+
+  --visa-radius: 18px;
+
+  --visa-dark-bg: #0b1120;
+  --visa-dark-card: #111827;
+  --visa-dark-input: #0f172a;
+  --visa-dark-border: #263044;
+  --visa-dark-text: #f3f4f6;
+  --visa-dark-muted: #9ca3af;
 }
 
-/*------------------ WRAPPER ------------------*/
+
+/* =========================================================
+   MAIN WRAPPER
+========================================================= */
+
 .visa-type-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  margin: 30px auto;
-  max-width: 1400px;
-  height: calc(100vh - 80px);
-  
+  width: 100%;
+  min-height: 100vh;
+
   box-sizing: border-box;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: all 0.3s ease;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(450px, 0.85fr);
+
+  gap: 22px;
+
+  padding: 25px;
+
+  margin: 0 auto;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(233, 78, 119, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124, 58, 237, 0.06),
+      transparent 28%
+    ),
+    var(--visa-bg);
+
+  color: var(--visa-text);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
+
+
+/* =========================================================
+   DARK MODE WRAPPER
+========================================================= */
 
 .visa-type-wrapper.dark {
-  background-color: var(--bg-dark);
-  color: var(--text-dark);
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(233, 78, 119, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(124, 58, 237, 0.09),
+      transparent 28%
+    ),
+    var(--visa-dark-bg);
+
+  color: var(--visa-dark-text);
 }
 
-/*------------------ FORM SECTION ------------------*/
+
+/* =========================================================
+   FORM CONTAINER
+========================================================= */
+
 .visa-type-container {
-  padding: 15px;
-  border-radius: 16px;
-  background-color: var(--bg-form-light);
-  border: 1px solid var(--border-light);
+  position: relative;
+
+  min-width: 0;
+  height: calc(100vh - 50px);
+
+  box-sizing: border-box;
+
+  padding: 25px;
+
   overflow-y: auto;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  height: 100%;
+
+  border: 1px solid var(--visa-border);
+  border-radius: var(--visa-radius);
+
+  background: var(--visa-card);
+
+  box-shadow: var(--visa-shadow);
+
+  scrollbar-width: thin;
+  scrollbar-color: #d5d9e2 transparent;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visa-type-container:hover {
+  box-shadow: var(--visa-shadow-hover);
 }
 
 .visa-type-wrapper.dark .visa-type-container {
-  background-color: var(--bg-form-dark);
-  border: 1px solid var(--border-dark);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  background: var(--visa-dark-card);
+  border-color: var(--visa-dark-border);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22);
+
+  scrollbar-color: #374151 transparent;
 }
+
+
+/* =========================================================
+   FORM HEADER
+========================================================= */
 
 .visa-type-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 18px;
-}
+  position: relative;
 
-/*------------------ FORM INPUTS ------------------*/
-.visa-type-form {
   display: flex;
-  flex-direction: column;
-  gap: 22px;
-}
+  align-items: center;
+  justify-content: center;
 
-.visa-input-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px;
-  align-items: start;
-}
+  min-height: 52px;
 
-.visa-input-group label {
-  grid-column: 1 / -1;
-  font-weight: 500;
-  margin-bottom: 4px;
-  color: var(--text-light);
-}
+  margin: 0 0 24px;
 
-.visa-type-wrapper.dark .visa-input-group label {
-  color: var(--text-dark);
-}
+  padding: 15px 18px;
 
-.visa-input-group input,
-.visa-input-group textarea {
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: all 0.25s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
+  border-radius: 14px;
 
-.visa-type-wrapper.dark .visa-input-group input,
-.visa-type-wrapper.dark .visa-input-group textarea {
-  background-color: var(--bg-form-dark);
-  color: var(--bg-light);
-}
+  color: var(--visa-text);
 
-.visa-input-group input:focus,
-.visa-input-group textarea:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 4px rgba(79, 70, 229, 0.3);
-}
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.08),
+      rgba(124, 58, 237, 0.07)
+    );
 
-textarea {
-  grid-column: 1 / -1;
-  min-height: 90px;
-  resize: vertical;
-}
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 800;
 
-/*------------------ BUTTONS ------------------*/
-.add-btn,
-.submit-btn,
-.visatype-edit-btn,
-.visatype-delete-btn,
-.visatype-preview-btn {
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
+  letter-spacing: -0.4px;
 
-.add-btn {
-  grid-column: 1 / -1;
-  background-color: var(--accent);
-  color: #fff;
-  padding: 8px 14px;
-}
-
-.add-btn:hover {
-  background-color: #3730a3;
-}
-
-.submit-btn {
-  margin-top: 25px;
-  background-color: var(--success);
-  color: #fff;
-  padding: 12px 20px;
-}
-
-.submit-btn:hover {
-  background-color: #059669;
-}
-
-.visatype-edit-btn {
-  background-color: var(--info);
-  color: #fff;
-}
-
-.visatype-delete-btn {
-  background-color: var(--danger);
-  color: #fff;
-}
-
-.visatype-preview-btn {
-  background-color: var(--success);
-  color: #fff;
-}
-
-
-/*------------------ CONSULTANT SECTION ------------------*/
-.consultant-section {
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px dashed var(--border-light);
-  background: rgba(79, 70, 229, 0.03);
-}
-
-.visa-type-wrapper.dark .consultant-section {
-  border: 1px dashed var(--border-dark);
-  background: rgba(79, 70, 229, 0.1);
-}
-
-/*------------------ TABLE ------------------*/
-.visa-aside {
-  border-radius: 16px;
-  padding: 20px;
-  background: var(--bg-aside-light);
-  border: 1px solid var(--border-light);
-  overflow-y: auto;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-  transition: all 0.3s ease;
-  height: 100%;
-}
-
-.visa-type-wrapper.dark .visa-aside {
-  background: var(--bg-aside-dark);
-  border: 1px solid var(--border-dark);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-}
-
-/* Visa Form Title */
-.visa-type-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--accent);
   text-align: center;
-  margin-bottom: 18px;
+}
+
+.visa-type-title::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 4px;
+  height: 25px;
+
+  transform: translateY(-50%);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--visa-primary),
+      var(--visa-secondary)
+    );
 }
 
 .visa-type-wrapper.dark .visa-type-title {
-  color: #fff; /* White color for dark mode */
-}
+  color: #ffffff;
 
-/* Visa Aside Title */
-.visa-aside h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--accent);
-  text-align: center;
-  margin-bottom: 18px;
-}
-
-.visa-type-wrapper.dark .visa-aside h2 {
-  color: #fff; /* White color for dark mode */
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.13),
+      rgba(124, 58, 237, 0.12)
+    );
 }
 
 
-.visa-table {
+/* =========================================================
+   FORM
+========================================================= */
+
+.visa-type-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 19px;
+}
+
+
+/* =========================================================
+   INPUT GROUP
+========================================================= */
+
+.visa-input-group {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding: 0;
+}
+
+.visa-input-group > label {
+  display: flex;
+  align-items: center;
+
+  min-height: 18px;
+
+  margin: 0;
+
+  color: var(--visa-text);
+
+  font-size: 12px;
+  font-weight: 750;
+
+  letter-spacing: 0.1px;
+}
+
+.visa-input-group > label::after {
+  content: "*";
+
+  margin-left: 4px;
+
+  color: var(--visa-red);
+
+  font-size: 11px;
+}
+
+.visa-type-wrapper.dark
+.visa-input-group > label {
+  color: var(--visa-dark-text);
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+.visa-input-group input,
+.visa-input-group textarea,
+.input-field,
+.textarea-field {
   width: 100%;
-  border-collapse: collapse;
-  text-align: left;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--visa-border);
+  border-radius: 11px;
+
+  outline: none;
+
+  background: var(--visa-input);
+  color: var(--visa-text);
+
+  font-family: inherit;
+  font-size: 13px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.visa-input-group input,
+.input-field {
+  height: 46px;
+
+  padding: 0 13px;
+}
+
+.visa-input-group textarea,
+.textarea-field {
+  min-height: 105px;
+
+  padding: 12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.55;
+}
+
+.visa-input-group input::placeholder,
+.visa-input-group textarea::placeholder {
+  color: #a2a9b7;
+}
+
+.visa-input-group input:hover,
+.visa-input-group textarea:hover {
+  border-color: var(--visa-border-hover);
+}
+
+.visa-input-group input:focus,
+.visa-input-group textarea:focus,
+.input-field:focus,
+.textarea-field:focus {
+  border-color: var(--visa-primary);
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+      rgba(233, 78, 119, 0.08);
+}
+
+.visa-type-wrapper.dark
+.visa-input-group input,
+.visa-type-wrapper.dark
+.visa-input-group textarea,
+.visa-type-wrapper.dark
+.input-field,
+.visa-type-wrapper.dark
+.textarea-field {
+  background: var(--visa-dark-input);
+
+  color: var(--visa-dark-text);
+
+  border-color: var(--visa-dark-border);
+}
+
+.visa-type-wrapper.dark
+.visa-input-group input:focus,
+.visa-type-wrapper.dark
+.visa-input-group textarea:focus,
+.visa-type-wrapper.dark
+.input-field:focus,
+.visa-type-wrapper.dark
+.textarea-field:focus {
+  background: #111827;
+
+  border-color: var(--visa-primary);
+
+  box-shadow:
+    0 0 0 4px
+      rgba(233, 78, 119, 0.12);
+}
+
+
+/* =========================================================
+   TINYMCE
+========================================================= */
+
+.full-editor {
+  width: 100%;
+}
+
+.full-editor .tox-tinymce {
+  width: 100% !important;
+
+  min-height: 400px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--visa-border) !important;
+
+  border-radius: 13px !important;
+
+  box-shadow:
+    0 5px 20px
+      rgba(31, 38, 58, 0.04);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.full-editor .tox-tinymce:hover {
+  border-color: var(--visa-border-hover) !important;
+}
+
+.visa-type-wrapper.dark
+.full-editor .tox-tinymce {
+  border-color: var(--visa-dark-border) !important;
+
+  box-shadow:
+    0 5px 20px
+      rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   FEATURES
+========================================================= */
+
+.visa-input-group:has(input[placeholder^="Feature"]) {
+  padding: 17px;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(233, 78, 119, 0.025),
+      rgba(124, 58, 237, 0.025)
+    );
+}
+
+.visa-input-group:has(input[placeholder^="Feature"]) input {
+  background: var(--visa-card);
+}
+
+.visa-type-wrapper.dark
+.visa-input-group:has(input[placeholder^="Feature"]) {
+  border-color: var(--visa-dark-border);
+
+  background:
+    rgba(255, 255, 255, 0.02);
+}
+
+.visa-type-wrapper.dark
+.visa-input-group:has(input[placeholder^="Feature"]) input {
+  background: var(--visa-dark-input);
+}
+
+
+/* =========================================================
+   SPECIAL FEATURES
+========================================================= */
+
+.visa-input-group:has(input[placeholder^="Special Feature"]) {
+  padding: 17px;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.035),
+      rgba(233, 78, 119, 0.025)
+    );
+}
+
+.visa-type-wrapper.dark
+.visa-input-group:has(input[placeholder^="Special Feature"]) {
+  border-color: var(--visa-dark-border);
+
+  background:
+    rgba(255, 255, 255, 0.02);
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.add-btn {
+  width: 100%;
+  min-height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2px;
+
+  padding: 0 14px;
+
+  border: 1px dashed
+    rgba(233, 78, 119, 0.4);
+
+  border-radius: 10px;
+
+  color: var(--visa-primary);
+
+  background:
+    rgba(233, 78, 119, 0.05);
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.add-btn:hover {
+  transform: translateY(-1px);
+
+  border-color: var(--visa-primary);
+
+  background:
+    rgba(233, 78, 119, 0.1);
+}
+
+.visa-type-wrapper.dark
+.add-btn {
+  border-color:
+    rgba(233, 78, 119, 0.45);
+
+  background:
+    rgba(233, 78, 119, 0.08);
+}
+
+
+/* =========================================================
+   FILE INPUTS
+========================================================= */
+
+.visa-input-group input[type="file"] {
+  height: auto;
+
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 9px;
+
+  border-style: dashed;
+
+  cursor: pointer;
+}
+
+.visa-input-group input[type="file"]::file-selector-button {
+  margin-right: 10px;
+
+  padding: 8px 12px;
+
+  border: 0;
   border-radius: 8px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--visa-primary),
+      var(--visa-primary-dark)
+    );
+
+  font-family: inherit;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.visa-input-group input[type="file"]:hover {
+  border-color: var(--visa-primary);
+}
+
+
+/* =========================================================
+   CONSULTANT SECTION
+========================================================= */
+
+.consultant-section {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-top: 3px;
+
+  padding: 20px;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(124, 58, 237, 0.035),
+      rgba(233, 78, 119, 0.025)
+    );
+
   overflow: hidden;
 }
 
-.visa-table th,
-.visa-table td {
-  border-bottom: 1px solid var(--border-light);
-  padding: 10px 8px;
-  font-size: 0.95rem;
+.consultant-section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--visa-secondary),
+      var(--visa-primary)
+    );
 }
 
-.visa-type-wrapper.dark .visa-table th,
-.visa-type-wrapper.dark .visa-table td {
-  border-color: var(--border-dark);
-  color: var(--text-dark);
+.consultant-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 0;
+
+  color: var(--visa-text);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.consultant-section h3::before {
+  content: "✦";
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 8px;
+
+  color: var(--visa-secondary);
+
+  background:
+    rgba(124, 58, 237, 0.1);
+
+  font-size: 12px;
+}
+
+.visa-type-wrapper.dark
+.consultant-section {
+  border-color: var(--visa-dark-border);
+
+  background:
+    rgba(124, 58, 237, 0.05);
+}
+
+.visa-type-wrapper.dark
+.consultant-section h3 {
+  color: var(--visa-dark-text);
+}
+
+
+/* =========================================================
+   SUBMIT BUTTON
+========================================================= */
+
+.submit-btn {
+  width: 100%;
+
+  min-height: 49px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 4px;
+
+  padding: 0 20px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--visa-primary),
+      var(--visa-primary-dark)
+    );
+
+  box-shadow:
+    0 10px 24px
+      rgba(233, 78, 119, 0.2);
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 28px
+      rgba(233, 78, 119, 0.28);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   RIGHT / RECORDS PANEL
+========================================================= */
+
+.visa-aside {
+  min-width: 0;
+
+  height: calc(100vh - 50px);
+
+  box-sizing: border-box;
+
+  padding: 22px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: var(--visa-radius);
+
+  background: var(--visa-card);
+
+  box-shadow: var(--visa-shadow);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.visa-aside:hover {
+  box-shadow: var(--visa-shadow-hover);
+}
+
+.visa-type-wrapper.dark .visa-aside {
+  background: var(--visa-dark-card);
+
+  border-color: var(--visa-dark-border);
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   RECORDS HEADER
+========================================================= */
+
+.visa-aside h2 {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 0 18px;
+
+  padding: 15px 16px;
+
+  border-radius: 13px;
+
+  color: var(--visa-text);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.07),
+      rgba(124, 58, 237, 0.07)
+    );
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.visa-aside h2::after {
+  content: "RECORDS";
+
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 24px;
+
+  padding: 0 8px;
+
+  border-radius: 50px;
+
+  color: var(--visa-blue);
+
+  background:
+    rgba(37, 99, 235, 0.09);
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+.visa-type-wrapper.dark
+.visa-aside h2 {
+  color: var(--visa-dark-text);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.11),
+      rgba(124, 58, 237, 0.11)
+    );
+}
+
+
+/* =========================================================
+   TABLE SCROLL AREA
+========================================================= */
+
+.visa-aside {
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d5d9e2 transparent;
+}
+
+.visa-type-wrapper.dark
+.visa-aside {
+  scrollbar-color: #374151 transparent;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.visa-table {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 0;
+
+  overflow: hidden;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: 13px;
+
+  text-align: left;
+}
+
+.visa-table thead {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
 }
 
 .visa-table th {
-  background: var(--accent);
-  color: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  height: 46px;
+
+  padding: 0 11px;
+
+  border-bottom: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--visa-primary),
+      var(--visa-secondary)
+    );
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 0.55px;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
 }
 
-.visa-table tr:hover {
-  background: rgba(79, 70, 229, 0.08);
+.visa-table th:first-child {
+  border-top-left-radius: 12px;
 }
+
+.visa-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.visa-table td {
+  min-height: 65px;
+
+  padding: 10px 11px;
+
+  border-bottom: 1px solid var(--visa-border);
+
+  color: var(--visa-text);
+
+  background: var(--visa-card);
+
+  font-size: 11px;
+
+  vertical-align: middle;
+
+  transition:
+    background 0.2s ease;
+}
+
+.visa-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.visa-table tbody tr:hover td {
+  background:
+    rgba(233, 78, 119, 0.025);
+}
+
+.visa-type-wrapper.dark
+.visa-table {
+  border-color: var(--visa-dark-border);
+}
+
+.visa-type-wrapper.dark
+.visa-table td {
+  border-color: var(--visa-dark-border);
+
+  background: var(--visa-dark-card);
+
+  color: var(--visa-dark-text);
+}
+
+.visa-type-wrapper.dark
+.visa-table tbody tr:hover td {
+  background:
+    rgba(233, 78, 119, 0.05);
+}
+
+
+/* =========================================================
+   TABLE IMAGE
+========================================================= */
 
 .table-img {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 42px;
+
+  display: block;
+
+  padding: 4px;
+
+  box-sizing: border-box;
+
+  object-fit: contain;
+
+  border: 1px solid var(--visa-border);
+
+  border-radius: 9px;
+
+  background: var(--visa-soft);
+
+  box-shadow:
+    0 3px 10px
+      rgba(31, 38, 58, 0.06);
+}
+
+.visa-type-wrapper.dark
+.table-img {
+  border-color: var(--visa-dark-border);
+
+  background: var(--visa-dark-input);
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.action-buttons {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  white-space: nowrap;
+}
+
+.action-buttons button {
+  position: relative;
+
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid transparent;
+
   border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 0;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-/*------------------ NO DATA ------------------*/
+.action-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   EDIT BUTTON
+========================================================= */
+
+.visatype-edit-btn {
+  background:
+    linear-gradient(
+      135deg,
+      #3b82f6,
+      #2563eb
+    );
+
+  box-shadow:
+    0 5px 12px
+      rgba(37, 99, 235, 0.18);
+}
+
+.visatype-edit-btn::before {
+  content: "✎";
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.visatype-edit-btn:hover {
+  box-shadow:
+    0 8px 16px
+      rgba(37, 99, 235, 0.25);
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+========================================================= */
+
+.visatype-delete-btn {
+  background:
+    linear-gradient(
+      135deg,
+      #ef4444,
+      #dc2626
+    );
+
+  box-shadow:
+    0 5px 12px
+      rgba(239, 68, 68, 0.17);
+}
+
+.visatype-delete-btn::before {
+  content: "×";
+
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.visatype-delete-btn:hover {
+  box-shadow:
+    0 8px 16px
+      rgba(239, 68, 68, 0.25);
+}
+
+
+/* =========================================================
+   PREVIEW BUTTON
+========================================================= */
+
+.visatype-preview-btn {
+  background:
+    linear-gradient(
+      135deg,
+      #10b981,
+      #059669
+    );
+
+  box-shadow:
+    0 5px 12px
+      rgba(16, 185, 129, 0.17);
+}
+
+.visatype-preview-btn::before {
+  content: "◉";
+
+  font-size: 13px;
+}
+
+.visatype-preview-btn:hover {
+  box-shadow:
+    0 8px 16px
+      rgba(16, 185, 129, 0.25);
+}
+
+
+/* =========================================================
+   TOOLTIP
+========================================================= */
+
+.action-buttons button[data-tooltip]::after {
+  content: attr(data-tooltip);
+
+  position: absolute;
+
+  left: 50%;
+  bottom: calc(100% + 8px);
+
+  transform:
+    translateX(-50%)
+    translateY(3px);
+
+  z-index: 20;
+
+  padding: 6px 8px;
+
+  border-radius: 6px;
+
+  color: #ffffff;
+
+  background: #111827;
+
+  font-size: 9px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.action-buttons button[data-tooltip]:hover::after {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    translateX(-50%)
+    translateY(0);
+}
+
+
+/* =========================================================
+   NO DATA
+========================================================= */
+
 .no-data {
+  min-height: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  margin: 0;
+
+  padding: 30px 15px;
+
+  color: var(--visa-muted);
+
   text-align: center;
-  color: var(--text-muted-light);
-  padding: 40px 0;
-  font-size: 1rem;
+
+  font-size: 12px;
 }
 
-.visa-type-wrapper.dark .no-data {
-  color: var(--text-muted-dark);
+.no-data::before {
+  content: "🌍";
+
+  width: 55px;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+
+  border-radius: 17px;
+
+  background:
+    rgba(233, 78, 119, 0.08);
+
+  font-size: 25px;
 }
 
-/*------------------ SCROLLBAR ------------------*/
+.visa-type-wrapper.dark
+.no-data {
+  color: var(--visa-dark-muted);
+}
+
+
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
+
 .visa-type-container::-webkit-scrollbar,
 .visa-aside::-webkit-scrollbar {
   width: 6px;
 }
 
+.visa-type-container::-webkit-scrollbar-track,
+.visa-aside::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .visa-type-container::-webkit-scrollbar-thumb,
 .visa-aside::-webkit-scrollbar-thumb {
-  background: #bbb;
-  border-radius: 8px;
+  border-radius: 20px;
+
+  background: #d6dae3;
 }
 
-.visa-type-wrapper.dark .visa-type-container::-webkit-scrollbar-thumb,
-.visa-type-wrapper.dark .visa-aside::-webkit-scrollbar-thumb {
-  background: #555;
+.visa-type-container::-webkit-scrollbar-thumb:hover,
+.visa-aside::-webkit-scrollbar-thumb:hover {
+  background: #b8becb;
 }
 
-/*------------------ RESPONSIVE ------------------*/
-@media (max-width: 1024px) {
+.visa-type-wrapper.dark
+.visa-type-container::-webkit-scrollbar-thumb,
+.visa-type-wrapper.dark
+.visa-aside::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+
+/* =========================================================
+   TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1250px) {
   .visa-type-wrapper {
-    grid-template-columns: 1fr;
-    
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(380px, 0.8fr);
+
+    gap: 17px;
+
+    padding: 18px;
+  }
+
+  .visa-type-container,
+  .visa-aside {
+    height: calc(100vh - 36px);
+  }
+
+  .visa-type-container {
+    padding: 20px;
   }
 
   .visa-aside {
-    margin-top: 25px;
-    max-height: 500px;
+    padding: 17px;
   }
-  .visa-type-container{
-    padding: 10px;
+
+  .visa-table th,
+  .visa-table td {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
-/* Action Buttons Container */
-.action-buttons {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-  align-items: center;
-}
 
-/* Common button styles */
-.action-buttons button {
-  border: none;
-  border-radius: 8px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
+/* =========================================================
+   TABLET
+========================================================= */
 
-/* Edit Button */
-.visatype-edit-btn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-}
-.visatype-edit-btn:hover {
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  transform: translateY(-2px);
-}
+@media (max-width: 1024px) {
+  .visa-type-wrapper {
+    grid-template-columns: 1fr;
 
-/* Delete Button */
-.visatype-delete-btn {
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-}
-.visatype-delete-btn:hover {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  transform: translateY(-2px);
-}
+    height: auto;
 
-/* Preview Button */
-.visatype-preview-btn {
-  background: linear-gradient(135deg, #10b981, #059669);
-}
-.visatype-preview-btn:hover {
-  background: linear-gradient(135deg, #059669, #047857);
-  transform: translateY(-2px);
-}
+    min-height: auto;
 
-/* Dark Mode Buttons */
-.visa-type-wrapper.dark .action-buttons button {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
+    padding: 18px;
+  }
 
-/* Optional: Add subtle tooltip effect */
-.action-buttons button:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 130%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #111;
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 0.75rem;
-  border-radius: 4px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
+  .visa-type-container {
+    height: auto;
+
+    max-height: none;
+
+    overflow: visible;
+  }
+
+  .visa-aside {
+    height: auto;
+
+    max-height: 650px;
+
+    overflow: auto;
+  }
+
+  .visa-type-title {
+    font-size: 20px;
+  }
+
+  .visa-input-group {
+    gap: 7px;
+  }
 }
 
 
-.full-editor .tox-tinymce {
-  border-radius: 10px !important;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-  width: 100% !important;
-  border: none !important;
+/* =========================================================
+   LARGE MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+  .visa-type-wrapper {
+    padding: 13px;
+
+    gap: 15px;
+  }
+
+  .visa-type-container,
+  .visa-aside {
+    padding: 17px;
+
+    border-radius: 15px;
+  }
+
+  .visa-type-title {
+    margin-bottom: 19px;
+
+    font-size: 18px;
+
+    min-height: 47px;
+  }
+
+  .visa-type-form {
+    gap: 16px;
+  }
+
+  .full-editor .tox-tinymce {
+    min-height: 350px;
+  }
+
+  .consultant-section {
+    padding: 16px;
+  }
+
+  .visa-aside h2 {
+    font-size: 16px;
+  }
+
+  .visa-table {
+    min-width: 620px;
+  }
+
+  .visa-aside {
+    overflow-x: auto;
+  }
 }
 
-.visa-type-wrapper {
-  display: flex;
-  gap: 20px;
-  padding: 20px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+  .visa-type-wrapper {
+    padding: 9px;
+
+    gap: 12px;
+  }
+
+  .visa-type-container,
+  .visa-aside {
+    padding: 13px;
+
+    border-radius: 13px;
+  }
+
+  .visa-type-title {
+    justify-content: flex-start;
+
+    padding: 13px 13px 13px 17px;
+
+    font-size: 16px;
+
+    text-align: left;
+  }
+
+  .visa-type-title::before {
+    width: 3px;
+    height: 21px;
+  }
+
+  .visa-input-group > label {
+    font-size: 11px;
+  }
+
+  .visa-input-group input,
+  .input-field {
+    height: 44px;
+
+    font-size: 12px;
+  }
+
+  .visa-input-group textarea,
+  .textarea-field {
+    min-height: 95px;
+
+    font-size: 12px;
+  }
+
+  .full-editor .tox-tinymce {
+    min-height: 300px;
+
+    border-radius: 10px !important;
+  }
+
+  .consultant-section {
+    padding: 14px;
+
+    border-radius: 13px;
+  }
+
+  .consultant-section h3 {
+    font-size: 13px;
+  }
+
+  .submit-btn {
+    min-height: 46px;
+
+    font-size: 12px;
+  }
+
+  .visa-aside {
+    max-height: 550px;
+  }
+
+  .visa-aside h2 {
+    padding: 13px;
+
+    font-size: 14px;
+  }
+
+  .visa-aside h2::after {
+    font-size: 7px;
+  }
+
+  .visa-table {
+    min-width: 610px;
+  }
 }
 
-.visa-type-container {
-  flex: 2;
-  background: var(--card-bg);
-  padding: 20px;
-  border-radius: 10px;
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media (max-width: 400px) {
+  .visa-type-wrapper {
+    padding: 7px;
+  }
+
+  .visa-type-container,
+  .visa-aside {
+    padding: 11px;
+  }
+
+  .visa-type-title {
+    font-size: 15px;
+  }
+
+  .consultant-section {
+    padding: 12px;
+  }
+
+  .full-editor .tox-tinymce {
+    min-height: 270px;
+  }
+
+  .visa-table {
+    min-width: 580px;
+  }
+
+  .action-buttons {
+    gap: 4px;
+  }
+
+  .action-buttons button {
+    width: 29px;
+    height: 29px;
+  }
 }
 
-.visa-aside {
-  flex: 1;
-  background: var(--aside-bg);
-  border-radius: 10px;
-  padding: 20px;
-  overflow-y: auto;
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.visa-type-wrapper button:focus-visible,
+.visa-type-wrapper input:focus-visible,
+.visa-type-wrapper textarea:focus-visible {
+  outline: 3px solid
+    rgba(233, 78, 119, 0.18);
+
+  outline-offset: 2px;
 }
 
-.visa-table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-.visa-table th,
-.visa-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
-.dark .visa-table th,
-.dark .visa-table td {
-  border-bottom: 1px solid #444;
-  color: #eee;
-}
+@media (prefers-reduced-motion: reduce) {
+  .visa-type-wrapper *,
+  .visa-type-wrapper *::before,
+  .visa-type-wrapper *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
 
-.table-img {
-  width: 60px;
-  height: 40px;
-  object-fit: cover;
-  border-radius: 5px;
+    transition-duration: 0.01ms !important;
+  }
 }

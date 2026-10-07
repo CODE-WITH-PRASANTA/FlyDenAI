@@ -1,7 +1,3 @@
-// -----------------------------------------
-// SERVER.JS — FINAL CLEAN MERGED VERSION
-// -----------------------------------------
-
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -13,27 +9,19 @@ connectDB();
 
 const app = express();
 
-// ---------- GLOBAL MIDDLEWARE ----------
+app.use(cors());
+
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "http://localhost:5174",
-        undefined, // allows Postman, Thunderclient, direct browser hits
-      ];
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.log("❌ BLOCKED ORIGIN:", origin);
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://flyixo.co.in",
+      "https://admin.flyixo.co.in"
+    ],
     credentials: true,
   })
 );
-
 
 app.use(express.json());
 
@@ -89,8 +77,6 @@ app.use("/api/price", priceRoutes);
 app.use("/api/ticket-payment", ticketPaymentRoutes);
 app.use("/api/ticket-booking", TicketBookingRoutes);
 app.use("/api/insurance", insuranceRoutes);
-
-
 
 // -----------------------------------------
 // DEFAULT ROUTE

@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import "./InternHero.css";
-import { FaGlobeAmericas, FaSuitcase, FaCalendarAlt } from "react-icons/fa";
+import {
+  FaGlobeAmericas,
+  FaSuitcase,
+  FaCalendarAlt,
+  FaSearch,
+  FaArrowRight,
+  FaStar,
+  FaCheckCircle,
+} from "react-icons/fa";
 import internImg from "../../assets/intern.webp";
 
 const InternHero = () => {
@@ -10,6 +18,7 @@ const InternHero = () => {
   const handleSearch = () => {
     console.log("Selected career:", careerField || "Not selected");
     console.log("Internship type:", internType);
+
     alert(
       `Searching for ${internType} internships ${
         careerField ? "in " + careerField : ""
@@ -18,85 +27,247 @@ const InternHero = () => {
   };
 
   return (
-    <div
-      className="InternHero-Container"
-      style={{
-        backgroundImage: `url(${internImg})`,
-      }}
-    >
-      <div className="InternHero-Overlay"></div>
+    <section className="intern-hero">
+      {/* Background */}
+      <div className="intern-hero__background">
+        <div className="intern-hero__overlay"></div>
+        <div className="intern-hero__glow intern-hero__glow--one"></div>
+        <div className="intern-hero__glow intern-hero__glow--two"></div>
+        <div className="intern-hero__grid"></div>
+      </div>
 
-      <div className="InternHero-Content">
-        <h1 className="InternHero-Title">Intern Abroad HQ</h1>
-        <p className="InternHero-Subtitle">
-          World's #1 rated global internship programs
-        </p>
+      {/* Floating Decorations */}
+      <div className="intern-hero__shape intern-hero__shape--one"></div>
+      <div className="intern-hero__shape intern-hero__shape--two"></div>
+      <div className="intern-hero__shape intern-hero__shape--three"></div>
 
-        <p className="InternHero-Rating">
-          <span className="InternHero-RatingText">Excellent</span>{" "}
-          <span className="InternHero-RatingValue">4.7 out of 5</span>{" "}
-          <span className="InternHero-Trust">★ Trustpilot</span>
-        </p>
+      <div className="intern-hero__container">
+        {/* Main Content */}
+        <div className="intern-hero__content">
 
-        <div className="InternHero-SearchCard">
-          <div className="InternHero-StatsRow">
-            <div className="InternHero-StatItem">
-              <FaSuitcase className="InternHero-StatIcon" />
-              <span>346 programs</span>
-            </div>
-            <div className="InternHero-StatItem">
-              <FaGlobeAmericas className="InternHero-StatIcon" />
-              <span>25 countries</span>
-            </div>
-            <div className="InternHero-StatItem">
-              <FaCalendarAlt className="InternHero-StatIcon" />
-              <span>2 to 24 weeks</span>
-            </div>
+          {/* Eyebrow */}
+          <div className="intern-hero__eyebrow">
+            <span className="intern-hero__eyebrow-line"></span>
+
+            <FaGlobeAmericas />
+
+            <span>FLYIXO GLOBAL INTERNSHIPS</span>
+
+            <span className="intern-hero__eyebrow-line"></span>
           </div>
 
-          <div className="InternHero-SearchRow">
-            <div className="InternHero-DropDown">
-              <label>Select your career field or specialization</label>
-              <select
-                value={careerField}
-                onChange={(e) => setCareerField(e.target.value)}
-              >
-                <option value="">
-                  Click to choose the focus for your internship
-                </option>
-                <option value="Business">Business</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Engineering">Engineering</option>
-                <option value="Design">Design</option>
-                <option value="Finance">Finance</option>
-                <option value="IT">IT & Software</option>
-              </select>
+          {/* Heading */}
+          <h1 className="intern-hero__title">
+            Build Your Career
+            <span> Beyond Borders</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="intern-hero__subtitle">
+            Explore world-class international internship opportunities and
+            gain real-world experience that takes your career to the next level.
+          </p>
+
+          {/* Rating */}
+          <div className="intern-hero__rating">
+            <div className="intern-hero__rating-stars">
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
+              <FaStar />
             </div>
 
-            <div className="InternHero-TypeButtons">
-              <label>What type of internship are you looking for?</label>
-              <div className="InternHero-BtnGroup">
-                {["Abroad", "Remote", "Any"].map((type) => (
-                  <button
-                    key={type}
-                    className={`InternHero-TypeBtn ${
-                      internType === type ? "active" : ""
-                    }`}
-                    onClick={() => setInternType(type)}
-                  >
-                    {type}
-                  </button>
-                ))}
+            <span className="intern-hero__rating-excellent">
+              Excellent
+            </span>
+
+            <span className="intern-hero__rating-value">
+              4.7 out of 5
+            </span>
+
+            <span className="intern-hero__rating-trust">
+              ★ Trustpilot
+            </span>
+          </div>
+
+          {/* Search Card */}
+          <div className="intern-hero__search-card">
+
+            {/* Search Card Header */}
+            <div className="intern-hero__card-header">
+              <div>
+                <span className="intern-hero__card-label">
+                  FIND YOUR OPPORTUNITY
+                </span>
+
+                <h2>Search Internship Programs</h2>
+              </div>
+
+              <div className="intern-hero__card-icon">
+                <FaSearch />
               </div>
             </div>
 
-            <button className="InternHero-SearchBtn" onClick={handleSearch}>
-              Search
-            </button>
+            {/* Stats */}
+            <div className="intern-hero__stats">
+
+              <div className="intern-hero__stat">
+                <div className="intern-hero__stat-icon">
+                  <FaSuitcase />
+                </div>
+
+                <div className="intern-hero__stat-content">
+                  <strong>346</strong>
+                  <span>Programs</span>
+                </div>
+              </div>
+
+              <div className="intern-hero__stat-divider"></div>
+
+              <div className="intern-hero__stat">
+                <div className="intern-hero__stat-icon">
+                  <FaGlobeAmericas />
+                </div>
+
+                <div className="intern-hero__stat-content">
+                  <strong>25</strong>
+                  <span>Countries</span>
+                </div>
+              </div>
+
+              <div className="intern-hero__stat-divider"></div>
+
+              <div className="intern-hero__stat">
+                <div className="intern-hero__stat-icon">
+                  <FaCalendarAlt />
+                </div>
+
+                <div className="intern-hero__stat-content">
+                  <strong>2–24</strong>
+                  <span>Weeks</span>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Search Form */}
+            <div className="intern-hero__search-row">
+
+              {/* Career Field */}
+              <div className="intern-hero__field">
+                <label htmlFor="career-field">
+                  Select Your Career Field
+                </label>
+
+                <div className="intern-hero__select-wrapper">
+                  <select
+                    id="career-field"
+                    value={careerField}
+                    onChange={(e) => setCareerField(e.target.value)}
+                  >
+                    <option value="">
+                      Choose your internship focus
+                    </option>
+
+                    <option value="Business">
+                      Business
+                    </option>
+
+                    <option value="Marketing">
+                      Marketing
+                    </option>
+
+                    <option value="Engineering">
+                      Engineering
+                    </option>
+
+                    <option value="Design">
+                      Design
+                    </option>
+
+                    <option value="Finance">
+                      Finance
+                    </option>
+
+                    <option value="IT">
+                      IT & Software
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Internship Type */}
+              <div className="intern-hero__field intern-hero__type-field">
+                <label>
+                  What Type Of Internship?
+                </label>
+
+                <div className="intern-hero__type-buttons">
+                  {["Abroad", "Remote", "Any"].map((type) => (
+                    <button
+                      type="button"
+                      key={type}
+                      className={`intern-hero__type-button ${
+                        internType === type ? "active" : ""
+                      }`}
+                      onClick={() => setInternType(type)}
+                    >
+                      {internType === type && (
+                        <FaCheckCircle />
+                      )}
+
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Search Button */}
+              <button
+                type="button"
+                className="intern-hero__search-button"
+                onClick={handleSearch}
+              >
+                <span>Search</span>
+                <FaArrowRight />
+              </button>
+            </div>
+
+            {/* Bottom Trust */}
+            <div className="intern-hero__card-footer">
+              <div className="intern-hero__trust-item">
+                <FaCheckCircle />
+                <span>Verified Programs</span>
+              </div>
+
+              <div className="intern-hero__trust-item">
+                <FaCheckCircle />
+                <span>Global Opportunities</span>
+              </div>
+
+              <div className="intern-hero__trust-item">
+                <FaCheckCircle />
+                <span>Expert Guidance</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Bottom Brand */}
+          <div className="intern-hero__bottom">
+            <span></span>
+
+            <p>
+              Your global career journey starts with{" "}
+              <strong>Flyixo</strong>
+            </p>
+
+            <span></span>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

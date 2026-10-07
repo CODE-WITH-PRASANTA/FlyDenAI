@@ -1,178 +1,1124 @@
+/* =========================================================
+   FLYIXO CAREER CAROUSEL
+========================================================= */
 
-/* =============== MAIN CONTAINER =============== */
-.CareerCarousel-container {
-  background: linear-gradient(135deg, #1a364d 0%, #2c4b61 100%);
-  color: #fff;
-  font-family: "Poppins", sans-serif;
-  padding: 2rem 2rem 2rem;
-  border-radius: 16px;
-  max-width: 1300px;
+.flyixo-career-section {
+  --career-navy: #062c43;
+  --career-navy-dark: #031b2b;
+  --career-primary: #e94e77;
+  --career-primary-dark: #c93661;
+  --career-primary-light: #ff8eaa;
+  --career-cyan: #36d1d4;
+  --career-blue: #2563eb;
+  --career-gold: #f4b942;
+  --career-text: #182536;
+  --career-muted: #687789;
+  --career-white: #ffffff;
+  --career-light: #f7f9fc;
+  --career-border: #e3e8ee;
+
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+
+  padding: 90px 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f7fafc 50%,
+      #f2f7fa 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  box-sizing: border-box;
+}
+
+.flyixo-career-section *,
+.flyixo-career-section *::before,
+.flyixo-career-section *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.flyixo-career-bg {
+  position: absolute;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  filter: blur(5px);
+}
+
+.flyixo-career-bg-one {
+  width: 520px;
+  height: 520px;
+
+  top: -250px;
+  right: -180px;
+
+  background: rgba(233, 78, 119, 0.08);
+}
+
+.flyixo-career-bg-two {
+  width: 450px;
+  height: 450px;
+
+  bottom: -220px;
+  left: -220px;
+
+  background: rgba(54, 209, 212, 0.08);
+}
+
+.flyixo-career-grid {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  opacity: 0.7;
+
+  background-image:
+    linear-gradient(
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 45px 45px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 90%
+    );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.flyixo-career-container {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1320px;
+
   margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-career-header {
+  max-width: 900px;
+
+  margin: 0 auto 55px;
+
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* =============== TITLE =============== */
-.CareerCarousel-title {
-  font-size: clamp(1.5rem, 2vw, 2.2rem);
-  font-weight: 700;
-  margin-bottom: 2.2rem;
-  line-height: 1.4;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+.flyixo-career-eyebrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-bottom: 17px;
+
+  color: var(--career-primary);
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.4px;
 }
 
-/* =============== SCROLL AREA =============== */
-.CareerCarousel-scroll-section {
+.flyixo-career-line {
+  display: block;
+
+  width: 42px;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--career-primary),
+      var(--career-cyan)
+    );
+}
+
+.flyixo-career-title {
+  margin: 0 0 18px;
+
+  color: var(--career-navy);
+
+  font-size: clamp(34px, 4.5vw, 54px);
+
+  font-weight: 800;
+
+  line-height: 1.13;
+
+  letter-spacing: -1.7px;
+}
+
+.flyixo-career-title span {
+  display: block;
+
+  color: var(--career-primary);
+}
+
+.flyixo-career-description {
+  max-width: 740px;
+
+  margin: 0 auto;
+
+  color: var(--career-muted);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   SCROLL AREA
+========================================================= */
+
+.flyixo-career-scroll {
+  width: 100%;
+
   overflow-x: auto;
   overflow-y: hidden;
+
+  padding: 10px 5px 25px;
+
   scroll-behavior: smooth;
-  padding-bottom: 1rem;
+
+  cursor: grab;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    var(--career-primary)
+    rgba(6, 44, 67, 0.08);
 }
 
-.CareerCarousel-scroll-section::-webkit-scrollbar {
-  height: 8px;
+.flyixo-career-scroll:active {
+  cursor: grabbing;
 }
 
-.CareerCarousel-scroll-section::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 10px;
+.flyixo-career-scroll::-webkit-scrollbar {
+  height: 7px;
 }
 
-.CareerCarousel-scroll-section::-webkit-scrollbar-thumb {
-  background: #ffb74d;
-  border-radius: 10px;
+.flyixo-career-scroll::-webkit-scrollbar-track {
+  border-radius: 20px;
+
+  background:
+    rgba(6, 44, 67, 0.06);
 }
 
-.CareerCarousel-track {
+.flyixo-career-scroll::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--career-primary),
+      var(--career-cyan)
+    );
+}
+
+.flyixo-career-scroll::-webkit-scrollbar-thumb:hover {
+  background:
+    linear-gradient(
+      90deg,
+      var(--career-primary-dark),
+      var(--career-blue)
+    );
+}
+
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.flyixo-career-track {
   display: flex;
-  gap: 1rem;
-  padding: 0 0.5rem;
+
+  align-items: stretch;
+
+  gap: 20px;
+
+  width: max-content;
+
+  padding: 0 5px;
 }
 
-/* =============== CARD =============== */
-.CareerCarousel-card {
-  flex: 0 0 auto;
-  width: 260px;
-  background: #f3f4f6;
-  color: #1f2937;
-  border-radius: 15px;
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.flyixo-career-card {
+  position: relative;
+
+  flex: 0 0 270px;
+
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  border: 1px solid var(--career-border);
+
+  border-radius: 23px;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  box-shadow:
+    0 14px 35px rgba(6, 44, 67, 0.08);
+
   cursor: pointer;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
 }
 
-.CareerCarousel-image {
-  width: 100%;
-  height: 180px;
-  background: #ccc;
+.flyixo-career-card:hover {
+  transform: translateY(-9px);
+
+  border-color:
+    rgba(233, 78, 119, 0.25);
+
+  box-shadow:
+    0 25px 55px rgba(6, 44, 67, 0.14);
 }
 
-.CareerCarousel-image img {
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.flyixo-career-number {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 14px;
+  left: 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 39px;
+  height: 39px;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  border-radius: 11px;
+
+  background:
+    rgba(3, 27, 43, 0.72);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: white;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.8px;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.flyixo-career-image-wrapper {
+  position: relative;
+
+  height: 205px;
+
+  overflow: hidden;
+}
+
+.flyixo-career-image {
+  display: block;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
-  display: block;
+
+  transition:
+    transform 0.7s ease;
 }
 
-.CareerCarousel-label {
-  padding: 1rem;
-  font-weight: 600;
-  font-size: 1rem;
-  text-align: center;
-  background: #f3f4f6;
-  color: #1a1a1a;
+.flyixo-career-card:hover
+.flyixo-career-image {
+  transform: scale(1.08);
 }
 
-/* =============== BUTTON =============== */
-.CareerCarousel-btn {
-  margin-top: 2.5rem;
-  background: #ffb74d;
-  border: none;
-  color: #1a364d;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.9rem 2rem;
+.flyixo-career-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 27, 43, 0.05),
+      rgba(3, 27, 43, 0.65)
+    );
+
+  pointer-events: none;
+}
+
+.flyixo-career-image-brand {
+  position: absolute;
+
+  right: 14px;
+  bottom: 13px;
+
+  padding: 6px 9px;
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
   border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.13);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  color: white;
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.4px;
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.flyixo-career-card-content {
+  padding: 19px 18px 18px;
+}
+
+.flyixo-career-card-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: var(--career-primary);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+.flyixo-career-card-content h3 {
+  min-height: 52px;
+
+  margin: 0 0 17px;
+
+  color: var(--career-navy);
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   CARD FOOTER
+========================================================= */
+
+.flyixo-career-card-footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 13px;
+
+  border-top: 1px solid #edf0f3;
+
+  color: var(--career-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+.flyixo-career-arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.1);
+
+  color: var(--career-primary);
+
+  font-size: 16px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.flyixo-career-card:hover
+.flyixo-career-arrow {
+  transform: translateX(4px);
+
+  background: var(--career-primary);
+
+  color: white;
+}
+
+
+/* =========================================================
+   CARD CORNER
+========================================================= */
+
+.flyixo-career-corner {
+  position: absolute;
+
+  right: -35px;
+  bottom: -35px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 209, 212, 0.08);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SCROLL HINT
+========================================================= */
+
+.flyixo-career-scroll-hint {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 7px;
+
+  color: #8a96a3;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.4px;
+}
+
+.flyixo-career-scroll-icon {
+  color: var(--career-primary);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.flyixo-career-cta {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 35px;
+
+  overflow: hidden;
+
+  margin-top: 55px;
+
+  padding: 32px 38px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--career-navy-dark),
+      var(--career-navy)
+    );
+
+  box-shadow:
+    0 20px 50px rgba(6, 44, 67, 0.17);
+}
+
+.flyixo-career-cta::before {
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  right: -90px;
+  top: -150px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(233, 78, 119, 0.15);
+}
+
+.flyixo-career-cta::after {
+  content: "";
+
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  left: 35%;
+  bottom: -120px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(54, 209, 212, 0.09);
+}
+
+.flyixo-career-cta-content {
+  position: relative;
+
+  z-index: 2;
+}
+
+.flyixo-career-cta-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: var(--career-primary-light);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+.flyixo-career-cta-content h3 {
+  margin: 0 0 7px;
+
+  color: white;
+
+  font-size: 25px;
+
+  font-weight: 800;
+}
+
+.flyixo-career-cta-content p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.67);
+
+  font-size: 12px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CTA BUTTON
+========================================================= */
+
+.flyixo-career-btn {
+  position: relative;
+
+  z-index: 3;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  min-height: 50px;
+
+  padding: 0 21px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--career-primary),
+      var(--career-primary-dark)
+    );
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+  box-shadow:
+    0 10px 25px rgba(233, 78, 119, 0.25);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.CareerCarousel-btn:hover {
-  background: #1a364d;
-  color: #fff;
-  transform: scale(1.05);
+.flyixo-career-btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 15px 32px rgba(233, 78, 119, 0.33);
 }
 
-/* =============== MEDIA QUERIES =============== */
+.flyixo-career-btn-arrow {
+  display: flex;
 
-/* Large Desktops */
-@media (max-width: 1200px) {
-  .CareerCarousel-card {
-    width: 230px;
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.15);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.flyixo-career-btn:hover
+.flyixo-career-btn-arrow {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   BOTTOM BRAND
+========================================================= */
+
+.flyixo-career-bottom {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 18px;
+
+  margin-top: 38px;
+}
+
+.flyixo-career-bottom > span {
+  width: 65px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(6, 44, 67, 0.25)
+    );
+}
+
+.flyixo-career-bottom > span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(6, 44, 67, 0.25),
+      transparent
+    );
+}
+
+.flyixo-career-bottom p {
+  margin: 0;
+
+  color: var(--career-muted);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  text-align: center;
+}
+
+.flyixo-career-bottom strong {
+  color: var(--career-primary);
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
+@media (min-width: 1400px) {
+  .flyixo-career-section {
+    padding: 105px 30px;
+  }
+
+  .flyixo-career-card {
+    flex-basis: 285px;
+  }
+
+  .flyixo-career-image-wrapper {
+    height: 215px;
   }
 }
 
-/* Tablets / Medium Screens */
-@media (max-width: 992px) {
-  .CareerCarousel-container {
-    padding: 2.5rem 1.5rem 3rem;
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+  .flyixo-career-section {
+    padding: 80px 20px;
   }
 
-  .CareerCarousel-card {
-    width: 200px;
+  .flyixo-career-card {
+    flex-basis: 250px;
   }
 
-  .CareerCarousel-title {
-    font-size: 1.8rem;
+  .flyixo-career-image-wrapper {
+    height: 190px;
+  }
+
+  .flyixo-career-cta {
+    padding: 30px;
   }
 }
 
-/* Small Tablets / Large Phones */
+
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 768px) {
-  .CareerCarousel-card {
-    width: 180px;
+  .flyixo-career-section {
+    padding: 65px 16px;
   }
 
-  .CareerCarousel-title {
-    font-size: 1.6rem;
-  }
-}
-
-/* Mobile Devices */
-@media (max-width: 480px) {
-  .CareerCarousel-container {
-    padding: 2rem 1rem 2.5rem;
+  .flyixo-career-header {
+    margin-bottom: 40px;
   }
 
-  .CareerCarousel-card {
-    width: 160px;
+  .flyixo-career-eyebrow {
+    gap: 8px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.5px;
   }
 
-  .CareerCarousel-title {
-    font-size: 1.4rem;
+  .flyixo-career-line {
+    width: 25px;
   }
 
-  .CareerCarousel-btn {
+  .flyixo-career-title {
+    font-size: 34px;
+
+    letter-spacing: -1px;
+  }
+
+  .flyixo-career-description {
+    font-size: 13px;
+  }
+
+  .flyixo-career-card {
+    flex-basis: 225px;
+
+    border-radius: 19px;
+  }
+
+  .flyixo-career-image-wrapper {
+    height: 175px;
+  }
+
+  .flyixo-career-card-content {
+    padding: 16px;
+  }
+
+  .flyixo-career-card-content h3 {
+    min-height: 48px;
+
+    font-size: 15px;
+  }
+
+  .flyixo-career-cta {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 25px;
+
+    padding: 27px 25px;
+  }
+
+  .flyixo-career-btn {
     width: 100%;
-    padding: 0.8rem;
-    font-size: 0.95rem;
   }
 }
 
-/* Extra Small Devices */
-@media (max-width: 360px) {
-  .CareerCarousel-card {
-    width: 140px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .flyixo-career-section {
+    padding: 55px 12px;
   }
 
-  .CareerCarousel-title {
-    font-size: 1.3rem;
+  .flyixo-career-title {
+    font-size: 29px;
+
+    line-height: 1.18;
   }
 
-  .CareerCarousel-btn {
-    font-size: 0.9rem;
-    padding: 0.7rem;
+  .flyixo-career-description {
+    font-size: 12px;
+
+    line-height: 1.7;
+  }
+
+  .flyixo-career-scroll {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .flyixo-career-track {
+    gap: 13px;
+  }
+
+  .flyixo-career-card {
+    flex-basis: 205px;
+
+    border-radius: 17px;
+  }
+
+  .flyixo-career-image-wrapper {
+    height: 155px;
+  }
+
+  .flyixo-career-number {
+    top: 10px;
+    left: 10px;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-career-card-content {
+    padding: 14px;
+  }
+
+  .flyixo-career-card-label {
+    font-size: 7px;
+  }
+
+  .flyixo-career-card-content h3 {
+    min-height: 48px;
+
+    margin-bottom: 13px;
+
+    font-size: 14px;
+  }
+
+  .flyixo-career-card-footer {
+    font-size: 8px;
+  }
+
+  .flyixo-career-arrow {
+    width: 27px;
+    height: 27px;
+
+    font-size: 14px;
+  }
+
+  .flyixo-career-scroll-hint {
+    font-size: 9px;
+  }
+
+  .flyixo-career-cta {
+    margin-top: 40px;
+
+    padding: 24px 19px;
+
+    border-radius: 19px;
+  }
+
+  .flyixo-career-cta-content h3 {
+    font-size: 20px;
+  }
+
+  .flyixo-career-cta-content p {
+    font-size: 11px;
+  }
+
+  .flyixo-career-btn {
+    min-height: 47px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-career-bottom {
+    gap: 9px;
+
+    margin-top: 30px;
+  }
+
+  .flyixo-career-bottom > span {
+    width: 25px;
+  }
+
+  .flyixo-career-bottom p {
+    font-size: 8px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+  .flyixo-career-section {
+    padding: 48px 9px;
+  }
+
+  .flyixo-career-title {
+    font-size: 26px;
+  }
+
+  .flyixo-career-card {
+    flex-basis: 185px;
+  }
+
+  .flyixo-career-image-wrapper {
+    height: 140px;
+  }
+
+  .flyixo-career-card-content h3 {
+    font-size: 13px;
+  }
+
+  .flyixo-career-card-footer {
+    font-size: 7px;
+  }
+
+  .flyixo-career-cta-content h3 {
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.flyixo-career-btn:focus-visible {
+  outline: 3px solid rgba(54, 209, 212, 0.45);
+
+  outline-offset: 4px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-career-section *,
+  .flyixo-career-section *::before,
+  .flyixo-career-section *::after {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
   }
 }

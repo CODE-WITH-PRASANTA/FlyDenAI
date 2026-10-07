@@ -1,0 +1,766 @@
+/* =========================================================
+   APP SIDEBAR
+========================================================= */
+
+.app-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 9999;
+
+  width: 290px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #ffffff;
+
+  border-right: 1px solid #e7e4ee;
+
+  color: #242133;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  transition:
+    width 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  box-shadow:
+    8px 0 30px rgba(31, 25, 49, 0.045);
+
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* =========================================================
+   SIDEBAR WIDTH
+========================================================= */
+
+.app-sidebar-expanded {
+  width: 290px;
+}
+
+.app-sidebar-collapsed {
+  width: 88px;
+}
+
+
+/* =========================================================
+   LOGO
+   ONE LOGO FOR ALL VIEWS
+========================================================= */
+
+.sidebar-logo-section {
+  width: 100%;
+  min-height: 100px;
+
+  padding: 15px 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #eeeaf4;
+
+  box-sizing: border-box;
+}
+
+.sidebar-logo-link {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  outline: none;
+}
+
+.sidebar-logo {
+  display: block;
+
+  width: 190px;
+  height: 58px;
+
+  max-width: 100%;
+
+  object-fit: contain;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.sidebar-logo:hover {
+  transform: scale(1.03);
+}
+
+.sidebar-logo-link:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MENU SCROLL
+========================================================= */
+
+.sidebar-menu-scroll {
+  flex: 1;
+
+  width: 100%;
+
+  padding: 21px 11px 28px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d9d4e3 transparent;
+}
+
+.sidebar-menu-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-menu-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu-scroll::-webkit-scrollbar-thumb {
+  background: #dcd7e5;
+  border-radius: 20px;
+}
+
+.sidebar-menu-scroll::-webkit-scrollbar-thumb:hover {
+  background: #c7c0d4;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.sidebar-navigation {
+  width: 100%;
+}
+
+.sidebar-nav-list {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  list-style: none;
+}
+
+.sidebar-nav-list-item {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   MAIN MENU HEADING
+========================================================= */
+
+.sidebar-menu-heading {
+  min-height: 27px;
+
+  margin: 0 6px 11px;
+
+  display: flex;
+  align-items: center;
+
+  color: #9992a7;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 1.35px;
+
+  text-transform: uppercase;
+}
+
+.sidebar-menu-heading-expanded {
+  justify-content: flex-start;
+  padding-left: 9px;
+}
+
+.sidebar-menu-heading-collapsed {
+  justify-content: center;
+}
+
+.sidebar-dots-icon {
+  width: 21px;
+  height: 21px;
+
+  color: #9992a7;
+}
+
+
+/* =========================================================
+   MENU ITEM
+========================================================= */
+
+.sidebar-menu-item {
+  width: 100%;
+  min-height: 47px;
+
+  padding: 0 13px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  border: none;
+  border-radius: 11px;
+
+  outline: none;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  color: #5d586a;
+
+  background: transparent;
+
+  font-family: inherit;
+
+  box-sizing: border-box;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   COLLAPSED MENU
+========================================================= */
+
+.sidebar-menu-item-collapsed {
+  justify-content: center;
+
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* =========================================================
+   INACTIVE
+========================================================= */
+
+.sidebar-menu-item-inactive {
+  color: #5d586a;
+  background: transparent;
+}
+
+.sidebar-menu-item-inactive:hover {
+  color: #6f35d5;
+
+  background: #f7f3ff;
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   ACTIVE
+========================================================= */
+
+.sidebar-menu-item-active {
+  color: #6f35d5;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f0e9ff 0%,
+      #f8f5ff 100%
+    );
+
+  box-shadow:
+    inset 0 0 0 1px rgba(124, 58, 237, 0.045);
+}
+
+.sidebar-menu-item-active::before {
+  content: "";
+
+  position: absolute;
+
+  top: 8px;
+  left: 0;
+  bottom: 8px;
+
+  width: 3px;
+
+  border-radius: 0 5px 5px 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #7137d4,
+      #a855f7
+    );
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.sidebar-menu-icon {
+  width: 21px;
+  height: 21px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-menu-icon svg {
+  width: 19px;
+  height: 19px;
+
+  stroke-width: 2;
+}
+
+.sidebar-menu-icon-inactive {
+  color: #898394;
+}
+
+.sidebar-menu-icon-active {
+  color: #7137d4;
+}
+
+.sidebar-menu-item:hover
+.sidebar-menu-icon-inactive {
+  color: #7137d4;
+
+  transform: scale(1.04);
+}
+
+
+/* =========================================================
+   MENU TEXT
+========================================================= */
+
+.sidebar-menu-text {
+  min-width: 0;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.08px;
+}
+
+.sidebar-menu-item-active
+.sidebar-menu-text {
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   CHEVRON
+========================================================= */
+
+.sidebar-chevron {
+  width: 16px;
+  height: 16px;
+
+  margin-left: auto;
+
+  flex-shrink: 0;
+
+  color: #aaa4b4;
+
+  stroke-width: 2.2;
+
+  transition:
+    transform 0.25s ease,
+    color 0.2s ease;
+}
+
+.sidebar-chevron-open {
+  color: #7137d4;
+
+  transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   SUBMENU WRAPPER
+========================================================= */
+
+.sidebar-submenu-wrapper {
+  width: 100%;
+
+  overflow: hidden;
+
+  transition:
+    height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* =========================================================
+   SUBMENU
+========================================================= */
+
+.sidebar-submenu {
+  position: relative;
+
+  margin: 4px 0 5px 29px;
+
+  padding: 4px 0 4px 16px;
+
+  border-left: 1px solid #e4deed;
+
+  list-style: none;
+}
+
+.sidebar-submenu-list-item {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================================
+   SUBMENU LINK
+========================================================= */
+
+.sidebar-submenu-item {
+  min-height: 37px;
+
+  width: 100%;
+
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  border-radius: 8px;
+
+  color: #777183;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  font-weight: 650;
+
+  line-height: 1.2;
+
+  box-sizing: border-box;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-submenu-item-inactive:hover {
+  color: #7137d4;
+
+  background: #faf8ff;
+
+  transform: translateX(2px);
+}
+
+.sidebar-submenu-item-active {
+  color: #7137d4;
+
+  background: #f5efff;
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   SUBMENU DOT
+========================================================= */
+
+.sidebar-submenu-dot {
+  width: 6px;
+  height: 6px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #c9c3d2;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.sidebar-submenu-dot-active {
+  background: #783bd8;
+
+  transform: scale(1.15);
+
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+
+/* =========================================================
+   COLLAPSED SIDEBAR
+========================================================= */
+
+.app-sidebar-collapsed
+.sidebar-menu-item {
+  border-radius: 12px;
+}
+
+.app-sidebar-collapsed
+.sidebar-menu-item:hover {
+  transform: none;
+}
+
+.app-sidebar-collapsed
+.sidebar-menu-item-active::before {
+  top: 10px;
+  bottom: 10px;
+}
+
+.app-sidebar-collapsed
+.sidebar-menu-item:hover
+.sidebar-menu-icon {
+  transform: scale(1.05);
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+.app-sidebar-mobile-closed {
+  transform: translateX(-100%);
+}
+
+.app-sidebar-mobile-open {
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media (min-width: 1024px) {
+  .app-sidebar {
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1023px) {
+  .app-sidebar,
+  .app-sidebar-expanded,
+  .app-sidebar-collapsed {
+    width: 290px;
+  }
+
+  .app-sidebar {
+    box-shadow:
+      12px 0 40px rgba(30, 23, 48, 0.13);
+  }
+
+  .sidebar-logo-section {
+    min-height: 100px;
+  }
+
+  .sidebar-logo {
+    width: 190px;
+    height: 58px;
+  }
+
+  .sidebar-menu-scroll {
+    padding-top: 18px;
+  }
+
+  .sidebar-menu-text {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .sidebar-submenu-item {
+    font-size: 12px;
+    font-weight: 650;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .app-sidebar,
+  .app-sidebar-expanded,
+  .app-sidebar-collapsed {
+    width: 285px;
+  }
+
+  .sidebar-logo-section {
+    min-height: 96px;
+
+    padding: 14px 12px;
+  }
+
+  .sidebar-logo {
+    width: 185px;
+    height: 56px;
+  }
+
+  .sidebar-menu-scroll {
+    padding: 17px 10px 25px;
+  }
+
+  .sidebar-menu-item {
+    min-height: 46px;
+
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .sidebar-menu-text {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .sidebar-submenu {
+    margin-left: 28px;
+  }
+
+  .sidebar-submenu-item {
+    min-height: 36px;
+
+    font-size: 12px;
+    font-weight: 650;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .app-sidebar,
+  .app-sidebar-expanded,
+  .app-sidebar-collapsed {
+    width: 275px;
+  }
+
+  .sidebar-logo-section {
+    min-height: 94px;
+  }
+
+  .sidebar-logo {
+    width: 175px;
+    height: 54px;
+  }
+
+  .sidebar-menu-text {
+    font-size: 12.5px;
+  }
+
+  .sidebar-submenu-item {
+    font-size: 11.5px;
+  }
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.sidebar-menu-item:focus-visible,
+.sidebar-submenu-item:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .app-sidebar,
+  .sidebar-menu-item,
+  .sidebar-menu-icon,
+  .sidebar-chevron,
+  .sidebar-submenu-wrapper,
+  .sidebar-submenu-item,
+  .sidebar-submenu-dot,
+  .sidebar-logo {
+    transition: none !important;
+  }
+}

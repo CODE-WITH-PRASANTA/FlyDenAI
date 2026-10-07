@@ -1,326 +1,1624 @@
-/* ================================================
-   GLOBAL CONTAINER
-================================================ */
+/* =========================================================
+   DUMMY TICKET MANAGEMENT
+   PREMIUM ADMIN DASHBOARD
+========================================================= */
+
 .ticketManage-container {
   width: 100%;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  background: #f5f7fb;
   min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 5% 0%,
+      rgba(124, 58, 237, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 95% 10%,
+      rgba(236, 72, 153, 0.07),
+      transparent 25%
+    ),
+    #f7f8fc;
+
+  color: #172033;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
   box-sizing: border-box;
 }
 
-/* ================================================
-   CARD WRAPPER
-================================================ */
-.ticketManage-card {
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.ticketManage-pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+
+  margin-bottom: 25px;
+}
+
+.ticketManage-headingGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.ticketManage-headingIcon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 16px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
+
+  box-shadow:
+    0 10px 24px
+    rgba(124, 58, 237, 0.24);
+}
+
+.ticketManage-eyebrow {
+  margin: 0 0 5px;
+
+  font-size: 11px;
+  line-height: 1;
+
+  font-weight: 800;
+  letter-spacing: 1.5px;
+
+  color: #8a91a5;
+}
+
+.ticketManage-pageTitle {
+  margin: 0;
+
+  color: #151b2d;
+
+  font-size: 28px;
+  line-height: 1.15;
+
+  font-weight: 800;
+  letter-spacing: -0.6px;
+}
+
+.ticketManage-pageSubtitle {
+  margin: 7px 0 0;
+
+  color: #7b8397;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.ticketManage-refreshBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 42px;
+  padding: 0 17px;
+
+  border: 1px solid #e4e7ef;
+  border-radius: 11px;
+
   background: #ffffff;
-  padding: 1.8rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  width: 100%;
-  transition: 0.3s ease;
-  overflow-x: hidden;
+  color: #535b70;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.ticketManage-card:hover {
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+.ticketManage-refreshBtn:hover {
+  transform: translateY(-2px);
+
+  color: #7c3aed;
+  border-color: #d9c7ff;
+
+  box-shadow:
+    0 8px 20px
+    rgba(30, 41, 59, 0.08);
 }
 
-/* ================================================
-   TITLES
-================================================ */
-.ticketManage-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: #1c2c54;
-  margin-bottom: 1.4rem;
+
+/* =========================================================
+   STAT CARDS
+========================================================= */
+
+.ticketManage-stats {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-bottom: 20px;
 }
 
-/* ================================================
-   FORM & INPUTS
-================================================ */
-.ticketManage-form,
-.ticketManage-priceForm {
+.ticketManage-statCard {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 17px 19px;
+
+  background: #ffffff;
+
+  border: 1px solid #e9ebf1;
+  border-radius: 15px;
+
+  box-shadow:
+    0 6px 20px
+    rgba(24, 32, 56, 0.045);
+}
+
+.ticketManage-statIcon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+}
+
+.ticketManage-statIcon.price {
+  color: #7c3aed;
+  background: #f2eaff;
+}
+
+.ticketManage-statIcon.airport {
+  color: #e11d78;
+  background: #fde9f4;
+}
+
+.ticketManage-statIcon.country {
+  color: #2563eb;
+  background: #eaf2ff;
+}
+
+.ticketManage-statContent {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3px;
 }
 
-.ticketManage-label {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #233767;
+.ticketManage-statContent span {
+  color: #8b92a4;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
-.ticketManage-input {
-  padding: 0.9rem 1rem;
-  border: 1px solid #d7dce5;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  outline: none;
-  transition: 0.2s;
-  background: #fdfdfd;
+.ticketManage-statContent strong {
+  color: #20283a;
+
+  font-size: 19px;
+  font-weight: 800;
 }
 
-.ticketManage-input:focus {
-  border-color: #5577ff;
-  box-shadow: 0 0 0 3px rgba(85, 119, 255, 0.2);
-}
 
-/* ================================================
-   BUTTONS
-================================================ */
-.ticketManage-btn {
-  padding: 0.9rem;
-  border: none;
-  border-radius: 8px;
-  background: #5577ff;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
+/* =========================================================
+   PRICE CARD
+========================================================= */
 
-.ticketManage-btn:hover {
-  background: #3e5ee8;
-}
+.ticketManage-priceCard {
+  position: relative;
 
-.ticketManage-editBtn {
-  padding: 0.6rem 1rem;
-  border: none;
-  background: #ff8e3c;
-  color: #fff;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 0.9rem;
-}
-
-.ticketManage-editBtn:hover {
-  background: #ff7a14;
-}
-
-/* ================================================
-   PRICE BOX
-================================================ */
-.ticketManage-priceBox {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background: #f0f4ff;
-  border-radius: 10px;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  padding: 23px 25px;
+
+  margin-bottom: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e8eaf1;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 28px
+    rgba(24, 32, 56, 0.055);
 }
 
-.ticketManage-priceText {
-  font-size: 1.8rem;
-  color: #1a2a4e;
+.ticketManage-priceCard::after {
+  content: "";
+
+  position: absolute;
+
+  width: 160px;
+  height: 160px;
+
+  right: -60px;
+  top: -80px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(236, 72, 153, 0.11),
+      rgba(124, 58, 237, 0.08)
+    );
+
+  pointer-events: none;
+}
+
+.ticketManage-priceInfo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  position: relative;
+  z-index: 1;
+}
+
+.ticketManage-sectionIcon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  color: #7c3aed;
+  background: #f2eaff;
+}
+
+.ticketManage-sectionLabel,
+.ticketManage-cardKicker {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #9a91aa;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.ticketManage-priceInfo h2 {
+  margin: 0;
+
+  color: #1a2030;
+
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.ticketManage-priceInfo p {
+  margin: 5px 0 0;
+
+  color: #8a91a3;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   PRICE FORM
+========================================================= */
+
+.ticketManage-priceForm {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticketManage-priceInput {
+  width: 190px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  border: 1px solid #dedfea;
+  border-radius: 11px;
+
+  background: #fbfbfd;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ticketManage-priceInput:focus-within {
+  border-color: #9b6cf5;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.09);
+}
+
+.ticketManage-priceInput span {
+  width: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #7c3aed;
+
+  font-weight: 800;
+}
+
+.ticketManage-priceInput input {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #252b3b;
+
+  font-size: 14px;
   font-weight: 700;
 }
 
-/* ================================================
-   GRID
-================================================ */
+.ticketManage-priceInput input::placeholder {
+  color: #b0b5c1;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   SAVED PRICE
+========================================================= */
+
+.ticketManage-savedPrice {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ticketManage-priceAmount {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticketManage-priceAmount span {
+  color: #979dae;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.ticketManage-priceAmount strong {
+  margin-top: 1px;
+
+  color: #1c2435;
+
+  font-size: 25px;
+  line-height: 1.2;
+
+  font-weight: 850;
+}
+
+.ticketManage-priceAmount small {
+  margin-top: 2px;
+
+  color: #999fac;
+
+  font-size: 10px;
+}
+
+.ticketManage-outlineBtn {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 0 14px;
+
+  border: 1px solid #ddd4f5;
+  border-radius: 10px;
+
+  background: #faf8ff;
+  color: #7540c7;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.ticketManage-outlineBtn:hover {
+  background: #f2eaff;
+  border-color: #cdb7f6;
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
 .ticketManage-grid {
   display: grid;
-  grid-template-columns: 1.2fr 2fr;
-  gap: 2rem;
+
+  grid-template-columns:
+    minmax(280px, 0.72fr)
+    minmax(500px, 1.65fr);
+
+  gap: 20px;
+
+  align-items: start;
 }
 
-@media (max-width: 900px) {
-  .ticketManage-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
-/* ================================================
-   TABLE SECTION
-================================================ */
-.ticketManage-tableHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.2rem;
-}
+/* =========================================================
+   FORM CARD
+========================================================= */
 
-.ticketManage-search {
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #d7dce5;
-  width: 220px;
-  transition: 0.3s;
-}
-
-.ticketManage-search:focus {
-  border-color: #5577ff;
-  box-shadow: 0 0 0 3px rgba(85, 119, 255, 0.25);
-}
-
-/* ================================================
-   TABLE WRAPPER (SCROLLABLE ONLY BODY)
-================================================ */
-.ticketManage-tableWrapper {
-  max-height: 340px;      /* scroll height */
-  overflow-y: auto;       /* scroll enabled */
-  border-radius: 10px;
-  border: 1px solid #d7dce5;
+.ticketManage-formCard,
+.ticketManage-listCard {
   background: #ffffff;
+
+  border: 1px solid #e8eaf1;
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 28px
+    rgba(24, 32, 56, 0.05);
+}
+
+.ticketManage-formCard {
+  padding: 24px;
+}
+
+.ticketManage-cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.ticketManage-cardHeaderIcon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #ec4899
+    );
+
+  box-shadow:
+    0 8px 18px
+    rgba(124, 58, 237, 0.18);
+}
+
+.ticketManage-cardHeader h2,
+.ticketManage-listHeader h2 {
+  margin: 0;
+
+  color: #1d2536;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.ticketManage-formDescription {
+  margin: 15px 0 24px;
+
+  color: #858c9f;
+
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.ticketManage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ticketManage-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticketManage-field label {
+  color: #454d60;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.ticketManage-inputWrapper {
+  height: 47px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 13px;
+
+  border: 1px solid #dfe2ea;
+  border-radius: 11px;
+
+  background: #fbfcfe;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.ticketManage-inputWrapper svg {
+  flex-shrink: 0;
+
+  margin-right: 9px;
+
+  color: #a0a6b5;
+}
+
+.ticketManage-inputWrapper:focus-within {
+  background: #ffffff;
+
+  border-color: #9970dc;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.08);
+}
+
+.ticketManage-inputWrapper:focus-within svg {
+  color: #7c3aed;
+}
+
+.ticketManage-inputWrapper input {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #252c3d;
+
+  font-size: 13px;
+  font-weight: 550;
+}
+
+.ticketManage-inputWrapper input::placeholder {
+  color: #aeb3be;
+  font-weight: 450;
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+========================================================= */
+
+.ticketManage-formActions {
+  display: flex;
+  gap: 9px;
+
+  margin-top: 5px;
+}
+
+.ticketManage-primaryBtn {
+  height: 43px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 17px;
+
+  border: 0;
+  border-radius: 10px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #a855f7
+    );
+
+  box-shadow:
+    0 8px 18px
+    rgba(124, 58, 237, 0.19);
+
+  font-size: 12px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.ticketManage-primaryBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 11px 23px
+    rgba(124, 58, 237, 0.27);
+}
+
+.ticketManage-primaryBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.ticketManage-submitBtn {
+  flex: 1;
+}
+
+.ticketManage-cancelBtn {
+  height: 43px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  padding: 0 15px;
+
+  border: 1px solid #e0e3eb;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #687083;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.ticketManage-cancelBtn:hover {
+  color: #dc315e;
+  border-color: #f2c8d5;
+  background: #fff7f9;
+}
+
+
+/* =========================================================
+   LIST CARD
+========================================================= */
+
+.ticketManage-listCard {
+  min-width: 0;
+  padding: 24px;
+}
+
+.ticketManage-listHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+.ticketManage-listHeader p {
+  margin: 5px 0 0;
+
+  color: #9298a7;
+
+  font-size: 11px;
+}
+
+.ticketManage-recordBadge {
+  padding: 7px 10px;
+
+  border-radius: 8px;
+
+  color: #7540c7;
+  background: #f4efff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.ticketManage-searchRow {
+  margin-top: 19px;
+  margin-bottom: 14px;
+}
+
+.ticketManage-searchBox {
+  width: 100%;
+  height: 43px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  border: 1px solid #e0e3ea;
+  border-radius: 10px;
+
+  background: #fafbfc;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.ticketManage-searchBox > svg {
+  flex-shrink: 0;
+  color: #9ba1b0;
+}
+
+.ticketManage-searchBox:focus-within {
+  border-color: #a17ad8;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(124, 58, 237, 0.07);
+
+  background: #ffffff;
+}
+
+.ticketManage-searchBox input {
+  width: 100%;
+  height: 100%;
+
+  margin-left: 9px;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #252c3c;
+
+  font-size: 12px;
+}
+
+.ticketManage-searchBox input::placeholder {
+  color: #a8adb8;
+}
+
+.ticketManage-clearSearch {
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: #eceef3;
+  color: #707788;
+
+  cursor: pointer;
+}
+
+.ticketManage-clearSearch:hover {
+  background: #e3e5eb;
+  color: #353b4a;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.ticketManage-tableWrapper {
+  width: 100%;
+
+  border: 1px solid #eaecf1;
+  border-radius: 12px;
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  max-height: 390px;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d3d6df transparent;
+}
+
+.ticketManage-tableWrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.ticketManage-tableWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ticketManage-tableWrapper::-webkit-scrollbar-thumb {
+  background: #d3d6df;
+  border-radius: 20px;
 }
 
 .ticketManage-table {
   width: 100%;
-  border-collapse: collapse;
+
+  min-width: 570px;
+
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
 .ticketManage-table thead {
-  background: #eef2ff;
   position: sticky;
   top: 0;
-  z-index: 1;
+
+  z-index: 4;
+
+  background: #fafafd;
 }
 
-.ticketManage-table th,
-.ticketManage-table td {
-  padding: 0.85rem 1rem;
+.ticketManage-table th {
+  padding: 12px 14px;
+
+  border-bottom: 1px solid #e9ebf0;
+
+  color: #9399a8;
+
+  font-size: 9px;
+  font-weight: 800;
+
   text-align: left;
-  font-size: 0.92rem;
-  border-bottom: 1px solid #ededed;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+
+  white-space: nowrap;
+}
+
+.ticketManage-table td {
+  padding: 12px 14px;
+
+  border-bottom: 1px solid #f0f1f4;
+
+  color: #4c5364;
+
+  font-size: 12px;
+
+  vertical-align: middle;
+}
+
+.ticketManage-table tbody tr {
+  background: #ffffff;
+
+  transition:
+    background 0.2s ease;
+}
+
+.ticketManage-table tbody tr:hover {
+  background: #fbf9ff;
+}
+
+.ticketManage-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
 .ticketManage-center {
-  text-align: center;
+  text-align: center !important;
 }
 
-/* ================================================
-   TABLE BUTTONS
-================================================ */
-.ticketManage-tableEdit {
-  padding: 0.45rem 0.9rem;
-  background: #2d8cff;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-right: 6px;
-}
 
-.ticketManage-tableEdit:hover {
-  background: #1c6cdf;
-}
+/* =========================================================
+   SL NUMBER
+========================================================= */
 
-.ticketManage-tableDelete {
-  padding: 0.45rem 0.9rem;
-  background: #ff4b4b;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
+.ticketManage-sl {
+  width: 26px;
+  height: 26px;
 
-.ticketManage-tableDelete:hover {
-  background: #d93838;
-}
-
-/* ================================================
-   EMPTY STATE
-================================================ */
-.ticketManage-empty {
-  text-align: center;
-  padding: 1rem;
-  color: #777;
-  font-size: 0.95rem;
-}
-
-/* ================================================
-   PAGINATION
-================================================ */
-.ticketManage-pagination {
-  display: flex;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding-top: 1rem;
-}
+  justify-content: center;
 
-.ticketManage-pageBtn {
-  padding: 0.6rem 1rem;
-  background: #5577ff;
-  color: #fff;
-  border: none;
   border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
+
+  color: #777f91;
+  background: #f3f4f7;
+
+  font-size: 10px;
+  font-weight: 800;
 }
 
-.ticketManage-pageBtn:disabled {
-  background: #b6c0e9;
+
+/* =========================================================
+   AIRPORT CELL
+========================================================= */
+
+.ticketManage-airportCell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ticketManage-airportIcon {
+  width: 33px;
+  height: 33px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 9px;
+
+  color: #7c3aed;
+  background: #f2ecff;
+}
+
+.ticketManage-airportCell > div:last-child {
+  min-width: 0;
+}
+
+.ticketManage-airportCell strong {
+  display: block;
+
+  max-width: 210px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #303747;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.ticketManage-airportCell small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: #a0a5b1;
+
+  font-size: 9px;
+}
+
+
+/* =========================================================
+   COUNTRY CELL
+========================================================= */
+
+.ticketManage-countryCell {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 6px 9px;
+
+  border-radius: 8px;
+
+  color: #596173;
+  background: #f7f8fa;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  white-space: nowrap;
+}
+
+.ticketManage-countryCell svg {
+  color: #8b93a3;
+}
+
+
+/* =========================================================
+   ACTION BUTTONS
+========================================================= */
+
+.ticketManage-actions {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+}
+
+.ticketManage-iconBtn {
+  width: 32px;
+  height: 32px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.ticketManage-iconBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ticketManage-iconBtn.edit {
+  color: #6d3ec2;
+  background: #f3edff;
+  border-color: #e9ddff;
+}
+
+.ticketManage-iconBtn.edit:hover {
+  background: #e9dcff;
+  border-color: #d9c4fa;
+}
+
+.ticketManage-iconBtn.delete {
+  color: #d93661;
+  background: #fff0f4;
+  border-color: #ffdce6;
+}
+
+.ticketManage-iconBtn.delete:hover {
+  background: #ffe1e9;
+  border-color: #ffcbd8;
+}
+
+.ticketManage-iconBtn:disabled {
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
-.ticketManage-pageBtn:hover:not(:disabled) {
-  background: #3e5ee8;
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.ticketManage-empty {
+  min-height: 260px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border: 1px dashed #dfe2e9;
+  border-radius: 13px;
+
+  background: #fcfcfd;
 }
 
-.ticketManage-pageInfo {
-  color: #2b3d65;
-  font-weight: 500;
+.ticketManage-emptyIcon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 11px;
+
+  border-radius: 14px;
+
+  color: #8a62c7;
+  background: #f3edff;
 }
 
-/* ================================================
-   RESPONSIVE IMPROVEMENTS (MOBILE)
-================================================ */
-@media (max-width: 768px) {
+.ticketManage-empty h3 {
+  margin: 0;
 
-  /* Reduce card padding */
-  .ticketManage-card {
-    padding: 1.2rem;
+  color: #4a5263;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.ticketManage-empty p {
+  max-width: 260px;
+
+  margin: 5px 0 0;
+
+  color: #999fad;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   SKELETON
+========================================================= */
+
+.ticketManage-skeletonRow td {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.ticketManage-skeletonRow td span {
+  display: block;
+
+  height: 13px;
+
+  border-radius: 5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f1f2f5 25%,
+      #e7e9ee 50%,
+      #f1f2f5 75%
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    ticketManageSkeleton 1.4s
+    infinite;
+}
+
+.ticketManage-skeletonRow td:nth-child(1) span {
+  width: 25px;
+}
+
+.ticketManage-skeletonRow td:nth-child(2) span {
+  width: 160px;
+}
+
+.ticketManage-skeletonRow td:nth-child(3) span {
+  width: 80px;
+}
+
+.ticketManage-skeletonRow td:nth-child(4) span {
+  width: 65px;
+  margin-left: auto;
+}
+
+@keyframes ticketManageSkeleton {
+  0% {
+    background-position: 200% 0;
   }
 
-  /* Reduce title size */
-  .ticketManage-title {
-    font-size: 1.2rem;
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.ticketManage-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 15px;
+}
+
+.ticketManage-paginationBtn {
+  min-height: 35px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  padding: 0 11px;
+
+  border: 1px solid #e2e4ea;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #687083;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.ticketManage-paginationBtn:hover:not(:disabled) {
+  color: #7540c7;
+
+  border-color: #d9c9f2;
+  background: #faf7ff;
+}
+
+.ticketManage-paginationBtn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.ticketManage-pageNumber {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticketManage-pageNumber span {
+  color: #9ca1ae;
+  font-size: 10px;
+}
+
+.ticketManage-pageNumber strong {
+  min-width: 27px;
+  height: 27px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #a855f7
+    );
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .ticketManage-container {
+    padding: 24px;
   }
 
-  /* Reduce grid to 1 column */
   .ticketManage-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
 
-  /* Inputs full width */
-  .ticketManage-input,
-  .ticketManage-search {
-    width: 100% !important;
+  .ticketManage-formCard {
+    max-width: none;
   }
 
-  /* Price Box stack vertically */
-  .ticketManage-priceBox {
-    flex-direction: column;
-    gap: 0.8rem;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  /* ================================================
-     TABLE MOBILE SCROLL (Horizontal Scroll)
-     Only table scrolls — not whole container
-  ================================================ */
   .ticketManage-tableWrapper {
-    overflow-x: auto;        /* horizontal scroll */
-    overflow-y: auto;        /* keep vertical scroll */
+    max-height: 420px;
+  }
+}
+
+
+/* =========================================================
+   SMALL TABLET
+========================================================= */
+
+@media (max-width: 760px) {
+
+  .ticketManage-container {
+    padding: 18px;
+  }
+
+  .ticketManage-pageHeader {
+    align-items: flex-start;
+  }
+
+  .ticketManage-pageTitle {
+    font-size: 23px;
+  }
+
+  .ticketManage-pageSubtitle {
+    max-width: 480px;
+  }
+
+  .ticketManage-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ticketManage-priceCard {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ticketManage-priceForm,
+  .ticketManage-savedPrice {
     width: 100%;
   }
 
-  .ticketManage-table {
-    min-width: 600px;        /* ensures columns don't shrink */
+  .ticketManage-priceForm {
+    align-items: stretch;
+  }
+
+  .ticketManage-priceInput {
+    width: 100%;
+  }
+
+  .ticketManage-savedPrice {
+    justify-content: space-between;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 560px) {
+
+  .ticketManage-container {
+    padding: 13px;
+  }
+
+  .ticketManage-pageHeader {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ticketManage-headingGroup {
+    align-items: flex-start;
+  }
+
+  .ticketManage-headingIcon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 13px;
+  }
+
+  .ticketManage-pageTitle {
+    font-size: 20px;
+    letter-spacing: -0.3px;
+  }
+
+  .ticketManage-pageSubtitle {
+    font-size: 11px;
+  }
+
+  .ticketManage-refreshBtn {
+    width: 100%;
+  }
+
+  .ticketManage-priceCard,
+  .ticketManage-formCard,
+  .ticketManage-listCard {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .ticketManage-priceInfo {
+    align-items: flex-start;
+  }
+
+  .ticketManage-sectionIcon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .ticketManage-priceInfo h2 {
+    font-size: 16px;
+  }
+
+  .ticketManage-priceInfo p {
+    font-size: 10px;
+  }
+
+  .ticketManage-priceForm {
+    flex-direction: column;
+  }
+
+  .ticketManage-primaryBtn {
+    width: 100%;
+  }
+
+  .ticketManage-savedPrice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .ticketManage-outlineBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ticketManage-cardHeader h2,
+  .ticketManage-listHeader h2 {
+    font-size: 16px;
+  }
+
+  .ticketManage-listHeader {
+    flex-direction: column;
+  }
+
+  .ticketManage-recordBadge {
+    align-self: flex-start;
+  }
+
+  .ticketManage-formActions {
+    flex-direction: column;
+  }
+
+  .ticketManage-cancelBtn {
+    width: 100%;
+  }
+
+  .ticketManage-tableWrapper {
+    margin-left: 0;
+    margin-right: 0;
+
+    border-radius: 10px;
+  }
+
+  .ticketManage-paginationBtn {
+    padding: 0 9px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .ticketManage-container {
+    padding: 10px;
+  }
+
+  .ticketManage-headingIcon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ticketManage-pageTitle {
+    font-size: 18px;
+  }
+
+  .ticketManage-eyebrow {
+    font-size: 9px;
+  }
+
+  .ticketManage-statCard {
+    padding: 14px;
+  }
+
+  .ticketManage-statContent strong {
+    font-size: 17px;
+  }
+
+  .ticketManage-formCard,
+  .ticketManage-listCard,
+  .ticketManage-priceCard {
+    padding: 14px;
+  }
+
+  .ticketManage-priceAmount strong {
+    font-size: 22px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.ticketManage-container button:focus-visible,
+.ticketManage-container input:focus-visible {
+  outline: 3px solid
+    rgba(124, 58, 237, 0.18);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ticketManage-container *,
+  .ticketManage-container *::before,
+  .ticketManage-container *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

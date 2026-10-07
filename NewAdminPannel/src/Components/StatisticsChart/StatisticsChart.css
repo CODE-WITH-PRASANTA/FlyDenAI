@@ -1,0 +1,319 @@
+/* =========================================================
+   STATISTICS CHART
+========================================================= */
+
+.statistics-chart {
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding: 20px 20px 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 2px 5px rgba(16, 24, 40, 0.04);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.statistics-chart:hover {
+  border-color: #d9dee7;
+
+  box-shadow:
+    0 10px 28px rgba(16, 24, 40, 0.06);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.statistics-chart__header {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 24px;
+}
+
+/* =========================================================
+   HEADING
+========================================================= */
+
+.statistics-chart__heading {
+  width: 100%;
+  min-width: 0;
+}
+
+.statistics-chart__title {
+  margin: 0;
+
+  color: #1d2939;
+
+  font-size: 18px;
+  line-height: 28px;
+
+  font-weight: 600;
+
+  letter-spacing: -0.2px;
+}
+
+.statistics-chart__description {
+  margin: 5px 0 0;
+
+  color: #667085;
+
+  font-size: 13px;
+  line-height: 20px;
+
+  font-weight: 400;
+}
+
+/* =========================================================
+   CHART TABS
+========================================================= */
+
+.statistics-chart__tabs {
+  width: auto;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+/* =========================================================
+   CHART SCROLL
+========================================================= */
+
+.statistics-chart__scroll {
+  width: 100%;
+
+  max-width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #d0d5dd transparent;
+}
+
+/* =========================================================
+   CHART WRAPPER
+========================================================= */
+
+.statistics-chart__chart-wrapper {
+  width: 100%;
+
+  min-width: 1000px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   APEX CHART
+========================================================= */
+
+.statistics-chart .apexcharts-canvas {
+  max-width: 100%;
+}
+
+.statistics-chart .apexcharts-svg {
+  overflow: visible;
+}
+
+/* =========================================================
+   APEX TOOLTIP
+========================================================= */
+
+.statistics-chart .apexcharts-tooltip {
+  background: #ffffff !important;
+
+  border: 1px solid #e4e7ec !important;
+
+  border-radius: 8px !important;
+
+  box-shadow:
+    0 10px 30px rgba(16, 24, 40, 0.12) !important;
+}
+
+.statistics-chart .apexcharts-tooltip-title {
+  background: #f9fafb !important;
+
+  color: #344054 !important;
+
+  border-bottom: 1px solid #eaecf0 !important;
+}
+
+/* =========================================================
+   APEX LEGEND
+========================================================= */
+
+.statistics-chart .apexcharts-legend {
+  padding: 0;
+}
+
+/* =========================================================
+   APEX AXIS TEXT
+========================================================= */
+
+.statistics-chart .apexcharts-xaxis-label,
+.statistics-chart .apexcharts-yaxis-label {
+  font-family: 'Outfit', sans-serif !important;
+
+  fill: #6b7280;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.statistics-chart__scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.statistics-chart__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.statistics-chart__scroll::-webkit-scrollbar-thumb {
+  background: #d0d5dd;
+
+  border-radius: 10px;
+}
+
+.statistics-chart__scroll::-webkit-scrollbar-thumb:hover {
+  background: #98a2b3;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark .statistics-chart {
+  background: rgba(255, 255, 255, 0.03);
+
+  border-color: #1f2937;
+
+  box-shadow: none;
+}
+
+.dark .statistics-chart:hover {
+  border-color: #374151;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.dark .statistics-chart__title {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.dark .statistics-chart__description {
+  color: #98a2b3;
+}
+
+.dark .statistics-chart .apexcharts-xaxis-label,
+.dark .statistics-chart .apexcharts-yaxis-label {
+  fill: #98a2b3;
+}
+
+.dark .statistics-chart .apexcharts-tooltip {
+  background: #111827 !important;
+
+  border-color: #374151 !important;
+}
+
+.dark .statistics-chart .apexcharts-tooltip-title {
+  background: #1f2937 !important;
+
+  border-color: #374151 !important;
+
+  color: #e5e7eb !important;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .statistics-chart {
+    padding: 20px 18px;
+  }
+
+  .statistics-chart__header {
+    gap: 18px;
+  }
+
+  .statistics-chart__chart-wrapper {
+    min-width: 900px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .statistics-chart {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+
+  .statistics-chart__header {
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+  }
+
+  .statistics-chart__tabs {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+  .statistics-chart__title {
+    font-size: 17px;
+  }
+
+  .statistics-chart__description {
+    font-size: 12px;
+  }
+
+  .statistics-chart__chart-wrapper {
+    min-width: 800px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .statistics-chart {
+    padding: 16px 13px;
+  }
+
+  .statistics-chart__title {
+    font-size: 16px;
+  }
+
+  .statistics-chart__chart-wrapper {
+    min-width: 720px;
+  }
+}

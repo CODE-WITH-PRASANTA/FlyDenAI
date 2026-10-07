@@ -1,0 +1,370 @@
+/* =========================================================
+   MONTHLY SALES CHART
+========================================================= */
+
+.monthly-sales-chart {
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  padding: 20px 20px 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 2px 5px rgba(16, 24, 40, 0.04);
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.monthly-sales-chart:hover {
+  border-color: #d9dee7;
+
+  box-shadow:
+    0 10px 28px rgba(16, 24, 40, 0.06);
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.monthly-sales-chart__header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 5px;
+}
+
+.monthly-sales-chart__title {
+  margin: 0;
+
+  color: #1d2939;
+
+  font-size: 18px;
+  line-height: 28px;
+
+  font-weight: 600;
+
+  letter-spacing: -0.2px;
+}
+
+/* =========================================================
+   MENU WRAPPER
+========================================================= */
+
+.monthly-sales-chart__menu-wrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   MENU BUTTON
+========================================================= */
+
+.monthly-sales-chart__menu-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #98a2b3;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.monthly-sales-chart__menu-button:hover {
+  background: #f2f4f7;
+
+  color: #344054;
+}
+
+.monthly-sales-chart__menu-button svg {
+  width: 22px;
+  height: 22px;
+
+  display: block;
+}
+
+/* =========================================================
+   DROPDOWN
+========================================================= */
+
+.monthly-sales-chart__dropdown {
+  width: 160px;
+
+  padding: 8px;
+
+  border-radius: 10px;
+}
+
+/* =========================================================
+   DROPDOWN ITEMS
+========================================================= */
+
+.monthly-sales-chart__dropdown-item {
+  width: 100%;
+
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  border-radius: 8px;
+
+  color: #667085;
+
+  font-size: 13px;
+  font-weight: 400;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.monthly-sales-chart__dropdown-item:hover {
+  background: #f2f4f7;
+
+  color: #344054;
+}
+
+/* =========================================================
+   CHART SCROLL
+========================================================= */
+
+.monthly-sales-chart__scroll {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: thin;
+
+  scrollbar-color: #d0d5dd transparent;
+}
+
+/* =========================================================
+   CHART WRAPPER
+========================================================= */
+
+.monthly-sales-chart__chart-wrapper {
+  width: 100%;
+
+  min-width: 650px;
+
+  padding-left: 8px;
+  padding-bottom: 5px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   APEX CHART
+========================================================= */
+
+.monthly-sales-chart .apexcharts-canvas {
+  max-width: 100%;
+}
+
+.monthly-sales-chart .apexcharts-svg {
+  overflow: visible;
+}
+
+.monthly-sales-chart .apexcharts-tooltip {
+  border: 1px solid #e4e7ec !important;
+
+  background: #ffffff !important;
+
+  box-shadow:
+    0 8px 25px rgba(16, 24, 40, 0.12) !important;
+
+  border-radius: 8px !important;
+}
+
+.monthly-sales-chart .apexcharts-tooltip-title {
+  background: #f9fafb !important;
+
+  border-bottom: 1px solid #eaecf0 !important;
+
+  color: #344054 !important;
+}
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.monthly-sales-chart__scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.monthly-sales-chart__scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.monthly-sales-chart__scroll::-webkit-scrollbar-thumb {
+  background: #d0d5dd;
+
+  border-radius: 10px;
+}
+
+.monthly-sales-chart__scroll::-webkit-scrollbar-thumb:hover {
+  background: #98a2b3;
+}
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark .monthly-sales-chart {
+  background: rgba(255, 255, 255, 0.03);
+
+  border-color: #1f2937;
+
+  box-shadow: none;
+}
+
+.dark .monthly-sales-chart:hover {
+  border-color: #374151;
+
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.dark .monthly-sales-chart__title {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .monthly-sales-chart__menu-button {
+  color: #98a2b3;
+}
+
+.dark .monthly-sales-chart__menu-button:hover {
+  background: #1f2937;
+
+  color: #e5e7eb;
+}
+
+.dark .monthly-sales-chart__dropdown-item {
+  color: #9ca3af;
+}
+
+.dark .monthly-sales-chart__dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+
+  color: #e5e7eb;
+}
+
+.dark .monthly-sales-chart .apexcharts-tooltip {
+  background: #111827 !important;
+
+  border-color: #374151 !important;
+}
+
+.dark .monthly-sales-chart .apexcharts-tooltip-title {
+  background: #1f2937 !important;
+
+  border-color: #374151 !important;
+
+  color: #e5e7eb !important;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .monthly-sales-chart {
+    padding: 20px 18px 0;
+  }
+
+  .monthly-sales-chart__chart-wrapper {
+    min-width: 620px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  .monthly-sales-chart {
+    padding: 18px 16px 0;
+
+    border-radius: 14px;
+  }
+
+  .monthly-sales-chart__title {
+    font-size: 17px;
+  }
+
+  .monthly-sales-chart__menu-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .monthly-sales-chart__chart-wrapper {
+    min-width: 600px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .monthly-sales-chart {
+    padding: 16px 13px 0;
+  }
+
+  .monthly-sales-chart__header {
+    margin-bottom: 3px;
+  }
+
+  .monthly-sales-chart__title {
+    font-size: 16px;
+  }
+
+  .monthly-sales-chart__chart-wrapper {
+    min-width: 560px;
+
+    padding-left: 4px;
+  }
+}
