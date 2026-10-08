@@ -1,150 +1,610 @@
-/* ===============================
-   🌐 VisaDetails FAQ - Main Wrapper
-=============================== */
-.VisaDetails-Faq-wrapper {
-  max-width: 1140px;
-  margin: 20px auto;
-  padding: 0 20px;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(180deg, #ffffff, #f8fbff);
-}
+/* =========================================================
+   FLYIXO VISA FAQ
+========================================================= */
 
-/* ===============================
-   🏆 Title
-=============================== */
-.VisaDetails-Faq-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #0f172a;
-  text-align: center;
-  margin-bottom: 35px;
+.flyixo-faq {
+  width: 100%;
+  padding: 70px 20px;
+
   position: relative;
-}
-
-.VisaDetails-Faq-title::after {
-  content: "";
-  width: 90px;
-  height: 4px;
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-  border-radius: 3px;
-  display: block;
-  margin: 12px auto 0;
-}
-
-/* ===============================
-   📜 FAQ List Container
-=============================== */
-.VisaDetails-Faq-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* ===============================
-   📦 FAQ Item
-=============================== */
-.VisaDetails-Faq-item {
-  margin-bottom: 18px;
-  border-radius: 14px;
   overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 8% 10%,
+      rgba(54, 209, 212, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(233, 78, 119, 0.07),
+      transparent 30%
+    ),
+    #f8fbfd;
+
+  font-family: "Poppins", sans-serif;
+}
+
+.flyixo-faq__container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-faq__header {
+  max-width: 750px;
+  margin: 0 auto 45px;
+
+  text-align: center;
+}
+
+.flyixo-faq__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+  padding: 7px 17px;
+
+  border: 1px solid rgba(54, 209, 212, 0.22);
+  border-radius: 30px;
+
+  background: rgba(54, 209, 212, 0.08);
+
+  color: #168f95;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.flyixo-faq__title {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 34px;
+  line-height: 1.3;
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+}
+
+.flyixo-faq__subtitle {
+  max-width: 650px;
+
+  margin: 14px auto 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   FAQ LIST
+========================================================= */
+
+.flyixo-faq__list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* =========================================================
+   FAQ ITEM
+========================================================= */
+
+.flyixo-faq__item {
+  position: relative;
+
   background: #ffffff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  border: 1px solid #e1ebef;
+  border-radius: 17px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 25px rgba(6, 44, 67, 0.05),
+    0 2px 6px rgba(6, 44, 67, 0.025);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.VisaDetails-Faq-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.15);
+.flyixo-faq__item::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 4px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #36d1d4,
+    #e94e77
+  );
+
+  transform: scaleY(0);
+  transform-origin: top;
+
+  transition: transform 0.3s ease;
 }
 
-/* ===============================
-   💬 Question Button
-=============================== */
-.VisaDetails-Faq-question {
+.flyixo-faq__item:hover {
+  border-color: rgba(54, 209, 212, 0.3);
+
+  box-shadow:
+    0 14px 35px rgba(6, 44, 67, 0.08),
+    0 4px 12px rgba(54, 209, 212, 0.05);
+}
+
+.flyixo-faq__item--open {
+  border-color: rgba(54, 209, 212, 0.35);
+
+  box-shadow:
+    0 14px 35px rgba(6, 44, 67, 0.09),
+    0 4px 15px rgba(54, 209, 212, 0.06);
+}
+
+.flyixo-faq__item--open::before {
+  transform: scaleY(1);
+}
+
+
+/* =========================================================
+   QUESTION BUTTON
+========================================================= */
+
+.flyixo-faq__question {
+  width: 100%;
+
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 18px 24px;
-  font-size: 17px;
-  font-weight: 600;
-  color: #0f172a;
-  background: #f3f7ff;
-  border: none;
-  cursor: pointer;
+
+  gap: 15px;
+
+  padding: 21px 23px;
+
+  border: 0;
+  outline: none;
+
+  background: #ffffff;
+
+  color: #062c43;
+
   text-align: left;
-  transition: background 0.3s ease;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-.VisaDetails-Faq-question:hover {
-  background: #e0ebff;
+.flyixo-faq__question:hover {
+  background: #f8fcfd;
 }
 
-/* ===============================
-   ➕ Icon
-=============================== */
-.VisaDetails-Faq-icon {
-  margin-right: 14px;
-  font-size: 18px;
-  color: #2563eb;
+.flyixo-faq__item--open .flyixo-faq__question {
+  background: #f8fcfd;
+}
+
+
+/* =========================================================
+   QUESTION NUMBER
+========================================================= */
+
+.flyixo-faq__question-number {
+  flex: 0 0 auto;
+
+  width: 36px;
+  height: 36px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border-radius: 10px;
+
+  background: #eef7f8;
+
+  color: #168f95;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-/* ===============================
-   🧾 Answer Content
-=============================== */
-.VisaDetails-Faq-answer {
-  max-height: 0;
+.flyixo-faq__item--open .flyixo-faq__question-number {
+  background: linear-gradient(
+    135deg,
+    #062c43,
+    #36d1d4
+  );
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   QUESTION TEXT
+========================================================= */
+
+.flyixo-faq__question-text {
+  flex: 1;
+
+  padding-right: 10px;
+
+  color: #1e293b;
+
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.flyixo-faq__item--open .flyixo-faq__question-text {
+  color: #062c43;
+}
+
+
+/* =========================================================
+   PLUS / MINUS ICON
+========================================================= */
+
+.flyixo-faq__icon {
+  flex: 0 0 auto;
+
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f1f6f8;
+
+  color: #168f95;
+
+  font-size: 12px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.flyixo-faq__item--open .flyixo-faq__icon {
+  background: linear-gradient(
+    135deg,
+    #e94e77,
+    #36d1d4
+  );
+
+  color: #ffffff;
+
+  transform: rotate(180deg);
+}
+
+
+/* =========================================================
+   ANSWER
+========================================================= */
+
+.flyixo-faq__answer {
+  display: grid;
+
+  grid-template-rows: 0fr;
+
+  opacity: 0;
+
+  transition:
+    grid-template-rows 0.4s ease,
+    opacity 0.3s ease;
+}
+
+.flyixo-faq__answer--open {
+  grid-template-rows: 1fr;
+
+  opacity: 1;
+}
+
+.flyixo-faq__answer-inner {
+  min-height: 0;
+
   overflow: hidden;
-  background: #f8fbff;
-  padding: 0 24px;
-  transition: all 0.4s ease;
-  border-top: 1px solid #e5e7eb;
+
+  border-top: 1px solid transparent;
+
+  transition: border-color 0.3s ease;
 }
 
-.VisaDetails-Faq-answer.open {
-  max-height: 400px;
-  padding: 16px 24px 20px;
+.flyixo-faq__answer--open .flyixo-faq__answer-inner {
+  border-top-color: #e8eef1;
 }
 
-.VisaDetails-Faq-answer p {
-  font-size: 15.5px;
-  color: #4b5563;
-  line-height: 1.7;
+.flyixo-faq__answer-inner p {
   margin: 0;
+
+  padding: 18px 24px 21px 89px;
+
+  color: #64748b;
+
+  font-size: 13.5px;
+  line-height: 1.8;
 }
 
-/* ===============================
-   📱 Responsive Styling
-=============================== */
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.flyixo-faq__empty {
+  max-width: 550px;
+
+  margin: 0 auto;
+  padding: 45px 25px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e1ebef;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 30px rgba(6, 44, 67, 0.05);
+}
+
+.flyixo-faq__empty-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  background: rgba(54, 209, 212, 0.1);
+
+  color: #168f95;
+
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.flyixo-faq__empty h3 {
+  margin: 0 0 8px;
+
+  color: #062c43;
+
+  font-size: 18px;
+}
+
+.flyixo-faq__empty p {
+  max-width: 400px;
+
+  margin: 0 auto;
+
+  color: #718096;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 768px) {
-  .VisaDetails-Faq-title {
-    font-size: 26px;
+  .flyixo-faq {
+    padding: 55px 17px;
   }
 
-  .VisaDetails-Faq-question {
-    font-size: 16px;
-    padding: 16px 18px;
+  .flyixo-faq__header {
+    margin-bottom: 35px;
   }
 
-  .VisaDetails-Faq-answer p {
-    font-size: 14.5px;
+  .flyixo-faq__title {
+    font-size: 28px;
+  }
+
+  .flyixo-faq__subtitle {
+    font-size: 13px;
+  }
+
+  .flyixo-faq__question {
+    padding: 18px;
+    gap: 12px;
+  }
+
+  .flyixo-faq__question-text {
+    font-size: 14px;
+  }
+
+  .flyixo-faq__answer-inner p {
+    padding: 16px 20px 19px 66px;
+
+    font-size: 13px;
   }
 }
 
-@media (max-width: 480px) {
-  .VisaDetails-Faq-item {
-    border-radius: 10px;
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+  .flyixo-faq {
+    padding: 45px 12px;
   }
 
-  .VisaDetails-Faq-question {
-    padding: 14px 16px;
+  .flyixo-faq__header {
+    margin-bottom: 28px;
   }
 
-  .VisaDetails-Faq-icon {
-    margin-right: 10px;
+  .flyixo-faq__eyebrow {
+    padding: 6px 13px;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .flyixo-faq__title {
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .flyixo-faq__subtitle {
+    margin-top: 11px;
+
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .flyixo-faq__list {
+    gap: 11px;
+  }
+
+  .flyixo-faq__item {
+    border-radius: 14px;
+  }
+
+  .flyixo-faq__question {
+    padding: 15px 14px;
+
+    gap: 9px;
+  }
+
+  .flyixo-faq__question-number {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 8px;
+
+    font-size: 9px;
+  }
+
+  .flyixo-faq__question-text {
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+
+  .flyixo-faq__icon {
+    width: 29px;
+    height: 29px;
+
+    font-size: 10px;
+  }
+
+  .flyixo-faq__answer-inner p {
+    padding: 14px 15px 17px 53px;
+
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .flyixo-faq__empty {
+    padding: 35px 18px;
+  }
+
+  .flyixo-faq__empty h3 {
     font-size: 16px;
+  }
+
+  .flyixo-faq__empty p {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 360px) {
+  .flyixo-faq {
+    padding: 38px 9px;
+  }
+
+  .flyixo-faq__title {
+    font-size: 22px;
+  }
+
+  .flyixo-faq__question {
+    padding: 13px 11px;
+  }
+
+  .flyixo-faq__question-number {
+    width: 27px;
+    height: 27px;
+  }
+
+  .flyixo-faq__question-text {
+    font-size: 11.5px;
+  }
+
+  .flyixo-faq__icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .flyixo-faq__answer-inner p {
+    padding-left: 45px;
+
+    font-size: 11.5px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.flyixo-faq__question:focus-visible {
+  outline: 3px solid rgba(54, 209, 212, 0.35);
+  outline-offset: -3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-faq__item,
+  .flyixo-faq__question,
+  .flyixo-faq__icon,
+  .flyixo-faq__question-number,
+  .flyixo-faq__answer,
+  .flyixo-faq__answer-inner {
+    transition: none;
   }
 }

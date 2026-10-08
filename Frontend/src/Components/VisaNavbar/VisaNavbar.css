@@ -1,98 +1,471 @@
-/* ===============================
-   🌐 Visa Navbar Styles (Modern)
-================================ */
-.visa-navbar {
+/* =========================================================
+   FLYIXO VISA NAVBAR
+   ========================================================= */
+
+.flyixo-visa-navbar {
   position: sticky;
   top: 0;
+  left: 0;
+
   width: 100%;
+
   z-index: 1000;
-  background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  border-bottom: 1px solid #e0e0e0;
-  padding: 12px 0;
-  transition: all 0.3s ease;
-  font-family: "Poppins", sans-serif;
+
+  padding: 0;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom: 1px solid rgba(6, 44, 67, 0.08);
+
+  box-shadow:
+    0 8px 30px rgba(6, 44, 67, 0.08);
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* Navbar list */
-.visa-navbar-list {
+
+/* =========================================================
+   NAVBAR CONTAINER
+   ========================================================= */
+
+.flyixo-visa-navbar-container {
+  width: 100%;
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 12px 40px;
+}
+
+
+/* =========================================================
+   NAVIGATION LIST
+   ========================================================= */
+
+.flyixo-visa-navbar-list {
+  width: 100%;
+
   display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
+
+  gap: 8px;
+
   margin: 0;
-  padding: 0 20px;
-  gap: 30px;
+  padding: 0;
+
+  list-style: none;
 }
 
-/* Navbar items */
-.visa-navbar-item {
-  cursor: pointer;
-  font-weight: 600;
-  color: #333;
-  font-size: 1rem;
+
+/* =========================================================
+   NAV ITEM
+   ========================================================= */
+
+.flyixo-visa-navbar-item {
   position: relative;
-  padding: 8px 12px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0;
+  padding: 0;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  white-space: nowrap;
 }
 
-/* Hover effect with background */
-.visa-navbar-item:hover {
-  color: #fff;
-  background: linear-gradient(90deg, #0072ff, #00bcd4);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.3);
+
+/* =========================================================
+   NAV LINK
+   ========================================================= */
+
+.flyixo-visa-navbar-link {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 10px 18px;
+
+  border-radius: 12px;
+
+  color: #475569;
+
+  background: transparent;
+
+  font-size: 14px;
+  line-height: 1;
+
+  font-weight: 600;
+
+  letter-spacing: 0.1px;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-/* Active section styling */
-.visa-navbar-item.active {
-  color: #fff;
-  background: linear-gradient(90deg, #0072ff, #00bcd4);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 114, 255, 0.3);
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.flyixo-visa-navbar-item:hover
+.flyixo-visa-navbar-link {
+  color: #062c43;
+
+  background:
+    rgba(54, 209, 212, 0.08);
+
+  transform: translateY(-1px);
 }
 
-/* Active underline (optional) */
-.visa-navbar-item.active::after {
+
+/* =========================================================
+   ACTIVE ITEM
+   ========================================================= */
+
+.flyixo-visa-navbar-item--active
+.flyixo-visa-navbar-link {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #062c43 0%,
+      #0b5578 55%,
+      #36d1d4 100%
+    );
+
+  box-shadow:
+    0 7px 20px rgba(6, 44, 67, 0.2);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   ACTIVE HOVER
+   ========================================================= */
+
+.flyixo-visa-navbar-item--active:hover
+.flyixo-visa-navbar-link {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #051f30 0%,
+      #0a4d6d 55%,
+      #2abfc4 100%
+    );
+
+  box-shadow:
+    0 9px 24px rgba(6, 44, 67, 0.25);
+}
+
+
+/* =========================================================
+   ACTIVE BOTTOM INDICATOR
+   ========================================================= */
+
+.flyixo-visa-navbar-item--active::after {
   content: "";
+
   position: absolute;
+
   left: 50%;
-  bottom: -6px;
+  bottom: -7px;
+
+  width: 24px;
+  height: 3px;
+
   transform: translateX(-50%);
-  width: 30%;
-  height: 4px;
-  background-color: #ffd700;
-  border-radius: 3px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #e94e77,
+      #f4b942
+    );
+
+  box-shadow:
+    0 2px 8px rgba(233, 78, 119, 0.35);
+
+  animation:
+    flyixoVisaNavIndicator 0.3s ease;
 }
 
-/* Media query for tablet and below */
-@media (max-width: 768px) {
-  .visa-navbar-list {
-    gap: 15px;
-    padding: 0 10px;
+
+@keyframes flyixoVisaNavIndicator {
+  from {
+    width: 0;
+    opacity: 0;
   }
-  .visa-navbar-item {
-    font-size: 0.9rem;
-    padding: 6px 10px;
+
+  to {
+    width: 24px;
+    opacity: 1;
   }
 }
 
-/* Media query for mobile and below */
-@media (max-width: 480px) {
-  .visa-navbar-list {
+
+/* =========================================================
+   HOVER TOP LINE
+   ========================================================= */
+
+.flyixo-visa-navbar-item:not(
+  .flyixo-visa-navbar-item--active
+)::before {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  top: -12px;
+
+  width: 0;
+  height: 2px;
+
+  transform: translateX(-50%);
+
+  border-radius: 10px;
+
+  background: #36d1d4;
+
+  transition:
+    width 0.3s ease;
+}
+
+
+.flyixo-visa-navbar-item:hover:not(
+  .flyixo-visa-navbar-item--active
+)::before {
+  width: 24px;
+}
+
+
+/* =========================================================
+   CLICK EFFECT
+   ========================================================= */
+
+.flyixo-visa-navbar-item:active
+.flyixo-visa-navbar-link {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+.flyixo-visa-navbar-item:focus-visible
+.flyixo-visa-navbar-link {
+  outline: 3px solid rgba(54, 209, 212, 0.35);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .flyixo-visa-navbar-container {
+    padding: 11px 25px;
+  }
+
+  .flyixo-visa-navbar-list {
     gap: 5px;
-    padding: 0 5px;
   }
-  .visa-navbar-item {
-    font-size: 0.8rem;
-    padding: 4px 8px;
-    text-align: center;
+
+  .flyixo-visa-navbar-link {
+    padding: 10px 14px;
+
+    font-size: 13px;
   }
-  .visa-navbar-item.active::after {
-    width: 20%;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 992px) {
+  .flyixo-visa-navbar {
+    position: sticky;
   }
-  .visa-navbar{
-    position: unset;
+
+  .flyixo-visa-navbar-container {
+    padding: 10px 18px;
+  }
+
+  .flyixo-visa-navbar-list {
+    justify-content: flex-start;
+
+    gap: 7px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding: 2px 2px 5px;
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+  }
+
+  .flyixo-visa-navbar-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .flyixo-visa-navbar-item {
+    flex-shrink: 0;
+  }
+
+  .flyixo-visa-navbar-link {
+    min-height: 42px;
+
+    padding: 9px 15px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .flyixo-visa-navbar {
+    border-bottom: 1px solid rgba(6, 44, 67, 0.1);
+
+    box-shadow:
+      0 5px 20px rgba(6, 44, 67, 0.07);
+  }
+
+  .flyixo-visa-navbar-container {
+    padding: 8px 12px;
+  }
+
+  .flyixo-visa-navbar-list {
+    justify-content: flex-start;
+
+    gap: 6px;
+
+    padding: 2px 2px 5px;
+  }
+
+  .flyixo-visa-navbar-link {
+    min-height: 40px;
+
+    padding: 9px 14px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+  }
+
+  .flyixo-visa-navbar-item--active::after {
+    bottom: -5px;
+
+    height: 2px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .flyixo-visa-navbar-container {
+    padding: 7px 8px;
+  }
+
+  .flyixo-visa-navbar-list {
+    gap: 5px;
+  }
+
+  .flyixo-visa-navbar-link {
+    min-height: 38px;
+
+    padding: 8px 12px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+  }
+
+  .flyixo-visa-navbar-item--active::after {
+    width: 18px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .flyixo-visa-navbar-container {
+    padding: 6px;
+  }
+
+  .flyixo-visa-navbar-list {
+    gap: 4px;
+  }
+
+  .flyixo-visa-navbar-link {
+    min-height: 36px;
+
+    padding: 7px 10px;
+
+    font-size: 10px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-visa-navbar *,
+  .flyixo-visa-navbar {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto !important;
   }
 }

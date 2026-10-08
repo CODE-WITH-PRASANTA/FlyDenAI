@@ -1,144 +1,641 @@
-/* ===============================
-   ✈️ SECTION WRAPPER
-=============================== */
-.visa-why-choose-us-wrapper {
-  max-width: 1140px;
-  margin: 20px auto;
-  padding: 0 20px;
-  text-align: center;
-  font-family: "Poppins", sans-serif;
+/* =========================================================
+   FLYIXO - WHY CHOOSE US
+========================================================= */
+
+.flyixo-why-choose {
+  width: 100%;
+  padding: 75px 20px;
+
+  position: relative;
   overflow: hidden;
-  position: relative;
+
+  background:
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(54, 209, 212, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 80%,
+      rgba(233, 78, 119, 0.08),
+      transparent 30%
+    ),
+    #f8fbfd;
+
+  font-family: "Poppins", sans-serif;
 }
 
-/* ===============================
-   🏆 TITLE
-=============================== */
-.visa-why-choose-us-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 30px;
-  position: relative;
-}
 
-.visa-why-choose-us-title::after {
+/* =========================================================
+   BACKGROUND DECORATION
+========================================================= */
+
+.flyixo-why-choose::before {
   content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #2563eb;
-  border-radius: 2px;
-  margin: 12px auto 0;
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  top: -100px;
+  right: -80px;
+
+  border-radius: 50%;
+
+  border: 35px solid rgba(54, 209, 212, 0.05);
+
+  pointer-events: none;
 }
 
-/* ===============================
-   🔄 SCROLL CONTAINER
-=============================== */
-.visa-why-choose-us-scroll {
+.flyixo-why-choose::after {
+  content: "";
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  bottom: -90px;
+  left: -70px;
+
+  border-radius: 50%;
+
+  border: 30px solid rgba(233, 78, 119, 0.04);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.flyixo-why-choose__container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-why-choose__header {
+  max-width: 720px;
+  margin: 0 auto 50px;
+
+  text-align: center;
+}
+
+.flyixo-why-choose__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+  padding: 7px 17px;
+
+  border-radius: 30px;
+
+  background: rgba(54, 209, 212, 0.1);
+  border: 1px solid rgba(54, 209, 212, 0.2);
+
+  color: #168f95;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.flyixo-why-choose__title {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+}
+
+.flyixo-why-choose__title span {
+  position: relative;
+  color: #e94e77;
+}
+
+.flyixo-why-choose__title span::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -5px;
+
+  height: 3px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #e94e77
+  );
+}
+
+.flyixo-why-choose__subtitle {
+  max-width: 650px;
+
+  margin: 17px auto 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   SCROLL AREA
+========================================================= */
+
+.flyixo-why-choose__scroll {
+  width: 100%;
+
   overflow-x: auto;
-  scroll-behavior: smooth;
+  overflow-y: hidden;
+
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
+
+  padding: 12px 5px 25px;
+
   scrollbar-width: thin;
-  scrollbar-color: #2563eb #e5e7eb;
+  scrollbar-color: #36d1d4 #e6eef2;
 }
 
-.visa-why-choose-us-scroll::-webkit-scrollbar {
-  height: 8px;
+
+/* Chrome / Edge / Safari */
+
+.flyixo-why-choose__scroll::-webkit-scrollbar {
+  height: 7px;
 }
 
-.visa-why-choose-us-scroll::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 8px;
+.flyixo-why-choose__scroll::-webkit-scrollbar-track {
+  background: #e7eef2;
+  border-radius: 20px;
 }
 
-.visa-why-choose-us-scroll::-webkit-scrollbar-track {
-  background: #e5e7eb;
+.flyixo-why-choose__scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #168f95
+  );
+
+  border-radius: 20px;
 }
 
-/* ===============================
-   🎠 SCROLL TRACK (FLEX SLIDER)
-=============================== */
-.visa-why-choose-us-track {
-  display: flex;
-  gap: 25px;
+
+/* =========================================================
+   TRACK
+========================================================= */
+
+.flyixo-why-choose__track {
   width: max-content;
-  padding: 10px 5px 20px;
-  scroll-snap-type: x mandatory;
+
+  display: flex;
+  align-items: stretch;
+
+  gap: 22px;
+
+  padding: 5px;
 }
 
-/* ===============================
-   💠 CARD DESIGN
-=============================== */
-.visa-why-choose-us-card {
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.flyixo-why-choose__card {
+  position: relative;
+
   flex: 0 0 250px;
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 30px 20px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+
+  min-height: 220px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  scroll-snap-align: start;
-  border: 1px solid #e5e7eb;
+  justify-content: center;
+
+  padding: 32px 24px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e2ebef;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 10px 28px rgba(6, 44, 67, 0.06),
+    0 2px 8px rgba(6, 44, 67, 0.03);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
 }
 
-.visa-why-choose-us-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.18);
+.flyixo-why-choose__card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 4px;
+
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #e94e77
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.35s ease;
 }
 
-/* ===============================
-   🌐 ICON & TEXT STYLES
-=============================== */
-.visa-why-choose-us-icon {
-  font-size: 42px;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: white;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+.flyixo-why-choose__card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(54, 209, 212, 0.35);
+
+  box-shadow:
+    0 20px 45px rgba(6, 44, 67, 0.11),
+    0 5px 15px rgba(54, 209, 212, 0.08);
+}
+
+.flyixo-why-choose__card:hover::before {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   CARD NUMBER
+========================================================= */
+
+.flyixo-why-choose__card-number {
+  position: absolute;
+
+  top: 15px;
+  right: 17px;
+
+  color: #dce7ec;
+
+  font-size: 27px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.flyixo-why-choose__icon {
+  width: 76px;
+  height: 76px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+
+  margin-bottom: 20px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #062c43 0%,
+    #0b5876 55%,
+    #36d1d4 100%
+  );
+
+  font-size: 35px;
+
+  box-shadow:
+    0 12px 25px rgba(6, 44, 67, 0.18),
+    0 0 0 8px rgba(54, 209, 212, 0.07);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.visa-why-choose-us-text {
+.flyixo-why-choose__card:hover .flyixo-why-choose__icon {
+  transform: scale(1.08) rotate(4deg);
+
+  box-shadow:
+    0 15px 30px rgba(6, 44, 67, 0.24),
+    0 0 0 10px rgba(54, 209, 212, 0.09);
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+.flyixo-why-choose__content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+}
+
+.flyixo-why-choose__content p {
+  max-width: 205px;
+
+  margin: 0 auto;
+
+  color: #334155;
+
+  font-size: 14px;
+  line-height: 1.65;
+
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   TRUST MESSAGE
+========================================================= */
+
+.flyixo-why-choose__trust {
+  max-width: 650px;
+
+  margin: 38px auto 0;
+  padding: 15px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  border: 1px solid #e1ebef;
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 8px 25px rgba(6, 44, 67, 0.04);
+}
+
+.flyixo-why-choose__trust-icon {
+  flex: 0 0 auto;
+
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #36d1d4,
+    #159da2
+  );
+
+  color: #ffffff;
+
   font-size: 16px;
-  font-weight: 500;
-  color: #374151;
-  line-height: 1.5;
-  max-width: 200px;
+  font-weight: 800;
 }
 
-/* ===============================
-   📱 RESPONSIVE DESIGN
-=============================== */
+.flyixo-why-choose__trust-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 2px;
+}
+
+.flyixo-why-choose__trust-content strong {
+  color: #062c43;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.flyixo-why-choose__trust-content span {
+  color: #718096;
+
+  font-size: 11.5px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 992px) {
-  .visa-why-choose-us-title {
-    font-size: 28px;
+  .flyixo-why-choose {
+    padding: 60px 18px;
   }
 
-  .visa-why-choose-us-card {
-    flex: 0 0 220px;
-    padding: 25px 18px;
+  .flyixo-why-choose__header {
+    margin-bottom: 40px;
   }
 
-  .visa-why-choose-us-icon {
-    width: 60px;
-    height: 60px;
-    font-size: 32px;
+  .flyixo-why-choose__title {
+    font-size: 31px;
+  }
+
+  .flyixo-why-choose__card {
+    flex-basis: 220px;
+    min-height: 205px;
+
+    padding: 28px 20px;
+  }
+
+  .flyixo-why-choose__icon {
+    width: 66px;
+    height: 66px;
+
+    font-size: 30px;
+  }
+
+  .flyixo-why-choose__content p {
+    font-size: 13.5px;
   }
 }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 600px) {
-  .visa-why-choose-us-card {
-    flex: 0 0 200px;
+  .flyixo-why-choose {
+    padding: 48px 13px;
   }
-  .visa-why-choose-us-text {
+
+  .flyixo-why-choose__header {
+    margin-bottom: 30px;
+  }
+
+  .flyixo-why-choose__eyebrow {
+    padding: 6px 14px;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .flyixo-why-choose__title {
+    font-size: 27px;
+  }
+
+  .flyixo-why-choose__subtitle {
+    margin-top: 13px;
+
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .flyixo-why-choose__track {
+    gap: 17px;
+  }
+
+  .flyixo-why-choose__card {
+    flex-basis: 205px;
+
+    min-height: 195px;
+
+    padding: 26px 17px;
+
+    border-radius: 18px;
+  }
+
+  .flyixo-why-choose__icon {
+    width: 62px;
+    height: 62px;
+
+    margin-bottom: 16px;
+
+    font-size: 27px;
+  }
+
+  .flyixo-why-choose__card-number {
+    top: 12px;
+    right: 14px;
+
+    font-size: 22px;
+  }
+
+  .flyixo-why-choose__content p {
+    font-size: 12.5px;
+    line-height: 1.6;
+  }
+
+  .flyixo-why-choose__scroll {
+    padding-bottom: 18px;
+  }
+
+  .flyixo-why-choose__trust {
+    margin-top: 28px;
+
+    padding: 13px 14px;
+
+    justify-content: flex-start;
+
+    border-radius: 13px;
+  }
+
+  .flyixo-why-choose__trust-icon {
+    width: 30px;
+    height: 30px;
+
     font-size: 14px;
+  }
+
+  .flyixo-why-choose__trust-content strong {
+    font-size: 11.5px;
+  }
+
+  .flyixo-why-choose__trust-content span {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .flyixo-why-choose {
+    padding: 42px 10px;
+  }
+
+  .flyixo-why-choose__title {
+    font-size: 24px;
+  }
+
+  .flyixo-why-choose__subtitle {
+    font-size: 12px;
+  }
+
+  .flyixo-why-choose__card {
+    flex-basis: 190px;
+
+    min-height: 185px;
+
+    padding: 23px 15px;
+  }
+
+  .flyixo-why-choose__icon {
+    width: 58px;
+    height: 58px;
+
+    font-size: 25px;
+  }
+
+  .flyixo-why-choose__content p {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-why-choose__card,
+  .flyixo-why-choose__icon,
+  .flyixo-why-choose__card::before {
+    transition: none;
   }
 }

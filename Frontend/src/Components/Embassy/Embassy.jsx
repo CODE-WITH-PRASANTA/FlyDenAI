@@ -7,13 +7,17 @@ import BASE_URL from "../../Api";
 
 const Embassy = () => {
   const { id } = useParams();
+
   const [visa, setVisa] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVisa = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/visas/published/${id}`);
+        const res = await axios.get(
+          `${BASE_URL}/visas/published/${id}`
+        );
+
         setVisa(res.data.data);
       } catch (err) {
         console.error("Error fetching visa details:", err);
@@ -21,82 +25,200 @@ const Embassy = () => {
         setLoading(false);
       }
     };
+
     fetchVisa();
   }, [id]);
 
   if (loading) {
     return (
-      <div className="embassy-loader">
-        <div className="spinner"></div>
-        <p className="loading-text">Fetching latest visa details...</p>
+      <div className="flyixo-embassy-loader">
+        <div className="flyixo-embassy-spinner"></div>
+
+        <p className="flyixo-embassy-loading-text">
+          Fetching latest visa details...
+        </p>
       </div>
     );
   }
 
   if (!visa) {
-    return <p className="error-text">⚠️ Visa not found or not published.</p>;
+    return (
+      <div className="flyixo-embassy-error">
+        <div className="flyixo-embassy-error-icon">!</div>
+
+        <h3>Visa Information Unavailable</h3>
+
+        <p>
+          Visa details could not be found or this visa is not currently
+          published.
+        </p>
+      </div>
+    );
   }
 
-  const cleanDescription = DOMPurify.sanitize(visa.description);
+  const cleanDescription = DOMPurify.sanitize(
+    visa.description || ""
+  );
 
   return (
-    <div className="embassy-wrapper">
-      {/* === Country Header Section === */}
-      <div className="embassy-header">
-        <h1 className="embassy-title">
-          🌍 {visa.country} <span>Visa Details</span>
-        </h1>
-        <div className="embassy-divider"></div>
-        <p className="embassy-subtitle">
-          Get complete visa insights, processing time, fees & more.
-        </p>
-      </div>
+    <section className="flyixo-embassy">
+      <div className="flyixo-embassy-container">
 
-      {/* === Description Section === */}
-      <div
-        className="embassy-description fade-in"
-        dangerouslySetInnerHTML={{ __html: cleanDescription }}
-      ></div>
+        {/* =========================================
+            HEADER
+        ========================================= */}
+        <header className="flyixo-embassy-header">
+          <span className="flyixo-embassy-eyebrow">
+            Visa Information
+          </span>
 
-      {/* === Visa Info Section === */}
-      <div className="embassy-info fade-up">
-        <h2 className="info-title">📘 Visa Overview</h2>
-        <div className="info-grid">
-          <div className="info-box">
-            <h3>⏰ Processing Time</h3>
-            <p>{visa.processingTime || "Information not available"}</p>
+          <h1 className="flyixo-embassy-title">
+            {visa.country}{" "}
+            <span>Visa Details</span>
+          </h1>
+
+          <div className="flyixo-embassy-divider">
+            <span></span>
           </div>
-          <div className="info-box">
-            <h3>💰 Starting Price</h3>
-            <p>{visa.startingPrice || "Varies by category"}</p>
+
+          <p className="flyixo-embassy-subtitle">
+            Get complete visa insights, processing time, fees and
+            everything you need to know about your visa journey.
+          </p>
+        </header>
+
+        {/* =========================================
+            DESCRIPTION
+        ========================================= */}
+        <article className="flyixo-embassy-description">
+          <div className="flyixo-embassy-description-label">
+            <span className="flyixo-embassy-description-icon">
+              i
+            </span>
+
+            <span>About {visa.country} Visa</span>
           </div>
-          <div className="info-box">
-            <h3>✅ Approval Tagline</h3>
-            <p>{visa.approvalTagline || "Fast and easy processing"}</p>
+
+          <div
+            className="flyixo-embassy-description-content"
+            dangerouslySetInnerHTML={{
+              __html: cleanDescription,
+            }}
+          />
+        </article>
+
+        {/* =========================================
+            VISA OVERVIEW
+        ========================================= */}
+        <section className="flyixo-embassy-overview">
+          <div className="flyixo-embassy-overview-header">
+            <span className="flyixo-embassy-overview-eyebrow">
+              Quick Information
+            </span>
+
+            <h2 className="flyixo-embassy-overview-title">
+              Visa Overview
+            </h2>
+
+            <p className="flyixo-embassy-overview-subtitle">
+              Important information about the {visa.country} visa
+              application process.
+            </p>
           </div>
-          {visa.expert && (
-            <div className="info-box">
-              <h3>👨‍💼 Expert</h3>
-              <p>{visa.expert}</p>
+
+          <div className="flyixo-embassy-info-grid">
+
+            {/* Processing Time */}
+            <div className="flyixo-embassy-info-card">
+              <div className="flyixo-embassy-info-icon">
+                ⏱
+              </div>
+
+              <div className="flyixo-embassy-info-content">
+                <span>Processing Time</span>
+
+                <strong>
+                  {visa.processingTime ||
+                    "Information not available"}
+                </strong>
+              </div>
             </div>
-          )}
-        </div>
-      </div>
 
-      {/* === Last Updated === */}
-      <div className="last-updated">
-        <p>
-          <span className="update-icon">🕓</span> Last Updated:{" "}
+            {/* Starting Price */}
+            <div className="flyixo-embassy-info-card">
+              <div className="flyixo-embassy-info-icon">
+                ₹
+              </div>
+
+              <div className="flyixo-embassy-info-content">
+                <span>Starting Price</span>
+
+                <strong>
+                  {visa.startingPrice ||
+                    "Varies by category"}
+                </strong>
+              </div>
+            </div>
+
+            {/* Approval */}
+            <div className="flyixo-embassy-info-card">
+              <div className="flyixo-embassy-info-icon">
+                ✓
+              </div>
+
+              <div className="flyixo-embassy-info-content">
+                <span>Approval</span>
+
+                <strong>
+                  {visa.approvalTagline ||
+                    "Fast and easy processing"}
+                </strong>
+              </div>
+            </div>
+
+            {/* Expert */}
+            {visa.expert && (
+              <div className="flyixo-embassy-info-card">
+                <div className="flyixo-embassy-info-icon">
+                  👤
+                </div>
+
+                <div className="flyixo-embassy-info-content">
+                  <span>Visa Expert</span>
+
+                  <strong>{visa.expert}</strong>
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+
+        {/* =========================================
+            LAST UPDATED
+        ========================================= */}
+        <div className="flyixo-embassy-updated">
+          <span className="flyixo-embassy-updated-icon">
+            ↻
+          </span>
+
+          <span>
+            Last Updated
+          </span>
+
           <strong>
-            {new Date(visa.updatedAt).toLocaleDateString("en-IN", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
+            {new Date(visa.updatedAt).toLocaleDateString(
+              "en-IN",
+              {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              }
+            )}
           </strong>
-        </p>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

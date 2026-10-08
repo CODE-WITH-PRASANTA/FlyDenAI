@@ -1,5 +1,4 @@
-// components/AirportDropdown.jsx
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Search } from "lucide-react";
 import axios from "axios";
 import BASE_URL from "../../Api";
@@ -11,105 +10,206 @@ const AirportDropdown = ({ label, value, onSelect }) => {
   const [airports, setAirports] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
   const dropdownRef = useRef(null);
 
-  // Close dropdown on outside click
+  /* ============================================================
+     CLOSE ON OUTSIDE CLICK
+  ============================================================ */
+
   useEffect(() => {
-    const handler = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+    const handler = (event) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setOpen(false);
       }
     };
+
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
   }, []);
 
-  // Fetch airports from backend
+  /* ============================================================
+     FETCH AIRPORTS
+  ============================================================ */
+
   const fetchAirports = async (query = "") => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        `${BASE_URL}/airports?search=${query}&limit=20`
-      );
+      setError("");
+
+      const res = await axios.get(`${BASE_URL}/airports`, {
+        params: {
+          search: query,
+          limit: 20,
+        },
+      });
 
       if (res.data?.success) {
-        setAirports(res.data.data);
-        setError("");
+        setAirports(res.data.data || []);
       } else {
+        setAirports([]);
         setError("No airport found");
       }
     } catch (err) {
+      console.error("Airport fetch error:", err);
+
+      setAirports([]);
       setError("Failed to load airports");
     } finally {
       setLoading(false);
     }
   };
 
-  // Load airports whenever dropdown opens or searchTerm changes
-  useEffect(() => {
-    if (open) {
-      const delaySearch = setTimeout(() => {
-        fetchAirports(searchTerm);
-      }, 300); // debounce
+  /* ============================================================
+     SEARCH DEBOUNCE
+  ============================================================ */
 
-      return () => clearTimeout(delaySearch);
-    }
+  useEffect(() => {
+    if (!open) return;
+
+    const delaySearch = setTimeout(() => {
+      fetchAirports(searchTerm);
+    }, 300);
+
+    return () => clearTimeout(delaySearch);
   }, [open, searchTerm]);
 
-  return (
-    <div className="DummyTicket-airportWrap" ref={dropdownRef}>
-      <p className="DummyTicket-label">{label}</p>
+  /* ============================================================
+     SELECT AIRPORT
+  ============================================================ */
 
-      <div className="DummyTicket-airportBox" onClick={() => setOpen(!open)}>
-        <h3 className="DummyTicket-value">
-          {value?.airportName || "Select Airport"}
-        </h3>
-        <span className="DummyTicket-small">{value?.countryName || ""}</span>
-      </div>
+  const handleSelect = (airport) => {
+    onSelect(airport);
+
+    setOpen(false);
+    setSearchTerm("");
+  };
+
+  /* ============================================================
+     RENDER
+  ============================================================ */
+
+  return (
+    <div
+      className={`DummyTicket-airportWrap ${
+        open ? "DummyTicket-airportWrap-open" : ""
+      }`}
+      ref={dropdownRef}
+    >
+      {/* LABEL */}
+
+      <p className="DummyTicket-label">
+        {label}
+      </p>
+
+      {/* AIRPORT FIELD */}
+
+      <button
+        type="button"
+        className="DummyTicket-airportBox"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-expanded={open}
+      >
+        <div className="DummyTicket-airportBoxInner">
+          <div className="DummyTicket-airportText">
+            <strong>
+              {value?.airportName || "Select Airport"}
+            </strong>
+
+            {value?.countryName && (
+              <span>
+                {value.countryName}
+              </span>
+            )}
+          </div>
+
+          <span className="DummyTicket-airportArrow">
+            {open ? "⌃" : "⌄"}
+          </span>
+        </div>
+      </button>
+
+      {/* AIRPORT DROPDOWN */}
 
       {open && (
         <div className="DummyTicket-airportDropdown">
-          {/* Search Box */}
+
+          {/* SEARCH */}
+
           <div className="DummyTicket-airportSearch">
+            <Search
+              size={15}
+              className="DummyTicket-airSearchIcon"
+            />
+
             <input
               type="text"
-              placeholder="Search Airport or Country"
+              placeholder="Search airport or country"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) =>
+                setSearchTerm(e.target.value)
+              }
+              autoFocus
             />
-            <Search size={16} className="DummyTicket-airSearchIcon" />
           </div>
 
-          {/* Airport List */}
-          <div className="DummyTicket-airportListScroll">
-            {loading && <p className="DummyTicket-loading">Loading...</p>}
+          {/* LIST */}
 
-            {!loading && error && (
-              <p className="DummyTicket-error">{error}</p>
+          <div className="DummyTicket-airportListScroll">
+
+            {loading && (
+              <div className="DummyTicket-airportMessage">
+                <span className="DummyTicket-spinner" />
+                <span>Loading airports...</span>
+              </div>
             )}
 
-           {!loading &&
-            !error &&
-            airports.map((airport) => (
-              <div
-                key={airport._id}
-                className="DummyTicket-airportItem"
-                onClick={() => {
-                  onSelect(airport);
-                  setOpen(false);
-                }}
-              >
-                {/* BIG COUNTRY NAME */}
-                <h4 className="DummyTicket-airportCityHighlight">
-                  {airport.countryName}
-                </h4>
-
-                {/* SMALL AIRPORT NAME */}
-                <p className="DummyTicket-airportTitleSmall">
-                  ✈ {airport.airportName}
-                </p>
+            {!loading && error && (
+              <div className="DummyTicket-airportMessage DummyTicket-airportError">
+                {error}
               </div>
-            ))}
+            )}
+
+            {!loading &&
+              !error &&
+              airports.length === 0 && (
+                <div className="DummyTicket-airportMessage">
+                  No airport found
+                </div>
+              )}
+
+            {!loading &&
+              !error &&
+              airports.map((airport) => (
+                <button
+                  type="button"
+                  key={airport._id}
+                  className="DummyTicket-airportItem"
+                  onClick={() =>
+                    handleSelect(airport)
+                  }
+                >
+                  <div className="DummyTicket-airportItemText">
+                    <strong>
+                      {airport.airportName}
+                    </strong>
+
+                    <span>
+                      {airport.countryName}
+                    </span>
+                  </div>
+
+                  <span className="DummyTicket-airportItemArrow">
+                    ›
+                  </span>
+                </button>
+              ))}
 
           </div>
         </div>

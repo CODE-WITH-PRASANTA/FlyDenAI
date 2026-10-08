@@ -1,583 +1,1879 @@
-/* ❇ MAIN WRAPPER */
-.BookingDetails-container {
-  display: flex;
-  gap: 2rem;
-  padding: 2rem;
-  max-width: 1400px;
-  margin: auto;
+/* ============================================================
+   FLYIXO TICKET BOOKING FORM
+   PREMIUM RESPONSIVE DESIGN
+============================================================ */
+
+:root {
+  --flyixo-primary: #e94e77;
+  --flyixo-primary-dark: #c93661;
+  --flyixo-primary-light: #fff0f4;
+
+  --flyixo-navy: #062c43;
+  --flyixo-navy-dark: #031b2b;
+
+  --flyixo-cyan: #36c8d4;
+
+  --flyixo-text: #172033;
+  --flyixo-muted: #6b7280;
+  --flyixo-light-text: #8993a3;
+
+  --flyixo-white: #ffffff;
+  --flyixo-bg: #f6f8fb;
+  --flyixo-border: #e4e9ef;
+
+  --flyixo-success: #16a34a;
+  --flyixo-success-bg: #effcf3;
+
+  --flyixo-danger: #dc2626;
+  --flyixo-danger-bg: #fff1f2;
+
+  --flyixo-shadow-sm:
+    0 8px 25px rgba(6, 44, 67, 0.07);
+
+  --flyixo-shadow-md:
+    0 18px 50px rgba(6, 44, 67, 0.11);
+
+  --flyixo-shadow-lg:
+    0 30px 80px rgba(3, 27, 43, 0.15);
+
+  --flyixo-radius-sm: 10px;
+  --flyixo-radius-md: 16px;
+  --flyixo-radius-lg: 24px;
+
+  --flyixo-transition: 0.25s ease;
 }
 
-/* LEFT PORTION */
-.BookingForm-wrapper {
-  flex: 3;
-  padding: 2rem;
-  border-radius: 18px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
 
-  /* ⭐ Matching, clean, normal border */
-  border: 1px solid #ffe1cc;
+/* ============================================================
+   RESET
+============================================================ */
+
+.FlyixoBookingDetails,
+.FlyixoBookingDetails *,
+.FlyixoBookingDetails *::before,
+.FlyixoBookingDetails *::after {
+  box-sizing: border-box;
 }
 
-
-/* MAIN TITLE */
-.BookingForm-mainTitle {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  font-size: 1.7rem;
-  font-weight: 700;
-  margin-bottom: 1.8rem;
-  color: #ff5c1f;
-}
-
-/* SECTION HEADER */
-.BookingForm-sectionHead {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  font-weight: 600;
-  font-size: 1.2rem;
-  padding-left: 10px;
-  border-left: 4px solid #ff5c1f;
-  margin-bottom: 1.3rem;
-  color: #222;
-}
-
-/* GRID */
-.BookingForm-grid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 1.4rem;
-}
-
-/* LABEL */
-.BookingForm-group label {
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: #333;
-  margin-bottom: .35rem;
-}
-
-/* INPUT WRAPPER */
-.BookingForm-inputWrapper {
-  background: #fafafa;
-  border: 1px solid #e6e6e6;
-  border-radius: 12px;
-  padding: 10px 14px;
-  display: flex;
-  align-items: center;
-  transition: 0.2s ease;
-}
-
-.BookingForm-inputWrapper:hover {
-  border-color: #ff7e45;
-}
-
-.BookingForm-inputWrapper input,
-.BookingForm-inputWrapper select {
+.FlyixoBookingDetails {
   width: 100%;
-  border: none;
+
+  min-height: 100vh;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      circle at 0% 0%,
+      rgba(233, 78, 119, 0.07),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(54, 200, 212, 0.07),
+      transparent 28%
+    ),
+    #f6f8fb;
+
+  color: var(--flyixo-text);
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* ============================================================
+   MAIN LAYOUT
+============================================================ */
+
+.FlyixoBookingLayout {
+  width: min(1380px, 100%);
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1.65fr)
+    minmax(340px, 0.8fr);
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+
+/* ============================================================
+   LEFT FORM
+============================================================ */
+
+.FlyixoBookingForm {
+  min-width: 0;
+
+  padding: 30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fcfdff
+    );
+
+  border:
+    1px solid rgba(228, 233, 239, 0.95);
+
+  border-radius: 24px;
+
+  box-shadow: var(--flyixo-shadow-md);
+}
+
+
+/* ============================================================
+   LEFT FORM SCROLL
+============================================================ */
+
+.FlyixoBookingForm-scroll {
+  max-height: 88vh;
+
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #cbd5e1
+    transparent;
+}
+
+.FlyixoBookingForm-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.FlyixoBookingForm-scroll::-webkit-scrollbar-track {
   background: transparent;
-  font-size: .95rem;
-  outline: none;
 }
 
-/* PASSENGER BOX */
-.BookingForm-passengerBox {
-  border-radius: 16px;
-  border: 1px solid #ffe1cd;
-  background: linear-gradient(180deg, #fff9f4, #fff);
-  padding: 1.6rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(255, 120, 55, 0.08);
-  margin-top: 20px;
+.FlyixoBookingForm-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 999px;
 }
 
-/* PASSENGER HEADER */
-.BookingForm-passengerHeader {
+.FlyixoBookingForm-scroll::-webkit-scrollbar-thumb:hover {
+  background: #aeb8c4;
+}
+
+
+/* ============================================================
+   MAIN TITLE
+============================================================ */
+
+.FlyixoBookingForm-mainTitle {
   display: flex;
+
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px dashed #ffd1bb;
-  padding-bottom: .8rem;
-  margin-bottom: 1.3rem;
+
+  gap: 15px;
+
+  padding-bottom: 25px;
+
+  margin-bottom: 25px;
+
+  border-bottom:
+    1px solid #edf0f3;
 }
 
-.BookingForm-passengerTitle {
+.FlyixoBookingForm-titleIcon {
+  width: 50px;
+  height: 50px;
+
+  flex-shrink: 0;
+
   display: flex;
-  align-items: center;
-  gap: .6rem;
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: #ff5c1f;
-}
 
-/* REMOVE ICON */
-.BookingForm-removeIcon {
-  cursor: pointer;
-  color: #ff3b30;
-  transition: .25s;
-}
-
-.BookingForm-removeIcon:hover {
-  transform: scale(1.2);
-  color: #ff0000;
-}
-
-/* ADD PASSENGER BUTTON */
-.BookingForm-add {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: #ff5c1f;
-  color: white;
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  margin-top: .5rem;
-  box-shadow: 0 3px 10px rgba(255, 95, 31, 0.3);
-}
-
-.BookingForm-add:hover {
-  opacity: .9;
-}
-/* SIDEBAR FLIGHT CARD */
-.BookingSidebar-flightCard {
-  background: #fff;
-  border-radius: 14px;
-  padding: 1.2rem 1.4rem;
-  border: 1px solid #ffe5d6;
-  margin-bottom: 1.4rem;
-  box-shadow: 0 4px 10px rgba(255, 120, 55, 0.12);
-}
-
-.BookingSidebar-subTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #ff5c1f;
-  margin-bottom: .7rem;
-}
-/* ROUTE ROW — Premium Airline Style */
-.BookingSidebar-route {
-  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2.2rem;
 
-  background: #fff7f2;
-  padding: 1rem 1.4rem;
-  border-radius: 12px;
-  border: 1px dashed #ffc7a4;
+  color: #ffffff;
 
-  position: relative;
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-primary),
+      var(--flyixo-primary-dark)
+    );
+
+  border-radius: 15px;
+
+  box-shadow:
+    0 10px 25px rgba(233, 78, 119, 0.22);
 }
 
-/* Each Side */
-.BookingSidebar-route div {
-  text-align: center;
-}
-
-/* Forces long airport text to wrap cleanly */
-.BookingSidebar-value {
-  white-space: normal;      /* Allow wrapping */
-  word-wrap: break-word;    /* Break long words */
-  overflow-wrap: break-word;
-  text-align: center;
-  line-height: 1.4;
+.FlyixoBookingForm-eyebrow {
   display: block;
-  max-width: 80px;         /* Controls width for clean alignment */
-  margin: 0 auto;           /* Centers the text */
+
+  margin-bottom: 4px;
+
+  color: var(--flyixo-primary);
+
+  font-size: 9px;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
 }
 
-/* Prevents the route flex from stretching too wide */
-.BookingSidebar-route {
-  flex-wrap: wrap;
-  text-align: center;
-}
- 
-/* Labels */
-.BookingSidebar-label {
-  font-size: .75rem;
-  color: #777;
-  margin-bottom: 2px;
+.FlyixoBookingForm-mainTitle h2 {
+  margin: 0;
+
+  color: var(--flyixo-navy);
+
+  font-size: 25px;
+
+  line-height: 1.2;
+
+  font-weight: 850;
 }
 
-/* Values */
-.BookingSidebar-value {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #222;
-  line-height: 1.3;
-}
+.FlyixoBookingForm-mainTitle p {
+  margin: 5px 0 0;
 
-/* Center Arrow */
-.BookingSidebar-arrow {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #ff5c1f;
-  margin: 0 0.5rem;
+  color: var(--flyixo-muted);
+
+  font-size: 12px;
+
+  line-height: 1.5;
 }
 
 
-/* DATE BOX */
-.BookingSidebar-dateBox {
-  margin-top: 1rem;
-  background: #fff8f3;
-  border: 1px solid #ffd9c1;
-  padding: .9rem;
-  border-radius: 10px;
-  text-align: center;
-}
+/* ============================================================
+   SECTION
+============================================================ */
 
-.BookingSidebar-dateBox p {
-  font-size: .82rem;
-  color: #777;
-}
+.FlyixoBookingForm-section {
+  padding: 22px;
 
-.BookingSidebar-dateBox strong {
-  font-size: .95rem;
-  font-weight: 700;
-  color: #222;
-}
+  margin-bottom: 22px;
 
-/* DEPARTURE - ARRIVAL TIMES */
-.BookingSidebar-timeBox {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-  background: #fff8f3;
-  border: 1px solid #ffd9c1;
-  padding: .9rem;
-  border-radius: 10px;
-}
-
-.BookingSidebar-timeBox p {
-  font-size: .8rem;
-  color: #777;
-  margin-bottom: .2rem;
-}
-
-.BookingSidebar-timeBox strong {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #222;
-}
-
-/* ==============================
-   ✈ TRAVELLERS INFO CARD
-   ============================== */
-.BookingSidebar-card {
   background: #ffffff;
-  border-radius: 16px;
-  padding: 1.6rem;
-  margin-top: 1.4rem;
-  border: 1px solid #ffe1cc;
-  box-shadow: 0 4px 14px rgba(255, 95, 31, 0.15);
-  animation: fadeIn 0.3s ease;
+
+  border:
+    1px solid var(--flyixo-border);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 5px 18px rgba(6, 44, 67, 0.035);
 }
 
-/* SECTION TITLES */
-.BookingSidebar-sectionTitle {
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: #ff5c1f;
-  margin-bottom: 0.9rem;
+
+/* ============================================================
+   SECTION HEADER
+============================================================ */
+
+.FlyixoBookingForm-sectionHead {
   display: flex;
+
   align-items: center;
-  gap: 8px;
+
+  gap: 11px;
+
+  margin-bottom: 20px;
 }
 
-/* ROWS INSIDE CARD */
-.BookingSidebar-row {
+.FlyixoBookingForm-sectionIcon {
+  width: 37px;
+  height: 37px;
+
+  flex-shrink: 0;
+
   display: flex;
+
   align-items: center;
-  justify-content: space-between;
-  padding: .5rem 0;
-  font-size: .94rem;
-  color: #444;
+  justify-content: center;
+
+  color: var(--flyixo-primary);
+
+  background:
+    var(--flyixo-primary-light);
+
+  border-radius: 10px;
 }
 
-.BookingSidebar-row.amount {
-  padding: .4rem 0 .7rem;
-}
+.FlyixoBookingForm-sectionHead h3 {
+  margin: 0;
 
-.BookingSidebar-row span {
-  color: #777;
-}
+  color: var(--flyixo-navy);
 
-/* DIVIDER LINE */
-.BookingSidebar-line {
-  width: 100%;
-  height: 1px;
-  background: #f2d3c1;
-  margin: 1rem 0;
-  border-radius: 20px;
-}
+  font-size: 15px;
 
-/* PRICE */
-.BookingSidebar-price {
-  font-size: 1.55rem;
   font-weight: 800;
-  color: #222;
 }
 
-/* PAYMENT BUTTON */
-.BookingSidebar-payBtn {
-  width: 100%;
-  padding: 14px 0;
-  background: #ff5c1f;
-  color: #fff;
-  font-size: 1.05rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  margin-top: 1.4rem;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 18px rgba(255, 95, 31, 0.35);
+.FlyixoBookingForm-sectionHead p {
+  margin: 3px 0 0;
+
+  color: var(--flyixo-muted);
+
+  font-size: 10px;
 }
 
-.BookingSidebar-payBtn:hover {
-  background: #ff4a05;
-  box-shadow: 0 6px 20px rgba(255, 95, 31, 0.45);
-  transform: translateY(-2px);
+
+/* ============================================================
+   FORM GRID
+============================================================ */
+
+.FlyixoBookingForm-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 17px;
 }
 
-/* FADE-IN ANIMATION */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 
-/* ===============================
-   ✈ SIDEBAR TITLE (Booking Summary)
-   =============================== */
-.BookingSidebar-title {
+/* ============================================================
+   FORM GROUP
+============================================================ */
+
+.FlyixoBookingForm-group {
+  min-width: 0;
+
   display: flex;
+
+  flex-direction: column;
+}
+
+.FlyixoBookingForm-group label {
+  display: flex;
+
   align-items: center;
-  gap: 10px;
-  padding: 0.8rem 1rem;
-  margin-bottom: 1.4rem;
 
-  background: #fff4ec;
-  border: 1px solid #ffd7c1;
-  border-radius: 14px;
+  gap: 6px;
 
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #ff5c1f;
+  margin-bottom: 7px;
 
-  box-shadow: 0 3px 10px rgba(255, 120, 55, 0.18);
-  letter-spacing: 0.4px;
+  color: #394456;
+
+  font-size: 11px;
+
+  line-height: 1.2;
+
+  font-weight: 800;
 }
 
-/* Make Left Side Scrollable */
-.BookingForm-scrollArea {
-  max-height: 85vh;       /* Take 85% of screen height */
-  overflow-y: auto;        /* Vertical scroll */
-  padding-right: 10px;     /* Avoid scrollbar overlapping */
+.FlyixoBookingForm-group label svg {
+  color: var(--flyixo-primary);
 }
 
-/* Smooth scrollbar styling (optional) */
-.BookingForm-scrollArea::-webkit-scrollbar {
-  width: 8px;
-}
 
-.BookingForm-scrollArea::-webkit-scrollbar-thumb {
-  background: #ffb28a;
-  border-radius: 10px;
-}
+/* ============================================================
+   INPUT WRAPPER
+============================================================ */
 
-.BookingForm-scrollArea::-webkit-scrollbar-thumb:hover {
-  background: #ff8a54;
-}
+.FlyixoBookingForm-inputWrapper {
+  min-height: 49px;
 
-/* ============================
-   COUPON CARD
-============================ */
-.BookingSidebar-couponCard {
-  background: #ffffff;
-  padding: 18px;
-  border-radius: 12px;
-  margin-top: 18px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.BookingSidebar-couponRow {
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+
+  align-items: center;
+
+  padding: 0 13px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff,
+      #fbfcfd
+    );
+
+  border:
+    1px solid #dfe5eb;
+
+  border-radius: 11px;
+
+  transition:
+    border-color var(--flyixo-transition),
+    background var(--flyixo-transition),
+    box-shadow var(--flyixo-transition),
+    transform var(--flyixo-transition);
 }
 
-.BookingSidebar-couponInput {
-  flex: 1;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #d7dce5;
-  font-size: 14px;
+.FlyixoBookingForm-inputWrapper:hover {
+  border-color:
+    rgba(233, 78, 119, 0.35);
+
+  transform: translateY(-1px);
 }
 
-.BookingSidebar-couponBtn {
-  background: #1e88e5;
-  color: #fff;
+.FlyixoBookingForm-inputWrapper:focus-within {
+  background: #ffffff;
+
+  border-color:
+    var(--flyixo-primary);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(233, 78, 119, 0.08);
+}
+
+.FlyixoBookingForm-inputWrapper input,
+.FlyixoBookingForm-inputWrapper select {
+  width: 100%;
+
+  min-width: 0;
+
+  height: 47px;
+
+  padding: 0;
+
+  color: var(--flyixo-text);
+
+  background: transparent;
+
   border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
 
-.BookingSidebar-couponBtn:hover {
-  background: #156dc3;
-}
+  outline: none;
 
-.BookingSidebar-couponMsg {
-  margin-top: 8px;
-  font-size: 13px;
-  color: #1e88e5;
+  font-family: inherit;
+
+  font-size: 12px;
+
   font-weight: 500;
 }
 
-/* Discount row */
-.discountRow strong {
-  color: #d32f2f;
+.FlyixoBookingForm-inputWrapper input::placeholder {
+  color: #a0a9b5;
 }
 
-/* =====================================
-   📱 RESPONSIVE DESIGN (MOBILE + TABLET)
-===================================== */
+.FlyixoBookingForm-inputWrapper select {
+  cursor: pointer;
+}
 
-/* ---------- Large Tablets (max-width: 1024px) ---------- */
-@media (max-width: 1024px) {
-  .BookingDetails-container {
-    gap: 1.5rem;
-    padding: 1.5rem;
-  }
 
-  .BookingForm-wrapper {
-    padding: 1.5rem;
-  }
+/* ============================================================
+   PASSENGER BOX
+============================================================ */
 
-  .BookingSidebar-wrapper {
-    padding: 0 0.5rem;
+.FlyixoBookingForm-passengerBox {
+  padding: 21px;
+
+  margin-bottom: 17px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fff8fa,
+      #ffffff
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.17);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 7px 22px
+    rgba(233, 78, 119, 0.045);
+
+  transition:
+    border-color var(--flyixo-transition),
+    box-shadow var(--flyixo-transition);
+}
+
+.FlyixoBookingForm-passengerBox:hover {
+  border-color:
+    rgba(233, 78, 119, 0.28);
+
+  box-shadow:
+    0 10px 28px
+    rgba(233, 78, 119, 0.07);
+}
+
+
+/* ============================================================
+   PASSENGER HEADER
+============================================================ */
+
+.FlyixoBookingForm-passengerHeader {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 19px;
+
+  padding-bottom: 14px;
+
+  border-bottom:
+    1px dashed
+    rgba(233, 78, 119, 0.22);
+}
+
+.FlyixoBookingForm-passengerTitle {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.FlyixoBookingForm-passengerTitle > span {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--flyixo-primary);
+
+  background:
+    var(--flyixo-primary-light);
+
+  border-radius: 10px;
+}
+
+.FlyixoBookingForm-passengerTitle strong {
+  display: block;
+
+  color: var(--flyixo-navy);
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+.FlyixoBookingForm-passengerTitle small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   REMOVE PASSENGER
+============================================================ */
+
+.FlyixoBookingForm-removeBtn {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--flyixo-danger);
+
+  background:
+    var(--flyixo-danger-bg);
+
+  border:
+    1px solid #fecdd3;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  transition:
+    background var(--flyixo-transition),
+    color var(--flyixo-transition),
+    transform var(--flyixo-transition);
+}
+
+.FlyixoBookingForm-removeBtn:hover {
+  color: #ffffff;
+
+  background:
+    var(--flyixo-danger);
+
+  transform: rotate(5deg) scale(1.04);
+}
+
+
+/* ============================================================
+   ADD PASSENGER
+============================================================ */
+
+.FlyixoBookingForm-addPassenger {
+  min-height: 45px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 17px;
+
+  color: var(--flyixo-primary);
+
+  background:
+    var(--flyixo-primary-light);
+
+  border:
+    1px dashed
+    rgba(233, 78, 119, 0.42);
+
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  transition:
+    background var(--flyixo-transition),
+    color var(--flyixo-transition),
+    border-color var(--flyixo-transition),
+    transform var(--flyixo-transition);
+}
+
+.FlyixoBookingForm-addPassenger:hover {
+  color: #ffffff;
+
+  background:
+    var(--flyixo-primary);
+
+  border-color:
+    var(--flyixo-primary);
+
+  transform: translateY(-2px);
+}
+
+
+/* ============================================================
+   RIGHT SIDEBAR
+============================================================ */
+
+.FlyixoBookingSidebar {
+  min-width: 0;
+
+  position: sticky;
+
+  top: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+
+/* ============================================================
+   SIDEBAR TITLE
+============================================================ */
+
+.FlyixoBookingSidebar-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 15px 17px;
+
+  color: var(--flyixo-navy);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff,
+      #fff7fa
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-radius: 15px;
+
+  box-shadow: var(--flyixo-shadow-sm);
+}
+
+.FlyixoBookingSidebar-title > span {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-primary),
+      var(--flyixo-primary-dark)
+    );
+
+  border-radius: 10px;
+}
+
+.FlyixoBookingSidebar-title small {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: var(--flyixo-primary);
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.3px;
+}
+
+.FlyixoBookingSidebar-title strong {
+  display: block;
+
+  color: var(--flyixo-navy);
+
+  font-size: 13px;
+
+  line-height: 1.3;
+
+  font-weight: 850;
+}
+
+
+/* ============================================================
+   FLIGHT CARD
+============================================================ */
+
+.FlyixoBookingSidebar-flightCard {
+  padding: 20px;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--flyixo-border);
+
+  border-radius: 18px;
+
+  box-shadow: var(--flyixo-shadow-sm);
+}
+
+
+/* ============================================================
+   CARD TOP
+============================================================ */
+
+.FlyixoBookingSidebar-cardTop {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 17px;
+}
+
+.FlyixoBookingSidebar-cardTop > div:first-child span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--flyixo-primary);
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+}
+
+.FlyixoBookingSidebar-cardTop h4 {
+  margin: 0;
+
+  color: var(--flyixo-navy);
+
+  font-size: 14px;
+
+  font-weight: 800;
+}
+
+.FlyixoBookingSidebar-status {
+  flex-shrink: 0;
+
+  padding: 5px 9px;
+
+  color: var(--flyixo-success);
+
+  background:
+    var(--flyixo-success-bg);
+
+  border:
+    1px solid #bbf7d0;
+
+  border-radius: 999px;
+
+  font-size: 8px;
+
+  font-weight: 800;
+}
+
+
+/* ============================================================
+   ROUTE
+============================================================ */
+
+.FlyixoBookingSidebar-route {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 16px 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fafc,
+      #fff8fa
+    );
+
+  border:
+    1px dashed
+    rgba(233, 78, 119, 0.24);
+
+  border-radius: 13px;
+}
+
+.FlyixoBookingSidebar-routePoint {
+  min-width: 0;
+
+  text-align: center;
+}
+
+.FlyixoBookingSidebar-label {
+  display: block;
+
+  margin: 0 0 5px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.5px;
+}
+
+.FlyixoBookingSidebar-value {
+  display: block;
+
+  width: 100%;
+
+  margin: 0;
+
+  color: var(--flyixo-navy);
+
+  font-size: 12px;
+
+  line-height: 1.35;
+
+  font-weight: 850;
+
+  overflow-wrap: anywhere;
+}
+
+.FlyixoBookingSidebar-arrow {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-primary),
+      var(--flyixo-primary-dark)
+    );
+
+  border-radius: 50%;
+
+  font-size: 15px;
+
+  font-weight: 900;
+
+  box-shadow:
+    0 7px 15px
+    rgba(233, 78, 119, 0.2);
+}
+
+
+/* ============================================================
+   INFO GRID
+============================================================ */
+
+.FlyixoBookingSidebar-infoGrid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 9px;
+
+  margin-top: 11px;
+}
+
+.FlyixoBookingSidebar-infoBox {
+  min-width: 0;
+
+  padding: 11px;
+
+  background: #f8fafc;
+
+  border:
+    1px solid #edf0f3;
+
+  border-radius: 10px;
+}
+
+.FlyixoBookingSidebar-infoBox span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+.FlyixoBookingSidebar-infoBox strong {
+  display: block;
+
+  color: var(--flyixo-text);
+
+  font-size: 10px;
+
+  line-height: 1.35;
+
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+.FlyixoBookingSidebar-wideInfo {
+  grid-column: 1 / -1;
+}
+
+
+/* ============================================================
+   COUPON CARD
+============================================================ */
+
+.FlyixoBookingSidebar-couponCard {
+  padding: 18px;
+
+  background: #ffffff;
+
+  border:
+    1px solid var(--flyixo-border);
+
+  border-radius: 17px;
+
+  box-shadow: var(--flyixo-shadow-sm);
+}
+
+
+/* ============================================================
+   SECTION TITLE
+============================================================ */
+
+.FlyixoBookingSidebar-sectionTitle {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 13px;
+}
+
+.FlyixoBookingSidebar-sectionTitle > span {
+  width: 33px;
+  height: 33px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--flyixo-primary);
+
+  background:
+    var(--flyixo-primary-light);
+
+  border-radius: 9px;
+}
+
+.FlyixoBookingSidebar-sectionTitle strong {
+  display: block;
+
+  color: var(--flyixo-navy);
+
+  font-size: 12px;
+
+  font-weight: 850;
+}
+
+.FlyixoBookingSidebar-sectionTitle small {
+  display: block;
+
+  margin-top: 2px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   COUPON ROW
+============================================================ */
+
+.FlyixoBookingSidebar-couponRow {
+  display: flex;
+
+  gap: 7px;
+}
+
+.FlyixoBookingSidebar-couponInput {
+  min-width: 0;
+
+  flex: 1;
+
+  height: 42px;
+
+  padding: 0 11px;
+
+  color: var(--flyixo-text);
+
+  background: #f8fafc;
+
+  border:
+    1px solid #dfe5eb;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  transition:
+    border-color var(--flyixo-transition),
+    background var(--flyixo-transition),
+    box-shadow var(--flyixo-transition);
+}
+
+.FlyixoBookingSidebar-couponInput::placeholder {
+  color: #9ca6b3;
+}
+
+.FlyixoBookingSidebar-couponInput:focus {
+  background: #ffffff;
+
+  border-color:
+    var(--flyixo-primary);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(233, 78, 119, 0.07);
+}
+
+.FlyixoBookingSidebar-couponBtn {
+  height: 42px;
+
+  padding: 0 15px;
+
+  color: #ffffff;
+
+  background:
+    var(--flyixo-navy);
+
+  border: none;
+
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  transition:
+    background var(--flyixo-transition),
+    transform var(--flyixo-transition);
+}
+
+.FlyixoBookingSidebar-couponBtn:hover {
+  background:
+    var(--flyixo-primary);
+
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   COUPON MESSAGE
+============================================================ */
+
+.FlyixoBookingSidebar-couponMsg {
+  margin: 9px 0 0;
+
+  padding: 8px 10px;
+
+  border-radius: 8px;
+
+  font-size: 9px;
+
+  line-height: 1.45;
+
+  font-weight: 700;
+}
+
+.FlyixoBookingSidebar-couponMsg.success {
+  color: #15803d;
+
+  background:
+    #f0fdf4;
+
+  border:
+    1px solid #bbf7d0;
+}
+
+.FlyixoBookingSidebar-couponMsg.error {
+  color: #b91c1c;
+
+  background:
+    #fef2f2;
+
+  border:
+    1px solid #fecaca;
+}
+
+
+/* ============================================================
+   PAYMENT CARD
+============================================================ */
+
+.FlyixoBookingSidebar-paymentCard {
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fff9fb
+    );
+
+  border:
+    1px solid
+    rgba(233, 78, 119, 0.17);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(233, 78, 119, 0.07);
+}
+
+
+/* ============================================================
+   PAYMENT ROW
+============================================================ */
+
+.FlyixoBookingSidebar-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 9px 0;
+
+  color: #5f6b7a;
+
+  font-size: 10px;
+}
+
+.FlyixoBookingSidebar-row strong {
+  color: var(--flyixo-text);
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+.FlyixoBookingSidebar-discountRow {
+  color: var(--flyixo-success);
+}
+
+.FlyixoBookingSidebar-discountRow strong {
+  color: var(--flyixo-success);
+}
+
+
+/* ============================================================
+   DIVIDER
+============================================================ */
+
+.FlyixoBookingSidebar-divider {
+  width: 100%;
+
+  height: 1px;
+
+  margin: 7px 0;
+
+  background:
+    #e9edf1;
+}
+
+
+/* ============================================================
+   TOTAL
+============================================================ */
+
+.FlyixoBookingSidebar-totalRow {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  padding-top: 9px;
+}
+
+.FlyixoBookingSidebar-totalRow span {
+  display: block;
+
+  color: var(--flyixo-navy);
+
+  font-size: 12px;
+
+  font-weight: 850;
+}
+
+.FlyixoBookingSidebar-totalRow small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 7px;
+}
+
+.FlyixoBookingSidebar-totalRow > strong {
+  color: var(--flyixo-primary);
+
+  font-size: 23px;
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   PAYMENT BUTTON
+============================================================ */
+
+.FlyixoBookingSidebar-payBtn {
+  width: 100%;
+
+  min-height: 49px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 18px;
+
+  padding: 0 16px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--flyixo-primary),
+      var(--flyixo-primary-dark)
+    );
+
+  border: none;
+
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 850;
+
+  box-shadow:
+    0 12px 26px
+    rgba(233, 78, 119, 0.25);
+
+  transition:
+    transform var(--flyixo-transition),
+    box-shadow var(--flyixo-transition),
+    filter var(--flyixo-transition);
+}
+
+.FlyixoBookingSidebar-payBtn:hover {
+  filter: brightness(1.04);
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 17px 33px
+    rgba(233, 78, 119, 0.31);
+}
+
+.FlyixoBookingSidebar-payBtn:active {
+  transform: scale(0.98);
+}
+
+.FlyixoBookingSidebar-payBtn strong {
+  font-size: 17px;
+
+  transition:
+    transform var(--flyixo-transition);
+}
+
+.FlyixoBookingSidebar-payBtn:hover strong {
+  transform: translateX(4px);
+}
+
+
+/* ============================================================
+   SECURE PAYMENT
+============================================================ */
+
+.FlyixoBookingSidebar-secure {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 11px;
+
+  color: var(--flyixo-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+.FlyixoBookingSidebar-secure span {
+  width: 17px;
+  height: 17px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--flyixo-success);
+
+  background:
+    var(--flyixo-success-bg);
+
+  border-radius: 50%;
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.FlyixoBookingSidebar-loading {
+  min-height: 90px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.FlyixoBookingSidebar-loading p {
+  margin: 0;
+
+  color: var(--flyixo-muted);
+
+  font-size: 9px;
+}
+
+.FlyixoBookingSidebar-spinner {
+  width: 24px;
+  height: 24px;
+
+  border:
+    2px solid
+    rgba(233, 78, 119, 0.16);
+
+  border-top-color:
+    var(--flyixo-primary);
+
+  border-radius: 50%;
+
+  animation:
+    FlyixoBookingSpin
+    0.7s
+    linear
+    infinite;
+}
+
+@keyframes FlyixoBookingSpin {
+  to {
+    transform: rotate(360deg);
   }
 }
 
-/* ---------- Tablets (max-width: 900px) ---------- */
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 1100px) {
+  .FlyixoBookingLayout {
+    grid-template-columns:
+      minmax(0, 1.4fr)
+      minmax(310px, 0.8fr);
+
+    gap: 18px;
+  }
+
+  .FlyixoBookingForm {
+    padding: 24px;
+  }
+
+  .FlyixoBookingSidebar-flightCard,
+  .FlyixoBookingSidebar-couponCard,
+  .FlyixoBookingSidebar-paymentCard {
+    padding: 17px;
+  }
+}
+
+
+/* ============================================================
+   900px
+============================================================ */
+
 @media (max-width: 900px) {
-  .BookingDetails-container {
-    flex-direction: column;
+  .FlyixoBookingDetails {
+    padding: 25px 15px;
   }
 
-  /* Sidebar moves below form */
-  .BookingSidebar-wrapper {
-    width: 100%;
-  }
-
-  .BookingForm-wrapper {
-    width: 100%;
-  }
-}
-
-/* ---------- Mobile Landscape (max-width: 768px) ---------- */
-@media (max-width: 768px) {
-
-  .BookingDetails-container {
-    padding: 1rem;
-    gap: 1rem;
-  }
-
-  .BookingForm-wrapper {
-    padding: 1.2rem;
-  }
-
-  /* 2-column grid becomes 1-column */
-  .BookingForm-grid {
+  .FlyixoBookingLayout {
     grid-template-columns: 1fr;
   }
 
-  .BookingSidebar-flightCard,
-  .BookingSidebar-card,
-  .BookingSidebar-couponCard {
-    padding: 1.2rem;
+  .FlyixoBookingSidebar {
+    position: static;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    align-items: start;
   }
 
-  /* Reduce side padding but do NOT reduce font size */
-  .BookingSidebar-title {
-    padding: 0.7rem 1rem;
+  .FlyixoBookingSidebar-title {
+    grid-column: 1 / -1;
+  }
+
+  .FlyixoBookingSidebar-flightCard {
+    grid-column: 1 / -1;
   }
 }
 
-/* ---------- Mobile Portrait (max-width: 480px) ---------- */
-@media (max-width: 480px) {
 
-  .BookingDetails-container {
-    padding: 0.8rem;
+/* ============================================================
+   768px
+============================================================ */
+
+@media (max-width: 768px) {
+  .FlyixoBookingDetails {
+    padding: 18px 10px;
   }
 
-  .BookingForm-wrapper {
-    padding: 1rem;
+  .FlyixoBookingForm {
+    padding: 20px;
+
+    border-radius: 20px;
   }
 
-  .BookingForm-passengerBox {
-    padding: 1.2rem;
+  .FlyixoBookingForm-scroll {
+    max-height: none;
+
+    overflow: visible;
   }
 
-  /* Make coupon & payment buttons full-width with clean spacing */
-  .BookingSidebar-couponBtn,
-  .BookingSidebar-payBtn {
+  .FlyixoBookingForm-mainTitle h2 {
+    font-size: 21px;
+  }
+
+  .FlyixoBookingForm-grid {
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+  }
+
+  .FlyixoBookingForm-section {
+    padding: 17px;
+  }
+
+  .FlyixoBookingSidebar {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+  .FlyixoBookingSidebar-title,
+  .FlyixoBookingSidebar-flightCard {
+    grid-column: auto;
+  }
+}
+
+
+/* ============================================================
+   600px
+============================================================ */
+
+@media (max-width: 600px) {
+  .FlyixoBookingDetails {
+    padding: 12px 7px;
+  }
+
+  .FlyixoBookingForm {
+    padding: 15px;
+
+    border-radius: 17px;
+  }
+
+  .FlyixoBookingForm-mainTitle {
+    gap: 11px;
+
+    padding-bottom: 19px;
+
+    margin-bottom: 19px;
+  }
+
+  .FlyixoBookingForm-titleIcon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 12px;
+  }
+
+  .FlyixoBookingForm-mainTitle h2 {
+    font-size: 18px;
+  }
+
+  .FlyixoBookingForm-mainTitle p {
+    font-size: 10px;
+  }
+
+  .FlyixoBookingForm-section {
+    padding: 14px;
+
+    border-radius: 14px;
+  }
+
+  .FlyixoBookingForm-sectionHead {
+    margin-bottom: 15px;
+  }
+
+  .FlyixoBookingForm-passengerBox {
+    padding: 14px;
+
+    border-radius: 14px;
+  }
+
+  .FlyixoBookingForm-passengerTitle strong {
+    font-size: 12px;
+  }
+
+  .FlyixoBookingForm-addPassenger {
     width: 100%;
   }
 
-  .BookingSidebar-couponRow {
+  .FlyixoBookingSidebar-title {
+    padding: 13px;
+  }
+
+  .FlyixoBookingSidebar-flightCard,
+  .FlyixoBookingSidebar-couponCard,
+  .FlyixoBookingSidebar-paymentCard {
+    padding: 14px;
+  }
+
+  .FlyixoBookingSidebar-route {
+    gap: 7px;
+
+    padding: 13px 8px;
+  }
+
+  .FlyixoBookingSidebar-value {
+    font-size: 10px;
+  }
+
+  .FlyixoBookingSidebar-arrow {
+    width: 27px;
+    height: 27px;
+
+    font-size: 12px;
+  }
+
+  .FlyixoBookingSidebar-totalRow > strong {
+    font-size: 20px;
+  }
+}
+
+
+/* ============================================================
+   480px
+============================================================ */
+
+@media (max-width: 480px) {
+  .FlyixoBookingDetails {
+    padding: 8px 5px;
+  }
+
+  .FlyixoBookingForm {
+    padding: 12px;
+  }
+
+  .FlyixoBookingForm-mainTitle {
+    align-items: flex-start;
+  }
+
+  .FlyixoBookingForm-titleIcon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .FlyixoBookingForm-eyebrow {
+    font-size: 7px;
+  }
+
+  .FlyixoBookingForm-mainTitle h2 {
+    font-size: 17px;
+  }
+
+  .FlyixoBookingForm-section {
+    padding: 12px;
+  }
+
+  .FlyixoBookingForm-inputWrapper {
+    min-height: 46px;
+
+    padding: 0 11px;
+  }
+
+  .FlyixoBookingForm-inputWrapper input,
+  .FlyixoBookingForm-inputWrapper select {
+    height: 44px;
+
+    font-size: 11px;
+  }
+
+  .FlyixoBookingForm-group label {
+    font-size: 10px;
+  }
+
+  .FlyixoBookingForm-passengerBox {
+    padding: 11px;
+  }
+
+  .FlyixoBookingForm-passengerHeader {
+    margin-bottom: 13px;
+  }
+
+  .FlyixoBookingSidebar-infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .FlyixoBookingSidebar-wideInfo {
+    grid-column: auto;
+  }
+
+  .FlyixoBookingSidebar-couponRow {
     flex-direction: column;
   }
 
-  /* Reduce inner card padding (NOT font) */
-  .BookingSidebar-flightCard,
-  .BookingSidebar-card,
-  .BookingSidebar-couponCard {
-    padding: 1rem;
+  .FlyixoBookingSidebar-couponBtn {
+    width: 100%;
+  }
+
+  .FlyixoBookingSidebar-totalRow {
+    align-items: flex-end;
+  }
+
+  .FlyixoBookingSidebar-totalRow > strong {
+    font-size: 19px;
   }
 }
 
-/* ---------- Very Small Devices (max-width: 360px) ---------- */
+
+/* ============================================================
+   360px
+============================================================ */
+
 @media (max-width: 360px) {
-  .BookingDetails-container {
-    padding: 0.5rem;
+  .FlyixoBookingDetails {
+    padding: 5px 3px;
   }
 
-  .BookingForm-wrapper {
-    padding: 0.8rem;
+  .FlyixoBookingForm {
+    padding: 10px;
   }
 
-  .BookingSidebar-wrapper {
-    padding: 0;
+  .FlyixoBookingForm-mainTitle h2 {
+    font-size: 15px;
+  }
+
+  .FlyixoBookingForm-mainTitle p {
+    font-size: 9px;
+  }
+
+  .FlyixoBookingForm-section {
+    padding: 10px;
+  }
+
+  .FlyixoBookingForm-passengerBox {
+    padding: 9px;
+  }
+
+  .FlyixoBookingSidebar-route {
+    grid-template-columns:
+      1fr;
+
+    gap: 9px;
+  }
+
+  .FlyixoBookingSidebar-arrow {
+    margin: auto;
+
+    transform: rotate(90deg);
+  }
+
+  .FlyixoBookingSidebar-infoBox {
+    padding: 9px;
+  }
+
+  .FlyixoBookingSidebar-totalRow > strong {
+    font-size: 17px;
   }
 }
-/* ===========================
-   MEDIA QUERIES
-=========================== */
 
-/* Tablet (768px and below) */
-@media (max-width: 768px) {
-  .BookingForm-mainTitle {
-    font-size: 1.4rem;
-  }
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.FlyixoBookingDetails
+  button:focus-visible,
+.FlyixoBookingDetails
+  input:focus-visible,
+.FlyixoBookingDetails
+  select:focus-visible {
+  outline:
+    3px solid
+    rgba(233, 78, 119, 0.2);
+
+  outline-offset: 2px;
 }
 
-/* Mobile (480px and below) */
-@media (max-width: 480px) {
-  .BookingForm-mainTitle {
-  
-    gap: 0.5rem;
-    margin-bottom: 1.2rem;
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .FlyixoBookingDetails *,
+  .FlyixoBookingDetails *::before,
+  .FlyixoBookingDetails *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
   }
 }
-

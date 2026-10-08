@@ -1,211 +1,952 @@
-/* ===============================
-   ✈️ Visa Details Banner Section
-================================ */
+/* =========================================================
+   FLYIXO - VISA DETAILS BANNER
+   ========================================================= */
+
 .visadetailsbanner {
   position: relative;
+  width: 100%;
+  min-height: 620px;
+  height: 70vh;
+  max-height: 760px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: #071c2b;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  font-family: "Poppins", sans-serif;
-  color: #000;
+
   overflow: hidden;
-  border-bottom: 4px solid #0072ff;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  color: #ffffff;
+
+  border-bottom: 4px solid #e94e77;
+
+  isolation: isolate;
 }
 
-/* Soft gradient overlay for readability */
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.visadetailsbanner-background {
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    radial-gradient(
+      circle at 75% 20%,
+      rgba(54, 209, 212, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(233, 78, 119, 0.18),
+      transparent 35%
+    );
+}
+
+
+/* =========================================================
+   OVERLAY
+   ========================================================= */
+
 .visadetailsbanner-overlay {
+  position: absolute;
+  inset: 0;
+
   width: 100%;
   height: 100%;
+
   display: flex;
   align-items: center;
-  backdrop-filter: blur(4px);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 20, 33, 0.96) 0%,
+      rgba(3, 20, 33, 0.88) 38%,
+      rgba(3, 20, 33, 0.55) 65%,
+      rgba(3, 20, 33, 0.35) 100%
+    );
+
+  backdrop-filter: blur(2px);
+
+  z-index: 1;
 }
 
-/* ===============================
-   🧭 Content Section
-================================ */
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.visadetailsbanner-container {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  padding: 60px 70px;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
 .visadetailsbanner-content {
-  max-width: 620px;
-  margin-left: 8%;
+  width: 100%;
+  max-width: 720px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-/* Main Title */
-.visadetailsbanner-title {
-  font-size: 3.2rem;
-  font-weight: 800;
+
+/* =========================================================
+   FLYIXO BRAND
+   ========================================================= */
+
+.visadetailsbanner-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
   margin-bottom: 18px;
-  color: #001e5a;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  line-height: 1.2;
+
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
-/* Badge Section */
+
+.visadetailsbanner-brand-dot {
+  width: 9px;
+  height: 9px;
+
+  display: block;
+
+  border-radius: 50%;
+
+  background: #36d1d4;
+
+  box-shadow:
+    0 0 0 5px rgba(54, 209, 212, 0.12),
+    0 0 18px rgba(54, 209, 212, 0.7);
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.visadetailsbanner-title {
+  margin: 0 0 16px;
+
+  color: #ffffff;
+
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1.05;
+
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+
+  text-shadow:
+    0 5px 25px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.visadetailsbanner-description {
+  max-width: 650px;
+
+  margin: 0 0 25px;
+
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 16px;
+  line-height: 1.75;
+
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   APPROVAL BADGE
+   ========================================================= */
+
 .visadetailsbanner-badge {
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, #00bcd4, #0066ff);
-  color: #fff;
-  padding: 10px 22px;
+  gap: 10px;
+
+  min-height: 44px;
+
+  padding: 10px 19px;
+
+  margin-bottom: 34px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(54, 209, 212, 0.92),
+      rgba(37, 99, 235, 0.92)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
   border-radius: 50px;
-  font-size: 1rem;
-  margin-bottom: 40px;
+
+  font-size: 14px;
+
   font-weight: 500;
-  letter-spacing: 0.3px;
-  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
-  cursor: pointer;
-  transition: all 0.3s ease;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 5px 20px rgba(54, 209, 212, 0.16);
+
+  cursor: default;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
 
 .visadetailsbanner-badge:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.4);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.28),
+    0 8px 25px rgba(54, 209, 212, 0.22);
 }
+
 
 .visadetailsbanner-badgeicon {
-  color: #ffd700;
-  margin-right: 10px;
-  font-size: 1.2rem;
+  flex-shrink: 0;
+
+  color: #ffe169;
+
+  font-size: 17px;
 }
 
-/* ===============================
-   📊 Info Section
-================================ */
+
+/* =========================================================
+   INFORMATION SECTION
+   ========================================================= */
+
 .visadetailsbanner-info {
+  width: 100%;
+
   display: flex;
-  gap: 60px;
+  align-items: stretch;
+
+  gap: 18px;
+
   flex-wrap: wrap;
 }
 
+
+/* =========================================================
+   INFORMATION CARD
+   ========================================================= */
+
 .visadetailsbanner-item {
-  display: flex;
-  flex-direction: column;
-  padding: 18px 28px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-}
+  min-width: 250px;
 
-.visadetailsbanner-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
-}
-
-/* Label */
-.visadetailsbanner-label {
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 5px;
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-/* Value */
-.visadetailsbanner-value {
-  font-size: 1.7rem;
-  font-weight: 700;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #001e5a;
+
+  gap: 16px;
+
+  padding: 18px 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(244, 249, 252, 0.91)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.visadetailsbanner-icon {
-  color: #ff0059;
-  font-size: 1.3rem;
+
+.visadetailsbanner-item:hover {
+  transform: translateY(-6px);
+
+  border-color: rgba(54, 209, 212, 0.55);
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.25),
+    0 0 25px rgba(54, 209, 212, 0.1);
 }
 
-/* ===============================
-   📱 Responsive Design
-================================ */
 
-/* Tablets (1024px and below) */
+/* =========================================================
+   ITEM ICON
+   ========================================================= */
+
+.visadetailsbanner-item-icon,
+.visadetailsbanner-price-icon {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #c93661
+    );
+
+  box-shadow:
+    0 8px 20px rgba(233, 78, 119, 0.25);
+}
+
+
+.visadetailsbanner-item-icon svg {
+  font-size: 20px;
+}
+
+
+.visadetailsbanner-price-icon {
+  font-size: 21px;
+  font-weight: 800;
+
+  background:
+    linear-gradient(
+      135deg,
+      #36d1d4,
+      #168cae
+    );
+
+  box-shadow:
+    0 8px 20px rgba(54, 209, 212, 0.25);
+}
+
+
+/* =========================================================
+   ITEM CONTENT
+   ========================================================= */
+
+.visadetailsbanner-item-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.visadetailsbanner-label {
+  margin: 0 0 5px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.1px;
+}
+
+
+/* =========================================================
+   VALUE
+   ========================================================= */
+
+.visadetailsbanner-value {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 20px;
+
+  line-height: 1.3;
+
+  font-weight: 800;
+
+  letter-spacing: -0.2px;
+}
+
+
+/* =========================================================
+   TRUST TEXT
+   ========================================================= */
+
+.visadetailsbanner-trust {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 30px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.3px;
+}
+
+
+.visadetailsbanner-trust strong {
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+
+.visadetailsbanner-trust-line {
+  width: 32px;
+  height: 1px;
+
+  display: block;
+
+  background: rgba(255, 255, 255, 0.4);
+}
+
+
+/* =========================================================
+   LOADING STATE
+   ========================================================= */
+
+.visadetailsbanner--loading {
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      #031b2b,
+      #062c43
+    );
+
+  border-bottom-color: #36d1d4;
+}
+
+
+.visadetailsbanner-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding: 30px;
+}
+
+
+.visadetailsbanner-spinner {
+  width: 50px;
+  height: 50px;
+
+  margin-bottom: 20px;
+
+  border: 4px solid rgba(255, 255, 255, 0.15);
+
+  border-top-color: #36d1d4;
+  border-right-color: #e94e77;
+
+  border-radius: 50%;
+
+  animation:
+    visadetailsbanner-spin 0.9s linear infinite;
+}
+
+
+.visadetailsbanner-loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.visadetailsbanner-loading-brand {
+  margin-bottom: 5px;
+
+  color: #ffffff;
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.visadetailsbanner-loading p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 14px;
+}
+
+
+@keyframes visadetailsbanner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   NOT FOUND STATE
+   ========================================================= */
+
+.visadetailsbanner--notfound {
+  min-height: 500px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #031b2b,
+      #062c43
+    );
+
+  border-bottom-color: #e94e77;
+}
+
+
+.visadetailsbanner-notfound-card {
+  width: min(100%, 480px);
+
+  padding: 45px 35px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3);
+
+  backdrop-filter: blur(15px);
+}
+
+
+.visadetailsbanner-notfound-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #b82d52
+    );
+
+  font-size: 26px;
+
+  font-weight: 800;
+}
+
+
+.visadetailsbanner-notfound-brand {
+  margin-bottom: 10px;
+
+  color: #36d1d4;
+
+  font-size: 14px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+}
+
+
+.visadetailsbanner-notfound-card h2 {
+  margin: 0 0 10px;
+
+  color: #ffffff;
+
+  font-size: 25px;
+
+  font-weight: 700;
+}
+
+
+.visadetailsbanner-notfound-card p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+  .visadetailsbanner-container {
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+
+  .visadetailsbanner-content {
+    max-width: 650px;
+  }
+
+  .visadetailsbanner-title {
+    font-size: 58px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 1024px) {
   .visadetailsbanner {
-    height: 55vh;
+    min-height: 570px;
+    height: 65vh;
   }
 
-  .visadetailsbanner-content {
-    margin-left: 6%;
-    max-width: 500px;
+  .visadetailsbanner-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(3, 20, 33, 0.94),
+        rgba(3, 20, 33, 0.7)
+      );
+  }
+
+  .visadetailsbanner-container {
+    padding: 50px 40px;
   }
 
   .visadetailsbanner-title {
-    font-size: 2.6rem;
+    font-size: 50px;
+  }
+
+  .visadetailsbanner-description {
+    font-size: 15px;
   }
 
   .visadetailsbanner-info {
-    gap: 40px;
+    gap: 14px;
   }
 
   .visadetailsbanner-item {
-    padding: 16px 22px;
+    min-width: 230px;
+
+    padding: 16px 18px;
+  }
+
+  .visadetailsbanner-value {
+    font-size: 18px;
   }
 }
 
-/* Mobile (768px and below) */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 @media (max-width: 768px) {
   .visadetailsbanner {
+    min-height: 650px;
     height: auto;
+
+    background-position: center;
+  }
+
+  .visadetailsbanner-overlay {
+    position: relative;
+
+    min-height: 650px;
+
+    align-items: center;
+
     padding: 60px 0;
-    text-align: center;
-    justify-content: center;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(3, 20, 33, 0.88),
+        rgba(3, 20, 33, 0.96)
+      );
+  }
+
+  .visadetailsbanner-container {
+    padding: 20px;
   }
 
   .visadetailsbanner-content {
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+    max-width: 100%;
 
-  .visadetailsbanner-title {
-    font-size: 2.2rem;
-  }
-
-  .visadetailsbanner-badge {
-    margin-bottom: 30px;
-    justify-content: center;
-    font-size: 0.9rem;
-  }
-
-  .visadetailsbanner-info {
-    flex-direction: column;
     align-items: center;
-    gap: 20px;
-  }
 
-  .visadetailsbanner-item {
-    width: 90%;
-    max-width: 320px;
     text-align: center;
   }
 
-  .visadetailsbanner-value {
+  .visadetailsbanner-brand {
     justify-content: center;
-  }
-}
 
-/* Small Mobile (480px and below) */
-@media (max-width: 480px) {
+    margin-bottom: 15px;
+  }
+
   .visadetailsbanner-title {
-    font-size: 1.9rem;
+    margin-bottom: 14px;
+
+    font-size: clamp(36px, 9vw, 48px);
+
+    letter-spacing: -1px;
+  }
+
+  .visadetailsbanner-description {
+    max-width: 520px;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
   }
 
   .visadetailsbanner-badge {
-    padding: 8px 16px;
-    font-size: 0.85rem;
+    margin-bottom: 28px;
+
+    max-width: 100%;
+
+    text-align: left;
+  }
+
+  .visadetailsbanner-info {
+    width: 100%;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 13px;
   }
 
   .visadetailsbanner-item {
-    padding: 14px 18px;
+    width: 100%;
+    max-width: 390px;
+
+    justify-content: flex-start;
+
+    text-align: left;
+  }
+
+  .visadetailsbanner-trust {
+    justify-content: center;
+
+    text-align: center;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .visadetailsbanner {
+    min-height: 680px;
+  }
+
+  .visadetailsbanner-overlay {
+    min-height: 680px;
+
+    padding: 45px 0;
+  }
+
+  .visadetailsbanner-container {
+    padding: 15px;
+  }
+
+  .visadetailsbanner-brand {
+    font-size: 12px;
+
+    letter-spacing: 1.6px;
+  }
+
+  .visadetailsbanner-brand-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .visadetailsbanner-title {
+    font-size: 35px;
+  }
+
+  .visadetailsbanner-description {
+    font-size: 13px;
+  }
+
+  .visadetailsbanner-badge {
+    padding: 9px 14px;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+  }
+
+  .visadetailsbanner-badgeicon {
+    font-size: 15px;
+  }
+
+  .visadetailsbanner-item {
+    padding: 15px;
+
+    border-radius: 16px;
+  }
+
+  .visadetailsbanner-item-icon,
+  .visadetailsbanner-price-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 12px;
+  }
+
+  .visadetailsbanner-label {
+    font-size: 9px;
+
+    letter-spacing: 0.8px;
   }
 
   .visadetailsbanner-value {
-    font-size: 1.4rem;
+    font-size: 16px;
+  }
+
+  .visadetailsbanner-trust {
+    margin-top: 24px;
+
+    font-size: 10px;
+  }
+
+  .visadetailsbanner-notfound-card {
+    padding: 35px 22px;
+  }
+
+  .visadetailsbanner-notfound-card h2 {
+    font-size: 21px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .visadetailsbanner-title {
+    font-size: 31px;
+  }
+
+  .visadetailsbanner-item {
+    gap: 11px;
+  }
+
+  .visadetailsbanner-item-icon,
+  .visadetailsbanner-price-icon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .visadetailsbanner-value {
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .visadetailsbanner *,
+  .visadetailsbanner-spinner {
+    animation: none !important;
+
+    transition: none !important;
   }
 }

@@ -1,316 +1,1582 @@
-/* ===============================
-   🌍 DOCUMENTS MAIN WRAPPER
-=============================== */
-.documents-wrapper {
+/* =========================================================
+   FLYIXO DOCUMENTS SECTION
+   ========================================================= */
+
+.flyixo-documents-wrapper {
+  width: 100%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f7fbff 0%,
+      #ffffff 55%,
+      #f8fcfd 100%
+    );
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  color: #1e293b;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   CONTAINER
+   ========================================================= */
+
+.flyixo-documents-container {
   width: 100%;
   max-width: 1200px;
+
   margin: 0 auto;
-  font-family: "Poppins", sans-serif;
-  color: #222;
-  background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+
+  padding: 35px 25px 65px;
+
+  box-sizing: border-box;
 }
 
-.documents-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 35px;
-  padding-top: 20px;
-  color: #0f172a;
-  text-align: center;
-  position: relative;
- 
-}
 
-.documents-title::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #2563eb;
-  border-radius: 2px;
-  margin: 10px auto 0;
-}
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
 
-/* ===============================
-   📂 DOCUMENT SECTIONS
-=============================== */
-.document-section {
-  margin-bottom: 30px;
-  border-radius: 16px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.05);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-.document-section:hover {
-  box-shadow: 0 8px 28px rgba(37, 99, 235, 0.15);
-  transform: translateY(-3px);
-}
-
-.document-toggle-btn {
-  background: linear-gradient(90deg, #2563eb, #3b82f6);
-  padding: 18px 25px;
-  border: none;
+.flyixo-documents-left {
   width: 100%;
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-  cursor: pointer;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.flyixo-documents-heading {
+  margin-bottom: 30px;
+
+  text-align: center;
+}
+
+
+.flyixo-documents-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: #36aeb3;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+}
+
+
+.flyixo-documents-title {
+  position: relative;
+
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 32px;
+
+  line-height: 1.25;
+
+  font-weight: 800;
+
+  letter-spacing: -0.5px;
+}
+
+
+.flyixo-documents-title::after {
+  content: "";
+
+  display: block;
+
+  width: 65px;
+  height: 4px;
+
+  margin: 13px auto 0;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #36d1d4,
+      #e94e77
+    );
+}
+
+
+.flyixo-documents-subtitle {
+  max-width: 680px;
+
+  margin: 14px auto 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   DOCUMENT SECTION
+   ========================================================= */
+
+.flyixo-document-section {
+  width: 100%;
+
+  margin-bottom: 35px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 8px 28px rgba(6, 44, 67, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.flyixo-document-section:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 13px 34px rgba(6, 44, 67, 0.1);
+}
+
+
+/* =========================================================
+   DOCUMENT TOGGLE
+   ========================================================= */
+
+.flyixo-document-toggle-btn {
+  width: 100%;
+
+  min-height: 64px;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-radius: 16px 16px 0 0;
-  transition: background 0.3s ease, transform 0.2s ease;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 16px 22px;
+
+  border: none;
+
+  outline: none;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #062c43 0%,
+      #0a5578 55%,
+      #36bfc4 100%
+    );
+
+  font-family: inherit;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.document-toggle-btn:hover {
-  background: linear-gradient(90deg, #1d4ed8, #2563eb);
-  transform: scale(1.02);
+
+.flyixo-document-toggle-btn:hover {
+  filter: brightness(1.06);
+
+  box-shadow:
+    0 8px 20px rgba(6, 44, 67, 0.18);
 }
 
-.Document-arrow {
-  font-size: 20px;
-  color: #fff;
-  transition: transform 0.4s ease;
+
+.flyixo-document-toggle-btn:focus-visible {
+  box-shadow:
+    inset 0 0 0 3px rgba(255, 255, 255, 0.35);
 }
 
-.Document-arrow.open {
+
+/* =========================================================
+   TOGGLE CONTENT
+   ========================================================= */
+
+.flyixo-document-toggle-content {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+.flyixo-document-toggle-icon {
+  width: 36px;
+  height: 36px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   ARROW
+   ========================================================= */
+
+.flyixo-document-arrow {
+  flex-shrink: 0;
+
+  font-size: 17px;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.flyixo-document-arrow--open {
   transform: rotate(180deg);
 }
 
-.documents-list {
+
+/* =========================================================
+   DOCUMENT LIST
+   ========================================================= */
+
+.flyixo-documents-list {
   max-height: 0;
+
   overflow: hidden;
+
   padding: 0 25px;
-  background: #f9fbff;
-  border-left: 5px solid #2563eb;
-  transition: all 0.5s ease;
+
+  background:
+    linear-gradient(
+      180deg,
+      #f8fbff,
+      #ffffff
+    );
+
+  border-left: 5px solid transparent;
+
+  opacity: 0;
+
+  transition:
+    max-height 0.5s ease,
+    padding 0.5s ease,
+    opacity 0.35s ease,
+    border-color 0.3s ease;
 }
 
-.documents-list.open {
-  max-height: 900px;
-  padding: 20px 25px;
+
+.flyixo-documents-list--open {
+  max-height: 1000px;
+
+  padding: 22px 25px;
+
+  border-left-color: #36d1d4;
+
+  opacity: 1;
 }
 
-.documents-list ul {
-  list-style: none;
-  padding-left: 0;
+
+/* =========================================================
+   DOCUMENT LIST UL
+   ========================================================= */
+
+.flyixo-documents-list ul {
   margin: 0;
+  padding: 0;
+
+  list-style: none;
 }
 
-.documents-list li {
+
+/* =========================================================
+   DOCUMENT ITEM
+   ========================================================= */
+
+.flyixo-documents-list li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: 15.5px;
-  margin-bottom: 12px;
-  line-height: 1.6;
+
+  gap: 11px;
+
+  margin-bottom: 13px;
+  padding-bottom: 12px;
+
   color: #334155;
-  position: relative;
-}
 
-.documents-list li::before {
-  content: "✔";
-  color: #2563eb;
-  font-weight: bold;
-  font-size: 16px;
-}
+  border-bottom: 1px dashed #e2e8f0;
 
-/* ===============================
-   👨‍💼 TEAM SECTION
-=============================== */
-.Document-team-section {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.Document-team-section h3 {
-  font-size: 26px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 30px;
-  position: relative;
-}
-
-.Document-team-section h3::after {
-  content: "";
-  width: 60px;
-  height: 3px;
-  background: #2563eb;
-  display: block;
-  margin: 10px auto;
-  border-radius: 2px;
-}
-
-.team-carousel {
-  display: flex;
-  gap: 25px;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  padding-bottom: 15px;
-}
-
-.Document-TeamCard {
-  min-width: 240px;
-  background: linear-gradient(145deg, #ffffff, #f3f6ff);
-  border-radius: 18px;
-  padding: 25px;
-  text-align: center;
-  color: #1e3a8a;
-  border: 1px solid #dbeafe;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  flex-shrink: 0;
-}
-
-.team-photo {
-  width: 85px;
-  height: 85px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #2563eb;
-  margin-bottom: 10px;
-}
-
-.team-info strong {
-  font-size: 17px;
-  font-weight: 700;
-  color: #1e3a8a;
-}
-
-.team-info div {
   font-size: 14px;
-  color: #475569;
-  margin-top: 2px;
+
+  line-height: 1.6;
 }
 
-/* ===============================
-   📋 VISA PROCESS BANNER
-=============================== */
-.visa-process-banner {
-  background: linear-gradient(90deg, #a0001c, #cc0026);
-  color: #fff;
-  border-radius: 14px;
-  padding: 28px 35px;
+
+.flyixo-documents-list li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+
+  border-bottom: none;
+}
+
+
+/* =========================================================
+   DOCUMENT CHECK
+   ========================================================= */
+
+.flyixo-document-check {
+  width: 23px;
+  height: 23px;
+
+  flex-shrink: 0;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  font-size: 20px;
-  font-weight: 700;
+  justify-content: center;
+
+  margin-top: 1px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #36d1d4,
+      #168cae
+    );
+
+  font-size: 12px;
+
+  font-weight: 800;
 }
 
-.click-here-btn {
-  background: #fff;
-  color: #a0001c;
-  border: none;
-  padding: 12px 26px;
-  border-radius: 30px;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+
+/* =========================================================
+   EMPTY DOCUMENT
+   ========================================================= */
+
+.flyixo-document-empty {
+  color: #64748b !important;
 }
 
-.click-here-btn:hover {
-  background: #ffe6e8;
-  color: #870017;
-  transform: scale(1.05);
+
+/* =========================================================
+   TEAM SECTION
+   ========================================================= */
+
+.flyixo-document-team-section {
+  width: 100%;
+
+  margin: 40px 0;
 }
 
-/* ===============================
-   🪪 SAMPLE VISA CARD
-=============================== */
-.sample-visa-card {
-  background: linear-gradient(90deg, #2563eb, #1d4ed8);
-  color: #fff;
-  border-radius: 14px;
-  padding: 22px 30px;
-  margin: 15px 0;
+
+.flyixo-team-heading {
+  margin-bottom: 25px;
+
+  text-align: center;
+}
+
+
+.flyixo-team-eyebrow {
+  display: inline-block;
+
+  margin-bottom: 7px;
+
+  color: #e94e77;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+
+.flyixo-team-heading h3 {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 26px;
+
+  line-height: 1.3;
+
+  font-weight: 800;
+}
+
+
+.flyixo-team-heading h3::after {
+  content: "";
+
+  display: block;
+
+  width: 48px;
+  height: 3px;
+
+  margin: 10px auto 0;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #36d1d4,
+      #e94e77
+    );
+}
+
+
+.flyixo-team-heading p {
+  margin: 10px auto 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   TEAM CAROUSEL
+   ========================================================= */
+
+.flyixo-team-carousel {
+  width: 100%;
+
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+
   gap: 20px;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding: 8px 5px 18px;
+
+  scroll-behavior: smooth;
+
+  white-space: nowrap;
+
+  scrollbar-width: none;
 }
 
-.sample-visa-card:hover {
+
+.flyixo-team-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   TEAM CARD
+   ========================================================= */
+
+.flyixo-document-team-card {
+  width: 245px;
+
+  min-width: 245px;
+
+  flex-shrink: 0;
+
+  padding: 23px 18px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f4f9ff
+    );
+
+  border: 1px solid #dce9f4;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 7px 20px rgba(6, 44, 67, 0.07);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.flyixo-document-team-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.25);
+
+  border-color: rgba(54, 209, 212, 0.45);
+
+  box-shadow:
+    0 15px 32px rgba(6, 44, 67, 0.12);
 }
 
-.sample-visa-icon {
-  font-size: 36px;
+
+/* =========================================================
+   TEAM PHOTO
+   ========================================================= */
+
+.flyixo-team-photo-wrapper {
+  width: 92px;
+  height: 92px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 12px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #36d1d4,
+      #062c43
+    );
+
+  padding: 3px;
+
+  box-sizing: border-box;
 }
 
-.sample-visa-text {
-  flex: 1;
-  font-size: 18px;
+
+.flyixo-team-photo {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  border: 3px solid #ffffff;
+
+  background: #eef4f8;
+}
+
+
+/* =========================================================
+   TEAM INFORMATION
+   ========================================================= */
+
+.flyixo-team-info {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+
+.flyixo-team-name {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  color: #062c43;
+
+  font-size: 16px;
+
+  line-height: 1.4;
+
+  font-weight: 800;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.flyixo-team-designation {
+  margin-top: 4px;
+
+  color: #36aeb3;
+
+  font-size: 12px;
+
   font-weight: 700;
-  text-align: start;
 }
 
-.sample-visa-btn {
-  background: #fff;
-  color: #2563eb;
+
+.flyixo-doc-team-exp,
+.flyixo-team-email {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  margin-top: 9px;
+
+  color: #64748b;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+
+.flyixo-team-email {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.flyixo-team-empty {
+  width: 100%;
+
+  padding: 35px 20px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: #f8fafc;
+
+  border: 1px dashed #cbd5e1;
+
+  border-radius: 15px;
+}
+
+
+.flyixo-team-empty span {
+  font-size: 30px;
+}
+
+
+.flyixo-team-empty p {
+  margin: 8px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   VISA PROCESS BANNER
+   ========================================================= */
+
+.flyixo-visa-process-banner {
+  width: 100%;
+
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin: 30px 0;
+
+  padding: 22px 28px;
+
+  box-sizing: border-box;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #062c43,
+      #0a5578,
+      #36bfc4
+    );
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 30px rgba(6, 44, 67, 0.18);
+}
+
+
+.flyixo-visa-process-content {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+.flyixo-visa-process-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.14);
+
+  font-size: 24px;
+}
+
+
+.flyixo-visa-process-content strong {
+  display: block;
+
+  font-size: 17px;
+
+  font-weight: 800;
+}
+
+
+.flyixo-visa-process-content p {
+  margin: 4px 0 0;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   GET ASSISTANCE BUTTON
+   ========================================================= */
+
+.flyixo-click-here-btn {
+  min-height: 45px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  padding: 10px 20px;
+
   border: none;
-  padding: 10px 24px;
+
   border-radius: 30px;
-  font-weight: 700;
+
+  color: #062c43;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
   cursor: pointer;
-  transition: all 0.3s ease;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-.sample-visa-btn:hover {
-  background: #e0f2ff;
-  transform: scale(1.05);
+
+.flyixo-click-here-btn:hover {
+  transform: translateY(-2px);
+
+  background: #f2ffff;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ===============================
-   📱 RESPONSIVE DESIGN
-=============================== */
+
+.flyixo-click-here-btn span {
+  font-size: 17px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.flyixo-click-here-btn:hover span {
+  transform: translateX(4px);
+}
+
+
+/* =========================================================
+   SAMPLE VISA CARD
+   ========================================================= */
+
+.flyixo-sample-visa-card {
+  width: 100%;
+
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin: 20px 0;
+
+  padding: 18px 24px;
+
+  box-sizing: border-box;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e94e77,
+      #c93661
+    );
+
+  border-radius: 17px;
+
+  box-shadow:
+    0 10px 28px rgba(233, 78, 119, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.flyixo-sample-visa-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 15px 35px rgba(233, 78, 119, 0.26);
+}
+
+
+.flyixo-sample-visa-left {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+
+.flyixo-sample-visa-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  font-size: 23px;
+}
+
+
+.flyixo-sample-visa-text {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+
+.flyixo-sample-visa-text strong {
+  font-size: 15px;
+
+  font-weight: 800;
+}
+
+
+.flyixo-sample-visa-text span {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   SAMPLE BUTTON
+   ========================================================= */
+
+.flyixo-sample-visa-btn {
+  min-height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  padding: 9px 18px;
+
+  border: none;
+
+  border-radius: 25px;
+
+  color: #c93661;
+
+  background: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+
+.flyixo-sample-visa-btn:hover {
+  transform: translateY(-2px);
+
+  background: #fff5f7;
+}
+
+
+.flyixo-sample-visa-btn span {
+  font-size: 15px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+
+.flyixo-sample-visa-btn:hover span {
+  transform: translateX(3px);
+}
+
+
+/* =========================================================
+   LAST UPDATED
+   ========================================================= */
+
+.flyixo-documents-last-updated {
+  width: fit-content;
+
+  max-width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 18px;
+
+  padding: 8px 13px;
+
+  box-sizing: border-box;
+
+  color: #64748b;
+
+  background: #f7f9fb;
+
+  border: 1px solid #e7edf2;
+
+  border-radius: 9px;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+.flyixo-last-updated-icon {
+  font-size: 13px;
+}
+
+
+.flyixo-documents-last-updated strong {
+  color: #062c43;
+
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LOADING / ERROR STATES
+   ========================================================= */
+
+.flyixo-documents-state {
+  width: 100%;
+
+  min-height: 350px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  font-family:
+    "Poppins",
+    "Inter",
+    Arial,
+    sans-serif;
+
+  text-align: center;
+}
+
+
+.flyixo-documents-loading {
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+
+.flyixo-documents-spinner {
+  width: 42px;
+  height: 42px;
+
+  border: 4px solid #e2e8f0;
+
+  border-top-color: #36d1d4;
+
+  border-right-color: #e94e77;
+
+  border-radius: 50%;
+
+  animation:
+    flyixo-documents-spin 0.8s linear infinite;
+}
+
+
+@keyframes flyixo-documents-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.flyixo-documents-error-icon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background: #e94e77;
+
+  font-size: 22px;
+
+  font-weight: 800;
+}
+
+
+.flyixo-documents-error h3 {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 20px;
+}
+
+
+.flyixo-documents-error p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET - 1024px
+   ========================================================= */
+
+@media (max-width: 1024px) {
+  .flyixo-documents-container {
+    padding: 30px 20px 55px;
+  }
+
+
+  .flyixo-documents-title {
+    font-size: 29px;
+  }
+
+
+  .flyixo-document-toggle-btn {
+    font-size: 14px;
+  }
+
+
+  .flyixo-document-team-card {
+    width: 225px;
+
+    min-width: 225px;
+  }
+
+
+  .flyixo-visa-process-banner {
+    padding: 20px 22px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE - 768px
+   ========================================================= */
+
 @media (max-width: 768px) {
-  .documents-title {
+  .flyixo-documents-container {
+    padding: 25px 18px 45px;
+  }
+
+
+  .flyixo-documents-heading {
+    margin-bottom: 25px;
+  }
+
+
+  .flyixo-documents-title {
     font-size: 26px;
   }
 
-  .document-toggle-btn {
+
+  .flyixo-documents-subtitle {
+    font-size: 12px;
+  }
+
+
+  .flyixo-document-toggle-btn {
+    min-height: 59px;
+
+    padding: 13px 16px;
+
+    font-size: 13px;
+  }
+
+
+  .flyixo-document-toggle-content {
+    gap: 9px;
+  }
+
+
+  .flyixo-document-toggle-icon {
+    width: 32px;
+    height: 32px;
+
     font-size: 15px;
-    padding: 15px 18px;
   }
 
-  .Document-TeamCard {
-    min-width: 200px;
+
+  .flyixo-documents-list {
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
-  .visa-process-banner,
-  .sample-visa-card {
+
+  .flyixo-documents-list--open {
+    padding: 18px;
+  }
+
+
+  .flyixo-documents-list li {
+    font-size: 13px;
+  }
+
+
+  .flyixo-document-team-section {
+    margin: 32px 0;
+  }
+
+
+  .flyixo-team-heading h3 {
+    font-size: 23px;
+  }
+
+
+  .flyixo-document-team-card {
+    width: 210px;
+
+    min-width: 210px;
+
+    padding: 20px 15px;
+  }
+
+
+  .flyixo-team-photo-wrapper {
+    width: 82px;
+    height: 82px;
+  }
+
+
+  .flyixo-visa-process-banner {
     flex-direction: column;
+
+    align-items: stretch;
+
     text-align: center;
+
+    padding: 22px 18px;
   }
 
-  .click-here-btn,
-  .sample-visa-btn {
+
+  .flyixo-visa-process-content {
+    justify-content: center;
+  }
+
+
+  .flyixo-click-here-btn {
     width: 100%;
   }
+
+
+  .flyixo-sample-visa-card {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    text-align: center;
+
+    padding: 20px;
+  }
+
+
+  .flyixo-sample-visa-left {
+    justify-content: center;
+  }
+
+
+  .flyixo-sample-visa-btn {
+    width: 100%;
+  }
+
+
+  .flyixo-documents-last-updated {
+    margin-left: auto;
+    margin-right: auto;
+
+    text-align: center;
+  }
 }
 
-.team-carousel {
-  display: flex;
-  gap: 25px;
-  overflow-x: auto; /* ✅ allow scroll movement */
-  scroll-behavior: smooth;
-  white-space: nowrap;
-  scrollbar-width: none; /* ✅ hide scrollbar */
+
+/* =========================================================
+   SMALL MOBILE - 480px
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .flyixo-documents-container {
+    padding: 20px 13px 40px;
+  }
+
+
+  .flyixo-documents-eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .flyixo-documents-title {
+    font-size: 21px;
+  }
+
+
+  .flyixo-documents-title::after {
+    width: 50px;
+
+    height: 3px;
+  }
+
+
+  .flyixo-documents-subtitle {
+    font-size: 11px;
+
+    line-height: 1.6;
+  }
+
+
+  .flyixo-document-section {
+    border-radius: 14px;
+  }
+
+
+  .flyixo-document-toggle-btn {
+    min-height: 55px;
+
+    gap: 10px;
+
+    padding: 11px 13px;
+
+    font-size: 11px;
+  }
+
+
+  .flyixo-document-toggle-content {
+    gap: 7px;
+  }
+
+
+  .flyixo-document-toggle-icon {
+    width: 29px;
+    height: 29px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+  }
+
+
+  .flyixo-document-arrow {
+    font-size: 13px;
+  }
+
+
+  .flyixo-documents-list--open {
+    padding: 15px;
+  }
+
+
+  .flyixo-documents-list li {
+    gap: 8px;
+
+    margin-bottom: 10px;
+    padding-bottom: 9px;
+
+    font-size: 12px;
+  }
+
+
+  .flyixo-document-check {
+    width: 20px;
+    height: 20px;
+
+    font-size: 10px;
+  }
+
+
+  .flyixo-team-heading h3 {
+    font-size: 20px;
+  }
+
+
+  .flyixo-team-heading p {
+    font-size: 10px;
+  }
+
+
+  .flyixo-document-team-card {
+    width: 190px;
+
+    min-width: 190px;
+
+    padding: 18px 13px;
+
+    border-radius: 15px;
+  }
+
+
+  .flyixo-team-photo-wrapper {
+    width: 74px;
+    height: 74px;
+  }
+
+
+  .flyixo-team-name {
+    font-size: 14px;
+  }
+
+
+  .flyixo-team-designation {
+    font-size: 10px;
+  }
+
+
+  .flyixo-doc-team-exp,
+  .flyixo-team-email {
+    font-size: 9px;
+  }
+
+
+  .flyixo-visa-process-content {
+    flex-direction: column;
+
+    gap: 9px;
+  }
+
+
+  .flyixo-visa-process-content strong {
+    font-size: 14px;
+  }
+
+
+  .flyixo-visa-process-content p {
+    font-size: 10px;
+  }
+
+
+  .flyixo-sample-visa-icon {
+    width: 42px;
+    height: 42px;
+
+    font-size: 19px;
+  }
+
+
+  .flyixo-sample-visa-text strong {
+    font-size: 13px;
+  }
+
+
+  .flyixo-sample-visa-text span {
+    font-size: 9px;
+  }
+
+
+  .flyixo-documents-last-updated {
+    font-size: 9px;
+
+    padding: 7px 10px;
+  }
 }
 
-.team-carousel::-webkit-scrollbar {
-  display: none; /* ✅ hide scrollbar for Chrome/Safari */
+
+/* =========================================================
+   EXTRA SMALL - 360px
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .flyixo-documents-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .flyixo-documents-title {
+    font-size: 19px;
+  }
+
+
+  .flyixo-document-toggle-btn {
+    font-size: 10px;
+  }
+
+
+  .flyixo-documents-list li {
+    font-size: 11px;
+  }
+
+
+  .flyixo-document-team-card {
+    width: 175px;
+
+    min-width: 175px;
+  }
+
+
+  .flyixo-team-photo-wrapper {
+    width: 68px;
+    height: 68px;
+  }
+
+
+  .flyixo-sample-visa-card {
+    padding: 16px;
+  }
+
+
+  .flyixo-documents-last-updated {
+    max-width: 100%;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+  }
 }
 
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-documents-wrapper *,
+  .flyixo-documents-wrapper {
+    animation: none !important;
+
+    transition: none !important;
+
+    scroll-behavior: auto !important;
+  }
+}

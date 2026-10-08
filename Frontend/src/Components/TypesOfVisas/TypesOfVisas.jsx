@@ -1,161 +1,265 @@
-import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import React from "react";
 import "./TypesOfVisas.css";
-import { ChevronRight } from "lucide-react";
-import BASE_URL from "../../Api";
 
-import defaultProfile from "../../assets/avatar-5.webp";
-import au2 from "../../assets/r1.webp";
-import au3 from "../../assets/au3.webp";
-import au4 from "../../assets/r2.webp";
-import go from "../../assets/go.webp";
-
-const TypesOfVisas = () => {
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const [visa, setVisa] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch Visa Data
-  useEffect(() => {
-    const fetchVisa = async () => {
-      try {
-        const { data } = await axios.get(`${BASE_URL}/visas/published/${id}`);
-        setVisa(data.data);
-      } catch (error) {
-        console.error("❌ Error fetching visa:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchVisa();
-  }, [id]);
-
-  const handleGoogleRedirect = () => {
-    window.open("https://www.google.com/search?q=FlyDenAi+reviews", "_blank");
-  };
-
-  if (loading) return <div className="visa-loading">Loading...</div>;
-  if (!visa) return <div className="visa-error">Visa not found</div>;
-
-  const base = BASE_URL.replace("/api", "");
-  const authorImage = visa.specialImageUrl
-    ? `${base}${visa.specialImageUrl}`
-    : defaultProfile;
-
+const TypesVisa = ({
+  visaTypes = [],
+  author,
+  lastUpdated,
+  reviews = [],
+}) => {
   return (
-    <div className="types-visa-page">
-      <div className="left-content">
-        <h2 className="types-title">Types of {visa.country} Visas</h2>
+    <section className="flyixo-types-visa-page">
+      <div className="flyixo-types-left-content">
 
-        {/* Visa Types */}
-        <div className="TypesVisa-cards">
-          {visa.visaTypes?.length > 0 ? (
-            visa.visaTypes.map((type, index) => (
-              <div
-                className="TypesVisa-card"
-                key={index}
-                onClick={() =>
-                  navigate(`/Apply/Now/${id}`, {
-                    state: {
-                      selectedType: type.name,
-                      travellers: 1,
-                    },
-                  })
-                }
-                style={{ cursor: "pointer" }}
+        {/* =====================================================
+            SECTION TITLE
+        ===================================================== */}
+        <h2 className="flyixo-types-title">
+          Visa Types
+        </h2>
+
+        {/* =====================================================
+            VISA CARDS
+        ===================================================== */}
+        <div className="flyixo-types-visa-cards">
+          {visaTypes && visaTypes.length > 0 ? (
+            visaTypes.map((visa, index) => (
+              <article
+                className="flyixo-types-visa-card"
+                key={visa._id || visa.id || index}
               >
-                <div className="TypesVisa-card-header">{type.name}</div>
-                <div className="TypesVisa-card-details">
-                  {type.processingTime && (
-                    <div>
-                      <span>Processing time:</span> {type.processingTime}
-                    </div>
-                  )}
-                  {type.stayPeriod && (
-                    <div>
-                      <span>Stay period:</span> {type.stayPeriod}
-                    </div>
-                  )}
-                  {type.validity && (
-                    <div>
-                      <span>Validity:</span> {type.validity}
-                    </div>
-                  )}
-                  {type.category && (
-                    <div>
-                      <span>Visa category:</span> {type.category}
-                    </div>
-                  )}
-                  {type.entryType && (
-                    <div>
-                      <span>Entry:</span> {type.entryType}
-                    </div>
-                  )}
-                  {type.fees && (
-                    <div className="visa-fees">
-                      <span>Fees:</span> <strong>{type.fees}</strong>
-                    </div>
-                  )}
+                {/* Card Header */}
+                <div className="flyixo-types-visa-card-header">
+                  {visa.name || "Visa Type"}
                 </div>
-              </div>
+
+                {/* Card Details */}
+                <div className="flyixo-types-visa-card-details">
+
+                  {visa.processingTime && (
+                    <div>
+                      <span>
+                        Processing Time
+                      </span>
+
+                      <span>
+                        {visa.processingTime}
+                      </span>
+                    </div>
+                  )}
+
+                  {visa.validity && (
+                    <div>
+                      <span>
+                        Validity
+                      </span>
+
+                      <span>
+                        {visa.validity}
+                      </span>
+                    </div>
+                  )}
+
+                  {visa.entryType && (
+                    <div>
+                      <span>
+                        Entry Type
+                      </span>
+
+                      <span>
+                        {visa.entryType}
+                      </span>
+                    </div>
+                  )}
+
+                  {visa.duration && (
+                    <div>
+                      <span>
+                        Duration
+                      </span>
+
+                      <span>
+                        {visa.duration}
+                      </span>
+                    </div>
+                  )}
+
+                  {visa.fees !== undefined &&
+                    visa.fees !== null &&
+                    visa.fees !== "" && (
+                      <div>
+                        <span>
+                          Visa Fee
+                        </span>
+
+                        <span className="flyixo-visa-fees">
+                          ₹
+                          {Number(
+                            String(visa.fees).replace(
+                              /[^0-9.]/g,
+                              ""
+                            )
+                          ).toLocaleString("en-IN")}
+                        </span>
+                      </div>
+                    )}
+
+                </div>
+              </article>
             ))
           ) : (
-            <div>No visa types available</div>
+            <div className="flyixo-types-visa-card">
+              <div className="flyixo-types-visa-card-header">
+                Visa Information
+              </div>
+
+              <div className="flyixo-types-visa-card-details">
+                <div>
+                  <span>
+                    Visa Types
+                  </span>
+
+                  <span>
+                    Information unavailable
+                  </span>
+                </div>
+              </div>
+            </div>
           )}
         </div>
 
-        {/* Author Info */}
-        <div className="author-update">
-          <div className="author-info">
-            <img
-              src={authorImage}
-              alt={visa.expert || "Expert"}
-              className="author-photo"
-            />
-            <div>
-              <strong>{visa.expert || "Admin"}</strong>
-              <div className="author-role">Author</div>
+        {/* =====================================================
+            AUTHOR / LAST UPDATED
+        ===================================================== */}
+        {(author || lastUpdated) && (
+          <div className="flyixo-author-update">
+
+            {/* Author */}
+            {author && (
+              <div className="flyixo-author-info">
+
+                {author.photo && (
+                  <img
+                    className="flyixo-author-photo"
+                    src={author.photo}
+                    alt={
+                      author.name
+                        ? author.name
+                        : "Visa Expert"
+                    }
+                  />
+                )}
+
+                <div>
+                  {author.name && (
+                    <p className="flyixo-author-name">
+                      {author.name}
+                    </p>
+                  )}
+
+                  {author.role && (
+                    <p className="flyixo-author-role">
+                      {author.role}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+            )}
+
+            {/* Last Updated */}
+            {lastUpdated && (
+              <div className="flyixo-last-updated">
+                <span>
+                  Last Updated:
+                </span>
+
+                <strong>
+                  {lastUpdated}
+                </strong>
+              </div>
+            )}
+
+          </div>
+        )}
+
+        {/* =====================================================
+            REVIEWS
+        ===================================================== */}
+        {reviews && reviews.length > 0 && (
+          <div
+            className="flyixo-reviews-banner"
+            role="button"
+            tabIndex={0}
+            onKeyDown={(event) => {
+              if (
+                event.key === "Enter" ||
+                event.key === " "
+              ) {
+                event.preventDefault();
+              }
+            }}
+          >
+
+            {/* Review Avatars */}
+            <div className="flyixo-review-avatars">
+              {reviews
+                .slice(0, 4)
+                .map((review, index) => (
+                  <img
+                    key={
+                      review._id ||
+                      review.id ||
+                      index
+                    }
+                    src={
+                      review.image ||
+                      review.photo ||
+                      review.avatar
+                    }
+                    alt={
+                      review.name ||
+                      "Reviewer"
+                    }
+                  />
+                ))}
             </div>
-          </div>
 
-          <div className="last-updated">
-            <span>🕒 Last Updated:</span>
-            <strong>
-              {new Date(visa.updatedAt).toLocaleString("en-IN", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-              })}
-            </strong>
-          </div>
-        </div>
+            {/* Review Content */}
+            <div className="flyixo-review-text">
+              <strong>
+                Trusted by thousands of travellers
+              </strong>
 
-        {/* Reviews Google Banner */}
-        <div className="reviews-banner" onClick={handleGoogleRedirect}>
-          <div className="review-avatars">
-            <img src={au2} alt="reviewer1" />
-            <img src={au3} alt="reviewer2" />
-            <img src={au4} alt="reviewer3" />
-          </div>
+              <div className="flyixo-review-details">
 
-          <div className="review-text">
-            <strong>FlyDenAi - Reviews</strong>
-            <div className="review-details">
-              <span className="review-rating">EXCELLENT ★★★★☆</span>
-              <span>821 reviews on</span>
-              <img src={go} alt="Google" className="google-logo" />
-              <ChevronRight className="google-arrow" />
+                <span className="flyixo-review-rating">
+                  ★ 4.9
+                </span>
+
+                <span className="flyixo-review-details-text">
+                  Google Reviews
+                </span>
+
+                <img
+                  className="flyixo-google-logo"
+                  src="/google.png"
+                  alt="Google"
+                />
+
+                <span className="flyixo-google-arrow">
+                  →
+                </span>
+
+              </div>
             </div>
+
           </div>
-        </div>
+        )}
+
       </div>
-    </div>
+    </section>
   );
 };
 
-export default TypesOfVisas;
+export default TypesVisa;

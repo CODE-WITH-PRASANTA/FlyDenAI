@@ -1,229 +1,803 @@
-/* === MAIN CONTAINER === */
-.embassy-wrapper {
-  padding: 60px 25px;
-  max-width: 1100px;
-  margin: 50px auto;
+/* =========================================================
+   FLYIXO EMBASSY / VISA INFORMATION
+========================================================= */
+
+.flyixo-embassy {
+  width: 100%;
+  padding: 70px 20px;
+
   font-family: "Poppins", sans-serif;
-  color: #2d2d2d;
-  background: linear-gradient(180deg, #ffffff 0%, #fff9fb 100%);
-  border-radius: 16px;
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.05);
-  animation: fadeInPage 0.8s ease-in-out;
+
+  background:
+    radial-gradient(
+      circle at 8% 10%,
+      rgba(54, 209, 212, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 92% 85%,
+      rgba(233, 78, 119, 0.07),
+      transparent 30%
+    ),
+    #f8fbfd;
+
+  overflow: hidden;
 }
 
-/* === HEADER SECTION === */
-.embassy-header {
+.flyixo-embassy-container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-embassy-header {
+  max-width: 780px;
+  margin: 0 auto 45px;
+
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.embassy-title {
-  font-size: 2.6rem;
-  color: #e94e77;
+.flyixo-embassy-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+  padding: 7px 17px;
+
+  border: 1px solid rgba(54, 209, 212, 0.2);
+  border-radius: 30px;
+
+  background: rgba(54, 209, 212, 0.08);
+
+  color: #168f95;
+
+  font-size: 11px;
   font-weight: 700;
-  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-  letter-spacing: 0.5px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
 }
 
-.embassy-title span {
-  color: #222;
-  font-weight: 600;
+.flyixo-embassy-title {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 38px;
+  line-height: 1.25;
+  font-weight: 800;
+
+  letter-spacing: -0.8px;
 }
 
-.embassy-subtitle {
-  font-size: 1.05rem;
-  color: #666;
-  margin-top: 10px;
-  letter-spacing: 0.3px;
+.flyixo-embassy-title span {
+  color: #e94e77;
 }
 
-.embassy-divider {
+.flyixo-embassy-divider {
+  position: relative;
+
   width: 100px;
   height: 4px;
-  background: linear-gradient(90deg, #e94e77, #ff6b6b);
-  margin: 15px auto;
-  border-radius: 5px;
+
+  margin: 17px auto;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background: #dce9ed;
 }
 
-/* === DESCRIPTION === */
-.embassy-description {
+.flyixo-embassy-divider span {
+  display: block;
+
+  width: 65%;
+  height: 100%;
+
+  margin: 0 auto;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #e94e77
+  );
+}
+
+.flyixo-embassy-subtitle {
+  max-width: 670px;
+
+  margin: 0 auto;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   DESCRIPTION CARD
+========================================================= */
+
+.flyixo-embassy-description {
+  position: relative;
+
+  margin-bottom: 40px;
+  padding: 32px 35px;
+
   background: #ffffff;
-  padding: 30px 35px;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(233, 78, 119, 0.1);
-  margin-bottom: 55px;
-  font-size: 1.05rem;
+
+  border: 1px solid #e3edf1;
+  border-radius: 20px;
+
+  box-shadow:
+    0 12px 35px rgba(6, 44, 67, 0.06),
+    0 2px 8px rgba(6, 44, 67, 0.025);
+
+  overflow: hidden;
+}
+
+.flyixo-embassy-description::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 5px;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #36d1d4,
+    #e94e77
+  );
+}
+
+.flyixo-embassy-description-label {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 22px;
+
+  color: #062c43;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.flyixo-embassy-description-icon {
+  width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #062c43,
+    #36d1d4
+  );
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.flyixo-embassy-description-content {
+  color: #475569;
+
+  font-size: 14px;
   line-height: 1.9;
-  color: #333;
 }
 
-.embassy-description h2,
-.embassy-description h3 {
-  color: #e94e77;
+.flyixo-embassy-description-content h1,
+.flyixo-embassy-description-content h2,
+.flyixo-embassy-description-content h3,
+.flyixo-embassy-description-content h4 {
   margin-top: 25px;
-  font-weight: 600;
-}
-
-.embassy-description ul {
-  margin: 15px 0 15px 25px;
-  list-style: disc;
-}
-
-/* === INFO SECTION === */
-.embassy-info {
-  background: #fff;
-  padding: 35px;
-  border-radius: 14px;
-  box-shadow: 0 3px 18px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.embassy-info:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 25px rgba(233, 78, 119, 0.1);
-}
-
-.info-title {
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: #e94e77;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-.info-box {
-  background: linear-gradient(145deg, #fff6f8 0%, #ffffff 100%);
-  border: 1px solid #ffd1db;
-  border-radius: 14px;
-  padding: 25px 20px;
-  text-align: center;
-  transition: all 0.35s ease;
-}
-
-.info-box:hover {
-  background: linear-gradient(145deg, #e94e77 0%, #ff6b6b 100%);
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(233, 78, 119, 0.2);
-}
-
-.info-box h3 {
-  font-size: 1.1rem;
   margin-bottom: 12px;
-  color: inherit;
+
+  color: #062c43;
+
+  font-weight: 700;
 }
 
-.info-box p {
-  font-size: 0.95rem;
-  opacity: 0.9;
-  line-height: 1.6;
+.flyixo-embassy-description-content h1:first-child,
+.flyixo-embassy-description-content h2:first-child,
+.flyixo-embassy-description-content h3:first-child {
+  margin-top: 0;
 }
 
-/* === LAST UPDATED === */
-.last-updated {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 1rem;
-  color: #555;
-  padding-top: 10px;
-  border-top: 1px dashed #ffc2d1;
+.flyixo-embassy-description-content p {
+  margin: 0 0 15px;
 }
 
-.last-updated strong {
-  color: #e94e77;
+.flyixo-embassy-description-content p:last-child {
+  margin-bottom: 0;
+}
+
+.flyixo-embassy-description-content ul,
+.flyixo-embassy-description-content ol {
+  margin: 15px 0;
+  padding-left: 25px;
+}
+
+.flyixo-embassy-description-content li {
+  margin-bottom: 8px;
+}
+
+.flyixo-embassy-description-content a {
+  color: #168f95;
   font-weight: 600;
 }
 
-.update-icon {
-  font-size: 1.1rem;
-  margin-right: 5px;
-  animation: pulse 2s infinite;
+.flyixo-embassy-description-content strong,
+.flyixo-embassy-description-content b {
+  color: #062c43;
+  font-weight: 700;
 }
 
-/* === LOADER === */
-.embassy-loader {
+
+/* =========================================================
+   VISA OVERVIEW
+========================================================= */
+
+.flyixo-embassy-overview {
+  padding: 35px;
+
+  background: #ffffff;
+
+  border: 1px solid #e3edf1;
+  border-radius: 20px;
+
+  box-shadow:
+    0 12px 35px rgba(6, 44, 67, 0.055),
+    0 2px 8px rgba(6, 44, 67, 0.025);
+}
+
+.flyixo-embassy-overview-header {
+  margin-bottom: 30px;
+
+  text-align: center;
+}
+
+.flyixo-embassy-overview-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #168f95;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+
+  text-transform: uppercase;
+}
+
+.flyixo-embassy-overview-title {
+  margin: 0;
+
+  color: #062c43;
+
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.flyixo-embassy-overview-subtitle {
+  margin: 8px auto 0;
+
+  color: #718096;
+
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   INFO GRID
+========================================================= */
+
+.flyixo-embassy-info-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.flyixo-embassy-info-card {
+  position: relative;
+
+  min-height: 150px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 150px;
-  color: #444;
-}
+  justify-content: center;
 
-.spinner {
-  width: 65px;
-  height: 65px;
-  border: 5px solid #f0f0f0;
-  border-top: 5px solid #e94e77;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
+  padding: 25px 18px;
 
-.loading-text {
-  margin-top: 15px;
-  color: #e94e77;
-  font-weight: 600;
-}
-
-.error-text {
   text-align: center;
-  color: #ff4d4d;
-  font-weight: 600;
-  font-size: 1.2rem;
-  margin-top: 120px;
+
+  background: linear-gradient(
+    145deg,
+    #f8fcfd,
+    #ffffff
+  );
+
+  border: 1px solid #e0ebef;
+  border-radius: 17px;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
-/* === ANIMATIONS === */
-@keyframes spin {
+.flyixo-embassy-info-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 20%;
+
+  width: 60%;
+  height: 3px;
+
+  border-radius: 0 0 10px 10px;
+
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #e94e77
+  );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+}
+
+.flyixo-embassy-info-card:hover {
+  transform: translateY(-7px);
+
+  border-color: rgba(54, 209, 212, 0.35);
+
+  box-shadow:
+    0 15px 30px rgba(6, 44, 67, 0.09),
+    0 4px 12px rgba(54, 209, 212, 0.06);
+}
+
+.flyixo-embassy-info-card:hover::before {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   INFO ICON
+========================================================= */
+
+.flyixo-embassy-info-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #062c43,
+    #0b607b
+  );
+
+  color: #ffffff;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  box-shadow:
+    0 8px 18px rgba(6, 44, 67, 0.17);
+
+  transition: transform 0.3s ease;
+}
+
+.flyixo-embassy-info-card:hover .flyixo-embassy-info-icon {
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   INFO CONTENT
+========================================================= */
+
+.flyixo-embassy-info-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  width: 100%;
+}
+
+.flyixo-embassy-info-content span {
+  color: #7b8a97;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.flyixo-embassy-info-content strong {
+  display: block;
+
+  color: #062c43;
+
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 700;
+
+  word-break: break-word;
+}
+
+
+/* =========================================================
+   LAST UPDATED
+========================================================= */
+
+.flyixo-embassy-updated {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin: 32px auto 0;
+  padding-top: 18px;
+
+  border-top: 1px dashed #cddfe5;
+
+  color: #7b8a97;
+
+  font-size: 12px;
+}
+
+.flyixo-embassy-updated strong {
+  color: #e94e77;
+
+  font-weight: 700;
+}
+
+.flyixo-embassy-updated-icon {
+  width: 24px;
+  height: 24px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(54, 209, 212, 0.1);
+
+  color: #168f95;
+
+  font-size: 14px;
+
+  animation: flyixoEmbassyPulse 2s infinite;
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.flyixo-embassy-loader {
+  min-height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 60px 20px;
+
+  font-family: "Poppins", sans-serif;
+
+  background: #f8fbfd;
+}
+
+.flyixo-embassy-spinner {
+  width: 58px;
+  height: 58px;
+
+  border: 4px solid #e3edf1;
+  border-top-color: #36d1d4;
+  border-right-color: #e94e77;
+
+  border-radius: 50%;
+
+  animation: flyixoEmbassySpin 0.9s linear infinite;
+}
+
+.flyixo-embassy-loading-text {
+  margin: 17px 0 0;
+
+  color: #062c43;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.flyixo-embassy-error {
+  max-width: 550px;
+
+  margin: 100px auto;
+  padding: 40px 25px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #f1d9df;
+  border-radius: 18px;
+
+  box-shadow: 0 12px 35px rgba(6, 44, 67, 0.07);
+
+  font-family: "Poppins", sans-serif;
+}
+
+.flyixo-embassy-error-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+
+  border-radius: 50%;
+
+  background: rgba(233, 78, 119, 0.1);
+
+  color: #e94e77;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.flyixo-embassy-error h3 {
+  margin: 0 0 8px;
+
+  color: #062c43;
+
+  font-size: 18px;
+}
+
+.flyixo-embassy-error p {
+  margin: 0;
+
+  color: #718096;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes flyixoEmbassySpin {
   to {
     transform: rotate(360deg);
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
+@keyframes flyixoEmbassyPulse {
+  0%,
+  100% {
     opacity: 1;
+    transform: scale(1);
   }
+
   50% {
-    opacity: 0.6;
+    opacity: 0.55;
+    transform: scale(0.92);
   }
 }
 
-@keyframes fadeInPage {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+  .flyixo-embassy {
+    padding: 60px 18px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .flyixo-embassy-title {
+    font-size: 34px;
+  }
+
+  .flyixo-embassy-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.fade-in {
-  animation: fadeInPage 0.9s ease-in-out;
-}
 
-.fade-up {
-  animation: fadeInPage 1s ease-in-out;
-}
+/* =========================================================
+   MOBILE
+========================================================= */
 
-/* === RESPONSIVE === */
-@media (max-width: 768px) {
-  .embassy-title {
-    font-size: 2rem;
+@media (max-width: 700px) {
+  .flyixo-embassy {
+    padding: 45px 14px;
   }
 
-  .embassy-description {
-    padding: 20px;
+  .flyixo-embassy-header {
+    margin-bottom: 32px;
   }
 
-  .info-grid {
+  .flyixo-embassy-eyebrow {
+    padding: 6px 14px;
+
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .flyixo-embassy-title {
+    font-size: 27px;
+    line-height: 1.35;
+  }
+
+  .flyixo-embassy-subtitle {
+    font-size: 12.5px;
+    line-height: 1.7;
+  }
+
+  .flyixo-embassy-description {
+    padding: 25px 20px;
+
+    border-radius: 17px;
+  }
+
+  .flyixo-embassy-description-label {
+    font-size: 15px;
+  }
+
+  .flyixo-embassy-description-content {
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .flyixo-embassy-overview {
+    padding: 25px 18px;
+
+    border-radius: 17px;
+  }
+
+  .flyixo-embassy-overview-title {
+    font-size: 22px;
+  }
+
+  .flyixo-embassy-overview-subtitle {
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+
+  .flyixo-embassy-info-grid {
     grid-template-columns: 1fr;
+
+    gap: 13px;
+  }
+
+  .flyixo-embassy-info-card {
+    min-height: 125px;
+
+    padding: 22px 18px;
+  }
+
+  .flyixo-embassy-info-icon {
+    width: 46px;
+    height: 46px;
+
+    margin-bottom: 12px;
+
+    font-size: 18px;
+  }
+
+  .flyixo-embassy-info-content strong {
+    font-size: 13px;
+  }
+
+  .flyixo-embassy-updated {
+    flex-wrap: wrap;
+
+    margin-top: 25px;
+
+    font-size: 10.5px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+  .flyixo-embassy {
+    padding: 38px 10px;
+  }
+
+  .flyixo-embassy-title {
+    font-size: 24px;
+  }
+
+  .flyixo-embassy-description {
+    padding: 22px 16px;
+  }
+
+  .flyixo-embassy-description-content {
+    font-size: 12.5px;
+  }
+
+  .flyixo-embassy-overview {
+    padding: 22px 14px;
+  }
+
+  .flyixo-embassy-info-card {
+    padding: 20px 15px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-embassy,
+  .flyixo-embassy-info-card,
+  .flyixo-embassy-info-icon {
+    animation: none;
+    transition: none;
+  }
+
+  .flyixo-embassy-spinner {
+    animation-duration: 2s;
+  }
+
+  .flyixo-embassy-updated-icon {
+    animation: none;
   }
 }

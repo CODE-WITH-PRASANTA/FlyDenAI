@@ -1,179 +1,518 @@
-/* ===============================
-   ✈️ PROCESS WRAPPER
-=============================== */
-.process-wrapper {
-  max-width: 1140px;
-  margin: 20px auto;
-  padding: 0 20px;
+/* =========================================================
+   FLYIXO VISA PROCESS
+========================================================= */
+
+.flyixo-process {
+  width: 100%;
+  padding: 70px 20px;
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(54, 209, 212, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(233, 78, 119, 0.07),
+      transparent 30%
+    ),
+    #f8fbfd;
   font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+.flyixo-process__container {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.flyixo-process__header {
+  max-width: 760px;
+  margin: 0 auto 55px;
   text-align: center;
-  background: linear-gradient(180deg, #f9fbff 0%, #ffffff 100%);
 }
 
-/* ===============================
-   🏆 TITLE
-=============================== */
-.process-title {
-  font-size: 32px;
+.flyixo-process__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 16px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background: rgba(54, 209, 212, 0.1);
+  border: 1px solid rgba(54, 209, 212, 0.22);
+  color: #168f95;
+  font-size: 12px;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 30px;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.flyixo-process__title {
+  margin: 0;
+  color: #062c43;
+  font-size: 36px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.flyixo-process__title span {
+  color: #e94e77;
   position: relative;
 }
 
-.process-title::after {
+.flyixo-process__title span::after {
   content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #2563eb;
-  border-radius: 2px;
-  margin: 15px auto 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 3px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    #36d1d4,
+    #e94e77
+  );
 }
 
-/* ===============================
-   🔄 STEPS CONTAINER
-=============================== */
-.process-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: nowrap;
-  gap: 30px;
+.flyixo-process__subtitle {
+  max-width: 680px;
+  margin: 18px auto 0;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   STEPS CONTAINER
+========================================================= */
+
+.flyixo-process__steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
   position: relative;
-  overflow-x: auto; /* ✅ enable horizontal scroll */
-  scroll-behavior: smooth;
-  padding-bottom: 15px;
 }
 
-/* ✅ For mobile/touch smooth scroll feel */
-.process-container::-webkit-scrollbar {
-  height: 8px;
+
+/* =========================================================
+   PROCESS CARD
+========================================================= */
+
+.flyixo-process-card {
+  position: relative;
+  min-width: 0;
+  padding: 35px 25px 30px;
+  background: #ffffff;
+  border: 1px solid #e5edf2;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow:
+    0 10px 30px rgba(6, 44, 67, 0.06),
+    0 2px 8px rgba(6, 44, 67, 0.03);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  overflow: visible;
 }
 
-.process-container::-webkit-scrollbar-thumb {
-  background: #2563eb;
+.flyixo-process-card:hover {
+  transform: translateY(-9px);
+  border-color: rgba(54, 209, 212, 0.4);
+  box-shadow:
+    0 20px 45px rgba(6, 44, 67, 0.11),
+    0 5px 15px rgba(54, 209, 212, 0.08);
+}
+
+
+/* =========================================================
+   STEP NUMBER
+========================================================= */
+
+.flyixo-process-card__number {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  color: #dce7ec;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.flyixo-process-card__icon {
+  position: relative;
+  z-index: 2;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  font-size: 27px;
+
+  background: linear-gradient(
+    135deg,
+    #062c43 0%,
+    #0b5876 55%,
+    #36d1d4 100%
+  );
+
+  box-shadow:
+    0 12px 25px rgba(6, 44, 67, 0.2),
+    0 0 0 8px rgba(54, 209, 212, 0.08);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.flyixo-process-card:hover .flyixo-process-card__icon {
+  transform: scale(1.08) rotate(3deg);
+
+  box-shadow:
+    0 15px 30px rgba(6, 44, 67, 0.25),
+    0 0 0 10px rgba(54, 209, 212, 0.1);
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.flyixo-process-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+.flyixo-process-card__title {
+  margin: 0 0 11px;
+  color: #062c43;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 750;
+}
+
+.flyixo-process-card__description {
+  margin: 0 auto;
+  max-width: 230px;
+  color: #64748b;
+  font-size: 13.5px;
+  line-height: 1.75;
+}
+
+
+/* =========================================================
+   CONNECTOR
+========================================================= */
+
+.flyixo-process-card__connector {
+  position: absolute;
+  top: 73px;
+  left: calc(100% + 5px);
+  width: 12px;
+  height: 2px;
+  z-index: 5;
+}
+
+.flyixo-process-card__connector::before,
+.flyixo-process-card__connector::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 2px;
   border-radius: 10px;
 }
 
-.process-container::-webkit-scrollbar-track {
-  background: #e2e8f0;
+.flyixo-process-card__connector::before {
+  left: 0;
+  width: 100%;
+  background: #cbdde4;
 }
 
-/* ===============================
-   📦 PROCESS CARD
-=============================== */
-.process-card {
-  flex: 0 0 250px; /* ✅ fixed width for scroll cards */
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 35px 25px;
-  position: relative;
+.flyixo-process-card__connector::after {
+  left: 0;
+  width: 5px;
+  background: #36d1d4;
+}
+
+
+/* =========================================================
+   TRUST AREA
+========================================================= */
+
+.flyixo-process__trust {
+  max-width: 650px;
+  margin: 45px auto 0;
+  padding: 15px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #e3edf1;
+  border-radius: 15px;
+
+  box-shadow: 0 8px 25px rgba(6, 44, 67, 0.04);
+}
+
+.flyixo-process__trust-icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #36d1d4,
+    #159da2
+  );
+
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.flyixo-process__trust-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
-  transition: all 0.35s ease;
-  overflow: hidden;
-  scroll-snap-align: start; /* ✅ snap each card nicely */
+  align-items: flex-start;
+  gap: 2px;
 }
 
-.process-container {
-  scroll-snap-type: x mandatory; /* ✅ snap scrolling enabled */
-}
-
-/* ===============================
-   💠 ICON DESIGN
-=============================== */
-.process-icon {
-  width: 70px;
-  height: 70px;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
-  color: #fff;
-  font-size: 26px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 18px;
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
-  transition: all 0.4s ease;
-}
-
-.process-card:hover .process-icon {
-  background: linear-gradient(135deg, #1e40af, #2563eb);
-  transform: scale(1.1);
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
-}
-
-/* ===============================
-   📝 STEP TITLE
-=============================== */
-.process-step-title {
-  font-size: 18px;
+.flyixo-process__trust-content strong {
+  color: #062c43;
+  font-size: 13px;
   font-weight: 700;
-  margin-bottom: 10px;
-  color: #0f172a;
-  text-transform: capitalize;
 }
 
-/* ===============================
-   📄 STEP DESCRIPTION
-=============================== */
-.process-step-desc {
-  font-size: 15px;
-  color: #475569;
-  line-height: 1.6;
-  max-width: 220px;
-  margin: 0 auto;
-  transition: color 0.3s ease;
+.flyixo-process__trust-content span {
+  color: #718096;
+  font-size: 11.5px;
 }
 
-/* ===============================
-   🔗 CONNECTOR LINE
-=============================== */
-.process-connector {
-  display: none; /* hidden in scroll mode */
-}
 
-/* ===============================
-   📱 RESPONSIVE DESIGN
-=============================== */
+/* =========================================================
+   TABLET
+========================================================= */
 
-/* ✅ Tablet (768px and below) */
-@media (max-width: 992px) {
-  .process-wrapper {
-    padding: 10px 15px;
+@media (max-width: 1050px) {
+  .flyixo-process {
+    padding: 60px 18px;
   }
-  .process-title {
-    font-size: 26px;
+
+  .flyixo-process__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .flyixo-process-card {
+    padding: 32px 24px;
+  }
+
+  .flyixo-process-card__connector {
+    display: none;
+  }
+
+  .flyixo-process__title {
+    font-size: 32px;
   }
 }
 
-/* ✅ Mobile (600px and below) */
-@media (max-width: 600px) {
-  .process-container {
-    gap: 20px;
-    padding-bottom: 10px;
+
+/* =========================================================
+   TABLET / SMALL DEVICES
+========================================================= */
+
+@media (max-width: 700px) {
+  .flyixo-process {
+    padding: 50px 15px;
   }
 
-  .process-card {
-    flex: 0 0 220px; /* smaller card size for phone */
-    padding: 25px 20px;
+  .flyixo-process__header {
+    margin-bottom: 38px;
   }
 
-  .process-icon {
-    width: 60px;
-    height: 60px;
+  .flyixo-process__title {
+    font-size: 28px;
+  }
+
+  .flyixo-process__subtitle {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .flyixo-process__steps {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .flyixo-process-card {
+    padding: 30px 22px;
+    border-radius: 19px;
+  }
+
+  .flyixo-process-card__icon {
+    width: 68px;
+    height: 68px;
+    font-size: 24px;
+    margin-bottom: 18px;
+  }
+
+  .flyixo-process-card__title {
+    font-size: 17px;
+  }
+
+  .flyixo-process-card__description {
+    max-width: 360px;
+    font-size: 13.5px;
+  }
+
+  .flyixo-process__trust {
+    margin-top: 30px;
+    padding: 14px 15px;
+    justify-content: flex-start;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+  .flyixo-process {
+    padding: 42px 12px;
+  }
+
+  .flyixo-process__eyebrow {
+    padding: 6px 13px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .flyixo-process__title {
+    font-size: 24px;
+    line-height: 1.35;
+  }
+
+  .flyixo-process__title span::after {
+    height: 2px;
+    bottom: -3px;
+  }
+
+  .flyixo-process__subtitle {
+    margin-top: 14px;
+    font-size: 13px;
+  }
+
+  .flyixo-process__header {
+    margin-bottom: 30px;
+  }
+
+  .flyixo-process-card {
+    padding: 27px 18px 25px;
+    border-radius: 17px;
+  }
+
+  .flyixo-process-card__number {
+    top: 13px;
+    right: 15px;
+    font-size: 23px;
+  }
+
+  .flyixo-process-card__icon {
+    width: 62px;
+    height: 62px;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .flyixo-process-card__title {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .flyixo-process-card__description {
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  .flyixo-process__trust {
+    gap: 10px;
+    border-radius: 13px;
+  }
+
+  .flyixo-process__trust-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .flyixo-process__trust-content strong {
+    font-size: 11.5px;
+  }
+
+  .flyixo-process__trust-content span {
+    font-size: 10px;
+    line-height: 1.4;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+  .flyixo-process__title {
     font-size: 22px;
   }
 
-  .process-step-title {
-    font-size: 16px;
+  .flyixo-process-card {
+    padding: 24px 15px;
   }
 
-  .process-step-desc {
-    font-size: 14px;
+  .flyixo-process__trust-content span {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .flyixo-process-card,
+  .flyixo-process-card__icon {
+    transition: none;
   }
 }

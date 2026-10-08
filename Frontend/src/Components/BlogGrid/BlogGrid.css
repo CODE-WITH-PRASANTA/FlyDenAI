@@ -1,6 +1,6 @@
 /* =========================================================
    FLYIXO BLOG GRID
-   PREMIUM RESPONSIVE DESIGN
+   PREMIUM RESPONSIVE CARD GRID
 ========================================================= */
 
 .bloggrid-section {
@@ -23,17 +23,14 @@
   --blog-border: #e4e9ef;
 
   position: relative;
-
   width: 100%;
-
-  padding: 90px 24px;
-
+  padding: 95px 24px;
   overflow: hidden;
 
   background:
     radial-gradient(
       circle at 5% 10%,
-      rgba(233, 78, 119, 0.10),
+      rgba(233, 78, 119, 0.1),
       transparent 28%
     ),
     radial-gradient(
@@ -57,20 +54,16 @@
 
 .bloggrid-bg {
   position: absolute;
-
   border-radius: 50%;
-
   pointer-events: none;
-
   filter: blur(2px);
-
   opacity: 0.7;
+  z-index: 0;
 }
 
 .bloggrid-bg-one {
   width: 360px;
   height: 360px;
-
   top: -160px;
   left: -120px;
 
@@ -87,7 +80,6 @@
 .bloggrid-bg-two {
   width: 430px;
   height: 430px;
-
   right: -190px;
   bottom: -180px;
 
@@ -104,14 +96,13 @@
 .bloggrid-bg-three {
   width: 180px;
   height: 180px;
-
   top: 40%;
   right: 5%;
 
   background:
     radial-gradient(
       circle,
-      rgba(54, 209, 212, 0.10),
+      rgba(54, 209, 212, 0.1),
       transparent 70%
     );
 
@@ -120,12 +111,10 @@
 
 .bloggrid-grid-pattern {
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
   opacity: 0.35;
+  z-index: 0;
 
   background-image:
     linear-gradient(
@@ -156,11 +145,9 @@
 
 .bloggrid-container {
   position: relative;
-
   z-index: 2;
 
   width: min(1450px, 100%);
-
   margin: 0 auto;
 }
 
@@ -170,26 +157,20 @@
 
 .bloggrid-header {
   max-width: 850px;
-
-  margin: 0 auto 55px;
-
+  margin: 0 auto 58px;
   text-align: center;
 }
 
 .bloggrid-eyebrow {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 10px;
 
-  padding: 7px 16px;
-
-  margin-bottom: 17px;
+  padding: 7px 17px;
+  margin-bottom: 18px;
 
   border: 1px solid rgba(233, 78, 119, 0.18);
-
   border-radius: 50px;
 
   background: rgba(233, 78, 119, 0.06);
@@ -197,16 +178,13 @@
   color: var(--blog-primary);
 
   font-size: 0.7rem;
-
   font-weight: 800;
-
   letter-spacing: 2px;
 }
 
 .bloggrid-eyebrow-line {
   width: 22px;
   height: 1px;
-
   background: var(--blog-primary);
 }
 
@@ -215,20 +193,15 @@
 
   color: var(--blog-navy);
 
-  font-size: clamp(2rem, 4vw, 3.1rem);
-
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
-
   line-height: 1.2;
-
-  letter-spacing: -1px;
+  letter-spacing: -1.2px;
 }
 
 .bloggrid-main-title span {
   position: relative;
-
   display: inline-block;
-
   color: var(--blog-primary);
 }
 
@@ -236,10 +209,8 @@
   content: "";
 
   position: absolute;
-
   left: 0;
   right: 0;
-
   bottom: -8px;
 
   height: 4px;
@@ -256,22 +227,18 @@
 
 .bloggrid-subtitle {
   max-width: 700px;
-
   margin: 22px auto 0;
 
   color: var(--blog-muted);
 
   font-size: 0.98rem;
-
   line-height: 1.8;
 }
 
 .bloggrid-title-decoration {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 8px;
 
   margin-top: 24px;
@@ -311,21 +278,21 @@
   background: var(--blog-primary);
 
   box-shadow:
-    0 0 0 5px rgba(233, 78, 119, 0.10),
+    0 0 0 5px rgba(233, 78, 119, 0.1),
     0 0 15px rgba(233, 78, 119, 0.25);
 }
 
 /* =========================================================
-   BLOG LIST
+   BLOG GRID
 ========================================================= */
 
 .bloggrid-list {
   display: grid;
 
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+    repeat(3, minmax(0, 1fr));
 
-  gap: 28px;
+  gap: 30px;
 
   align-items: stretch;
 }
@@ -338,7 +305,6 @@
   position: relative;
 
   display: flex;
-
   flex-direction: column;
 
   width: 100%;
@@ -346,11 +312,11 @@
 
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.98);
+  background:
+    rgba(255, 255, 255, 0.98);
 
   border: 1px solid var(--blog-border);
-
-  border-radius: 20px;
+  border-radius: 22px;
 
   box-shadow:
     0 10px 35px rgba(6, 44, 67, 0.06);
@@ -364,8 +330,8 @@
   border-color: rgba(233, 78, 119, 0.35);
 
   box-shadow:
-    0 22px 50px rgba(6, 44, 67, 0.12),
-    0 8px 25px rgba(233, 78, 119, 0.07);
+    0 25px 60px rgba(6, 44, 67, 0.13),
+    0 10px 30px rgba(233, 78, 119, 0.08);
 }
 
 /* =========================================================
@@ -376,8 +342,7 @@
   position: relative;
 
   width: 100%;
-
-  height: 225px;
+  height: 245px;
 
   overflow: hidden;
 
@@ -398,7 +363,7 @@
   object-fit: cover;
 
   transition:
-    transform 0.65s cubic-bezier(
+    transform 0.7s cubic-bezier(
       0.22,
       1,
       0.36,
@@ -416,7 +381,6 @@
 
 .bloggrid-image-overlay {
   position: absolute;
-
   inset: 0;
 
   z-index: 1;
@@ -424,9 +388,9 @@
   background:
     linear-gradient(
       180deg,
-      rgba(3, 27, 43, 0.05) 0%,
-      rgba(3, 27, 43, 0.12) 45%,
-      rgba(3, 27, 43, 0.58) 100%
+      rgba(3, 27, 43, 0.04) 0%,
+      rgba(3, 27, 43, 0.08) 35%,
+      rgba(3, 27, 43, 0.7) 100%
     );
 }
 
@@ -447,7 +411,7 @@
     linear-gradient(
       90deg,
       transparent,
-      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.2),
       transparent
     );
 
@@ -459,7 +423,7 @@
 }
 
 /* =========================================================
-   DATE
+   DATE BADGE
 ========================================================= */
 
 .bloggrid-date {
@@ -471,43 +435,39 @@
   left: 16px;
 
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
-  width: 57px;
-  min-height: 62px;
+  width: 58px;
+  min-height: 64px;
 
   padding: 7px;
 
-  border-radius: 13px;
+  border-radius: 14px;
 
   background:
     linear-gradient(
       145deg,
-      var(--blog-primary),
-      var(--blog-primary-dark)
+      #ffffff,
+      #fff8fa
     );
 
-  color: var(--blog-white);
+  color: var(--blog-primary);
 
   text-align: center;
 
   box-shadow:
-    0 10px 25px rgba(233, 78, 119, 0.30);
+    0 10px 25px rgba(3, 27, 43, 0.16);
 
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(12px);
 }
 
 .bloggrid-day {
   display: block;
 
   font-size: 1.25rem;
-
   font-weight: 800;
-
   line-height: 1.1;
 }
 
@@ -517,12 +477,94 @@
   margin-top: 3px;
 
   font-size: 0.62rem;
-
-  font-weight: 700;
+  font-weight: 800;
 
   letter-spacing: 1px;
-
   text-transform: uppercase;
+}
+
+/* =========================================================
+   CATEGORY BADGE
+========================================================= */
+
+.bloggrid-category {
+  position: absolute;
+
+  z-index: 4;
+
+  left: 16px;
+  bottom: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  max-width: calc(100% - 145px);
+
+  padding: 8px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--blog-primary),
+      var(--blog-primary-dark)
+    );
+
+  color: #ffffff;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  box-shadow:
+    0 8px 20px rgba(233, 78, 119, 0.3);
+
+  backdrop-filter: blur(8px);
+}
+
+.bloggrid-category-icon {
+  font-size: 0.65rem;
+}
+
+/* =========================================================
+   READ TIME
+========================================================= */
+
+.bloggrid-readtime {
+  position: absolute;
+
+  z-index: 4;
+
+  right: 16px;
+  bottom: 16px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50px;
+
+  background: rgba(3, 27, 43, 0.62);
+
+  color: #ffffff;
+
+  font-size: 0.65rem;
+  font-weight: 700;
+
+  backdrop-filter: blur(8px);
+}
+
+.bloggrid-readtime-icon {
+  font-size: 0.8rem;
 }
 
 /* =========================================================
@@ -534,24 +576,21 @@
 
   z-index: 4;
 
-  right: 15px;
-  bottom: 14px;
+  top: 16px;
+  right: 16px;
 
-  padding: 5px 10px;
+  padding: 6px 10px;
 
   border: 1px solid rgba(255, 255, 255, 0.25);
-
   border-radius: 50px;
 
-  background: rgba(3, 27, 43, 0.55);
+  background: rgba(3, 27, 43, 0.48);
 
   color: #ffffff;
 
   font-size: 0.58rem;
-
   font-weight: 800;
-
-  letter-spacing: 1.6px;
+  letter-spacing: 1.5px;
 
   backdrop-filter: blur(8px);
 }
@@ -562,12 +601,10 @@
 
 .bloggrid-content {
   display: flex;
-
   flex: 1;
-
   flex-direction: column;
 
-  padding: 22px 21px 24px;
+  padding: 22px 22px 25px;
 }
 
 /* =========================================================
@@ -576,45 +613,60 @@
 
 .bloggrid-meta {
   display: flex;
-
   align-items: center;
-  justify-content: space-between;
 
-  gap: 10px;
+  gap: 9px;
 
-  margin-bottom: 13px;
+  margin-bottom: 14px;
 
   color: var(--blog-muted);
 
   font-size: 0.68rem;
-
   font-weight: 600;
 }
 
 .bloggrid-meta-item {
   display: inline-flex;
-
   align-items: center;
 
   gap: 5px;
 
   min-width: 0;
+
+  overflow: hidden;
+}
+
+.bloggrid-meta-item > span:last-child {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .bloggrid-meta-icon {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  width: 22px;
-  height: 22px;
+  flex-shrink: 0;
+
+  width: 23px;
+  height: 23px;
 
   border-radius: 7px;
 
   background: rgba(233, 78, 119, 0.08);
 
   font-size: 0.65rem;
+}
+
+.bloggrid-meta-divider {
+  width: 1px;
+  height: 17px;
+
+  flex-shrink: 0;
+
+  background: var(--blog-border);
 }
 
 /* =========================================================
@@ -638,11 +690,10 @@
 
   color: var(--blog-navy);
 
-  font-size: 1.05rem;
-
+  font-size: 1.12rem;
   font-weight: 800;
 
-  line-height: 1.45;
+  line-height: 1.4;
 
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -660,7 +711,6 @@
 
 .bloggrid-divider {
   display: flex;
-
   align-items: center;
 
   margin: 15px 0 14px;
@@ -685,7 +735,7 @@
 }
 
 .bloggrid-card:hover .bloggrid-divider span {
-  width: 70px;
+  width: 72px;
 }
 
 /* =========================================================
@@ -699,12 +749,13 @@
 
   flex-grow: 1;
 
-  margin: 0 0 20px;
+  min-height: 72px;
+
+  margin: 0 0 21px;
 
   color: var(--blog-muted);
 
   font-size: 0.83rem;
-
   line-height: 1.75;
 
   -webkit-line-clamp: 3;
@@ -717,10 +768,7 @@
 
 .bloggrid-readmore {
   display: inline-flex;
-
   align-items: center;
-
-  justify-content: space-between;
 
   gap: 10px;
 
@@ -728,8 +776,7 @@
 
   color: var(--blog-primary);
 
-  font-size: 0.8rem;
-
+  font-size: 0.81rem;
   font-weight: 800;
 
   text-decoration: none;
@@ -741,24 +788,22 @@
 
 .bloggrid-readmore:hover {
   color: var(--blog-primary-dark);
-
-  gap: 14px;
+  gap: 13px;
 }
 
 .bloggrid-readmore-arrow {
   display: inline-flex;
-
   align-items: center;
   justify-content: center;
 
-  width: 27px;
-  height: 27px;
+  width: 30px;
+  height: 30px;
 
   border-radius: 50%;
 
-  background: rgba(233, 78, 119, 0.09);
+  background: rgba(233, 78, 119, 0.1);
 
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 
   transition:
     transform 0.3s ease,
@@ -770,7 +815,6 @@
   transform: translateX(3px);
 
   background: var(--blog-primary);
-
   color: #ffffff;
 }
 
@@ -806,7 +850,7 @@
 }
 
 /* =========================================================
-   EMPTY STATE
+   EMPTY / ERROR
 ========================================================= */
 
 .bloggrid-empty,
@@ -818,10 +862,9 @@
   padding: 50px 30px;
 
   border: 1px solid var(--blog-border);
+  border-radius: 22px;
 
-  border-radius: 20px;
-
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.96);
 
   text-align: center;
 
@@ -829,9 +872,9 @@
     0 15px 40px rgba(6, 44, 67, 0.06);
 }
 
-.bloggrid-empty-icon {
+.bloggrid-empty-icon,
+.bloggrid-error-icon {
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -846,7 +889,12 @@
 
   color: var(--blog-primary);
 
-  font-size: 1.6rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.bloggrid-error-icon {
+  border-radius: 50%;
 }
 
 .bloggrid-empty h3,
@@ -856,7 +904,6 @@
   color: var(--blog-navy);
 
   font-size: 1.25rem;
-
   font-weight: 800;
 }
 
@@ -867,28 +914,7 @@
   color: var(--blog-muted);
 
   font-size: 0.9rem;
-}
-
-.bloggrid-error-icon {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 55px;
-  height: 55px;
-
-  margin: 0 auto 18px;
-
-  border-radius: 50%;
-
-  background: rgba(233, 78, 119, 0.10);
-
-  color: var(--blog-primary);
-
-  font-size: 1.4rem;
-
-  font-weight: 800;
+  line-height: 1.6;
 }
 
 /* =========================================================
@@ -899,16 +925,13 @@
   min-height: 300px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 }
 
 .bloggrid-loading {
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
 
   gap: 15px;
@@ -920,7 +943,6 @@
   color: var(--blog-muted);
 
   font-size: 0.9rem;
-
   font-weight: 600;
 }
 
@@ -931,9 +953,7 @@
   display: block;
 
   border: 4px solid rgba(233, 78, 119, 0.15);
-
   border-top-color: var(--blog-primary);
-
   border-right-color: var(--blog-cyan);
 
   border-radius: 50%;
@@ -947,13 +967,12 @@
 
 .bloggrid-bottom {
   display: flex;
-
   align-items: center;
   justify-content: center;
 
   gap: 15px;
 
-  margin-top: 55px;
+  margin-top: 58px;
 }
 
 .bloggrid-bottom > span {
@@ -983,7 +1002,6 @@
   color: var(--blog-muted);
 
   font-size: 0.78rem;
-
   font-weight: 500;
 
   text-align: center;
@@ -991,7 +1009,6 @@
 
 .bloggrid-bottom strong {
   color: var(--blog-primary);
-
   font-weight: 800;
 }
 
@@ -1025,13 +1042,11 @@
   0%,
   100% {
     transform: scale(1);
-
     opacity: 0.55;
   }
 
   50% {
     transform: scale(1.12);
-
     opacity: 0.85;
   }
 }
@@ -1052,22 +1067,23 @@
   }
 
   .bloggrid-list {
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
-
     gap: 24px;
+  }
+
+  .bloggrid-image {
+    height: 225px;
+  }
+
+  .bloggrid-content {
+    padding: 21px 20px 24px;
   }
 }
 
 /* =========================================================
-   1000px
+   1050px
 ========================================================= */
 
-@media (max-width: 1000px) {
-  .bloggrid-section {
-    padding: 70px 20px;
-  }
-
+@media (max-width: 1050px) {
   .bloggrid-list {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
@@ -1075,58 +1091,136 @@
     gap: 24px;
   }
 
-  .bloggrid-card {
-    max-width: none;
+  .bloggrid-image {
+    height: 240px;
   }
 }
 
 /* =========================================================
-   700px
+   768px
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .bloggrid-section {
-    padding: 60px 15px;
+    padding: 65px 18px;
   }
 
   .bloggrid-header {
-    margin-bottom: 38px;
-  }
-
-  .bloggrid-eyebrow {
-    font-size: 0.62rem;
-
-    letter-spacing: 1.5px;
+    margin-bottom: 40px;
   }
 
   .bloggrid-main-title {
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .bloggrid-subtitle {
+    max-width: 600px;
+
     margin-top: 18px;
 
-    font-size: 0.87rem;
-
-    line-height: 1.7;
+    font-size: 0.9rem;
   }
 
   .bloggrid-list {
     grid-template-columns: 1fr;
+    gap: 24px;
 
-    gap: 22px;
-  }
-
-  .bloggrid-card {
-    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
   }
 
   .bloggrid-image {
-    height: 230px;
+    height: 280px;
   }
 
   .bloggrid-content {
-    padding: 21px 19px 23px;
+    padding: 22px 22px 25px;
+  }
+}
+
+/* =========================================================
+   600px
+========================================================= */
+
+@media (max-width: 600px) {
+  .bloggrid-section {
+    padding: 55px 14px;
+  }
+
+  .bloggrid-eyebrow {
+    padding: 6px 13px;
+
+    font-size: 0.62rem;
+    letter-spacing: 1.5px;
+  }
+
+  .bloggrid-eyebrow-line {
+    width: 16px;
+  }
+
+  .bloggrid-main-title {
+    font-size: 2rem;
+    letter-spacing: -0.7px;
+  }
+
+  .bloggrid-main-title span::after {
+    bottom: -6px;
+    height: 3px;
+  }
+
+  .bloggrid-subtitle {
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .bloggrid-image {
+    height: 250px;
+  }
+
+  .bloggrid-date {
+    top: 13px;
+    left: 13px;
+
+    width: 54px;
+    min-height: 59px;
+  }
+
+  .bloggrid-image-brand {
+    top: 13px;
+    right: 13px;
+  }
+
+  .bloggrid-category {
+    left: 13px;
+    bottom: 13px;
+
+    max-width: calc(100% - 135px);
+
+    padding: 7px 11px;
+
+    font-size: 0.62rem;
+  }
+
+  .bloggrid-readtime {
+    right: 13px;
+    bottom: 13px;
+
+    padding: 6px 9px;
+
+    font-size: 0.6rem;
+  }
+
+  .bloggrid-meta {
+    font-size: 0.64rem;
+  }
+
+  .bloggrid-title {
+    font-size: 1.04rem;
+  }
+
+  .bloggrid-desc {
+    font-size: 0.79rem;
+    line-height: 1.7;
   }
 }
 
@@ -1140,35 +1234,22 @@
   }
 
   .bloggrid-header {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
   }
 
   .bloggrid-eyebrow {
-    padding: 6px 12px;
+    padding: 6px 11px;
 
     font-size: 0.55rem;
-
     letter-spacing: 1.1px;
   }
 
-  .bloggrid-eyebrow-line {
-    width: 15px;
-  }
-
   .bloggrid-main-title {
-    font-size: 1.65rem;
-
-    letter-spacing: -0.5px;
-  }
-
-  .bloggrid-main-title span::after {
-    bottom: -6px;
-
-    height: 3px;
+    font-size: 1.7rem;
   }
 
   .bloggrid-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.79rem;
   }
 
   .bloggrid-title-decoration {
@@ -1179,41 +1260,34 @@
     width: 35px;
   }
 
+  .bloggrid-list {
+    gap: 20px;
+  }
+
+  .bloggrid-card {
+    border-radius: 18px;
+  }
+
   .bloggrid-image {
-    height: 205px;
+    height: 215px;
   }
 
-  .bloggrid-date {
-    top: 12px;
-    left: 12px;
-
-    width: 52px;
-    min-height: 57px;
-  }
-
-  .bloggrid-day {
-    font-size: 1.1rem;
-  }
-
-  .bloggrid-month {
-    font-size: 0.55rem;
-  }
-
-  .bloggrid-image-brand {
-    right: 11px;
-    bottom: 11px;
-
-    font-size: 0.52rem;
+  .bloggrid-content {
+    padding: 19px 17px 22px;
   }
 
   .bloggrid-meta {
     align-items: flex-start;
 
-    flex-direction: column;
+    flex-wrap: wrap;
 
-    gap: 7px;
+    gap: 6px;
 
-    font-size: 0.64rem;
+    margin-bottom: 12px;
+  }
+
+  .bloggrid-meta-divider {
+    display: none;
   }
 
   .bloggrid-title {
@@ -1221,13 +1295,22 @@
   }
 
   .bloggrid-desc {
-    font-size: 0.78rem;
+    min-height: auto;
 
-    line-height: 1.7;
+    margin-bottom: 18px;
+
+    font-size: 0.76rem;
   }
 
   .bloggrid-readmore {
-    font-size: 0.76rem;
+    font-size: 0.75rem;
+  }
+
+  .bloggrid-readmore-arrow {
+    width: 27px;
+    height: 27px;
+
+    font-size: 0.82rem;
   }
 
   .bloggrid-bottom {
@@ -1239,7 +1322,7 @@
   }
 
   .bloggrid-bottom p {
-    font-size: 0.65rem;
+    font-size: 0.63rem;
   }
 }
 
@@ -1257,23 +1340,66 @@
   }
 
   .bloggrid-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.74rem;
   }
 
   .bloggrid-image {
-    height: 185px;
+    height: 190px;
   }
 
   .bloggrid-content {
-    padding: 18px 15px 20px;
+    padding: 17px 14px 19px;
+  }
+
+  .bloggrid-date {
+    top: 10px;
+    left: 10px;
+
+    width: 50px;
+    min-height: 55px;
+  }
+
+  .bloggrid-day {
+    font-size: 1.05rem;
+  }
+
+  .bloggrid-month {
+    font-size: 0.52rem;
+  }
+
+  .bloggrid-image-brand {
+    top: 10px;
+    right: 10px;
+
+    padding: 5px 8px;
+
+    font-size: 0.5rem;
+  }
+
+  .bloggrid-category {
+    left: 10px;
+    bottom: 10px;
+
+    padding: 6px 9px;
+
+    font-size: 0.56rem;
+  }
+
+  .bloggrid-readtime {
+    right: 10px;
+    bottom: 10px;
+
+    padding: 5px 8px;
+
+    font-size: 0.55rem;
   }
 
   .bloggrid-title {
-    font-size: 0.92rem;
+    font-size: 0.91rem;
   }
 
   .bloggrid-desc {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
   }
 
   .bloggrid-empty,
@@ -1283,7 +1409,23 @@
 }
 
 /* =========================================================
-   ACCESSIBILITY / REDUCED MOTION
+   ACCESSIBILITY
+========================================================= */
+
+.bloggrid-card:focus-within {
+  outline: 3px solid rgba(233, 78, 119, 0.2);
+  outline-offset: 4px;
+}
+
+.bloggrid-title-link:focus-visible,
+.bloggrid-readmore:focus-visible {
+  outline: 2px solid var(--blog-primary);
+  outline-offset: 4px;
+  border-radius: 5px;
+}
+
+/* =========================================================
+   REDUCED MOTION
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
