@@ -1,4 +1,6 @@
+
 import React, { useEffect, useState } from "react";
+import { Editor } from "@tinymce/tinymce-react";
 import axios from "axios";
 import {
   MoreVertical,
@@ -20,19 +22,16 @@ import {
   Image as ImageIcon,
   ShieldCheck,
 } from "lucide-react";
-
 import BASE_URL from "../../Api";
 import "./PreviewVisa.css";
 
-const PreviewVisa = () => {
-  /* =========================================================
-     STATES
-  ========================================================= */
+const TINYMCE_API_KEY =
+  "8hswbe7bfeeneui9eb9gjgsym8ku30nx5gwre9808ajdzniu";
 
+const PreviewVisa = () => {
   const [visas, setVisas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
   const [openMenu, setOpenMenu] = useState(null);
 
   const [editData, setEditData] = useState(null);
@@ -42,16 +41,11 @@ const PreviewVisa = () => {
   const [bannerPreview, setBannerPreview] = useState("");
 
   const [showDrawer, setShowDrawer] = useState(false);
-
   const [activeEditSection, setActiveEditSection] =
     useState("basic");
-
   const [saving, setSaving] = useState(false);
 
-  /* =========================================================
-     FETCH VISAS
-  ========================================================= */
-
+  // Fetch visas
   useEffect(() => {
     fetchVisas();
   }, []);
@@ -76,18 +70,7 @@ const PreviewVisa = () => {
     }
   };
 
-  /* =========================================================
-     MENU
-  ========================================================= */
-
-  const toggleMenu = (id) => {
-    setOpenMenu(openMenu === id ? null : id);
-  };
-
-  /* =========================================================
-     IMAGE URL
-  ========================================================= */
-
+  // Image URL helper
   const getImageUrl = (image) => {
     if (!image) return "";
 
@@ -100,7 +83,6 @@ const PreviewVisa = () => {
     }
 
     const serverUrl = BASE_URL.replace(/\/api\/?$/, "");
-
     const cleanPath = image
       .replace(/\\/g, "/")
       .replace(/^\/+/, "");
@@ -108,14 +90,12 @@ const PreviewVisa = () => {
     return `${serverUrl}/${cleanPath}`;
   };
 
-  /* =========================================================
-     OPEN EDIT
-  ========================================================= */
-
+  // Open edit modal
   const handleEditOpen = (visa) => {
     const clonedVisa = JSON.parse(JSON.stringify(visa));
 
     setEditData(visa);
+
     setEditForm({
       ...clonedVisa,
       visaTypes: Array.isArray(clonedVisa.visaTypes)
@@ -140,22 +120,19 @@ const PreviewVisa = () => {
     setActiveEditSection("basic");
     setOpenMenu(null);
     setShowDrawer(true);
-
     document.body.style.overflow = "hidden";
   };
 
-  /* =========================================================
-     CLOSE EDIT
-  ========================================================= */
-
+  // Close edit modal
   const closeDrawer = () => {
+    if (saving) return;
+
     setShowDrawer(false);
     setEditData(null);
     setEditForm({});
     setBannerFile(null);
     setBannerPreview("");
     setActiveEditSection("basic");
-
     document.body.style.overflow = "";
   };
 
@@ -165,10 +142,7 @@ const PreviewVisa = () => {
     };
   }, []);
 
-  /* =========================================================
-     GENERAL INPUT
-  ========================================================= */
-
+  // General field update
   const handleFieldChange = (field, value) => {
     setEditForm((prev) => ({
       ...prev,
@@ -176,10 +150,7 @@ const PreviewVisa = () => {
     }));
   };
 
-  /* =========================================================
-     VISA TYPE UPDATE
-  ========================================================= */
-
+  // Update visa type
   const updateVisaType = (index, field, value) => {
     setEditForm((prev) => {
       const list = [...(prev.visaTypes || [])];
@@ -196,10 +167,7 @@ const PreviewVisa = () => {
     });
   };
 
-  /* =========================================================
-     ADD VISA TYPE
-  ========================================================= */
-
+  // Add visa type
   const addVisaType = () => {
     setEditForm((prev) => ({
       ...prev,
@@ -218,10 +186,7 @@ const PreviewVisa = () => {
     }));
   };
 
-  /* =========================================================
-     REMOVE VISA TYPE
-  ========================================================= */
-
+  // Remove visa type
   const removeVisaType = (index) => {
     setEditForm((prev) => ({
       ...prev,
@@ -231,10 +196,7 @@ const PreviewVisa = () => {
     }));
   };
 
-  /* =========================================================
-     BANNER IMAGE
-  ========================================================= */
-
+  // Banner upload
   const handleBannerChange = (event) => {
     const file = event.target.files?.[0];
 
@@ -242,34 +204,39 @@ const PreviewVisa = () => {
 
     if (!file.type.startsWith("image/")) {
       alert("Please select an image file.");
+      event.target.value = "";
       return;
     }
 
     if (file.size > 5 * 1024 * 1024) {
       alert("Image size must be less than 5MB.");
+      event.target.value = "";
       return;
     }
 
-    setBannerFile(file);
-
-    const preview = URL.createObjectURL(file);
-    setBannerPreview(preview);
-  };
-
-  const removeBanner = () => {
-    setBannerFile(null);
-
-    if (editData?.bannerUrl) {
-      setBannerPreview(getImageUrl(editData.bannerUrl));
-    } else {
-      setBannerPreview("");
+    if (bannerPreview.startsWith("blob:")) {
+      URL.revokeObjectURL(bannerPreview);
     }
+
+    setBannerFile(file);
+    setBannerPreview(URL.createObjectURL(file));
   };
 
-  /* =========================================================
-     DELETE
-  ========================================================= */
+  // Remove newly selected banner
+  const removeBanner = () => {
+    if (bannerPreview.startsWith("blob:")) {
+      URL.revokeObjectURL(bannerPreview);
+    }
 
+    setBannerFile(null);
+    setBannerPreview(
+      editData?.bannerUrl
+        ? getImageUrl(editData.bannerUrl)
+        : ""
+    );
+  };
+
+  // Delete visa
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this visa?")) return;
 
@@ -285,10 +252,7 @@ const PreviewVisa = () => {
     }
   };
 
-  /* =========================================================
-     PUBLISH TOGGLE
-  ========================================================= */
-
+  // Publish / unpublish visa
   const handlePublishToggle = async (id) => {
     try {
       const { data } = await axios.patch(
@@ -313,43 +277,31 @@ const PreviewVisa = () => {
     }
   };
 
-  /* =========================================================
-     UPDATE VISA
-  ========================================================= */
-
+  // Save visa
   const handleUpdate = async () => {
-    if (!editData?._id) return;
+    if (!editData?._id || saving) return;
 
     try {
       setSaving(true);
 
       const formData = new FormData();
 
-      formData.append(
-        "country",
-        editForm.country || ""
-      );
-
+      formData.append("country", editForm.country || "");
       formData.append(
         "processingTime",
         editForm.processingTime || ""
       );
-
       formData.append(
         "startingPrice",
         editForm.startingPrice || ""
       );
-
       formData.append(
         "approvalTagline",
         editForm.approvalTagline || ""
       );
+      formData.append("expert", editForm.expert || "");
 
-      formData.append(
-        "expert",
-        editForm.expert || ""
-      );
-
+      // TinyMCE HTML is saved in the existing description field.
       formData.append(
         "description",
         editForm.description || ""
@@ -359,7 +311,6 @@ const PreviewVisa = () => {
         "isPopular",
         String(Boolean(editForm.isPopular))
       );
-
       formData.append(
         "isNormal",
         String(Boolean(editForm.isNormal))
@@ -369,17 +320,14 @@ const PreviewVisa = () => {
         "visaTypes",
         JSON.stringify(editForm.visaTypes || [])
       );
-
       formData.append(
         "documents",
         JSON.stringify(editForm.documents || [])
       );
-
       formData.append(
         "faqs",
         JSON.stringify(editForm.faqs || [])
       );
-
       formData.append(
         "infos",
         JSON.stringify(editForm.infos || [])
@@ -402,7 +350,13 @@ const PreviewVisa = () => {
       if (data.success) {
         alert("Visa Updated Successfully!");
 
-        closeDrawer();
+        setShowDrawer(false);
+        setEditData(null);
+        setEditForm({});
+        setBannerFile(null);
+        setBannerPreview("");
+        document.body.style.overflow = "";
+
         fetchVisas();
       } else {
         alert(data.message || "Failed to update visa");
@@ -419,22 +373,13 @@ const PreviewVisa = () => {
     }
   };
 
-  /* =========================================================
-     FORMAT PRICE
-  ========================================================= */
-
+  // Format Indian currency
   const formatPrice = (price) => {
-    if (
-      price === undefined ||
-      price === null ||
-      price === ""
-    ) {
+    if (price === undefined || price === null || price === "") {
       return "0";
     }
 
-    const numeric = Number(
-      String(price).replace(/,/g, "")
-    );
+    const numeric = Number(String(price).replace(/,/g, ""));
 
     if (Number.isNaN(numeric)) {
       return price;
@@ -443,97 +388,91 @@ const PreviewVisa = () => {
     return numeric.toLocaleString("en-IN");
   };
 
-  /* =========================================================
-     LOADING
-  ========================================================= */
+  // Reusable text field
+  const renderInput = (
+    label,
+    field,
+    placeholder,
+    Icon = null
+  ) => (
+    <div className="pv-form-group" key={field}>
+      <label>{label}</label>
+
+      <div
+        className={
+          Icon ? "pv-input-icon-wrap" : "pv-input-wrap"
+        }
+      >
+        {Icon && <Icon />}
+
+        <input
+          className={
+            Icon
+              ? "pv-input"
+              : "pv-input pv-plain-input"
+          }
+          value={editForm[field] ?? ""}
+          onChange={(e) =>
+            handleFieldChange(field, e.target.value)
+          }
+          placeholder={placeholder}
+        />
+      </div>
+    </div>
+  );
 
   if (loading) {
     return (
       <section className="pv-wrapper">
         <div className="pv-loading">
-          <span className="pv-loading-spinner"></span>
+          <span className="pv-loading-spinner" />
           Loading visa data...
         </div>
       </section>
     );
   }
 
-  /* =========================================================
-     ERROR
-  ========================================================= */
-
   if (error) {
     return (
       <section className="pv-wrapper">
-        <div className="pv-error">
-          {error}
-        </div>
+        <div className="pv-error">{error}</div>
+
+        <button className="pv-btn" onClick={fetchVisas}>
+          Try Again
+        </button>
       </section>
     );
   }
 
   return (
     <section className="pv-wrapper">
-
-      {/* =====================================================
-          HEADER
-      ===================================================== */}
-
+      {/* Header */}
       <div className="pv-header">
-
         <div className="pv-header-left">
-
           <h1>
             Visa Management
-
-            <span className="pv-sub">
-              Preview
-            </span>
+            <span className="pv-sub">Preview</span>
           </h1>
 
-          <p>
-            Manage, update and publish your visa
-            information.
-          </p>
-
+          <p>Manage, update and publish your visa information.</p>
         </div>
 
         <div className="pv-header-right">
-
-          <button
-            className="pv-btn"
-            onClick={fetchVisas}
-          >
+          <button className="pv-btn" onClick={fetchVisas}>
             Refresh
           </button>
-
         </div>
-
       </div>
 
-      {/* =====================================================
-          VISA GRID
-      ===================================================== */}
-
+      {/* Visa cards */}
       <div className="pv-grid">
-
         {visas.map((visa) => (
-
-          <article
-            className="pv-card"
-            key={visa._id}
-          >
-
-            {/* Banner */}
-
+          <article className="pv-card" key={visa._id}>
             <div className="pv-card-banner">
-
               {visa.bannerUrl ? (
                 <img
-                  src={getImageUrl(
-                    visa.bannerUrl
-                  )}
-                  alt={visa.country}
+                  src={getImageUrl(visa.bannerUrl)}
+                  alt={visa.country || "Visa banner"}
                 />
               ) : (
                 <div className="pv-card-no-image">
@@ -543,60 +482,52 @@ const PreviewVisa = () => {
 
               <div
                 className={`pv-banner-status ${
-                  visa.published
-                    ? ""
-                    : "unpublished"
+                  visa.published ? "" : "unpublished"
                 }`}
               >
-                <span></span>
-
-                {visa.published
-                  ? "Published"
-                  : "Draft"}
+                <span />
+                {visa.published ? "Published" : "Draft"}
               </div>
 
               <div className="pv-menu">
-
                 <button
+                  type="button"
                   className="pv-menu-btn"
                   onClick={() =>
-                    toggleMenu(visa._id)
+                    setOpenMenu(
+                      openMenu === visa._id ? null : visa._id
+                    )
                   }
+                  aria-label="Visa actions"
                 >
                   <MoreVertical />
                 </button>
 
                 {openMenu === visa._id && (
-
                   <div className="pv-dropdown">
-
                     <button
+                      type="button"
                       className="pv-dropdown-item pv-edit"
-                      onClick={() =>
-                        handleEditOpen(visa)
-                      }
+                      onClick={() => handleEditOpen(visa)}
                     >
-                      ✏ Edit
+                      <FileText />
+                      Edit
                     </button>
 
                     <button
+                      type="button"
                       className="pv-dropdown-item pv-delete"
-                      onClick={() =>
-                        handleDelete(
-                          visa._id
-                        )
-                      }
+                      onClick={() => handleDelete(visa._id)}
                     >
                       <Trash2 className="pv-icon pv-icon-red" />
                       Delete
                     </button>
 
                     <button
+                      type="button"
                       className="pv-dropdown-item pv-publish"
                       onClick={() =>
-                        handlePublishToggle(
-                          visa._id
-                        )
+                        handlePublishToggle(visa._id)
                       }
                     >
                       <CheckCircle2
@@ -606,33 +537,19 @@ const PreviewVisa = () => {
                             : "pv-icon-gray"
                         }`}
                       />
-
-                      {visa.published
-                        ? "Unpublish"
-                        : "Publish"}
+                      {visa.published ? "Unpublish" : "Publish"}
                     </button>
-
                   </div>
-
                 )}
-
               </div>
-
             </div>
 
-            {/* Card Body */}
-
             <div className="pv-card-body">
-
               <div className="pv-card-top">
-
                 <div className="pv-country">
-
                   {visa.bannerUrl ? (
                     <img
-                      src={getImageUrl(
-                        visa.bannerUrl
-                      )}
+                      src={getImageUrl(visa.bannerUrl)}
                       className="pv-flag"
                       alt=""
                     />
@@ -643,67 +560,46 @@ const PreviewVisa = () => {
                   <h2 className="pv-country-name">
                     {visa.country}
                   </h2>
-
                 </div>
-
               </div>
 
               <div className="pv-approval">
-
-                <span className="pv-approval-dot"></span>
-
+                <span className="pv-approval-dot" />
                 {visa.approvalTagline ||
                   "Visa assistance available"}
-
               </div>
 
               <div className="pv-details">
-
                 <div className="pv-detail">
-
                   <DollarSign className="pv-ico" />
-
                   <div>
                     <div className="pv-detail-label">
                       Starting From
                     </div>
-
                     <div className="pv-detail-value">
-                      ₹
-                      {formatPrice(
-                        visa.startingPrice
-                      )}
+                      ₹{formatPrice(visa.startingPrice)}
                     </div>
                   </div>
-
                 </div>
 
                 <div className="pv-detail">
-
                   <Clock className="pv-ico" />
-
                   <div>
                     <div className="pv-detail-label">
                       Processing Time
                     </div>
-
                     <div className="pv-detail-value">
-                      {visa.processingTime ||
-                        "N/A"}
+                      {visa.processingTime || "N/A"}
                     </div>
                   </div>
-
                 </div>
 
                 <div className="pv-detail">
-
                   <CalendarDays className="pv-ico" />
-
                   <div>
                     <div className="pv-detail-label">
                       Posted On
                     </div>
-
                     <div className="pv-detail-value">
                       {visa.createdAt
                         ? new Date(
@@ -712,476 +608,199 @@ const PreviewVisa = () => {
                         : "N/A"}
                     </div>
                   </div>
-
                 </div>
 
                 <div className="pv-detail">
-
                   <User className="pv-ico" />
-
                   <div>
-                    <div className="pv-detail-label">
-                      Expert
-                    </div>
-
+                    <div className="pv-detail-label">Expert</div>
                     <div className="pv-detail-value">
                       {visa.expert || "N/A"}
                     </div>
                   </div>
-
                 </div>
-
               </div>
 
               {visa.visaTypes?.length > 0 && (
-
                 <div className="pv-type-wrap">
-
                   <h3 className="pv-type-title">
                     <Globe2 className="pv-ico" />
                     Visa Type(s)
                   </h3>
 
                   <div className="pv-type-list">
-
-                    {visa.visaTypes.map(
-                      (vt, index) => (
-
-                        <div
-                          className="pv-type-card"
-                          key={index}
-                        >
-
-                          <div className="pv-type-top">
-
-                            <div className="pv-type-name">
-                              {vt.name}
-                            </div>
-
-                            <div className="pv-type-fees">
-                              ₹
-                              {formatPrice(
-                                vt.fees
-                              )}
-                            </div>
-
+                    {visa.visaTypes.map((vt, index) => (
+                      <div className="pv-type-card" key={index}>
+                        <div className="pv-type-top">
+                          <div className="pv-type-name">
+                            {vt.name}
                           </div>
-
-                          <div className="pv-type-meta">
-
-                            <span className="pv-chip pv-chip-cat">
-                              {vt.category ||
-                                "General"}
-                            </span>
-
-                            <span className="pv-chip pv-chip-entry">
-                              {vt.entryType ||
-                                "Standard"}
-                            </span>
-
+                          <div className="pv-type-fees">
+                            ₹{formatPrice(vt.fees)}
                           </div>
-
                         </div>
 
-                      )
-                    )}
-
+                        <div className="pv-type-meta">
+                          <span className="pv-chip pv-chip-cat">
+                            {vt.category || "General"}
+                          </span>
+                          <span className="pv-chip pv-chip-entry">
+                            {vt.entryType || "Standard"}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-
                 </div>
-
               )}
-
             </div>
-
           </article>
-
         ))}
-
       </div>
 
-      {/* =====================================================
-          EDIT VISA MODAL
-      ===================================================== */}
-
+      {/* Edit Visa modal */}
       {showDrawer && editData && (
-
         <div
           className="pv-edit-overlay"
           onMouseDown={(event) => {
-            if (
-              event.target ===
-              event.currentTarget
-            ) {
+            if (event.target === event.currentTarget) {
               closeDrawer();
             }
           }}
         >
-
           <div className="pv-edit-modal">
-
-            {/* =================================================
-                MODAL HEADER
-            ================================================= */}
-
+            {/* Modal header */}
             <div className="pv-edit-header">
-
               <div className="pv-edit-heading">
-
                 <div className="pv-edit-heading-icon">
                   <ShieldCheck />
                 </div>
 
                 <div>
-
-                  <h2>
-                    Edit Visa
-                  </h2>
-
-                  <p>
-                    Update visa information
-                    and settings
-                  </p>
-
+                  <h2>Edit Visa</h2>
+                  <p>Update visa information and settings</p>
                 </div>
-
               </div>
 
               <button
+                type="button"
                 className="pv-edit-close"
                 onClick={closeDrawer}
                 aria-label="Close"
+                disabled={saving}
               >
                 <X />
               </button>
-
             </div>
 
-            {/* =================================================
-                MODAL BODY
-            ================================================= */}
-
+            {/* Modal body */}
             <div className="pv-edit-body">
-
-              {/* =================================================
-                  LEFT NAVIGATION
-              ================================================= */}
-
+              {/* Sidebar navigation */}
               <aside className="pv-edit-sidebar">
-
-                <button
-                  className={`pv-edit-nav ${
-                    activeEditSection ===
-                    "basic"
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setActiveEditSection(
-                      "basic"
-                    )
-                  }
-                >
-                  <FileText />
-                  <span>
-                    Basic Information
-                  </span>
-                  <ChevronRight />
-                </button>
-
-                <button
-                  className={`pv-edit-nav ${
-                    activeEditSection ===
-                    "types"
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setActiveEditSection(
-                      "types"
-                    )
-                  }
-                >
-                  <List />
-                  <span>
-                    Visa Types
-                  </span>
-                  <ChevronRight />
-                </button>
-
-                <button
-                  className={`pv-edit-nav ${
-                    activeEditSection ===
-                    "documents"
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setActiveEditSection(
-                      "documents"
-                    )
-                  }
-                >
-                  <FileText />
-                  <span>
-                    Documents
-                  </span>
-                  <ChevronRight />
-                </button>
-
-                <button
-                  className={`pv-edit-nav ${
-                    activeEditSection ===
-                    "faqs"
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setActiveEditSection(
-                      "faqs"
-                    )
-                  }
-                >
-                  <HelpCircle />
-                  <span>
-                    FAQs
-                  </span>
-                  <ChevronRight />
-                </button>
-
-                <button
-                  className={`pv-edit-nav ${
-                    activeEditSection ===
-                    "infos"
-                      ? "active"
-                      : ""
-                  }`}
-                  onClick={() =>
-                    setActiveEditSection(
-                      "infos"
-                    )
-                  }
-                >
-                  <Info />
-                  <span>
-                    Additional Info
-                  </span>
-                  <ChevronRight />
-                </button>
-
+                {[
+                  {
+                    id: "basic",
+                    label: "Basic Information",
+                    Icon: FileText,
+                  },
+                  {
+                    id: "types",
+                    label: "Visa Types",
+                    Icon: List,
+                  },
+                  {
+                    id: "documents",
+                    label: "Documents",
+                    Icon: FileText,
+                  },
+                  {
+                    id: "faqs",
+                    label: "FAQs",
+                    Icon: HelpCircle,
+                  },
+                  {
+                    id: "infos",
+                    label: "Additional Info",
+                    Icon: Info,
+                  },
+                ].map(({ id, label, Icon }) => (
+                  <button
+                    type="button"
+                    key={id}
+                    className={`pv-edit-nav ${
+                      activeEditSection === id ? "active" : ""
+                    }`}
+                    onClick={() => setActiveEditSection(id)}
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                    <ChevronRight />
+                  </button>
+                ))}
               </aside>
 
-              {/* =================================================
-                  FORM CONTENT
-              ================================================= */}
-
+              {/* Form content */}
               <main className="pv-edit-content">
-
-                {/* ===============================================
-                    BASIC INFORMATION
-                =============================================== */}
-
-                {activeEditSection ===
-                  "basic" && (
-
+                {/* Basic Information */}
+                {activeEditSection === "basic" && (
                   <div className="pv-edit-section-content">
-
                     <div className="pv-content-title">
-
                       <div>
-                        <h3>
-                          Basic Information
-                        </h3>
-
+                        <h3>Basic Information</h3>
                         <p>
-                          Update the main details
-                          about this visa
+                          Update the main details about this visa.
                         </p>
                       </div>
-
                     </div>
 
-                    {/* Country + Price */}
+                    <div className="pv-form-grid">
+                      {renderInput(
+                        "Country",
+                        "country",
+                        "Country",
+                        Globe2
+                      )}
+
+                      {renderInput(
+                        "Starting Price",
+                        "startingPrice",
+                        "85000",
+                        DollarSign
+                      )}
+
+                      {renderInput(
+                        "Processing Time",
+                        "processingTime",
+                        "3 - 6 Weeks",
+                        Clock
+                      )}
+
+                      {renderInput(
+                        "Approval Tagline",
+                        "approvalTagline",
+                        "Official approval tagline",
+                        CheckCircle2
+                      )}
+
+                      {renderInput(
+                        "Expert",
+                        "expert",
+                        "Expert name",
+                        User
+                      )}
+                    </div>
 
                     <div className="pv-form-grid">
-
-                      <div className="pv-form-group">
-
-                        <label>
-                          Country
-                          <span>*</span>
-                        </label>
-
-                        <div className="pv-input-icon-wrap">
-
-                          <Globe2 />
-
-                          <input
-                            className="pv-input"
-                            value={
-                              editForm.country ||
-                              ""
-                            }
-                            onChange={(e) =>
-                              handleFieldChange(
-                                "country",
-                                e.target.value
-                              )
-                            }
-                            placeholder="Country"
-                          />
-
-                        </div>
-
-                      </div>
-
-                      <div className="pv-form-group">
-
-                        <label>
-                          Starting Price
-                          <span>*</span>
-                        </label>
-
-                        <div className="pv-input-icon-wrap">
-
-                          <DollarSign />
-
-                          <input
-                            className="pv-input"
-                            value={
-                              editForm.startingPrice ||
-                              ""
-                            }
-                            onChange={(e) =>
-                              handleFieldChange(
-                                "startingPrice",
-                                e.target.value
-                              )
-                            }
-                            placeholder="85000"
-                          />
-
-                        </div>
-
-                      </div>
-
-                      {/* Processing */}
-
-                      <div className="pv-form-group">
-
-                        <label>
-                          Processing Time
-                          <span>*</span>
-                        </label>
-
-                        <div className="pv-input-icon-wrap">
-
-                          <Clock />
-
-                          <input
-                            className="pv-input"
-                            value={
-                              editForm.processingTime ||
-                              ""
-                            }
-                            onChange={(e) =>
-                              handleFieldChange(
-                                "processingTime",
-                                e.target.value
-                              )
-                            }
-                            placeholder="3 - 6 Weeks"
-                          />
-
-                        </div>
-
-                      </div>
-
-                      {/* Approval */}
-
-                      <div className="pv-form-group">
-
-                        <label>
-                          Approval Tagline
-                          <span>*</span>
-                        </label>
-
-                        <div className="pv-input-icon-wrap">
-
-                          <CheckCircle2 />
-
-                          <input
-                            className="pv-input"
-                            value={
-                              editForm.approvalTagline ||
-                              ""
-                            }
-                            onChange={(e) =>
-                              handleFieldChange(
-                                "approvalTagline",
-                                e.target.value
-                              )
-                            }
-                            placeholder="Official approval tagline"
-                          />
-
-                        </div>
-
-                      </div>
-
-                      {/* Expert */}
-
-                      <div className="pv-form-group">
-
-                        <label>
-                          Expert
-                          <span>*</span>
-                        </label>
-
-                        <div className="pv-input-icon-wrap">
-
-                          <User />
-
-                          <input
-                            className="pv-input"
-                            value={
-                              editForm.expert ||
-                              ""
-                            }
-                            onChange={(e) =>
-                              handleFieldChange(
-                                "expert",
-                                e.target.value
-                              )
-                            }
-                            placeholder="Expert name"
-                          />
-
-                        </div>
-
-                      </div>
-
-                      {/* Popular */}
-
                       <div className="pv-toggle-group">
-
                         <div>
-                          <strong>
-                            Popular Visa
-                          </strong>
-
-                          <span>
-                            Show in popular
-                            section
-                          </span>
+                          <strong>Popular Visa</strong>
+                          <span>Show in popular section</span>
                         </div>
 
                         <button
                           type="button"
                           className={`pv-toggle ${
-                            editForm.isPopular
-                              ? "active"
-                              : ""
+                            editForm.isPopular ? "active" : ""
                           }`}
                           onClick={() =>
                             handleFieldChange(
@@ -1189,33 +808,22 @@ const PreviewVisa = () => {
                               !editForm.isPopular
                             )
                           }
+                          aria-label="Toggle popular visa"
                         >
-                          <span></span>
+                          <span />
                         </button>
-
                       </div>
 
-                      {/* Normal */}
-
                       <div className="pv-toggle-group">
-
                         <div>
-                          <strong>
-                            Normal Visa
-                          </strong>
-
-                          <span>
-                            Show in normal
-                            list
-                          </span>
+                          <strong>Normal Visa</strong>
+                          <span>Show in normal list</span>
                         </div>
 
                         <button
                           type="button"
                           className={`pv-toggle ${
-                            editForm.isNormal
-                              ? "active"
-                              : ""
+                            editForm.isNormal ? "active" : ""
                           }`}
                           onClick={() =>
                             handleFieldChange(
@@ -1223,54 +831,83 @@ const PreviewVisa = () => {
                               !editForm.isNormal
                             )
                           }
+                          aria-label="Toggle normal visa"
                         >
-                          <span></span>
+                          <span />
                         </button>
+                      </div>
+                    </div>
 
+                    {/* TinyMCE rich-text description editor */}
+                    <div className="pv-form-group pv-description-group pv-tinymce-group">
+                      <label>Description</label>
+
+                      <div className="pv-tinymce-wrapper">
+                        <Editor
+                          apiKey={TINYMCE_API_KEY}
+                          value={editForm.description || ""}
+                          onEditorChange={(content) =>
+                            handleFieldChange(
+                              "description",
+                              content
+                            )
+                          }
+                          init={{
+                            height: 300,
+                            menubar: true,
+                            branding: false,
+                            promotion: false,
+                            statusbar: true,
+                            resize: true,
+                            placeholder: "Write visa description...",
+                            plugins: [
+                              "advlist",
+                              "autolink",
+                              "lists",
+                              "link",
+                              "charmap",
+                              "searchreplace",
+                              "visualblocks",
+                              "code",
+                              "fullscreen",
+                              "insertdatetime",
+                              "table",
+                              "wordcount",
+                              "autoresize",
+                            ],
+                            toolbar:
+                              "undo redo | blocks | " +
+                              "bold italic underline strikethrough | " +
+                              "forecolor backcolor | " +
+                              "alignleft aligncenter alignright alignjustify | " +
+                              "bullist numlist | outdent indent | " +
+                              "link table | removeformat | code fullscreen",
+                            block_formats:
+                              "Paragraph=p; Heading 1=h1; Heading 2=h2; " +
+                              "Heading 3=h3; Heading 4=h4; Quote=blockquote",
+                            content_style:
+                              "body { font-family: Inter, Arial, sans-serif; font-size: 14px; line-height: 1.7; color: #292638; padding: 8px; } " +
+                              "h1,h2,h3,h4 { color: #292638; font-weight: 700; } " +
+                              "a { color: #e93691; }",
+                          }}
+                        />
                       </div>
 
+                      <small className="pv-description-hint">
+                        Format your description with headings,
+                        lists, links, colors and text alignment.
+                      </small>
                     </div>
 
-                    {/* Description */}
-
-                    <div className="pv-form-group pv-description-group">
-
-                      <label>
-                        Description
-                      </label>
-
-                      <textarea
-                        className="pv-textarea"
-                        rows="5"
-                        value={
-                          editForm.description ||
-                          ""
-                        }
-                        onChange={(e) =>
-                          handleFieldChange(
-                            "description",
-                            e.target.value
-                          )
-                        }
-                        placeholder="Write visa description..."
-                      />
-
-                    </div>
-
-                    {/* Banner */}
-
+                    {/* Banner upload */}
                     <div className="pv-banner-section">
-
                       <label className="pv-banner-label">
                         Banner Image
                       </label>
 
                       <div className="pv-banner-upload">
-
                         {bannerPreview ? (
-
                           <div className="pv-banner-preview">
-
                             <img
                               src={bannerPreview}
                               alt="Visa banner"
@@ -1279,33 +916,22 @@ const PreviewVisa = () => {
                             <button
                               type="button"
                               className="pv-banner-remove"
-                              onClick={
-                                removeBanner
-                              }
+                              onClick={removeBanner}
+                              aria-label="Remove selected image"
                             >
                               <X />
                             </button>
-
                           </div>
-
                         ) : (
-
                           <div className="pv-banner-placeholder">
                             <ImageIcon />
-
-                            <span>
-                              No banner image
-                            </span>
+                            <span>No banner image</span>
                           </div>
-
                         )}
 
                         <div className="pv-banner-actions">
-
                           <label className="pv-change-image">
-
                             <Upload />
-
                             {bannerPreview
                               ? "Change Image"
                               : "Choose Image"}
@@ -1313,51 +939,28 @@ const PreviewVisa = () => {
                             <input
                               type="file"
                               accept="image/png,image/jpeg,image/jpg,image/webp"
-                              onChange={
-                                handleBannerChange
-                              }
+                              onChange={handleBannerChange}
                             />
-
                           </label>
 
-                          <p>
-                            JPG, PNG or WEBP up
-                            to 5MB
-                          </p>
-
+                          <p>JPG, PNG or WEBP up to 5MB</p>
                           <small>
-                            Recommended size:
-                            1200 × 400
+                            Recommended size: 1200 × 400
                           </small>
-
                         </div>
-
                       </div>
-
                     </div>
-
                   </div>
                 )}
 
-                {/* ===============================================
-                    VISA TYPES
-                =============================================== */}
-
-                {activeEditSection ===
-                  "types" && (
-
+                {/* Visa Types */}
+                {activeEditSection === "types" && (
                   <div className="pv-edit-section-content">
-
                     <div className="pv-content-title">
-
                       <div>
-                        <h3>
-                          Visa Types
-                        </h3>
-
+                        <h3>Visa Types</h3>
                         <p>
-                          Manage visa types,
-                          fees and processing
+                          Manage visa types, fees and processing
                           details.
                         </p>
                       </div>
@@ -1369,480 +972,198 @@ const PreviewVisa = () => {
                       >
                         + Add Type
                       </button>
-
                     </div>
 
                     <div className="pv-visa-type-edit-list">
-
-                      {(
-                        editForm.visaTypes ||
-                        []
-                      ).length === 0 ? (
-
+                      {editForm.visaTypes?.length === 0 ? (
                         <div className="pv-no-types">
                           No visa types added.
                         </div>
-
                       ) : (
-
-                        editForm.visaTypes.map(
-                          (vt, index) => (
-
-                            <div
-                              className="pv-type-edit-box"
-                              key={index}
-                            >
-
-                              <div className="pv-type-edit-header">
-
-                                <div>
-
-                                  <span className="pv-type-number">
-                                    {String(
-                                      index + 1
-                                    ).padStart(
-                                      2,
-                                      "0"
-                                    )}
-                                  </span>
-
-                                  <h4>
-                                    {vt.name ||
-                                      "Visa Type"}
-                                  </h4>
-
-                                </div>
-
-                                <button
-                                  type="button"
-                                  className="pv-remove-type"
-                                  onClick={() =>
-                                    removeVisaType(
-                                      index
-                                    )
-                                  }
-                                >
-                                  <Trash2 />
-                                </button>
-
+                        editForm.visaTypes.map((vt, index) => (
+                          <div
+                            className="pv-type-edit-box"
+                            key={index}
+                          >
+                            <div className="pv-type-edit-header">
+                              <div>
+                                <span className="pv-type-number">
+                                  {String(index + 1).padStart(2, "0")}
+                                </span>
+                                <h4>{vt.name || "Visa Type"}</h4>
                               </div>
 
-                              <div className="pv-form-grid">
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Visa Name
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.name ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "name",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Fees
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.fees ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "fees",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Processing Time
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.processingTime ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "processingTime",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Stay Period
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.stayPeriod ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "stayPeriod",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Validity
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.validity ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "validity",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Category
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.category ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "category",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                                <div className="pv-form-group">
-
-                                  <label>
-                                    Entry Type
-                                  </label>
-
-                                  <input
-                                    className="pv-input pv-plain-input"
-                                    value={
-                                      vt.entryType ||
-                                      ""
-                                    }
-                                    onChange={(e) =>
-                                      updateVisaType(
-                                        index,
-                                        "entryType",
-                                        e.target
-                                          .value
-                                      )
-                                    }
-                                  />
-
-                                </div>
-
-                              </div>
-
+                              <button
+                                type="button"
+                                className="pv-remove-type"
+                                onClick={() => removeVisaType(index)}
+                                aria-label="Remove visa type"
+                              >
+                                <Trash2 />
+                              </button>
                             </div>
 
-                          )
-                        )
-
+                            <div className="pv-form-grid">
+                              {[
+                                ["Visa Name", "name"],
+                                ["Fees", "fees"],
+                                ["Processing Time", "processingTime"],
+                                ["Stay Period", "stayPeriod"],
+                                ["Validity", "validity"],
+                                ["Category", "category"],
+                                ["Entry Type", "entryType"],
+                              ].map(([label, field]) => (
+                                <div
+                                  className="pv-form-group"
+                                  key={field}
+                                >
+                                  <label>{label}</label>
+                                  <input
+                                    className="pv-input pv-plain-input"
+                                    value={vt[field] ?? ""}
+                                    onChange={(e) =>
+                                      updateVisaType(
+                                        index,
+                                        field,
+                                        e.target.value
+                                      )
+                                    }
+                                  />
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))
                       )}
-
                     </div>
-
                   </div>
                 )}
 
-                {/* ===============================================
-                    DOCUMENTS
-                =============================================== */}
-
-                {activeEditSection ===
-                  "documents" && (
-
+                {/* Documents */}
+                {activeEditSection === "documents" && (
                   <div className="pv-edit-section-content">
-
                     <div className="pv-content-title">
-
                       <div>
-                        <h3>
-                          Documents
-                        </h3>
-
+                        <h3>Documents</h3>
                         <p>
-                          Documents currently
-                          associated with this
+                          Documents currently associated with this
                           visa.
                         </p>
                       </div>
-
                     </div>
 
                     <div className="pv-simple-data-box">
-
-                      {Array.isArray(
-                        editForm.documents
-                      ) &&
-                      editForm.documents.length >
-                        0 ? (
-
-                        editForm.documents.map(
-                          (document, index) => (
-
-                            <div
-                              className="pv-simple-item"
-                              key={index}
-                            >
-                              <FileText />
-
-                              <span>
-                                {typeof document ===
-                                "string"
-                                  ? document
-                                  : JSON.stringify(
-                                      document
-                                    )}
-                              </span>
-                            </div>
-
-                          )
-                        )
-
+                      {editForm.documents?.length ? (
+                        editForm.documents.map((document, index) => (
+                          <div
+                            className="pv-simple-item"
+                            key={index}
+                          >
+                            <FileText />
+                            <span>
+                              {typeof document === "string"
+                                ? document
+                                : JSON.stringify(document)}
+                            </span>
+                          </div>
+                        ))
                       ) : (
-
                         <div className="pv-no-data">
-                          No documents available
-                          for editing.
+                          No documents available for editing.
                         </div>
-
                       )}
-
                     </div>
-
                   </div>
                 )}
 
-                {/* ===============================================
-                    FAQS
-                =============================================== */}
-
-                {activeEditSection ===
-                  "faqs" && (
-
+                {/* FAQs */}
+                {activeEditSection === "faqs" && (
                   <div className="pv-edit-section-content">
-
                     <div className="pv-content-title">
-
                       <div>
-                        <h3>
-                          FAQs
-                        </h3>
-
+                        <h3>FAQs</h3>
                         <p>
-                          Frequently asked
-                          questions attached to
+                          Frequently asked questions attached to
                           this visa.
                         </p>
                       </div>
-
                     </div>
 
                     <div className="pv-simple-data-box">
-
-                      {Array.isArray(
-                        editForm.faqs
-                      ) &&
-                      editForm.faqs.length >
-                        0 ? (
-
-                        editForm.faqs.map(
-                          (faq, index) => (
-
-                            <div
-                              className="pv-faq-item"
-                              key={index}
-                            >
-
-                              <div className="pv-faq-number">
-                                {index + 1}
-                              </div>
-
-                              <div>
-
-                                <strong>
-                                  {faq.question ||
-                                    faq.title ||
-                                    `FAQ ${
-                                      index + 1
-                                    }`}
-                                </strong>
-
-                                <p>
-                                  {faq.answer ||
-                                    faq.description ||
-                                    ""}
-                                </p>
-
-                              </div>
-
+                      {editForm.faqs?.length ? (
+                        editForm.faqs.map((faq, index) => (
+                          <div
+                            className="pv-faq-item"
+                            key={index}
+                          >
+                            <div className="pv-faq-number">
+                              {index + 1}
                             </div>
 
-                          )
-                        )
-
+                            <div>
+                              <strong>
+                                {faq.question ||
+                                  faq.title ||
+                                  `FAQ ${index + 1}`}
+                              </strong>
+                              <p>
+                                {faq.answer ||
+                                  faq.description ||
+                                  ""}
+                              </p>
+                            </div>
+                          </div>
+                        ))
                       ) : (
-
                         <div className="pv-no-data">
-                          No FAQs available for
-                          editing.
+                          No FAQs available for editing.
                         </div>
-
                       )}
-
                     </div>
-
                   </div>
                 )}
 
-                {/* ===============================================
-                    ADDITIONAL INFO
-                =============================================== */}
-
-                {activeEditSection ===
-                  "infos" && (
-
+                {/* Additional Info */}
+                {activeEditSection === "infos" && (
                   <div className="pv-edit-section-content">
-
                     <div className="pv-content-title">
-
                       <div>
-                        <h3>
-                          Additional Info
-                        </h3>
-
+                        <h3>Additional Info</h3>
                         <p>
-                          Additional visa
-                          information stored
-                          for this country.
+                          Additional visa information stored for
+                          this country.
                         </p>
                       </div>
-
                     </div>
 
                     <div className="pv-simple-data-box">
-
-                      {Array.isArray(
-                        editForm.infos
-                      ) &&
-                      editForm.infos.length >
-                        0 ? (
-
-                        editForm.infos.map(
-                          (info, index) => (
-
-                            <div
-                              className="pv-info-item"
-                              key={index}
-                            >
-
-                              <Info />
-
-                              <span>
-                                {typeof info ===
-                                "string"
-                                  ? info
-                                  : JSON.stringify(
-                                      info
-                                    )}
-                              </span>
-
-                            </div>
-
-                          )
-                        )
-
+                      {editForm.infos?.length ? (
+                        editForm.infos.map((info, index) => (
+                          <div
+                            className="pv-info-item"
+                            key={index}
+                          >
+                            <Info />
+                            <span>
+                              {typeof info === "string"
+                                ? info
+                                : JSON.stringify(info)}
+                            </span>
+                          </div>
+                        ))
                       ) : (
-
                         <div className="pv-no-data">
-                          No additional
-                          information available.
+                          No additional information available.
                         </div>
-
                       )}
-
                     </div>
-
                   </div>
                 )}
-
               </main>
-
             </div>
 
-            {/* =================================================
-                MODAL FOOTER
-            ================================================= */}
-
+            {/* Modal footer */}
             <div className="pv-edit-footer">
-
               <button
                 type="button"
                 className="pv-cancel-btn"
@@ -1860,7 +1181,7 @@ const PreviewVisa = () => {
               >
                 {saving ? (
                   <>
-                    <span className="pv-button-spinner"></span>
+                    <span className="pv-button-spinner" />
                     Updating...
                   </>
                 ) : (
@@ -1870,15 +1191,10 @@ const PreviewVisa = () => {
                   </>
                 )}
               </button>
-
             </div>
-
           </div>
-
         </div>
-
       )}
-
     </section>
   );
 };
