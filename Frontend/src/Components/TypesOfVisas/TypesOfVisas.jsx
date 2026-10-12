@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../Api";
 import "./TypesOfVisas.css";
@@ -7,11 +7,15 @@ import "./TypesOfVisas.css";
 const TypesVisa = ({
   visaTypes: initialVisaTypes,
   country,
-  visaId,
+  visaId: propVisaId,
   author,
   lastUpdated,
   reviews = [],
 }) => {
+  const { id: routeVisaId } = useParams();
+  // Fallback to route params if visaId prop is not provided
+  const visaId = propVisaId || routeVisaId;
+
   const [backendVisaTypes, setBackendVisaTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -22,7 +26,7 @@ const TypesVisa = ({
     let active = true;
 
     const fetchVisaData = async () => {
-      // If no visaId is provided, do not attempt to fetch from the server
+      // If no visaId is available from props or route, do not fetch
       if (!visaId) {
         if (active) {
           setLoading(false);
