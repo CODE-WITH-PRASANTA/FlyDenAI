@@ -658,6 +658,107 @@ span:first-child {
 }
 
 
+.flyixo-types-status {
+  width: 100%;
+  padding: 28px 20px;
+  margin: 20px 0;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #475569;
+}
+
+.flyixo-types-status p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.flyixo-types-error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.flyixo-types-error button {
+  margin-top: 12px;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.flyixo-types-spinner {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-bottom: 10px;
+  border: 3px solid #dbeafe;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: flyixoVisaSpin 0.8s linear infinite;
+}
+
+.flyixo-visa-category {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 5px;
+  padding: 4px 9px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.18);
+  color: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.flyixo-types-visa-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  overflow-wrap: anywhere;
+}
+
+.flyixo-types-visa-card-details > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.flyixo-types-visa-card-details > div > span:last-child {
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.flyixo-visa-fees {
+  color: #15803d;
+  font-weight: 700;
+}
+
+@keyframes flyixoVisaSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .flyixo-types-visa-card-details > div {
+    gap: 10px;
+  }
+
+  .flyixo-types-visa-card-details > div > span {
+    font-size: 13px;
+  }
+}
+
 /* =========================================================
    TABLET - 1024px
    ========================================================= */
