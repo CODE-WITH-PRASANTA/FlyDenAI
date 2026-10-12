@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
 import axios from "axios";
 import BASE_URL from "../../Api";
 import "./TypesOfVisas.css";
@@ -14,6 +15,8 @@ const TypesVisa = ({
   const [backendVisaTypes, setBackendVisaTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  
+  const navigate = useNavigate(); // 2. Initialize navigate hook
 
   useEffect(() => {
     let active = true;
@@ -23,7 +26,6 @@ const TypesVisa = ({
       setError("");
 
       try {
-        // Use the new published ID route if visaId is provided, otherwise fetch all
         const endpoint = visaId 
           ? `${BASE_URL}/published/${visaId}` 
           : `${BASE_URL}/visas`;
@@ -34,7 +36,6 @@ const TypesVisa = ({
         let extractedVisaTypes = [];
 
         if (visaId) {
-          // Handle single visa document response structure
           const listing = payload?.data || payload;
           const types = Array.isArray(listing?.visaTypes) ? listing.visaTypes : [];
 
@@ -47,7 +48,6 @@ const TypesVisa = ({
                 : listing.country || listing.countryName || "",
           }));
         } else {
-          // Handle all listings response structure
           const listings = Array.isArray(payload)
             ? payload
             : Array.isArray(payload?.data)
@@ -98,7 +98,6 @@ const TypesVisa = ({
     };
   }, [visaId]);
 
-  // Filter the fetched visa types when a country is supplied (if fetching all)
   const filteredVisaTypes = useMemo(() => {
     let result = backendVisaTypes;
 
@@ -115,7 +114,6 @@ const TypesVisa = ({
       );
     }
 
-    // Use prop data as a fallback if the API returned no matching types.
     if (
       result.length === 0 &&
       Array.isArray(initialVisaTypes) &&
@@ -134,7 +132,6 @@ const TypesVisa = ({
 
     const cleaned = String(fees).replace(/[₹,\s]/g, "");
 
-    // Preserve non-numeric fee descriptions.
     if (!/^\d+(\.\d+)?$/.test(cleaned)) {
       return String(fees);
     }
@@ -148,6 +145,15 @@ const TypesVisa = ({
     value !== undefined &&
     value !== null &&
     String(value).trim() !== "";
+
+  // 3. Handle card click to redirect to /apply/now/:id
+  const handleCardClick = (visa) => {
+    // Prefer the specific visa ID, or fallback to the parent listing ID
+    const targetId = visa._id || visa.id || visa._listingId || visaId;
+    if (targetId) {
+      navigate(`/apply/now/${targetId}`);
+    }
+  };
 
   return (
     <section className="flyixo-types-visa-page">
@@ -207,6 +213,8 @@ const TypesVisa = ({
                     visa.id ||
                     `${visa._listingId || "visa"}-${visa.name}-${index}`
                   }
+                  onClick={() => handleCardClick(visa)} // 4. Attach click event handler
+                  style={{ cursor: "pointer" }} // Optional: changes cursor to pointer on hover
                 >
                   <div className="flyixo-types-visa-card-header">
                     <span>{visa.name || "Visa Type"}</span>
@@ -259,6 +267,7 @@ const TypesVisa = ({
           </div>
         )}
 
+        {/* Author and reviews sections remain unchanged */}
         {(author || lastUpdated) && (
           <div className="flyixo-author-update">
             {author && (
