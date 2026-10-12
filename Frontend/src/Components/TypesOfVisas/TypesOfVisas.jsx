@@ -22,67 +22,44 @@ const TypesVisa = ({
     let active = true;
 
     const fetchVisaData = async () => {
+      // If no visaId is provided, do not attempt to fetch from the server
+      if (!visaId) {
+        if (active) {
+          setLoading(false);
+          setBackendVisaTypes([]);
+        }
+        return;
+      }
+
       setLoading(true);
       setError("");
 
       try {
-        // Use the specific published ID route if visaId is provided, otherwise fetch all published or default listings
-        const endpoint = visaId 
-          ? `${BASE_URL}/visas/published/${visaId}` 
-          : `${BASE_URL}/visas`;
-
+        const endpoint = `${BASE_URL}/visas/published/${visaId}`;
         const response = await axios.get(endpoint);
         const payload = response.data;
 
         let extractedVisaTypes = [];
 
-        if (visaId) {
-          const listing = payload?.data || payload;
-          const types = Array.isArray(listing?.visaTypes) ? listing.visaTypes : [];
-          const parentId = listing._id || listing.id || visaId;
+        const listing = payload?.data || payload;
+        const types = Array.isArray(listing?.visaTypes) ? listing.visaTypes : [];
+        const parentId = listing._id || listing.id || visaId;
 
-          extractedVisaTypes = types.map((visa) => ({
-            ...visa,
-            // Ensure every visa option retains a unique route-able ID
-            _id: visa._id || visa.id || parentId,
-            _listingId: parentId,
-            _country:
-              typeof listing.country === "object"
-                ? listing.country?.countryName || listing.country?.name
-                : listing.country || listing.countryName || "",
-          }));
-        } else {
-          const listings = Array.isArray(payload)
-            ? payload
-            : Array.isArray(payload?.data)
-            ? payload.data
-            : Array.isArray(payload?.visas)
-            ? payload.visas
-            : Array.isArray(payload?.data?.visas)
-            ? payload.data.visas
-            : [];
-
-          extractedVisaTypes = listings.flatMap((listing) => {
-            const types = Array.isArray(listing.visaTypes) ? listing.visaTypes : [];
-            const parentId = listing._id || listing.id;
-
-            return types.map((visa) => ({
-              ...visa,
-              _id: visa._id || visa.id || parentId,
-              _listingId: parentId,
-              _country:
-                typeof listing.country === "object"
-                  ? listing.country?.countryName || listing.country?.name
-                  : listing.country || listing.countryName || "",
-            }));
-          });
-        }
+        extractedVisaTypes = types.map((visa) => ({
+          ...visa,
+          _id: visa._id || visa.id || parentId,
+          _listingId: parentId,
+          _country:
+            typeof listing.country === "object"
+              ? listing.country?.countryName || listing.country?.name
+              : listing.country || listing.countryName || "",
+        }));
 
         if (active) {
           setBackendVisaTypes(extractedVisaTypes);
         }
       } catch (err) {
-        console.error("Failed to fetch visa data:", err);
+        console.error("Failed to fetch visa data by ID:", err);
 
         if (active) {
           setError(
@@ -152,7 +129,6 @@ const TypesVisa = ({
     value !== null &&
     String(value).trim() !== "";
 
-  // Handles clicking a visa card to redirect to /apply/now/:id using its unique ID
   const handleCardClick = (visa) => {
     const targetId = visa._id || visa.id || visa._listingId || visaId;
     if (targetId) {
