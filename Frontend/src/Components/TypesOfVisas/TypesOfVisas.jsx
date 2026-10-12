@@ -1,4 +1,3 @@
-
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import BASE_URL from "../../Api";
@@ -19,48 +18,65 @@ const TypesVisa = ({
   useEffect(() => {
     let active = true;
 
-    const fetchVisaTypes = async () => {
+    const fetchVisaData = async () => {
       setLoading(true);
       setError("");
 
       try {
-        // Fetch all visa listings saved in the backend.
-        const response = await axios.get(`${BASE_URL}/visas`);
+        // Use the new published ID route if visaId is provided, otherwise fetch all
+        const endpoint = visaId 
+          ? `${BASE_URL}/published/${visaId}` 
+          : `${BASE_URL}/visas`;
 
+        const response = await axios.get(endpoint);
         const payload = response.data;
 
-        // Support common API response structures.
-        const listings = Array.isArray(payload)
-          ? payload
-          : Array.isArray(payload?.data)
-            ? payload.data
-            : Array.isArray(payload?.visas)
-              ? payload.visas
-              : Array.isArray(payload?.data?.visas)
-                ? payload.data.visas
-                : [];
+        let extractedVisaTypes = [];
 
-        // Extract every visa type from every visa listing.
-        const extractedVisaTypes = listings.flatMap((listing) => {
-          const types = Array.isArray(listing.visaTypes)
-            ? listing.visaTypes
-            : [];
+        if (visaId) {
+          // Handle single visa document response structure
+          const listing = payload?.data || payload;
+          const types = Array.isArray(listing?.visaTypes) ? listing.visaTypes : [];
 
-          return types.map((visa) => ({
+          extractedVisaTypes = types.map((visa) => ({
             ...visa,
-            _listingId: listing._id || listing.id,
+            _listingId: listing._id || listing.id || visaId,
             _country:
               typeof listing.country === "object"
                 ? listing.country?.countryName || listing.country?.name
                 : listing.country || listing.countryName || "",
           }));
-        });
+        } else {
+          // Handle all listings response structure
+          const listings = Array.isArray(payload)
+            ? payload
+            : Array.isArray(payload?.data)
+            ? payload.data
+            : Array.isArray(payload?.visas)
+            ? payload.visas
+            : Array.isArray(payload?.data?.visas)
+            ? payload.data.visas
+            : [];
+
+          extractedVisaTypes = listings.flatMap((listing) => {
+            const types = Array.isArray(listing.visaTypes) ? listing.visaTypes : [];
+
+            return types.map((visa) => ({
+              ...visa,
+              _listingId: listing._id || listing.id,
+              _country:
+                typeof listing.country === "object"
+                  ? listing.country?.countryName || listing.country?.name
+                  : listing.country || listing.countryName || "",
+            }));
+          });
+        }
 
         if (active) {
           setBackendVisaTypes(extractedVisaTypes);
         }
       } catch (err) {
-        console.error("Failed to fetch visa types:", err);
+        console.error("Failed to fetch visa data:", err);
 
         if (active) {
           setError(
@@ -75,22 +91,18 @@ const TypesVisa = ({
       }
     };
 
-    fetchVisaTypes();
+    fetchVisaData();
 
     return () => {
       active = false;
     };
-  }, []);
+  }, [visaId]);
 
-  // Filter the fetched visa types when a country or listing ID is supplied.
+  // Filter the fetched visa types when a country is supplied (if fetching all)
   const filteredVisaTypes = useMemo(() => {
     let result = backendVisaTypes;
 
-    if (visaId) {
-      result = result.filter(
-        (visa) => String(visa._listingId) === String(visaId)
-      );
-    } else if (country) {
+    if (!visaId && country) {
       const selectedCountry =
         typeof country === "object"
           ? country.countryName || country.name || country._id
