@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../Api";
 import "./TypesOfVisas.css";
@@ -16,7 +16,7 @@ const TypesVisa = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   
-  const navigate = useNavigate(); // 2. Initialize navigate hook
+  const navigate = useNavigate();
 
   useEffect(() => {
     let active = true;
@@ -26,6 +26,7 @@ const TypesVisa = ({
       setError("");
 
       try {
+        // Use the specific published ID route if visaId is provided, otherwise fetch all published or default listings
         const endpoint = visaId 
           ? `${BASE_URL}/published/${visaId}` 
           : `${BASE_URL}/visas`;
@@ -38,10 +39,13 @@ const TypesVisa = ({
         if (visaId) {
           const listing = payload?.data || payload;
           const types = Array.isArray(listing?.visaTypes) ? listing.visaTypes : [];
+          const parentId = listing._id || listing.id || visaId;
 
           extractedVisaTypes = types.map((visa) => ({
             ...visa,
-            _listingId: listing._id || listing.id || visaId,
+            // Ensure every visa option retains a unique route-able ID
+            _id: visa._id || visa.id || parentId,
+            _listingId: parentId,
             _country:
               typeof listing.country === "object"
                 ? listing.country?.countryName || listing.country?.name
@@ -60,10 +64,12 @@ const TypesVisa = ({
 
           extractedVisaTypes = listings.flatMap((listing) => {
             const types = Array.isArray(listing.visaTypes) ? listing.visaTypes : [];
+            const parentId = listing._id || listing.id;
 
             return types.map((visa) => ({
               ...visa,
-              _listingId: listing._id || listing.id,
+              _id: visa._id || visa.id || parentId,
+              _listingId: parentId,
               _country:
                 typeof listing.country === "object"
                   ? listing.country?.countryName || listing.country?.name
@@ -146,9 +152,8 @@ const TypesVisa = ({
     value !== null &&
     String(value).trim() !== "";
 
-  // 3. Handle card click to redirect to /apply/now/:id
+  // Handles clicking a visa card to redirect to /apply/now/:id using its unique ID
   const handleCardClick = (visa) => {
-    // Prefer the specific visa ID, or fallback to the parent listing ID
     const targetId = visa._id || visa.id || visa._listingId || visaId;
     if (targetId) {
       navigate(`/apply/now/${targetId}`);
@@ -213,8 +218,8 @@ const TypesVisa = ({
                     visa.id ||
                     `${visa._listingId || "visa"}-${visa.name}-${index}`
                   }
-                  onClick={() => handleCardClick(visa)} // 4. Attach click event handler
-                  style={{ cursor: "pointer" }} // Optional: changes cursor to pointer on hover
+                  onClick={() => handleCardClick(visa)}
+                  style={{ cursor: "pointer" }}
                 >
                   <div className="flyixo-types-visa-card-header">
                     <span>{visa.name || "Visa Type"}</span>
@@ -267,7 +272,6 @@ const TypesVisa = ({
           </div>
         )}
 
-        {/* Author and reviews sections remain unchanged */}
         {(author || lastUpdated) && (
           <div className="flyixo-author-update">
             {author && (
