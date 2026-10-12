@@ -28,7 +28,7 @@ const TypesVisa = ({
       try {
         // Use the specific published ID route if visaId is provided, otherwise fetch all published or default listings
         const endpoint = visaId 
-          ? `${BASE_URL}/published/${visaId}` 
+          ? `${BASE_URL}/visas/published/${visaId}` 
           : `${BASE_URL}/visas`;
 
         const response = await axios.get(endpoint);
