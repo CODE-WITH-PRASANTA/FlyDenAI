@@ -59,21 +59,25 @@ const VisaApplicationForm = () => {
   const [isInitiatingPayment] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState("PENDING");
 
-  // ---------------- LOAD VISA TYPES ----------------
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await fetch(`${BASE_URL}/visas/published/${id}`);
-        const data = await res.json();
-        if (data.success) {
-          setVisaTypes(data.data?.visaTypes || []);
-        }
-      } catch (err) {
-        console.error("load visa types err:", err);
+useEffect(() => {
+  console.log("Fetching visa with ID:", id); // <-- Check this in browser console
+  const load = async () => {
+    try {
+      const res = await fetch(`${BASE_URL}/visas/published/${id}`);
+      const data = await res.json();
+      if (data.success) {
+        setVisaTypes(data.data?.visaTypes || []);
+      } else {
+        console.error("Backend error message:", data.message);
       }
-    };
-    load();
-  }, [id]);
+    } catch (err) {
+      console.error("load visa types err:", err);
+    }
+  };
+  if (id) load();
+}, [id]);
+
+
 
   // PREFILL TRAVELLERS COUNT FROM HOME PAGE
   useEffect(() => {
