@@ -133,12 +133,13 @@ const TypesVisa = ({
     value !== null &&
     String(value).trim() !== "";
 
-  const handleCardClick = (visa) => {
-    const targetId = visa._id || visa.id || visa._listingId || visaId;
-    if (targetId) {
-      navigate(`/apply/now/${targetId}`);
-    }
-  };
+const handleCardClick = (visa) => {
+  // Always prefer the parent listing ID so the backend can find the main document
+  const targetId = visa._listingId || visaId; 
+  if (targetId) {
+    navigate(`/apply/now/${targetId}`);
+  }
+};
 
   return (
     <section className="flyixo-types-visa-page">

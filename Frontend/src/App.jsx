@@ -71,8 +71,8 @@ function App() {
           <Route path="/Visa/Details/:id" element={<VisaDetails />} />
 
           {/* Apply To the Visa Page */}
-          <Route path="/apply/now/:id" element={<ApplyNow />} />
-          <Route path="/Intern/Apply" element={<InternAbroadApply />} />
+        <Route path="/apply/now/:id" element={<ApplyNow />} />          
+        <Route path="/Intern/Apply" element={<InternAbroadApply />} />
 
           {/* Privacy Policy & Term and Condition */}
           <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
